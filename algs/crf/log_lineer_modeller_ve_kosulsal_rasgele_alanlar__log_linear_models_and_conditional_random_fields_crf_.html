@@ -620,15 +620,17 @@ $(a(x)$ ile temsil ediliyor), her mümkün $v$ değeri için bir OF'ye
 bunları atlamayı bilir. Demek ki aynı şekilde koşulsal lineer modeller de
 bu özellikleri atlayabilir. Eğer bir özellik $a(x)=0$ ise, o özellik
 ağırlık güncellemesi (weight update) sırasında atlanır. </p>
-<p>\begin{algorithm}[h]
-\begin{pseudocode}
-\codename $\code{train_crf}$\\
-\codeline $\code{for }$ her eğitim noktası $x,y$ için\\
-\codeline > $j$ için\\
-\codeline > > $E[F_j(x,y')]$ hesapla (buna sadece $E$ diyelim)       \\
-\codeline > > Güncelle: $w_j := w_j + \lambda[F_j(x,y) - E]$
-\end{pseudocode}
-\end{algorithm}</p>
+<pre><code>$\code{train\_crf}$ 
+
+$\code{for }$ her eğitim noktası $x,y$ için 
+
+      $j$ için 
+
+            $E[F_j(x,y')]$ hesapla (buna sadece $E$ diyelim)        
+
+             Güncelle: $w_j := w_j + \lambda[F_j(x,y) - E]$
+</code></pre>
+
 <p>Bu hesabın en pahalı kısmı neresi? Beklenti hesabı. Bu beklentileri
 hesaplanması için daha önce verdiğimiz matris çarpımı yöntemine benzer bir
 yöntem kullanmak gerekiyor (burada vermeyeceğiz, arama motorunda Rahul
