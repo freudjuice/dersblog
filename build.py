@@ -78,14 +78,11 @@ def tex_mathjax_html(texfile, htmlfile, title):
       line = line.replace('``','"')
       line = line.replace("''",'"')
       line = line.replace("\\\\","\\\\\\\\")
-      line = line.replace("\>","     ")
       line = line.replace("\\left\{","\\left\\\\{")
       line = line.replace("\\right\}","\\right\\\\}")
       line = line.replace("\\bigg\{","\\bigg\\\\{")
       line = line.replace("\\bigg\}","\\bigg\\\\}")
-      line = re.sub(r'{\\em (.*?)}', r'*\1*', line)      
-      line = re.sub(r'\\code.*? (.*?)\\\\\\\\', r'\1 \n', line)
-      line = line.replace("\\codeline","")
+      line = re.sub(r'{\\em (.*?)}', r'*\1*', line)
       s = re.sub(r'verb!(.*?)!', r'`\1`', line)
       s = s.replace('\`','`')
       line = s
@@ -115,10 +112,6 @@ def tex_mathjax_html(texfile, htmlfile, title):
       elif '\\mlabel' in line:
          line = re.sub(r'\\mlabel{(.*?)}', r'\qquad (\1)', line)
          fout.write(line)
-      elif '\\begin{algorithm}' in line or '\\end{algorithm}' in line:
-         pass
-      elif '\\begin{pseudocode}' in line or '\\end{pseudocode}' in line:
-         fout.write("```\n")
       else:
           fout.write(line)
       fout.flush()
@@ -170,6 +163,7 @@ if __name__ == "__main__":
         cmd = "python /home/burak/Documents/kod/rsync.py '%s' '%s' --ignore-list=.md,.git,.zip,.pdf" % (fr, TARGET_DIR)
         print (cmd)
         os.system(cmd)
+        shutil.copy(".gitignore", TARGET_DIR)
         
         for topdir in topdirs:
             print ('main',topdir)

@@ -185,11 +185,14 @@ l_1 \cos\theta_1 \dot{\theta}_1 \\
 l_1 \sin\theta_1 \dot{\theta}_1 
 \end{array}\right]
 $$</p>
-<p>$$
-\dot{x}<em>2 = \dot{x}_1 + \left[\begin{array}{rrr}
-l_2 c</em>{1+2} (\dot{\theta}<em>1+ \dot{\theta})\\
-l_2 s</em>{1+2} (\dot{\theta}_1+ \dot{\theta})
-\end{array}\right]
+<p>$$ 
+\dot{x_2} = \dot{x_1} + 
+\left[
+\begin{array}{rrr}
+l_2 c_{1+2} (\dot{\theta_1}+ \dot{\theta}) \\
+l_2 s_{1+2} (\dot{\theta_1}+ \dot{\theta})
+\end{array}
+\right]
 $$</p>
 <p>Kinematiği böylece çözmüş olduk. Dinamiği ortaya çıkartmak için, Lagrangian
 metotunu kullanıyoruz. Sistemin enerjisini düşünüyoruz, toplam kinetik
@@ -204,19 +207,20 @@ U = - m g l_1 c_1 - m_2 g (l_1c_1 + l_2 c_{1+2})
 $$</p>
 <p>Lagrangian $L = T - U$. $I_1 = m_1 l_1$ ve $I_2 = m_2 l_2$ olacak şekilde,</p>
 <p>$$
-(I_1 + I_2 + m_2 l_1^2 + 2m_2 l_1 l_{c2} c_2) \ddot{q}<em>1 + (I_2 + m_2
-l_1 l</em>{c2} c_2)\ddot{q}<em>2 - 2m_2 l_1 l</em>{c2} s_2 \dot{q}_1 \dot{q}_2
+(I_1 + I_2 + m_2 l_1^2 + 2m_2 l_1 l_{c2} c_2) \ddot{q_1} + (I_2 + m_2
+l_1 l_{c2} c_2)\ddot{q_2} - 2m_2 l_1 l_{c2} s_2 \dot{q_1} \dot{q_2}
 $$</p>
 <p>$$
--m_2 l_1 l_{c2} s_2 \dot{q}<em>2^2 + m_1 g l</em>{c1}s_1 + m_2 g
+-m_2 l_1 l_{c2} s_2 \dot{q_2}^2 + m_1 g l_{c1}s_1 + m_2 g
         (l_1 s_1 + l_{c2} s_{1+2}) = 0
 $$</p>
 <p>$$
-(I_2 + m_2 l_1 l_{c2} c_2) \ddot{q}<em>1 + I_2 \ddot{q}_2 + m_2 l_1
-        l</em>{c2} s_2 \dot{q}<em>1^2 + m_2 g l</em>{c2} s_{1+2} = \tau
+(I_2 + m_2 l_1 l_{c2} c_2) \ddot{q_1} + I_2 \ddot{q_2} + m_2 l_1
+        l_{c2} s_2 \dot{q_1}^2 + m_2 g l_{c2} s_{1+2} = \tau
 $$</p>
 <p>$$
-\frac{\mathrm{d} }{\mathrm{d} t} \frac{\partial L}{\partial \dot{q}} - \frac{\partial L}{\partial q} = Q
+\frac{\mathrm{d} }{\mathrm{d} t} \frac{\partial L}{\partial \dot{q}} - \frac{\partial
+  L}{\partial q} = Q
 $$</p>
 <p>$Q$'ya genelleştirilmiş kuvvet deniyor. </p>
 <p>[devam edecek]</p>
