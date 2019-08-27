@@ -1,0 +1,342 @@
+<h1>Dairesel Baz Fonksiyonları (Radial Basis Functions -RBF-), Yükseklik Verisi, Dağlar</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dairesel Baz Fonksiyonları (Radial Basis Functions -RBF-), Yükseklik Verisi, Dağlar
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>Ara değerlemek (interpolation), yani elde olan veriyi kullanıp olmayan hakkında
+tahmin yapmaya uğraşmak için çok boyutlu ortamda RBF iyi işleyen bir
+yaklaşım. Belki de zihinde en rahat canlandırılabilecek örnek yeryüzünde dağlara
+ovalara tekabül eden yükseklik (elevation) verilerini alarak onlara sürekli tepe
+fonksiyonları "uydurmak" böylece dağların nerede olduğunu sürekli şekilde
+saptamak. Temsil etmek istediğimiz (ama bilmediğimiz) fonksiyon $z=g(x,y)$
+olarak gösterilebilecek bir fonksiyon, bir düzlemde herhangi bir $x,y$
+noktasındaki yükseklik $z$. Bu fonksiyondan örneklenerek alınmış verilerle onu
+yaklaşık olarak temsil etmek istiyoruz.</p>
+<p>Düz verinin kendisini kullanmak bağlamında düşük çözünürlükte yükseklik verisi
+ise yaramayabilir, mesela bir örneklem noktası dağın bir eteğinden diğeri öteki
+yanındaki eteğinden alınmışsa bu dağ yok anlamına gelecektir. Peki o zaman niye
+yükseklik verisinın geldiği yerden daha yüksek çözünürlüklü veri almıyoruz?  Bu
+hem erişim hem de tutacağı yer bağlamında pahalı olabilir. 1 derecelik enlem /
+boylam içinde, mesela 36-37 ve 32-33 arası diyelim, 100 metrelik çözünürlük
+demek 0.001 derece değişimine tekabül eder, ve bu durumda 1 milyon veri noktası
+alınması gerekecektir. Halbuki yükseklik verisinden yüzde 3 miktarında bile [2]
+bir rasgele örneklem alırsak, bu noktalara RBF ile tepe fonksiyonları uydurarak
+matematiksel, sürekli olan bir genel fonksiyon elde ederiz, ve uydurma iyi
+işlerse artık istediğimiz çözünürlükte yükseklik verisi elde edebiliriz çünkü
+elimizdeki sürekli fonksiyona istediğimiz her nokta için yükseliğin ne olduğunu
+artık hesaplattırabiliriz.</p>
+<p>Bu örneği 3 boyutta herhangi bir başka veri için de düşünmek mümkün; ama
+yükseklik verisinde daha rahat, her örneklem noktasına konulan tepeler ve
+onların birleşimi bize pürüzsüz, sürekli bir engebe şekli verir. RBF baz
+fonksiyonları $\Phi(x) = f(||x-c||)$ şeklindedir, $f$ tepe, ya da farklı bir
+fonksiyon olabilir, $||\cdot||$ norm fonksiyonudur, Öklitsel norm olabilir
+mesela.</p>
+<p>Burada $c$ üstüne baz fonksiyon konulan nokta, her örneklem veri noktası
+yani. RBF eğitimi / uydurma metadolijisine göre herhangi bir veri noktası
+dışındaki tüm diğer örneklem verileri o veri noktasının oluşumunu etkiler. Bu
+anormal bir faraziye değil, bir dağın başında, ortasında, tepesinden alınmış
+örneklemler varsa, mesela en alt ve en tepedeki veri ortadakini etkiler, yani o
+bağlantıyı, ilişkiyi farzetmek normaldir. Orta nokta zirveyi tanımlayan
+fonksiyona belli bir ağırlıkla bağlı, en alttakine başka bir şekilde bağlı,
+vs. Bu ağırlıkların ne olacağını genel çözüm belirleyecektir. Eğer $f$ için
+Gaussianımsı bir tepe fonksiyonu seçersek, yeni gözlemin baz fonksiyonları ile
+arasındaki ilişki,</p>
+<p>$$
+h(x) = \sum_{n=1}^N w_n \times exp(-\gamma \|x-x_n\|^2)
+$$</p>
+<p>olarak gösterilebilir, $\gamma$ her noktanın etkisinin ne olduğunu dışarıdan
+ayarlamak için genel bir sabit, ne kadar küçükse konulan tepe o kadar kenarlara
+yayılır, daha büyük değerler daha noktasal olur.</p>
+<p>İki üstteki formüldeki $x-c$ kullanımına dikkat, bu aslında "diğer noktaları"
+temsil etmenin akıllıca bir yolu, $c$ üzerinde $x-c$ sıfır değerdedir, bu o
+noktayı temsil için diğer noktalar üzerindeki bazların devreye girmesi
+gerektiğini modelde söyler.</p>
+<p>Her bazın etkisi $w_n$ ağırlığı üzerinden modele yansıtılır. Bu ağırlıkların ne
+olduğunu bulmak, nihai genel fonksiyonu bulmuş olmak anlamına gelir. Farklı
+indislerle tekrar belirtmek gerekirse her veri noktası için şu doğru olmalı,</p>
+<p>$$
+y_n = \sum_{n=1}^N w_m \times exp(-\gamma \|x_n-x_m\|^2)
+$$</p>
+<p>Bu bize $N$ tane veri noktası için $N$ tane denklem ve $N$ tane bilinmeyen
+sağlar. Üstteki formülü matris formunda gösterebiliriz,</p>
+<p>$$
+\underbrace{
+\left[\begin{array}{rrr} \exp(-\gamma \|x_1-x_1\|^2) &amp; \cdots &amp; \exp(-\gamma
+    \|x_1-x_N\|^2)\\ \exp(-\gamma \|x_2-x_1\|^2) &amp; \cdots &amp; \exp(-\gamma
+    \|x_2-x_N\|^2)\\ \vdots &amp; \ddots &amp; \vdots \\ \exp(-\gamma \|x_N-x_1\|^2) &amp;
+    \cdots &amp; \exp(-\gamma \|x_N-x_N\|^2)
+\end{array}\right]
+}<em>{\Phi}
+\underbrace{
+\left[\begin{array}{r}
+ w_1  \\
+ w_2  \\
+ \vdots \\
+ w_N
+\end{array}\right]}</em>{w}
+=
+\underbrace{
+\left[\begin{array}{rrr}
+ y_1  \\
+ y_2  \\
+ \vdots \\
+ y_N
+\end{array}\right]}_{y}
+$$</p>
+<p>Bu durumda $w = \Phi^{-1}y$ bize $w$ ağırlıklarını, yani nihai çözümü
+verecektir. </p>
+<p>Bir örnek üzerinde görelim,</p>
+<pre><code class="python">from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+from matplotlib import cm
+import numpy as np
+import matplotlib.pyplot as plt
+import numpy.linalg as lin
+from scipy.spatial.distance import cdist
+</code></pre>
+
+<p>Şimdi direk bilinen iki RBF kullanalım, böylece her şeyin nasıl biraraya
+geldiği ileride daha iyi anlaşılır. Bizim tanımladığımız ağırlıklar, ve iki
+RBF ile şu şekilde bir grafik oluşturabilirdik,</p>
+<pre><code class="python">D = 50
+gamma = 2.0
+
+x = np.linspace(36,37,D)
+y = np.linspace(32,33,D)
+
+xx,yy = np.meshgrid(x,y)
+
+xm = np.array([[36.06122449],
+               [36.71428571]])
+ym = np.array([[32.67346939],
+               [32.32653061]])
+
+X = np.hstack((xm,ym))
+
+Phi = np.exp(-gamma*cdist(X,X,metric='euclid'))
+
+w = np.array([[0.5],[0.5]])
+
+xxx = xx.reshape(D*D)
+yyy = yy.reshape(D*D)
+
+a = np.vstack((xxx,yyy))
+d = cdist(X,a.T)
+d = np.exp(-gamma * d)
+dd = np.dot(w.T,d)
+znew = dd.reshape(D,D)
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+surf = ax.plot_surface(xx, yy, znew, cmap=cm.coolwarm,linewidth=0, antialiased=False)
+plt.savefig('linear_app88rbf_04.png')
+</code></pre>
+
+<p><img alt="" src="linear_app88rbf_04.png" /></p>
+<p>Bu kod üzerinde oynayarak farklı $\gamma$, ağırlıklar $w$ değerlerinin
+grafikte değişime yol açtığı görülebilir. </p>
+<p>Burada RBF ile aslında analitik bir fonksiyon yaratmış olduk. Bir kez
+ağırlıklarını aldıktan sonra (RBF merkezlerini zaten biliyoruz) herhangi
+bir $x,y$ değeri için o noktadaki birleşik RBF sonucunu hesaplatabiliriz,
+mesela üstteki fonksiyon için</p>
+<p>$$
+x_{m1} = [36.06, 32.67],
+x_{m2} = [36.71, 32.32], 
+x_{test} = [36.16, 32.77]
+$$</p>
+<p>$$
+y = 0.5 \exp (-\gamma || x_{test} - x_{m1} ||^2) + 0.5 \exp (-\gamma || x_{test} - x_{m2} ||^2 )
+$$</p>
+<pre><code class="python">x_test = [36.16, 32.77]
+w1 = 0.5; w2 = 0.5
+
+d1 = (x_test[0]-xm[0])**2 + (x_test[1]-ym[0])**2
+d2 = (x_test[0]-xm[1])**2 + (x_test[1]-ym[1])**2
+y_new = w1*np.exp(-gamma * d1) + w2*np.exp(-gamma * d2) 
+print (y_new)
+</code></pre>
+
+<pre><code>[0.6637959]
+</code></pre>
+
+<p>Gerçek dünya şartlarına yaklaşırsak; bu tür durumlarda çok daha fazla baz
+fonksiyon, örneklem kullanılır, altta <code>func</code> fonksiyonu örneklem
+üretmek için kullanılacak, normal şartlarda bu fonksiyonu bilmiyoruz,
+sadece ondan gelen örneklem verilerini biliyoruz. Bir örnek amaçlı, belli
+bir şekli zorlamak için bunu yaptık.</p>
+<pre><code class="python">np.random.seed(0)
+
+def func(x, y):
+    s1 = 0.2; x1 = 36.5; y1 = 32.5
+    s2 = 0.4; x2 = 36.1; y2 = 32.8
+    g1 = np.exp( -4 *np.log(2) * ((x-x1)**2+(y-y1)**2) / s1**2)
+    g2 = np.exp( -2 *np.log(2) * ((x-x2)**2+(y-y2)**2) / s2**2)    
+    return g1 + g2 
+
+D = 50
+S = 100
+gamma = 2.0
+
+x = np.linspace(36,37,D)
+y = np.linspace(32,33,D)
+
+xx,yy = np.meshgrid(x,y)
+zz = func(xx,yy)
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+surf = ax.plot_surface(xx, yy, zz, cmap=cm.coolwarm,linewidth=0, antialiased=False)
+fig.colorbar(surf, shrink=0.5, aspect=5)
+plt.savefig('linear_app88rbf_01.png')
+</code></pre>
+
+<p><img alt="" src="linear_app88rbf_01.png" /></p>
+<p>İki tane tepe var. Şimdi bu fonksiyondan rasgele örneklem alalım, ve $\Phi$
+üzerinden RBF ağırlıklarını hesaplayalım,</p>
+<pre><code class="python">xxx = xx.reshape(D*D)
+yyy = yy.reshape(D*D)
+zzz = zz.reshape(D*D)
+
+idx = np.random.choice(range(D*D),S)
+
+xr = xxx[idx].reshape(S,1)
+yr = yyy[idx].reshape(S,1)
+zr = zzz[idx].reshape(S,1)
+X = np.hstack((xr,yr))
+
+Phi = np.exp(-gamma*cdist(X,X,metric='euclid'))
+
+w = np.dot(lin.pinv(Phi),zr)
+</code></pre>
+
+<p>Ağırlıklarla fonksiyonu tekrar yaratmaya uğraşalım,</p>
+<pre><code class="python">a = np.vstack((xxx,yyy))
+d = cdist(X,a.T)
+d = np.exp(-gamma * d)
+dd = np.dot(w.T,d)
+znew = dd.reshape(D,D)
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+surf = ax.plot_surface(xx, yy, znew, cmap=cm.coolwarm,linewidth=0, antialiased=False)
+fig.colorbar(surf, shrink=0.5, aspect=5)
+plt.savefig('linear_app88rbf_02.png')
+</code></pre>
+
+<p><img alt="" src="linear_app88rbf_02.png" /></p>
+<p>Pek optimizasyon yapmadık, ama orijinale benzidiği söylenebilir.</p>
+<p>Not: <code>cdist</code> bir veri matrisindeki her satır ile her diğer satır arasında
+(tüm kombinasyonlar) mesafe hesabı yapar.</p>
+<p>Yeni tek bir veri noktası için</p>
+<pre><code class="python">xnew = np.array([[36.5,32.5]])
+
+print (np.multiply(w.T,np.exp(-gamma*lin.norm(X-xnew,axis=1))).sum())
+</code></pre>
+
+<pre><code>0.6791735428508799
+</code></pre>
+
+<p>Bu yaklaşımı tüm dünyanın yeryüzü dağ, tepe veri tabanını oluşturmak için
+kullanabiliriz. 1 milyon veri yerine onun yüzden 3'u üzerinden RBF işlettikten
+sonra $x,y,w$ değerlerini tutarız, gerisini atarız. Bu üç değer geniş bir
+bölgeyi pürüzsüz fonksiyonlarla yaklaşık temsil etmenin en iyi yolu. Veri tabanı
+sadece bu değerleri taşıyacak.</p>
+<p>Bizim bu konuya girmemizin sebebi Google Elevation API ile aldığımız yükseklik
+verilerini verimli şekilde kullanma ihtiyacı idi.</p>
+<p>Çoklu İkinci Derece Yüzey (Multiquadric)</p>
+<p>Yeryüzü modellemesinde çokça kullanılan bir fonksiyon çoklu ikinci derece yüzey
+fonksiyonudur. Bu fonksiyon</p>
+<p>$$
+\phi(r) = \sqrt{(r/\epsilon)^2 + 1} =
+\sqrt{ \left( \frac{\|x_n-x_m\|}{\epsilon} \right)^2 + 1} 
+$$</p>
+<p>ile gösterilir, ki $\gamma$ pürüzsüzlüğü kontrol eden bir sabittir. </p>
+<p>Bu fonksiyonun örneği için <code>scipy.interpolate</code> kullanacağız, biraz önceki
+örneği de aynı şekilde yapabilirdik ama onu temeli göstermek için sıfırdan
+yazdık, normal şartlarda kütüphane fonksiyonu kullanılabilir.</p>
+<pre><code class="python">np.random.seed(0)
+
+S = 200
+
+x = np.linspace(36,37,D)
+y = np.linspace(32,33,D)
+
+xx,yy = np.meshgrid(x,y)
+znew = func(xx,yy)
+xx = xx.reshape(D*D)
+yy = yy.reshape(D*D)
+znew = znew.reshape(D*D)
+
+from scipy.interpolate import Rbf
+rbfi = Rbf(xx,yy,znew,function='multiquadric')
+
+xx = xx.reshape(D,D)
+yy = yy.reshape(D,D)
+znew = znew.reshape(D,D)
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+surf = ax.plot_surface(xx, yy, znew, cmap=cm.coolwarm,linewidth=0, antialiased=False)
+fig.colorbar(surf, shrink=0.5, aspect=5)
+plt.savefig('linear_app88rbf_03.png')
+</code></pre>
+
+<p><img alt="" src="linear_app88rbf_03.png" /></p>
+<p>Ve yine orijinal fonksiyona benziyor.</p>
+<p>Not: <code>scipy</code> ile bize döndürülen ve ara değerleme için direk çağırılabilen
+objeyi gerekli her türlü bilgiyi içinde taşıyor. Yani modeli çıkartıp veriyi
+atıp, sadece bu objeyi (mesela <code>pickle</code> ile) diskte saklayabiliriz, bu tek
+başına yeterlidir. </p>
+<p>Yazı başındaki Gaussian tekniğini <code>scipy</code> üzerinden kullanalım.</p>
+<pre><code class="python">np.random.seed(0)
+
+S = 200
+
+x = np.linspace(36,37,D)
+y = np.linspace(32,33,D)
+
+xx,yy = np.meshgrid(x,y)
+znew = func(xx,yy)
+xx = xx.reshape(D*D)
+yy = yy.reshape(D*D)
+znew = znew.reshape(D*D)
+
+from scipy.interpolate import Rbf
+rbfi = Rbf(xx,yy,znew,function='gaussian')
+
+xx = xx.reshape(D,D)
+yy = yy.reshape(D,D)
+znew = znew.reshape(D,D)
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+surf = ax.plot_surface(xx, yy, znew, cmap=cm.coolwarm,linewidth=0, antialiased=False)
+fig.colorbar(surf, shrink=0.5, aspect=5)
+plt.savefig('linear_app88rbf_05.png')
+</code></pre>
+
+<p><img alt="" src="linear_app88rbf_05.png" /></p>
+<p>Kaynaklar</p>
+<p>[1] Neto, <em>Radial Basis Functions</em>, <a href="http://www.di.fc.ul.pt/~jpn/r/rbf/rbf.html">http://www.di.fc.ul.pt/~jpn/r/rbf/rbf.html</a></p>
+<p>[2] Pouderoux, <em>Adaptive Hierarchical RBF Interpolation for Creating Smooth Digital Elevation Models</em>
+    <a href="https://hal.archives-ouvertes.fr/hal-00308008/document">https://hal.archives-ouvertes.fr/hal-00308008/document</a>    </p>
