@@ -1,8 +1,8 @@
-<h1>Log Lineer Modeller ve Koşulsal Rasgele Alanlar (Log Linear Models and</h1>
+<h1>Log Lineer Modeller ve Koşulsal Rasgele Alanlar (Log Linear Models and Conditional Random Fields -CRF-)</h1>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Log Lineer Modeller ve Koşulsal Rasgele Alanlar (Log Linear Models and
+    <title>Log Lineer Modeller ve Koşulsal Rasgele Alanlar (Log Linear Models and Conditional Random Fields -CRF-)
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/x-mathjax-config">
@@ -22,7 +22,6 @@
    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
 </script>
 </head>
-Conditional Random Fields -CRF-)
 
 <p>Ders 2</p>
 <p>Charles Elkan ders notları</p>
@@ -570,22 +569,22 @@ gerekli, üsttekinin $\log$'u ise bölümün $\log$'u eksi bölenin $\log$'u.</p
 <p>Türevin eksi öncesi ilk bölümü çok basit, $w_j$ ve toplam yokolacak (tüm
 $j$'lerin toplamı yokoldu, çünkü türev "tek" bir $j$ değeri ile
 ilgileniyor, diğerleri sıfır oluyor)</p>
-<h1>$$</h1>
-<p>F_j(x,y) -
+<p>$$ 
+= F_j(x,y) -
 \frac{\partial}{\partial w_j} \log Z(x;w)
 $$</p>
 <p>Eksiden sonraki kısım çok zarif bir sonuca dönüşecek, birazdan göreceğiz. </p>
 <p>$$ 
 \frac{\partial}{\partial w_j} \log Z(x;w) = 
-\frac{ 1}{Z} \frac{\partial}{\partial w_j} Z 
+\frac{1}{Z} \frac{\partial}{\partial w_j} Z 
 $$</p>
 <p>Türevi toplam içine taşıyoruz, </p>
 <p>$$ 
 = \frac{1}{Z} \sum_{y'} \frac{\partial}{\partial w_j} [
 \exp [ \sum_{j'} w_j' F_{j'}(x,y') ] ] 
 $$</p>
-<h1>$$</h1>
-<p>\frac{ 1}{Z}\sum_{y'} 
+<p>$$<br />
+= \frac{1}{Z}\sum_{y'} 
 \bigg[
 \exp [ \sum_{j'} w_{j'} F_{j'}(x,y') ] F_j(x,y')
 \bigg]
