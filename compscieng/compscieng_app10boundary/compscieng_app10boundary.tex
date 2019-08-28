@@ -73,12 +73,12 @@ x = np.linspace(0, 1, 5)
 
 Çaðrý \verb!bc! içinde sýnýr þartlarýnýn artýðý, hatasý donduruluyor. Daha
 doðrusu \verb!bc!'ye verilen iki parametre içinde baþta ve sonda olmak
-üzere $y = [y_1,y_2]$ vektöründeki artýk deðerleri var. Bu artýklardan
+üzere $y = [y_1,y_2]$ formatýnda artýk deðerler var. Bu artýklardan
 hangisinin belirlediðimiz sýnýr þartýna ait olaný biz seçiyoruz. Mesela
 \verb!ya[0]! ve \verb!yb[0]! ile içinde $y_1$'in baþta ve sondaki deðerini
-seçmiþ oluyoruz, ki zaten sýnýr þartý onlar üzerinden tanýmlanmýþtý. Eðer
-$y_1'$, yani $y_2$ üzerinde bir þart olsaydý o zaman 1. indisteki deðeri
-döndürürdük.
+seçmiþ oluyoruz, ki zaten problemin sýnýr þartlarý onlar üzerinden
+tanýmlanmýþtý. Eðer $y_1'$, yani $y_2$ üzerinde bir son þart olsaydý o
+zaman \verb!yb! 1. indisteki deðeri döndürürdük.
 
 Bu problemin iki farklý çözümü var. Her iki çözümü de elde etmek için
 $y$ için farklý baþlangýç noktalarý deneyeceðiz, bu seçenekleri $1$ ve
@@ -98,9 +98,8 @@ res_2 = solve_bvp(fun, bc, x, y_2)
 x_plot = np.linspace(0, 1, 100)
 y_plot_1 = res_1.sol(x_plot)[0]
 y_plot_2 = res_2.sol(x_plot)[0]
-import matplotlib.pyplot as plt
-plt.plot(x_plot, y_plot_1, label='y_a')
 
+plt.plot(x_plot, y_plot_1, label='y_a')
 plt.plot(x_plot, y_plot_2, label='y_b')
 plt.legend()
 plt.xlabel("x")
@@ -220,6 +219,7 @@ plt.savefig('compscieng_app10boundary_01.png')
 \includegraphics[width=20em]{compscieng_app10boundary_01.png}
 
 Grafikte görüldüðü gibi iki çözüm birbirinin týpký aynýsý. 
+
 
 
 Kaynaklar

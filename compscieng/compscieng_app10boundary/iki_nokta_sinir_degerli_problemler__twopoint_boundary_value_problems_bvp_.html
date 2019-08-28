@@ -77,12 +77,12 @@ x = np.linspace(0, 1, 5)
 
 <p>Çağrı <code>bc</code> içinde sınır şartlarının artığı, hatası donduruluyor. Daha
 doğrusu <code>bc</code>'ye verilen iki parametre içinde başta ve sonda olmak
-üzere $y = [y_1,y_2]$ vektöründeki artık değerleri var. Bu artıklardan
+üzere $y = [y_1,y_2]$ formatında artık değerler var. Bu artıklardan
 hangisinin belirlediğimiz sınır şartına ait olanı biz seçiyoruz. Mesela
 <code>ya[0]</code> ve <code>yb[0]</code> ile içinde $y_1$'in başta ve sondaki değerini
-seçmiş oluyoruz, ki zaten sınır şartı onlar üzerinden tanımlanmıştı. Eğer
-$y_1'$, yani $y_2$ üzerinde bir şart olsaydı o zaman 1. indisteki değeri
-döndürürdük.</p>
+seçmiş oluyoruz, ki zaten problemin sınır şartları onlar üzerinden
+tanımlanmıştı. Eğer $y_1'$, yani $y_2$ üzerinde bir son şart olsaydı o
+zaman <code>yb</code> 1. indisteki değeri döndürürdük.</p>
 <p>Bu problemin iki farklı çözümü var. Her iki çözümü de elde etmek için
 $y$ için farklı başlangıç noktaları deneyeceğiz, bu seçenekleri $1$ ve
 $2$ olarak işaretleyelim,</p>
@@ -98,9 +98,8 @@ res_2 = solve_bvp(fun, bc, x, y_2)
 <pre><code class="python">x_plot = np.linspace(0, 1, 100)
 y_plot_1 = res_1.sol(x_plot)[0]
 y_plot_2 = res_2.sol(x_plot)[0]
-import matplotlib.pyplot as plt
-plt.plot(x_plot, y_plot_1, label='y_a')
 
+plt.plot(x_plot, y_plot_1, label='y_a')
 plt.plot(x_plot, y_plot_2, label='y_b')
 plt.legend()
 plt.xlabel(&quot;x&quot;)
