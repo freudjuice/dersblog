@@ -84,12 +84,12 @@ print (-b+tmp) / (2.0 * a)
 <p>Sayısal Yöntemler</p>
 <p>Eğer analitik bir şekilde $f(x)=0$'da kök bulmak mümkün değilse, sayısal
 yöntemler kullanılabilir. Newton'un yöntemi (Newton's method) bunlardan
-biri, bu yöntem $f(x)$ karesel, kupsel, ne kadar çetrefil olursa olsun
+biri, bu yöntem $f(x)$ karesel, küpsel, ne kadar çetrefil olursa olsun
 kullanılabilir. Diyelim ki $f(x)$'in köklerinden birini $x_0$ olarak
 tahmin ediyoruz. Bu tahmin etrafında fonksiyonun Taylor açılımı [1,
 sf. 175],</p>
 <p>$$ f(x) = f(x_0) + f'(x_0)(x-x_0) + ...$$</p>
-<p>Kok aradığımız için $f(x)=0$ yaparız, ve $x$'i bir tarafa alacak şekilde
+<p>Kök aradığımız için $f(x)=0$ yaparız, ve $x$'i bir tarafa alacak şekilde
 tekrar düzenleriz (ayrıca noktalı kısmı atarız çünkü belli bir yaklaşık
 temsil ile yetinmeye karar verdik), </p>
 <p>$$ 0 = \frac{f(x_0)}{f'(x_0)} + x-x_0$$</p>
@@ -106,6 +106,8 @@ zaman türev elde olmaz, o zaman türevi de yaklaşık olarak hesaplayabiliriz, 
 <p>$$ f'(x) \approx \frac{f(x + \mathrm{d} x) - f(x)}{\mathrm{d} x}$$</p>
 <p>Türev yaklaşık olarak hesaplandığında Newton'un Yöntemi ismi değiştirilip
 Sekant Yöntemi (Secant Method) ismi kullanılıyor.</p>
+<p>Örnek</p>
+<p>$$ x^2 + 3 x + 1 = 0$$ formülünün köklerini bulalım. </p>
 <pre><code class="python">def newton(f, x, dfdx=None, eps=1e-6):
     if dfdx is None: 
         delta = eps**0.5

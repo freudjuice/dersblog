@@ -29,13 +29,177 @@ x"(t) = f(t, x(t), x'(t)))
 $$</p>
 <p>$$x(t_0) = x_0, \quad x(t_f) = x_f$$ </p>
 <p>İkinci satır sınır şartlarını belirtiyor, zaman için $t_0,t_1,...t_f$
-indisleri kullanılır, yani sistemin konumu $x(t)$'in başlangıçta $x_0$
+indisleri kullanılır, yani sistemın konumu $x(t)$'in başlangıçta $x_0$
 bitişte $x_f$ noktasında olması isteniyor (bunlar gerçek tek sayı değerleri
 olacak). Bilinmeyen bir başlangıç şartı var, bu $x'(0)$ şartı, diyelim
-$x'(0) = z$. Bilinmeyen $z$'yi nasıl bulacağız? Bu tür sistemlerin tipik
-örneği top atışı (silah anlamında) problemidir, güllenin nereden atıldığı
-bilinir, düşmesi istenen bir yer vardır, ama hangi açıyla (burada $x'(0))$
-yukarı doğru tutulacağı bilinmez.</p>
+$x'(0) = z$. Bilinmeyen $z$'yi nasıl bulacağız? Genel yaklaşım olarak
+bilinen az sayıda değişkeni ileri doğru entegre ederek sonda gelinen
+noktaya bakılır, eldeki kısmı son nokta verisiyle karşılaştırılarak bir
+hata üzerinden başlangıç düzeltilmeye uğraşılır, bu özyineli şekilde devam
+eder. Çözüm yöntemi olarak ateş etme yöntemi (the shooting method) vardır,
+farklı paketler farklı yaklaşımlar kullanabilir. </p>
+<p>Paket İle</p>
+<p>$$
+\frac{\mathrm{d} y}{\mathrm{d} x} = f(x, y, p) + \frac{S y}{x-a}
+$$</p>
+<p>$$
+a \le x \le b, \quad bc(y(a), y(b), p) = 0
+$$</p>
+<p>ki $x$ tek boyutlu bağımsız değişken, $y(x)$ n-boyutlu vektör değerli
+fonksiyon, $p$ $k$ boyutlu bilinmeyen parametrelerin vektörü, ki onu
+$y(x)$'yi bulurken aynı anda bulmak gerekiyor. $bc$ ile sınır şartları
+tanımlanıyor.</p>
+<p>Bratu Problemi</p>
+<p>Paket çözümleri de kullanılabilir [2, sf. 396]. Mesela <code>scipy</code>. Bratu
+problemi</p>
+<p>$$
+y" + k + \exp(y) = 0
+$$</p>
+<p>$$
+y(0) = y(1) = 0
+$$</p>
+<p>Bu sistemi 1. derece bir denklemler sistemine değiştirelim,</p>
+<p>$$
+y_1' = y_2
+$$</p>
+<p>$$
+y_2' = -\exp(y_1)
+$$</p>
+<pre><code class="python">def fun(x, y):
+    # k=1 farz edildi
+    return np.vstack((y[1], -np.exp(y[0])))
+
+def bc(ya, yb):
+    return np.array([ya[0], yb[0]])
+
+x = np.linspace(0, 1, 5)
+</code></pre>
+
+<p>Cagri <code>bc</code> icinde sinir sartlarinin artigi, hatasi donduruluyor. </p>
+<p>[TBD]</p>
+<p>Bu problemin iki farklı çözümü var. Her iki çözümü de elde etmek için
+$y$ için farklı başlangıç noktaları deneyeceğiz, bu seçenekleri $1$ ve
+$2$ olarak işaretleyelim,</p>
+<pre><code class="python">y_1 = np.zeros((2, x.size))
+y_2 = np.zeros((2, x.size))
+y_2[0] = 3
+
+from scipy.integrate import solve_bvp
+res_1 = solve_bvp(fun, bc, x, y_1)
+res_2 = solve_bvp(fun, bc, x, y_2)
+</code></pre>
+
+<pre><code>[0. 0.] [0. 0.]
+-----------
+[0. 0.] [0. 0.]
+-----------
+[1.49011612e-08 0.00000000e+00] [0. 0.]
+-----------
+[0.00000000e+00 1.49011612e-08] [0. 0.]
+-----------
+[0. 0.] [1.49011612e-08 0.00000000e+00]
+-----------
+[0. 0.] [0.00000000e+00 1.49011612e-08]
+-----------
+[0.         0.54629898] [ 0.         -0.54629898]
+-----------
+[0.         0.54930588] [ 0.         -0.54930588]
+-----------
+[0.         0.54934927] [ 0.         -0.54934927]
+-----------
+[3. 0.] [3. 0.]
+-----------
+[3. 0.] [3. 0.]
+-----------
+[3.00000006 0.        ] [3. 0.]
+-----------
+[3.00000000e+00 1.49011612e-08] [3. 0.]
+-----------
+[3. 0.] [3.00000006 0.        ]
+-----------
+[3. 0.] [3.00000000e+00 1.49011612e-08]
+-----------
+[8.88178420e-16 1.14187789e+01] [ 1.33226763e-15 -1.14187789e+01]
+-----------
+[1.5        5.70938946] [ 1.5        -5.70938946]
+-----------
+[1.50000004 5.70938946] [ 1.5        -5.70938946]
+-----------
+[1.5        5.70938956] [ 1.5        -5.70938946]
+-----------
+[1.5        5.70938946] [ 1.50000004 -5.70938946]
+-----------
+[1.5        5.70938946] [ 1.5        -5.70938936]
+-----------
+[6.66133815e-16 1.04769120e+01] [ 2.22044605e-16 -1.04769120e+01]
+-----------
+[1.33409645e-16 1.09994244e+01] [ 6.22273541e-17 -1.09994244e+01]
+-----------
+[2.28603108e-19 1.09602076e+01] [ 2.29588507e-18 -1.09602076e+01]
+-----------
+[6.44793865e-19 1.09616046e+01] [-2.01259469e-19 -1.09616046e+01]
+-----------
+[-3.15161156e-20  1.09611270e+01] [ 6.8359097e-21 -1.0961127e+01]
+-----------
+[-1.52586641e-20  1.09611047e+01] [ 1.00874000e-20 -1.09611047e+01]
+-----------
+[-1.52586641e-20  1.09611047e+01] [  0.         -10.96110471]
+-----------
+[1.49011612e-08 1.09611047e+01] [  0.         -10.96110471]
+-----------
+[-1.52586641e-20  1.09611049e+01] [  0.         -10.96110471]
+-----------
+[-1.52586641e-20  1.09611047e+01] [ 1.49011612e-08 -1.09611047e+01]
+-----------
+[-1.52586641e-20  1.09611047e+01] [  0.         -10.96110453]
+-----------
+[ 0.         10.85198079] [  0.         -10.85198079]
+-----------
+[ 0.         10.85182204] [  0.         -10.85182204]
+-----------
+[ 0.         10.85182204] [  0.         -10.85182204]
+-----------
+[1.49011612e-08 1.08518220e+01] [  0.         -10.85182204]
+-----------
+[ 0.         10.85182221] [  0.         -10.85182204]
+-----------
+[ 0.         10.85182204] [ 1.49011612e-08 -1.08518220e+01]
+-----------
+[ 0.         10.85182204] [  0.         -10.85182186]
+-----------
+[ 0.         10.84721572] [  0.         -10.84721572]
+-----------
+[ 0.         10.84721572] [  0.         -10.84721572]
+-----------
+[1.49011612e-08 1.08472157e+01] [  0.         -10.84721572]
+-----------
+[ 0.        10.8472159] [  0.         -10.84721572]
+-----------
+[ 0.         10.84721572] [ 1.49011612e-08 -1.08472157e+01]
+-----------
+[ 0.         10.84721572] [  0.         -10.84721555]
+-----------
+[ 0.         10.84697602] [  0.         -10.84697602]
+-----------
+```python
+x_plot = np.linspace(0, 1, 100)
+y_plot_1 = res_1.sol(x_plot)[0]
+y_plot_2 = res_2.sol(x_plot)[0]
+import matplotlib.pyplot as plt
+plt.plot(x_plot, y_plot_1, label='y_a')
+
+plt.plot(x_plot, y_plot_2, label='y_b')
+plt.legend()
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;y&quot;)
+plt.savefig('compscieng_app10boundary_03.png')
+</code></pre>
+
+<p><img alt="" src="compscieng_app10boundary_03.png" /></p>
+<p>Top Atışı Metotu (Shooting Method)</p>
+<p>Bir diğer çözüm yöntemi top atışı (silah anlamında) problemidir, güllenin
+nereden atıldığı bilinir, düşmesi istenen bir yer vardır, ama hangi aciyla
+(burada $x'(0))$ yukarı doğru tutulacağı bilinmez.</p>
 <p><img alt="" src="compscieng_app10boundary_02.png" /></p>
 <p>Bilinmeyen başlangıç şartlarından birini bulmak için bir yöntem tüm
 bilinenleri kullanıp, bilinmeyen için bir tahmin yerine koymak, ve bu
@@ -118,58 +282,6 @@ plt.savefig('compscieng_app10boundary_01.png')
 
 <p><img alt="" src="compscieng_app10boundary_01.png" /></p>
 <p>Grafikte görüldüğü gibi iki çözüm birbirinin tıpkı aynısı. </p>
-<p>Bratu Problemi</p>
-<p>Paket çözümleri de kullanılabilir [2, sf. 396]. Mesela <code>scipy</code>.</p>
-<p>Bu problem </p>
-<p>$$
-y" + k + \exp(y) = 0
-$$</p>
-<p>$$
-y(0) = y(1) = 0
-$$</p>
-<p>olarak bilinir. Bu sistemi 1. derece bir sistem olarak değiştirelim,</p>
-<p>$$
-y_1' = y_2
-$$</p>
-<p>$$
-y_2' = -\exp(y_1)
-$$</p>
-<pre><code class="python">def fun(x, y):
-    # k=1 farz edildi
-    return np.vstack((y[1], -np.exp(y[0])))
-
-def bc(ya, yb):
-    return np.array([ya[0], yb[0]])
-
-x = np.linspace(0, 1, 5)
-</code></pre>
-
-<p>Bu problemin iki farklı çözümü var. Her iki çözümü de elde etmek için
-$y$ için farklı başlangıç noktaları deneyeceğiz, bu seçenekleri $a$ ve
-$b$ olarak işaretleyelim,</p>
-<pre><code class="python">y_a = np.zeros((2, x.size))
-y_b = np.zeros((2, x.size))
-y_b[0] = 3
-
-from scipy.integrate import solve_bvp
-res_a = solve_bvp(fun, bc, x, y_a)
-res_b = solve_bvp(fun, bc, x, y_b)
-</code></pre>
-
-<pre><code class="python">x_plot = np.linspace(0, 1, 100)
-y_plot_a = res_a.sol(x_plot)[0]
-y_plot_b = res_b.sol(x_plot)[0]
-import matplotlib.pyplot as plt
-plt.plot(x_plot, y_plot_a, label='y_a')
-
-plt.plot(x_plot, y_plot_b, label='y_b')
-plt.legend()
-plt.xlabel(&quot;x&quot;)
-plt.ylabel(&quot;y&quot;)
-plt.savefig('compscieng_app10boundary_03.png')
-</code></pre>
-
-<p><img alt="" src="compscieng_app10boundary_03.png" /></p>
 <p>Kaynaklar</p>
 <p>[1] Yang, <em>Applied Numerical Methods using Matlab</em></p>
 <p>[2] Scipy, <em>Scipy Reference, 0.18.1</em></p>
