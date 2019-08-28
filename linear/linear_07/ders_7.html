@@ -49,10 +49,10 @@ diğer denklemden çıkartıyorsam bu nihai çözümü değiştirmez, çünkü d
 sistemi bir bütün olarak değişmemiştir. Satır uzayı değişmez, ama dikkat,
 kolon uzayı değişir. Eliminasyonun neyi değiştirdiği neyi değiştirmediğini
 bilmek lazım. </p>
-<p>İlk pivot'tan başlayalım (yeşil ile işaretli)</p>
+<p>İlk pivot'tan başlayalım (paranteze alınmış olan öğe)</p>
 <p>$$ 
 \left[\begin{array}{cccc}
-\textcolor{green}{1} &amp; 2 &amp; 2 &amp; 2  \\
+(1) &amp; 2 &amp; 2 &amp; 2  \\
 2 &amp; 4 &amp; 6 &amp; 8 \\
 3 &amp; 6 &amp; 8 &amp; 10
 \end{array}\right]
@@ -68,9 +68,9 @@ bilmek lazım. </p>
  $$</p>
 <p>Şimdi sonraki pivot'u arıyoruz, normal durumda bu pivot</p>
 <p>$$ 
-\left[\begin{array}{rrrr}
+\left[\begin{array}{cccc}
 1 &amp; 2 &amp; 2 &amp; 2  \\
-0 &amp; \textcolor{green}{0} &amp; 2 &amp; 4 \\
+0 &amp; (0) &amp; 2 &amp; 4 \\
 0 &amp; 0 &amp; 2 &amp; 4
 \end{array}\right]
  $$</p>
@@ -82,9 +82,9 @@ gelen kolonların bir kombinasyonu olduğunun işareti. Fakat bunun üzerinde
 fazla durmaya gerek yok, algoritmik olarak durup düşünmeye gerek yok, eğer
 bir pivot'u kullanamıyorsak hemen yana geçeriz, yani</p>
 <p>$$ 
-\left[\begin{array}{rrrr}
+\left[\begin{array}{cccc}
 1 &amp; 2 &amp; 2 &amp; 2  \\
-0 &amp; 0 &amp; \textcolor{green}{2} &amp; 4 \\
+0 &amp; 0 &amp; (2) &amp; 4 \\
 0 &amp; 0 &amp; 2 &amp; 4
 \end{array}\right]
  $$</p>
@@ -94,9 +94,9 @@ dengesi tam değil, ama basamaklı (echelon) formda, "hafiften"
 üstüçgensel. Tüm pivot'ları gösterirsek,</p>
 <p>$$ 
 U = 
-\left[\begin{array}{rrrr}
-\textcolor{green}{1} &amp; 2 &amp; 2 &amp; 2  \\
-0 &amp; 0 &amp; \textcolor{green}{2} &amp; 4 \\
+\left[\begin{array}{cccc}
+(1) &amp; 2 &amp; 2 &amp; 2  \\
+0 &amp; 0 &amp; (2) &amp; 4 \\
 0 &amp; 0 &amp; 0 &amp; 0
 \end{array}\right]
  $$</p>
@@ -187,7 +187,7 @@ yani.</p>
 <p>Azaltılmış Basamaklı (Reduced Echelon) Matris </p>
 <p>Eliminasyon sonrası elde ettiğimiz matrisi hatırlarsak,</p>
 <p>$$ 
-\left[\begin{array}{rrrr}
+\left[\begin{array}{cccc}
 1 &amp; 2 &amp; 2 &amp; 2  \\
 0 &amp; 0 &amp; 2 &amp; 4 \\
 0 &amp; 0 &amp; 0 &amp; 0
@@ -204,19 +204,19 @@ azaltılmış basamaklı matrislerin tanımı zaten; bu matrislerde pivotların
 hem altında hem üstünde sıfır vardır.</p>
 <p>İlerleyelim, 2. satırı 1. satırdan çıkartırsam, </p>
 <p>$$ 
-\left[\begin{array}{rrrr}
-\textcolor{green}{1} &amp; 2 &amp; 0 &amp; -2  \\
-0 &amp; 0 &amp; \textcolor{green}{2} &amp; 4 \\
+\left[\begin{array}{cccc}
+(1) &amp; 2 &amp; 0 &amp; -2  \\
+0 &amp; 0 &amp; (2) &amp; 4 \\
 0 &amp; 0 &amp; 0 &amp; 0
 \end{array}\right]
  $$</p>
-<p>Yeni bir sıfır elde etmiş olduk (pivotlar yeşil ile işaretli). Bu arada
+<p>Yeni bir sıfır elde etmiş olduk (pivotlar parantezde). Bu arada
 pivotlarda hep 1 sayısı görmek istiyorum, 2. satırı 2 ile bölebilirim, bu
 denklem sistemini değiştirmez, o zaman</p>
 <p>$$ R = 
-\left[\begin{array}{rrrr}
-\textcolor{green}{1} &amp; 2 &amp; 0 &amp; -2  \\
-0 &amp; 0 &amp; \textcolor{green}{1} &amp; 2 \\
+\left[\begin{array}{cccc}
+(1) &amp; 2 &amp; 0 &amp; -2  \\
+0 &amp; 0 &amp; (1) &amp; 2 \\
 0 &amp; 0 &amp; 0 &amp; 0
 \end{array}\right]
  $$</p>
@@ -266,7 +266,7 @@ değerlerin negatifi alınmış hali. Niye?</p>
 <p>Eğer pivot kolonlarını bir araya, serbest (free) kolonlarını biraraya
 koyarsam üstteki şekil ortaya çıkar. </p>
 <p>$$ R = 
-\left[\begin{array}{rrrr}
+\left[\begin{array}{cccc}
 I &amp; F   \\
 0 &amp; 0
 \end{array}\right]
@@ -325,8 +325,8 @@ var. Altına gidiyorum, orada 2 var. Demek ki satır değiş-tokuşu lazım, bun
 yaptıktan sonra istediğim noktada pivot var,</p>
 <p>$$ 
 \left[\begin{array}{rrr}
-\textcolor{green}{1} &amp; 2 &amp; 3 \\
-0 &amp; \textcolor{green}{2} &amp; 2 \\
+(1) &amp; 2 &amp; 3 \\
+(2) &amp; 2 \\
 0 &amp; 0 &amp; 0 \\
 0 &amp; 4 &amp; 4 \\
 \end{array}\right]
