@@ -194,6 +194,67 @@ plt.savefig('compscieng_app10boundary_01.png')
 
 <p><img alt="" src="compscieng_app10boundary_01.png" /></p>
 <p>Grafikte görüldüğü gibi iki çözüm birbirinin tıpkı aynısı. </p>
+<p>Sturm-Liouville</p>
+<p>Yine paket ile devam edelim. Sturm-Liouville adlı bir problemi çözelim, </p>
+<p>$$
+y" + k^y = 0
+$$</p>
+<p>$$
+y(0) = y(1) = 0
+$$</p>
+<p>Bu problemin $n$ bir tam sayı olmak üzere $k = n \pi$ için bariz / önemsiz
+olmayan bir çözümünün $y=A\sin(kx)$ olduğu biliniyor. $A=1$ ile normalizasyon
+sağlamak için bir sınır şart daha ekliyoruz,</p>
+<p>$$
+y'(0) = k
+$$</p>
+<p>Çünkü $y=A\sin(kx) \to y' = A k \cos(kx)$, ve $y'(0)$ dersek
+$y'(0) = A k \cos(0)) = A k$ olacaktır, o zaman $y'(0) = k$ şartını
+koyarsak $A=1$'i zorlamış oluruz. </p>
+<ol>
+<li>derece sisteme çevirirsek,</li>
+</ol>
+<p>$$
+y_1' = y_2
+$$</p>
+<p>$$
+y_2' = -k^2 y_1
+$$</p>
+<p>Ayrıca $k\pi$ için bir çözüm aradığımız için $y$ değerlerinin aşağı yukarı
+$\sin(2\pi x)$'yi takip etmesini sağlıyoruz,</p>
+<pre><code class="python">from scipy.integrate import solve_bvp
+
+def fun(x, y, p):
+    k = p[0]
+    return np.vstack((y[1], -k**2 * y[0]))
+
+def bc(ya, yb, p):
+    k = p[0]
+    return np.array([ya[0], yb[0], ya[1] - k])
+
+x = np.linspace(0, 1, 5)
+y = np.zeros((2, x.size))
+y[0, 1] = 1
+y[0, 3] = -1
+
+sol = solve_bvp(fun, bc, x, y, p=[6])
+print (sol.p)
+</code></pre>
+
+<pre><code>[6.2832946]
+</code></pre>
+
+<p>$k$'nin asagi yukari dogru degerde oldugunu goruyoruz. Tum cozumu
+grafikleyince beklenen sinus egrisini de gorecegiz, </p>
+<pre><code class="python">x_plot = np.linspace(0, 1, 100)
+y_plot = sol.sol(x_plot)[0]
+plt.plot(x_plot, y_plot)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;y&quot;)
+plt.savefig('compscieng_app10boundary_04.png')
+</code></pre>
+
+<p><img alt="" src="compscieng_app10boundary_04.png" /></p>
 <p>Kaynaklar</p>
 <p>[1] Yang, <em>Applied Numerical Methods using Matlab</em></p>
 <p>[2] Scipy, <em>Scipy Reference, 0.18.1</em></p>
