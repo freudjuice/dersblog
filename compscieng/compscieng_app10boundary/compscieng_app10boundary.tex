@@ -332,7 +332,7 @@ $$
 \kappa' = F \cos (\phi)
 $$
 
-Bilinmeyen sabit $F$. Sinir degerleri,
+Bilinmeyen sabit $F$. Sýnýr deðerleri,
 
 $$
 x(0) = 0
@@ -357,7 +357,7 @@ $$
 Görülen beþ tane sýnýr deðiþkeniyle aslýnda problemi tamamen tanýmlanmýþ
 oluyor. Entegrasyondan ortaya çýkan dört tane sabit olacak, üstte beþ tane
 deðer var. Hatta $F$'yi de bir sýnýr deðeri olarak dahil edince hala çözüm
-için yeterli öðe elimizde oluyor. Yeni sinir deðeri
+için yeterli öðe elimizde oluyor. Yeni sýnýr deðeri
 
 $$
 F' = 0
@@ -365,13 +365,49 @@ $$
 
 Dikkat, yani $F$'nin türevi her yerde sýfýr olmalý (çünkü sabit).
 
-[devam edecek]
+\begin{minted}[fontsize=\footnotesize]{python}
+# x,y,\phi,\kappa, F
+from scipy.integrate import solve_bvp
 
+def fun(x, y):
+    return np.vstack(( np.cos(y[2]),
+                       np.sin(y[2]),
+                       y[3],
+                       y[4]*np.cos(y[2]),
+                       np.zeros(x.shape[0]) ))
 
+def bc(ya, yb):
+    return np.array([ ya[0],
+                      ya[1],
+                      ya[3],
+                      yb[1],
+                      yb[2]+(np.pi/2) ])
 
+x = np.linspace(0, 0.5, 400)
+y = np.zeros((5, x.size))
+sol = solve_bvp(fun, bc, x, y)
+print (sol.y[4,0])
+\end{minted}
 
+\begin{verbatim}
+-21.54910449259776
+\end{verbatim}
 
+$F$ sabitinin degeri ustte goruluyor. 
 
+Dikkat edilirse \verb!fun! içinde $F$'ye sýfýr deðeri vermek için
+\verb!np.zeros(x.shape[0])! deðeri tanýmlandý, yani bir sýfýr vektörü
+tanýmlandý.
+
+$y$ deðerlerini grafikleyelim,
+
+\begin{minted}[fontsize=\footnotesize]{python}
+plt.plot(x,sol.y[1])
+plt.title('y')
+plt.savefig('compscieng_app10boundary_05.png')
+\end{minted}
+
+\includegraphics[width=20em]{compscieng_app10boundary_05.png}
 
 
 

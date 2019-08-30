@@ -284,7 +284,7 @@ $$</p>
 <p>$$
 \kappa' = F \cos (\phi)
 $$</p>
-<p>Bilinmeyen sabit $F$. Sinir degerleri,</p>
+<p>Bilinmeyen sabit $F$. Sınır değerleri,</p>
 <p>$$
 x(0) = 0
 $$</p>
@@ -303,12 +303,48 @@ $$</p>
 <p>Görülen beş tane sınır değişkeniyle aslında problemi tamamen tanımlanmış
 oluyor. Entegrasyondan ortaya çıkan dört tane sabit olacak, üstte beş tane
 değer var. Hatta $F$'yi de bir sınır değeri olarak dahil edince hala çözüm
-için yeterli öğe elimizde oluyor. Yeni sinir değeri</p>
+için yeterli öğe elimizde oluyor. Yeni sınır değeri</p>
 <p>$$
 F' = 0
 $$</p>
 <p>Dikkat, yani $F$'nin türevi her yerde sıfır olmalı (çünkü sabit).</p>
-<p>[devam edecek]</p>
+<pre><code class="python"># x,y,\phi,\kappa, F
+from scipy.integrate import solve_bvp
+
+def fun(x, y):
+    return np.vstack(( np.cos(y[2]),
+                       np.sin(y[2]),
+                       y[3],
+                       y[4]*np.cos(y[2]),
+                       np.zeros(x.shape[0]) ))
+
+def bc(ya, yb):
+    return np.array([ ya[0],
+                      ya[1],
+                      ya[3],
+                      yb[1],
+                      yb[2]+(np.pi/2) ])
+
+x = np.linspace(0, 0.5, 400)
+y = np.zeros((5, x.size))
+sol = solve_bvp(fun, bc, x, y)
+print (sol.y[4,0])
+</code></pre>
+
+<pre><code>-21.54910449259776
+</code></pre>
+
+<p>$F$ sabitinin degeri ustte goruluyor. </p>
+<p>Dikkat edilirse <code>fun</code> içinde $F$'ye sıfır değeri vermek için
+<code>np.zeros(x.shape[0])</code> değeri tanımlandı, yani bir sıfır vektörü
+tanımlandı.</p>
+<p>$y$ değerlerini grafikleyelim,</p>
+<pre><code class="python">plt.plot(x,sol.y[1])
+plt.title('y')
+plt.savefig('compscieng_app10boundary_05.png')
+</code></pre>
+
+<p><img alt="" src="compscieng_app10boundary_05.png" /></p>
 <p>Kaynaklar</p>
 <p>[1] Yang, <em>Applied Numerical Methods using Matlab</em></p>
 <p>[2] Scipy, <em>Scipy Reference, 0.18.1</em></p>
