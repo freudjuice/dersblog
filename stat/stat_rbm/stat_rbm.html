@@ -193,19 +193,19 @@ $$</p>
 <p>$$ P(h|x^n;W) = \frac{P(x^n,h;W)}{P(x^n;W)}  $$</p>
 <p>olduğuna göre, </p>
 <p>$$ =  \sum_h P(h|x^n;W) y_iy_j $$</p>
-<p>elde ederiz. Bunu da $<y_iy_j>_{P(h|x^n;W)}$ olarak yazabiliriz. </p>
+<p>elde ederiz. Bunu da $<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(h|x^n;W)}$ olarak yazabiliriz. </p>
 <p>Şimdi parantez içindeki 2. türevi alalım, yani $\frac{\partial \ln Z }{\partial w_{ij}} $,</p>
 <p>$$ 
 \frac{\partial \ln Z }{\partial w_{ij}}  = 
 \sum_{h,x} \frac{1}{Z}  \exp \big( \frac{1}{2} y^{T} W y  \big) y_iy_j =
 \sum_{h,x} P(y;W)  y_iy_j
 $$</p>
-<p>ki bu son ifadeyi de $<y_iy_j>_{P(y;W)}$ olarak yazabiliriz. Tamamını,
+<p>ki bu son ifadeyi de $<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(y;W)}$ olarak yazabiliriz. Tamamını,
 yani (3) ifadesini, artık şöyle yazabiliriz,</p>
 <p>$$
 \qquad (4)
 \sum_{n=1}^{N}  \big( \frac{\partial \ln Z_{x^{(n)}} }{\partial w_{ij}} - \frac{\partial \ln Z }{\partial w_{ij}} \big)
-= \sum_{n=1}^{N}  <y_iy_j><em>{P(h|x^n;W)} - <y_iy_j></em>{P(y;W)}
+= \sum_{n=1}^{N}  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(h|x^n;W)} - <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(y;W)}
 $$</p>
 <p>Bu formülü de BM için yaptığımız gibi bir gradyan güncelleme formülüne
 dönüştürebiliriz. Güncelleme formülünün hangi hesapları gerektirdiğine
@@ -226,8 +226,8 @@ aralarında hiçbir bağlantı yoktur değil mi? Aynı şekilde $h$ kapatınca
 $x$'ler "bağlantısız" hale gelir. </p>
 <p>Bu bağımsızlıktan yola çıkarak, daha önce BM için yaptığımız gibi,
 olasılıklar şu basit formüllere dönüşür,</p>
-<p>$$ P(h_i=1|x) = \sigma \bigg( \sum <em>{j=1}^{m} w</em>{ij} x_j \bigg) $$</p>
-<p>$$ P(x_i=1|h) = \sigma \bigg( \sum <em>{i=1}^{n} w</em>{ij} h_i \bigg) $$</p>
+<p>$$ P(h_i=1|x) = \sigma \bigg( \sum _{j=1}^{m} w_{ij} x_j \bigg) $$</p>
+<p>$$ P(x_i=1|h) = \sigma \bigg( \sum _{i=1}^{n} w_{ij} h_i \bigg) $$</p>
 <p>ve tabii ki $\sigma(x) = 1 / (1+e^{-x})$. Daha önce 1 olma olasılığını
 nasıl örnekleme çevireceğimizi de görmüştük zaten. </p>
 <p>Şimdi CD'nin ne olduğuna gelelim. Eğer RBM için gereken örneklemeyi klasik
@@ -460,4 +460,4 @@ Divergence}</p>
 restricted Boltzmann machines}, Master Tezi, 2010</p>
 <p>[3] <a href="https://github.com/echen/restricted-boltzmann-machines">https://github.com/echen/restricted-boltzmann-machines</a></p>
 <p>[4] Tieleman, Hinton, <em>Using Fast Weights to Improve Persistent Contrastive Divergence</em></p>
-<p>[5] Larochelle, H., <em>Neural networks [5.1] : Restricted Boltzmann machine - definition</em>, <a href="https://www.youtube.com/watch?v=p4Vh_zMw-HQ">https://www.youtube.com/watch?v=p4Vh_zMw-HQ</a></p>
+<p>[5] Larochelle, H., <em>Neural networks [5.1] : Restricted Boltzmann machine - definition</em>, \url{https://www.youtube.com/watch?v=p4Vh_zMw-HQ}</p>

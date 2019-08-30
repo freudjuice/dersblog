@@ -185,7 +185,7 @@ sadece sıfırın sağına bakıp sonucu ikiyle çarpmak yeterli. Bir sabit oldu
 için $\pi$ ile beraber dışarı çıkıyor. Şimdi</p>
 <p>$$ \int udv = uv - \int vdu $$</p>
 <p>üzerinden</p>
-<p>$$ = [x \tan ^{-1}(x) ] <em>{ 0}^{\infty} - \int </em>{ 0}^{\infty} \tan ^{-1}(x)
+<p>$$ = [x \tan ^{-1}(x) ] _{ 0}^{\infty} - \int _{ 0}^{\infty} \tan ^{-1}(x)
 dx  = \infty$$</p>
 <p>Yani üstteki hesap sonsuzluğa gider. O zaman üstteki tanımımıza göre Cauchy
 dağılımının beklentisi yoktur. </p>
@@ -236,7 +236,7 @@ hesaplamamızı sağlar. Eğer $\bar{y}$ tanımını üstteki formüle sokarsak,
 <p>$$ = \frac{ 1}{n} \sum_i y_i^2 +  \bar{y}^2 - 2\bar{y}^2 $$</p>
 <p>$$ = \frac{ 1}{n} \sum_i y_i^2 - \bar{y}^2 $$</p>
 <p>ya da </p>
-<p>$$ = \sum <em>{i=1}^{n} y_i^2 - \frac{1}{n} \bigg( \sum </em>{i=1}^{n} y_i \bigg)^2<br />
+<p>$$ = \sum _{i=1}^{n} y_i^2 - \frac{1}{n} \bigg( \sum _{i=1}^{n} y_i \bigg)^2<br />
 \qquad (5)
 $$</p>
 <p>Bu arada standard sapma varyansın kareköküdür, ve biz karekök olan versiyon
@@ -248,7 +248,7 @@ olmayacaktı.</p>
 <p>Artımsal (Incremental) Varyans Hesabı</p>
 <p>(5) formülünü $x$ kullanarak bir daha yazalım,</p>
 <p>$$ 
-S = \sum <em>{i=1}^{n} x_i^2 - \frac{1}{n} \bigg( \sum </em>{i=1}^{n} x_i \bigg)^2<br />
+S = \sum _{i=1}^{n} x_i^2 - \frac{1}{n} \bigg( \sum _{i=1}^{n} x_i \bigg)^2<br />
 $$</p>
 <p>Bu formülü her yeni veri geldikçe eldeki mevcut varyansı "güncelleme"
 amaçlı olarak tekrar düzenleyebilirdik, böylece veri üzerinden bir kez
@@ -267,9 +267,9 @@ yapılabilir. $T_{ij}$, $M_{ij}$ ve $S_{ij}$,  veri noktaları $x_i$ $x_j$
 arasındaki verileri kapsayacak şekilde sırasıyla toplam, ortalama ve
 verinin karesinin toplamı olsun, </p>
 <p>$$ 
-T_{ij} = \sum <em>{k=i}^{j} x_k , \quad<br />
-M</em>{ij} = \frac{1}{(j-1+1)}, \quad
-S_{ij} = \sum <em>{k=i}^{j} (x_k - M</em>{ij})^2
+T_{ij} = \sum _{k=i}^{j} x_k , \quad<br />
+M_{ij} = \frac{1}{(j-1+1)}, \quad
+S_{ij} = \sum _{k=i}^{j} (x_k - M_{ij})^2
 $$</p>
 <p>Güncelleme formülleri şunlardır, </p>
 <p>$$ T_{1,j} = T_{i,j-1} + x_j$$</p>
@@ -277,28 +277,28 @@ $$</p>
 <p>ki $T_{1,1} = x_1$ ve $S_{1,1}=0$ olacak şekilde.</p>
 <p>İspat</p>
 <p>$$ 
-\sum <em>{k=1}^{j} \bigg( x_k - \frac{1}{j} T</em>{1j} \bigg) = 
-\sum <em>{k=1}^{j} \bigg( x_k - \frac{1}{j} (T</em>{1,j-1}+x_j)  \bigg)^2
+\sum _{k=1}^{j} \bigg( x_k - \frac{1}{j} T_{1j} \bigg) = 
+\sum _{k=1}^{j} \bigg( x_k - \frac{1}{j} (T_{1,j-1}+x_j)  \bigg)^2
 $$</p>
-<p>$$ = \sum <em>{k=1}^{j} \bigg(
-\bigg(x_k - \frac{1}{j-1}T</em>{1,j-1} \bigg) + 
+<p>$$ = \sum _{k=1}^{j} \bigg(
+\bigg(x_k - \frac{1}{j-1}T_{1,j-1} \bigg) + 
 \bigg( \frac{1}{j(j-1)} T_{1,j-1} - \frac{1}{j} x_j\bigg) 
 \bigg)^2
 $$</p>
 <p>çünkü $\frac{1}{j} = \frac{1}{j-1}-\frac{1}{j(j-1)}$</p>
 <p>\begin{eqnarray<em>}
-&amp;=&amp; \sum <em>{k=1}^{j-1} \bigg( x_k - \frac{1}{j-1} T</em>{1,j-1} \bigg)^2<br />
+&amp;=&amp; \sum _{k=1}^{j-1} \bigg( x_k - \frac{1}{j-1} T_{1,j-1} \bigg)^2<br />
  \bigg( x_j - \frac{1}{j-1} T_{1,j-1} \bigg)^2 + \\
-&amp;&amp; 2 \sum <em>{k=1}^{j}  \bigg( x_k - \frac{1}{j-1} T</em>{1,j-1} \bigg)
+&amp;&amp; 2 \sum _{k=1}^{j}  \bigg( x_k - \frac{1}{j-1} T_{1,j-1} \bigg)
 \bigg( \frac{1}{j(j-1)} T_{1,j-1} - \frac{1}{j} x_j \bigg) + \\
 &amp;&amp; j \bigg( \frac{1}{j(j-1)} T_{1,j-1} - \frac{1}{j} x_j \bigg) 
 \end{eqnarray</em>}</p>
 <p>$$ 
-= \sum <em>{k=1}^{j-1} \bigg( x_k - \frac{1}{j-1} T</em>{1,j-1} \bigg)^2 + 
+= \sum _{k=1}^{j-1} \bigg( x_k - \frac{1}{j-1} T_{1,j-1} \bigg)^2 + 
 \bigg( x_j - \frac{1}{j-1} T_{1,j-1} \bigg)^2 \bigg( 1-\frac{2}{j} \bigg) + 
 j \bigg( \frac{1}{j(j-1)} T_{1,j-1} - \frac{1}{j}x_j \bigg)^2
 $$</p>
-<p>çünkü $\sum <em>{k=1}^{j-1} (x_k-\frac{1}{j-1} T</em>{1,j-1} )=0$</p>
+<p>çünkü $\sum _{k=1}^{j-1} (x_k-\frac{1}{j-1} T_{1,j-1} )=0$</p>
 <p>$$ 
 = S_{1,j-1}  + \bigg( x_j - \frac{1}{j-1} (T_{1j}-x_j) \bigg) ^2
 \bigg( 1-\frac{2}{j}+\frac{1}{j}\bigg)
@@ -444,7 +444,7 @@ uygulamak yeterli. Bu arada 5. özellik $Cov(X,Y+Z)$ için ama $Cov(Y+Z,X)$
 yine aynı sonucu veriyor. </p>
 <p>Bu arada 6. özellik çok çetrefil toplamlar üzerinde de uygulanabilir,
 mesela </p>
-<p>$$ Cov \bigg( \sum <em>{i=1}^{m}a_iX_i, \sum </em>{j=1}^{n}b_iY_i \bigg) $$</p>
+<p>$$ Cov \bigg( \sum _{i=1}^{m}a_iX_i, \sum _{j=1}^{n}b_iY_i \bigg) $$</p>
 <p>Bu son derece karmaşık gözüküyor, fakat çözümü için aynen 6. özellikte
 olduğu gibi 5. özelliği yine tekrar tekrar uygulamak yeterli (4. özellik
 ile de sabiti dışarı çıkarırız, vs).</p>
@@ -758,7 +758,7 @@ oluştururuz [5],</p>
 <p>Phi korelasyon katsayısı</p>
 <p>$$ 
 \phi = \frac{n_{11}n - n_{1\bullet}n_{\bullet 1}}
-{\sqrt{n_{0\bullet} n_{1\bullet} n_{\bullet 0} n_{\bullet 1}}} \qquad (6)
+{\sqrt{n_{0\bullet} n_{1\bullet} n_{\bullet 0} n_{\bullet 1}}} \mlabel{6}
 $$</p>
 <p>ile hesaplanır. Bu ifadeyi türetmek için iki rasgele değişken arasındaki
 korelasyonu hesaplayan formül ile başlıyoruz,</p>

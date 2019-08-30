@@ -160,11 +160,11 @@ mevcut [1]. O zaman her $t &gt; 0$ için</p>
 <p>$X &gt; 0$ olduğuna göre, </p>
 <p>$$ 
 E(X) 
-= \int <em>{0}^{\infty} x f(x) \mathrm{d} x 
-= \int </em>{0}^{t} x f(x) \mathrm{d} x + \int _{t}^{\infty} x f(x) \mathrm{d} x =
+= \int _{0}^{\infty} x f(x) \mathrm{d} x 
+= \int _{0}^{t} x f(x) \mathrm{d} x + \int _{t}^{\infty} x f(x) \mathrm{d} x =
 $$</p>
 <p>$$ 
-\ge \int <em>{t}^{\infty} x f(x) \mathrm{d} x \ge t \int </em>{t}^{\infty} f(x) \mathrm{d} x
+\ge \int _{t}^{\infty} x f(x) \mathrm{d} x \ge t \int _{t}^{\infty} f(x) \mathrm{d} x
 = t P(X &gt; t)
 $$</p>
 <p>Çebişev Eşitsizliği (Chebyshev's Inequality)</p>
@@ -244,7 +244,7 @@ $$</p>
 sinir ağı (YSA) olabilir, ve elimizde $n$ tane test verisi var. Eğer tahmin
 edici, yani YSA, hatalı ise $X_i=1$ olsun, haklı ise $X_i=0$ olsun. O zaman
 gözlenen hata oranı (observed error rate)
-$\overline{X}<em>n = n^{-1}\sum </em>{i=1}^{n} X_i$ olacaktır. Rasgele değişken
+$\overline{X}_n = n^{-1}\sum _{i=1}^{n} X_i$ olacaktır. Rasgele değişken
 çıktılarına bakarak bunu bir $p$'si bilinmeyen bir Bernoulli dağılımından
 geliyormuş gibi kabul edebileceğimizi görebiliriz. İstediğimiz gerçek -ama
 bilinmeyen- $p$ hakkında irdeleme yapmak. $\overline{X}_n$'in gerçek
@@ -274,8 +274,8 @@ $a_i \le Y_i \le b_i$ doğru olacak şekilde. O zaman herhangi bir $t&gt;0$ içi
 </ol>
 <p>$$ 
 P \bigg( 
-\sum <em>{i=1}^{n} Y_i \ge \epsilon \le e^{-t\epsilon} 
-\prod </em>{i=1}^{n} e^{{t^2}(b_i-a_i)^2 / 8}
+\sum _{i=1}^{n} Y_i \ge \epsilon \le e^{-t\epsilon} 
+\prod _{i=1}^{n} e^{{t^2}(b_i-a_i)^2 / 8}
 \bigg)
 $$</p>
 <ol>
@@ -284,7 +284,7 @@ $$</p>
 <p>$X_1,..,X_n \sim Bernoulli(p)$ olsun. O zaman herhangi bir $\epsilon &gt; 0$ icin</p>
 <p>$$ P(|\overline{X}_n -p| &gt; \epsilon ) \le 2e^{-2n\epsilon^2}$$</p>
 <p>doğru olmalıdır ki, daha önce gördüğümüz gibi,
-$\overline{X}<em>n = n^{-1}\sum </em>{i=1}^{n} X_i$ olacak şekilde. </p>
+$\overline{X}_n = n^{-1}\sum _{i=1}^{n} X_i$ olacak şekilde. </p>
 <p>İspat için bkz [1, sf. 67]. </p>
 <p>Örnek</p>
 <p>Diyelim ki $X_1,..,X_n \sim Bernoulli(p)$. $n=100$ ve $\epsilon=.2$
@@ -383,7 +383,7 @@ okunur, .1867, yuvarlanarak .19 da kabul edilebilir. </p>
 <p>3.4 .9997 .9997 .9997 .9997 .9997 .9997 .9997 .9997 .9997 .9998</p>
 <p>Kaynaklar</p>
 <p>[1] Gullickson, {\em Sociology G4075: Introduction to Social Data Analysis
-  II}, <a href="https://web.archive.org/web/20160312151715/http://pages.uoregon.edu/aarong/teaching/G4075_Outline/node13.html">https://web.archive.org/web/20160312151715/http://pages.uoregon.edu/aarong/teaching/G4075_Outline/node13.html</a></p>
+  II}, \url{https://web.archive.org/web/20160312151715/http://pages.uoregon.edu/aarong/teaching/G4075_Outline/node13.html}</p>
 <p>\newpage</p>
 <p>Yunan Harfleri</p>
 <p><img alt="" src="../../algs/zapp/letters.png" /></p>

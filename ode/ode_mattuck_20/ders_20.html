@@ -146,7 +146,7 @@ by parts) kullanırım. </p>
 ilginç cinliğin temelinde bu metot yatar. Parçalarla entegral'in kendisi de
 türevlerde çarpım kuralının tersten okunuşundan başka bir şey değil bu arada.</p>
 <p>$$
-= e^{-st}f(t) \bigg]<em>{0}^{\infty}  - \int</em>{0}^{\infty} -s e^{-st}f(t)\mathrm{d} t
+= e^{-st}f(t) \bigg]_{0}^{\infty}  - \int_{0}^{\infty} -s e^{-st}f(t)\mathrm{d} t
 $$</p>
 <p>Soldaki ilk parçanın değeri için bir limit hesabı lazım</p>
 <p>$$ \lim_{t \to \infty} \frac{f(t)}{e^{st}} = 0, s&gt;0
@@ -211,8 +211,8 @@ kesirin alt kısmı sıfır olamaz, sonuç sonsuz olur. Başka bir teknik lazım
 <p>$$ -1 = -\frac{1}{2} + C - \frac{3}{4}$$</p>
 <p>$$ C = \frac{1}{4} $$</p>
 <p>$C$'yi yerine koyarsak</p>
-<p>$$ ___ + \frac{1}{4}e^{-t}  + \frac{3}{4}e^t  $$</p>
-<p>Kalan $___$ için böleni $(s+1)^2$ olan kesir gelecek. </p>
+<p>$$ \_\_\_ + \frac{1}{4}e^{-t}  + \frac{3}{4}e^t  $$</p>
+<p>Kalan $\_\_\_$ için böleni $(s+1)^2$ olan kesir gelecek. </p>
 <p>$$ t \leadsto \frac{1}{s^2} $$</p>
 <p>işe üstel kaydırma formülü ile </p>
 <p>$$ te^{t} \leadsto \frac{1}{(s+1)^2} $$</p>
@@ -220,8 +220,8 @@ kesirin alt kısmı sıfır olamaz, sonuç sonsuz olur. Başka bir teknik lazım
 <p>$$ -\frac{1}{2}te^t + \frac{1}{4}e^{-t}  + \frac{3}{4}e^t  $$</p>
 <p>Bu arada eski metotla karşılaştırmak gerekirse parçalar</p>
 <p>$$ 
-\underbrace{-\frac{1}{2}te^t}<em>{\textrm{özel çözüm}} + 
-\underbrace{\frac{1}{4}e^{-t}  + \frac{3}{4}e^t}</em>{\textrm{tamamlayıcı, genel çözüm}}
+\underbrace{-\frac{1}{2}te^t}_{\textrm{özel çözüm}} + 
+\underbrace{\frac{1}{4}e^{-t}  + \frac{3}{4}e^t}_{\textrm{tamamlayıcı, genel çözüm}}
 $$</p>
 <p>olarak tekabül eder. Genel çözümde $c_1,c_2$'nin Laplace tarafından
 otomatik olarak hesaplandığını görüyoruz. </p>

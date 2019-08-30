@@ -61,24 +61,24 @@ olduğundan hareketle $x_1,x_2,...,x_N$ verisi için olurluk,</p>
 <p>Her zaman olduğu gibi çarpımı toplam haline döndürmek için log alırız, </p>
 <p>$$ \ell(\theta) = \sum _{i=1}^{N} \log f(x_i;\theta) $$
 Karışımları da dahil edersek,</p>
-<p>$$ = \sum <em>{i=1}^{N} \log \sum </em>{k=1}^{K} \lambda_k f(x_i;\theta_k) 
+<p>$$ = \sum _{i=1}^{N} \log \sum _{k=1}^{K} \lambda_k f(x_i;\theta_k) 
 \qquad (2)
 $$</p>
 <p>Şimdi log olurluğun mesela $\theta_j$'ye göre türevini almayı deneyelim,
 yani $j$'inci öğenin parametresine göre bir kısmi türev. </p>
 <p>$$ \frac{\partial \ell}{\partial \theta_j}  = 
-\sum <em>{i=1}^{N}  \frac{1}{\sum </em>{k=1}^{K} \lambda_k f(x_i;\theta_k) } 
+\sum _{i=1}^{N}  \frac{1}{\sum _{k=1}^{K} \lambda_k f(x_i;\theta_k) } 
 \lambda_j
 \frac{\partial f(x_i;\theta_j)}{\partial \theta_j}
 $$</p>
 <p>Bölüm ve bölene $f(x_i;\theta_j)$ ekleyelim, bu sonucu değiştirmez, </p>
-<p>$$ = \sum <em>{i=1}^{N}<br />
-\frac{\lambda_j f(x_i;\theta_j)}{\sum </em>{k=1}^{K} \lambda_k f(x_i;\theta_k)}
+<p>$$ = \sum _{i=1}^{N}<br />
+\frac{\lambda_j f(x_i;\theta_j)}{\sum _{k=1}^{K} \lambda_k f(x_i;\theta_k)}
 \frac{1}{f(x_i;\theta_j)}
 \frac{\partial f(x_i;\theta_j)}{\partial \theta_j}
 $$</p>
-<p>$$ = \sum <em>{i=1}^{N}<br />
-\frac{\lambda_j f(x_i;\theta_j)}{\sum </em>{k=1}^{K} \lambda_k f(x_i;\theta_k)}
+<p>$$ = \sum _{i=1}^{N}<br />
+\frac{\lambda_j f(x_i;\theta_j)}{\sum _{k=1}^{K} \lambda_k f(x_i;\theta_k)}
 \frac{\partial \log f(x_i;\theta_j)}{\partial \theta_j}
 $$</p>
 <p>Eğer elimizdeki, karışım olmayan, basit bir parametrik model olsaydı, log
@@ -109,8 +109,8 @@ sonuç $Z=j$'nin $X=x_i$ verildiği, koşullu olasılığıdır,</p>
 \qquad (1)
 $$</p>
 <p>O zaman </p>
-<p>$$ \frac{\partial \ell}{\partial \theta_j}  = \sum <em>{i=1}^{N}
-w</em>{ij} \frac{\partial \log f(x_i;\theta_j)}{\partial \theta_j}
+<p>$$ \frac{\partial \ell}{\partial \theta_j}  = \sum _{i=1}^{N}
+w_{ij} \frac{\partial \log f(x_i;\theta_j)}{\partial \theta_j}
 $$</p>
 <p>$w_{ij}$ ile, veriye göre, $Z$'nin sonsal (posterior) hesaplamış oluyoruz. Yani
 karışımsal modeli hesaplarken bir ağırlıksal olurluk hesabı yapıyoruz, ki bu
@@ -138,14 +138,14 @@ yazalım, ayrıca $z_{ik}$ değişkenini katalım, $Z$ değişkeni multinom idi,
 0/1 değerleri içeren vektörel olarak tasarlayalım, yani $z$ veri noktası $i$ ve
 bileşen $k$ için, $Z_i$ ise $i$'inci nokta için</p>
 <p>$$  P(X_i = x_i, Z_i=k) =<br />
-\prod <em>{k=1}^{K} \big( f(x_i;\theta_k)P(Z_i=k) \big)^{z</em>{ik}} $$</p>
+\prod _{k=1}^{K} \big( f(x_i;\theta_k)P(Z_i=k) \big)^{z_{ik}} $$</p>
 <p>Şimdi log alalım, </p>
-<p>$$  = \sum <em>{k=1}^{K} z</em>{ij} \ln \big( f(x_i;\theta_k)P(Z_i=k) \big) $$</p>
+<p>$$  = \sum _{k=1}^{K} z_{ij} \ln \big( f(x_i;\theta_k)P(Z_i=k) \big) $$</p>
 <p>Tüm veri noktaları için</p>
 <p>$$  \ell(\theta) = 
-\sum <em>{i=1}^{N} \sum </em>{k=1}^{K} z_{ij} \ln \big( f(x_i;\theta_k)P(Z_i=k) \big) $$</p>
+\sum _{i=1}^{N} \sum _{k=1}^{K} z_{ij} \ln \big( f(x_i;\theta_k)P(Z_i=k) \big) $$</p>
 <p>$$ 
-= \sum <em>{i=1}^{N} \sum </em>{k=1}^{K} z_{ik} 
+= \sum _{i=1}^{N} \sum _{k=1}^{K} z_{ik} 
 \big( \ln f(x_i;\theta_j) + \ln(\lambda_j) \big) <br />
 $$</p>
 <p>Şimdi bu ifadenin beklentisini almamız lazım; bunun sebebi EM'in yakınsaması
@@ -153,7 +153,7 @@ $$</p>
 bilinmeyen küme ataması üzerinden alıyoruz, $\theta_k$,$P(Z_i=k)$ ve $x_i$ sabit
 olarak kalıyor,</p>
 <p>$$ 
-E[l(\theta)] = \sum <em>{i=1}^{N} \sum </em>{k=1}^{K} E[z_{ik}]
+E[l(\theta)] = \sum _{i=1}^{N} \sum _{k=1}^{K} E[z_{ik}]
 \big( \ln f(x_i;\theta_j) + \ln(\lambda_j) \big) <br />
 $$</p>
 <p>Hesaplanacak tek şey burada $E[z_{ik}]$. Peki bu beklenti nedir? </p>
@@ -164,7 +164,7 @@ zaman </p>
 <p>$$  E[z_{ik}] = w_{ik} $$</p>
 <p>Yani</p>
 <p>$$ 
-E[l(\theta)] = \sum <em>{i=1}^{N} \sum </em>{k=1}^{K} w_{ik}
+E[l(\theta)] = \sum _{i=1}^{N} \sum _{k=1}^{K} w_{ik}
 \big( \ln f(x_i;\theta_j) + \ln(\lambda_j) \big) 
 \qquad (4)
 $$</p>
@@ -184,43 +184,43 @@ $\theta_{jd}$ ise $j$'inci karışım öğesinin $D$ boyut içinden $d$'inci ola
 değeri olsun, $f$ içinde yerine koyunca ve $f$ üzerinde log etki yapınca çarpım
 yine toplam olur,</p>
 <p>$$ 
-= \sum <em>{i=1}^{N} \sum </em>{k=1}^{K} w_{ik}
+= \sum _{i=1}^{N} \sum _{k=1}^{K} w_{ik}
 \bigg[ \ln(\lambda_k)  + 
-\sum <em>{d=1}^{D} \ln \big( \theta</em>{kd}^{x_{id}} (1-\theta_{kd})^{1-x_{id}} \big)
+\sum _{d=1}^{D} \ln \big( \theta_{kd}^{x_{id}} (1-\theta_{kd})^{1-x_{id}} \big)
 \bigg]
 $$</p>
 <p>$$ 
-E[l(\theta)]= \sum <em>{i=1}^{N} \sum </em>{k=1}^{K} w_{ik}
+E[l(\theta)]= \sum _{i=1}^{N} \sum _{k=1}^{K} w_{ik}
 \bigg[ \ln(\lambda_k)  + 
-\sum <em>{d=1}^{D} x</em>{id} \ln \theta_{kd} + (1-x_{id}) \ln (1-\theta_{kd})
+\sum _{d=1}^{D} x_{id} \ln \theta_{kd} + (1-x_{id}) \ln (1-\theta_{kd})
 \bigg]
 $$</p>
 <p>Şimdi $\theta_{kd}$ hesabı için ona göre türevi alıp sıfıra eşitleriz,</p>
 <p>$$ 
 \frac{\partial }{\partial \theta_{kd}} E[l(\theta)] = 
-w_{ik} \sum <em>{i=1}^{N} 
-x</em>{id} \frac{\partial }{\partial \theta_{kd}} (\ln \theta_{kd}) + 
+w_{ik} \sum _{i=1}^{N} 
+x_{id} \frac{\partial }{\partial \theta_{kd}} (\ln \theta_{kd}) + 
 \frac{\partial }{\partial \theta_{kd}}\big[ (1-x_{id}) \ln (1-\theta_{kd})\big]
 = 0
 $$</p>
 <p>$$ 
-\sum <em>{i=1}^{N}  w</em>{ik} 
+\sum _{i=1}^{N}  w_{ik} 
 (
 \frac{x_{id}}{\theta_{kd}}  -
 \frac{1-x_{id}}{1-\theta_{kd}}
 ) = 0
 $$</p>
 <p>$$ 
-\sum <em>{i=1}^{N} \frac{w</em>{ik}  x_{id}}{\theta_{kd}} =
-\sum <em>{i=1}^{N} \frac{w</em>{ik}-w_{ik}x_{id}}{1-\theta_{kd}}
+\sum _{i=1}^{N} \frac{w_{ik}  x_{id}}{\theta_{kd}} =
+\sum _{i=1}^{N} \frac{w_{ik}-w_{ik}x_{id}}{1-\theta_{kd}}
 $$</p>
 <p>$$ 
-\frac{1}{\theta_{kd}}\sum <em>{i=1}^N w</em>{ik}  x_{id} =
-\frac{1}{1-\theta_{kd}}\sum <em>{i=1}^{N} w</em>{ik}-w_{ik}x_{id}
+\frac{1}{\theta_{kd}}\sum _{i=1}^N w_{ik}  x_{id} =
+\frac{1}{1-\theta_{kd}}\sum _{i=1}^{N} w_{ik}-w_{ik}x_{id}
 $$</p>
 <p>$$ 
-\frac{1-\theta_{kd}}{\theta_{kd}}\sum <em>{i=1}^N w</em>{ik}  x_{id} =
-\sum <em>{i=1}^{N} w</em>{ik}-w_{ik}x_{id}
+\frac{1-\theta_{kd}}{\theta_{kd}}\sum _{i=1}^N w_{ik}  x_{id} =
+\sum _{i=1}^{N} w_{ik}-w_{ik}x_{id}
 $$</p>
 <p>$$ 
 \frac{1-\theta_{kd}}{\theta_{kd}} =
@@ -231,13 +231,13 @@ $$</p>
 \frac{\sum_i w_{ik}}{\sum_i w_{ik}  x_{id}} - 1
 $$</p>
 <p>$$ 
-\hat{\theta}<em>{kd}=
-\frac{\sum_i w</em>{ik}  x_{id}}{\sum_i w_{ik}} 
+\hat{\theta}_{kd}=
+\frac{\sum_i w_{ik}  x_{id}}{\sum_i w_{ik}} 
 $$</p>
 <p>Ya da </p>
 <p>$$ 
-\hat{\theta}<em>{k}=
-\frac{\sum_i w</em>{ik}  x_{i}}{\sum_i w_{ik}} 
+\hat{\theta}_{k}=
+\frac{\sum_i w_{ik}  x_{i}}{\sum_i w_{ik}} 
 $$</p>
 <p>$\lambda_j$ Hesabı</p>
 <p>Şimdi $\lambda_j$'ye göre bir türev almamız, sıfıra eşitlememiz ve çözmemiz
@@ -251,8 +251,8 @@ lazım. Lagrange çarpan tekniği burada kullanılır [1, sf. 395].</p>
 dönersek, ve kısmi türevi alırsak,</p>
 <p>$$ 
 \frac{\partial \ell}{\partial \lambda_j}  = 
-\sum <em>{i=1}^{N}
-\frac{f(x_i;\theta_j)}{\sum </em>{k=1}^{K} \lambda_k f(x_i;\theta_k) }
+\sum _{i=1}^{N}
+\frac{f(x_i;\theta_j)}{\sum _{k=1}^{K} \lambda_k f(x_i;\theta_k) }
 =
 \sum _{i=1}^{N}
 \frac{f(x_i;\theta_j)}{f(x_i) }
@@ -268,12 +268,12 @@ $$</p>
 <p>Eşitliğin sol tarafında toplam içinde yine (1)'de görülen $w_{ij}$'ye eriştik!
 Yerine koyalım,</p>
 <p>$$
-\sum <em>{i=1}^{N} w</em>{ij} = - \alpha \lambda_j \qquad (3) 
+\sum _{i=1}^{N} w_{ij} = - \alpha \lambda_j \mlabel{3} 
 $$</p>
 <p>Şimdi tüm öğeler / kümeler üzerinden bir toplam alalım (yani $\sum_k$'yi her iki
 tarafa da uygulayalım),</p>
 <p>$$
-\sum <em>{k=1}^{K} \sum </em>{i=1}^{N} w_{ij} = - \alpha  \sum _{k=1}^{K} \lambda_j
+\sum _{k=1}^{K} \sum _{i=1}^{N} w_{ij} = - \alpha  \sum _{k=1}^{K} \lambda_j
 $$</p>
 <p>$ \sum_k \lambda_j = 1 $, $\sum_j w_{ij} = 1 $ olduğu için,</p>
 <p>$$ 
@@ -281,7 +281,7 @@ N = - \alpha
 $$</p>
 <p>Üstteki formülü (3) içine koyarsak, ve tekrar düzenlersek,</p>
 <p>$$ 
-\lambda_j = \frac{\sum <em>{i=1}^{N} w</em>{ij}}{N} 
+\lambda_j = \frac{\sum _{i=1}^{N} w_{ij}}{N} 
 $$</p>
 <pre><code class="python">import numpy as np
 

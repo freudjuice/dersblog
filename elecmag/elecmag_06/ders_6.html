@@ -72,7 +72,7 @@ E = \frac{1}{4\pi\epsilon_0 } \frac{q}{a^2 + z^2}
     \frac{<a,0,z>}{(a^2 + z^2)^{1/2}}
 $$</p>
 <p>$$
-= \frac{1}{4\pi\epsilon_0 }  \frac{q}{(a^2 + z^2)^{3/2}}  <a,0,z> \qquad (5)
+= \frac{1}{4\pi\epsilon_0 }  \frac{q}{(a^2 + z^2)^{3/2}}  <a,0,z> \mlabel{5}
 $$ </p>
 <p>Üzerinde nokta yükleri olan halkaya dönersek, bu halkanın ortasından $z$
 kordinatı geçiyor, ve halkadaki yüklerin $z$ üzerindeki bir noktaya olan
@@ -90,7 +90,7 @@ cebirsel ifadeden kurtarmış oldu. </p>
 doğrusu halka etrafında dönerken görülen ufak elektrik alan etkilerinin
 toplamıdır.</p>
 <p>$$
-\vec{E}<em>{tot} = \sum</em>{\textrm{halkanın etrafında}} \Delta E_z \hat{z} \qquad (2)
+\vec{E}_{tot} = \sum_{\textrm{halkanın etrafında}} \Delta E_z \hat{z} \mlabel{2}
 $$</p>
 <p>Bize lazım olan $E$'nin $z$ yönündeki bileşenleri. </p>
 <p>$$
@@ -257,7 +257,7 @@ $$</p>
 <p>Entegral sınırları..? Baktığımız bir çember o zaman $\mathrm{d} \theta$'nin sınırları
 nedir? 0 ve $2\pi$. $a$ için 0 ve $R$.</p>
 <p>$$
-=  \left[ \int <em>{0}^{2\pi} a \mathrm{d} \theta \right] \left[ \int </em>{0}^{R} \mathrm{d} a \right]
+=  \left[ \int _{0}^{2\pi} a \mathrm{d} \theta \right] \left[ \int _{0}^{R} \mathrm{d} a \right]
 $$</p>
 <p>$$
 = (2\pi) \left( \frac{a^2}{2} \biggr\rvert_{0}^{R} \right)
@@ -297,10 +297,10 @@ hepsi $\mathrm{d} \theta$'dan dışarı alınabilir. Yine gruplama yaparsak</p>
 <p>\frac{1}{4\pi\epsilon_0 }
 \frac{Q}{\pi R^2}
 z \left[
-\int <em>{0}^{R} \mathrm{d} a
+\int _{0}^{R} \mathrm{d} a
 \frac{a}{(a^2 + z^2)^{3/2}}
 \right]
-\left[ \int </em>{0}^{2\pi} \mathrm{d} \theta \right]
+\left[ \int _{0}^{2\pi} \mathrm{d} \theta \right]
 $$</p>
 <p>$\mathrm{d} a$ üzerinden olan entegrali sembolik olarak sympy entegre edelim,</p>
 <pre><code class="python">from sympy import integrate, Symbol

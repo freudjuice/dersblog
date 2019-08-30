@@ -330,7 +330,7 @@ fonksiyon. Rasgele entegral şu şekilde tanımlanabilir, $\forall i$</p>
 <p>$$
 \int_{ a}^{b} f(t) \mathrm{d} W_t \equiv<br />
 \lim_{ n \to \infty, |t_i-t_{i-1}| \to 0 }
-\sum <em>{i=1}^{n} f(t</em>{i-1}) ( W_{t_i} - W_{t_{i-1}})
+\sum _{i=1}^{n} f(t_{i-1}) ( W_{t_i} - W_{t_{i-1}})
 $$</p>
 <p>Tanımın sağındaki bir Riemann toplamıdır. Dikkat, burada $dW_t$ "türev almak"
 olarak görülmemeli çünkü $W_t$'nin türevi yok. Üstte bir entegral tanımı yaptık
@@ -342,9 +342,9 @@ görmüştük. Demek ki aralıklar bir tür "beyaz gürültü"dür (white noise)
 kullanabiliyoruz,</p>
 <p>$$ \int u \cdot \mathrm{d} v = uv - \int v \cdot \mathrm{d} u $$</p>
 <p>Ana formülü $u,v$ bazında bölüştürelim,</p>
-<p>$$ \int <em>{a}^{b} \underbrace{f(t)}</em>{u}\underbrace{\mathrm{d} W_t}_{\mathrm{d} v}$$</p>
+<p>$$ \int _{a}^{b} \underbrace{f(t)}_{u}\underbrace{\mathrm{d} W_t}_{\mathrm{d} v}$$</p>
 <p>O zaman </p>
-<p>$$ \int <em>{a}^{b} f(t)\mathrm{d} W_t = f(b)W_b - f(a)W_a - \int </em>{a}^{b} W_t \mathrm{d} f(t) $$</p>
+<p>$$ \int _{a}^{b} f(t)\mathrm{d} W_t = f(b)W_b - f(a)W_a - \int _{a}^{b} W_t \mathrm{d} f(t) $$</p>
 <p>Genellikle eşitliğin sol tarafının kullanılan, bilinen tanımı budur. Rasgele
 entegral dediklerinde bahsedilen bu yani. Bir ek güzellik, $f$'in türevi
 alınabildiği için çoğunlukla $df(t)$ yerine $f'(t)$ de kullanılabilir.</p>
@@ -356,7 +356,7 @@ tekrar bize $W_t$ verdi.</p>
 büyüyen seriler gerekebilir, bir trendi ya da kayması (drift) olacak
 şekilde. Herhangi bir sabit değeri $\sigma^2$ ve $\mu$ ile genelleştirilmiş bir
 Wiener süreci ${ X_t; t&gt;0}$'i şöyle gösterebiliriz [4, sf. 64],</p>
-<p>$$ X_t = \mu \cdot t + \sigma \cdot W_t, \qquad t&gt;0 \qquad (1)$$</p>
+<p>$$ X_t = \mu \cdot t + \sigma \cdot W_t, \qquad t&gt;0 \mlabel{1}$$</p>
 <p>Bu süreç $t$ anında $N(\mu,\sigma^2t)$ dağılımına sahip olacaktır. Ufak bir
 zaman artışı $\Delta t$ için</p>
 <p>$$ X_{t + \Delta t} - X_t = \mu \cdot \Delta t + \sigma (W_{t+\Delta t}-W_t)$$</p>
@@ -364,7 +364,7 @@ zaman artışı $\Delta t$ için</p>
 <p>$$ dX_t = \mu \cdot dt + \sigma dW_t $$</p>
 <p>Bu formül (1)'in değişik bir halinden ibarettir. Üsttekini entegral
 formunda da yazabiliriz, </p>
-<p>$$ X_t = \int <em>{0}^{t}\mu \mathrm{d} s + \int </em>{ 0}^{t} \sigma \mathrm{d} W_s $$</p>
+<p>$$ X_t = \int _{0}^{t}\mu \mathrm{d} s + \int _{ 0}^{t} \sigma \mathrm{d} W_s $$</p>
 <p>Dikkat edersek daha önceki rasgele entegral tanımından, hemen şu hesabı
 yapabildiğimizi görürüz, $\int _{0}^{s} \mathrm{d} W_s = W_t - W_0 = W_t$, çünkü
 $W_0=0$. </p>
@@ -412,12 +412,12 @@ eşitliğe erişmek için attık). O zaman</p>
 <p>$$ d(e^{-\lambda t}(\lambda y_t + \mu)) =  e^{-\lambda t} dW_t  $$</p>
 <p>diyebiliriz. Şimdi iki tarafın entegralini alalım,</p>
 <p>$$
-\int <em>{0}^{t} d(e^{-\lambda s}(\lambda y_s + \mu)) =
-\int</em>{0}^{t} e^{-\lambda s} \mathrm{d} W_s
+\int _{0}^{t} d(e^{-\lambda s}(\lambda y_s + \mu)) =
+\int_{0}^{t} e^{-\lambda s} \mathrm{d} W_s
 $$</p>
 <p>$$
-e^{-\lambda s}(\lambda y_s + \mu) \big|<em>{0}^{t} =
-\int</em>{0}^{t} e^{-\lambda s} \mathrm{d} W_s
+e^{-\lambda s}(\lambda y_s + \mu) \big|_{0}^{t} =
+\int_{0}^{t} e^{-\lambda s} \mathrm{d} W_s
 $$</p>
 <p>$$
 e^{-\lambda t}(\lambda y_t + \mu) - \lambda y_0 - \mu =
@@ -447,7 +447,7 @@ $$</p>
 içine nüfuz eden bu işlem ardından $dW$ beklentisi doğal olarak sıfıra
 gidip yokolacak, geri kalanlar,</p>
 <p>$$ 
-E[y_t] = y_0 e^{\lambda t} - \frac{\mu}{\lambda} ( 1 - e^{\lambda t}) \qquad (3)
+E[y_t] = y_0 e^{\lambda t} - \frac{\mu}{\lambda} ( 1 - e^{\lambda t}) \mlabel{3}
 $$</p>
 <p>Zaman Yarılaması</p>
 <p>Radyoaktif çürüme (decay), mesela Uranyum 238 için, alttaki denklemle

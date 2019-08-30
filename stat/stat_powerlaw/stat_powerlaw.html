@@ -67,10 +67,10 @@ bahsediyoruz yani! $\alpha &gt; 1$ olmalıdır, sebebini altta
 göreceğiz. Doğadaki çoğu üstel kanun $2 &lt; \alpha &lt; 3$
 arasındadır. Beklentiyi hesaplayalım,</p>
 <p>$$ 
-E[X] = \int <em>{x</em>{min}}^{\infty} x p(x) \mathrm{d} x  = 
-C \int <em>{x</em>{min}}^{\infty} x ^{-\alpha + 1} \mathrm{d} x
+E[X] = \int _{x_{min}}^{\infty} x p(x) \mathrm{d} x  = 
+C \int _{x_{min}}^{\infty} x ^{-\alpha + 1} \mathrm{d} x
 $$</p>
-<p>$$ = \frac{C}{2-\alpha} \bigg[ x ^{-\alpha+2}  \bigg] <em>{x</em>{min}}^{\infty} $$</p>
+<p>$$ = \frac{C}{2-\alpha} \bigg[ x ^{-\alpha+2}  \bigg] _{x_{min}}^{\infty} $$</p>
 <p>Bu ifadenin $\alpha \le 2$ için sonsuza gittiğine dikkat edelim,
 bahsettiğimiz gariplik burada... $x_{min}$'in ne olduğunu birazdan göreceğiz.</p>
 <p>Log-Log Grafikleri</p>
@@ -119,9 +119,9 @@ gösterdiğimiz formül olmak üzere,</p>
 değildir. O zaman üstel kanunun geçerli olduğu bir alt sınır olmalı. Bu alt
 sınıra $x_{min}$ diyeceğiz.</p>
 <p>Artık normalizasyon sabiti $C$'yi hesaplayabiliriz, </p>
-<p>$$ \int <em>{x</em>{min}}^{\infty} C x^{-\alpha} = 1$$</p>
-<p>$$ \frac{C}{(-\alpha+1) } \bigg[ x^{-\alpha+1} \bigg] <em>{x</em>{min}}^{\infty} = 1$$</p>
-<p>$$ \frac{C}{(1-\alpha) } \bigg[ x^{-\alpha+1} \bigg] <em>{x</em>{min}}^{\infty} = 1$$</p>
+<p>$$ \int _{x_{min}}^{\infty} C x^{-\alpha} = 1$$</p>
+<p>$$ \frac{C}{(-\alpha+1) } \bigg[ x^{-\alpha+1} \bigg] _{x_{min}}^{\infty} = 1$$</p>
+<p>$$ \frac{C}{(1-\alpha) } \bigg[ x^{-\alpha+1} \bigg] _{x_{min}}^{\infty} = 1$$</p>
 <p>Görülebileceği üzere bu formül sadece $\alpha &gt; 1$ için anlamlıdır, diğer
 durumlarda sonsuzluğa gider. Demek ki üstel kanun dağılımı 
 için $\alpha &gt; 1$ şartını da getirmemiz gerekiyor. Devam edelim,</p>
@@ -155,12 +155,12 @@ kesi 0.00241514844497
 kullanılmaması gerektiği [3, sf. 31]'de bulunabilir.</p>
 <p>Alternatif yöntem şöyle; önce $\alpha$ için hızlı çalışan bir tahmin edici
 mevcut, bunu görelim; Maksimum olurluk üzerinden,</p>
-<p>$$ p(x;\alpha) = \prod <em>{i=1}^{n} \frac{\alpha-1}{x</em>{min}} \bigg( \frac{x_i}{x_{min}}\bigg)^{-\alpha}  $$</p>
+<p>$$ p(x;\alpha) = \prod _{i=1}^{n} \frac{\alpha-1}{x_{min}} \bigg( \frac{x_i}{x_{min}}\bigg)^{-\alpha}  $$</p>
 <p>Maksimum log olurluk,</p>
-<p>$$ \ln p(x;\alpha) = \ln \prod <em>{i=1}^{n} \frac{\alpha-1}{x</em>{min}} \bigg( \frac{x_i}{x_{min}}\bigg)^{-\alpha}  $$</p>
-<p>$$ = \sum <em>{i=1}^{n} \ln \frac{\alpha-1}{x</em>{min}} \bigg( \frac{x_i}{x_{min}}\bigg)^{-\alpha}  $$</p>
-<p>$$ = \sum <em>{i=1}^{n} \bigg[ \ln (\alpha-1) + \ln x</em>{min} - \alpha \ln \frac{x_i}{x_{min}} \bigg]   $$</p>
-<p>$$ = n \ln (\alpha-1) + n \ln x_{min} - \alpha \sum <em>{i=1}^{n}  \ln \frac{x_i}{x</em>{min}}   $$</p>
+<p>$$ \ln p(x;\alpha) = \ln \prod _{i=1}^{n} \frac{\alpha-1}{x_{min}} \bigg( \frac{x_i}{x_{min}}\bigg)^{-\alpha}  $$</p>
+<p>$$ = \sum _{i=1}^{n} \ln \frac{\alpha-1}{x_{min}} \bigg( \frac{x_i}{x_{min}}\bigg)^{-\alpha}  $$</p>
+<p>$$ = \sum _{i=1}^{n} \bigg[ \ln (\alpha-1) + \ln x_{min} - \alpha \ln \frac{x_i}{x_{min}} \bigg]   $$</p>
+<p>$$ = n \ln (\alpha-1) + n \ln x_{min} - \alpha \sum _{i=1}^{n}  \ln \frac{x_i}{x_{min}}   $$</p>
 <p>Maksimum değer için $\alpha$'ya göre türevi alıp sıfıra eşitleriz ve
 çözeriz, $\ln(\alpha-1)$'in türevini hatırlayalım bu arada,</p>
 <pre><code class="python">import sympy
@@ -171,10 +171,10 @@ print sympy.diff(sympy.log(alpha-1))
 <pre><code>1/(alpha - 1)
 </code></pre>
 
-<p>$$ =  \frac{n}{(\alpha - 1)} - \sum <em>{i=1}^{n}  \ln \frac{x_i}{x</em>{min}}  = 0 $$</p>
-<p>$$  \frac{n}{(\alpha - 1)} = \sum <em>{i=1}^{n}  \ln \frac{x_i}{x</em>{min}}   $$</p>
-<p>$$ \frac{(\alpha - 1)}{n} =  \bigg( \sum <em>{i=1}^{n}  \ln \frac{x_i}{x</em>{min}} \bigg)^{-1}  $$</p>
-<p>$$ \hat{\alpha} =  1 + n  \bigg( \sum <em>{i=1}^{n}  \ln \frac{x_i}{x</em>{min}} \bigg)^{-1}   $$</p>
+<p>$$ =  \frac{n}{(\alpha - 1)} - \sum _{i=1}^{n}  \ln \frac{x_i}{x_{min}}  = 0 $$</p>
+<p>$$  \frac{n}{(\alpha - 1)} = \sum _{i=1}^{n}  \ln \frac{x_i}{x_{min}}   $$</p>
+<p>$$ \frac{(\alpha - 1)}{n} =  \bigg( \sum _{i=1}^{n}  \ln \frac{x_i}{x_{min}} \bigg)^{-1}  $$</p>
+<p>$$ \hat{\alpha} =  1 + n  \bigg( \sum _{i=1}^{n}  \ln \frac{x_i}{x_{min}} \bigg)^{-1}   $$</p>
 <p>Fakat tahmin edicinin hesabı için $x_{min}$'i bilmek gerekiyor. Bir
 tavuk-yumurta problemi var, $\hat{\alpha}$ için $x_{min}$ gerekli, ama
 $x_{min}$'in kendisi de bilinmiyor. </p>

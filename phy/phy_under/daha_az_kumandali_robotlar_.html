@@ -93,7 +93,7 @@ ilgilendiğimiz çoğu robot daha da basit bir formda olabiliyor, hareket
 denklemleri $u$ bazında lineer olabiliyor, robota dönme kuvveti ekleyince
 bu etki sistemin ivmesine lineer bir etki uyguluyor yani.</p>
 <p>$$
-\ddot{q} = f_1 (q, \dot{q}, t) + f_2 (q, \dot{q}, t) u \qquad (1)
+\ddot{q} = f_1 (q, \dot{q}, t) + f_2 (q, \dot{q}, t) u \mlabel{1}
 $$</p>
 <p>Pek yeni bir şey söylemişim olmadım aslında, $f_1$ ile bir takım gayrı
 lineer ilişkilerle görülen değişkenler sisteme etki ediyor, sonra $f_2$ ile
@@ -115,7 +115,7 @@ tüm uzayı kapsayazdım, çünkü içinde tekrar eden kolonlar olurdu ve bu
 tekrar yeni bilgi eklemezdi, bu sebeple belli bir $u$ ile her $\ddot{q}$'ya
 erisemezdim.</p>
 <p>Daha az kumandalı nedir? Eğer </p>
-<p>$$\mathrm{rank} [f_2(q,\dot{q},t)] &lt; \mathrm{dim} [q] \qquad (2)$$ </p>
+<p>$$\mathrm{rank} [f_2(q,\dot{q},t)] &lt; \mathrm{dim} [q] \mlabel{2}$$ </p>
 <p>ise. </p>
 <p>[geri besleme lineerlestirme atlandi]</p>
 <p>Tarif edersek, bir sistemin kontrol girdisi sistemi her yönde

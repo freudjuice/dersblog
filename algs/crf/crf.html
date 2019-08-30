@@ -56,7 +56,7 @@ zamanında $y$ olmayacak, fakat $x$ hep olacak. Yani $y$'nin modellenmesi
 mecburi, çünkü "genelleyerek" onun ne olduğunu bulacağız, ama $x$ hep
 verili.</p>
 <p>Koşulsal Olurluk Maksimum Olurluk Prensibi</p>
-<p>Eğitim verisi $<x_1,y_1>,...,<x_n,y_n>$ için, $\theta$'yi şöyle seç</p>
+<p>Eğitim verisi $<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#49;&#44;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#49;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#49;&#44;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#49;</a>,...,<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#110;&#44;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#110;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#110;&#44;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#110;</a>$ için, $\theta$'yi şöyle seç</p>
 <p>$$ \hat{\theta} =  \arg\max_{\theta} \prod _{i=1}^{n} p(y_i | x_i;\theta) $$</p>
 <p>Normal maksimum olurlukta bilindiği gibi olasılıkların çarpımı maksimize
 edilir, burada maksimize ettiğimiz "koşulsal" olasılıkların çarpımı. </p>
@@ -138,19 +138,19 @@ derli toplu bir formül olur,</p>
 <p>Bulmak istediğim her $j$ için $\frac{d}{d\beta_j} LCL$ lazım</p>
 <p>$$ 
 \frac{d}{d\beta_j} LCL = 
-\sum <em>{i:y_i=1} \frac{d}{d\beta_j} \log p(1|..)
-+ \sum </em>{i:y_i=0} \frac{d}{d\beta_j} \log p(0|..)
+\sum _{i:y_i=1} \frac{d}{d\beta_j} \log p(1|..)
++ \sum _{i:y_i=0} \frac{d}{d\beta_j} \log p(0|..)
 \qquad (3)
 $$</p>
 <p>Eğer üstteki bir bölümü $p$ diğerine $1-p$ dersem, yani şöyle</p>
 <p>$$ 
-= \sum <em>{i:y_i=1} \frac{d}{d\beta_j} \underbrace{\log p(1|..)}</em>{p}
-+ \sum <em>{i:y_i=0} \frac{d}{d\beta_j} \underbrace{\log p(0|..)}</em>{1-p}
+= \sum _{i:y_i=1} \frac{d}{d\beta_j} \underbrace{\log p(1|..)}_{p}
++ \sum _{i:y_i=0} \frac{d}{d\beta_j} \underbrace{\log p(0|..)}_{1-p}
 $$</p>
 <p>O zaman </p>
 <p>$$ 
-= \sum <em>{i:y_i=1} \frac{d}{d\beta_j}\log p
-+ \sum </em>{i:y_i=0} \frac{d}{d\beta_j} \log (1-p)
+= \sum _{i:y_i=1} \frac{d}{d\beta_j}\log p
++ \sum _{i:y_i=0} \frac{d}{d\beta_j} \log (1-p)
 $$</p>
 <p>Biliyoruz ki</p>
 <p>$$ 
@@ -192,13 +192,13 @@ $$</p>
 <p>Üstteki türevler tek bir eğitim veri noktası için. Tüm eğitim veri setinin
 türevi her noktanın türevlerinin toplamı olacak, (3)'de görüldüğü gibi.</p>
 <p>$$ \frac{d}{d\beta_j} LCL = 
-\sum <em>{i: y_i = 1} (1-p_i)x</em>{ij} + 
-\sum <em>{i: y_i = 0} -p_i x</em>{ij}<br />
+\sum _{i: y_i = 1} (1-p_i)x_{ij} + 
+\sum _{i: y_i = 0} -p_i x_{ij}<br />
 \qquad (4)
 $$</p>
 <p>$x_{ij}$ notasyonunda $j$, $j$'inci öğe / özellik anlamına geliyor. Şimdi 
 notasyonel bir numara kullanacağım, </p>
-<p>$$ = \sum <em>{tum \ i} (y_i - p_i)x</em>{ij} $$</p>
+<p>$$ = \sum _{tum \ i} (y_i - p_i)x_{ij} $$</p>
 <p>Bunu niye yaptım? (4) formülünde eşitliğin sağ tarafı, birinci terim içinde
 1 sayısı var, sonraki terimde 1 yok. Eğer 1 olup olmaması yerine $y_i$
 kullanırsam, ki zaten 1'in olup olmaması $y_i$'nin 1 olup olmamasına bağlı,
@@ -453,7 +453,7 @@ işlem zamanı $O(m^2nd)$. </p>
 <p>Algoritmamda ilk yapacağım iş mümkün $g$ değerlerini önceden hesaplayıp
 (precompute) bir yerde depolu olarak tutmak / hazır etmek. </p>
 <p>Tanım</p>
-<p>$Skor(y_1,...,y_k) = \sum <em>{i=1}^{k} g_i(y</em>{i-1} y_i)$</p>
+<p>$Skor(y_1,...,y_k) = \sum _{i=1}^{k} g_i(y_{i-1} y_i)$</p>
 <p>Amacımız öyle bir $y$ sıralaması (sequence) bulmak ki bu sıranın skoru 
 en yüksek olsun. </p>
 <p>$U(k)$ = en iyi sıralama $y_1,...,y_k$'nin skoru</p>
@@ -462,7 +462,7 @@ en yüksek olsun. </p>
 yeni değer ekledik, bu bazı formülleri kolaşlaştıracak. Bu tanım aslında
 $\arg\max$ ile bulmaya çalıştığım şeyin bir bölümj aslında, sadece amacımı
 bu şekilde tekrar tanımladım. Tekrar belirtmek gerekirse, </p>
-<p>$$U(k,v) = \max_{y_1,y_{k-1}}  [ \sum <em>{ i=1}^{k-1}  g_i(y</em>{i-1}y_i) +  g_k(y_k,v) ]$$</p>
+<p>$$U(k,v) = \max_{y_1,y_{k-1}}  [ \sum _{ i=1}^{k-1}  g_i(y_{i-1}y_i) +  g_k(y_k,v) ]$$</p>
 <p>İlginç bölüme geldik. Üstteki tanımı özyineli olarak tanımlarsak, </p>
 <p>$$ U(k,v) = \max_{y_{k-1}} [ U({k-1},y_{k-1}) + g_k(y_{k-1},v)]  $$</p>
 <p>Bu özyineli fonksiyonun avantajı nedir? Aslında bir önceki formüle göre çok
@@ -620,20 +620,18 @@ $(a(x)$ ile temsil ediliyor), her mümkün $v$ değeri için bir OF'ye
 bunları atlamayı bilir. Demek ki aynı şekilde koşulsal lineer modeller de
 bu özellikleri atlayabilir. Eğer bir özellik $a(x)=0$ ise, o özellik
 ağırlık güncellemesi (weight update) sırasında atlanır. </p>
-<pre><code>$\code{train\_crf}$ 
-
-$\code{for }$ her eğitim noktası $x,y$ için 
-
-      $j$ için 
-
-            $E[F_j(x,y')]$ hesapla (buna sadece $E$ diyelim)        
-
-             Güncelle: $w_j := w_j + \lambda[F_j(x,y) - E]$
-</code></pre>
-
+<p>\begin{algorithm}[h]
+\begin{pseudocode}
+\codename $\code{train\_crf}$\\
+\codeline $\code{for }$ her eğitim noktası $x,y$ için\\
+\codeline > $j$ için\\
+\codeline > > $E[F_j(x,y')]$ hesapla (buna sadece $E$ diyelim)       \\
+\codeline > > Güncelle: $w_j := w_j + \lambda[F_j(x,y) - E]$
+\end{pseudocode}
+\end{algorithm}</p>
 <p>Bu hesabın en pahalı kısmı neresi? Beklenti hesabı. Bu beklentileri
 hesaplanması için daha önce verdiğimiz matris çarpımı yöntemine benzer bir
 yöntem kullanmak gerekiyor (burada vermeyeceğiz, arama motorunda Rahul
 Gupta üzerinden arayabilirsiniz, bu kişi bu konuyu anlatıyor).</p>
 <p>Kaynak</p>
-<p>[1] Elkan, <em>Log-linear Models and Conditional Random Fields</em>, <a href="http://videolectures.net/cikm08_elkan_llmacrf">http://videolectures.net/cikm08_elkan_llmacrf</a></p>
+<p>[1] Elkan, <em>Log-linear Models and Conditional Random Fields</em>, \url{http://videolectures.net/cikm08_elkan_llmacrf}</p>

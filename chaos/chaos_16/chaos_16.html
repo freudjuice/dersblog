@@ -46,21 +46,21 @@ onu bu sistem için yapmayalım, Lorenz sistemi üzerinde yapalım daha
 iyi. Ama sabit noktalara bakalım. Bu noktaları bulmak için biraz cebirsel
 işlem gerekli, ve bu sabit noktaların bu sistem için ne anlama geldiği
 hakkında biraz kafa yormamız gerekli.</p>
-<p>$$ \dot{a_1} = 0 \implies a_1 = \frac{\omega b_1}{K}  \qquad (1) $$</p>
-<p>$$ \dot{b_1} = 0 \implies \omega a_1 = q_1 - K b_1 \qquad (2) $$</p>
-<p>$$ \dot{\omega} = 0 \implies a_1 = \frac{v \omega}{\pi gr} \qquad (3)$$</p>
+<p>$$ \dot{a_1} = 0 \implies a_1 = \frac{\omega b_1}{K}  \mlabel{1} $$</p>
+<p>$$ \dot{b_1} = 0 \implies \omega a_1 = q_1 - K b_1 \mlabel{2} $$</p>
+<p>$$ \dot{\omega} = 0 \implies a_1 = \frac{v \omega}{\pi gr} \mlabel{3}$$</p>
 <p>$a_1,b_1,\omega$'yi bulmak istiyoruz, o zaman üstteki denklemlerde biraz
 temizlik, cebirsel manipülasyon yapabiliriz. (1) ve (2)'yi birleştirince
 $a_1$'den kurtulabiliriz. (2)'deki $a_1$ için (1)'dekini sokalım ve $b_1$'i
 bulalım, sonuç</p>
-<p>$$ b_1 = \frac{K q_1}{\omega^2 + K^2}  \qquad (4) $$</p>
+<p>$$ b_1 = \frac{K q_1}{\omega^2 + K^2}  \mlabel{4} $$</p>
 <p>$a_1,b_1$ için yıldız kullanabilirdim, $a_1^<em>,b_1^</em>$ gibi ama sabit nokta
 olduklarını biliyoruz, bunu atlayacağım. (1) ve (3) ile</p>
 <p>$$ \frac{\omega b_1}{K} = \frac{v \omega}{\pi gr}$$</p>
 <p>Üsttekinin en basit çözümü $w=0$'da çünkü her iki tarafta da bölünende
 $\omega$ var. Ama çözüm sıfır değilse diğer çözüm için her iki tarafı
 $\omega$ ile böleriz, ve </p>
-<p>$$ b_1 = \frac{K v}{\pi gr} \qquad (5) $$</p>
+<p>$$ b_1 = \frac{K v}{\pi gr} \mlabel{5} $$</p>
 <p>elde ederiz. Bu iki durumu biraz düşünelim, $\omega=0$ durumu ne demektir?
 Eğer $\omega=0$ ise (1)'e göre $a_1 = 0$, (2)'ye göre $b_1 = q_1 /
 K$. $\omega=0$ demek, çark dönmüyor demektir. $a_1=0$ ise içeri akan suyun
@@ -274,8 +274,8 @@ olarak görülebilir.</p>
 <p>Devam edelim, $V(t)$'yi sola geçirelim ve tüm formülü $\Delta t$'ye
 bölelim.</p>
 <p>$$ 
-\lim <em>{\Delta t \to 0} \frac{ V(t + \Delta t) - V(t)}{\Delta t} = \dot{V(t)} =
-\iint\limits</em>{\partial V} \underbar{u} \cdot \underbar{n} \mathrm{d} A
+\lim _{\Delta t \to 0} \frac{ V(t + \Delta t) - V(t)}{\Delta t} = \dot{V(t)} =
+\iint\limits_{\partial V} \underbar{u} \cdot \underbar{n} \mathrm{d} A
 $$</p>
 <p>Nihai amacım bu formüldü, formül bana hacmin nasıl değiştiğini gösteriyor,
 ki $\dot{V(t)}$ hacim değişimidir. Bu arada <em>Çok Değişkenli Calculus</em>
@@ -391,4 +391,4 @@ $\Delta$ pozitif, $\tau^2 - 4\Delta$ da pozitif, $\tau$ negatif oldugu için
 her $x,y,z$ yönünde elimizde bir stabil düğüm (node) var.</p>
 <p>Kaynaklar</p>
 <p>[1] Strogatz, <em>Video</em>, <a href="https://www.youtube.com/watch?v=7iNCfNBEJHo">https://www.youtube.com/watch?v=7iNCfNBEJHo</a></p>
-<p>[2] Lorenz, <em>Deterministic Nonperiodic Flow</em>, <a href="http://eaps4.mit.edu/research/Lorenz/Deterministic_63.pdf">http://eaps4.mit.edu/research/Lorenz/Deterministic_63.pdf</a></p>
+<p>[2] Lorenz, <em>Deterministic Nonperiodic Flow</em>, \url{http://eaps4.mit.edu/research/Lorenz/Deterministic_63.pdf}</p>

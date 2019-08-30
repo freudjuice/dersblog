@@ -169,14 +169,14 @@ f_i(x) = f(x;\mu_i,\Sigma_i) =
 $$</p>
 <p>olur, $x$ çok boyutlu veri noktasıdır, ve kümeleme başlamadan önce
 $\mu_i,\Sigma_i$ bilinmez, küme sayısı $k$ bilinir. O zaman karışım modeli</p>
-<p>$$ f(x) = \sum <em>{i=1}^{k} f_i(x)P(C_i) =
-\sum </em>{i=1}^{k} f(x;\mu_i,\Sigma_i)P(C_i)
+<p>$$ f(x) = \sum _{i=1}^{k} f_i(x)P(C_i) =
+\sum _{i=1}^{k} f(x;\mu_i,\Sigma_i)P(C_i)
 $$</p>
 <p>$P(C_i)$'a karışım oranları deniyor, ki $\sum_i P(C_i) = 1$. Bazı
 metinlerde bu $\pi_i$ olarak ta gösterilebiliyor.  Tüm veri için maksimum
 olurluk</p>
 <p>$$ 
-L = \sum <em>{j=1}^{n} \ln f(x_j) = \sum </em>{j=1}^{n} \ln \bigg(
+L = \sum _{j=1}^{n} \ln f(x_j) = \sum _{j=1}^{n} \ln \bigg(
 \sum _{i=1}^{k} f(x_j;\mu_i,\Sigma_i)P(C_i)
 \bigg)
 $$</p>
@@ -191,8 +191,8 @@ $$</p>
 \frac{\partial f(x_j)}{\partial \theta_i} \big)
 $$</p>
 <p>$$ 
-\sum <em>{j=1}^{n} \bigg(
-\frac{1}{f(x_j)} \sum </em>{a=1}^{k} \frac{\partial }{\partial \theta_i}
+\sum _{j=1}^{n} \bigg(
+\frac{1}{f(x_j)} \sum _{a=1}^{k} \frac{\partial }{\partial \theta_i}
 \big( f(x_j;\sigma_a,\Sigma_a)P(C_a) \big)
 \bigg)
 $$</p>
@@ -253,7 +253,7 @@ $$</p>
 \bigg)
 $$</p>
 <p>$$ =
-\sum <em>{j=1}^{n} w</em>{ij} \Sigma_i^{-1}(x_j-\mu_i)
+\sum _{j=1}^{n} w_{ij} \Sigma_i^{-1}(x_j-\mu_i)
 $$</p>
 <p>Üstteki forma erişmek için (2) ve alttaki formülü kullandık.</p>
 <p>$$ P(C_i|x_j) = \frac{P(x_j|C_i)P(C_i)}{\sum _{a=1}^{k}P(x_j|C_a)P(C_a)}$$</p>
@@ -261,11 +261,11 @@ $$</p>
 <p>$$ w_{ij} = P(C_i|x_j) = \frac{f(x_j;\mu_i,\Sigma_i)P(C_i)}{f(x_j)}$$</p>
 <p>Üstteki kısmi türevi sıfıra eşitleyip çözer ve her iki tarafı $\Sigma_i$
 ile çarparsak, </p>
-<p>$$ \sum <em>{j=1}^{n} w</em>{ij} (x_j-\mu_i) = 0 $$</p>
+<p>$$ \sum _{j=1}^{n} w_{ij} (x_j-\mu_i) = 0 $$</p>
 <p>elde ederiz, bu demektir ki </p>
-<p>$$ \sum <em>{j=1}^{n} w</em>{ij}x_j = \mu_i\sum <em>{j=1} w</em>{ij}  $$</p>
+<p>$$ \sum _{j=1}^{n} w_{ij}x_j = \mu_i\sum _{j=1} w_{ij}  $$</p>
 <p>o zaman </p>
-<p>$$ \mu_i = \frac{\sum <em>{j=1}^{n} w</em>{ij}x_j}{\sum <em>{j=1}^{n} w</em>{ij}}$$</p>
+<p>$$ \mu_i = \frac{\sum _{j=1}^{n} w_{ij}x_j}{\sum _{j=1}^{n} w_{ij}}$$</p>
 <p>Kovaryans Matrisi $\Sigma_i$'i Hesaplamak</p>
 <p>$\Sigma_i$ hesabı için (3) kısmi türevinin $|\Sigma_i^{-1}|^{1/2}
 \exp(g(\mu_i,\Sigma_i))$ üzerindeki çarpım 
@@ -314,15 +314,15 @@ $$</p>
 \big( \Sigma_i - (x_j-\mu_i)(x_j-\mu_i)^T \big)
 $$</p>
 <p>$$ 
-= \frac{1}{2} \sum <em>{j=1}^{n} w</em>{ij} 
+= \frac{1}{2} \sum _{j=1}^{n} w_{ij} 
 \big( \Sigma_i - (x_j-\mu_i)(x_j-\mu_i)^T \big)
 $$</p>
 <p>Türevi sıfıra eşitlersek,</p>
-<p>$$ \sum <em>{j=1}^{n} w</em>{ij} \big( \Sigma_i - (x_j-\mu_i)(x_j-\mu_i)^T \big) = 0 $$</p>
+<p>$$ \sum _{j=1}^{n} w_{ij} \big( \Sigma_i - (x_j-\mu_i)(x_j-\mu_i)^T \big) = 0 $$</p>
 <p>olur, ve devam edersek alttaki sonucu elde ederiz,</p>
 <p>$$ 
-\Sigma_i = \frac{\sum <em>{j=1}^{n} w</em>{ij} (x_j-\mu_i)(x_j-\mu_i)^T}
-{\sum <em>{j=1}^{n} w</em>{ij}}
+\Sigma_i = \frac{\sum _{j=1}^{n} w_{ij} (x_j-\mu_i)(x_j-\mu_i)^T}
+{\sum _{j=1}^{n} w_{ij}}
 $$</p>
 <p>Karışım Ağırlıkları $P(C_i)$'i Hesaplamak</p>
 <p>Bu hesabı yapmak için (3) türevinin $P(C_i)$'a göre alınması lazım fakat 
@@ -347,17 +347,17 @@ $$</p>
 \sum _{j=1}^{n} \frac{f(x_j;\mu_i,\Sigma_i) P(C_i)}{f(x_j)} = -\alpha P(C_i)
 $$</p>
 <p>$$ 
-\sum <em>{j=1}^{n} w</em>{ij} = -\alpha P(C_i)
+\sum _{j=1}^{n} w_{ij} = -\alpha P(C_i)
 \qquad (4)
 $$</p>
 <p>Üstteki toplamı tüm kümeler üzerinden alırsak</p>
 <p>$$ 
-\sum <em>{i=1}^{k} \sum </em>{j=1}^{n} w_{ij} = -\alpha \sum _{i=1}^{k} P(C_i)
+\sum _{i=1}^{k} \sum _{j=1}^{n} w_{ij} = -\alpha \sum _{i=1}^{k} P(C_i)
 $$</p>
 <p>ya da $n = -\alpha$. </p>
 <p>Son adım $\sum_{i=1}^{k}w_{ij}=1$ sayesinde mümkün oldu. $n = -\alpha$'yi
 (4) içine sokunca $P(C_i)$'in maksimum olurluk hesabını elde ediyoruz, </p>
-<p>$$ P(C_i) = \frac{\sum <em>{j=1}^{n}w</em>{ij}}{n}$$</p>
+<p>$$ P(C_i) = \frac{\sum _{j=1}^{n}w_{ij}}{n}$$</p>
 <pre><code class="python">from scipy.stats import multivariate_normal as mvn
 import pandas as pd
 import numpy as np
@@ -818,6 +818,6 @@ başarı şansını biraz daha arttırdığını görebiliriz.</p>
 <p>[1] Alpaydin, E., <em>Introduction to Machine Learning</em></p>
 <p>[2] Jebara, T., <em>Columbia Machine Learning Course</em></p>
 <p>[3] Aaron A. D'Souza, {\em Using EM To Estimate A Probability Density With A
-Mixture Of Gaussians}, <a href="http://www-clmc.usc.edu/~adsouza/notes/mix_gauss.pdf">http://www-clmc.usc.edu/~adsouza/notes/mix_gauss.pdf</a></p>
+Mixture Of Gaussians}, \url{http://www-clmc.usc.edu/~adsouza/notes/mix_gauss.pdf}</p>
 <p>[4] <em>Expectation-Maximization (Python Recipe)</em>, <a href="http://code.activestate.com/recipes/577735-expectation-maximization">http://code.activestate.com/recipes/577735-expectation-maximization</a></p>
 <p>[5] Zaki, <em>Data Mining and Analysis: Fundamental Concepts and Algorithms</em></p>

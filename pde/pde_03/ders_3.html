@@ -248,7 +248,7 @@ yapalım. (b) özelliği üzerinden $S$'nin aynı zamanda ana denklemin bir
 çözümü olduğunu biliyoruz. Herhangi bir fonksiyon $\phi$ için, ayrıca şunu
 da tanımlıyoruz. </p>
 <p>$$
-u(x,t) = \int _{-\infty}^{\infty} S(x-y,t) \phi(y) \mathrm{d} y  \qquad (8)
+u(x,t) = \int _{-\infty}^{\infty} S(x-y,t) \phi(y) \mathrm{d} y  \mlabel{8}
 $$</p>
 <p>$t&gt;0$ için. (d) özelliği üzerinden $u$, PDE için yeni bir çözümdür. Biz ek
 olarak şunu iddia ediyoruz ki $u$ özgün (unique) çözümdür. PDE'nin ve
@@ -262,8 +262,8 @@ $$</p>
   $$</p>
 <p>Parçalarla entegral (integration by parts) uyguladıktan sonra </p>
 <p>$$ 
-=  + \int <em>{-\infty}^{\infty}  Q(x-y,t)\phi'(y)\mathrm{d} y - 
-Q(x-y,t)\phi(y) \bigg| </em>{y=-\infty}^{y=+\infty}
+=  + \int _{-\infty}^{\infty}  Q(x-y,t)\phi'(y)\mathrm{d} y - 
+Q(x-y,t)\phi(y) \bigg| _{y=-\infty}^{y=+\infty}
 $$</p>
 <p>Limitlerin yokolacağını farzediyoruz. Özelde, geçici olarak $\phi(y)$'nin
 büyük $|y|$ değerleri için sıfıra eşit olacağını farzedelim. O zaman </p>
@@ -271,7 +271,7 @@ büyük $|y|$ değerleri için sıfıra eşit olacağını farzedelim. O zaman <
 \int _{-\infty}^{\infty} Q(x-y, 0) \phi'(y)\mathrm{d} y 
  $$</p>
 <p>$$ 
-= \int <em>{-\infty}^{\infty} \phi'(y)\mathrm{d} y = \phi \bigg| </em>{-\infty}^{x} = \phi(x)
+= \int _{-\infty}^{\infty} \phi'(y)\mathrm{d} y = \phi \bigg| _{-\infty}^{x} = \phi(x)
 $$</p>
 <p>Üsttekinin sonucun sebebi $Q$ için farzettiğimiz başlangıç şartları, ve
 $\phi(-\infty) = 0$ faraziyesi. Bu PDE'nin sınır şartı. (8)'ın çözüm

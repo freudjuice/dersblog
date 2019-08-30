@@ -45,8 +45,8 @@ $$</p>
 <p>Log olurluk</p>
 <p>$$<br />
 \qquad (1)
-\mathcal{L} = \ln \big( \prod <em>{n=1}^{N} P(x^{(n)};W) \big) = 
-\sum </em>{n=1}^{N} \bigg[ \frac{1}{2} x^{(n)^T} W x^{(n)} - \ln Z(W) \bigg]
+\mathcal{L} = \ln \big( \prod _{n=1}^{N} P(x^{(n)};W) \big) = 
+\sum _{n=1}^{N} \bigg[ \frac{1}{2} x^{(n)^T} W x^{(n)} - \ln Z(W) \bigg]
 $$</p>
 <p>Birazdan $\frac{\partial \mathcal L}{\partial w_{ij}}$ türevini alacağız, o
 sırada $\ln Z(W)$'nin türevi lazım, daha doğrusu $Z(W)$'yi nasıl türevi alınır
@@ -96,57 +96,57 @@ $$</p>
 <p>Üstteki son ifadede bir kısaltma kullanalım,</p>
 <p>$$ 
 \qquad (4)
-\sum_x P(x;W) x_i x_j =  <x_i,x_j>_{P(x;W)}
+\sum_x P(x;W) x_i x_j =  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#44;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#44;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(x;W)}
 $$</p>
 <p>Artık $\ln Z(W)$'nin türevini biliyoruz. O zaman tüm log olurluğun türevine
 (1) dönebiliriz, </p>
 <p>$$<br />
 \frac{\partial \mathcal{L}}{\partial w_{ij}} = 
-\sum <em>{n=1}^{N} \bigg[ 
-\frac{\partial}{\partial w</em>{ij}}  \frac{1}{2} x^{(n)^T} W x^{(n)} - 
+\sum _{n=1}^{N} \bigg[ 
+\frac{\partial}{\partial w_{ij}}  \frac{1}{2} x^{(n)^T} W x^{(n)} - 
 \frac{\partial}{\partial w_{ij}}  \ln Z(W) \bigg]
 $$</p>
 <h1>$$</h1>
-<p>\sum <em>{n=1}^{N} 
+<p>\sum _{n=1}^{N} 
 \bigg[ 
 \frac{1}{2} x_i^{(n)^T}x_j^{(n)} - 
-\frac{\partial}{\partial w</em>{ij}}  \ln Z(W) 
+\frac{\partial}{\partial w_{ij}}  \ln Z(W) 
 \bigg]
 $$</p>
 <h1>$$</h1>
-<p>\sum <em>{n=1}^{N} 
+<p>\sum _{n=1}^{N} 
 \bigg[ 
 \frac{1}{2} x_i^{(n)^T}x_j^{(n)} - 
-\frac{1}{2}<x_ix_j></em>{P(x;W)}
+\frac{1}{2}<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(x;W)}
 \bigg]
 $$ </p>
 <p>1/2 sabitlerini atalım, </p>
 <h1>$$</h1>
-<p>\sum <em>{n=1}^{N} 
+<p>\sum _{n=1}^{N} 
 \bigg[ 
- x_i^{(n)^T}x_j^{(n)} - <x_ix_j></em>{P(x;W)}
+ x_i^{(n)^T}x_j^{(n)} - <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(x;W)}
 \bigg]
 $$</p>
 <p>Eğer </p>
 <p>$$
-<x_ix_j><em>{Data} = \frac{1}{N} \sum </em>{n=1}^{N}  x_i^{(n)^T}x_j^{(n)}
+<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{Data} = \frac{1}{N} \sum _{n=1}^{N}  x_i^{(n)^T}x_j^{(n)}
 $$</p>
 <p>olarak alırsak, eşitliğin sağ tarafı verisel kovaryansı (empirical
 covariance) temsil eder. Düzenleyince,</p>
 <p>$$ 
-N \cdot <x_ix_j><em>{Data} = \sum </em>{n=1}^{N}  x_i^{(n)^T}x_j^{(n)}
+N \cdot <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{Data} = \sum _{n=1}^{N}  x_i^{(n)^T}x_j^{(n)}
 $$</p>
 <p>şimdi eşitliğin sağ tarafı üç üstteki formüle geri koyulabilir,</p>
 <p>$$ 
 \frac{\partial \mathcal{L}}{\partial w_{ij}}  = 
-N \big[<x_ix_j><em>{Data}  - <x_ix_j></em>{P(x;W)} \big] 
+N \big[<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{Data}  - <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(x;W)} \big] 
 $$</p>
 <p>Her ne kadar $N$ veri noktası sayısını gösteriyor olsa da, üstteki ifade
 bir gradyan güncelleme formülü olarak ta görülebilir, ve $N$ yerine bir
 güncelleme sabiti alınabilir. Gradyan güncelleme olarak görülebilir çünkü
 $w_{ij}$'ye göre türev aldık, o zaman bizi $\mathcal{L}$'in minimumuna götürecek
 $w$ adımları üstte görüldüğü gibidir. </p>
-<p>(4)'te görülen $<x_ix_j>_{P(x;W)}$'in anlamı nedir? Bu ifade mümkün tüm $x$
+<p>(4)'te görülen $<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(x;W)}$'in anlamı nedir? Bu ifade mümkün tüm $x$
 değerleri üzerinden alınıyor ve ikisel ilişkilerin olasılığını "mevcut
 modele" göre hesaplıyor. Yani bu ifade de bir korelasyon hesabıdır, sadece
 veriye göre değil, tüm mümkün değerler ve model üzerinden alınır. Bu hesabı
@@ -205,7 +205,7 @@ $$</p>
 <p>Şimdi $x^TWx$ gibi bir ifadeyi indisler bazında açmak için şunları yapalım, </p>
 <p>$$ x^TWx = \sum_{k,j} x_kx_jw_{kj} $$</p>
 <p>Üstteki çok iyi bilinen bir açılım. Eğer</p>
-<p>$$  \sum_{k,j} \underbrace{x_kx_jw_{ij}}<em>{Y</em>{kj}} = \sum_{k,j}Y_{kj} $$</p>
+<p>$$  \sum_{k,j} \underbrace{x_kx_jw_{ij}}_{Y_{kj}} = \sum_{k,j}Y_{kj} $$</p>
 <p>alırsak birazdan yapacağımız işlemler daha iyi görülebilir. Mesela $k=i$
 olan durumu dış toplamdan dışarı çekebiliriz</p>
 <p>$$ 
@@ -345,7 +345,7 @@ gerekecek. Niye? Mesela iki farklı BM dağılımını farklı etiketli verilerd
 öğreniyoruz, sonra test veri noktasını her iki ayrı dağılıma "soruyoruz"?
 Olasılığı nedir? Bu noktada kesin bir olasılık hesabı istediğimiz için
 artık $Z$ bilinmek zorunda. Bu sabitin hesaplanması için ise
-$<x_ix_j>_{P(x;W)}$ için olduğu gibi, tüm mümkün $x$'ler üzerinden bir
+$<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(x;W)}$ için olduğu gibi, tüm mümkün $x$'ler üzerinden bir
 toplam gerekir, bu toplam $\sum_x \exp 1/2 x^T W x$ toplamı. Bu toplamın
 hesaplanması çok zor olduğu için, yine MCMC'ye başvuracağız. Tek fark
 alınan örneklemi (3) formülüne geceğiz, ve bir olasılık hesabı yapacağız,

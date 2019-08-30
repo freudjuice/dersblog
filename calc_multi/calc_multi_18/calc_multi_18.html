@@ -246,7 +246,7 @@ uğraşılabilir. Teker teker </p>
 çift entegral hesaplanabilir. </p>
 <p>Örnek</p>
 <p>$e^{-x^2}$ Nasıl Entegre Edilir? </p>
-<p>$$ \int_{-\infty}^{\infty} e^{-x^2} \mathrm{d} x \qquad (1) 
+<p>$$ \int_{-\infty}^{\infty} e^{-x^2} \mathrm{d} x \mlabel{1} 
 $$</p>
 <p>ifadesi özellikle olasılık matematiğinde çokça görülen bir ifadedir. Bu
 hesabı yapmak için kutupsal kordinatlar kullanacağız. </p>
@@ -290,7 +290,7 @@ entegral alıyoruz. Kutupsal formda bu $r$'nin 0'dan sonsuza ve $\theta$'nin
 <p>$$ e^{-x^2-y^2} = e^{-(x^2+y^2)} = e^{-r^2} $$</p>
 <p>Entegralı yazalım</p>
 <p>$$
-\int_{0}^{\infty} \int_{0}^{2\pi} e^{-r^2} r \mathrm{d} \theta \mathrm{d} r \qquad (2)
+\int_{0}^{\infty} \int_{0}^{2\pi} e^{-r^2} r \mathrm{d} \theta \mathrm{d} r \mlabel{2}
 $$</p>
 <p>Niye entegral sırasında $\theta$'yi önce yazdım? Çünkü entegral içindeki
 ifadede $\theta$'ya bağlı hiçbir terim yok, o zaman iç entegral bana sadece
@@ -302,7 +302,7 @@ problemi çözebiliriz. </p>
 <p>$$ du =  -2r \mathrm{d} r$$</p>
 <p>$$=  2\pi \int_{0}^{\infty} e^u \frac{-1}{2} \mathrm{d} u $$</p>
 <p>$$=  -\pi \int_{0}^{\infty} e^u \mathrm{d} u $$</p>
-<p>$$=  -\pi  e^u  \bigg|<em>{0}^{\infty} = -\pi  e^{-r^2}  \bigg|</em>{0}^{\infty} $$</p>
+<p>$$=  -\pi  e^u  \bigg|_{0}^{\infty} = -\pi  e^{-r^2}  \bigg|_{0}^{\infty} $$</p>
 <p>$$ = \pi $$</p>
 <p>Bu sonuç $I^2$. Eğer $I$ değerini istiyorsak, karekök almalıyız, yani
 aradığımız sonuç $\sqrt{\pi}$. </p>

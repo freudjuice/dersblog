@@ -147,7 +147,7 @@ $$</p>
 = (a_k-t_k)  \frac{\partial}{\partial w_{jk}} g_k(z_k) 
 $$</p>
 <p>$$<br />
-= (a_k-t_k)g_k'(z_k)\frac{\partial}{\partial w_{jk}} z_k \qquad (1)
+= (a_k-t_k)g_k'(z_k)\frac{\partial}{\partial w_{jk}} z_k \mlabel{1}
 $$</p>
 <p>Yine Zincirleme Kanununu kullandık. Şimdi hatırlayalım ki
 $z_k=b_j+\sum_j g_j(z_j)w_{jk}$, yani
@@ -201,7 +201,7 @@ olmasından hareketle,</p>
 \sum_k (a_k-t_k) \frac{\partial }{\partial w_{ij}} g_k(z_k)
 $$</p>
 <p>$$ 
-= \sum_k (a_k-t_k) g_k'(z_k) \frac{\partial }{\partial w_{ij}}z_k \qquad (2)
+= \sum_k (a_k-t_k) g_k'(z_k) \frac{\partial }{\partial w_{ij}}z_k \mlabel{2}
 $$</p>
 <p>Yine Zincirleme Kanununu kullandık. Evet, şimdi işler biraz daha
 karmaşıklaşacak. Üstteki formüldeki üçüncü terimde olan kısmi türeve
@@ -269,7 +269,7 @@ yapılabilir. Mesela [3] üstte belirttiğimiz gibi hata hesaplıyor ama
 fonksiyon kullanıyor. Softmax 0/1 kararı yapan lojistik fonksiyonun 2'den
 fazla çıktı boyutu için genellenmiş halidir, yani iki seçimden biri yerine
 K seçimden biri için kullanılır, ve</p>
-<p>$$ \sigma(z)<em>j = \frac{e^{z_j}}{\sum </em>{k=1}^{K} e^{z_k}}$$</p>
+<p>$$ \sigma(z)_j = \frac{e^{z_j}}{\sum _{k=1}^{K} e^{z_k}}$$</p>
 <p>ile hesaplanır, $z$ vektöründeki herhangi bazı reel değerleri "ezerek"
 $\sigma(z)$ vektörü içinde toplamı 1 olacak değerlere çevirir. </p>
 <p>Alttaki kod gizli katman aktivasyonu için sigmoid kullanmış. </p>

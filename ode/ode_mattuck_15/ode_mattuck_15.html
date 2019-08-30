@@ -116,10 +116,10 @@ değerinin $-\pi$ ve $\pi$ arasında entegrali $2\pi$. </p>
 <p>Fourier Transformu</p>
 <p>Fourier transformu Fourier serilerinin özel bir şartı olarak türetilebilir
 [1]. Daha önce gördük ki </p>
-<p>$$ x(t) = \sum _{-\infty}^{\infty} c_n e^{jnw_0t} \qquad (1) $$</p>
+<p>$$ x(t) = \sum _{-\infty}^{\infty} c_n e^{jnw_0t} \mlabel{1} $$</p>
 <p>üstte $i$ yerine $j$ kullandık, $\omega_0 = 2\pi / T$ ve $T = 2\pi$. $c_n$'lerin
 (üstte $c_k$) nasıl hesaplandığını da görmüştük,</p>
-<p>$$ c_n = \frac{1}{T} \int_{T} x(t) e^{-jn\omega_0t} \mathrm{d} t \qquad (2) $$</p>
+<p>$$ c_n = \frac{1}{T} \int_{T} x(t) e^{-jn\omega_0t} \mathrm{d} t \mlabel{2} $$</p>
 <p>Şimdi, $T \to \infty$ olduğunu durumu düşünelim, bu durumda temel frekans
 $\omega_0$ çok ufalacaktır, ve $n\omega_0$ herhangi bir değere sahip
 olabilecek sürekli bir değişken haline gelir (çünkü $n$'nin menzili
@@ -133,26 +133,26 @@ aralığı, mesafeyi düşünüyoruz [1], [2, sf. 223],</p>
 <p>$$ \Delta \omega = (n+1) \omega_0 - n \omega_0 = \omega_0 = \frac{2\pi}{T} $$</p>
 <p>Şimdi (2)'yi (1) içine koyalım, ve $1/T = \omega_0 / 2\pi$ üzerinden,</p>
 <p>$$ 
-x(t) = \sum <em>{n=-\infty}^{\infty} \bigg[ 
-\frac{1}{T} \int </em>{-T/2}^{T/2} x(t) e ^{-jn\omega_0 t} \mathrm{d} t
+x(t) = \sum _{n=-\infty}^{\infty} \bigg[ 
+\frac{1}{T} \int _{-T/2}^{T/2} x(t) e ^{-jn\omega_0 t} \mathrm{d} t
 \bigg]  e ^{jn\omega_0 t}
 $$</p>
 <p>$$ 
-= \sum <em>{n=-\infty}^{\infty} \bigg[ 
-\frac{\Delta \omega}{2\pi} \int </em>{-T/2}^{T/2} x(t) e ^{-jn\omega_0 t} \mathrm{d} t
+= \sum _{n=-\infty}^{\infty} \bigg[ 
+\frac{\Delta \omega}{2\pi} \int _{-T/2}^{T/2} x(t) e ^{-jn\omega_0 t} \mathrm{d} t
 \bigg]  e ^{jn\omega_0 t}
 $$</p>
 <p>$$ 
-= \frac{1}{2\pi} \sum <em>{n=-\infty}^{\infty} \bigg[ 
-\int </em>{-T/2}^{T/2} x(t) e ^{-jn\omega_0 t} \mathrm{d} t
+= \frac{1}{2\pi} \sum _{n=-\infty}^{\infty} \bigg[ 
+\int _{-T/2}^{T/2} x(t) e ^{-jn\omega_0 t} \mathrm{d} t
 \bigg] \Delta \omega e ^{jn\omega_0 t}
 $$</p>
 <p>$T \to \infty$ iken $\Delta \omega$ yerine $\omega_0$ kullanabiliriz, ve
 tüm ayrıksal frekanslar $n\omega_0$ üzerinden alınan toplamı tüm frekanslar
 üzerinden alınan entegral ile değiştirebiliriz, $n\omega_0$ yerine $w$
 koyarız, böylece bir ikili entegral elde ediyoruz, </p>
-<p>$$ x(t) = \frac{1}{2\pi} \int <em>{-\infty}^{\infty} \bigg[
-\int </em>{-\infty}^{\infty} x(t) e ^{-j\omega t} \mathrm{d} t
+<p>$$ x(t) = \frac{1}{2\pi} \int _{-\infty}^{\infty} \bigg[
+\int _{-\infty}^{\infty} x(t) e ^{-j\omega t} \mathrm{d} t
 \bigg] e ^{j\omega t}  \mathrm{d} \omega
 $$</p>
 <p>İç entegrale bakarsak o kısmın Fourier transform olduğunu görebiliriz, dış

@@ -126,7 +126,7 @@ $$</p>
 <p>Bu sonucu geri kalan ifadeye sokarsak, ortaya bayağı karmaşık bir ifade
 çıkacak, </p>
 <p>$$ 
-\int <em>{-\sqrt{2}}^{\sqrt{2}} \int </em>{-\sqrt{2-x^2}}^{\sqrt{2-x^2}} 
+\int _{-\sqrt{2}}^{\sqrt{2}} \int _{-\sqrt{2-x^2}}^{\sqrt{2-x^2}} 
 4-2x^2-2y^2 \mathrm{d} y \mathrm{d} x
 $$</p>
 <p>Aslında üstteki formüle hacim hesabına çift entegral olarak yaklaşsaydık ta
@@ -142,7 +142,7 @@ $x^2+y^2$ yerine $r^2$, vs. Üzerinden entegral alınan alan hala bir çember
 ve yarıçapı $\sqrt{2}$, bir çember için kutupsal kordinatta entegral
 kurmayı biliyoruz, hepsini bir araya koyarsak,</p>
 <p>$$ 
-\int <em>{0}^{2\pi} \int </em>{0}^{\sqrt{2}} \int_{r^2}^{4-r^2} 
+\int _{0}^{2\pi} \int _{0}^{\sqrt{2}} \int_{r^2}^{4-r^2} 
 \mathrm{d} z r \mathrm{d} r \mathrm{d}\theta
 $$</p>
 <p>Bu entegrali hesaplamak çok daha kolay. Kutupsal kordinatların bir diğer
@@ -281,13 +281,13 @@ $z$'de kesite bakarsak, </p>
 zaman üçlü entegraldeki iç ve orta entegralde üstteki yarıçapı $z/a$ olan
 her kesit çemberi üzerinden bir çift entegral hesaplarız,</p>
 <p>$$ 
-I_z = \int \int <em>{0}^{2\pi} \int </em>{0}^{z/a} r^2 r \mathrm{d} r \mathrm{d} \theta \mathrm{d} z
+I_z = \int \int _{0}^{2\pi} \int _{0}^{z/a} r^2 r \mathrm{d} r \mathrm{d} \theta \mathrm{d} z
 $$</p>
 <p>Dış değişken $z$ için ne yapacağız? Kendimize soralım, alttan yukarı doğru
 ilk kesit (kesitleri farklı $z$'ler tanımlıyor sonuçta) hangisi, son kesit
 hangisi? En alt sıfır, en üst $b$. Yani,</p>
 <p>$$ 
- = \int <em>{0}^{b} \int </em>{0}^{2\pi} \int _{0}^{z/a} r^2 r \mathrm{d} r \mathrm{d} \theta \mathrm{d} z
+ = \int _{0}^{b} \int _{0}^{2\pi} \int _{0}^{z/a} r^2 r \mathrm{d} r \mathrm{d} \theta \mathrm{d} z
 $$</p>
 <p>$$ = \frac{\pi b^5}{10 a^4}$$</p>
 <p>Bu kadar. $z$ önce gelecek şekilde olan entegralin hesabı size ödev olsun. </p>
@@ -322,8 +322,8 @@ geçecek, ama bu formülü verili $x$ için hangi $y$ sınırları gelir,
 vs. irdelemesi için kullanabiliriz, bunlar da entegralimızın sınırlarını
 oluştururlar. Sonuçlar altta,</p>
 <p>$$ 
-\int <em>{0}^{1} 
-\int </em>{-\sqrt{2y-2y^2}}^{\sqrt{2y-2y^2}} 
+\int _{0}^{1} 
+\int _{-\sqrt{2y-2y^2}}^{\sqrt{2y-2y^2}} 
 \int _{1-y}^{\sqrt{1-x^2-y^2}}
 \mathrm{d} z \mathrm{d} x \mathrm{d} y
 $$</p>

@@ -62,7 +62,7 @@ aynı uzay içindedir. O zaman </p>
 <p>Simetrik Pozitif Kesin $A$ İçin Eşlenik Gradyan Metodu</p>
 <p>\begin{algorithm}[h]
 \begin{pseudocode}
-\codename $\code{eslenik_gradyan}$\\
+\codename $\code{eslenik\_gradyan}$\\
 \codeline $\alpha_k = r_{k-1}^T r_{k-1} / d_{k-1}^T A d_{k-1}$ \\
 \codeline $\alpha_k = \alpha_{k-1} + \alpha_k d_{k-1}$\\
 \codeline $r_k = r_{k-1} - \alpha_k Ad_{k-1}$\\
@@ -152,7 +152,7 @@ eşlenik yön bulabilirsek, $\alpha$ değerlerini hemen hesaplayabiliriz.
 Ayrıca eğer eşlenik vektörler $d_k$'leri dikkatlice seçersek, yaklaşık çözüm $x_*$
 için hepsine ihtiyacımız olmaz. Özyineli $x$ formülünü kullanabiliriz,</p>
 <p>$$
-x_{k+1} = x_k + \alpha_k d_{k+1} \qquad (1)
+x_{k+1} = x_k + \alpha_k d_{k+1} \mlabel{1}
 $$</p>
 <p>Bu formül niye mantıklı? Eğer çözüm $x_*$ dikgen $d_k$ vektörlerinin bir
 lineer kombinasyonu ise, çözüm vektörleri birbiri ardına dizilmiş ve "bir
@@ -193,7 +193,7 @@ olmasını istiyoruz. Yani</p>
 <p>$$ d_i^TA (x_{i} + \alpha_i d_i -x)  = 0$$</p>
 <p>$$ d_i^TA (e_i + \alpha_i d_i )  = 0$$</p>
 <p>$$ d_i^Tr_i + \alpha_i d_i^TA d_i   = 0$$</p>
-<p>$$ \alpha_i = -\frac{ d_i^Tr_i}{d_i^T A d_i} \qquad (6)
+<p>$$ \alpha_i = -\frac{ d_i^Tr_i}{d_i^T A d_i} \mlabel{6}
 $$</p>
 <p>Şimdi hata terimine dönelim, diyelim ki $e_0$ vektörü, bu vektör, diğer
 her vektör gibi içinde olduğumuz uzayın bazlarının bir kombinasyonu olarak
@@ -253,7 +253,7 @@ $$</p>
 işleminin A-dikgen halini artıklardan yön üretmek için
 kullanabiliriz. Her artığı alıp, içinden ona dikgen bir yön çıkartmak
 mümkün.</p>
-<p>$$ d_i = r_i + \sum <em>{ j=0}^{i-1} \beta</em>{i,j}d_j 
+<p>$$ d_i = r_i + \sum _{ j=0}^{i-1} \beta_{i,j}d_j 
 \qquad (10)
 $$</p>
 <p>$$ \beta_{i,j} = - \frac{ r_i^TAd_j}{d_j^TAd_j} $$</p>
@@ -276,7 +276,7 @@ aynı olduğuna dikkat, ve eşitliğin sol tarafında $A$ yok. Yerine koyalım, 
 birbirine dikgen.  Dikkat bu sefer dikgen, A-dikgen değil. Bunu
 nasıl ispat ederiz?  (10)'u alıp $r_k$ ile çarpalım, ve $k,i$ indislerini
 değiştirelim</p>
-<p>$$ d_k^Tr_i = r_k^Tr_i + \sum <em>{ j=0}^{i-1} \beta</em>{k,j}d_j ^Tr_i = 0
+<p>$$ d_k^Tr_i = r_k^Tr_i + \sum _{ j=0}^{i-1} \beta_{k,j}d_j ^Tr_i = 0
 $$</p>
 <p>Sıfıra eşitlik (9) sayesinde. Ama bu sıfır durumu toplam içindekiler için
 de geçerli, çünkü toplamın üst sınırı $i-1$, ve en yüksek indisli yön

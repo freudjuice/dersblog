@@ -57,15 +57,15 @@ $A$ bilinmiyor, o zaman konum dizisinden $A$ matrisini
 kullanılır, herhangi bir konum serisinin olasılığı nedir sorusunun cevabı
 şu formül;</p>
 <p>$$ P(X_1=x_1,..,X_T=x_T) = 
-P(X_1=x_1) \prod <em>{t=2}^{T} P(X_t=x_t | X</em>{t-1}=x_{t-1})
+P(X_1=x_1) \prod _{t=2}^{T} P(X_t=x_t | X_{t-1}=x_{t-1})
 $$</p>
 <p>Üstteki formül bir olurluk (likelihood) hesabı - $L(A)$ diyelim, </p>
-<p>$$ L(A) = P(X_1=x_1) \prod <em>{ t=2}^{T} a</em>{x_{t-1},x_t} $$</p>
+<p>$$ L(A) = P(X_1=x_1) \prod _{ t=2}^{T} a_{x_{t-1},x_t} $$</p>
 <p>Olurluğun maksimize edilmesi ardından $A$ için bir tahmin edici
 (estimator) hesaplanabilir - detaylar için [2, Ders 6]; $n_{ij}$'yi veri
 serisinde $i$'inci konumdan $j$'ye kaç kere geçildiğinin sayısı olarak
 tanımlarsak, $A$ tahmin edicisi şöyle olur,</p>
-<p>$$ \hat{a}<em>{ij} = \frac{n</em>{ij}}{\sum_j n_{ij}}  $$</p>
+<p>$$ \hat{a}_{ij} = \frac{n_{ij}}{\sum_j n_{ij}}  $$</p>
 <p>Bu hesap akla yatkın (intuitive) bir sonuç, çünkü $i$'den $j$'ye geçiş
 "olasılığını" veriden hesaplamak istiyorsak, veride $i$'den $j$'ye kaç
 kere geçildiğini sayıp, bu sayıyı yine verideki tüm $j$'ye olan geçişlere
@@ -128,7 +128,7 @@ dizinin olasılığını hesaplayalım,</p>
 \qquad (1)
 $$</p>
 <p>Üstteki formüldeki $P(S_r)$'in açılımını MZ'lerden zaten biliyoruz, </p>
-<p>$$ P(S_r) = \prod <em>{t=1}^{T}P(X_t|X</em>{t-1}) $$</p>
+<p>$$ P(S_r) = \prod _{t=1}^{T}P(X_t|X_{t-1}) $$</p>
 <p>Yani gizli konum geçişlerine tekabül eden $a_{ij}$'leri bulup onları
 sırasıyla çarpıyoruz. Üstteki ${1,4,2,2,1,4}$ örneği için bu
 çarpım $a_{14}a_{42}a_{22}a_{21}a_{14}$ olurdu. </p>
@@ -136,7 +136,7 @@ sırasıyla çarpıyoruz. Üstteki ${1,4,2,2,1,4}$ örneği için bu
 <p>$$ P(V|S_r) = \prod _{t=1}^{T} P(V_t | X_t) $$</p>
 <p>Birleştirelim ve (1)'i genişletelim,</p>
 <p>$$ 
-P(V) = \sum <em>{r}^{c^T} \prod </em>{t=1}^{T} P(V_t | X_t)  P(X_t|X_{t-1}) 
+P(V) = \sum _{r}^{c^T} \prod _{t=1}^{T} P(V_t | X_t)  P(X_t|X_{t-1}) 
 $$</p>
 <p>Formül biraz korkutucu duruyor ama aslında söylediği şu: verilen bir
 $V$'nin olasılığını hesaplamak için tüm mümkün saklı konum dizileri
@@ -162,7 +162,7 @@ $\alpha_1(i)$'nin ne olduğuna bakalım, notasyon kısalığı için
 $\pi_i = P(X_1 = i)$,</p>
 <p>$$ \alpha_1(i) = \pi_i b_{i,V_1} $$</p>
 <p>Tümevarımsal (induction), özyineli kısım ise şöyle tanımlanır,</p>
-<p>$$ \alpha_{t+1}(j) = \bigg[ \sum <em>{i=1}^{c} \alpha_t(i)a</em>{ij} \bigg] b_{j,V_{t+1}} $$</p>
+<p>$$ \alpha_{t+1}(j) = \bigg[ \sum _{i=1}^{c} \alpha_t(i)a_{ij} \bigg] b_{j,V_{t+1}} $$</p>
 <p>Formülün niye performans ilerlemesi getirdiğini görmek için örnek 1,2,3,4
 gizli konumların tüm permutasyonlarının düşünelim,</p>
 <pre><code class="python">import itertools
@@ -198,7 +198,7 @@ gitmiş oluyoruz.</p>
 koşuluna göre, $t+1$'den en sona kadar olan verili salımların olasılığının
 hesabını yapar. Özyineli adım, </p>
 <p>$$ \beta_T(i) = 1 $$</p>
-<p>$$ \beta_t(i) = \sum <em>{j=1}^{c} a</em>{ij}b_{j,V_{t+1}} \beta_{t+1}(j)  $$</p>
+<p>$$ \beta_t(i) = \sum _{j=1}^{c} a_{ij}b_{j,V_{t+1}} \beta_{t+1}(j)  $$</p>
 <p>Viterbi Algoritması</p>
 <p>Bilinen $\lambda$ için verili bir $V$ salımlarına tekabül eden saklı konum
 geçişlerini bulmak için Viterbi algoritması kullanalım. Detaylara girmeden
@@ -347,7 +347,7 @@ olasılığını tanımlamış oluyoruz. Üstteki ifadeyi </p>
 <p>olarak yazabiliriz, ve</p>
 <p>$$<br />
 = \frac{\alpha_t(i)a_{ij}b_{j,V_{t+1}}\beta_{t+1}(j)  }
-{\sum <em>{i=1}^{c}\sum </em>{j=1}^{c} \alpha_t(i)a_{ij}b_{j,V_{t+1}}\beta_{t+1}(j)  }
+{\sum _{i=1}^{c}\sum _{j=1}^{c} \alpha_t(i)a_{ij}b_{j,V_{t+1}}\beta_{t+1}(j)  }
 $$</p>
 <p>Bölendeki ifade bölünendeki ifadenin tüm $i,j$ üzerinden alınan toplamının
 geriye sadece $P(V;\lambda)$ bırakacak olmasından ileri geliyor, çünkü (2)'den
@@ -373,7 +373,7 @@ $$</p>
 <p>$$ \overline{a_{ij}} = \frac{\textrm{i konumundan j konumuna geçiş beklentisi}}
 {\textrm{i konumundan başka herhangi bir konuma geçişin beklentisi}}
 $$</p>
-<p>$$  = \frac{ \sum <em>{t=1}^{T-1}\xi_t(i,j) }{ \sum </em>{t=1}^{T-1} \gamma_t(i) } 
+<p>$$  = \frac{ \sum _{t=1}^{T-1}\xi_t(i,j) }{ \sum _{t=1}^{T-1} \gamma_t(i) } 
 \qquad (4)
 $$</p>
 <p>$$ 
@@ -381,7 +381,7 @@ $$</p>
 \frac{\textrm{j konumunda olup } v_k \textrm{ sembolunu görmüş olmanın beklentisi}}
 {j \textrm{ konumunda olmanın beklentisi} }
  $$</p>
-<p>$$ = \frac{\sum <em>{t=1}^{T-1} \gamma_t(j) 1(V_t=k) }{\sum</em>{t=1}^{T-1}\gamma_t(j) } 
+<p>$$ = \frac{\sum _{t=1}^{T-1} \gamma_t(j) 1(V_t=k) }{\sum_{t=1}^{T-1}\gamma_t(j) } 
 \qquad (5)
 $$</p>
 <p>Tüm bunları kullanarak eğitim yaklaşımını şöyle belirleyebiliriz: bir

@@ -74,11 +74,12 @@ görebiliyoruz, </p>
 bu eğime bir "ek" yapılmaya başlanacak, $\beta_{11}$ bu ekin ne kadar
 olacağını yakalayacak. </p>
 <p>O zaman sihirli formüle verilecek matris</p>
-<p>$$ X = 
+<p>$$ 
+X = 
 \left[\begin{array}{ccc}
-1 &amp; x_1 &amp; (x_1 - 0.6)<em>+\\ 
+1 &amp; x_1 &amp; (x_1 - 0.6)_+ \\ 
 \vdots &amp; \vdots &amp; \vdots \\
-1 &amp; x_n &amp; (x_n - 0.6)</em>+
+1 &amp; x_n &amp; (x_n - 0.6)_+
 \end{array}\right]
 $$</p>
 <p>Regresyon çözümü bize her baz için gerekli katsayıyı (kesiyi, eğimi)
@@ -87,9 +88,9 @@ verecektir. </p>
 o zaman ufak ufak pek çok düz çizgiyi veriye uydurmak mümkün olurdu, mesela</p>
 <p>$$ X = 
 \left[\begin{array}{cccccc}
-1 &amp; x_1 &amp; (x_1 - 0.5)<em>+ &amp; (x_1 - 0.55)</em>+ &amp; \dots &amp; (x_1 - 0.96)<em>+\\ 
+1 &amp; x_1 &amp; (x_1 - 0.5)_+ &amp; (x_1 - 0.55)_+ &amp; \dots &amp; (x_1 - 0.96)_+\\ 
 \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-1 &amp; x_1 &amp; (x_1 - 0.5)</em>+ &amp; (x_1 - 0.55)<em>+ &amp; \dots &amp; (x_1 - 0.96)</em>+
+1 &amp; x_1 &amp; (x_1 - 0.5)_+ &amp; (x_1 - 0.55)_+ &amp; \dots &amp; (x_1 - 0.96)_+
 \end{array}\right]
 $$</p>
 <p><img alt="" src="compscieng_app20_05.png" /></p>
@@ -208,11 +209,11 @@ mantıklı gözüküyor.</p>
 <p>Küpsel Spline Eğrileri (Cubic Splines)</p>
 <p>Baz seçerken elimizde pek çok seçenek var, mesela küpsel spline eğrileri
 uydurmak için</p>
-<p>$$ (1,x,x^2,x^3,(x-k_1)<em>+^3,(x-k_2)</em>+^3,(x-k_3)_+^3,.. )$$</p>
+<p>$$ (1,x,x^2,x^3,(x-k_1)_+^3,(x-k_2)_+^3,(x-k_3)_+^3,.. )$$</p>
 <p>gibi bir baz kullanabiliriz, ilmikler $k_1,..,k_K$ olarak gider, genel
 olarak</p>
 <p>$$ f(x) = \beta_0 + \beta_1x + \beta_2 x^2 + \beta_3 x^3 + 
-\sum <em>{s=1}^{K} \beta</em>{3+s} (x-k_s)^3_+
+\sum _{s=1}^{K} \beta_{3+s} (x-k_s)^3_+
 $$</p>
 <p>formülü verilir. Bu baza kırpılmış güç bazı (truncated power basis) ismi de
 veriliyor. </p>

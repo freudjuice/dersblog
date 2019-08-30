@@ -348,7 +348,7 @@ tarafını basitleştirince,</p>
 geriye giden nüfus modeli var [3], sadece 0'inci yıl ile 1989 arasını alalım,
 ve modeli uyduralım ve bilinmeyen parametreleri hesaplamaya uğraşalım. 
 Veriyi uydurma amaçlı olarak şu formül daha kullanışlı olabilir,</p>
-<p>$$ p(t) = A + B(t_c - t)^z \qquad (2) $$</p>
+<p>$$ p(t) = A + B(t_c - t)^z \mlabel{2} $$</p>
 <pre><code class="python">import pandas as pd
 dfpop = pd.read_csv('wpop.csv',comment='#',sep='\s')
 dfpop = dfpop[(dfpop['Year'] &gt;= 0) &amp; (dfpop['Year'] &lt;= 1998)]
@@ -469,7 +469,7 @@ satan, biri rasgele bazen alan borsacıların patlama anı öncesi birdenbire
 düzenli bir şekilde hepsi <em>satıyor</em>. </p>
 <p>Kaynaklar</p>
 <p>[1] Sornette, <em>Why Stock Markets Crash</em></p>
-<p>[2] Sornette, <em>How we can predict the next financial crisis</em>, <a href="https://www.youtube.com/watch?v=C_eFjLZqXt8">https://www.youtube.com/watch?v=C_eFjLZqXt8</a></p>
+<p>[2] Sornette, <em>How we can predict the next financial crisis</em>, \url{https://www.youtube.com/watch?v=C_eFjLZqXt8}</p>
 <p>[3] Long, <em>Estimates of World GDP, One Million B.C. - Present</em></p>
 <p>[4] Sornette, <em>Finite-time singularity in the dynamics of the world population, economic and financial indices</em></p>
 <p>[5] Geraskin, <em>Everything You Always Wanted to Know about Log Periodic Power Laws for Bubble Modelling but Were Afraid to Ask</em></p>
