@@ -1,8 +1,8 @@
-<h1>İki Nokta Sınır Değerli Problemler (Two-Point Boundary Value Problems -BVP-)</h1>
+<h1>İki Nokta Sınır Değerli Problemler (Two-Point Boundary Value Problems -TPBVP-)</h1>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>İki Nokta Sınır Değerli Problemler (Two-Point Boundary Value Problems -BVP-)
+    <title>İki Nokta Sınır Değerli Problemler (Two-Point Boundary Value Problems -TPBVP-)
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/x-mathjax-config">
@@ -82,7 +82,9 @@ hangisinin belirlediğimiz sınır şartına ait olanı biz seçiyoruz. Mesela
 <code>ya[0]</code> ve <code>yb[0]</code> ile içinde $y_1$'in başta ve sondaki değerini
 seçmiş oluyoruz, ki zaten problemin sınır şartları onlar üzerinden
 tanımlanmıştı. Eğer $y_1'$, yani $y_2$ üzerinde bir son şart olsaydı o
-zaman <code>yb</code> 1. indisteki değeri döndürürdük.</p>
+zaman <code>yb</code> 1. indisteki değeri döndürürdük. Ayrıca artıkler hep sıfıra
+eşitlik üzerinden tanımlanır, eğer $y_1(0)=k$ gibi bir sınır değeri var
+ise, $ya[0]-k$ döndürmemiz gerekir.</p>
 <p>Bu problemin iki farklı çözümü var. Her iki çözümü de elde etmek için
 $y$ için farklı başlangıç noktaları deneyeceğiz, bu seçenekleri $1$ ve
 $2$ olarak işaretleyelim,</p>
@@ -110,7 +112,7 @@ plt.savefig('compscieng_app10boundary_03.png')
 <p><img alt="" src="compscieng_app10boundary_03.png" /></p>
 <p>Top Atışı Metotu (Shooting Method)</p>
 <p>Bir diğer çözüm yöntemi top atışı (silah anlamında) problemidir, güllenin
-nereden atıldığı bilinir, düşmesi istenen bir yer vardır, ama hangi aciyla
+nereden atıldığı bilinir, düşmesi istenen bir yer vardır, ama hangi açıyla
 (burada $x'(0))$ yukarı doğru tutulacağı bilinmez.</p>
 <p><img alt="" src="compscieng_app10boundary_02.png" /></p>
 <p>Bilinmeyen başlangıç şartlarından birini bulmak için bir yöntem tüm
@@ -255,6 +257,59 @@ plt.savefig('compscieng_app10boundary_04.png')
 </code></pre>
 
 <p><img alt="" src="compscieng_app10boundary_04.png" /></p>
+<p>Bilinmeyen Sabit Durumları</p>
+<p>Her TPBVP problemi üstte görülen yazılımlara direk, olduğu gibi aktarılacak
+durumda olmayabilir. Ama bu problemleri de bazı numaralar kullanarak
+çözüm yazılımının beklediği hale çevirebiliriz. </p>
+<p>Mesela çoğu sınır değeri problemi bilinmeyen sabitler içerirler, ki çözüm
+içi bu sabitlerin bilinmesi gereklidir. Bu tür problemler üstteki
+yöntemlerle direk çözülemez. Ama bilinmeyen sabitleri de birer değişken
+olarak kabul edersek, bu engelin etrafından dolaşabiliriz. Bu
+"değişkenin" ilk türevi tabii ki sıfır olacaktır, ve bu türevin sıfıra
+eşit olma hali üzerinden sabiti diferansiyel denklem sistemimize dahil
+edebiliriz. </p>
+<p><em>Elastiklik</em> (elastica) problemi mekanik alanında standart bir problem
+[3, sf. 221]. Bir ucu yere bağlı bir esnek çubuğa diğer uçtan uygulanan
+kuvvet ile nasıl büküldüğünü gösteriyor. Sabiti dahil etmeden ana sistem
+şöyle,</p>
+<p>$$
+x' = \cos (\phi) 
+$$</p>
+<p>$$
+y' = \sin (\phi) 
+$$</p>
+<p>$$
+\phi' = \kappa
+$$</p>
+<p>$$
+\kappa' = F \cos (\phi)
+$$</p>
+<p>Bilinmeyen sabit $F$. Sinir degerleri,</p>
+<p>$$
+x(0) = 0
+$$</p>
+<p>$$
+y(0) = 0
+$$</p>
+<p>$$
+\kappa(0) = 0
+$$</p>
+<p>$$
+y(0.5) = 0
+$$</p>
+<p>$$
+\phi(0.5) = -\pi/2
+$$</p>
+<p>Görülen beş tane sınır değişkeniyle aslında problemi tamamen tanımlanmış
+oluyor. Entegrasyondan ortaya çıkan dört tane sabit olacak, üstte beş tane
+değer var. Hatta $F$'yi de bir sınır değeri olarak dahil edince hala çözüm
+için yeterli öğe elimizde oluyor. Yeni sinir değeri</p>
+<p>$$
+F' = 0
+$$</p>
+<p>Dikkat, yani $F$'nin türevi her yerde sıfır olmalı (çünkü sabit).</p>
+<p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Yang, <em>Applied Numerical Methods using Matlab</em></p>
 <p>[2] Scipy, <em>Scipy Reference, 0.18.1</em></p>
+<p>[3] Cash, <em>Solving Differential Equations in R</em></p>
