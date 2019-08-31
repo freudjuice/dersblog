@@ -101,7 +101,10 @@ $$</p>
 <p>yaklaşıksal olarak</p>
 <p>$$ \hat{I} = \frac{1}{N} \sum _{i=1}^{N} \phi (x^i_{0:t}) w^i_t  $$</p>
 <p>ki</p>
-<p>$$ w^i_t = \frac{p(x^i_{0:t}|y_{1:t})}{h(x^i_{0:t})} \mlabel{1} $$</p>
+<p>$$ 
+w^i_t = \frac{p(x^i_{0:t}|y_{1:t})}{h(x^i_{0:t})} 
+\qquad (1) 
+$$</p>
 <p>ve bağımsız özdeşçe dağılmış (i.i.d.) $x^1_{0:t}, .., x^N_{0:t} \sim h$
 olacak şekilde. Yani örneklem $h$'den alınıyor.</p>
 <p>Bu güzel, fakat acaba $w^i_t$ formülündeki $p(x^i_{0:t}|y_{1:t})$'yi nasıl
@@ -110,7 +113,10 @@ yapılamaz mı, yani tüm $1:t$ ölçümlerini bir kerede kullanmadan, $t$ andak
 hesap sadece $t-1$ adımındaki hesaba bağlı olsa hesapsal olarak daha iyi olmaz
 mı?</p>
 <p>Bu mümkün. Mesela önemsel dağılım $h$ için,</p>
-<p>$$ h(x_{0:t}) = h(x_t | x_{0:t-1}) h(x_{{0:t-1}}) \mlabel{2}$$</p>
+<p>$$ 
+h(x_{0:t}) = h(x_t | x_{0:t-1}) h(x_{{0:t-1}}) 
+\qquad (2)
+$$</p>
 <p>Üstteki ifade koşulsal olasılığın doğal bir sonucu. Peki ağırlıklar özyineli
 olarak hesaplanabilir mi? Bayes Teorisini kullanarak (1)'in bölünen kısmını
 açabiliriz,</p>

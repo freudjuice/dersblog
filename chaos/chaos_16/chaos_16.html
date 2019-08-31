@@ -46,21 +46,36 @@ onu bu sistem için yapmayalım, Lorenz sistemi üzerinde yapalım daha
 iyi. Ama sabit noktalara bakalım. Bu noktaları bulmak için biraz cebirsel
 işlem gerekli, ve bu sabit noktaların bu sistem için ne anlama geldiği
 hakkında biraz kafa yormamız gerekli.</p>
-<p>$$ \dot{a_1} = 0 \implies a_1 = \frac{\omega b_1}{K}  \mlabel{1} $$</p>
-<p>$$ \dot{b_1} = 0 \implies \omega a_1 = q_1 - K b_1 \mlabel{2} $$</p>
-<p>$$ \dot{\omega} = 0 \implies a_1 = \frac{v \omega}{\pi gr} \mlabel{3}$$</p>
+<p>$$ 
+\dot{a_1} = 0 \implies a_1 = \frac{\omega b_1}{K}<br />
+\qquad (1) 
+$$</p>
+<p>$$ 
+\dot{b_1} = 0 \implies \omega a_1 = q_1 - K b_1 
+\qquad (2) 
+$$</p>
+<p>$$ 
+\dot{\omega} = 0 \implies a_1 = \frac{v \omega}{\pi gr} 
+\qquad (3)
+$$</p>
 <p>$a_1,b_1,\omega$'yi bulmak istiyoruz, o zaman üstteki denklemlerde biraz
 temizlik, cebirsel manipülasyon yapabiliriz. (1) ve (2)'yi birleştirince
 $a_1$'den kurtulabiliriz. (2)'deki $a_1$ için (1)'dekini sokalım ve $b_1$'i
 bulalım, sonuç</p>
-<p>$$ b_1 = \frac{K q_1}{\omega^2 + K^2}  \mlabel{4} $$</p>
+<p>$$ 
+b_1 = \frac{K q_1}{\omega^2 + K^2}<br />
+\qquad (4) 
+$$</p>
 <p>$a_1,b_1$ için yıldız kullanabilirdim, $a_1^<em>,b_1^</em>$ gibi ama sabit nokta
 olduklarını biliyoruz, bunu atlayacağım. (1) ve (3) ile</p>
 <p>$$ \frac{\omega b_1}{K} = \frac{v \omega}{\pi gr}$$</p>
 <p>Üsttekinin en basit çözümü $w=0$'da çünkü her iki tarafta da bölünende
 $\omega$ var. Ama çözüm sıfır değilse diğer çözüm için her iki tarafı
 $\omega$ ile böleriz, ve </p>
-<p>$$ b_1 = \frac{K v}{\pi gr} \mlabel{5} $$</p>
+<p>$$ 
+b_1 = \frac{K v}{\pi gr} 
+\qquad (5) 
+$$</p>
 <p>elde ederiz. Bu iki durumu biraz düşünelim, $\omega=0$ durumu ne demektir?
 Eğer $\omega=0$ ise (1)'e göre $a_1 = 0$, (2)'ye göre $b_1 = q_1 /
 K$. $\omega=0$ demek, çark dönmüyor demektir. $a_1=0$ ise içeri akan suyun
@@ -152,7 +167,10 @@ kaos durumu vardı, yani sistem bir süre çetrefil bir halde davranıyor,
 sonra o durumdan çıkıyor. Lorenz'in sisteminde kendini besleyen bir tür
 kaos var - bir başlayınca, öyle devam ediyor.</p>
 <p>Lorenz denklemleri,</p>
-<p>$$ \dot{x} = \sigma (y - x) \qquad (6) $$</p>
+<p>$$ 
+\dot{x} = \sigma (y - x) 
+\qquad (6) 
+$$</p>
 <p>$$ \dot{y} = rx - y - xz $$</p>
 <p>$$ \dot{z} = xy - bz $$</p>
 <p>Görüldüğü gibi aynen su çarkı denklemleri gibi üç boyutlu bir sistem

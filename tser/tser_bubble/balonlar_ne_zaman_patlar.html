@@ -348,7 +348,10 @@ tarafını basitleştirince,</p>
 geriye giden nüfus modeli var [3], sadece 0'inci yıl ile 1989 arasını alalım,
 ve modeli uyduralım ve bilinmeyen parametreleri hesaplamaya uğraşalım. 
 Veriyi uydurma amaçlı olarak şu formül daha kullanışlı olabilir,</p>
-<p>$$ p(t) = A + B(t_c - t)^z \mlabel{2} $$</p>
+<p>$$ 
+p(t) = A + B(t_c - t)^z 
+\qquad (2) 
+$$</p>
 <pre><code class="python">import pandas as pd
 dfpop = pd.read_csv('wpop.csv',comment='#',sep='\s')
 dfpop = dfpop[(dfpop['Year'] &gt;= 0) &amp; (dfpop['Year'] &lt;= 1998)]

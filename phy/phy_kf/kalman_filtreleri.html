@@ -83,10 +83,22 @@ bilmiyoruz.</p>
 <p>$$ \hat{x}_k^+ = \hat{x}_k^- (I - K_kH_k) + K_kz_k $$</p>
 <p>Daha temiz olması için $K_k' = I - K_kH_k$ diyelim, ve en baştaki
 formülleri bir daha alta alta yazalım,</p>
-<p>$$ \hat{x}_k^+  = K_k' \hat{x}_k^- + K_kz_k  \mlabel{1}  $$</p>
-<p>$$ z_k = H_k x_k + v_k \mlabel{2} $$</p>
-<p>$$ \hat{x}_k^+ = x_k + \tilde{x_k}^+ \mlabel{3} $$</p>
-<p>$$ \hat{x}_k^- = x_k + \tilde{x_k}^- \mlabel{4}$$</p>
+<p>$$ 
+\hat{x}_k^+  = K_k' \hat{x}_k^- + K_kz_k<br />
+\qquad (1)<br />
+$$</p>
+<p>$$ 
+z_k = H_k x_k + v_k 
+\qquad (2) 
+$$</p>
+<p>$$ 
+\hat{x}_k^+ = x_k + \tilde{x_k}^+ 
+\qquad (3) 
+$$</p>
+<p>$$ 
+\hat{x}_k^- = x_k + \tilde{x_k}^- 
+\qquad (4)
+$$</p>
 <p>(1) içine (2)</p>
 <p>$$ \hat{x}_k^+ = K_k' \hat{x}_k^- + K_k(H_k x_k + v_k)   $$</p>
 <p>Eşitliğin solunu (3) ile açalım,</p>
@@ -133,7 +145,11 @@ zaten), bu durumda herhangi bir $x_k$ için beklentinin sıfır gelmesi</p>
 üstten ikincisine sokarsak,</p>
 <p>$$ =  E \big[ (I - K_kH_k)\tilde{x_k}^- + K_kv_k \big] \big[\tilde{x_k}^{-T}(I - H_k^TK_k^T) + v_k^TK_k^T \big] $$</p>
 <p>Yani</p>
-<p>$$ = E \bigg[ (I - K_kH_k)\tilde{x_k}^- \big( \tilde{x_k}^{-T}(I - H_k^TK_k^T) + v_k^TK_k^T \big) + \mlabel{5}$$</p>
+<p>$$ 
+= E \bigg[ (I - K_kH_k)\tilde{x_k}^- \big( \tilde{x_k}^{-T}(I - H_k^TK_k^T)
++ v_k^TK_k^T \big) + 
+\qquad (5)
+$$</p>
 <p>$$ K_kv_k \big( \tilde{x_k}^{-T}(I - H_k^TK_k^T) + v_k^TK_k^T  \big) \bigg] $$</p>
 <p>Önceden tanımlamıştık,</p>
 <p>$$ P_k^- = E[ \tilde{x_k}^- \tilde{x_k}^{-T} ]$$</p>
@@ -142,7 +158,10 @@ zaten), bu durumda herhangi bir $x_k$ için beklentinin sıfır gelmesi</p>
 için,</p>
 <p>$$ E[\tilde{x_k}^-v_k^T] = E[v_k\tilde{x_k}^{-T}] = 0 $$</p>
 <p>Tüm bunları (5)'i basitleştirmek için kullanırsak,</p>
-<p>$$ P_k^{+} =  (I - K_kH_k)P_k^-(I - H_k^TK_k^T) + K_kR_kK_k^T \mlabel{6}$$</p>
+<p>$$ 
+P_k^{+} =  (I - K_kH_k)P_k^-(I - H_k^TK_k^T) + K_kR_kK_k^T 
+\qquad (6)
+$$</p>
 <p>En optimal $K_k$'yi nasıl buluruz? Amaç $P_k^+$ matrisinin çaprazındaki
 değerleri minimize etmektir, bu durumda optimize etmek istediğimiz bedel (cost)
 fonksiyonu</p>

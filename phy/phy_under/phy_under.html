@@ -93,7 +93,8 @@ ilgilendiğimiz çoğu robot daha da basit bir formda olabiliyor, hareket
 denklemleri $u$ bazında lineer olabiliyor, robota dönme kuvveti ekleyince
 bu etki sistemin ivmesine lineer bir etki uyguluyor yani.</p>
 <p>$$
-\ddot{q} = f_1 (q, \dot{q}, t) + f_2 (q, \dot{q}, t) u \mlabel{1}
+\ddot{q} = f_1 (q, \dot{q}, t) + f_2 (q, \dot{q}, t) u 
+\qquad (1)
 $$</p>
 <p>Pek yeni bir şey söylemişim olmadım aslında, $f_1$ ile bir takım gayrı
 lineer ilişkilerle görülen değişkenler sisteme etki ediyor, sonra $f_2$ ile
@@ -115,7 +116,8 @@ tüm uzayı kapsayazdım, çünkü içinde tekrar eden kolonlar olurdu ve bu
 tekrar yeni bilgi eklemezdi, bu sebeple belli bir $u$ ile her $\ddot{q}$'ya
 erisemezdim.</p>
 <p>Daha az kumandalı nedir? Eğer </p>
-<p>$$\mathrm{rank} [f_2(q,\dot{q},t)] &lt; \mathrm{dim} [q] \mlabel{2}$$ </p>
+<p>$$\mathrm{rank} [f_2(q,\dot{q},t)] &lt; \mathrm{dim} [q] 
+\qquad (2)$$ </p>
 <p>ise. </p>
 <p>[geri besleme lineerlestirme atlandi]</p>
 <p>Tarif edersek, bir sistemin kontrol girdisi sistemi her yönde
@@ -403,17 +405,20 @@ yönde olmalı)? O zaman alttaki formülü entegre edelim,</p>
 \ddot{q}(t) = u = 1
 $$</p>
 <p>$$ 
-\dot{q}(t) = u t + \dot{q}(0) \qquad (1)
+\dot{q}(t) = u t + \dot{q}(0) 
+\qquad (1)
 $$</p>
 <p>Bir daha entegre</p>
 <p>$$ 
-q(t) = q(0) + \dot{q}(0) t + \frac{1}{2} u t^2 \qquad (2)
+q(t) = q(0) + \dot{q}(0) t + \frac{1}{2} u t^2 
+\qquad (2)
 $$</p>
 <p>Formüle bakalım ve $u=1$ ile bizi bir nihai $t$'de $q(t)=0$ ve
 $\dot{q}(t)=0$ götürecek hangi gidiş yollarının ortaya çıktığına bakalım. </p>
 <p>$\dot{q}(t)=0$ formülünü (1)'e sokarsak, </p>
 <p>$$
-\dot{q}(0) = - u t \qquad (3)
+\dot{q}(0) = - u t 
+\qquad (3)
 $$</p>
 <p>Üstteki formülü (2)'ye sokarsak, ve $q(t)=0$ olduğu için (2) formülü</p>
 <p>$$

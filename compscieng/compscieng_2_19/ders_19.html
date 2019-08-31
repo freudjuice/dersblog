@@ -152,7 +152,8 @@ eşlenik yön bulabilirsek, $\alpha$ değerlerini hemen hesaplayabiliriz.
 Ayrıca eğer eşlenik vektörler $d_k$'leri dikkatlice seçersek, yaklaşık çözüm $x_*$
 için hepsine ihtiyacımız olmaz. Özyineli $x$ formülünü kullanabiliriz,</p>
 <p>$$
-x_{k+1} = x_k + \alpha_k d_{k+1} \mlabel{1}
+x_{k+1} = x_k + \alpha_k d_{k+1} 
+\qquad (1)
 $$</p>
 <p>Bu formül niye mantıklı? Eğer çözüm $x_*$ dikgen $d_k$ vektörlerinin bir
 lineer kombinasyonu ise, çözüm vektörleri birbiri ardına dizilmiş ve "bir
@@ -193,7 +194,9 @@ olmasını istiyoruz. Yani</p>
 <p>$$ d_i^TA (x_{i} + \alpha_i d_i -x)  = 0$$</p>
 <p>$$ d_i^TA (e_i + \alpha_i d_i )  = 0$$</p>
 <p>$$ d_i^Tr_i + \alpha_i d_i^TA d_i   = 0$$</p>
-<p>$$ \alpha_i = -\frac{ d_i^Tr_i}{d_i^T A d_i} \mlabel{6}
+<p>$$ 
+\alpha_i = -\frac{ d_i^Tr_i}{d_i^T A d_i} 
+\qquad (6)
 $$</p>
 <p>Şimdi hata terimine dönelim, diyelim ki $e_0$ vektörü, bu vektör, diğer
 her vektör gibi içinde olduğumuz uzayın bazlarının bir kombinasyonu olarak

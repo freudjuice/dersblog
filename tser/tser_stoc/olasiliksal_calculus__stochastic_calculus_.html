@@ -356,7 +356,10 @@ tekrar bize $W_t$ verdi.</p>
 büyüyen seriler gerekebilir, bir trendi ya da kayması (drift) olacak
 şekilde. Herhangi bir sabit değeri $\sigma^2$ ve $\mu$ ile genelleştirilmiş bir
 Wiener süreci ${ X_t; t&gt;0}$'i şöyle gösterebiliriz [4, sf. 64],</p>
-<p>$$ X_t = \mu \cdot t + \sigma \cdot W_t, \qquad t&gt;0 \mlabel{1}$$</p>
+<p>$$ 
+X_t = \mu \cdot t + \sigma \cdot W_t, \qquad t&gt;0 
+\qquad (1)
+$$</p>
 <p>Bu süreç $t$ anında $N(\mu,\sigma^2t)$ dağılımına sahip olacaktır. Ufak bir
 zaman artışı $\Delta t$ için</p>
 <p>$$ X_{t + \Delta t} - X_t = \mu \cdot \Delta t + \sigma (W_{t+\Delta t}-W_t)$$</p>
@@ -447,7 +450,8 @@ $$</p>
 içine nüfuz eden bu işlem ardından $dW$ beklentisi doğal olarak sıfıra
 gidip yokolacak, geri kalanlar,</p>
 <p>$$ 
-E[y_t] = y_0 e^{\lambda t} - \frac{\mu}{\lambda} ( 1 - e^{\lambda t}) \mlabel{3}
+E[y_t] = y_0 e^{\lambda t} - \frac{\mu}{\lambda} ( 1 - e^{\lambda t}) 
+\qquad (3)
 $$</p>
 <p>Zaman Yarılaması</p>
 <p>Radyoaktif çürüme (decay), mesela Uranyum 238 için, alttaki denklemle
