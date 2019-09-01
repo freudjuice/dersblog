@@ -66,7 +66,7 @@ bulalım, sonuç</p>
 b_1 = \frac{K q_1}{\omega^2 + K^2}<br />
 \qquad (4) 
 $$</p>
-<p>$a_1,b_1$ için yıldız kullanabilirdim, $a_1^<em>,b_1^</em>$ gibi ama sabit nokta
+<p>$a_1,b_1$ için yıldız kullanabilirdim, $a_1^*,b_1^*$ gibi ama sabit nokta
 olduklarını biliyoruz, bunu atlayacağım. (1) ve (3) ile</p>
 <p>$$ \frac{\omega b_1}{K} = \frac{v \omega}{\pi gr}$$</p>
 <p>Üsttekinin en basit çözümü $w=0$'da çünkü her iki tarafta da bölünende
@@ -238,21 +238,21 @@ $V(t + \Delta t)$ hacmi nedir? Bunu görmek için hacim için bir diferansiyel
 denklem türeteceğiz. Hacim derken hacmi gösteren o tek sayıdan
 bahsediyorum, tüm bölgenin şeklinden bahsetmiyorum.</p>
 <p>Önce sezgisel argüman, notasyon </p>
-<p>$$ \underbar{x} = (x,y,z)$$</p>
-<p>$$ \underbar{u} = \dot{\underbar{x}} $$</p>
-<p>olsun, yani $\underbar{u}$ bu üç boyutlu faz uzayındaki hız. Bunlar şimdiye
+<p>$$ \underline{x} = (x,y,z)$$</p>
+<p>$$ \underline{u} = \dot{\underline{x}} $$</p>
+<p>olsun, yani $\underline{u}$ bu üç boyutlu faz uzayındaki hız. Bunlar şimdiye
 kadar gördüğümüz şeyler, bir diferansiyel denklem olduğu zaman onun faz
 uzayındaki vektör alanını düşünüyoruz, ki bu alan bize her noktada bir
 vektör veriyor. Dikkat edelim, sıvı mekaniğiyle başladık şimdi "hız"
 dedik, ama bu hız sıvının akış hızı değil, faz uzayındaki soyut hızdan
 bahsediyoruz.</p>
 <p>Peki bu hızın hacmin yüzeyine dik olan bileşeni nedir? Eğer yüzeye dik bir
-$\underbar{n}$ vektörü düşünürsek, $\underbar{u}$'nun o yöndeki bileşeni
-$\underbar{u} \cdot \underbar{n}$ olur, biraz önceki eşitlik üzerinden
+$\underline{n}$ vektörü düşünürsek, $\underline{u}$'nun o yöndeki bileşeni
+$\underline{u} \cdot \underline{n}$ olur, biraz önceki eşitlik üzerinden
 ${\partial V}$ için (kısmi türev sembolü kullanıldı ama buradaki anlamı
 "$V$ sınırı, onun dış çeperi")</p>
 <p>$$ 
-\underbar{u} \cdot \underbar{n} = \dot{\underbar{x}} \cdot \underbar{n}
+\underline{u} \cdot \underline{n} = \dot{\underline{x}} \cdot \underline{n}
 $$</p>
 <p>${\partial V}$ yerine $S$ de kullanılabilir. </p>
 <p><img alt="" src="16_02.png" /></p>
@@ -262,11 +262,11 @@ modellemeye uğraşalım, $V$'nin dışında daha büyük bir patates hayal edel
 (küçülme de aynı mantık üzerinden hallediliyor) $V$ ona evrilmiş olsun,</p>
 <p><img alt="" src="16_03.png" /></p>
 <p>Resmin alt kısmındaki ok yüzeydeki bir noktanın nasıl genişlediğini
-gösteriyor, ve diğer bir noktaya göre $\underbar{n}$ gösterilmiş, ve hız
-vektör alanının o noktadaki hali $\underbar{u}$. Çizim bizi aldatmasın,
-$\underbar{u}$'yu teğet yapmaya uğraşmadım. </p>
+gösteriyor, ve diğer bir noktaya göre $\underline{n}$ gösterilmiş, ve hız
+vektör alanının o noktadaki hali $\underline{u}$. Çizim bizi aldatmasın,
+$\underline{u}$'yu teğet yapmaya uğraşmadım. </p>
 <p>Modelleme açısından şöyle düşünebiliriz, hacmin genişlemesi hızın yüzeydeki
-normal bileşeni üzerindendir. O sebeple $\underbar{u} \cdot \underbar{n}$'e
+normal bileşeni üzerindendir. O sebeple $\underline{u} \cdot \underline{n}$'e
 odaklandım, çünkü hacim genişleme açısından bizi ilgilendiren en önemli
 büyüklük bu. İddia şöyle, yeni $V(t + \Delta t)$, eski $V(t)$ artı hızın
 normal yönde aştığı bir ufak bölgenin tüm mümkün bölgeler üzerinden entegre
@@ -274,16 +274,16 @@ edilmiş halidir.</p>
 <p><img alt="" src="16_04.png" /></p>
 <p>Üstte gösterilen ufak parçanın hacim değişimi yaklaşık olarak</p>
 <p>$$ 
-\Delta V \approx (\underbar{u} \cdot \underbar{n} \Delta t) \mathrm{d} A
+\Delta V \approx (\underline{u} \cdot \underline{n} \Delta t) \mathrm{d} A
 $$</p>
 <p>O zaman, tüm bölgeler için</p>
 <p>$$ 
 V(t + \Delta t) \approx V(t) + 
-\Delta t \iint\limits_{\partial V} \underbar{u} \cdot \underbar{n} \mathrm{d} A
+\Delta t \iint\limits_{\partial V} \underline{u} \cdot \underline{n} \mathrm{d} A
 $$</p>
 <p>Üstteki argüman tabii ki kulağa küpe / tahminsel / kestirme (heuristic) bir
 argüman. Entegrale dikkat, bu bir yüzey entegrali. Eğer akı (flux) bazlı
-düşünmek istersek üstteki hesap vektör alanı $\underbar{u}$'nun dış akısı
+düşünmek istersek üstteki hesap vektör alanı $\underline{u}$'nun dış akısı
 olarak görülebilir.</p>
 <p>Soru</p>
 <p>Entegral niye yaklaşıksal, kesin değil? </p>
@@ -293,34 +293,34 @@ olarak görülebilir.</p>
 bölelim.</p>
 <p>$$ 
 \lim _{\Delta t \to 0} \frac{ V(t + \Delta t) - V(t)}{\Delta t} = \dot{V(t)} =
-\iint\limits_{\partial V} \underbar{u} \cdot \underbar{n} \mathrm{d} A
+\iint\limits_{\partial V} \underline{u} \cdot \underline{n} \mathrm{d} A
 $$</p>
 <p>Nihai amacım bu formüldü, formül bana hacmin nasıl değiştiğini gösteriyor,
 ki $\dot{V(t)}$ hacim değişimidir. Bu arada <em>Çok Değişkenli Calculus</em>
 dersini almış olanlar için üstteki çift entegral tanıdık gelebilir,
 formülün yapısı uzaklaşım (divergence) teorisini uygulamaya hazır, o çift
-entegral $\underbar{u}$'nun uzaklaşımının üçlü entegraline eşittir, yani</p>
+entegral $\underline{u}$'nun uzaklaşımının üçlü entegraline eşittir, yani</p>
 <p>$$ 
 \dot{V} = 
-\iint\limits_{\partial V}  \underbar{u} \cdot \underbar{n} \mathrm{d} A = 
-\iiint \nabla \cdot \underbar{u} \mathrm{d} V
+\iint\limits_{\partial V}  \underline{u} \cdot \underline{n} \mathrm{d} A = 
+\iiint \nabla \cdot \underline{u} \mathrm{d} V
 $$</p>
 <p>Hacmin üç boyutlu faz uzayında herhangi bir vektör alanında nasıl
 değiştiğini tarif eden formüller bunlar. Gerçi tahmin ederim ki boyut ne
 olursa olsun formüller geçerlidir ama biz şimdilik üç ile kendimizi
 sınırlayalım. </p>
 <p>Şimdi bu genel formülleri özelde Lorenz sistemine uygulayalım. Üçlü
-entegralde bir $\underbar{u}$'nun uzaklaşımından bahsediliyor. Lorenz
-sisteminde $\underbar{u}$'nun uzaklaşımı nedir? $\dot{V}$ formülünü tekrar
+entegralde bir $\underline{u}$'nun uzaklaşımından bahsediliyor. Lorenz
+sisteminde $\underline{u}$'nun uzaklaşımı nedir? $\dot{V}$ formülünü tekrar
 yazalım,</p>
 <p>$$ 
-\dot{V} = \iiint\limits_V \nabla \cdot \underbar{u} \mathrm{d} V
+\dot{V} = \iiint\limits_V \nabla \cdot \underline{u} \mathrm{d} V
 $$</p>
-<p>Bu formülde hız $\underbar{u} = (\dot{x}, \dot{y}, \dot{z})$, çünkü Lorenz
-sisteminde faz uzayındaki hız budur değil mi? $\underbar{u}$'nun
+<p>Bu formülde hız $\underline{u} = (\dot{x}, \dot{y}, \dot{z})$, çünkü Lorenz
+sisteminde faz uzayındaki hız budur değil mi? $\underline{u}$'nun
 uzaklaşımı,</p>
 <p>$$ 
-\nabla \cdot \underbar{u} = 
+\nabla \cdot \underline{u} = 
 \frac{\partial \dot{x}}{\partial x} + 
 \frac{\partial \dot{y}}{\partial y} + 
 \frac{\partial \dot{z}}{\partial z} 
@@ -331,7 +331,7 @@ hesaplayalım ve formülde yerine koyalım,</p>
 <p>Hepsi negatif çıktı, ya da $-(\sigma+b+1)$. Bu hesap 1'den küçük olacaktır
 çünkü $\sigma,b$'nin kesin pozitif oldugunu söylemiştik. Aslında çok iyi
 bir sonuç bu, bir kere sabit. Bu sabit üçlü entegrali müthiş kolaylaştırır,
-değil mi, çünkü $\nabla \cdot \underbar{u}$ sabit, onun $\mathrm{d} V$ üzerinden
+değil mi, çünkü $\nabla \cdot \underline{u}$ sabit, onun $\mathrm{d} V$ üzerinden
 entegrali hesaplanırken sabit entegral dışına çıkar, geri kalan sadece
 $\mathrm{d} V$'nin entegralidir, o da direk $V$ olur, yani hacmin ta kendisi. O
 zaman</p>

@@ -66,16 +66,16 @@ biliyorduk, fakat üstteki de bunu görmenin güzel bir başka yolu.</p>
 uçuyor sonra bir yere konuyor. Meğer, belli bazı basitleştirici önkoşullar
 ardından bu sistem de muhafazakar bir sistem. Bu sistemde muhafaza edilen
 büyüklük enerji gibi kolay irdelenebilen bir büyüklük değil, başka bir şey. </p>
-<p>Daha genel olarak muhafazakarlığı belirtmek istersek, $\dot{\underbar{x}} =
-\underbar{f} (\underbar{x})$ muhafazardır eğer muhafaza edilen bir değer
-$E(\underbar{x})$'e sahipse. $E$ sürekli, reel değerli, ve gidiş yolları
+<p>Daha genel olarak muhafazakarlığı belirtmek istersek, $\dot{\underline{x}} =
+\underline{f} (\underline{x})$ muhafazardır eğer muhafaza edilen bir değer
+$E(\underline{x})$'e sahipse. $E$ sürekli, reel değerli, ve gidiş yolları
 üzerinde sabit olan bir fonksiyon olmalı, yani sabitliğin diğer bir ifadesi
 zamana göre türevin sıfır olması, $\frac{dE}{dt}=0$. Burada ek bir püf nokta;
 eğer $E$ mesela 17 gibi sadece basit bir sabit sayı olsaydı, üstteki türev yine
 doğru olurdu; bu tür aşırı basit (trivial) çözümleri de istemiyoruz, yoksa her
 sistem muhafazakar sistem olur [sebebi alttaki soruyla anlaşılabilir, basit
  sabitlik çok fazla sistemin muhafazakar olması demektir, bu da istediğimiz
- türden bir tanım değil], bu sebeple "$E(\underbar{x})$'in her açık kümede
+ türden bir tanım değil], bu sebeple "$E(\underline{x})$'in her açık kümede
 sabit olmaması" şartını getiriyoruz, bu tanım topoloji, analiz ile alakalı,
 aşırı detayına burada girmek istemiyorum, ama böylece $E$'nin sabitliğinden
 kurtuluyoruz.</p>
@@ -83,8 +83,8 @@ kurtuluyoruz.</p>
 <p>Bir muhafazakar sistemin kendine doğru çeken (attracting) sabit noktası
 olamayacağını göster.</p>
 <p>Cevap</p>
-<p>Farz edelim ki $x^<em>$ bir kendine çeken sabit nokta. O zaman bu noktaya doğru
-akan, onun etkisi altındaki noktaların hepsinin aynı enerji $E(x^</em>)$'ye sahip
+<p>Farz edelim ki $x^*$ bir kendine çeken sabit nokta. O zaman bu noktaya doğru
+akan, onun etkisi altındaki noktaların hepsinin aynı enerji $E(x^*)$'ye sahip
 olması gerekir çünkü enerji tüm gidiş yollarında sabit demiştik, ve etki
 alanındaki tüm noktalar sabit noktaya akıyor. Fakat bu durumda $E(x)$ sabit bir
 fonksiyon olmalı, çünkü pek çok farklı gidiş yolu üzerinde enerji aynı, ve
@@ -126,11 +126,11 @@ $$</p>
 <p>Üstteki matrisin sabit noktalardaki değerini istiyoruz. $\dot{x}=0$ demek $x=0$
 demektir. İkinci ifadeye bakalım, $x - x^3 = x(1 - x^2)$, bu ifade $x=0$ ya da
 $x = \pm 1$ olunca sıfırdır. Yani üç tane sabit nokta var,</p>
-<p>$(x^<em>,y^</em>) = (0,0)$, o zaman $\left[\begin{array}{rr} 0 &amp; 1 \\ 1 &amp; 0\end{array}\right]$.</p>
+<p>$(x^*,y^*) = (0,0)$, o zaman $\left[\begin{array}{rr} 0 &amp; 1 \\ 1 &amp; 0\end{array}\right]$.</p>
 <p><img alt="" src="07_02.png" /></p>
 <p>$\tau=0$, $\Delta = -1$, yani bir eğer (saddle). Lineerizasyona inanıyoruz,
 şüpheye gerek yok.</p>
-<p>$(x^<em>,y^</em>) = (\pm 1,0)$, o zaman $\left[\begin{array}{rr} 0 &amp; 1 \\ -2 &amp; 0\end{array}\right]$.</p>
+<p>$(x^*,y^*) = (\pm 1,0)$, o zaman $\left[\begin{array}{rr} 0 &amp; 1 \\ -2 &amp; 0\end{array}\right]$.</p>
 <p><img alt="" src="07_03.png" /></p>
 <p>$\tau=0$, $\Delta = 2$, demek ki bir merkez var [hoca şimdi alarm zili sesi
 çıkartıyor]. Hatırlarsak merkezler için lineerizasyona güvenemiyoruz. Fakat
@@ -214,14 +214,14 @@ hareket ediyormuş gibi düşünürsek daha iyi.</p>
 o potansiyel fonksiyonunun grafiğiydi, o farklı.</p>
 <p>Teori</p>
 <p>Muhafazakar sistemler ve 2D gayrı lineer merkezlerininin teorisi şöyle.</p>
-<p>Diyelim ki $\dot{\underbar{x}}=\underbar{f}(\underbar{x})$ muhafazakar bir
-sistem, $\underbar{f}$ sürekli ve türevi alınabilir, $\underbar{x} \in
-\mathbb{R}^2$ yani 2 boyutlu düzlem üzerindeyiz. $E(\underbar{x})$ muhafaza
+<p>Diyelim ki $\dot{\underline{x}}=\underline{f}(\underline{x})$ muhafazakar bir
+sistem, $\underline{f}$ sürekli ve türevi alınabilir, $\underline{x} \in
+\mathbb{R}^2$ yani 2 boyutlu düzlem üzerindeyiz. $E(\underline{x})$ muhafaza
 edilen bir büyüklük. Gerçekten ihtiyacımız olacak bir teknik detay daha,
-$\underbar{x}^<em>$ sadece bir sabit nokta değil, ayrıca </em>izole* bir sabit
+$\underline{x}^*$ sadece bir sabit nokta değil, ayrıca <em>izole</em> bir sabit
 nokta.</p>
-<p>İzole derken $\underbar{x}^<em>$'in yakınında başka hiçbir sabit nokta olmadığı
-söyleniyor. Detaylandırmak gerekirse 2 boyutta $\underbar{x}^</em>$'e bakıyorum ve
+<p>İzole derken $\underline{x}^*$'in yakınında başka hiçbir sabit nokta olmadığı
+söyleniyor. Detaylandırmak gerekirse 2 boyutta $\underline{x}^*$'e bakıyorum ve
 onun etrafında $\epsilon$ yarıçapında bir çember çiziyorum, bu çember içinde
 başka bir sabit nokta yok. İzole noktalar daha yaygın tabii, şimdiye kadar pek
 çok örnekte onları gördük. İzolasyonun olmadığı bir durum neye benzerdi?
@@ -234,9 +234,9 @@ ortaya çıkartabilir. $x$'in bir üsteli çarpı $\sin(1/x)$ mesela, bu bir nok
 yaklaşan ve araları sürekli azalan bir seri sabit noktayı üretebilir. Üstte
 görülüyor, en soldaki noktaya sürekli yaklaşan diğer noktalar.. Bu durumda o en
 soldaki nokta izole olmaz.</p>
-<p>Devam edelim, eğer bu izole sabit nokta fonksiyon $E(\underbar{x})$'nin yerel
-minimum ya da maksimumu ise o zaman $\underbar{x}^<em>$ bir merkezdir (yani
-$\underbar{x}^</em>$'a yeterince yakın olan tüm gidiş yolları kapalıdır). </p>
+<p>Devam edelim, eğer bu izole sabit nokta fonksiyon $E(\underline{x})$'nin yerel
+minimum ya da maksimumu ise o zaman $\underline{x}^*$ bir merkezdir (yani
+$\underline{x}^*$'a yeterince yakın olan tüm gidiş yolları kapalıdır). </p>
 <p>Bu ne demektir? Mesela iki üstteki resmi ele alalım, aşağı inen çukurlardan
 soldakinin (ki $x,y$ üzerindeki yansıması resimde gösteriliyor) minimum
 noktasını alırız, ve pat diye bu bir merkez olur.</p>
