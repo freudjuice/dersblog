@@ -88,8 +88,8 @@ $$</p>
 $$</p>
 <p>Üstteki üç denklemi çözünce </p>
 <p>$$
-d^<em> = \sqrt{\frac{2 A_0}{3 \pi}}, \quad
-h^</em> = \sqrt{\frac{2 A_0}{3 \pi}}, \quad
+d^* = \sqrt{\frac{2 A_0}{3 \pi}}, \quad
+h^* = \sqrt{\frac{2 A_0}{3 \pi}}, \quad
 \lambda^* = -\sqrt{\frac{A_0}{24 \pi}}
 $$</p>
 <p>Bu sonuçlar diyor ki silindirsel deponun hacmini maksimize etmek için onun
@@ -252,8 +252,8 @@ $$</p>
 V( x, u, t) +  \lambda^T g 
 $$</p>
 <p>$$
-= V(x, u, t) +  \lambda^T \big{ f(x, u, t) - \dot{x} \big}
-\quad (4)
+= V(x, u, t) +  \lambda^T \big\{ f(x, u, t) - \dot{x} \big\}
+\qquad (4)
 $$</p>
 <p>Performans ölçütü şimdi şöyle oldu,</p>
 <p>$$
@@ -380,29 +380,29 @@ $$</p>
 denklemini kullanıyoruz,</p>
 <p>$$
 \left( \frac{\partial \mathcal{H}}{\partial u} \right) = 0 \to
-u^<em> + \lambda_2^</em> = 0
+u^* + \lambda_2^* = 0
 $$</p>
 <p>$$
-u^<em> = -\lambda_2^</em>
+u^* = -\lambda_2^*
 $$</p>
 <p>Optimal $\mathcal{H}$'yi bulmak için üstteki değerleri üç üstteki
 formüle sokuyoruz, </p>
 <p>$$
-\mathcal{H}^<em>(x_1^</em>, x_2^<em>,\lambda_1^</em>,\lambda_2^<em>) = 
-\frac{1}{2} \lambda_2^</em> + \lambda_1^<em> x_2^</em> - \lambda_2^* 
+\mathcal{H}^*(x_1^*, x_2^*,\lambda_1^*,\lambda_2^*) = 
+\frac{1}{2} \lambda_2^* + \lambda_1^* x_2^* - \lambda_2^* 
 $$</p>
 <p>$$
-= \lambda_1^<em> x_2^</em> - \frac{1}{2} {\lambda_2^*}^2<br />
+= \lambda_1^* x_2^* - \frac{1}{2} {\lambda_2^*}^2<br />
 $$</p>
 <p>Devam edersek, $\dot{x} = \left( \frac{\partial \mathcal{H}}{\partial
 \lambda} \right)$  denkleminden hareketle,</p>
 <p>$$
-\dot{x}^<em>_1 = \left( \frac{\partial \mathcal{H}}{\partial \lambda_1} \right) =
-x_2^</em>
+\dot{x}^*_1 = \left( \frac{\partial \mathcal{H}}{\partial \lambda_1} \right) =
+x_2^*
 $$</p>
 <p>$$
-\dot{x}^<em>_2 = \left( \frac{\partial \mathcal{H}}{\partial \lambda_2} \right) =
-\lambda_2^</em>
+\dot{x}^*_2 = \left( \frac{\partial \mathcal{H}}{\partial \lambda_2} \right) =
+\lambda_2^*
 $$</p>
 <p>Ve $\dot{\lambda} = - \left( \frac{\partial \mathcal{H}}{\partial x}
 \right)$ denkleminden hareketle,</p>
@@ -410,8 +410,8 @@ $$</p>
 \dot{\lambda}_1^* = - \left( \frac{\partial \mathcal{H}}{\partial x_1} \right) = 0
 $$</p>
 <p>$$
-\dot{\lambda}_2^<em> = - \left( \frac{\partial \mathcal{H}}{\partial x_2} \right) = 
-- \lambda_1^</em>
+\dot{\lambda}_2^* = - \left( \frac{\partial \mathcal{H}}{\partial x_2} \right) = 
+- \lambda_1^*
 $$</p>
 <pre><code class="python">from sympy import symbols, Eq, Function, dsolve, latex, simplify
 
