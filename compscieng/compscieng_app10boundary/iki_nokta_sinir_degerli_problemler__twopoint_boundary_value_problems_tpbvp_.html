@@ -269,9 +269,8 @@ olarak kabul edersek, bu engelin etrafından dolaşabiliriz. Bu
 eşit olma hali üzerinden sabiti diferansiyel denklem sistemimize dahil
 edebiliriz. </p>
 <p><em>Elastiklik</em> (elastica) problemi mekanik alanında standart bir problem
-[3, sf. 221]. Bir ucu yere bağlı bir esnek çubuğa diğer uçtan uygulanan
-kuvvet ile nasıl büküldüğünü gösteriyor. Sabiti dahil etmeden ana sistem
-şöyle,</p>
+[3, sf. 221, 4, pg. 87]. İki ucundan kuvvet uygulanan bir esnek çubuğun
+nasıl büküldüğünü modelliyor. Sabiti dahil etmeden ana sistem şöyle,</p>
 <p>$$
 x' = \cos (\phi) 
 $$</p>
@@ -338,14 +337,92 @@ print (sol.y[4,0])
 <p>Dikkat edilirse <code>fun</code> içinde $F$'ye sıfır değeri vermek için
 <code>np.zeros(x.shape[0])</code> değeri tanımlandı, yani bir sıfır vektörü
 tanımlandı.</p>
-<p>$y$ değerlerini grafikleyelim,</p>
+<p>Çözüm sonucu elde edilen $y$ değerlerini grafikleyelim,</p>
 <pre><code class="python">plt.plot(x,sol.y[1])
 plt.title('y')
 plt.savefig('compscieng_app10boundary_05.png')
 </code></pre>
 
 <p><img alt="" src="compscieng_app10boundary_05.png" /></p>
+<p>Kızamık (Measles) Problemi</p>
+<p>Problem [3, sf. 223, 5, 6, 7, sf. 13]'de görülebilir, nüfusta bir salgının
+yayılması modellenmiştir. Nüfus dört farklı grup altında incelenir, bu
+gruplar bağışıklı olanlar (immunes), $I$, bağışıksızlar (susceptible) $S$,
+bulaştırmayan hasta (latents) $L$, ve bulaştıran hasta (infectives),
+$I$. Toplam nufus sabit $N$ olsun, o zaman </p>
+<p>$$
+S(t) + I(t) + L(t) + M(t) = N, \quad t \in [0,1]
+$$</p>
+<p>Model her grubun izafi oranını bağışıksızlar $y_1 = S/N$, bulaştırmayan
+hasta $y_2 = L/N$, ve hasta olanlar $y_3 = I / N$ olarak
+tanımlar. Hastalığın yayılma dinamiği şöyle tanımlanabilir, </p>
+<p>$$
+y_1' = \mu - \beta y_1y_3
+$$</p>
+<p>$$
+y_2' = \beta y_1y_3 -y_2 / \lambda
+$$</p>
+<p>$$
+y_3' = y_2\lambda - y_3 / \eta
+$$</p>
+<p>$\beta$ bulaştırma oranı (sabiti). Bulaştırma oranını sezona bağlı
+olabileceği için onu bir kosinüs fonksiyonu ile tanımlarız, </p>
+<p>$$
+\beta = \beta_0 (1 + \cos(2 \pi t))
+$$</p>
+<p>ki $\beta_0 = 1575$, diğer sabitler ise $\mu = 0.02$, $\lambda = 0.0279$,
+$\eta = 0.01$. Sinir sartlari </p>
+<p>$$
+y(1) = y(0)
+$$</p>
+<p>Tabii $y$ bir vektör, $y = [y_1,y_2,y_3]$. Bu sınır şartının
+tanımlanmasının sebebi periyodik bir çözüm arıyor olmamız. Bu tür sınır
+şartı biraz garip olabilir, ve her sayısal paket bu tür şartın
+tanımlanmasına izin vermeyebilir, fakat <code>scipy</code> izin
+veriyor. Verilmiyorsa [3] kaynağında anlatılan ekstra değişkenler ve sabit
+tanımlama numarasını kullanmak gerekiyor.</p>
+<pre><code class="python">from scipy.integrate import solve_bvp
+
+mu = 0.02
+l = 0.0279
+eta = 0.01
+def fun_measles(x, y):
+    beta = 1575 * (1 + np.cos(2 * np.pi * x))
+    return np.vstack((
+        mu - beta * y[0] * y[2],
+        beta * y[0] * y[2] - y[1] / l,
+        y[1] / l - y[2] / eta
+    ))
+
+
+def bc_measles(ya, yb):
+    return ya - yb
+
+x_measles = np.linspace(0, 1, 5)
+y_measles = np.full((3, x_measles.shape[0]), 0.01)
+
+res_measles = solve_bvp(fun_measles, bc_measles, x_measles, y_measles)
+</code></pre>
+
+<pre><code class="python">plt.figure(figsize=(14, 5))
+x_measles_plot = np.linspace(0, 1, 100)
+y_measles_plot = res_measles.sol(x_measles_plot)
+plt.subplot(131)
+plt.plot(x_measles_plot, y_measles_plot[0], label='$y_1$')
+plt.subplot(132)
+plt.plot(x_measles_plot, y_measles_plot[1], label='$y_2$')
+plt.subplot(133)
+plt.plot(x_measles_plot, y_measles_plot[2], label='$y_3$')
+plt.savefig('compscieng_app10boundary_06.png')
+</code></pre>
+
+<p><img alt="" src="compscieng_app10boundary_06.png" /></p>
 <p>Kaynaklar</p>
 <p>[1] Yang, <em>Applied Numerical Methods using Matlab</em></p>
 <p>[2] Scipy, <em>Scipy Reference, 0.18.1</em></p>
 <p>[3] Cash, <em>Solving Differential Equations in R</em></p>
+<p>[4] Greenhill, <em>The applications of elliptic functions</em></p>
+<p>[5] Shampine, <em>A BVP Solver Based on Residual Control and the Matlab PSE</em>, 
+    <a href="http://www.orcca.on.ca/TechReports/TechReports/2001/TR-01-02.pdf">http://www.orcca.on.ca/TechReports/TechReports/2001/TR-01-02.pdf</a></p>
+<p>[6] Mayorov, <em>Github</em>, <a href="https://gist.github.com/nmayorov/f8af5ca956c6a7f75ecdb578a2655894">https://gist.github.com/nmayorov/f8af5ca956c6a7f75ecdb578a2655894</a></p>
+<p>[7] Ascher, <em>Numerical Solution of BVPs for ODEs</em></p>
