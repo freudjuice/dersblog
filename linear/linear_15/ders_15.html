@@ -249,8 +249,8 @@ yansımayı çözmek. O zaman $A$'yi alttaki yerine koyunca, çözüm ortaya
 <p>Ekler</p>
 <p>Matris tersi kullanmadan vektörün düzlem üzerine yansıtmasını daha direk
 bir şekilde şöyle anlatabilirdik [1]: hatırlarsak, bir $u$ vektörünün diğer
-bir $v$ vektörünün üzerine yansıtması (operasyonu $\proj$ ile belirtelim)</p>
-<p>$$ \proj_v(u) = \frac{u \cdot v}{||v||^2} $$</p>
+bir $v$ vektörünün üzerine yansıtması (operasyonu $\mathrm{proj}$ ile belirtelim)</p>
+<p>$$ \mathrm{proj}_v(u) = \frac{u \cdot v}{||v||^2} $$</p>
 <p>idi. O zaman $u$'nun bir düzlem üzerine yansıtmasını $u$'nin içinde o
 düzleme dik olan bileşenlerini çıkartarak bulabiliriz. Düzlemi yatay olarak
 düşünürsek $u$ içinden düzleme dikey olan bileşenleri çıkartınca geriye
@@ -258,7 +258,7 @@ $u$'nun yatay bileşenleri kalır, bu da $u$'nun düzleme yansıtılmış hali
 demektir. Peki düzleme dikey olan vektörü nasıl buluyoruz? Bu vektör zaten
 biliniyor, bu vektör düzlemin normal vektöründen başka bir şey
 değil. Normal vektor $n$ icin formul,</p>
-<p>$$ \proj_{\textrm{düzlem}}(u) = u - \proj_{n}(u) = u - \frac{u \cdot n}{||n||^2} n $$</p>
+<p>$$ \mathrm{proj}_{\textrm{düzlem}}(u) = u - \mathrm{proj}_{n}(u) = u - \frac{u \cdot n}{||n||^2} n $$</p>
 <p>Bir örnek üzerinde görelim, </p>
 <pre><code class="python">import sys; sys.path.append('../../vision/vision_02')
 from mpl_toolkits.mplot3d import Axes3D
