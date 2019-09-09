@@ -435,20 +435,24 @@ $$</p>
 <p>3)</p>
 <p>O zaman $u^*$ soyle olacaktir, </p>
 <p>$$
-u^* = \argmin_{U} H(x^*, u, p)
+u^* = \arg\min_{U} H(x^*, u, p)
 $$</p>
 <p>Son formülleri türetmeden önce ne anlama geldiklerine bakalım. Başta
 "gidiş yolu alttaki koşulları yerine getirmeli;" dedik, bu şartlar
 optimallik için gerekli şartlardır (necessary conditions). Yani mesela
 üstteki formüllerle bir $x^*(t),u^*(t)$ çözümü, gidiş yolu buldum. Bu
 sonucu gerekli şartlarla buldum, tatmin edilmesi gereken en az şartlar
-bunlar. Fakat bu şartlar yeterli (sufficient) olmayabilir. Lineer, dişbukey
+bunlar. Fakat bu şartlar yeterli (sufficient) olmayabilir. Lineer, dişbükey
 (convex) sistemlere gerekli şartlar aynı zamanda yeterli, fakat her zaman
 bu olmayabilir.</p>
 <p>Çözüm mekanığı bağlamında bu demektir ki eğer $x$'i ileri doğru entegre
 edersem, sonra oradan $p$ için zamanda geri gidersem (çünkü $T$ için bir
 şart tanımlı), elimdeki değerler içinden bir optimal $u$ bulduğum zaman bu
 $u$ gerekli optimallik şartını tatmin ediyor demektir. </p>
+<p>Optimizasyon okuyanlar bilir; bir $J(x)$'i $x$ üzerinden minimize etmek
+istiyorsam minimal noktada en azından $\frac{\partial J}{\partial x} = 0$
+olmalıdır. Bu gerekli sart. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
-<p>[1] Tedrake, <em>MIT, 6.832 Underactuated Robotics</em>, <a href="https://youtu.be/Z8oMbOj9IWM">https://youtu.be/Z8oMbOj9IWM</a></p>
+<p>[1] Tedrake, <em>MIT, 6.832 Underactuated Robotics, Ders 1</em>, <a href="https://youtu.be/Z8oMbOj9IWM">https://youtu.be/Z8oMbOj9IWM</a></p>
+<p>[2] Tedrake, <em>MIT, 6.832 Underactuated Robotics, Ders 3</em>, \url{https://www.youtube.com/watch?v=oWr1_LybOZI</p>

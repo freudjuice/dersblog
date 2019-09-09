@@ -534,7 +534,7 @@ $$
 O zaman $u^*$ soyle olacaktir, 
 
 $$
-u^* = \argmin_{U} H(x^*, u, p)
+u^* = \arg\min_{U} H(x^*, u, p)
 $$
 
 Son formülleri türetmeden önce ne anlama geldiklerine bakalým. Baþta
@@ -542,7 +542,7 @@ Son formülleri türetmeden önce ne anlama geldiklerine bakalým. Baþta
 optimallik için gerekli þartlardýr (necessary conditions). Yani mesela
 üstteki formüllerle bir $x^*(t),u^*(t)$ çözümü, gidiþ yolu buldum. Bu
 sonucu gerekli þartlarla buldum, tatmin edilmesi gereken en az þartlar
-bunlar. Fakat bu þartlar yeterli (sufficient) olmayabilir. Lineer, diþbukey
+bunlar. Fakat bu þartlar yeterli (sufficient) olmayabilir. Lineer, diþbükey
 (convex) sistemlere gerekli þartlar ayný zamanda yeterli, fakat her zaman
 bu olmayabilir.
 
@@ -551,6 +551,22 @@ edersem, sonra oradan $p$ için zamanda geri gidersem (çünkü $T$ için bir
 þart tanýmlý), elimdeki deðerler içinden bir optimal $u$ bulduðum zaman bu
 $u$ gerekli optimallik þartýný tatmin ediyor demektir. 
 
+Optimizasyon okuyanlar bilir; bir $J(x)$'i $x$ üzerinden minimize etmek
+istiyorsam minimal noktada en azýndan $\frac{\partial J}{\partial x} = 0$
+olmalýdýr. Bu gerekli sart. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -558,6 +574,7 @@ $u$ gerekli optimallik þartýný tatmin ediyor demektir.
 
 Kaynaklar
 
-[1] Tedrake, {\em MIT, 6.832 Underactuated Robotics}, \url{https://youtu.be/Z8oMbOj9IWM}
+[1] Tedrake, {\em MIT, 6.832 Underactuated Robotics, Ders 1}, \url{https://youtu.be/Z8oMbOj9IWM}
 
+[2] Tedrake, {\em MIT, 6.832 Underactuated Robotics, Ders 3}, \url{https://www.youtube.com/watch?v=oWr1_LybOZI
 \end{document}
