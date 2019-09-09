@@ -452,7 +452,23 @@ $u$ gerekli optimallik şartını tatmin ediyor demektir. </p>
 <p>Optimizasyon okuyanlar bilir; bir $J(x)$'i $x$ üzerinden minimize etmek
 istiyorsam minimal noktada en azından $\frac{\partial J}{\partial x} = 0$
 olmalıdır. Bu gerekli sart. </p>
-<p>[devam edecek]</p>
+<p>Lagrange yontemine gelelim; eger </p>
+<p>$$
+\min_x J(x), \quad \textrm{ öyle ki } x(1) + x(2) = 3
+$$</p>
+<p>optimizasyonunu yapmak istiyorsam, Lagrange sağolsun, çözüm iki üstteki
+problemi çözmek kadar kolay. Tek yapmamız gereken genişletilmiş yeni bir
+fonksiyon yaratmak,</p>
+<p>$$
+\tilde{J}(x)  = J(x) + \lambda [ x(1) + x(2) - 3 ]
+$$</p>
+<p>Çözmek için</p>
+<p>$$
+\min_{x,\lambda} \partial \tilde{J} = 
+\frac{\partial \tilde{J}}{\partial \lambda} = x(1) + x(2) - 3 = 0
+$$</p>
+<p>Üsttekinden gelecek çözüm kısıtlamayı da dikkate alan bir çözüm olacaktır. </p>
+<p>Cift Entegre Edici, Sayisal Cozum</p>
 <p>Kaynaklar</p>
 <p>[1] Tedrake, <em>MIT, 6.832 Underactuated Robotics, Ders 1</em>, <a href="https://youtu.be/Z8oMbOj9IWM">https://youtu.be/Z8oMbOj9IWM</a></p>
 <p>[2] Tedrake, <em>MIT, 6.832 Underactuated Robotics, Ders 3</em>, \url{https://www.youtube.com/watch?v=oWr1_LybOZI}</p>
