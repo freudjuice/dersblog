@@ -23,7 +23,6 @@
 </script>
 </head>
 
-<p>Daha Az Kumandalı Robotlar - 1</p>
 <p>HONDA şirketinin Asimo adlı robotu 1996 yılında ortaya çıktığında herkes
 robotik konusunda önemli bir noktaya erişildiğini anlamıştı. Asimo rahat
 bir şekilde yürüyor, merdiven çıkıyor, hatta futbol oynuyordu [1,
@@ -147,85 +146,7 @@ yoktur. Analitik yaklaşımlar neredeyse ise başlar başlamaz ise yaramaz hale
 gelir, bilgisayarlar burada yardım edebilir.</p>
 <p>Fabrikadaki montaj bantında çalışan robot kolların çoğu tam kumandalıdır,
 yürüyen robotların çoğu değildir. </p>
-<p>Örnek üzerinde bu fikirleri yakından görelim; Soyut $f$'ten bahsettik,
-artık ilk başta gördüğümüz iki bağlantılı robot kol için hareket
-formüllerini yazalım. </p>
-<p>Belki Lagrange mekanığını görmüş olanlarınız vardır, dersimiz için bu bilgi
-şart değil, ders notlarında var, ama bu konuyu bilmek iyidir onu belirtmek
-istiyorum. Bu örnekte Lagrange yöntemini bir kere göstereceğim, özellikle
-bilmenizi istediğim eğer bir sistemin hareket formüllerini bulmak
-istiyorsanız, Lagrange sistemi oldukca metodik bir şekilde en çetrefil
-sistemler için bile istediğinizi verecektir. </p>
-<p>Birinci kütlenin $x_1$'de ikinci kütlenin $x_2$'de olduğunu düşünelim,</p>
-<p>$$
-x_1 = 
-\left[\begin{array}{r}
-l_1 \sin\theta_1 \\
--l_1 \cos\theta_1
-\end{array}\right] =
-\left[\begin{array}{r}
-l_1 s_1 \\
--l_1 c_1
-\end{array}\right]
-$$</p>
-<p>$$
-x_2 = x_1 + 
-\left[\begin{array}{r}
-l_2 \sin(\theta_1 + \theta_2) \\
--l_2 \cos(\theta_1 + \theta_2)
-\end{array}\right] = 
-\left[\begin{array}{r}
-l_2 s_{1+2} \\
--l_2 c_{1+2}
-\end{array}\right]
-$$</p>
-<p>Türevleri bulalım, mesela $\dot{x_1}$, bu hız bir birleşik hızdır değil mi,
-2. kütle de harekete dahil çünkü. </p>
-<p>$$
-\dot{x}_1 = \left[\begin{array}{r}
-l_1 \cos\theta_1 \dot{\theta}_1 \\
-l_1 \sin\theta_1 \dot{\theta}_1 
-\end{array}\right]
-$$</p>
-<p>$$ 
-\dot{x_2} = \dot{x_1} + 
-\left[
-\begin{array}{rrr}
-l_2 c_{1+2} (\dot{\theta_1}+ \dot{\theta}) \\
-l_2 s_{1+2} (\dot{\theta_1}+ \dot{\theta})
-\end{array}
-\right]
-$$</p>
-<p>Kinematiği böylece çözmüş olduk. Dinamiği ortaya çıkartmak için, Lagrangian
-metotunu kullanıyoruz. Sistemin enerjisini düşünüyoruz, toplam kinetik
-enerji $T$'yi düşünelim. Bu basit, zaten onun için noktasal kütleleri
-seçtim, $\frac{1}{2} m V^2$ genel formülünden hareketle, vektör formunda</p>
-<p>$$
-T = \frac{1}{2} \dot{x}_1^T m_1 \dot{x}_1 + \frac{1}{2} \dot{x}_2^T m_2 \dot{x}_2 
-$$</p>
-<p>Toplam potansiyel enerji $U$ için, </p>
-<p>$$
-U = - m g l_1 c_1 - m_2 g (l_1c_1 + l_2 c_{1+2})
-$$</p>
-<p>Lagrangian $L = T - U$. $I_1 = m_1 l_1$ ve $I_2 = m_2 l_2$ olacak şekilde,</p>
-<p>$$
-(I_1 + I_2 + m_2 l_1^2 + 2m_2 l_1 l_{c2} c_2) \ddot{q_1} + (I_2 + m_2
-l_1 l_{c2} c_2)\ddot{q_2} - 2m_2 l_1 l_{c2} s_2 \dot{q_1} \dot{q_2}
-$$</p>
-<p>$$
--m_2 l_1 l_{c2} s_2 \dot{q_2}^2 + m_1 g l_{c1}s_1 + m_2 g
-        (l_1 s_1 + l_{c2} s_{1+2}) = 0
-$$</p>
-<p>$$
-(I_2 + m_2 l_1 l_{c2} c_2) \ddot{q_1} + I_2 \ddot{q_2} + m_2 l_1
-        l_{c2} s_2 \dot{q_1}^2 + m_2 g l_{c2} s_{1+2} = \tau
-$$</p>
-<p>$$
-\frac{\mathrm{d} }{\mathrm{d} t} \frac{\partial L}{\partial \dot{q}} - \frac{\partial
-  L}{\partial q} = Q
-$$</p>
-<p>$Q$'ya genelleştirilmiş kuvvet deniyor. </p>
-<p>[devam edecek]</p>
+<p>[atlandi]</p>
 <p>Daha Az Kumandalı Robotlar - 3</p>
 <p>Önceki derste gayrı-lineer dinamikten bahsettik, faz grafiklerine baktık,
 çekim bölgesine (basın of attraction) baktık, sabit noktalara baktık..
@@ -265,12 +186,12 @@ $$</p>
 $$</p>
 <p>Verili $A,B$ ile açılımı yapınca çift entegratör sistemini elde ettiğimizi
 göreceğiz.</p>
-<p>Amacımız $u$'yu bulmaktı değil mi, tuğla üzerinde etki eden öyle bir
-kontrol eylemi $u = \pi(x)$ bulalım ki sistemi sıfır noktasına
-getirsin. Yani amacımız bir geri besleme kanunu $\pi$ bulmak ($\pi$
-sembolünü $x$'in fonksiyonu olan kontrol ilkeleri için kullanıyorum). Şu
-formdaki $u$'lar ile başlayabiliriz; $u = -K x$.  $K$ bir matris, $x$
-alınıyor ve $-K$ ile ölçekleniyor. Bu örnekte $K$ matrisi 1x2 boyutunda,
+<p>Amacımız $u$'yu bulmak, tuğla üzerinde etki eden öyle bir kontrol eylemi
+$u = \pi(x)$ bulalım ki sistemi sıfır noktasına getirsin. Yani amacımız bir
+geri besleme kanunu $\pi$ bulmak ($\pi$ sembolünü $x$'in fonksiyonu olan
+kontrol ilkeleri için kullanıyorum). Şu formdaki $u$'lar ile
+başlayabiliriz; $u = -K x$. Görülen $K$ bir matris, $x$ alınıyor ve $-K$
+ile ölçekleniyor. Bu örnekte $K$ matrisi $1 \times 2$ boyutunda,
 $\left[\begin{array}{cc} k_1 &amp; k_2 \end{array}\right]$,</p>
 <p>$$ 
 -K x = 
@@ -374,10 +295,10 @@ minimum zaman problemi, </p>
 çabuk git $|u| \le 1$ kısıtlamasına tabi olarak. Tabii hem $q=0$ hem de
 $\dot{q}=0$, yani hız da sıfır olacak. Orijin derken yer ve hızdan oluşan
 kordinat sistemindeki "orijinden" bahsediyoruz. </p>
-<p>Soruya teorik olarak daha dalinca bu sorunun iyi sekillenmis olmasi icin
-isitlamanin olmasi gerektigini de gorurduk, yoksa, daha once dedigim gibi,
-sonsuz buyuklukte $u$ kullanabilirdim, sonsuz hizda ulasirdim ve birsey
-ogrenmemis olurdum. </p>
+<p>Soruya teorik olarak daha dalınca bu sorunun iyi şekillenmiş olması için
+kısıtlamanın olması gerektiğini de görürdük, yoksa, daha önce dediğim gibi,
+sonsuz büyüklükte $u$ kullanabilirdim, sonsuz hızda ulaşırdım ve birşey
+öğrenmemiş olurdum. </p>
 <p>Şimdi buz üzerinde tuğla hakkında zihnimizdeki tüm hayal gücü, bilgi
 kırıntısını kullanalım. Eğer sınırlı bir kuvvet uygulayabiliyorsam, ve
 orijine en çabuk şekilde ulaşmak istiyorsam, ne yapmalıyım? Biriniz çat-çat
@@ -388,14 +309,14 @@ kaya kaya hedef noktasına geleceğim. Bundan daha iyisi mümkün değil. Bunu
 ispatlayacağız tabii. Bu cevabı çift entegratör olarak kafadan
 düşünebilirdik, ama yürüyen bir robot için o kadar kolay düşünülemeyebilir,
 ve biz cevabı genel bir altyapı üzerinden türetmeye uğraşacağız.</p>
-<p>Bazen bazılarının "cat-cat kontrol optimaldir" dediğini duyabilirsiniz,
+<p>Bazen bazılarının "çat-çat kontrol optimaldir" dediğini duyabilirsiniz,
 bu sonuç yapıcılarınız (actuator) üzerinde katı sınırlar olduğu zaman sıkça
 ortaya çıkar, ve bu sınırlar olduğu zaman o sınırlara en yakın şekilde
 davranmak her zaman daha iyidir (o yüzden cat diye hızlanmak gerekli).
 Robotlarda bu yaklaşım her zaman işlemiyor, çünkü tek bir zaman aralığında
 yapıcıya maksimum kuvvet, sonra maksimum negatif kuvvet o durumda iyi
 olmuyor.</p>
-<p>İşin püf noktası herhalde cat diye gaza bastıktan sonra ne zaman frene
+<p>İşin püf noktası herhalde çat diye gaza bastıktan sonra ne zaman frene
 geçeceğimizi bulmak değil mi? Önce onu bulmaya uğraşalım, ortaya çıktığı
 sistem durumları herhalde birkaç tanedir. O durumları bulmaya
 çalışalım. $q&gt;0$ durumuna bakalım önce, bir bölüm seçelim, bu durumda fren
@@ -489,29 +410,45 @@ bir sebebi bu. </p>
 g(x,u) = 1, \quad h(x) = 0
 $$</p>
 <p>olarak seçebilirim, ve $T$ nihai nokta olur, diyelim ki $T$ bize verildi,
-yani nihai zaman ani belli, ve $u$ bir $U$ kümesinden geliyor, mesela
+yani nihai zaman anı belli, ve $u$ bir $U$ kümesinden geliyor, mesela
 $[-1,+1]$. Bu gayet kabul edilebilir bir formülasyon.</p>
 <p>Sonra yeni bir dış fonksiyon tanımlıyoruz, bu Hamiltonian, $H$. </p>
 <p>$$
 H(x,u,p) = g(x,u) + p(t)^T \left[ x \cdot f(x,u)  \right]
 $$</p>
-<p>Eğer bir optimal kontrol gidiş yolu bulduysam, ki bu yol bir dizi $x^<em>(t),
-u^</em>(t)$ olacak, bu gidiş yolu alttaki koşulları yerine getirmeli;</p>
+<p>Eğer bir optimal kontrol gidiş yolu bulduysam, ki bu yol bir dizi $x^*(t),
+u^*(t)$ olacak, bu gidiş yolu alttaki koşulları yerine getirmeli;</p>
 <p>1)</p>
 <p>$$
-\dot{x}^<em>(t) = f(x^</em>, u^<em>), \quad x^</em>(0) = x_0
+\dot{x}^*(t) = f(x^*, u^*), \quad x^*(0) = x_0
 $$</p>
 <p>Biraz daha çetrefil bir tane daha var,</p>
 <p>2)</p>
 <p>$$
 \dot{p}(t)
-= - \left[ \frac{\partial H}{\partial x}\right]_{x^<em>(t),u^</em>(t),p^*(t)}
+= - \left[ \frac{\partial H}{\partial x}\right]_{x^*(t),u^*(t),p^*(t)}
 = -\frac{\partial g^T}{\partial x} \frac{\partial f^T}{\partial x} p(t)
 $$</p>
 <p>$$
 p(T) = \left[ \frac{\partial h}{\partial x} \right]_{x^*(T)}
 $$</p>
 <p>3)</p>
+<p>O zaman $u^*$ soyle olacaktir, </p>
+<p>$$
+u^* = \argmin_{U} H(x^*, u, p)
+$$</p>
+<p>Son formülleri türetmeden önce ne anlama geldiklerine bakalım. Başta
+"gidiş yolu alttaki koşulları yerine getirmeli;" dedik, bu şartlar
+optimallik için gerekli şartlardır (necessary conditions). Yani mesela
+üstteki formüllerle bir $x^*(t),u^*(t)$ çözümü, gidiş yolu buldum. Bu
+sonucu gerekli şartlarla buldum, tatmin edilmesi gereken en az şartlar
+bunlar. Fakat bu şartlar yeterli (sufficient) olmayabilir. Lineer, dişbukey
+(convex) sistemlere gerekli şartlar aynı zamanda yeterli, fakat her zaman
+bu olmayabilir.</p>
+<p>Çözüm mekanığı bağlamında bu demektir ki eğer $x$'i ileri doğru entegre
+edersem, sonra oradan $p$ için zamanda geri gidersem (çünkü $T$ için bir
+şart tanımlı), elimdeki değerler içinden bir optimal $u$ bulduğum zaman bu
+$u$ gerekli optimallik şartını tatmin ediyor demektir. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tedrake, <em>MIT, 6.832 Underactuated Robotics</em>, <a href="https://youtu.be/Z8oMbOj9IWM">https://youtu.be/Z8oMbOj9IWM</a></p>
