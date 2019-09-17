@@ -372,8 +372,9 @@ aşağı inerim, ve yukarı doğru ufak bir gidiş yaparım. </p>
 ispatlamak. Optimallik konusu diger derslerde islenecek.</p>
 <p>Çift Entegre Edici ve Hamiltonian Çözüm</p>
 <p>Cift-entegre edici (double-integrator) problemine farkli bir sekilde
-bakalim [1]. Bu problemde amac tek eksen üzerinde $y$ diyelim, bir
-objeyi bir konumdan diğerine hareket ettirmekti.</p>
+bakalim [3, sf. 519], [2, sf. 308], [4, sf. 250]. Bu problemde amac
+tek eksen üzerinde $y$ diyelim, bir objeyi bir konumdan diğerine
+hareket ettirmekti.</p>
 <p>Ana fizik formülleri $F = ma$'dan hareketle,</p>
 <p>$$
 m \ddot{y} = f(t)
@@ -453,15 +454,28 @@ $$</p>
 <p>$$
 \lambda_1^*(t) = \lambda_1^*(0)
 $$</p>
-<p>Değil mi? Sıfırı entegre edince bir sabit elde edilir, yani
-$\lambda_1^*(t)$'nin başlangıç değeri $\lambda_1^*(0)$. </p>
-<p>[devam edecek]</p>
-<p>[3, sf. 519]</p>
-<p>[2, sf. 308]</p>
-<p>[4, sf. 250]</p>
-<p>[devam edecek]</p>
+<p>Değil mi? Sıfırı entegre edince bir sabit elde edilir, bu sabit
+$\lambda_1^*(t)$'nin başlangıç değeri $\lambda_1^*(0)$. İkinci
+entegrasyon $\dot{\lambda}_2 ^*(t) $ için, bu değişken
+$-\lambda_1^*(t)$'a eşit, biraz önce bu değeri bulduk, onu yerine
+koyup entegre edince,</p>
+<p>$$
+\lambda_2^*(t) = \lambda_2^*(0) - \lambda_1(0) t
+$$</p>
+<p>$u^*(t)$'nun bağlı olduğu $\lambda_2^*(t)$ ortaya çıktı, bu bir düz çizgiyi
+gösteriyor. Bir düz çizgi ya eksiden artıya, ya artıdan eksiye, ya da
+ekside, artıda kalacağı için (başka seçenek yok), optimal kontrol
+seçenekleri [-1], [+1], [+1,-1], [-1,+1] olabilir.</p>
+<p>Çözümde daha da ilerleyince [3, sf. 519] sonuç olarak $x_1,x_2$
+grafiğinde paraboller ortaya çıkar.</p>
+<p><img alt="" src="phy_control_07.png" /></p>
+<p>Bu grafikte -1 aşağı giden gidiş yollarını +1 yukarı giden gidiş
+yollarını temsil eder. Eğer bir başlangıç noktası, mesela $d$'den
+orijine gitmek istiyorsak, önce -1 ile aşağı ineriz, sonra +1 ile
+$a$'dan geçen yukarı yolla kesiştiğimiz yerde o gidiş yoluna değişim
+yaparız ve orijine ulaşırız.</p>
 <p>Kaynaklar</p>
 <p>[1] Tedrake, <em>MIT, 6.832 Underactuated Robotics, Ders 1</em>, <a href="https://youtu.be/Z8oMbOj9IWM">https://youtu.be/Z8oMbOj9IWM</a></p>
-<p>[2] Athans</p>
-<p>[3] Naidu</p>
-<p>[4] Kirk</p>
+<p>[2] Athans, <em>Optimal Control An Introduction to the Theory and Its Applications</em></p>
+<p>[3] Naidu, <em>Optimal Control Systems</em></p>
+<p>[4] Kirk, <em>Optimal Control Theory An Introduction</em></p>
