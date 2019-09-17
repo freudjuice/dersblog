@@ -94,142 +94,6 @@ h^* = \sqrt{\frac{2 A_0}{3 \pi}}, \quad
 $$</p>
 <p>Bu sonuçlar diyor ki silindirsel deponun hacmini maksimize etmek için onun
 çapını ve yüksekliğini aynı tutmalıyız. </p>
-<p>Fonksiyonel Optimizasyonu</p>
-<p>Aynen bir bedel üzerinden fonksiyon optimize ettiğimiz gibi, bir
-fonksiyonel bedel üzerinden bir optimal fonsiyon da bulabiliriz. Lagrange
-çarpanları yöntemi hala geçerli, bir birleşmiş fonksiyonel yaratıyoruz, ve
-Euler-Lagrange üzerinden bu yeni fonksiyonelin alt denklemlerini
-çıkartıyoruz, ve sonra bu diferansiyel sistemini çözüyoruz. </p>
-<p>İki değişken üzerinden bakalım, şu fonksiyonel olsun [1, sf. 48], </p>
-<p>$$
-J(x_1(t),x_2(t),t) = J = 
-\int _{t_0}^{t_1} V(x_1(t), x_2(t), \dot{x}_1(t), \dot{x}_2(t), t) \mathrm{d} t
-$$</p>
-<p>kısıtlama şartı (kontrol teorisindeki sistem denklemi buraya geliyor)</p>
-<p>$$
-g(x_1(t), x_2(t), \dot{x}_1(t), \dot{x}_2(t)) = 0
-$$</p>
-<p>ve şu sabit uç noktaları geçerli olacak şekilde, </p>
-<p>$$
-x_1(t_0) = x_{10}, \quad x_2(t_0) = x_{20}
-$$</p>
-<p>$$
-x_1(t_f) = x_{1f}, \quad x_2(t_f) = x_{2f}
-$$</p>
-<p>Euler-Lagrange</p>
-<p>$$
-\left( \frac{\partial \mathcal{L}}{\partial x_1} \right) -
-\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}_1} \right) 
-= 0
-$$</p>
-<p>$$
-\left( \frac{\partial \mathcal{L}}{\partial x_2} \right) -
-\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}_2} \right) 
-= 0
-$$</p>
-<p>$$
-\left( \frac{\partial \mathcal{L}}{\partial \lambda} \right) -
-\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\lambda}} \right) 
-= 0
-$$</p>
-<p>Örnek</p>
-<p>Performans değerini</p>
-<p>$$
-J = \int _{0}^{1} \left[ x^2(t) + u^2(t) \right] \mathrm{d} t
-$$</p>
-<p>optimize edin ki uç noktalar</p>
-<p>$$
-x(0) = 1, \quad x(1) = 0
-$$</p>
-<p>ve kısıtlama (sistem denklemi)</p>
-<p>$$
-\dot{x}(t) = -x(t) + u(t)
-$$</p>
-<p>olacak şekilde.</p>
-<p>Çözüm</p>
-<p>İlk önce sistem denklemini $g$ formunda yazalım,</p>
-<p>$$
-g( x(t), \dot{x}(t), u(t) ) =  \dot{x}(t) + x(t) - u(t)  = 0
-$$</p>
-<p>Lagrange çarpanlar yöntemi ile birleşik fonksiyoneli yaratalım,</p>
-<p>$$
-J = \int _{0}^{1} \left[ 
-  x^2(t) + u^2(t) + \lambda(t) \left\{ \dot{x}(t) + x(t) - u(t)  \right\}
-\right] \mathrm{d} t
-$$</p>
-<p>$$
-=  \int _{0}^{1} \mathcal{L} (x(t), \dot{x}(t),u(t),\lambda(t)) \mathrm{d} t
-$$</p>
-<p>Şimdi üstteki Lagrangian üzerinde Euler-Lagrange formülünü uygulayalım, </p>
-<p>$$
-\left( \frac{\partial \mathcal{L}}{\partial x_1} \right) -
-\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}_1} \right) =
-0 \to 2 x(t) + \lambda(t) - \dot{\lambda}(t) = 0
-\qquad (1)
-$$</p>
-<p>$$
-\left( \frac{\partial \mathcal{L}}{\partial u} \right) -
-\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{u}} \right) =
-0 \to 2u(t) - \lambda(t) = 0
-\qquad (2)
-$$</p>
-<p>$$
-\left( \frac{\partial \mathcal{L}}{\partial \lambda} \right) -
-\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\lambda}} \right) =
-0 \to \dot{x}(t) + x(t) - u(t) = 0
-\qquad (3)
-$$</p>
-<p>(2) ve (3) formüllerini birleştirince,</p>
-<p>$$
-\lambda(t) = 2 u(t) = 2 (\dot{x}(t) + x(t) )
-$$</p>
-<p>Sonra (1) formülünü dahil edelim,</p>
-<p>$$
-2 x(t) + 2 (\dot{x}(t) + x(t)) - 2(\ddot{x}(t) + \dot{x}(t) ) = 0
-$$</p>
-<p>Basitleştirirsek, </p>
-<p>$$
-\ddot{x}(t) - 2x(t) = 0
-$$</p>
-<p>Çözelim,</p>
-<pre><code class="python">import sympy
-
-t = sympy.symbols('t')
-x = sympy.Function('x')
-diffeq = sympy.Eq(x(t).diff(t, t) - 2*x(t),0)
-print (sympy.latex (sympy.dsolve(diffeq, x(t))))
-</code></pre>
-
-<pre><code>x{\left(t \right)} = C_{1} e^{- \sqrt{2} t} + C_{2} e^{\sqrt{2} t}
-</code></pre>
-
-<p>$$
-x{\left(t \right)} = C_{1} e^{- \sqrt{2} t} + C_{2} e^{\sqrt{2} t}
-$$</p>
-<p>Eğer başlangıç ve bitiş şartlarını verirsek,</p>
-<pre><code class="python">diffeq = sympy.Eq(x(t).diff(t, t) - 2*x(t),0)
-solved = sympy.dsolve(diffeq, x(t), ics={x(0):1,x(1):0 } ) 
-solved = sympy.simplify(solved)
-print (sympy.latex (solved))
-</code></pre>
-
-<pre><code>x{\left(t \right)} = \frac{\left(e^{2 \sqrt{2} t} - e^{2 \sqrt{2}}\right) e^{- \sqrt{2} t}}{1 - e^{2 \sqrt{2}}}
-</code></pre>
-
-<p>$$
-x{\left(t \right)} = \frac{\left(e^{2 \sqrt{2} t} - e^{2 \sqrt{2}}\right) e^{- \sqrt{2} t}}{1 - e^{2 \sqrt{2}}}
-$$</p>
-<p>Ve $u$ için [1]'e bakarsak, </p>
-<p>$$
-u(t) = \dot{x}(t) + x(t) 
-$$</p>
-<p>olduğu için</p>
-<p>$$
-u(t) = C_1(1-\sqrt{2}) e^{-\sqrt{2t}} + C_2(1-\sqrt{2}) e^{\sqrt{2t}} 
-$$</p>
-<p>ki $C_1 = 1/(1-e^{-2\sqrt{2}})$ ve $C_2 = 1/(1-e^{2\sqrt{2}})$</p>
-<p>Böylece tanımladığımız bedeli optimize edecek bir kontrol aksiyonu $u$ ve
-$x$ elde etmiş olduk. </p>
 <p>Hamiltonian Biçimi </p>
 <p>Daha önce Lagrangian biçimini gördük, $x=x(t)$, $u=u(t)$,
 $\dot{x}=\dot{x}(t)$, $\lambda=\lambda(t)$ olmak üzere, sistem denklemi</p>
@@ -333,7 +197,7 @@ nasıl optimize edileceğini gösteriyor. Yani $J$ fonksiyonelin sistem
 denklemine göre optimize edilmesi problemi şimdi Hamiltonian
 fonksiyonunun $u$ bazında optimize edilmesi problemine
 dönüştü. Böylece orijinal fonksiyonel optimizasyonunu normal bir
-fonksiyon optimizasyon problemine indirgemiş olduk [1, sf. 92].</p>
+fonksiyon optimizasyon problemine indirgemiş olduk [1, sf. 86].</p>
 <p>Örnek [1, sf. 70]</p>
 <p>Çift entegre edici (double-integrator) sistemine bakalım. </p>
 <p>$$
@@ -466,6 +330,141 @@ $$</p>
 <p>$$
 u = -\lambda_2 = 3t - 4
 $$</p>
-<p>TODO: x2(2) serbest, naidu 100</p>
+<p>Ozetlemek gerekirse, aynen bir bedel üzerinden fonksiyon optimize ettiğimiz
+gibi, bir fonksiyonel bedel üzerinden bir optimal fonsiyon da
+bulabiliriz. Lagrange çarpanları yöntemi hala geçerli, bir birleşmiş
+fonksiyonel yaratıyoruz, ve Euler-Lagrange üzerinden bu yeni fonksiyonelin
+alt denklemlerini çıkartıyoruz, ve sonra bu diferansiyel sistemini
+çözüyoruz.</p>
+<p>İki değişken üzerinden bakalım, şu fonksiyonel olsun [1, sf. 48], </p>
+<p>$$
+J(x_1(t),x_2(t),t) = J = 
+\int _{t_0}^{t_1} V(x_1(t), x_2(t), \dot{x}_1(t), \dot{x}_2(t), t) \mathrm{d} t
+$$</p>
+<p>kısıtlama şartı (kontrol teorisindeki sistem denklemi buraya geliyor)</p>
+<p>$$
+g(x_1(t), x_2(t), \dot{x}_1(t), \dot{x}_2(t)) = 0
+$$</p>
+<p>ve şu sabit uç noktaları geçerli olacak şekilde, </p>
+<p>$$
+x_1(t_0) = x_{10}, \quad x_2(t_0) = x_{20}
+$$</p>
+<p>$$
+x_1(t_f) = x_{1f}, \quad x_2(t_f) = x_{2f}
+$$</p>
+<p>Euler-Lagrange</p>
+<p>$$
+\left( \frac{\partial \mathcal{L}}{\partial x_1} \right) -
+\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}_1} \right) 
+= 0
+$$</p>
+<p>$$
+\left( \frac{\partial \mathcal{L}}{\partial x_2} \right) -
+\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}_2} \right) 
+= 0
+$$</p>
+<p>$$
+\left( \frac{\partial \mathcal{L}}{\partial \lambda} \right) -
+\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\lambda}} \right) 
+= 0
+$$</p>
+<p>Örnek</p>
+<p>Performans değerini</p>
+<p>$$
+J = \int _{0}^{1} \left[ x^2(t) + u^2(t) \right] \mathrm{d} t
+$$</p>
+<p>optimize edin ki uç noktalar</p>
+<p>$$
+x(0) = 1, \quad x(1) = 0
+$$</p>
+<p>ve kısıtlama (sistem denklemi)</p>
+<p>$$
+\dot{x}(t) = -x(t) + u(t)
+$$</p>
+<p>olacak şekilde.</p>
+<p>Çözüm</p>
+<p>İlk önce sistem denklemini $g$ formunda yazalım,</p>
+<p>$$
+g( x(t), \dot{x}(t), u(t) ) =  \dot{x}(t) + x(t) - u(t)  = 0
+$$</p>
+<p>Lagrange çarpanlar yöntemi ile birleşik fonksiyoneli yaratalım,</p>
+<p>$$
+J = \int _{0}^{1} \left[ 
+  x^2(t) + u^2(t) + \lambda(t) \left\{ \dot{x}(t) + x(t) - u(t)  \right\}
+\right] \mathrm{d} t
+$$</p>
+<p>$$
+=  \int _{0}^{1} \mathcal{L} (x(t), \dot{x}(t),u(t),\lambda(t)) \mathrm{d} t
+$$</p>
+<p>Şimdi üstteki Lagrangian üzerinde Euler-Lagrange formülünü uygulayalım, </p>
+<p>$$
+\left( \frac{\partial \mathcal{L}}{\partial x_1} \right) -
+\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}_1} \right) =
+0 \to 2 x(t) + \lambda(t) - \dot{\lambda}(t) = 0
+\qquad (1)
+$$</p>
+<p>$$
+\left( \frac{\partial \mathcal{L}}{\partial u} \right) -
+\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{u}} \right) =
+0 \to 2u(t) - \lambda(t) = 0
+\qquad (2)
+$$</p>
+<p>$$
+\left( \frac{\partial \mathcal{L}}{\partial \lambda} \right) -
+\frac{\mathrm{d}}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\lambda}} \right) =
+0 \to \dot{x}(t) + x(t) - u(t) = 0
+\qquad (3)
+$$</p>
+<p>(2) ve (3) formüllerini birleştirince,</p>
+<p>$$
+\lambda(t) = 2 u(t) = 2 (\dot{x}(t) + x(t) )
+$$</p>
+<p>Sonra (1) formülünü dahil edelim,</p>
+<p>$$
+2 x(t) + 2 (\dot{x}(t) + x(t)) - 2(\ddot{x}(t) + \dot{x}(t) ) = 0
+$$</p>
+<p>Basitleştirirsek, </p>
+<p>$$
+\ddot{x}(t) - 2x(t) = 0
+$$</p>
+<p>Çözelim,</p>
+<pre><code class="python">import sympy
+
+t = sympy.symbols('t')
+x = sympy.Function('x')
+diffeq = sympy.Eq(x(t).diff(t, t) - 2*x(t),0)
+print (sympy.latex (sympy.dsolve(diffeq, x(t))))
+</code></pre>
+
+<pre><code>x{\left(t \right)} = C_{1} e^{- \sqrt{2} t} + C_{2} e^{\sqrt{2} t}
+</code></pre>
+
+<p>$$
+x{\left(t \right)} = C_{1} e^{- \sqrt{2} t} + C_{2} e^{\sqrt{2} t}
+$$</p>
+<p>Eğer başlangıç ve bitiş şartlarını verirsek,</p>
+<pre><code class="python">diffeq = sympy.Eq(x(t).diff(t, t) - 2*x(t),0)
+solved = sympy.dsolve(diffeq, x(t), ics={x(0):1,x(1):0 } ) 
+solved = sympy.simplify(solved)
+print (sympy.latex (solved))
+</code></pre>
+
+<pre><code>x{\left(t \right)} = \frac{\left(e^{2 \sqrt{2} t} - e^{2 \sqrt{2}}\right) e^{- \sqrt{2} t}}{1 - e^{2 \sqrt{2}}}
+</code></pre>
+
+<p>$$
+x{\left(t \right)} = \frac{\left(e^{2 \sqrt{2} t} - e^{2 \sqrt{2}}\right) e^{- \sqrt{2} t}}{1 - e^{2 \sqrt{2}}}
+$$</p>
+<p>Ve $u$ için [1]'e bakarsak, </p>
+<p>$$
+u(t) = \dot{x}(t) + x(t) 
+$$</p>
+<p>olduğu için</p>
+<p>$$
+u(t) = C_1(1-\sqrt{2}) e^{-\sqrt{2t}} + C_2(1-\sqrt{2}) e^{\sqrt{2t}} 
+$$</p>
+<p>ki $C_1 = 1/(1-e^{-2\sqrt{2}})$ ve $C_2 = 1/(1-e^{2\sqrt{2}})$</p>
+<p>Böylece tanımladığımız bedeli optimize edecek bir kontrol aksiyonu $u$ ve
+$x$ elde etmiş olduk. </p>
 <p>Kaynaklar</p>
 <p>[1] Naidu, <em>Optimal Control Systems</em></p>

@@ -99,13 +99,323 @@ $$
 Bu sonuçlar diyor ki silindirsel deponun hacmini maksimize etmek için onun
 çapýný ve yüksekliðini ayný tutmalýyýz. 
 
-Fonksiyonel Optimizasyonu
+Hamiltonian Biçimi 
 
-Aynen bir bedel üzerinden fonksiyon optimize ettiðimiz gibi, bir
-fonksiyonel bedel üzerinden bir optimal fonsiyon da bulabiliriz. Lagrange
-çarpanlarý yöntemi hala geçerli, bir birleþmiþ fonksiyonel yaratýyoruz, ve
-Euler-Lagrange üzerinden bu yeni fonksiyonelin alt denklemlerini
-çýkartýyoruz, ve sonra bu diferansiyel sistemini çözüyoruz. 
+Daha önce Lagrangian biçimini gördük, $x=x(t)$, $u=u(t)$,
+$\dot{x}=\dot{x}(t)$, $\lambda=\lambda(t)$ olmak üzere, sistem denklemi
+
+$$
+\dot{x} = f(x, u, t)
+$$
+
+idi, sýnýr þartlarý $x(t_0)$ sabit, $x(t_f)$ serbest
+býrakýlmýþ. Performans ölçütü bizim tanýmlayabileceðimiz bir $V$
+üzerinden basit haliyle þöyleydi,
+
+$$
+J(u) = \int _{t_0}^{t_f} V(x, u, t) \ud t
+$$
+
+Sýnýr þartý $g$ sistem denklemi üzerinden,
+
+$$
+g(x, \dot{x}, u, t) = f(x, u, t) - \dot{x} = 0
+$$
+
+Lagrangian'i oluþturalým ($g$ burada), 
+
+$$
+\mathcal{L} = \mathcal{L}( x, \dot{x}, u, \lambda, t) =
+V( x, u, t) +  \lambda^T g 
+$$
+
+$$
+= V(x, u, t) +  \lambda^T \big\{ f(x, u, t) - \dot{x} \big\}
+\mlabel{4}
+$$
+
+
+Performans ölçütü þimdi þöyle oldu,
+
+$$
+J_a(u) = \int _{t_0}^{t_f} \mathcal{L}( x, \dot{x}, u, \lambda, t)
+$$
+
+Eðer Hamiltonian biçimine geçmek istiyorsak, bir $\mathcal{H}$ tanýmlarýz,
+
+$$
+\mathcal{H}(x, u, \lambda, t) = V( x, u, t) + \lambda^T f(x, u, t)
+$$
+
+o zaman Lagrangian $\mathcal{H}$ formunda su hale gelir,
+
+$$
+\mathcal{L}( x, \dot{x}, u, \lambda, t) = 
+\mathcal{H}(x, u, \lambda, t) - \lambda^T \dot{x}
+\mlabel{5}
+$$
+
+Bu aslýnda (4)'ün açýlmýþ hali, ve o ilk bölümün $\mathcal{H}$ olarak tanýmlanmasý,
+
+$$ 
+\mathcal{L} = \underbrace{V( x, u, t) + \lambda^T f( x, u, t))}_{\mathcal{H}} - 
+\lambda^T \dot{x}(t) 
+$$ 
+
+Þimdi Euler-Lagrange iþlemini hatýrlayalým, eldeki deðiþkenler
+$x,\lambda,u$ üzerinden bu denklemler
+
+$$
+\left( \frac{\partial \mathcal{L}}{\partial x} \right) -
+\frac{\ud}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}} \right) 
+= 0 
+\quad
+\textrm{konum (state) denklemi}
+$$
+
+$$
+\left( \frac{\partial \mathcal{L}}{\partial \lambda} \right) -
+\frac{\ud}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\lambda}} \right) 
+= 0
+\quad
+\textrm{eþkonum (costate) denklemi}
+$$
+
+$$
+\left( \frac{\partial \mathcal{L}}{\partial u} \right) -
+\frac{\ud}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{u}} \right) 
+= 0
+\quad
+\textrm{kontrol (control) denklemi}
+$$
+
+Üstte belirtildiði gibi bu denklemlere konum, eþkonum, kontrol
+denklemleri ismi veriliyor. Þimdi biz bu türetmeyi içinde
+$\mathcal{H}$ olan $\mathcal{L}$ için yapacaðýz, çünkü bu þekilde
+belli daha uygun formlar elde etmek istiyoruz, yani (4) denklemini baz
+alarak, üstteki üç formülü uygulayýnca,
+
+$$
+\frac{\partial \mathcal{L}}{\partial x} = 
+\frac{\partial \mathcal{H}}{\partial x} - 
+\frac{\ud}{\ud t} \left( -\lambda \right)   = 0
+$$
+
+$$
+\frac{\partial \mathcal{L}}{\partial \lambda} = 
+\frac{\partial \mathcal{H}}{\partial \lambda} - \dot{x} -
+\frac{\ud}{\ud t} \left( 0 \right)   = 0
+$$
+
+$$
+\frac{\partial \mathcal{L}}{\partial u} = 
+\frac{\partial \mathcal{H}}{\partial u} - 
+\frac{\ud}{\ud t} \left( 0 \right)   = 0
+$$
+
+Ve bu türetme üzerinden konum, eþkonum, kontrol denklemlerinin yeniden
+düzenlenmiþ hali þöyle olur,
+
+$$
+\dot{x} = + \left( \frac{\partial \mathcal{H}}{\partial \lambda} \right)
+$$
+
+$$
+\dot{\lambda} = - \left( \frac{\partial \mathcal{H}}{\partial x} \right)
+$$
+
+$$
+0 = + \left( \frac{\partial \mathcal{H}}{\partial u} \right)
+$$
+
+
+Üstteki son denklem Hamiltonian $\mathcal{H}$'nin kontrol $u$'ya göre
+nasýl optimize edileceðini gösteriyor. Yani $J$ fonksiyonelin sistem
+denklemine göre optimize edilmesi problemi þimdi Hamiltonian
+fonksiyonunun $u$ bazýnda optimize edilmesi problemine
+dönüþtü. Böylece orijinal fonksiyonel optimizasyonunu normal bir
+fonksiyon optimizasyon problemine indirgemiþ olduk [1, sf. 86].
+
+Örnek [1, sf. 70]
+
+Çift entegre edici (double-integrator) sistemine bakalým. 
+
+$$
+\dot{x}_1(t) = x_2(t)
+$$
+
+$$
+\dot{x}_2(t) = u(t)
+$$
+
+Performans ölçütü 
+
+$$
+J = \frac{1}{2} \int _{t_0}^{t_f} u^2 \ud t
+$$
+
+Yani $u(t)$'nin, tüm deðerlerinin, ortalama olarak fazla büyük
+olmasýný istemiyoruz. Sýnýr þartlarý $\underline{x} =
+\left[\begin{array}{cc} x_1 & x_2 \end{array}\right]^T$ 
+olmak üzere,
+
+$$
+\underline{x}(0) = \left[\begin{array}{cc} 1 & 2 \end{array}\right]^T \quad 
+\underline{x}(2) = \left[\begin{array}{cc} 1 & 0 \end{array}\right]^T 
+$$
+
+Yazýnýn geri kalanýnda $\underline{x}$, vs. kullanýlmayacak, çerçeveden
+boyut tahmin edilebilir.
+
+Çözüm
+
+Hamiltonian'ý oluþturalým çünkü tüm sonuç türevleri ona göre alýnýyor
+artýk; o zaman $V,\lambda,f$ gerekiyor. 
+
+$$
+V(x,u,t) = V(u) = \frac{1}{2} u^2
+$$
+
+$$
+f(x,u,t) = \left[\begin{array}{cc} f_1 & f_2 \end{array}\right]^T
+$$
+
+oyle ki $f_1 = x_2(t)$, $f_2 = u(t)$. 
+
+Hamiltonian
+
+$$
+\mathcal{H} = \mathcal{H}(x_1, x_2, u, \lambda_1, \lambda_2)
+$$
+
+$$
+= V(u) + \lambda^T f(x,u)
+$$
+
+$$
+= \frac{1}{2} u^2 + \lambda_1 x_2 + \lambda_2 u 
+$$
+
+Optimal $u^*$'yu bulmak için $\frac{\partial \mathcal{H}}{\partial u}$
+denklemini kullanýyoruz,
+
+$$
+\left( \frac{\partial \mathcal{H}}{\partial u} \right) = 0 \to
+u^* + \lambda_2^* = 0
+$$
+
+$$
+u^* = -\lambda_2^*
+$$
+
+Optimal $\mathcal{H}$'yi bulmak için üstteki deðerleri üç üstteki
+formüle sokuyoruz, 
+
+$$
+\mathcal{H}^*(x_1^*, x_2^*,\lambda_1^*,\lambda_2^*) = 
+\frac{1}{2} \lambda_2^* + \lambda_1^* x_2^* - \lambda_2^* 
+$$
+
+$$
+= \lambda_1^* x_2^* - \frac{1}{2} {\lambda_2^*}^2  
+$$
+
+Devam edersek, $\dot{x} = \left( \frac{\partial \mathcal{H}}{\partial
+\lambda} \right)$  denkleminden hareketle,
+
+$$
+\dot{x}^*_1 = \left( \frac{\partial \mathcal{H}}{\partial \lambda_1} \right) =
+x_2^*
+$$
+
+$$
+\dot{x}^*_2 = \left( \frac{\partial \mathcal{H}}{\partial \lambda_2} \right) =
+\lambda_2^*
+$$
+
+Ve $\dot{\lambda} = - \left( \frac{\partial \mathcal{H}}{\partial x}
+\right)$ denkleminden hareketle,
+
+$$
+\dot{\lambda}_1^* = - \left( \frac{\partial \mathcal{H}}{\partial x_1} \right) = 0
+$$
+
+$$
+\dot{\lambda}_2^* = - \left( \frac{\partial \mathcal{H}}{\partial x_2} \right) = 
+- \lambda_1^*
+$$
+
+\begin{minted}[fontsize=\footnotesize]{python}
+from sympy import symbols, Eq, Function, dsolve, latex, simplify
+
+t = symbols('t') 
+x1,x2,lam1,lam2 = symbols('x1 x2 lam1 lam2',cls=Function)
+
+system = [Eq(x1(t).diff(t), x2(t)), \
+          Eq(x2(t).diff(t), -lam2(t)), \
+          Eq(lam1(t).diff(t), 0), \
+          Eq(lam2(t).diff(t), -lam1(t)),  \
+          ]
+
+sol = dsolve(system, [x1(t),x2(t),lam1(t),lam2(t)])
+print (latex(simplify(sol[0])))
+print (latex(simplify(sol[1])))
+print (latex(sol[2]))
+print (latex(sol[3]))
+\end{minted}
+
+\begin{verbatim}
+x_{1}{\left(t \right)} = C_{1} + C_{2} t + C_{2} + \frac{C_{3} t^{2}}{2} + C_{3} t + C_{3} + \frac{C_{4} t^{3}}{6} + \frac{C_{4} t^{2}}{2} + C_{4} t + C_{4}
+x_{2}{\left(t \right)} = C_{2} + C_{3} t + C_{3} + \frac{C_{4} t^{2}}{2} + C_{4} t + C_{4}
+lam_{1}{\left(t \right)} = C_{4}
+lam_{2}{\left(t \right)} = - C_{3} - C_{4} t - C_{4}
+\end{verbatim}
+
+$$
+x_{1}{\left(t \right)} = C_{1} + C_{2} t + C_{2} + \frac{C_{3} t^{2}}{2} + C_{3} t + C_{3} + \frac{C_{4} t^{3}}{6} + \frac{C_{4} t^{2}}{2} + C_{4} t + C_{4}
+$$
+
+$$
+x_{2}{\left(t \right)} = C_{2} + C_{3} t + C_{3} + \frac{C_{4} t^{2}}{2} + C_{4} t + C_{4}
+$$
+
+$$
+lam_{1}{\left(t \right)} = C_{4}
+$$
+
+$$
+lam_{2}{\left(t \right)} = - C_{3} - C_{4} t - C_{4}
+$$
+
+Sýnýr þartlarýný tanýmlayarak çözersek, ve sadece $\lambda_2$'ye
+bakarsak (çünkü $u(t)$ sonucunu $u(t) = -\lambda_2^*(t)$ olarak bulmuþtuk),
+
+\begin{minted}[fontsize=\footnotesize]{python}
+ics = { x1(0):1, x2(0):2, x1(2):1, x2(2):0 } 
+sol = dsolve(system, [x1(t),x2(t),lam1(t),lam2(t)], ics=ics)
+print (latex(sol[3]))
+\end{minted}
+
+\begin{verbatim}
+lam_{2}{\left(t \right) = 4 - 3 t
+\end{verbatim}
+
+$$
+\lambda_{2}{\left(t \right)} = 4 - 3 t
+$$
+
+O zaman, 
+
+$$
+u = -\lambda_2 = 3t - 4
+$$
+
+Ozetlemek gerekirse, aynen bir bedel üzerinden fonksiyon optimize ettiðimiz
+gibi, bir fonksiyonel bedel üzerinden bir optimal fonsiyon da
+bulabiliriz. Lagrange çarpanlarý yöntemi hala geçerli, bir birleþmiþ
+fonksiyonel yaratýyoruz, ve Euler-Lagrange üzerinden bu yeni fonksiyonelin
+alt denklemlerini çýkartýyoruz, ve sonra bu diferansiyel sistemini
+çözüyoruz.
 
 Ýki deðiþken üzerinden bakalým, þu fonksiyonel olsun [1, sf. 48], 
 
@@ -285,319 +595,6 @@ ki $C_1 = 1/(1-e^{-2\sqrt{2}})$ ve $C_2 = 1/(1-e^{2\sqrt{2}})$
 
 Böylece tanýmladýðýmýz bedeli optimize edecek bir kontrol aksiyonu $u$ ve
 $x$ elde etmiþ olduk. 
-
-Hamiltonian Biçimi 
-
-Daha önce Lagrangian biçimini gördük, $x=x(t)$, $u=u(t)$,
-$\dot{x}=\dot{x}(t)$, $\lambda=\lambda(t)$ olmak üzere, sistem denklemi
-
-$$
-\dot{x} = f(x, u, t)
-$$
-
-idi, sýnýr þartlarý $x(t_0)$ sabit, $x(t_f)$ serbest
-býrakýlmýþ. Performans ölçütü bizim tanýmlayabileceðimiz bir $V$
-üzerinden basit haliyle þöyleydi,
-
-$$
-J(u) = \int _{t_0}^{t_f} V(x, u, t) \ud t
-$$
-
-Sýnýr þartý $g$ sistem denklemi üzerinden,
-
-$$
-g(x, \dot{x}, u, t) = f(x, u, t) - \dot{x} = 0
-$$
-
-Lagrangian'i oluþturalým ($g$ burada), 
-
-$$
-\mathcal{L} = \mathcal{L}( x, \dot{x}, u, \lambda, t) =
-V( x, u, t) +  \lambda^T g 
-$$
-
-$$
-= V(x, u, t) +  \lambda^T \big\{ f(x, u, t) - \dot{x} \big\}
-\mlabel{4}
-$$
-
-
-Performans ölçütü þimdi þöyle oldu,
-
-$$
-J_a(u) = \int _{t_0}^{t_f} \mathcal{L}( x, \dot{x}, u, \lambda, t)
-$$
-
-Eðer Hamiltonian biçimine geçmek istiyorsak, bir $\mathcal{H}$ tanýmlarýz,
-
-$$
-\mathcal{H}(x, u, \lambda, t) = V( x, u, t) + \lambda^T f(x, u, t)
-$$
-
-o zaman Lagrangian $\mathcal{H}$ formunda su hale gelir,
-
-$$
-\mathcal{L}( x, \dot{x}, u, \lambda, t) = 
-\mathcal{H}(x, u, \lambda, t) - \lambda^T \dot{x}
-\mlabel{5}
-$$
-
-Bu aslýnda (4)'ün açýlmýþ hali, ve o ilk bölümün $\mathcal{H}$ olarak tanýmlanmasý,
-
-$$ 
-\mathcal{L} = \underbrace{V( x, u, t) + \lambda^T f( x, u, t))}_{\mathcal{H}} - 
-\lambda^T \dot{x}(t) 
-$$ 
-
-Þimdi Euler-Lagrange iþlemini hatýrlayalým, eldeki deðiþkenler
-$x,\lambda,u$ üzerinden bu denklemler
-
-$$
-\left( \frac{\partial \mathcal{L}}{\partial x} \right) -
-\frac{\ud}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}} \right) 
-= 0 
-\quad
-\textrm{konum (state) denklemi}
-$$
-
-$$
-\left( \frac{\partial \mathcal{L}}{\partial \lambda} \right) -
-\frac{\ud}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\lambda}} \right) 
-= 0
-\quad
-\textrm{eþkonum (costate) denklemi}
-$$
-
-$$
-\left( \frac{\partial \mathcal{L}}{\partial u} \right) -
-\frac{\ud}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{u}} \right) 
-= 0
-\quad
-\textrm{kontrol (control) denklemi}
-$$
-
-Üstte belirtildiði gibi bu denklemlere konum, eþkonum, kontrol
-denklemleri ismi veriliyor. Þimdi biz bu türetmeyi içinde
-$\mathcal{H}$ olan $\mathcal{L}$ için yapacaðýz, çünkü bu þekilde
-belli daha uygun formlar elde etmek istiyoruz, yani (4) denklemini baz
-alarak, üstteki üç formülü uygulayýnca,
-
-$$
-\frac{\partial \mathcal{L}}{\partial x} = 
-\frac{\partial \mathcal{H}}{\partial x} - 
-\frac{\ud}{\ud t} \left( -\lambda \right)   = 0
-$$
-
-$$
-\frac{\partial \mathcal{L}}{\partial \lambda} = 
-\frac{\partial \mathcal{H}}{\partial \lambda} - \dot{x} -
-\frac{\ud}{\ud t} \left( 0 \right)   = 0
-$$
-
-$$
-\frac{\partial \mathcal{L}}{\partial u} = 
-\frac{\partial \mathcal{H}}{\partial u} - 
-\frac{\ud}{\ud t} \left( 0 \right)   = 0
-$$
-
-Ve bu türetme üzerinden konum, eþkonum, kontrol denklemlerinin yeniden
-düzenlenmiþ hali þöyle olur,
-
-$$
-\dot{x} = + \left( \frac{\partial \mathcal{H}}{\partial \lambda} \right)
-$$
-
-$$
-\dot{\lambda} = - \left( \frac{\partial \mathcal{H}}{\partial x} \right)
-$$
-
-$$
-0 = + \left( \frac{\partial \mathcal{H}}{\partial u} \right)
-$$
-
-
-Üstteki son denklem Hamiltonian $\mathcal{H}$'nin kontrol $u$'ya göre
-nasýl optimize edileceðini gösteriyor. Yani $J$ fonksiyonelin sistem
-denklemine göre optimize edilmesi problemi þimdi Hamiltonian
-fonksiyonunun $u$ bazýnda optimize edilmesi problemine
-dönüþtü. Böylece orijinal fonksiyonel optimizasyonunu normal bir
-fonksiyon optimizasyon problemine indirgemiþ olduk [1, sf. 92].
-
-Örnek [1, sf. 70]
-
-Çift entegre edici (double-integrator) sistemine bakalým. 
-
-$$
-\dot{x}_1(t) = x_2(t)
-$$
-
-$$
-\dot{x}_2(t) = u(t)
-$$
-
-Performans ölçütü 
-
-$$
-J = \frac{1}{2} \int _{t_0}^{t_f} u^2 \ud t
-$$
-
-Yani $u(t)$'nin, tüm deðerlerinin, ortalama olarak fazla büyük
-olmasýný istemiyoruz. Sýnýr þartlarý $\underline{x} =
-\left[\begin{array}{cc} x_1 & x_2 \end{array}\right]^T$ 
-olmak üzere,
-
-$$
-\underline{x}(0) = \left[\begin{array}{cc} 1 & 2 \end{array}\right]^T \quad 
-\underline{x}(2) = \left[\begin{array}{cc} 1 & 0 \end{array}\right]^T 
-$$
-
-Yazýnýn geri kalanýnda $\underline{x}$, vs. kullanýlmayacak, çerçeveden
-boyut tahmin edilebilir.
-
-Çözüm
-
-Hamiltonian'ý oluþturalým çünkü tüm sonuç türevleri ona göre alýnýyor
-artýk; o zaman $V,\lambda,f$ gerekiyor. 
-
-$$
-V(x,u,t) = V(u) = \frac{1}{2} u^2
-$$
-
-$$
-f(x,u,t) = \left[\begin{array}{cc} f_1 & f_2 \end{array}\right]^T
-$$
-
-oyle ki $f_1 = x_2(t)$, $f_2 = u(t)$. 
-
-Hamiltonian
-
-$$
-\mathcal{H} = \mathcal{H}(x_1, x_2, u, \lambda_1, \lambda_2)
-$$
-
-$$
-= V(u) + \lambda^T f(x,u)
-$$
-
-$$
-= \frac{1}{2} u^2 + \lambda_1 x_2 + \lambda_2 u 
-$$
-
-Optimal $u^*$'yu bulmak için $\frac{\partial \mathcal{H}}{\partial u}$
-denklemini kullanýyoruz,
-
-$$
-\left( \frac{\partial \mathcal{H}}{\partial u} \right) = 0 \to
-u^* + \lambda_2^* = 0
-$$
-
-$$
-u^* = -\lambda_2^*
-$$
-
-Optimal $\mathcal{H}$'yi bulmak için üstteki deðerleri üç üstteki
-formüle sokuyoruz, 
-
-$$
-\mathcal{H}^*(x_1^*, x_2^*,\lambda_1^*,\lambda_2^*) = 
-\frac{1}{2} \lambda_2^* + \lambda_1^* x_2^* - \lambda_2^* 
-$$
-
-$$
-= \lambda_1^* x_2^* - \frac{1}{2} {\lambda_2^*}^2  
-$$
-
-Devam edersek, $\dot{x} = \left( \frac{\partial \mathcal{H}}{\partial
-\lambda} \right)$  denkleminden hareketle,
-
-$$
-\dot{x}^*_1 = \left( \frac{\partial \mathcal{H}}{\partial \lambda_1} \right) =
-x_2^*
-$$
-
-$$
-\dot{x}^*_2 = \left( \frac{\partial \mathcal{H}}{\partial \lambda_2} \right) =
-\lambda_2^*
-$$
-
-Ve $\dot{\lambda} = - \left( \frac{\partial \mathcal{H}}{\partial x}
-\right)$ denkleminden hareketle,
-
-$$
-\dot{\lambda}_1^* = - \left( \frac{\partial \mathcal{H}}{\partial x_1} \right) = 0
-$$
-
-$$
-\dot{\lambda}_2^* = - \left( \frac{\partial \mathcal{H}}{\partial x_2} \right) = 
-- \lambda_1^*
-$$
-
-\begin{minted}[fontsize=\footnotesize]{python}
-from sympy import symbols, Eq, Function, dsolve, latex, simplify
-
-t = symbols('t') 
-x1,x2,lam1,lam2 = symbols('x1 x2 lam1 lam2',cls=Function)
-
-system = [Eq(x1(t).diff(t), x2(t)), \
-          Eq(x2(t).diff(t), -lam2(t)), \
-          Eq(lam1(t).diff(t), 0), \
-          Eq(lam2(t).diff(t), -lam1(t)),  \
-          ]
-
-sol = dsolve(system, [x1(t),x2(t),lam1(t),lam2(t)])
-print (latex(simplify(sol[0])))
-print (latex(simplify(sol[1])))
-print (latex(sol[2]))
-print (latex(sol[3]))
-\end{minted}
-
-\begin{verbatim}
-x_{1}{\left(t \right)} = C_{1} + C_{2} t + C_{2} + \frac{C_{3} t^{2}}{2} + C_{3} t + C_{3} + \frac{C_{4} t^{3}}{6} + \frac{C_{4} t^{2}}{2} + C_{4} t + C_{4}
-x_{2}{\left(t \right)} = C_{2} + C_{3} t + C_{3} + \frac{C_{4} t^{2}}{2} + C_{4} t + C_{4}
-lam_{1}{\left(t \right)} = C_{4}
-lam_{2}{\left(t \right)} = - C_{3} - C_{4} t - C_{4}
-\end{verbatim}
-
-$$
-x_{1}{\left(t \right)} = C_{1} + C_{2} t + C_{2} + \frac{C_{3} t^{2}}{2} + C_{3} t + C_{3} + \frac{C_{4} t^{3}}{6} + \frac{C_{4} t^{2}}{2} + C_{4} t + C_{4}
-$$
-
-$$
-x_{2}{\left(t \right)} = C_{2} + C_{3} t + C_{3} + \frac{C_{4} t^{2}}{2} + C_{4} t + C_{4}
-$$
-
-$$
-lam_{1}{\left(t \right)} = C_{4}
-$$
-
-$$
-lam_{2}{\left(t \right)} = - C_{3} - C_{4} t - C_{4}
-$$
-
-Sýnýr þartlarýný tanýmlayarak çözersek, ve sadece $\lambda_2$'ye
-bakarsak (çünkü $u(t)$ sonucunu $u(t) = -\lambda_2^*(t)$ olarak bulmuþtuk),
-
-\begin{minted}[fontsize=\footnotesize]{python}
-ics = { x1(0):1, x2(0):2, x1(2):1, x2(2):0 } 
-sol = dsolve(system, [x1(t),x2(t),lam1(t),lam2(t)], ics=ics)
-print (latex(sol[3]))
-\end{minted}
-
-\begin{verbatim}
-lam_{2}{\left(t \right) = 4 - 3 t
-\end{verbatim}
-
-$$
-\lambda_{2}{\left(t \right)} = 4 - 3 t
-$$
-
-O zaman, 
-
-$$
-u = -\lambda_2 = 3t - 4
-$$
-
-TODO: x2(2) serbest, naidu 100
 
 Kaynaklar
 
