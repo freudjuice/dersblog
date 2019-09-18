@@ -40,7 +40,30 @@ $$</p>
 $$</p>
 <p>Acaba $x_1(t=0)=-5$ ve $x_2(t=0)=-5$ başlangıç şartları için,
 $t_f=2.5$ anına kadar kontrolü ve salınımı az seviyede tutmaya
-çalışsak nasıl bir kontrol uygulamamız gerekir? </p>
+çalışsak nasıl bir kontrol uygulamamız gerekir?</p>
+<p>Hamiltonian'i tanimlarken</p>
+<p>$$
+\mathcal{H} = V + \lambda^T f
+$$</p>
+<p>formülü verilmişti. Üstteki tanımda ODE denklem sistemi $f$,</p>
+<p>$$
+V = x_1^2 + u^2
+$$</p>
+<p>Şimdi $\mathcal{H}$'yi sembolik olarak bulalım,</p>
+<pre><code class="python">import sympy
+
+u, x1, x2, lam1, lam2 = sympy.symbols('u x1 x2 lam1 lam2')
+x = sympy.Matrix([[x1],[x2]])
+lam = sympy.Matrix([[lam1],[lam2]])
+f = sympy.Matrix([[x[1]],[  -x[0]+(2.0 - 0.1*x[1]**2)*x[1] + 4*u ]])
+V = x[0]**2 + u**2
+H = V + lam.T.dot(f)
+print (H)
+</code></pre>
+
+<pre><code>lam1*x2 + lam2*(4*u - x1 + x2*(2.0 - 0.1*x2**2)) + u**2 + x1**2
+</code></pre>
+
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Bittner, <em>Variational calculus, optimal control and applications</em></p>
