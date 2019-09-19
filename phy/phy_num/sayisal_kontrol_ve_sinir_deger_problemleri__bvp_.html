@@ -46,6 +46,7 @@ $t_f=2.5$ anına kadar kontrolü ve salınımı az seviyede tutmaya
 <p>$$
 J(u) = \int_{0}^{2.5} V  \mathrm{d} t = \int_{0}^{2.5} (x_1^2 + u^2)  \mathrm{d} t
 $$</p>
+<p>ki $V = x_1^2 + u^2$.</p>
 <p>Not: Üstteki formül tam formül $J(u) = \phi(x(t_f) + \int_{0}^{2.5} V  \mathrm{d}
 t$ formulunden biraz farkli, $\phi$ yok, yani varılan son konum için bir
 bedel tanımlanmadı. Bunun sonucu $\lambda(t_f)$'in olmasıdır.</p>
@@ -53,10 +54,7 @@ bedel tanımlanmadı. Bunun sonucu $\lambda(t_f)$'in olmasıdır.</p>
 <p>$$
 \mathcal{H} = V + \lambda^T f
 $$</p>
-<p>formülü verilmişti. Üstteki tanımda ODE denklem sistemi $f$,</p>
-<p>$$
-V = x_1^2 + u^2
-$$</p>
+<p>formülü verilmişti.</p>
 <p>Şimdi $\mathcal{H}$'yi sembolik olarak bulalım,</p>
 <pre><code class="python">import sympy
 
