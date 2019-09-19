@@ -49,6 +49,13 @@ $$</p>
 <p>$$
 V = x_1^2 + u^2
 $$</p>
+<p>Yani minimize etmek istedigimiz, </p>
+<p>$$
+J(u) = \int_{0}^{2.5} V  \mathrm{d} t = \int_{0}^{2.5} (x_1^2 + u^2)  \mathrm{d} t
+$$</p>
+<p>Not: Üstteki formül tam formül $J(u) = \phi(x(t_f) + \int_{0}^{2.5} V  \mathrm{d}
+t$ formulunden biraz farkli, $\phi$ yok, yani varılan son konum için bir
+bedel tanımlanmadı. Bunun sonucu $\lambda(t_f)$'in olmasıdır.</p>
 <p>Şimdi $\mathcal{H}$'yi sembolik olarak bulalım,</p>
 <pre><code class="python">import sympy
 
