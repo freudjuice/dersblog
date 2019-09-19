@@ -41,7 +41,7 @@ $$</p>
 <p>Acaba $x_1(t=0)=-5$ ve $x_2(t=0)=-5$ başlangıç şartları için,
 $t_f=2.5$ anına kadar kontrolü ve salınımı az seviyede tutmaya
 çalışsak nasıl bir kontrol uygulamamız gerekir?</p>
-<p>Hamiltonian'i tanimlarken</p>
+<p>Hamiltonian'ı tanımlarken</p>
 <p>$$
 \mathcal{H} = V + \lambda^T f
 $$</p>
@@ -59,11 +59,99 @@ f = sympy.Matrix([[x[1]],[  -x[0]+(2.0 - 0.1*x[1]**2)*x[1] + 4*u ]])
 V = x[0]**2 + u**2
 H = V + lam.T.dot(f)
 print (H)
+print (sympy.latex(H))
 </code></pre>
 
 <pre><code>lam1*x2 + lam2*(4*u - x1 + x2*(2.0 - 0.1*x2**2)) + u**2 + x1**2
+lam_{1} x_{2} + lam_{2} \left(4 u - x_{1} + x_{2} \left(2.0 - 0.1 x_{2}^{2}\right)\right) + u^{2} + x_{1}^{2}
 </code></pre>
 
+<p>$$
+\mathcal{H} = \lambda_{1} x_{2} + \lambda_{2} \left(4 u - x_{1} + x_{2} \left(2.0 - 0.1
+x_{2}^{2}\right)\right) + u^{2} + x_{1}^{2}
+$$</p>
+<p>Eğer bu formülü biraz masajlarsak, [2]'deki sonucu elde ederiz,</p>
+<p>$$
+= x_1^2 + u^2 + \lambda_1 x_2 - \lambda_2
+\left( x_1 - 4u + x_2 \left( \frac{x_2^2}{10} - 2 \right)  \right)
+$$</p>
+<p>$\dot{\lambda} = -(\partial \mathcal{H} / \partial x)^T$ ve  $\lambda(t_f) = (\partial \phi / \partial x)^T$ üzerinden ,</p>
+<pre><code class="python">lam_dot = -sympy.diff(H, x).T
+print (lam_dot)
+</code></pre>
+
+<pre><code>Matrix([[lam2 - 2*x1, -lam1 - lam2*(2.0 - 0.3*x2**2)]])
+</code></pre>
+
+<p>$$
+\left[\begin{array}{c}
+\dot{\lambda_1} \\ \dot{\lambda_2} 
+\end{array}\right] =
+\left[\begin{array}{c}
+\lambda_2 - 2 x_1 \\
+\lambda_1 \left( \frac{3 x_2^2}{10} - 2  \right) - \lambda_1
+\end{array}\right],
+\quad
+\left[\begin{array}{c}
+\lambda_1(t_f) \\ \lambda_2(t_f) 
+\end{array}\right] =
+\left[\begin{array}{c}
+0 \\ 0
+\end{array}\right]
+$$</p>
+<p>Optimal kontrol girdisi için $u(t)$'yi için bir çözüm bulmayı gerektiriyor,</p>
+<pre><code class="python">u, x1, x2, lam1, lam2 = sympy.symbols('u x1 x2 lam1 lam2')
+HH = lam1*x2 + u**2 + x1**2 - lam2*(x1 - 4*u + x2*(x2**2/10 - 2))
+uopt = sympy.solve(HH.diff(u),u)[0]
+print ( uopt )
+</code></pre>
+
+<pre><code>-2*lam2
+</code></pre>
+
+<p>Yani</p>
+<p>$$
+u^*(t) = -2 \lambda_2(t)
+$$</p>
+<p>sonucuna eriştik. Bulduğumuz optimal $u^*$ değerini $f$ denklemindeki
+$u$'lar yerine koyarsak,</p>
+<pre><code class="python">x_dot = f.subs({u: uopt})
+print (x_dot)
+</code></pre>
+
+<pre><code>Matrix([[x2], [-8*lam2 - x1 + x2*(2.0 - 0.1*x2**2)]])
+</code></pre>
+
+<p>Daha önceden bulduğumuz $\dot{\lambda}$ formülünü hatırlayalım,</p>
+<pre><code class="python">print (lam_dot)
+</code></pre>
+
+<pre><code>Matrix([[lam2 - 2*x1, -lam1 - lam2*(2.0 - 0.3*x2**2)]])
+</code></pre>
+
+<p>Artık elimizde bir iki noktalı sınır problemi var, bu problemi sayısal
+olarak çözebiliriz. </p>
+<p>$$
+\left[\begin{array}{c}
+\dot{x}_1 \\ 
+\dot{x}_2 \\ 
+\dot{\lambda}_1 \\ 
+\dot{\lambda}_2 
+\end{array}\right] = 
+\left[\begin{array}{c}
+x_2 \\ 
+-x_1 + (2 - 0.1 x_2^2 ) x_2 - 8 \lambda_2 \\
+\lambda_2 \\
+\lambda_1 \left( \frac{3x_2^2}{10} - 2  \right) - \lambda_1
+\end{array}\right], 
+\quad
+\left[\begin{array}{c}
+x_1(0) \\ x_2(0) \\ \lambda_1(t_f) \\ \lambda_2(t_f)
+\end{array}\right] = 
+\left[\begin{array}{c}
+-5 \\ -5 \\ 0 \\ 0
+\end{array}\right]
+$$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Bittner, <em>Variational calculus, optimal control and applications</em></p>
