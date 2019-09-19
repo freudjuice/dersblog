@@ -188,25 +188,26 @@ print (sol.y[0].shape)
 df['x1'] = sol.y[0]
 df['x2'] = sol.y[1]
 df.plot()
-plt.savefig('phy_num_01.png')
-</code></pre>
-
-<p><img alt="" src="phy_num_01.png" /></p>
-<pre><code class="python">df = pd.DataFrame()
-df['$\lambda_1$'] = sol.y[2]
-df['$\lambda_2$'] = sol.y[3]
-df.plot()
 plt.savefig('phy_num_02.png')
 </code></pre>
 
 <p><img alt="" src="phy_num_02.png" /></p>
 <pre><code class="python">df = pd.DataFrame()
-df['y'] = -2*sol.y[3]
+df['$\lambda_1$'] = sol.y[2]
+df['$\lambda_2$'] = sol.y[3]
 df.plot()
 plt.savefig('phy_num_03.png')
 </code></pre>
 
 <p><img alt="" src="phy_num_03.png" /></p>
+<pre><code class="python">df = pd.DataFrame()
+df['u'] = -2*sol.y[3]
+df.plot()
+plt.savefig('phy_num_04.png')
+</code></pre>
+
+<p><img alt="" src="phy_num_04.png" /></p>
+<p>Son grafikte optimal kontrol politikasını görüyoruz. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Bittner, <em>Variational calculus, optimal control and applications</em></p>
