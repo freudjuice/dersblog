@@ -469,12 +469,20 @@ $$
 
 Çoðunlukla $t$ üzerinden parametrize edilmiþ formüllerle iþ yapacaðýz. O
 zaman eðer diferansiyel $\ud s$'i $(\ud s/ \ud t) \ud t$ olarak yazarsak,
-$t=a$, $t=b$ arasýndaki entegral
+ve bir eðrinin uzunluðunu
+
+$$
+\frac{\ud s}{\ud t} = \sqrt{(\ud x/\ud y)^2 + (\ud y/\ud y)^2} 
+$$
+ 
+ile hesaplayabildiðimiz için, $t=a$, $t=b$ arasýndaki entegral
 
 $$
 \int_C f(x,y) \ud s = 
+\int_C f(x,y) \frac{\ud s}{\ud t} \ud t = 
 \int_{t=a}^{t=b} f(x(t),y(t)) \sqrt{(\ud x/\ud y)^2 + (\ud y/\ud y)^2} \ud t
 $$
+
 
 Örnek
 

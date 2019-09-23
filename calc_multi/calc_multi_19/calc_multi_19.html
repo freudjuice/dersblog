@@ -327,9 +327,14 @@ ve her $i$'inci parçayı $f$ ile çarpıp toplarsak [2], </p>
 $$</p>
 <p>Çoğunlukla $t$ üzerinden parametrize edilmiş formüllerle iş yapacağız. O
 zaman eğer diferansiyel $\mathrm{d} s$'i $(\mathrm{d} s/ \mathrm{d} t) \mathrm{d} t$ olarak yazarsak,
-$t=a$, $t=b$ arasındaki entegral</p>
+ve bir eğrinin uzunluğunu</p>
+<p>$$
+\frac{\mathrm{d} s}{\mathrm{d} t} = \sqrt{(\mathrm{d} x/\mathrm{d} y)^2 + (\mathrm{d} y/\mathrm{d} y)^2} 
+$$</p>
+<p>ile hesaplayabildiğimiz için, $t=a$, $t=b$ arasındaki entegral</p>
 <p>$$
 \int_C f(x,y) \mathrm{d} s = 
+\int_C f(x,y) \frac{\mathrm{d} s}{\mathrm{d} t} \mathrm{d} t = 
 \int_{t=a}^{t=b} f(x(t),y(t)) \sqrt{(\mathrm{d} x/\mathrm{d} y)^2 + (\mathrm{d} y/\mathrm{d} y)^2} \mathrm{d} t
 $$</p>
 <p>Örnek</p>
