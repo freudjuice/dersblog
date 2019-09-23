@@ -171,7 +171,6 @@ $$
 \begin{minted}[fontsize=\footnotesize]{python}
 x_test = [36.16, 32.77]
 w1 = 0.5; w2 = 0.5
-
 d1 = (x_test[0]-xm[0])**2 + (x_test[1]-ym[0])**2
 d2 = (x_test[0]-xm[1])**2 + (x_test[1]-ym[1])**2
 y_new = w1*np.exp(-gamma * d1) + w2*np.exp(-gamma * d2) 
@@ -269,7 +268,7 @@ print (np.multiply(w.T,np.exp(-gamma*lin.norm(X-xnew,axis=1))).sum())
 \end{minted}
 
 \begin{verbatim}
-0.6791735428508799
+0.6423871447150892
 \end{verbatim}
 
 Bu yaklaþýmý tüm dünyanýn yeryüzü dað, tepe veri tabanýný oluþturmak için
@@ -313,6 +312,7 @@ znew = znew.reshape(D*D)
 
 from scipy.interpolate import Rbf
 rbfi = Rbf(xx,yy,znew,function='multiquadric')
+znew = rbfi(xx,yy)
 
 xx = xx.reshape(D,D)
 yy = yy.reshape(D,D)
@@ -352,6 +352,7 @@ znew = znew.reshape(D*D)
 
 from scipy.interpolate import Rbf
 rbfi = Rbf(xx,yy,znew,function='gaussian')
+znew = rbfi(xx,yy)
 
 xx = xx.reshape(D,D)
 yy = yy.reshape(D,D)
