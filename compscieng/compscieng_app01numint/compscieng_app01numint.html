@@ -29,6 +29,36 @@ ve $x_1$ arasındaki entegrali aslında bir alan hesabıdır, ve bu alanı, $x$
 aralığını ufak parçalara bölerek, ve bu parçaları kullanarak yaklaşık bir
 alan hesabı yapıp sonuçları toplayarak elde edebiliriz. </p>
 <p>$x_0$ ve $x_1$ arasını $N$ parçaya bölelim. </p>
+<p>Artık entegrali yaklaşık olarak </p>
+<p>$$
+\int_{x_0}^{x_1} F(x) \mathrm{d} x \approx \sum_{i=1}^{N} F(x_i)
+$$</p>
+<p>hesaplayabiliriz. $N$ arttırıldıkça dikdörtgenler daha fazlalaşacak, ve
+gerçek alana daha fazla yaklaşacağız. </p>
+<p>Üstteki metot Euler'in metotu olarak biliniyor, ve anlatması, kodlaması en
+rahat olan yöntem bu. Bir diğer yöntem, trapezoid yöntemi olarak bilinir,
+ve daha iyi yaklaşıksal yeteneğinin olduğu bilimektedir. Bu yöntemle pek
+çok dikdörtgen alanı yerine pek çok trapezoid alanı hesaplıyoruz [1,
+sf. 279].</p>
 <p><img alt="" src="compscieng_app01numint_01.png" /></p>
+<p>$$
+\sum _{i=1}^{N} \Delta x \frac{1}{2} [F(x_i) + F(x_{i+1})]
+$$</p>
+<p>Bu formül iki kenarı $a,b$ olan ve genişliği $\Delta x$ olan trapezoid'in
+alanının $1/2(a+b)\Delta x$ olmasından ileri geliyor.</p>
+<p>Ornek</p>
+<p>$F(x) = 3 x e^{-0.7 x}$'in $x_0=0.5$ ve $x_1=5$ arasındaki entegralini
+hesaplayalım,</p>
+<p>Rutin <code>trapz</code> ile bunu yapabiliriz,</p>
+<pre><code class="python">xval = np.linspace(0.5,5.0,1000)
+y = 3.0*xval*np.exp(-0.7*xval)
+W = np.trapz(y,x=xval)
+print (W)
+</code></pre>
+
+<pre><code>4.99249134896902
+</code></pre>
+
 <p>Kaynaklar</p>
 <p>[1] Sorenssen, <em>Elementary Mechanics Using Python</em></p>
+<p>[2] Hass, <em>Thomas's Calculus</em></p>
