@@ -79,13 +79,17 @@ print (sqrtdef)
 \end{minted}
 
 \begin{verbatim}
-a1 + 2*a2*t + 3*a3*t**2 - 65.2*t**3
-b1 + 2*b2*t + 3*b3*t**2 - 112.0*t**3
-sqrt(b1 + 2*b2*t + 3*b3*t**2 - 112.0*t**3 + (a1 + 2*a2*t + 3*a3*t**2 - 65.2*t**3)**2)
+a1 + 2*a2*t + 3*a3*t**2 - 57.2*t**3
+b1 + 2*b2*t + 3*b3*t**2 - 84.0*t**3
+sqrt(b1 + 2*b2*t + 3*b3*t**2 - 84.0*t**3 + (a1 + 2*a2*t + 3*a3*t**2 - 57.2*t**3)**2)
 \end{verbatim}
 
 
 \begin{minted}[fontsize=\footnotesize]{python}
+def trapz(y, dx):
+    tmp = np.sum(y[1:-1]*2.0)
+    return (y[0]+tmp+y[-1])*(dx/2.0)
+
 def intval(t,a0,a1,a2,a3,a4,b0,b1,b2,b3,b4):
    sq = np.sqrt(b1 + 2*b2*t + 3*b3*t**2 - 112.0*t**3 + (a1 + 2*a2*t + 3*a3*t**2 - 65.2*t**3)**2)
    x = a0 + a1*t + a2*t**2 + a3*t**3 + a4*t**4 
@@ -94,7 +98,7 @@ def intval(t,a0,a1,a2,a3,a4,b0,b1,b2,b3,b4):
    y = np.array(y)   
    z = gfunc(x,y)   
    res = z * sq
-   T = np.trapz(res, x=t)
+   T = trapz(res, 1.0/len(t))
    return T
 
 t = np.linspace(0,1,100)
@@ -106,21 +110,14 @@ ex,ey=(0.3,4.0)
 
 a4 = ex - sx - (a1+a2+a3)
 b4 = ey - sy - (b1+b2+b3)
-f
+
 T = intval(t,a0,a1,a2,a3,a4,b0,b1,b2,b3,b4)
 print (T)
 \end{minted}
 
 \begin{verbatim}
-1.7109299071584967
+1.6938206080869116
 \end{verbatim}
-
-
-
-
-
-
-
 
 
 
