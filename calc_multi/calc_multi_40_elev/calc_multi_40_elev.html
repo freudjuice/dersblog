@@ -227,13 +227,13 @@ def plot_surf_path(azim,elev,a0,a1,a2,a3,a4,b0,b1,b2,b3,b4):
 
 def find_path(ex,ey,a0,b0,offset):
 
-    cons=({'type': 'ineq','fun': lambda x: 30.0-x[0]},
+    cons=({'type': 'ineq','fun': lambda x: 30.0-x[0]}, # y&lt;30
           {'type': 'ineq','fun': lambda x: 30.0-x[1]},
           {'type': 'ineq','fun': lambda x: 30.0-x[2]},
           {'type': 'ineq','fun': lambda x: 30.0-x[3]},
           {'type': 'ineq','fun': lambda x: 30.0-x[4]},
           {'type': 'ineq','fun': lambda x: 30.0-x[5]},
-          {'type': 'ineq','fun': lambda x: x[0]},
+          {'type': 'ineq','fun': lambda x: x[0]}, # y&gt;0
           {'type': 'ineq','fun': lambda x: x[1]},
           {'type': 'ineq','fun': lambda x: x[2]},
           {'type': 'ineq','fun': lambda x: x[3]},
@@ -305,7 +305,13 @@ plt.savefig('calc_multi_40_elev_05.png')
 
 <p><img alt="" src="calc_multi_40_elev_04.png" /></p>
 <p><img alt="" src="calc_multi_40_elev_05.png" /></p>
-<p>[devam edecek]</p>
+<p>Dikkat edersek son kod içinde bazı fonksiyonları tekrar yazmamız
+gerekti. Bunun sebebi otomatik türev kütüphanesi <code>autograd</code>'ın kendi
+içinde olan <code>numpy</code> kodlarını kullanmamız gerekmesi. Yani dışarıdan
+<code>numpy</code> değil <code>autograd</code> içindeki <code>numpy</code>'i kullanmak lazım;
+sebep o <code>numpy</code>'in "türevi alınabilir" bir hale getirilmiş
+olması. OT bir sihirli değnek değil, pek çok iyi yapıyor, daha önceden
+hazırlanmış öğeleri kullanmak şartıyla. </p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Sayısal Bilim, <em>Sayısal Entegrasyon (Numerical Integration)</em></p>
 <p>[2] Bayramlı, Cok Boyutlu Calculus, <em>Ders 19, Skalar Alanlar Uzerinden Cizgi Entegral</em></p>
