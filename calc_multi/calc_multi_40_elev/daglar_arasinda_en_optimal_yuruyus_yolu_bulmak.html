@@ -141,8 +141,9 @@ ihtiyacımız var. Burada sayısal entegral almak [1] bir seçenektir. Ama o
 zaman optimizasyon için gereken gradyan hesabı nasıl olacak diye merak
 edenler olabilir.. Cevap basit. Otomatik türev yöntemi ile! </p>
 <p>Otomatik türev ile herhangi bir fonksiyonun türevini alabileceğimizi
-biliyoruz, eh sayısal entegrasyon da herhangi bir metot olduğuna göre onun
-türevini alabiliriz. Altta bu hesabı üstteki örnek yollar için görelim,</p>
+biliyoruz [4], eh sayısal entegrasyon da herhangi bir metot olduğuna göre
+onun türevini alabiliriz. Altta bu hesabı üstteki örnek yollar için
+görelim,</p>
 <pre><code class="python">def trapz(y, dx):
     vals = np.nan_to_num(y[1:-1],0)
     tmp = np.sum(vals*2.0)    
@@ -309,3 +310,4 @@ plt.savefig('calc_multi_40_elev_05.png')
 <p>[1] Bayramlı, Sayısal Bilim, <em>Sayısal Entegrasyon (Numerical Integration)</em></p>
 <p>[2] Bayramlı, Cok Boyutlu Calculus, <em>Ders 19, Skalar Alanlar Uzerinden Cizgi Entegral</em></p>
 <p>[3] Bayramlı, Cok Boyutlu Calculus, <em>Ders 5, İki Nokta Arasında Parametrize Edilmiş Eğri</em></p>
+<p>[4] Bayramlı, Fonksiyonel Analiz ve Optimizasyon, <em>Autograd ile Optimizasyon</em></p>
