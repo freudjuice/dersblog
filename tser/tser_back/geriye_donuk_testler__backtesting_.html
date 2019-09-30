@@ -146,6 +146,30 @@ p-değeri sıfıra yakın ise "hipotezi reddetmemizi" sağlar, ki bu problemde
 sıfır hipotezimiz, yani reddetmek için ezici kanıt elde etmemiz gereken
 şey getirilerin Gaussian'ının sıfır merkezli olduğu idi, bu iddiayı
 reddedemedik.</p>
+<p>Daha direk / basit bir örnek üzerinde görmek gerekirse, mesela hisselerin
+mi, tahvillerin mi getirilerinin kriz zamanında daha iyi olacağını merak
+ediyoruz. 2008-2012 arasında SP\&amp;500 ve 7-10 senelik tahvil fiyatlarını
+takip eden bir enstrüman (ETF) olan İEF getirilerini Sharpe oranı
+ile karşılaştırabiriz.</p>
+<pre><code class="python">import pandas as pd
+
+df1 = pd.read_csv(&quot;sharpe-spy.csv&quot;)
+df2 = pd.read_csv(&quot;sharpe-ief.csv&quot;)
+
+def sharpe(series):
+   dailyret = series.pct_change()
+   excessRet=dailyret-0.04/252
+   return np.sqrt(252)*np.mean(excessRet)/np.std(excessRet)
+
+print (sharpe(df1['Adj Close']))
+print (sharpe(df2['Adj Close']))
+</code></pre>
+
+<pre><code>-0.04718388850111191
+0.5100019269309098
+</code></pre>
+
+<p>Sonuca gore tahviller kriz zamaninda daha iyi getiri veriyor.</p>
 <p>Düşüş Kalıcılığı (Drawdown)</p>
 <p>Bir strateji eğer yakın geçmişte para kaybetmiş ise düşüşte demektir. İki
 önemli düşüş kavramı maksimum düşüş ve maksimum düşüş süresi - bu iki ölçüt
