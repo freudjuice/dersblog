@@ -45,15 +45,33 @@ $x \in \mathbb{R}^n$, en azından $x$ modelleyeni ilgilendiren tüm küme
 <p>Fakat çoğu zaman bir global $f$'i kullanmak mümkün olmayabilir, fonksiyon
 çok çetrefil, çok boyutlu, bilinmez durumdadır, ve elimizde sadece yerel
 bilgi vardır. Bu durumda üstteki tanımı "bir $N$ bölgesi içinde" olacak
-şekilde değiştiririz, ki bölge $x^*$ etrafındaki, yakınındaki bölgedir. </p>
+şekilde değiştiririz ki bölge, $x^*$ etrafındaki, yakınındaki bölgedir.</p>
 <p>Üstteki tanımı okuyunca  $x^*$'in yerel minimum olup olmadığını anlamanın
 tek yolunun yakındaki diğer tüm noktalara teker teker bakmak olduğu anlamı
 çıkabilir, fakat eğer $f$ pürüzsüz bir fonksiyon ise yerel minimumu
-doğrulamanın çok daha hızlı bir yöntemi vardır. </p>
+doğrulamanın çok daha hızlı bir yöntemi vardır. Hatta ve hatta eğer
+fonksiyon $f$ iki kez türevi alınabilir haldeyse $x^*$'in yerel minimum
+olduğunu ispatlamak daha kolaylaşır, $\nabla f(x^*)$ ve Hessian $\nabla^2
+f(x^*)$'e bakarak bunu yapabiliriz.</p>
+<p>Pürüzsüz fonksiyonların minimize edicilerini incelemekte kullanacağımız
+araç Taylor'un teorisi olacak. </p>
+<p>Taylor'un Teorisi</p>
+<p>$f: \mathbb{R}^n \to \mathbb{R}$'nin sürekli türevi alınabilir olduğunu farz
+edelim ve $p \in \mathbb{R}^n$ olacak şekilde,</p>
+<p>$$
+f(x + p) = f(x) + \nabla f(x + tp)^T p
+$$</p>
+<p>ki $t \in (0,1)$. Ayrıca eğer $f$ iki kez türevi alınabilir halde ise,</p>
+<p>$$
+\nabla f(x+p) = \nabla f(x) + \int_{0}^{1}\nabla^2 f(x+tp) p \mathrm{d} t
+$$</p>
+<p>ve </p>
+<p>$$
+f(x+p) = f(x) + \nabla f(x)^T p + \frac{1}{2} p^T \nabla^2 f(x+tp) p
+$$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Ders Notları, <em>Otomatik Türev Almak (Automatic Differentiation -AD-)</em></p>
-<p>[2] Nocedal, <em>Numerical Optimization</em></p>
 <p>[3] <a href="https://nikstoyanov.me/post/2019-04-14-numerical-optimizations">https://nikstoyanov.me/post/2019-04-14-numerical-optimizations</a></p>
 <p>[4] <a href="https://rlhick.people.wm.edu/posts/mle-autograd.html">https://rlhick.people.wm.edu/posts/mle-autograd.html</a></p>
 <p>[5] <a href="http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/">http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/</a></p>

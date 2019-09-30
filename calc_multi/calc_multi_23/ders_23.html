@@ -111,7 +111,7 @@ $$</p>
 doğru. </p>
 <p>Örnek</p>
 <p>Aynı $C$ ama değişik $\vec{F}$ (bizim diğer favori vektör alanımız), </p>
-<p>$$ \vec{F} = &lt;-y,x&gt; $$</p>
+<p>$$ \vec{F} = &lt; -y,x &gt; $$</p>
 <p><img alt="" src="23_7.png" /></p>
 <p>Fakat burada vektörler her zaman çembere teğet, o zaman o vektörlerin dik
 bileşeni olamaz, yani sıfır olur. Burada akış olmadığını çıplak gözle bile
@@ -121,17 +121,17 @@ işleyecek bir metot gerekli, aynen iş hesabını yaptığımızda $M \mathrm{d
 hesabını yaptığımız gibi. Akış hesabında benzer bir yaklaşım var.</p>
 <p>Bileşenleri Kullanarak Hesap</p>
 <p>Hatırlarsak iş hesabında </p>
-<p>$$ d\vec{r} = \vec{T} \mathrm{d} s = <dx,dy> $$</p>
+<p>$$ d\vec{r} = \vec{T} \mathrm{d} s = &lt; \mathrm{d}x, \mathrm{d} y &gt; $$</p>
 <p>olmuştu. O zaman düşünelim, üstte $\vec{T} ds$ kullandık, burada onun
 yerine $\hat{n} \mathrm{d} s$ var, onu nasıl temsil edebiliriz? </p>
 <p>$\hat{n}$ aslında $\vec{T}$'nin saat yönünde 90 derece döndürülmüş hali
 değil midir? O zaman </p>
-<p>$$ \hat{n}ds = <dy,-dx> $$</p>
+<p>$$ \hat{n}ds = &lt; \mathrm{d} y,-\mathrm{d} x &gt; $$</p>
 <p>Dönüş saat yönünde olduğu için eksi işaret $dx$ önünde. </p>
-<p>Demek ki $\vec{F} = <M,N>$ için</p>
+<p>Demek ki $\vec{F} = &lt; M,N &gt;$ için</p>
 <p>$$
 \int_C \vec{F} \cdot \hat{n} \mathrm{d} s =
-\int_C  <M,N> \cdot &lt;\mathrm{d} y,-\mathrm{d} x&gt; =  \int_C -N \mathrm{d} x + M \mathrm{d} y
+\int_C  &lt; M,N &gt; \cdot &lt; \mathrm{d} y,-\mathrm{d} x &gt; =  \int_C -N \mathrm{d} x + M \mathrm{d} y
 $$</p>
 <p>Gerisi iş hesabında gördüğümüz gibi. $x,y$ birbiriyle alakalı, çoğunlukla
 üçüncü bir değişken $t$, $\theta$, vs gibi, üstteki formülü bu ortak
@@ -141,12 +141,12 @@ entegralının yerine bir çift entegral geçirmek. Cevap evet, akış hesabı
 için de işleyen Green Teorisi'nin bir versiyonu var. </p>
 <p>Akış İçin Green Teorisi</p>
 <p>Eğer $C$ bir $R$ alanını çevreliyorsa ve yönü saat yönü tersinde ise, ve
-$\vec{F}=<P,Q>$ $R$ içinde her yerde türevi alınabilir ise, o zaman </p>
+$\vec{F}=&lt; P,Q &gt;$ $R$ içinde her yerde türevi alınabilir ise, o zaman </p>
 <p>$$ \oint_C \vec{F} \cdot \hat{n} \mathrm{d} s = 
 \int \int_R \mathrm{div} \vec{F} \mathrm{d} A
 $$</p>
 <p>$div$ kelimesi uzaklaşım (divergence) kavramından geliyor ve formülü şöyle:</p>
-<p>$$ \mathrm{div} <P,Q> = P_x + Q_y $$</p>
+<p>$$ \mathrm{div} &lt; P,Q &gt; = P_x + Q_y $$</p>
 <p>Bu hesabı hatırlamak $curl$ formülünü hatırlamaktan daha basit aslında,
 $x,y$ üzerinden kısmi türevler alınıyor ve bu türevler normal $P,Q$ sırası
 üzerinde uygulanıyor, sonuç toplanıyor. </p>
