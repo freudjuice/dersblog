@@ -30,6 +30,26 @@ almak pek çok alanda işimize yarar. Optimizasyon alanı bunların başında
 geliyor. Düşünürsek, eğer sembolik olarak türev alması çok çetrefil bir
 durum varsa, tasaya gerek yok; bir fonksiyonu kodlayabildiğimiz anda onun
 türevini de alabiliriz demektir.</p>
+<p>Önce bazı genel optimizasyon konularını işleyelim. </p>
+<p>Sınırlanmamış optimizasyonda (unconstrained optimization) $f(x)$
+fonksiyonunu minimum değerde tutacak $x$ değerini bulmaya uğraşıyoruz, ki
+$x$ tek boyutlu skalar, ya da çok boyutlu $x \in \mathbb{R}^n$
+olabilir. Yani yapmaya uğraştığımız</p>
+<p>$$
+\min_x f(x)
+$$</p>
+<p>işlemi. Peki minimumu nasıl tanımlarız? Bir nokta $x^*$ global minimize
+edicidir eğer tüm $x$'ler için $f(x^*) \le f(x)$ ise, ki
+$x \in \mathbb{R}^n$, en azından $x$ modelleyeni ilgilendiren tüm küme
+öğeleri için.</p>
+<p>Fakat çoğu zaman bir global $f$'i kullanmak mümkün olmayabilir, fonksiyon
+çok çetrefil, çok boyutlu, bilinmez durumdadır, ve elimizde sadece yerel
+bilgi vardır. Bu durumda üstteki tanımı "bir $N$ bölgesi içinde" olacak
+şekilde değiştiririz, ki bölge $x^*$ etrafındaki, yakınındaki bölgedir. </p>
+<p>Üstteki tanımı okuyunca  $x^*$'in yerel minimum olup olmadığını anlamanın
+tek yolunun yakındaki diğer tüm noktalara teker teker bakmak olduğu anlamı
+çıkabilir, fakat eğer $f$ pürüzsüz bir fonksiyon ise yerel minimumu
+doğrulamanın çok daha hızlı bir yöntemi vardır. </p>
 <p><a href="https://nikstoyanov.me/post/2019-04-14-numerical-optimizations">https://nikstoyanov.me/post/2019-04-14-numerical-optimizations</a></p>
 <p><a href="https://rlhick.people.wm.edu/posts/mle-autograd.html">https://rlhick.people.wm.edu/posts/mle-autograd.html</a></p>
 <p><a href="http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/">http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/</a></p>
