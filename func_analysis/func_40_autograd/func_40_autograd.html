@@ -80,8 +80,25 @@ f(x^*) + \nabla f(x^*) h +
 \frac{1}{2} h^T f(x^*) \nabla^2 (x^*) f(x^*) h + 
 O(3)
 $$</p>
-<p>$\nabla^2 (x^*)$  bir matristır içinde $f$'nin ikinci derece türevleri
-vardır [6]. </p>
+<p>$\nabla^2 (x^*)$ bir matristır içinde $f$'nin ikinci derece türevleri
+vardır [6]. Şimdi, kritik noktada olduğumuz için $\nabla f(x^*) = 0$, ve
+$O(3)$ terimlerini iptal edersek, üstteki</p>
+<p>$$
+f(x^* + h^*) - f(x^*) = \frac{1}{2} h^T \nabla^2 (x^*)  h + O(3)
+$$</p>
+<p>haline gelir. Simdi "bir noktanın mesela yerel maksimum olması" sözünü
+$f(x^* + h^*) - f(x^*) &lt; 0$ ile ifade edebiliriz, çünkü $x^*$ etrafındaki
+tüm $x$'lerin $f$'in daha az değerlerinden olma şartını aramış oluyoruz
+(adım atılıyor, çıkartma yapılıyor, sonuç sıfırdan küçük). Tabii bu "tüm"
+söylemi yaklaşıksal, o sebeple minimumluk ifadesi <em>yerel</em>.</p>
+<p>Devam edersek $f(x^* + h^*) - f(x^*) &lt; 0$ olması şartı aynı zamanda
+$\frac{1}{2} h^T \nabla^2 (x^*) h &lt; 0$ anlamına gelir, bu da
+$\nabla^2 (x^*)$ negatif kesin demektir. Çünkü $A$ simetrik bir matris
+olduğu zaman</p>
+<p>$x^TAx &lt; 0$ ise matris negatif kesin</p>
+<p>$x^TAx \le 0$ ise matris negatif yarı-kesin (negatif semi-definite)</p>
+<p>$x^TAx &gt; 0$ ise matris pozitif kesin</p>
+<p>$x^TAx \ge 0$ ise matris pozitif yarı-kesin (positive semi-definite)</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Ders Notları, <em>Otomatik Türev Almak (Automatic Differentiation -AD-)</em></p>

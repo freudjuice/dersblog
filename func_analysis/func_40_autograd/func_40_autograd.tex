@@ -71,8 +71,35 @@ f(x^*) + \nabla f(x^*) h +
 O(3)
 $$
 
-$\nabla^2 (x^*)$  bir matristýr içinde $f$'nin ikinci derece türevleri
-vardýr [6]. 
+$\nabla^2 (x^*)$ bir matristýr içinde $f$'nin ikinci derece türevleri
+vardýr [6]. Þimdi, kritik noktada olduðumuz için $\nabla f(x^*) = 0$, ve
+$O(3)$ terimlerini iptal edersek, üstteki
+
+$$
+f(x^* + h^*) - f(x^*) = \frac{1}{2} h^T \nabla^2 (x^*)  h + O(3)
+$$
+
+haline gelir. Simdi ``bir noktanýn mesela yerel maksimum olmasý'' sözünü
+$f(x^* + h^*) - f(x^*) < 0$ ile ifade edebiliriz, çünkü $x^*$ etrafýndaki
+tüm $x$'lerin $f$'in daha az deðerlerinden olma þartýný aramýþ oluyoruz
+(adým atýlýyor, çýkartma yapýlýyor, sonuç sýfýrdan küçük). Tabii bu ``tüm''
+söylemi yaklaþýksal, o sebeple minimumluk ifadesi {\em yerel}.
+
+Devam edersek $f(x^* + h^*) - f(x^*) < 0$ olmasý þartý ayný zamanda
+$\frac{1}{2} h^T \nabla^2 (x^*) h < 0$ anlamýna gelir, bu da
+$\nabla^2 (x^*)$ negatif kesin demektir. Çünkü $A$ simetrik bir matris
+olduðu zaman
+
+$x^TAx < 0$ ise matris negatif kesin
+
+$x^TAx \le 0$ ise matris negatif yarý-kesin (negatif semi-definite)
+
+$x^TAx > 0$ ise matris pozitif kesin
+
+$x^TAx \ge 0$ ise matris pozitif yarý-kesin (positive semi-definite)
+
+
+
 
 
 [devam edecek]
