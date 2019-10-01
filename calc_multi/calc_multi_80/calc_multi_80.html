@@ -101,6 +101,18 @@ J(x) = \frac{\partial f(x)}{\partial x} =
 \frac{\partial f_{n}(x)}{\partial \theta}<br />
 \end{array}\right]
  $$</p>
+<p>Hessian ise $f$'in ikinci türevlerini içerir [3]. Bu matrisin $i,j$'inci
+öğesi fonksiyonun $\frac{\partial^2 f(x)}{\partial x_j \partial x_i}$'inci
+türevidir, ki $x = [x_1,x_2,...,x_n]$ vektörü olmak üzere. </p>
+<p>$$
+\nabla^2 (x) = 
+\left[\begin{array}{rrr}
+\frac{\partial^2 f}{\partial x_1^2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_1x_n}\\
+\vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial^2 f}{\partial x_1x_n} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_n^2}\\
+\end{array}\right]
+$$</p>
+<p>Hessian matrisı simetrik ve reel bir matristir. </p>
 <p>Vektörlere gelelim. $a,x \in \mathbb{R}^n$ ise, $a^Tx$'in $x$'e göre türevi nedir? </p>
 <p>$a^Tx$ bir noktasal çarpım olduğuna göre sonucu bir tek sayıdır
 (scalar). Bu noktasal çarpımı bir fonksiyon gibi düşünebiliriz, bu durumda
@@ -389,3 +401,4 @@ $$</p>
 <p>Kaynaklar </p>
 <p>[1] Corral, <em>Vector Calculus</em></p>
 <p>[2] Spiegel, <em>Vector Tensor Analysis</em></p>
+<p>[3] Kutter, <em>Multivariable Advanced Calculus</em></p>

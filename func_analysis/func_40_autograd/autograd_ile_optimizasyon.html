@@ -53,25 +53,40 @@ doğrulamanın çok daha hızlı bir yöntemi vardır. Hatta ve hatta eğer
 fonksiyon $f$ iki kez türevi alınabilir haldeyse $x^*$'in yerel minimum
 olduğunu ispatlamak daha kolaylaşır, $\nabla f(x^*)$ ve Hessian $\nabla^2
 f(x^*)$'e bakarak bunu yapabiliriz.</p>
-<p>Pürüzsüz fonksiyonların minimize edicilerini incelemekte kullanacağımız
-araç Taylor'un teorisi olacak. </p>
-<p>Taylor'un Teorisi</p>
-<p>$f: \mathbb{R}^n \to \mathbb{R}$'nin sürekli türevi alınabilir olduğunu farz
-edelim ve $p \in \mathbb{R}^n$ olacak şekilde,</p>
+<p>Minimallik için 1. ve 2. derece şartlar var. 1. derece gerekli şart (ama
+yeterli değil) $\nabla f = 0$ olması. Bu standard Calculus'tan bildiğimiz
+bir şey, minimum ya da maksimumda birinci türev sıfırdır. Ama türevin sıfır
+olup minimum ya da maksimum olmadığı durum da olabilir, mesela
+$f(x) = x^3$. $f'(0) = 0$'dir fakat $x=0$ ne maksimum ne de
+minimumdur. Daha iyi bir termioloji $\nabla f = 0$ noktalarını {\em kritik
+  nokta} olarak tanımlamaktır. $x=0$ noktasında bir değişim oluyor, bu
+değişim kritik bir değişim, her ne kadar minimum ya da maksimum olmasa da.</p>
+<pre><code class="python">x = np.linspace(-3,3,100)
+plt.plot(x,x**3)
+plt.grid(True)
+plt.savefig('func_40_autograd_01.png')
+</code></pre>
+
+<p><img alt="" src="func_40_autograd_01.png" /></p>
+<p>Bir kritik noktanın yerel maksimum ya da yerel minimum olup olmadığını
+anlamak için fonksiyonun ikinci türevine bakabiliriz. Bir
+$f: \mathbb{R}^n \to \mathbb{R}$ var ve $x^*$ noktasının kritik nokta
+olduğunu düşünelim, yani $\nabla f(x^*) = 0$. Şimdi çok ufak bir $h$ adımı
+için $f(x^* + h)$'a ne olduğuna bakalım. Burada Taylor açılımı
+kullanabiliriz [2], </p>
 <p>$$
-f(x + p) = f(x) + \nabla f(x + tp)^T p
+f(x + h^*) = 
+f(x^*) + \nabla f(x^*) h + 
+\frac{1}{2} h^T f(x^*) \nabla^2 (x^*) f(x^*) h + 
+O(3)
 $$</p>
-<p>ki $t \in (0,1)$. Ayrıca eğer $f$ iki kez türevi alınabilir halde ise,</p>
-<p>$$
-\nabla f(x+p) = \nabla f(x) + \int_{0}^{1}\nabla^2 f(x+tp) p \mathrm{d} t
-$$</p>
-<p>ve </p>
-<p>$$
-f(x+p) = f(x) + \nabla f(x)^T p + \frac{1}{2} p^T \nabla^2 f(x+tp) p
-$$</p>
+<p>$\nabla^2 (x^*)$  bir matristır içinde $f$'nin ikinci derece türevleri
+vardır [6]. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Ders Notları, <em>Otomatik Türev Almak (Automatic Differentiation -AD-)</em></p>
+<p>[2] Schrimpf, <a href="http://faculty.arts.ubc.ca/pschrimpf/526/526.html">http://faculty.arts.ubc.ca/pschrimpf/526/526.html</a></p>
 <p>[3] <a href="https://nikstoyanov.me/post/2019-04-14-numerical-optimizations">https://nikstoyanov.me/post/2019-04-14-numerical-optimizations</a></p>
 <p>[4] <a href="https://rlhick.people.wm.edu/posts/mle-autograd.html">https://rlhick.people.wm.edu/posts/mle-autograd.html</a></p>
 <p>[5] <a href="http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/">http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/</a></p>
+<p>[6] Bayramli, Cok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
