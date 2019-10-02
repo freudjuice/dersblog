@@ -29,11 +29,12 @@ en "rahat" gidiş yolunu nasıl buluruz? </p>
 <p>Bu problem bir çizgi entegral hesabına çevirilebilir. Bir skalar alan
 üzerinden giden herhangi bir parametrize eğrinin altındaki alanı
 hesaplamayı biliyoruz [2]. Ayrıca istediğimiz derecede polinom parametrize
-eğrileri nasıl yaratacağımızı biliyoruz. Bu fikirleri bir araya koyarsak,
+eğrileri nasıl yaratacağımızı biliyoruz [3]. Bu fikirleri bir araya koyarsak,
 geriye kalan bir optimizasyon problemidir. Çünkü en rahat yol, "toplam
 yüksekliği en az olan yol" olarak görülebilir, ve burada çizgi entegrali
 faydalı olur.</p>
-<p>Önce yükseklikleri ve eğrileri iki örnek üzerinde görelim,</p>
+<p>Önce yükseklikleri ve eğrileri iki örnek üzerinde görelim. İki rasgele
+tepe, ve bir rasgele yol çiziyoruz,</p>
 <pre><code class="python">from mpl_toolkits.mplot3d import Axes3D
 from scipy.spatial.distance import cdist
 from matplotlib import cm
