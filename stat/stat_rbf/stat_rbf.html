@@ -314,8 +314,7 @@ def func(x, y):
     g2 = np.exp( -2 *np.log(2) * ((x-x2)**2+(y-y2)**2) / s2**2)    
     return g1 + g2 
 
-D = 10
-gamma = 2.0
+D = 100
 
 x = np.linspace(36,37,D)
 y = np.linspace(32,33,D)
@@ -326,45 +325,52 @@ zz = func(xx,yy)
 
 <p>Ve grafiklemeyi yapıyoruz,</p>
 <pre><code class="python">from scipy.interpolate import Rbf
-rbfi = Rbf(xx,yy,zz,function='gaussian')
-znew = rbfi(xx,yy)
 
 xx = xx.reshape(D,D)
 yy = yy.reshape(D,D)
-znew = znew.reshape(D,D)
+zz = func(xx,yy)
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 ax.view_init(elev=29, azim=29)
-surf = ax.plot_surface(xx, yy, znew, cmap=cm.coolwarm,linewidth=0, antialiased=False)
+surf = ax.plot_surface(xx, yy, zz, cmap=cm.coolwarm,linewidth=0, antialiased=False)
 plt.savefig('linear_app88rbf_03.png')
 </code></pre>
 
-<p><img alt="" src="linear_app88rbf_03.png" /></p>
+<p>Şimdi örneklem alıp RBF yaratalım,</p>
+<pre><code class="python">S = 50
+np.random.seed(0)
+idx = np.random.choice(range(D*D),S)
+xr = xx.reshape(D*D)[idx].reshape(S,1)
+yr = yy.reshape(D*D)[idx].reshape(S,1)
+zr = zz.reshape(D*D)[idx].reshape(S,1)
+
+rbfi = Rbf(xr,yr,zr,function='gaussian',epsilon=0.15)
+</code></pre>
+
 <p>Modelleme Gaussian RBF'ler üzerinden yapıldı, bu formül neye benziyor?
 Dokümantasyona bakınca </p>
 <p><code>'gaussian': exp(-(r/self.epsilon)**2)</code></p>
 <p>ifadesini görüyoruz, burada <code>r</code> yeni nokta ile bir RBF baz fonksiyonu
 arasındaki mesafe. Bir test noktası ile üstteki RBF'leri (D*D tane)
 arasındaki mesafe şöyle hesaplanabilir,</p>
-<pre><code class="python">import autograd.numpy as anp
-def dist_matrix(X, Y):
-    sx = anp.sum(X**2, 1)
-    sy = anp.sum(Y**2, 1)
+<pre><code class="python">def dist_matrix(X, Y):
+    sx = np.sum(X**2, 1)
+    sy = np.sum(Y**2, 1)
     D2 =  sx[:, np.newaxis] - 2.0*X.dot(Y.T) + sy[np.newaxis, :] 
     D2[D2 &lt; 0] = 0
-    D = anp.sqrt(D2)
+    D = np.sqrt(D2)
     return D
 
-test_1 = anp.array([[36.0,32.0]])
+test_1 = np.array([[36.0,32.0]])
 test_1_dist = dist_matrix(test_1, rbfi.xi.T)
 print (test_1_dist.shape)
 print (test_1_dist[0][:10])
 </code></pre>
 
-<pre><code>(1, 100)
-[0.         0.11111111 0.22222222 0.33333333 0.44444444 0.55555556
- 0.66666667 0.77777778 0.88888889 1.        ]
+<pre><code>(1, 50)
+[0.4229176  1.08927112 0.72276945 0.76827462 0.96299239 1.21064725
+ 0.85578867 0.94970984 0.80965755 0.76794254]
 </code></pre>
 
 <p>O mesafeyi alıp eksi karesini hesaplayıp <code>exp</code>'ye vermek lazım. Tüm
@@ -377,29 +383,29 @@ print (rbfi.xi.shape)
 print (rbfi.nodes.shape)
 </code></pre>
 
-<pre><code>0.1
+<pre><code>0.15
 0.0
-(2, 100)
-(100,)
+(2, 50)
+(50,)
 </code></pre>
 
 <p>Ağırlıklar <code>nodes</code>, RBF merkezleri <code>xi</code>, <code>epsilon</code> genel bir
 pürüz parametresi. İki test noktası üzerinde görelim, dikkat burada {\em
   tüm} RBF'ler gözönüne alınacak,</p>
 <pre><code class="python">nodes = rbfi.nodes.reshape(1,len(rbfi.nodes))
-def gaussian(r,eps): return anp.exp(-(r/eps)**2)
+def gaussian(r,eps): return np.exp(-(r/eps)**2)
 
 def f_interp(newp, rbfi):
     nodes = rbfi.nodes.reshape(1,len(rbfi.nodes))
     newp_dist = dist_matrix(newp, rbfi.xi.T)
-    return anp.dot(gaussian(newp_dist, rbfi.epsilon), nodes.T)
+    return np.dot(gaussian(newp_dist, rbfi.epsilon), nodes.T)
 
-test_2 = anp.array([[36.0,32.0],[36.1,31.9]])
+test_2 = np.array([[36.0,32.0],[36.1,31.9]])
 print (f_interp(test_2,rbfi))
 </code></pre>
 
-<pre><code>[[0.00358205]
- [0.00067651]]
+<pre><code>[[-0.00387063]
+ [-0.00337065]]
 </code></pre>
 
 <p>Şimdi iki tepeli fonksiyonu RBF'ler üzerinde yaratalım,</p>
