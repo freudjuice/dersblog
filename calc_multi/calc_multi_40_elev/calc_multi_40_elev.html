@@ -313,6 +313,13 @@ içinde olan <code>numpy</code> kodlarını kullanmamız gerekmesi. Yani dışar
 sebep o <code>numpy</code>'in "türevi alınabilir" bir hale getirilmiş
 olması. OT bir sihirli değnek değil, pek çok iyi yapıyor, daha önceden
 hazırlanmış öğeleri kullanmak şartıyla. </p>
+<p>Ayrıca bir <code>OFFSET</code> parametresiyle yükseklik fonksiyonunun döndürdüğü
+her yükseklik hesabına bir <code>OFFSET</code> kadar yüksekliği suni olarak
+eklediğimize dikkat. Bunun sebebi yer seviyesinin 0 yükseklikte olması
+sebebiyle sürekli tercih edilebilmesi, yani upuzun bir yol yer seviyesinden
+gidebilir, çünkü orada gitmenin hiçbir bedeli yoktur. Biz de her yüksekliği
+suni bir yükseklik ekleyerek yerdeki çok uzun yolların tercih edilmemesini
+sağladık.</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Sayısal Bilim, <em>Sayısal Entegrasyon (Numerical Integration)</em></p>
 <p>[2] Bayramlı, Cok Boyutlu Calculus, <em>Ders 19, Skalar Alanlar Uzerinden Cizgi Entegral</em></p>
