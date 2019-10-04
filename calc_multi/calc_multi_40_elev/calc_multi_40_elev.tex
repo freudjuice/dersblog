@@ -137,12 +137,10 @@ oldukca uzun zaman alýyor. Zaten daha ileride daha çetrefil yükseklik
 fonksiyonlarý ile çalýþmak istersek, o durumda da kullanabilecek bir metota
 ihtiyacýmýz var. Burada sayýsal entegral almak [1] bir seçenektir. Ama o
 zaman optimizasyon için gereken gradyan hesabý nasýl olacak diye merak
-edenler olabilir.. Cevap basit. Otomatik türev yöntemi ile! 
+edenler olabilir.. Bazi optimizasyon rutinleri gradyan olmadan da
+isleyebiliyor. 
 
-Otomatik türev ile herhangi bir fonksiyonun türevini alabileceðimizi
-biliyoruz [4], eh sayýsal entegrasyon da herhangi bir metot olduðuna göre
-onun türevini alabiliriz. Altta bu hesabý üstteki örnek yollar için
-görelim,
+Altta entegral hesabýný üstteki örnek yollar için görelim,
 
 \begin{minted}[fontsize=\footnotesize]{python}
 def trapz(y, dx):

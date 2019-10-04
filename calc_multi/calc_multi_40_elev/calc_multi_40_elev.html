@@ -140,11 +140,9 @@ oldukca uzun zaman alıyor. Zaten daha ileride daha çetrefil yükseklik
 fonksiyonları ile çalışmak istersek, o durumda da kullanabilecek bir metota
 ihtiyacımız var. Burada sayısal entegral almak [1] bir seçenektir. Ama o
 zaman optimizasyon için gereken gradyan hesabı nasıl olacak diye merak
-edenler olabilir.. Cevap basit. Otomatik türev yöntemi ile! </p>
-<p>Otomatik türev ile herhangi bir fonksiyonun türevini alabileceğimizi
-biliyoruz [4], eh sayısal entegrasyon da herhangi bir metot olduğuna göre
-onun türevini alabiliriz. Altta bu hesabı üstteki örnek yollar için
-görelim,</p>
+edenler olabilir.. Bazi optimizasyon rutinleri gradyan olmadan da
+isleyebiliyor. </p>
+<p>Altta entegral hesabını üstteki örnek yollar için görelim,</p>
 <pre><code class="python">def trapz(y, dx):
     vals = np.nan_to_num(y[1:-1],0)
     tmp = np.sum(vals*2.0)    
