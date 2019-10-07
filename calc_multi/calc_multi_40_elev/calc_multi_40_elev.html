@@ -500,17 +500,18 @@ plt.savefig('calc_multi_40_elev_07.png')
 <p><img alt="" src="calc_multi_40_elev_07.png" /></p>
 <p>Autograd, Otomatik Türev</p>
 <p>Şimdiye kadar gördüğümüz yöntem gradyan /türev bilgisinin sayısal olarak
-hesaplayan bir yöntem kullandı, COBYLA. Fakat gradyan bilgisini <code>autograd</code>
+hesaplayan bir yöntem kullandı, COBYLA. Fakat gradyan bilgisini autograd
 otomatik türev olarak aldırıp (sembolik türev ile aynı kuvvette),
 minimizasyon adımını kendimiz de atabilirdik.</p>
 <p>İki tepeli örnek üzerinde görelim. Tepeleri yaratıp, örneklem alıp, RBF
-modelleme yapiyoruz. Fakat bir fark var, RBF ile yükseklik hesaplayan
-metot, ve onun içinde çağırdığı tüm metotlar "autograd-perver" olmalı,
-çünkü autograd perde arkasında Python kodu üzerinde bazı temelden
-değişimler yapıyor, ve bu sebeple metotların autoğrad üzerinden, ve
-autograd dışından çağrılmalarında farklılıklar olabiliyor. Kodlamadaki
-değişimleri açık şekilde göstermek amaciyla 
-<code>import numpy as anp</code> ile dahil edilen <code>numpy</code> versiyoununu farklı isimlendirdik.</p>
+modelleme yapıyoruz. Fakat bir fark var, RBF ile yükseklik hesaplayan
+metot, ve onun içinde çağırdığı tüm metotlar "autograd-perver" olmalı.
+Autoğrad perde arkasında Python kodu üzerinde bazı temelden değişimler
+yapıyor, ve bu sebeple metotların autoğrad üzerinden, ve autograd dışından
+çağrılmalarında farklılıklar olabiliyor, ayrıca her türlü Python çağrısını
+autograd-perver kodlar içinden yapamayabiliriz. Kodlamadaki değişimleri
+açık şekilde göstermek amaçıyla <code>import numpy as anp</code> ile dahil edilen
+<code>numpy</code> versiyoununu farklı isimlendirdik.</p>
 <p>Gradyan inişi için gereken gradyan her parametre için
 <code>autograd.grad(intval,...)</code> ile alinir [5], ve 0,1,2,.. diye giden
 parametreler sırasıyla egrinin katsayilari $a_1,a_2,..$'ye tekabül ediyor.</p>
@@ -644,9 +645,9 @@ for i in range(3):
 <p><img alt="" src="linear_app88rbf_08-0.png" />
 <img alt="" src="linear_app88rbf_08-1.png" />
 <img alt="" src="linear_app88rbf_08-2.png" /></p>
-<p>Sonuçlara bakarsak rasgele katsayılarla başladık, ve tek bir gradyan inişi
-adımı ile optimal bir yola oldukca yaklaştık. Bir adım daha daha da iyi
-sonuç verdi. </p>
+<p>Üstte her gradyan adımı sonrası hesaplanan yolları görüyoruz. Rasgele
+katsayılarla başladık (ilk grafik), ve tek bir gradyan inişi adımı ile
+optimal bir yola oldukca yaklaştık. Bir adım daha daha da iyi sonuç verdi.</p>
 <p>İşte görüldüğü gibi son derece çetrefil bir fonksiyon olsa da türevi rahat
 bir şekilde hesaplamış oluyoruz. </p>
 <p>Kaynaklar </p>
