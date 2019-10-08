@@ -213,12 +213,12 @@ kullanırken de ortaya çıkacak. O zaman eğer en sondaki verilere
 bir başlangıç noktasına göre pencere oluşturmayan bir yöntem olsa bu bir
 ilerleme olurdu. Yatırım bölüştürme oranını Kalman filtresi (KF) kullanarak
 hesaplayarak bu ilerlemeyi sağlamayı umuyoruz [1, sf 74].</p>
-<p>KF hakkında detaylar <em>Kalman Filtreleri</em> yazısında bulunabilir; KF
-formüllerinin türetilmesi orada anlatıldı. Bu yazıda gereken bölüştürme
-oranı, ve yan ürün olarak bu oranın ortalamasını ve uçuculuğunu (volatility)
-hesaplamak, o zaman gizli değişken bölüştürme oranı $\beta$, görünen
-(observable) değişken ise fiyat zaman serisi $y$ olacak, yani daha önce
-basit lineer regresyona $y$ olarak verilen fiyat serisi. Tüm KF modeli,</p>
+<p>KF hakkında detaylar [2] yazısında bulunabilir; KF formüllerinin
+türetilmesi orada anlatıldı. Bu yazıda gereken bölüştürme oranı, ve yan
+ürün olarak bu oranın ortalamasını ve uçuculuğunu (volatility) hesaplamak,
+o zaman gizli değişken bölüştürme oranı $\beta$, görünen (observable)
+değişken ise fiyat zaman serisi $y$ olacak, yani daha önce basit lineer
+regresyona $y$ olarak verilen fiyat serisi. Tüm KF modeli,</p>
 <p>$$ \beta_t = I \cdot \beta_{t-1} + \omega_{t-1}$$</p>
 <p>$$ y_t = x_t \beta_t + \epsilon_t $$</p>
 <p>$\omega_{t-1},\epsilon_t$ Gaussian gürültü olmak üzere. </p>
@@ -542,3 +542,4 @@ Sharpe 0.888414859744
 
 <p>Kaynaklar</p>
 <p>[1] Chan, <em>Algorithmic Trading</em></p>
+<p>[2] Bayramli, Fizik, <em>Kalman Filtreleri</em></p>

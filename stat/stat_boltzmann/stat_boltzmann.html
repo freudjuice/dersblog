@@ -164,19 +164,17 @@ elimizde veri dağılımı "iyi" temsil eden bir veri setidir. Daha sonra bu
 korelasyon hesabını değeri gerçek veri korelasyonunundan çıkartıp bir sabit
 üzerinden gradyan adımı atmamız mümkün olacak.</p>
 <p>Gibbs Örneklemesi (Sampling)</p>
-<p>Gibbs örneklemesinin detayları için <em>Monte Carlo, Entegraller, MCMC</em>
-yazısına danışılabilir. Bölzmann dağılımından örneklem almak için bize tek
-bir değişken (hücre) haricinde diğer hepsinin bilindiği durumun olasılık
-hesabı lazım, yani koşulsal olasılık $P(x_i = 1 | x_j, j \ne i)$. Yani $x$
-üzerinde, biri hariç tüm öğelerin bilindiği durumda bilinmeyen tek hücre
-$i$'nin 1 olma olasılık değeri,</p>
+<p>Gibbs örneklemesinin detayları için [5]. Bolzmann dağılımından örneklem
+almak için bize tek bir değişken (hücre) haricinde diğer hepsinin bilindiği
+durumun olasılık hesabı lazım, yani koşulsal olasılık
+$P(x_i = 1 | x_j, j \ne i)$. Yani $x$ üzerinde, biri hariç tüm öğelerin
+bilindiği durumda bilinmeyen tek hücre $i$'nin 1 olma olasılık değeri,</p>
 <p>$$ P(x_i = 1 | x_j, j \ne i) = \frac{1}{1 + e^{-a_i}} $$</p>
 <p>ve,</p>
 <p>$$ a_i = \sum_j  w_{ij}x_j $$</p>
 <p>Bu koşulsal olasılığın temiz / basit bir formül olması önemli, üstteki
 görülen bir sigmoid fonksiyonu bu türden bir fonksiyondur... Bu
-fonksiyonlar hakkında daha fazla bilgi <em>Lojistik Regresyon</em> yazısında
-bulunabilir.</p>
+fonksiyonlar hakkında daha fazla bilgi [6] yazısında bulunabilir.</p>
 <p>Ama, ana formül (3)'ten bu noktaya nasıl eriştik? Bu noktada biraz türetme
 yapmak lazım. $x$ vektörü içinde sadece $x_i$ öğesinin $b$ olmasını $x^b$ olarak
 alalım. Önce koşulsal dağılımda "verili" olan kısmı elde etmek lazım. O
@@ -539,3 +537,5 @@ network- kullanmak).</p>
   \bigr]$ to Sigmoid}, <a href="http://math.stackexchange.com/questions/1095491/from-pxw-frac1zw-exp-bigl-frac12-xt-w-x-bigr-to-sigmoid/">http://math.stackexchange.com/questions/1095491/from-pxw-frac1zw-exp-bigl-frac12-xt-w-x-bigr-to-sigmoid/</a></p>
 <p>[4] Stack Exchange, <em>Calculating the sum $\frac{1</em>{2} \sum x^T \Sigma x$ for all $x \in
   {0,1}^n$}, <a href="http://math.stackexchange.com/questions/1080504/calculating-the-sum-frac12-sum-xt-sigma-x-for-all-x-in-0-1-n">http://math.stackexchange.com/questions/1080504/calculating-the-sum-frac12-sum-xt-sigma-x-for-all-x-in-0-1-n</a></p>
+<p>[5] Bayramli, Istatistik, <em>Monte Carlo, Entegraller, MCMC</em></p>
+<p>[6] Bayramli, Istatistik, <em>Lojistik Regresyon</em></p>

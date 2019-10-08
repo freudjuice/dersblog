@@ -91,13 +91,12 @@ print evec
 <p>Yani $Ax$'i sıfıra en yaklaştıran çozum $x = \left[\begin{array}{cc} -0.88 &amp;
  0.47 \end{array}\right]$. Görüldüğü gibi 1. öğe ikincisinin negatif iki
 "katımsı". </p>
-<p>Temel Bileşen Analizi (bkz. <em>Principal Component Analysis -PCA-</em>
-yazısı) tekniğinde görülecek, bu tekniğin bahsettiğimiz minimizasyon ile
-yakın alakaları var. Eğer $A$ matrisi kolonlarını belli ölçümler, yaş,
-ağırlık, vs gibi düşünürsek, bu ölçümler üzerinden kovaryansın ne olduğunu
-biliyoruz: $A^TA$. Değil mi? Peki şimdi şu sorunun cevabını nasıl veririz?
-Öyle yönler bul ki $A^TA$ o yönlerde kovaryans yansıması minimal ya da
-maksimal olsun.</p>
+<p>Temel Bileşen Analizi (bkz [2]) tekniğinde görülecek, bu tekniğin
+bahsettiğimiz minimizasyon ile yakın alakaları var. Eğer $A$ matrisi
+kolonlarını belli ölçümler, yaş, ağırlık, vs gibi düşünürsek, bu ölçümler
+üzerinden kovaryansın ne olduğunu biliyoruz: $A^TA$. Değil mi? Peki şimdi
+şu sorunun cevabını nasıl veririz?  Öyle yönler bul ki $A^TA$ o yönlerde
+kovaryans yansıması minimal ya da maksimal olsun.</p>
 <p>Yön demek bir birim vektördür, $x$ diyelim, yani gene $A^TAx$'yi minimize /
 maksimize etmeye geldik (ya da $x^TA^TAx$, aynı şey)! Şart $||x||^2 = 1$ aynen
 olduğu gibi geçerli çünkü sadece bir yön arıyoruz. Kovaryansın minimal, maksimal
@@ -120,7 +119,7 @@ gelir. Üstte bir oran görülüyor, fakat bu karışıklık yaratmasın, daha �
 = 1$ şartını ayrı bir şekilde yazmıştık, ve $x^T M x$ minizasyonu
 yapmıştık. Diyelim ki $x$ değil $v$ kullandık ve $v$ herhangi bir vektör
 olabilir, fakat herhangi bir vektörü birim vektör haline getirmeyi biliyoruz, $x
-= v/||v||$, ve $x^T M x$ içinde yerine koyarsak (1)'i elde ederiz [9].</p>
+= v/||v||$, ve $x^T M x$ içinde yerine koyarsak (1)'i elde ederiz [1].</p>
 <p>Böylece ileride göreceğimiz Rayleigh-Ritz Teorisi'nin ispatının bir kısmına da
 farklı bir çözüm getirmiş olduk.</p>
 <p>Optimizasyonu bölüm olarak belirtmenin bazı faydalı var, sınır şartının illa 1'e
@@ -213,4 +212,5 @@ bütün terimler birbirine eşit. Daha da basitleştirmek için U'yu yokedelim.<
 <p>Böylece göstermiş oluyoruz ki, </p>
 <p>$$ \lambda_1x^*x \le \lambda_{alt}x^*x \le x^*Ax \le \lambda_{ust}x^*x $$ </p>
 <p>Kaynaklar</p>
-<p>[9] Olver, <em>Applied Linear Algebra</em></p>
+<p>[1] Olver, <em>Applied Linear Algebra</em></p>
+<p>[2] Bayramli, Istatistik, <em>Principal Component Analysis -PCA-</em></p>

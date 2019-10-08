@@ -520,14 +520,14 @@ sağlayan otomatik türev alma (automatic differentiation) tekniğinin
 yaygınlaşması, ki bu teknik çetrefil nöron fonksiyonları içerebilen
 convnet'ler için faydalı oldu. Not: dikkat otomatik türev ile {\em her
   türlü} fonksiyon hatta <code>if, while</code> komutları içeren bir kod
-parçasının bile türevi alınabiliyor (bkz <em>Otomatik Türev</em>
-yazısı). Türevler önemli çünkü gradyan inişi minimuma gidebilmek için türev
-kullanmalı. Üstteki kodda dikkat çekmiş olabilir, sinir ağında aslında
-yaptığımız tek hesap ileri doğru beslemeli (feed-forward) olan hesap; her
-veri noktası için ağın başından başlayarak girdi / işlem / sonuçları ardı
-ardına bir sonraki katmana aktarıyoruz, otomatik türev pek çok katmanlı bu
-işlemlerin türevini alarak bize o gidişin yaptığı tahminlerin hatasını
-düzeltmek için gidilmesi gereken gradyan yönünü veriyor.</p>
+parçasının bile türevi alınabiliyor (bkz [2] yazısı). Türevler önemli çünkü
+gradyan inişi minimuma gidebilmek için türev kullanmalı. Üstteki kodda
+dikkat çekmiş olabilir, sinir ağında aslında yaptığımız tek hesap ileri
+doğru beslemeli (feed-forward) olan hesap; her veri noktası için ağın
+başından başlayarak girdi / işlem / sonuçları ardı ardına bir sonraki
+katmana aktarıyoruz, otomatik türev pek çok katmanlı bu işlemlerin türevini
+alarak bize o gidişin yaptığı tahminlerin hatasını düzeltmek için gidilmesi
+gereken gradyan yönünü veriyor.</p>
 <p>Bazı negatifler: Convnet'lerin eğitimi hızlı değildir, ciddi kullanımlar
 için GPU, ya da paralel CPU kullanmak şart. Ayrıca convnet'lerin bir fark
 yaratması için oldukça çok veriye ihtiyaçları var, normal ölçek veri
@@ -540,6 +540,7 @@ tıbbi bir uygulama bağlamında YSA bir tahmin yapınca bundan "ne kadar emin
 olduğu" sorusunun direk cevabı alınamıyor. Bu alanda araştırmalar var
 tabii, ilginç bazı buluşlar bunu mümkün kılabilir.</p>
 <p>Kaynaklar</p>
+<p>[2] Bayramli, Bilgisayar Bilim, <em>Otomatik Türev</em></p>
 <p>[3] <em>Machine learning algorithms</em>, https://github.com/rushter/MLAlgorithms</p>
 <p>[4] LeCun, <em>Who is Afraid of Non-Convex Loss Functions?</em>, <a href="https://youtu.be/8zdo6cnCW2w">https://youtu.be/8zdo6cnCW2w</a></p>
 <p>[5] LeCun, <em>MNIST Verisi</em>, <a href="http://yann.lecun.com/exdb/mnist">http://yann.lecun.com/exdb/mnist</a></p>

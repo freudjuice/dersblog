@@ -152,17 +152,17 @@ sahip olduğu daha önce gösterildi.</p>
 kullanarak gerçek veriye ne kadar uzak düştüğümüzü gösterir. Formül olarak her
 veri noktası $i$ için $r_i = y_i - \beta_1x_i - \beta_o$. Her katsayı için de
 ayrı ayrı kalıntı hesaplanabilir.</p>
-<p>İdeal durumda, yani modelin doğru, veriye uyduğu durumda artıkların mükemmel bir
-Normal dağılıma sahip olması gerekir, çünkü veri içindeki tüm örüntü, kalıp
-model tarafından "bulunmuştur" ve geri kalanlar gürültüdür (gürültü tabii ki
-Normal dağılımda). İdeal ortamda OLS algoritmasının, matematiksel olarak,
-ortalaması (mean) sıfır olan artıklar üretmesi garantidir. Bir diğer varsayım
-uyduralan değişkenlerin katsayılarının onların "gerçek" değerleri etrafında
-merkezlenen bir Normal dağılıma sahip olduğudur (ispat için {\em Tahmin
-  Aralıkları} yazısının sonuna bakılabilir). Bu normallik önemli çünkü katsayı
-tahmini ile standart hatayı bölünce başka bir Öğrenci t dağılımı ortaya çıkacak.</p>
-<p>Kalıntıların normalliği QQ grafiği ile kontrol edilebilir (bkz {\em Güven
-  Aralıkları, Hipotez Testleri} yazısı,</p>
+<p>İdeal durumda, yani modelin doğru, veriye uyduğu durumda artıkların
+mükemmel bir Normal dağılıma sahip olması gerekir, çünkü veri içindeki tüm
+örüntü, kalıp model tarafından "bulunmuştur" ve geri kalanlar gürültüdür
+(gürültü tabii ki Normal dağılımda). İdeal ortamda OLS algoritmasının,
+matematiksel olarak, ortalaması (mean) sıfır olan artıklar üretmesi
+garantidir. Bir diğer varsayım uyduralan değişkenlerin katsayılarının
+onların "gerçek" değerleri etrafında merkezlenen bir Normal dağılıma
+sahip olduğudur (ispat için [10] yazısının sonuna bakılabilir). Bu
+normallik önemli çünkü katsayı tahmini ile standart hatayı bölünce başka
+bir Öğrenci t dağılımı ortaya çıkacak.</p>
+<p>Kalıntıların normalliği QQ grafiği ile kontrol edilebilir, bkz [11],</p>
 <pre><code class="python">import statsmodels.api as sm
 sm.qqplot(results.resid)
 plt.savefig('stat_linreg_01.png')
@@ -584,8 +584,7 @@ obama/romney
 <code>conf_int()</code> çağrısını kullandık, değişkenlerin noktasal değerlerini
 kullanmadık, bu şekilde tahmine olan güvenimizi aralığın büyüklüğüne bakarak
 görebilmiş olacağız. Dikkat: aslında <em>tahminin</em> güven aralığını hesaplamak
-biraz daha ek iş gerektiriyor, türetilmesi {\em Tahmin Aralıkları (Prediction
-  Interval)} bölümünde.</p>
+biraz daha ek iş gerektiriyor, türetilmesi [12] bölümünde.</p>
 <p>Şimdi sonuçlara bakalım; Bush / Kerry yarışı için kesin Bush diyor (çünkü güven
 aralığının iki ucu da yüzde 50 üstünde), Bush kazandı. McCain / Obama için
 McCain kesin kaybedecek diyor, McCain kaybetti. Obama / Romney yarışı için Obama
@@ -676,3 +675,6 @@ Very Close Election}, <a href="http://www.centerforpolitics.org/crystalball/arti
 <p>[7] Bayramlı, Çok Değişkenli Calculus, <em>Ders 9</em></p>
 <p>[8] Bayramlı, Lineer Cebir, <em>Ders 15</em></p>
 <p>[9] Bayramlı, Bilgisayar Bilim, Yapay Zeka, <em>Regresyon, En Az Kareler</em></p>
+<p>[10] Bayramlı, Istatistik, <em>Tahmin Aralıkları</em></p>
+<p>[11] Bayramlı, Istatistik, <em>Güven Aralıkları, Hipotez Testleri</em></p>
+<p>[12] Bayramlı, Istatistik, <em>Tahmin Aralıkları (Prediction Interval)</em></p>

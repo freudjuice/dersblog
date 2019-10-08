@@ -23,16 +23,16 @@
 </script>
 </head>
 
-<p>Geçmiş verilere bakarak bir kullanıcının hiç seyretmediği bir filme nasıl not
-vereceğini tahmin etmek ünlü Netflix yarışmasının konusuydu. Önceki bir yazı
-<em>SVD, Toplu Tavsiye</em>'de benzer bir veri seti Movielens üzerinde SVD
-uygulayarak önce boyut azaltmıştık, azaltılmış boyut üzerinden yeni (o film için
-notu bilinmeyen) bir kullanıcının diğer mevcut kullanıcılara mesafesini
+<p>Geçmiş verilere bakarak bir kullanıcının hiç seyretmediği bir filme nasıl
+not vereceğini tahmin etmek ünlü Netflix yarışmasının konusuydu. Önceki bir
+yazı [14]'te benzer bir veri seti Movielens üzerinde SVD uygulayarak önce
+boyut azaltmıştık, azaltılmış boyut üzerinden yeni (o film için notu
+bilinmeyen) bir kullanıcının diğer mevcut kullanıcılara mesafesini
 hesaplamış, ve böylece beğeni açısından en çok benzediği diğer kullanıcıyı
-bulmuştuk (birkaç tane de bulunabilir). Bu kullanıcının bir film için verdiği
-notu yeni kullanıcı için tahmin olarak baz almıştık. SVD'yi kullanmanın bir
-yöntemi daha var, Netflix yarışmasında kullanılan [1] bir yaklaşım şöyle;
-alttaki SVD ayrıştırmasına bakalım,</p>
+bulmuştuk (birkaç tane de bulunabilir). Bu kullanıcının bir film için
+verdiği notu yeni kullanıcı için tahmin olarak baz almıştık. SVD'yi
+kullanmanın bir yöntemi daha var, Netflix yarışmasında kullanılan [1] bir
+yaklaşım şöyle; alttaki SVD ayrıştırmasına bakalım,</p>
 <p><img alt="" src="svdapprox_1.png" /></p>
 <ol>
 <li>kullanıcının 1. filme verdiği not üstte köyü gösterilen satırların çarpımı
@@ -660,3 +660,4 @@ movie
 <p>[11] Netflix, <em>Netflix Prize</em>, <a href="http://www.netflixprize.com">http://www.netflixprize.com</a></p>
 <p>[12] Gleich, <em>SVD on the Netflix matrix</em>, <a href="https://dgleich.wordpress.com/2013/10/19/svd-on-the-netflix-matrix">https://dgleich.wordpress.com/2013/10/19/svd-on-the-netflix-matrix</a></p>
 <p>[13] Bayramlı, <em>Numba, LLVM, ve SVD</em>, <a href="http://sayilarvekuramlar.blogspot.de/2014/09/numba-llvm-ve-svd.html">http://sayilarvekuramlar.blogspot.de/2014/09/numba-llvm-ve-svd.html</a></p>
+<p>[14] Bayramli, Lineer Cebir, <em>SVD, Toplu Tavsiye</em></p>

@@ -95,16 +95,15 @@ print np.dot(a,b)
 tanımlayınca Numpy çarpımı <code>dot</code>, çarpım sırasındaki toplama işlemi
 için aritmetik toplama yerine VEYA (OR) kullanması gerektiğini anladı.</p>
 <p>Şimdi ayrıştırmayı analiz edelim, özellikle sol taraftaki çarpılan "baz"
-matrise bakalım.. <em>Matris Çarpımı</em> yazısından hareketle, bu yazıdaki
-kolon kombinasyon bakışını kullanalım (tabii toplamanın BMF için OR
-olduğunu unutmadan), o zaman soldaki baz matrisin dikey, kolon bazlı
-olarak, bir özet olduğunu görebiliyoruz. Çünkü çarpan sağ taraf bu
-kolonları alıp onları belli şekillerde "kombine ederek" nihai (orijinal)
-matrisi ortaya çıkartabilmeli. Bu sebeple soldaki çarpılan matris bir özet
-olmalı / baz oluşturmalı, ve bunun yan etkisi olarak kolonlardaki
-değerlerde belli bir kalıp / örüntü (pattern) olmalı. O zaman her baz
-kolonunda birbiriyle alakalı olan ögeler aynı anda 1 değeri taşıyor
-olacaktır.</p>
+matrise bakalım.. [6] yazısından hareketle, bu yazıdaki kolon kombinasyon
+bakışını kullanalım (tabii toplamanın BMF için OR olduğunu unutmadan), o
+zaman soldaki baz matrisin dikey, kolon bazlı olarak, bir özet olduğunu
+görebiliyoruz. Çünkü çarpan sağ taraf bu kolonları alıp onları belli
+şekillerde "kombine ederek" nihai (orijinal) matrisi ortaya
+çıkartabilmeli. Bu sebeple soldaki çarpılan matris bir özet olmalı / baz
+oluşturmalı, ve bunun yan etkisi olarak kolonlardaki değerlerde belli bir
+kalıp / örüntü (pattern) olmalı. O zaman her baz kolonunda birbiriyle
+alakalı olan ögeler aynı anda 1 değeri taşıyor olacaktır.</p>
 <p>Sonuca göre uzun saçlı ve ünlü olmak (1. kolon) arasında bağlantı varmış ,
 ayrıca erkek olmak ve ünlü olmak (2. kolon) arasında da bağlantı varmış :)
 Veriye göre böyle en azından.. Bu sonucu orijinal matrise bakarak ta
@@ -377,16 +376,16 @@ GMM ile kümeleme gibi diğer yapay öğrenim metotlarından farklı değildir. 
 oynanması gereken, keşfedilmesi gereken bir değer.</p>
 <p>Çok Değişkenli Bernoulli Karışımı Kümelemesi ile İlişkisel Madencilik</p>
 <p>Bir diger yaklasim kümeleme üzerinden kural çıkartmak. Örnek veri olarak
-<em>Pivotlama</em> yazısındanki Movielens 1M verisini kullanacağız. Ayrıca bu
-verideki posta kodu (zip) ve meslek (occupation) verisine README'ye ve bir
-Internet sitesine [4] danışarak sözel açıklamalarını koyduk. Böylece
-sonuçları yorumlamak çok daha kolay olacak.</p>
+[7] yazısındanki Movielens 1M verisini kullanacağız. Ayrıca bu verideki
+posta kodu (zip) ve meslek (occupation) verisine README'ye ve bir Internet
+sitesine [4] danışarak sözel açıklamalarını koyduk. Böylece sonuçları
+yorumlamak çok daha kolay olacak.</p>
 <p>İlişkilerin keşfi için çok değişkenli Bernoulli modelini kullanacağız, ki
-<em>Çok Değişkenli Bernoulli Karışımı</em> yazısında bu kümeleme yöntemi
-işlendi. CDBK kullanmak için veriyi 0/1 bazına indirgeyeceğiz (ki verinin
-büyük bir kısmı zaten bu durumda) ardından CDBK'yı veriye uyduracağız, ve
-karışım öğeleri $\theta_k$'lerin bir nevi "şablon" oluşturması sebebiyle
-ilişki keşfini bu şablonlar üzerinden yapmaya uğraşacağız. </p>
+[8] yazısında bu kümeleme yöntemi işlendi. CDBK kullanmak için veriyi 0/1
+bazına indirgeyeceğiz (ki verinin büyük bir kısmı zaten bu durumda)
+ardından CDBK'yı veriye uyduracağız, ve karışım öğeleri $\theta_k$'lerin
+bir nevi "şablon" oluşturması sebebiyle ilişki keşfini bu şablonlar
+üzerinden yapmaya uğraşacağız.</p>
 <pre><code class="python">import pandas as pd, zipfile
 import sys; sys.path.append('../stat_mixbern')
 import mixbern
@@ -588,11 +587,11 @@ birazdan bahsedeceğimiz teknik aslında her türlü ilişki madenciliği
 yaklaşımı için faydalı, çünkü hangi teknik olursa olsun bize verinin belli
 bir grubunu "önemli" olarak gösterecek. Ardından biz bu grubu alıp onun
 ne kadar önemli olduğunun ölçütünü hesaplayabileceğiz.</p>
-<p>Teknik şöyle: İstatistiki testlerden {\em Pearson Chi Kare Uyum Derecesi
-  Testi} yazı bölümünü hatırlarsak, bir ideal dağılım vardı, ve eldeki
-verinin bu ideale olan yakınlığını ölçüyorduk. Chi Kare testi ayrıksal
-bazda işliyordu, eğer eldeki sürekli fonksiyon bazlı bir dağılım ise onun
-ideal hesaplarını kutucuklara bölüştürüyorduk. </p>
+<p>Teknik şöyle: İstatistiki testlerden [9] yazı bölümünü hatırlarsak, bir
+ideal dağılım vardı, ve eldeki verinin bu ideale olan yakınlığını
+ölçüyorduk. Chi Kare testi ayrıksal bazda işliyordu, eğer eldeki sürekli
+fonksiyon bazlı bir dağılım ise onun ideal hesaplarını kutucuklara
+bölüştürüyorduk.</p>
 <p>İlişkisel madencilikte elde ettiğimiz kural bir vektör içinde 0/1 değerleri
 olacak. Yaklaşım şöyle; önce verideki her kolonun tek başına oranını
 buluruz. Bu oranlar her kolon "dağılımının" birbirinden bağımsız farz
@@ -693,3 +692,7 @@ okuyucuya bırakıyoruz.</p>
 <p>[3] Miettinen, <em>Boolean Matrix Factorizations</em>, \url{http://www.mpi-inf.mpg.de/~pmiettin/slides/BooleanMatrixFactorizationsForDataMining_Antwerp_slides.pdf}</p>
 <p>[4] Zip boundary, <em>ZIP Code FAQs</em>, \url{http://www.zipboundary.com/zipcode_faqs.html}</p>
 <p>[5] Rao, <em>Linear Statistical Inference and Its Applications</em></p>
+<p>[6] Bayramli, Lineer Cebir, <em>Matris Çarpımı, Ders 1</em></p>
+<p>[7] Bayramli, Istatistik, <em>Pivotlama</em></p>
+<p>[8] Bayramli, Istatistik, <em>Çok Değişkenli Bernoulli Karışımı</em></p>
+<p>[9] Bayramli, Istatistik, <em>Pearson Chi Kare Uyum Derecesi Testi</em></p>

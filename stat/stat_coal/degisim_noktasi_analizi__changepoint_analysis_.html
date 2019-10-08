@@ -42,15 +42,15 @@ plt.savefig('stat_coal_02.png')
 olduğunu gösterir, ki bu bölgelerin iki farklı dağılımla temsil edileceğini
 tahmin edebiliriz. </p>
 <p>Aynı zaman diliminde vuku bulan olay toplamlarının (event counts) Poisson
-dağılımına sahip olduğunu biliyoruz. O zaman, belki de ilk yapmamız gereken bu
-veriye iki tane Poisson uydurmak, yani veriyi iki Poisson dağılımının karışımı
-olarak temsil etmek. Karışımlar konusu <em>Çok Değişkenli Bernoulli Karışımı</em>
-yazısında görülebilir, buradaki tek fark Bernoulli yerine Poisson kullanılacak
-olması. İdeal olarak uydurma operasyonu için Beklenti-Maksimizasyon
-(Expectation-Maximization -EM-) kullanılır. Fakat denklemleri türetmek zaman
-alabilir, biz şuradaki tavsiyeyi [4, sf. 11] takip ederek bu örnek için
-uydurmayı bir gayrı lineer optimizasyon paketi <code>lmfit</code> ile yapacağız
-(tavsiyenin R kodu <code>coal.r</code> içinde).</p>
+dağılımına sahip olduğunu biliyoruz. O zaman, belki de ilk yapmamız gereken
+bu veriye iki tane Poisson uydurmak, yani veriyi iki Poisson dağılımının
+karışımı olarak temsil etmek. Karışımlar konusu [5] yazısında görülebilir,
+buradaki tek fark Bernoulli yerine Poisson kullanılacak olması. İdeal
+olarak uydurma operasyonu için Beklenti-Maksimizasyon
+(Expectation-Maximization -EM-) kullanılır. Fakat denklemleri türetmek
+zaman alabilir, biz şuradaki tavsiyeyi [4, sf. 11] takip ederek bu örnek
+için uydurmayı bir gayrı lineer optimizasyon paketi <code>lmfit</code> ile
+yapacağız (tavsiyenin R kodu <code>coal.r</code> içinde).</p>
 <pre><code class="python">from scipy.stats.distributions import poisson
 from lmfit import Parameters, minimize
 from lmfit.printfuncs import report_fit
@@ -359,3 +359,4 @@ coal(1100, data, init=[1,1,30], a1=1,a2=1,b1=1,b2=1)
 <p>[3] Anderson, A. (1911). Labour legislation. In H. Chisholm (Ed.),
 <em>Encyclopedia britannica (11th ed., Vol. 16, sf. 7-28)</em></p>
 <p>[4] Zuccini, <em>Hidden Markov Models for Time Series An Introduction Using R</em></p>
+<p>[5] Bayramli, Istatistik, <em>Çok Değişkenli Bernoulli Karışımı</em></p>

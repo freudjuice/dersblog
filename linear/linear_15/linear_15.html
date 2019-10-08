@@ -330,16 +330,15 @@ da elde edebilmemiz gerekir.</p>
 <p>Çözüm için çapraz çarpım kullanabiliriz, $n \cdot (u \times v)$ hesabına
 bakarız, bu hesap artı ise üstteki $\theta$'yi olduğu gibi alırız, değil
 ise $360-\theta$'yi kullanırız. Bunun sebebi $u \times v$ bize sağ el
-kuralına göre (bkz. <em>Yapay Görüş ve Robotik, Ders 2</em>) $u,v$ referanslı
-bir üçüncü vektör veriyor. Sağ el kuralınında eğer $u$'dan başlayıp $v$'ye
-saat yönü tersine giderken 180 dereceden az bir gidiş yeterli ise, üçüncü
-vektör yukarı doğru işaret ediyor, yoksa aşağı doğru. Mesela üstteki
-örnekte vektör düzlem normaline ters, yani aşağı. Bu bize ilgilendiğimiz
-gidiş yönündeki açının 180'den fazla olduğuna dair bir işaret, o zaman
-$360 - \theta$ kullanmamız gerekir. Noktasal çarpım aynı yön / terslik
-hesabı için; üçüncü vektörün düzlem normali ile noktasal çarpımı eğer aynı
-yönde ise artı, değil ise eksi olacağı için 360'dan çıkartma irdelemesini
-bu şekilde yapabiliriz.</p>
+kuralına göre, bkz [2], $u,v$ referanslı bir üçüncü vektör veriyor. Sağ el
+kuralınında eğer $u$'dan başlayıp $v$'ye saat yönü tersine giderken 180
+dereceden az bir gidiş yeterli ise, üçüncü vektör yukarı doğru işaret
+ediyor, yoksa aşağı doğru. Mesela üstteki örnekte vektör düzlem normaline
+ters, yani aşağı. Bu bize ilgilendiğimiz gidiş yönündeki açının 180'den
+fazla olduğuna dair bir işaret, o zaman $360 - \theta$ kullanmamız
+gerekir. Noktasal çarpım aynı yön / terslik hesabı için; üçüncü vektörün
+düzlem normali ile noktasal çarpımı eğer aynı yönde ise artı, değil ise
+eksi olacağı için 360'dan çıkartma irdelemesini bu şekilde yapabiliriz.</p>
 <pre><code class="python">import numpy.linalg as lin
 deg = np.rad2deg(np.arccos(np.dot(p1,p2) / (lin.norm(p1)*lin.norm(p2))))
 s = np.dot(n, np.cross(p1,p2))
@@ -354,3 +353,4 @@ else: print 'deg', deg
 
 <p>Kaynaklar</p>
 <p>[1] Maplesoft, <em>Projection of a Vector onto a Plane</em>, <a href="http://www.maplesoft.com/support/help/Maple/view.aspx?path=MathApps/ProjectionOfVectorOntoPlane">http://www.maplesoft.com/support/help/Maple/view.aspx?path=MathApps/ProjectionOfVectorOntoPlane</a></p>
+<p>[2] Bayramli, Yapay Görüş ve Robotik, <em>Ders 2</em></p>

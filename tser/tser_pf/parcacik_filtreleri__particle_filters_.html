@@ -87,13 +87,13 @@ $I$ diyelim,</p>
 <p>$$ I(f_t) = \int \phi_t(x_{0:t}) p(x_{0:t} | y_{1:t}) \mathrm{d} x_{0:t} $$</p>
 <p>En basit durumda eğer $\phi_t(x_{0:t}) =x_{0:t}$ alırsak, o zaman şartsal
 ortalama (conditional mean) elde ederiz. Farklı fonksiyonlar da mümkündür [1].</p>
-<p>Üstteki entegrali $x_{0:t} | y_{1:t}$'den örneklem alarak ve entegrali toplam
-haline getirerek yaklaşıksal şekilde hesaplayabileceğimizi {\em İstatistik,
-  Monte Carlo, Entegraller, MCMC} yazısında gördük. Fakat $x_{0:t} |
-y_{1:t}$'den örnekleyemiyoruz. Bu durumda yine aynı yazıda görmüştük ki
-örneklenebilen başka bir dağılımı baz alarak örneklem yapabiliriz, bu tekniğe
-önemsel örnekleme (importance sampling) adı veriliyordu. Mesela mesela herhangi
-bir yoğunluk $h(x_{0:t})$ üzerinden,</p>
+<p>Üstteki entegrali $x_{0:t} | y_{1:t}$'den örneklem alarak ve entegrali
+toplam haline getirerek yaklaşıksal şekilde hesaplayabileceğimizi [2]
+yazısında gördük. Fakat $x_{0:t} | y_{1:t}$'den örnekleyemiyoruz. Bu
+durumda yine aynı yazıda görmüştük ki örneklenebilen başka bir dağılımı baz
+alarak örneklem yapabiliriz, bu tekniğe önemsel örnekleme (importance
+sampling) adı veriliyordu. Mesela mesela herhangi bir yoğunluk $h(x_{0:t})$
+üzerinden,</p>
 <p>$$ I = \int
 \phi(x_{0:t})
 \frac{ p(x_{0:t}|y_{1:t}) }{ h(x_{0:t}) } h_{0:t} \mathrm{d} x_{0:t}
@@ -263,7 +263,7 @@ plt.savefig('tser_pf_01.png')
 w^{[i]} = \frac{1}{1 + (y^{[i]} - p^{[i]})^2  )}
 $$</p>
 <p>olan parçacık filtreleri için kod şurada. Bu filtrenin kullanımı için
-bakınız <em>Yapay Görüş, Obje Takibi</em> yazısı. </p>
+bakınız [3] yazısı. </p>
 <pre><code class="python">from numpy import *
 from numpy.random import *
 
@@ -310,3 +310,5 @@ class PF:
 <p>Kaynaklar</p>
 <p>[1] Gandy, <em>LTCC - Advanced Computational Methods in Statistics</em>,
 <a href="http://wwwf.imperial.ac.uk/~agandy/ltcc.html">http://wwwf.imperial.ac.uk/~agandy/ltcc.html</a></p>
+<p>[2] Bayramli, Istatistik, <em>İstatistik, Monte Carlo, Entegraller, MCMC</em></p>
+<p>[3] Bayramli, Yapay Görüş, <em>Obje Takibi</em></p>

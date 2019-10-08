@@ -23,20 +23,19 @@
 </script>
 </head>
 
-<p>Rasgele yansıtma tekniği $m \times b$ boyutunda bir matrisi $n \times
-k$ boyutunda ve her hücresinde $N(0,1)$ dağılımından gelen bir sayı
-içeren matris ile çarpmak sonunda elde edilir. Böylece ana veri
-matrisi "yansıtılmış" olur, boyut azaltmak için çok kullanışlı bir
-tekniktir, çünkü elde edilen matrisin ana matris $A$'nin "menzilini"
-iyi temsil ettiği ispatlanmıştır. Daha fazla detay için bkz. {\em Rasgele
-İzdüşümü ile SVD} yazısı.</p>
-<p>Eşle/indirge ortamında rasgele yansıtma için önce {\em Matris
-Çarpımı} adlı yazıya da bakmak gerekebilir. Bu yazıda iki matris
-arasındaki çarpıma "satır bakışı" bizim için gerekli. Çünkü çarpımın
-solunda $m \times n$ boyutundaki matrisin verileri bize satır satır
-geliyor, yani her $m$ satırdan sadece bir tanesine bakarak işlem
-yapıyoruz. Faraziyemiz $n$'in de büyük olabilmesine rağmen en azından
-$n$ tane veri noktasını tek bir makinada işleyebileceğimiz.</p>
+<p>Rasgele yansıtma tekniği $m \times b$ boyutunda bir matrisi $n \times k$
+boyutunda ve her hücresinde $N(0,1)$ dağılımından gelen bir sayı içeren
+matris ile çarpmak sonunda elde edilir. Böylece ana veri matrisi
+"yansıtılmış" olur, boyut azaltmak için çok kullanışlı bir tekniktir, çünkü
+elde edilen matrisin ana matris $A$'nin "menzilini" iyi temsil ettiği
+ispatlanmıştır. Daha fazla detay için bkz [1] yazısı.</p>
+<p>Eşle/indirge ortamında rasgele yansıtma için önce [2] adlı yazıya da bakmak
+gerekebilir. Bu yazıda iki matris arasındaki çarpıma "satır bakışı" bizim
+için gerekli. Çünkü çarpımın solunda $m \times n$ boyutundaki matrisin
+verileri bize satır satır geliyor, yani her $m$ satırdan sadece bir
+tanesine bakarak işlem yapıyoruz. Faraziyemiz $n$'in de büyük olabilmesine
+rağmen en azından $n$ tane veri noktasını tek bir makinada
+işleyebileceğimiz.</p>
 <p>Satır bakışına dönersek, bu çarpım görüşüne göre soldaki her satır
 için, o satırdaki bir öğeyi sağda ona tekabül eden $n \times k$
 boyutundaki matrisin satırıyla (yani her gelen satırın 5. öğesi
@@ -295,3 +294,6 @@ plt.savefig('rnd_1.png')
 
 <p><img alt="" src="rnd_1.png" /></p>
 <p>Sonuçlar fena değil.</p>
+<p>Kaynaklar</p>
+<p>[1] Bayramli, Lineer Cebir, <em>Rasgele İzdüşümü ile SVD</em></p>
+<p>[2] Bayramli, Lineer Cebir, <em>Matris Çarpımı, Ders 1</em></p>

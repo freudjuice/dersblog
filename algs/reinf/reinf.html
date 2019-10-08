@@ -28,16 +28,15 @@ bir bilgisayar oyunu, dama, satranç, ya da eğlence oyunlarından Pong. Eğer
 elimizde bir simülasyon ortamı var ise, ve takviyeli öğrenme teknikleri ile
 bu sorunun cevabı evet. Simülasyon ortamında bilgisayara karşı istediğimiz
 kadar oynayıp RL teknikleri bir oyunu oynamayı öğrenebilir.</p>
-<p>Daha önce <em>Yapay Zeka ve Müsabaka</em> yazısında farklı bir yaklaşım
-gördük, bir değer fonksiyonu vardı, bu fonksiyona tahtanın son halini
-veriyorduk, değer fonksiyonu bize pozisyonun taraflar için ne kadar
-avantajlı olduğunu raporluyordu (tek bir sayı). Bu fonksiyon bir kez, ve
-önceden kodlanmaktaydı, ve oyun oynayan yapay zeka altüst (minimax)
-algoritması ile kendisi için en avantajlı karşı taraf için en avantajsız
-pozisyonları bu fonksiyon ile değerlendirerek ve arama yaparak
-buluyordu. Fakat değer fonksiyonu yaklaşımının bazı dezavantajları var,
-birincisi fonksiyonun deterministik olması. Oyun sırasında değişmiyor,
-önceden kodlanmış.</p>
+<p>Daha önce [7] yazısında farklı bir yaklaşım gördük, bir değer fonksiyonu
+vardı, bu fonksiyona tahtanın son halini veriyorduk, değer fonksiyonu bize
+pozisyonun taraflar için ne kadar avantajlı olduğunu raporluyordu (tek bir
+sayı). Bu fonksiyon bir kez, ve önceden kodlanmaktaydı, ve oyun oynayan
+yapay zeka altüst (minimax) algoritması ile kendisi için en avantajlı karşı
+taraf için en avantajsız pozisyonları bu fonksiyon ile değerlendirerek ve
+arama yaparak buluyordu. Fakat değer fonksiyonu yaklaşımının bazı
+dezavantajları var, birincisi fonksiyonun deterministik olması. Oyun
+sırasında değişmiyor, önceden kodlanmış.</p>
 <p>Daha iyi bir yaklaşım olasılıksal bir ilke $\pi_\theta(a,s)$ kodlamak,
 atılan adımları örnekleme ile atmak, ve ilkeyi her oyun sonunda
 güncellemek. Böylece oyun sırasında hem oyuncu yeni şeyler denemeye (açık
@@ -516,3 +515,4 @@ sonuçları daha fazla alabilelim.</p>
 <a href="http://www.machinelearning.org/archive/icml2009/papers/500.pdf">http://www.machinelearning.org/archive/icml2009/papers/500.pdf</a></p>
 <p>[5] Silver, <em>Reinforcement Learning</em>, <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html">http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html</a></p>
 <p>[6] Greydanus, <em>Solves Pong with Policy Gradients in Tensorflow</em>, <a href="https://gist.github.com/greydanus/5036f784eec2036252e1990da21eda18">https://gist.github.com/greydanus/5036f784eec2036252e1990da21eda18</a></p>
+<p>[7] Bayramli, Bilgisayar Bilim, <em>Yapay Zeka ve Müsabaka</em></p>

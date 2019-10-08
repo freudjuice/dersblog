@@ -93,15 +93,15 @@ $$</p>
 eden vektörlerin üst üste konulduğu bir matris olabilir. Sorgu vektörü $B$. Bu
 durumda hala tek bir çarpım yeterli, ama o tek çarpım bu sefer bize sorgunun tüm
 dokümanlara olan yakınlığını verir.</p>
-<p>Altta bu kavramların kullanımını görüyoruz; daha önce {\em İstatistik, Naive
-  Bayes} yazısında kullandığımız veriler bunlar, Barack Obama ve Stephen
-Hawking'in yazdıklarından alınan bölümler. Önce indeksleme, sonra bazı
-kelimelerle arama yapıyoruz. Kelimeleri sayısal bir kolon indisine çevirmek için
-anahtarlama numarası kullanıldı (aynı yazıda bundan da bahsediliyor); <code>D</code>
-kadar kolon tanımlıyoruz, her kelime üzerinde bir hash sayısı hesaplayıp
-matematik modülosunu alıyoruz (bölümden arta kalan sayı) bu sayıyı kolon indisi
-yapıyoruz. Böylece <code>D</code>'den fazla kolon olamaz, ve her kelime hala aynı /
-özgün kolona gider.</p>
+<p>Altta bu kavramların kullanımını görüyoruz; daha önce [4] yazısında
+kullandığımız veriler bunlar, Barack Obama ve Stephen Hawking'in
+yazdıklarından alınan bölümler. Önce indeksleme, sonra bazı kelimelerle
+arama yapıyoruz. Kelimeleri sayısal bir kolon indisine çevirmek için
+anahtarlama numarası kullanıldı (aynı yazıda bundan da bahsediliyor);
+<code>D</code>  kadar kolon tanımlıyoruz, her kelime üzerinde bir hash sayısı
+hesaplayıp matematik modülosunu alıyoruz (bölümden arta kalan sayı) bu
+sayıyı kolon indisi yapıyoruz. Böylece <code>D</code>'den fazla kolon olamaz, ve
+her kelime hala aynı / özgün kolona gider.</p>
 <pre><code class="python">import nltk, string, sys      
 import scipy.sparse as sps
 
@@ -213,3 +213,4 @@ search(&quot;Galileo was a friend of mine&quot;)
 <p>[1] Bayramlı, <em>Dil Isleme, Python - NLTK</em>, <a href="http://sayilarvekuramlar.blogspot.com/2016/04/dil-isleme-python-nltk.html">http://sayilarvekuramlar.blogspot.com/2016/04/dil-isleme-python-nltk.html</a></p>
 <p>[2] Manning, <em>Introduction to NLP, Lecture Notes</em>, <a href="https://web.stanford.edu/~jurafsky/NLPCourseraSlides.html">https://web.stanford.edu/~jurafsky/NLPCourseraSlides.html</a></p>
 <p>[3] Bayramlı, <em>Scipy Seyrek Matrisleri (Sparse Matrices)</em>, <a href="http://sayilarvekuramlar.blogspot.com/2016/04/scipy-seyrek-matrisler-sparse-matrices.html">http://sayilarvekuramlar.blogspot.com/2016/04/scipy-seyrek-matrisler-sparse-matrices.html</a></p>
+<p>[4] Bayramlı, İstatistik, <em>Naive  Bayes</em></p>

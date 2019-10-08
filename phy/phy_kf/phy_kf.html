@@ -224,7 +224,7 @@ kareler (least square) ile yani çizgi / düzlem uydurması ile aynı sonuca
 varabileceği söylenir, bu tam doğru degil, KF üstel ağırlıklı
 (exponentially weighted) en az kareler ile aynıdır, yani en son veri
 noktalarının daha öncekilere göre daha çok ağırlığı vardır. KF ile
-regresyon örneği için bkz <em>Ortalamaya Dönüş ile İşlem</em> yazısı.</p>
+regresyon örneği için bkz [5] yazısı.</p>
 <p>Bir not daha: $x_k = \Phi_{k-1}x_{k-1} + w_{k-1}$ geçişinde $\Phi_{k-1}$
 ile çarpım bir lineer konum değişimini modeller, o zaman lineer olmayan
 geçişlerin KF modellenmesi mümkün değildir. Mesela bir topun ileri, havaya
@@ -693,3 +693,4 @@ plt.savefig('tser_kf_02.png')
 <p>[2] Brown, osf. 143, <em>Introduction to Random Signals and Applied Kalman Filtering</em></p>
 <p>[3] Hartley, Zisserman, <em>Multiple View Geometry</em> </p>
 <p>[4] Labbe, <em>Kalman and Bayesian Filters in Python</em></p>
+<p>[5] Bayramli, Zaman Serileri, <em>Ortalamaya Dönüş ile İşlem</em></p>

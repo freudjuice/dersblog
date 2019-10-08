@@ -377,11 +377,11 @@ başlamadan önce tüm verinin hafızaya alınmasını gerektiriyor.</p>
 <p>Bu durumda kendimiz çok basit Python kavramlarını, iyi bir anahtarlama
 kodunu, ve lineer cebir hesaplarında seyreklik (sparsity) tekniklerini
 kullanarak ufak veri parçaları işleyen bir ortamı yaratabiliriz.</p>
-<p>Örnek veri olarak <em>Lineer Regresyon</em> yazısında görülen oy kalıpları
-verisini biraz değiştirerek yeni bir analiz için kullanalım. Veri oy
-verenlerin ırk, cinsiyet, meslek, hangi partiye oy verdikleri ve
-kazançlarını kaydetmiş, biz analizimizde bahsedilen kategorilerin bu
-kişilerin kazancıyla bağlantılı olup olmadığına bakacağız. Veriyi oluşturalım,</p>
+<p>Örnek veri olarak [4] yazısında görülen oy kalıpları verisini biraz
+değiştirerek yeni bir analiz için kullanalım. Veri oy verenlerin ırk,
+cinsiyet, meslek, hangi partiye oy verdikleri ve kazançlarını kaydetmiş,
+biz analizimizde bahsedilen kategorilerin bu kişilerin kazancıyla
+bağlantılı olup olmadığına bakacağız. Veriyi oluşturalım,</p>
 <pre><code class="python">import pandas as pd
 df = pd.read_csv('../stat_logit/nes.dat',sep=r'\s+')
 df = df[['presvote','year','gender','income','race','occup1']]
@@ -646,3 +646,4 @@ uzaklık 2-3 = 0.374762629171
 <p>[1] Teetor, <em>R Cookbook</em></p>
 <p>[2] Scikit-Learn Documentation, <em>4.2. Feature extraction</em>, \url{http://scikit-learn.org/dev/modules/feature_extraction.html}</p>
 <p>[3] Bayramli, <em>Fonksiyon Gezmek ve Yield</em>, <a href="http://sayilarvekuramlar.blogspot.com/2011/02/fonksiyon-gezmek-ve-yield.html">http://sayilarvekuramlar.blogspot.com/2011/02/fonksiyon-gezmek-ve-yield.html</a></p>
+<p>[4] Bayramli, Istatistik, <em>Lineer Regresyon</em></p>

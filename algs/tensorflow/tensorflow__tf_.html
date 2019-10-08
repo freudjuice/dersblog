@@ -35,12 +35,12 @@ matris, ya da çok boyutlu matris olabilir. Matematikte bu objelere genel
 olarak "tensor" ismi veriliyor, paketin ismi de buradan geliyor,
 tensorlar hesap çiziti içinde bir hesaptan diğerine "akıyorlar"
 (flow). Hesabı çizit olarak belirtmenin bazı avantajları var, en önemlisi
-çizit üzerinde direk otomatik türev alınabilir, bkz. {\em Otomatik Türev
-  Almak} yazısı, ve bu şekilde gradyan hesapları kolay bir şekilde
-yapılabiliyor. Bir diğeri çizitin paralelleştirme için doğal bir yapı
-olması; çiziti istediğimiz şekilde bölerek parçaları farklı mikroişlemci
-(CPU), ya da grafik işlemci (GPU) üzerinde paralel bir şekilde
-işletebiliriz, mesela üstteki $f$ için $f(3,4)$ hesabı,</p>
+çizit üzerinde direk otomatik türev alınabilir, bkz [4] yazısı, ve bu
+şekilde gradyan hesapları kolay bir şekilde yapılabiliyor. Bir diğeri
+çizitin paralelleştirme için doğal bir yapı olması; çiziti istediğimiz
+şekilde bölerek parçaları farklı mikroişlemci (CPU), ya da grafik işlemci
+(GPU) üzerinde paralel bir şekilde işletebiliriz, mesela üstteki $f$ için
+$f(3,4)$ hesabı,</p>
 <p><img alt="" src="tf_02.png" /></p>
 <p>şeklinde iki parçaya bölünebilir. 3 girilen soldaki parça kendi başına
 hesabını yaparken aynı anda 4 girilen diğer parça işlemine devam
@@ -829,3 +829,4 @@ print(&quot;Dogruluk:&quot;, accuracy.eval({x: test_x, y: test_y}))
 <p>[1] Géron, <em>Hands-On Machine Learning with Scikit-Learn and TensorFlow</em></p>
 <p>[2] Heidelberg U., <em>Risk Factors Associated with Low Infant Birth Weight</em>, <a href="http://www.statlab.uni-heidelberg.de/data/linmod/birthweight.html">http://www.statlab.uni-heidelberg.de/data/linmod/birthweight.html</a></p>
 <p>[3] McClure, <em>TensorFlow Machine Learning Cookbook</em></p>
+<p>[4] Bayramli, Bilgisayar Bilim, <em>Otomatik Türev Almak</em></p>
