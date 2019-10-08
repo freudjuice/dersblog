@@ -411,9 +411,9 @@ $x_1$'e kadar gider. 0 ile 1 arasındaki değerler, ve onların gittikçe artan
 eskiye gittikçe hızlı bir şekile bu etki azalmaya başlar. Eğer
 $1-\alpha=0.2$ ise mesela, önce $0.2$, sonra $0.2^2=0.04$, ardından
 $0.2^3=0.008$, küçülmenin ne kadar hızlı olduğunu görüyoruz.</p>
-<p>Ayrıca bölende olan ifadelerin başlangıcı 1 oranı $1-\alpha$ olan bir geometrik
-seri olduğunu görelim (bkz <em>Diferansiyel Denklemler, Seriler</em>), o zaman
-bölen $\frac{1}{1-(1-\alpha)}$'a yani $\frac{1}{\alpha}$'ya eşittir,</p>
+<p>Ayrıca bölende olan ifadelerin başlangıcı 1 oranı $1-\alpha$ olan bir
+geometrik seri olduğunu görelim, bkz [9], o zaman bölen
+$\frac{1}{1-(1-\alpha)}$'a yani $\frac{1}{\alpha}$'ya eşittir,</p>
 <p>$$ y_t = \frac{x_t + (1-\alpha)x_{t-1} + (1-\alpha)^2x_{t-2} + ... }
 {\frac{1}{\alpha}}
 $$</p>
@@ -425,13 +425,14 @@ $$</p>
 zaman özyineli ifade şu olur [8, sf. 502],</p>
 <p>$$ y_t = \alpha x_t + (1-\alpha) y_{t-1}$$</p>
 <p>Periyot Bulmak</p>
-<p>Daha önce <em>Hesapsal Bilim</em> yazılarında güneş beneklerinin ortaya çıkışı
-verisinde periyotlar bulmak için Fourier analizi kullanmıştık. Bu analizin eksik
-bir tarafı istatistiki önemlilik (significance) hesabını göstermemesi. Daha iyi
-bir yöntem Lomb-Scargle yöntemi, ki bu yönteme göre periyot bulmak pek çok sinüs
-eğrisinin hangilerinin veriye daha iyi uyduğunu bulma problemine çeviriliyor,
-problem bir tür en az kareler çözümü haline geliyor, arka planda FFT
-kullanılıyor fakat problemin ana modeli artık FFT değil. Güneş benekleri,</p>
+<p>Daha önceki bir yazida güneş beneklerinin ortaya çıkışı verisinde
+periyotlar bulmak için Fourier analizi kullanmıştık. Bu analizin eksik bir
+tarafı istatistiki önemlilik (significance) hesabını göstermemesi. Daha iyi
+bir yöntem Lomb-Scargle yöntemi, ki bu yönteme göre periyot bulmak pek çok
+sinüs eğrisinin hangilerinin veriye daha iyi uyduğunu bulma problemine
+çeviriliyor, problem bir tür en az kareler çözümü haline geliyor, arka
+planda FFT kullanılıyor fakat problemin ana modeli artık FFT değil. Güneş
+benekleri,</p>
 <pre><code class="python">tempdata = np.loadtxt('../../compscieng/compscieng_1_30/sunspots.dat')
 year=tempdata[:,0]; sunspots=tempdata[:,1]
 year=year[year&lt;2001]; sunspots=sunspots[year&lt;2001]
@@ -507,3 +508,4 @@ plt.savefig('tser_ar_08.png')
 <p>[6] Metcalfe , <em>Introductory Times Series with R</em></p>
 <p>[7] Bayramlı, <em>Grafikten Veri Çıkartmak</em>, <a href="http://sayilarvekuramlar.blogspot.com/2017/01/grafikten-veri-cikartmak.html">http://sayilarvekuramlar.blogspot.com/2017/01/grafikten-veri-cikartmak.html</a></p>
 <p>[8] McKinney, <em>Pandas Reference Documentation, 0.17.1</em></p>
+<p>[9] Bayramli, Diferansiyel Denklemler, <em>Seriler</em></p>
