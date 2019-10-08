@@ -111,8 +111,16 @@ formül,</p>
 <p>$$
 \int_{t=0}^{t=1} f(x(t),y(t)) \sqrt{(\mathrm{d} x/\mathrm{d} t)^2 + (\mathrm{d} y/\mathrm{d} t)^2} \mathrm{d} t
 $$</p>
-<p>Formülde görülen $\mathrm{d} x/\mathrm{d} t$ ve $\mathrm{d} y/\mathrm{d} t$ ve bunların karesi,
-toplamların karekökü, vs. hesaplarını sembolik olarak altta yapalım,</p>
+<p>Formülde görülen $\mathrm{d} x/\mathrm{d} t$ ve $\mathrm{d} y/\mathrm{d} t$, parametrik eğri formülünü
+tekrar yazalım, </p>
+<p>$$
+x(t) = a_0 + a_1 t + a_2 t^2 + a_3 t^3
+$$</p>
+<p>$$
+y(t) = b_0 + b_1 t + b_2 t^2 + b_3 t^3
+$$</p>
+<p>ve türev, bunların karesi, toplamların karekoku, vs. hesaplarını sembolik
+olarak altta yapalım,</p>
 <pre><code class="python">import sympy
 
 vars = 't a0 a1 a2 a3 b0 b1 b2 b3 gamma x y'
