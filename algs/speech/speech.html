@@ -46,14 +46,13 @@ plt.savefig('speech_01.png')
 </code></pre>
 
 <p><img alt="" src="speech_01.png" /></p>
-<p>Yapay öğrenme bağlamında zaman serileri için daha önce {\em Uzun Kısa-Vade
-  Hafıza Ağları} yazısında LSTM yapısını görmüştük. Örnek olarak zaman
-serilerini sınıfladık, zaman serisindeki tüm veriler LSTM'e verilmişti, o
-zaman bir şeride 150 kusur veri noktası varsa, o kadar LSTM hücresi
-yaratılacaktı. Fakat içinde binlerce öğe olan seriler için bu iyi
-olmayabilir. Çözüm seriyi bir şekilde özetleyerek bu daha az olan veriyi
-LSTM'e vermek. Bu özetlere ses işleme alanında parmak izi (fingerprint)
-ismi de verilmekte.</p>
+<p>Yapay öğrenme bağlamında zaman serileri için daha önce [7] yazısında LSTM
+yapısını görmüştük. Örnek olarak zaman serilerini sınıfladık, zaman
+serisindeki tüm veriler LSTM'e verilmişti, o zaman bir şeride 150 kusur
+veri noktası varsa, o kadar LSTM hücresi yaratılacaktı. Fakat içinde
+binlerce öğe olan seriler için bu iyi olmayabilir. Çözüm seriyi bir şekilde
+özetleyerek bu daha az olan veriyi LSTM'e vermek. Bu özetlere ses işleme
+alanında parmak izi (fingerprint) ismi de verilmekte.</p>
 <p>Ses verilerini frekans üzerinden özetlemek bilinen bir teknik, ses verisi
 ufak pencerelere bölünür, bu pencereler üzerinde Fourier transformu
 işletilir, ve oradaki frekans bilgileri, hangi frekansın ne kadar önemli
@@ -523,3 +522,4 @@ if __name__ == '__main__':
 <p>[4] Graves, <em>How to build a recognition system (Part 1): CTC Loss</em>, <a href="https://docs.google.com/presentation/d/1AyLOecmW1k9cIbfexOT3dwoUU-Uu5UqlJZ0w3cxilkI">https://docs.google.com/presentation/d/1AyLOecmW1k9cIbfexOT3dwoUU-Uu5UqlJZ0w3cxilkI</a></p>
 <p>[5] Graves, <em>How to build a recognition system (Part 2): CTC Loss</em>, \url{https://docs.google.com/presentation/d/12gYcPft9_4cxk2AD6Z6ZlJNa3wvZCW1ms31nhq51vMk}</p>
 <p>[6] Bayramli, <em>Ses Komut Verisi</em>, <a href="https://drive.google.com/open?id=1BIGj3NtUZfSrXMaJ8hCqsz0UzS01MSrF">https://drive.google.com/open?id=1BIGj3NtUZfSrXMaJ8hCqsz0UzS01MSrF</a></p>
+<p>[7] Bayramli, Bilgisayar Bilim, <em>Uzun Kısa-Vade  Hafıza Ağları</em></p>
