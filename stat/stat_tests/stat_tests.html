@@ -372,8 +372,8 @@ pozitif bağlamda) yeni yakıt kesinlikle farklıdır / fazladır
 diyemiyoruz. Bize daha kesin noktalar lazım, aklımızda bize "acaba?"
 dedittirecek eşik değerler istemiyoruz.</p>
 <p><img alt="" src="carhyp1.png" /></p>
-<p>Hayali eşik noktası $\bar{y}^<em>$'nin daha büyük yapsak (ki o zaman ona bağlı
-olan sağdaki olasılık küçülecek). Bu olur mu? Eğer $\bar{y}^</em> = 26.50$
+<p>Hayali eşik noktası $\bar{y}^*$'nin daha büyük yapsak (ki o zaman ona bağlı
+olan sağdaki olasılık küçülecek). Bu olur mu? Eğer $\bar{y}^* = 26.50$
 olsaydı? </p>
 <p>$$ P(\frac{\bar{Y} - 25.0}{2.4 / \sqrt{30}} \ge 
 \frac{26.50 - 25.0}{2.4 / \sqrt{30}}) 
@@ -665,11 +665,11 @@ verilerimiz var. Bu verilerin Gaussian dağılımına uyup uymadığını nasıl
 kontrol edeceğiz? Normal bir dağılımı her veri noktası için şöyle temsil
 edebiliriz,</p>
 <p>$$ y_i = \Phi\bigg(\frac{ x_i - \mu}{\sigma}\bigg) $$</p>
-<p>Burada $\Phi$ standart Gaussian'ı temsil ediyor (detaylar için {\em İstatistik
-  Ders 1}) ve CDF fonksiyonuna tekabül ediyor. CDF fonksiyonunun aynı zamanda
-yüzdelik dilimi (quantile) hesapladığı söylenir, aslında CDF son derece detaylı
-bir olasılık değeri verir fakat evet, dolaylı yoldan noktanın hangi çeyrek içine
-düştüğü de görülecektir.</p>
+<p>Burada $\Phi$ standart Gaussian'ı temsil ediyor (detaylar için [7] ve CDF
+fonksiyonuna tekabül ediyor. CDF fonksiyonunun aynı zamanda yüzdelik dilimi
+(quantile) hesapladığı söylenir, aslında CDF son derece detaylı bir
+olasılık değeri verir fakat evet, dolaylı yoldan noktanın hangi çeyrek
+içine düştüğü de görülecektir.</p>
 <p>Şimdi bir numara yapalım, iki tarafa ters Gaussian formülünü uygulayalım,
 yani $\Phi^{-1}$.</p>
 <p>$$ \Phi^{-1}(y_i) = \Phi^{-1}\bigg( \Phi\bigg(\frac{ x_i - \mu}{\sigma}\bigg)\bigg) $$</p>
@@ -722,3 +722,4 @@ plt.savefig('stat_tests_02.png')
 <p>[4] Runger, <em>Applied Statistics and Probability for Engineers</em></p>
 <p>[5] Stack Exchange, <em>Sample variance converge almost surely</em>, <a href="http://math.stackexchange.com/questions/243348/sample-variance-converge-almost-surely">http://math.stackexchange.com/questions/243348/sample-variance-converge-almost-surely</a></p>
 <p>[6] Haslwanter, <em>Introduction to Statistics using Python</em></p>
+<p>[7] İstatistik, <em>Giris</em>)</p>
