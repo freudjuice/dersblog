@@ -128,18 +128,19 @@ doğru uzayacaktır tabii.</p>
 <p>denklemini çözebiliriz. Bu denklemi yaklaşıksal olarak çözmek için problemi
 bir $||v||=1$ şartına bağlı olmak üzere $||Mv||$ minimizasyon problemi
 olarak görebiliriz, yani "sıfıra olabildiğince yaklaşma problemi" olarak,
-ki bu problem çözümü için SVD kullanılabilir, daha fazla detaylar {\em
-  Lineer Cebir, Lineer Cebir ile Minimizasyon} yazısında. Peki $||v||=1$
-şartını nasıl getirebiliyoruz? Bunun sebebi homojen kordinat sisteminin
-getirdiği bir avantajla alakalı; homojen kordinat sistemindeki noktalar
-"belli bir ölçek (up to scale)" içinde tanımlıdır, ve mesela 2 boyutlu
-bir nokta ve herhangi bir sabit $\alpha$ için
+ki bu problem çözümü için SVD kullanılabilir, daha fazla detaylar [3]
+yazısında. Peki $||v||=1$ şartını nasıl getirebiliyoruz? Bunun sebebi
+homojen kordinat sisteminin getirdiği bir avantajla alakalı; homojen
+kordinat sistemindeki noktalar "belli bir ölçek (up to scale)" içinde
+tanımlıdır, ve mesela 2 boyutlu bir nokta ve herhangi bir sabit $\alpha$
+için
 $\mathbf{x} = \left[\begin{array}{ccc}x&amp;y&amp;w\end{array}\right] =
 \left[\begin{array}{ccc}\alpha x&amp; \alpha y&amp; \alpha w\end{array}\right] =
-\left[\begin{array}{ccc}x/w&amp;y/w&amp;1\end{array}\right]$ noktalarının hepsi
-aslında aynı 2 boyutlu noktadır. Bunun sonucu olarak $M$ de belli bir ölçek
-içinde tanımlı olacaktır, ve o zaman $||v|| = 1$ farz edebiliriz. Bu tabii
-ki hesabımız için faydalı oldu yoksa SVD bazlı minimizasyon kullanamazdık.</p>
+\left[\begin{array}{ccc}x/w&amp;y/w&amp;1\end{array}\right]$
+noktalarının hepsi aslında aynı 2 boyutlu noktadır. Bunun sonucu olarak $M$
+de belli bir ölçek içinde tanımlı olacaktır, ve o zaman $||v|| = 1$ farz
+edebiliriz. Bu tabii ki hesabımız için faydalı oldu yoksa SVD bazlı
+minimizasyon kullanamazdık.</p>
 <pre><code class="python">from scipy import linalg
 
 def compute_P(x,X):
@@ -287,3 +288,4 @@ ayrıştırması bize beklediğimizden farklı bir $R,t$ verdi. O zaman belki
 <p>Kaynaklar</p>
 <p>[1] Solem, <em>Computer Vision with Python</em></p>
 <p>[2] <em>Dissecting the Camera Matrix, Part 2: The Extrinsic Matrix</em>, <a href="http://ksimek.github.io/2012/08/22/extrinsic/">http://ksimek.github.io/2012/08/22/extrinsic/</a></p>
+<p>[3] Bayramli, Lineer Cebir, <em>Lineer Cebir ile Minimizasyon</em></p>

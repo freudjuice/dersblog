@@ -28,13 +28,12 @@
 x = (A^TA)^{-1}A^Tb<br />
 \qquad (1) 
 $$ </p>
-<p>formülü en az kareler çözümü olarak biliniyor, bkz {\em Lineer Cebir Ders
-  16}. Bu çözüm iyi işler, fakat bazı durumlarda negatif bir tarafı var,
-çözüm toptan (batch) olarak yapılıyor. $A$ içinde 100 tane satır
-olabilir, ona göre bir çözüm bulunur, ardından 1 tane ek veri satırı
-gelirse olsa 101 tane satır için tüm işlemlerin tekrar baştan yapılması
-gerekir. Acaba sadece o yeni verilen satır için önceki $x$ tahminini
-bir şekilde güncellemek mümkün mü?</p>
+<p>formülü en az kareler çözümü olarak biliniyor, bkz [2]. Bu çözüm iyi işler,
+fakat bazı durumlarda negatif bir tarafı var, çözüm toptan (batch) olarak
+yapılıyor. $A$ içinde 100 tane satır olabilir, ona göre bir çözüm bulunur,
+ardından 1 tane ek veri satırı gelirse olsa 101 tane satır için tüm
+işlemlerin tekrar baştan yapılması gerekir. Acaba sadece o yeni verilen
+satır için önceki $x$ tahminini bir şekilde güncellemek mümkün mü?</p>
 <p>Özyineli en az kareler ile bunu yapabiliriz. Diyelim ki </p>
 <p>$$ c_1 t + c_2 = b $$</p>
 <p>lineer sistemini çözmek istiyoruz, yani bu bir çizgi uydurma (line fitting)
@@ -267,3 +266,4 @@ print x_new
 <p>Aynı sonuca eriştik. </p>
 <p>Kaynaklar</p>
 <p>[1] Yang, <em>Applied Numerical Methods using Matlab</em></p>
+<p>[2] Bayramli, Lineer Cebir, * Ders 16*</p>

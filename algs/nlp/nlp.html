@@ -36,15 +36,15 @@ kelimesi mesela 300. indis, o zaman "cat" kelimesini temsil için 10,000
 büyüklüğündeki bir vektörün 300. öğesi 1 diğer 9999 ögesi 0 olur.</p>
 <p>Bu temsil şekli biraz israflı degil mi? Ayrıca kelimeler arasında benzerlik
 için bize hiçbir fayda getirmiyor.</p>
-<p>Daha önce <em>Lineer Cebir, SVD ile Kümeleme, Benzerlik</em> yazısında boyut
-azaltma işleminden bahsettik. Bir kelimeyi, ya da dökümanı her ikisinin
-ilişkisini içeren bir matris üzerinde SVD işlettikten sonra daha ufak bir
-boyutta temsil edebiliyorduk. Bu azaltılmış boyutta, ki boyutu binlere
-varan ham veri için azaltılmış boyut $k=10,20,100$ gibi olabiliyordu,
-kelimeler pür sayısal hale geliyordu ve kelimelere tekabül eden $k$
-büyüklüğündeki vektörlerin, anlamsal bağlamda birbirine yakınlık ya da
-uzaklıkları bu sayılar üzerinden ölçülebiliyordu. Bu tür bir temsilde bazı
-kelimeler sayısal olarak şu halde olabiliyordu,</p>
+<p>Daha önce [4] yazısında boyut azaltma işleminden bahsettik. Bir kelimeyi,
+ya da dökümanı her ikisinin ilişkisini içeren bir matris üzerinde SVD
+işlettikten sonra daha ufak bir boyutta temsil edebiliyorduk. Bu azaltılmış
+boyutta, ki boyutu binlere varan ham veri için azaltılmış boyut
+$k=10,20,100$ gibi olabiliyordu, kelimeler pür sayısal hale geliyordu ve
+kelimelere tekabül eden $k$ büyüklüğündeki vektörlerin, anlamsal bağlamda
+birbirine yakınlık ya da uzaklıkları bu sayılar üzerinden
+ölçülebiliyordu. Bu tür bir temsilde bazı kelimeler sayısal olarak şu halde
+olabiliyordu,</p>
 <pre><code>cat:  (0.01359, ..., -0.2524, 1.0048, 0.06259)
 mat:  (0.01396, ..., 0.033483, -0.10007, 0.1158)
 chills: (-0.24776, ..., 0.079717, 0.23865, -0.014213)
@@ -463,3 +463,4 @@ kelime seçip o kelimenin gömme matrisindeki diğerlerine olan mesafesini
 <p>[1] Britz, <em>Implementing a CNN for Text Classification in TensorFlow</em>, <a href="http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/">http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/</a></p>
 <p>[2] Cornell U., <em>Movie Review Data</em>, <a href="http://www.cs.cornell.edu/people/pabo/movie-review-data">http://www.cs.cornell.edu/people/pabo/movie-review-data</a></p>
 <p>[3] Socher, <em>Deep Learning for NLP, without Magic), \url{https://nlp.stanford.edu/courses/NAACL2013/NAACL2013-Socher-Manning-DeepLearning.pdf</em></p>
+<p>[4] Bayramli, Lineer Cebir, <em>SVD ile Kümeleme, Benzerlik</em></p>

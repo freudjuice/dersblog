@@ -224,7 +224,7 @@ dikgen olan bir düzlem üzerinde olduğunu düşünelim [3, sf. 37],</p>
 ve dikgen olduğu düzlemi tanımlamak için kullanılıyor.</p>
 <p>$v$'nin dönüşten etkilenmeyen bileşeni $v_\parallel$'yi hesaplamak için
 $v$'nin $\hat{n}$ üzerine olan yansımasını (projection) hesaplayabiliriz. 
-Yansıtma formülü (bkz <em>Lineer Cebir Ders 15</em>),</p>
+Yansıtma formülü, bkz [2],</p>
 <p>$$ v_\parallel =  \frac{\hat{n}\hat{n}^T}{\hat{n}^T\hat{n}} v 
 = (\hat{n}\hat{n}^T) v
 $$</p>
@@ -479,11 +479,11 @@ olmayabilir, ve size para veren kişi sizden hala çözüm beklemektedir (!),
 bu durumda $Ax=b$'yi çözmek yerine ona en yakın olabilecek şeyi
 çözebiliriz, yani $|Ax - b|^2$'yi minimize etmeyi seçebiliriz, $Ax$'i
 $b$'yi mümkün olduğu kadar yaklaştırırız. Burada sözde ters ise yarar,
-çünkü $x^<em> = A^{\dag}b$ ile hesaplanan çözüm aynı zamanda $|Ax - b|^2$'yi
+çünkü $x^* = A^{\dag}b$ ile hesaplanan çözüm aynı zamanda $|Ax - b|^2$'yi
 minimize eder! Bu çözüm En Az Kareler (Least Squares) çözümü olarak ta
 bilinir, tabii burada sistem aşırı belirtilmiş (overdetermined) değil,
 eksik belirtilmiş (underdetermined) durumda. Not: Ayrıca sözde ters ile
-bulunan $x^</em>$'in mümkün tüm çözümler arasında "norm'ü en az olan $x^*$'i
+bulunan $x^*$'in mümkün tüm çözümler arasında "norm'ü en az olan $x^*$'i
 bulduğu da" söylenir.</p>
 <p>Eğer çözüm özgün ise, sözde ters yine işler, özgün çözümü bulur. Yani her
 halükarda sözde ters tüm problemlerimizi çözer.</p>
@@ -550,5 +550,6 @@ algılayıcılarla SLAM yapılabilir, hatta sonar algılayıcılarla bile, ya da
 tüm bunları bir algılayıcı füzyonu (sensor fusion) üzerinden birleştirerek.</p>
 <p>Kaynaklar </p>
 <p>[1] Olver, <em>Applied Linear Algebra</em></p>
+<p>[2] Bayramli, Lineer Cebir, <em>Ders 15</em></p>
 <p>[3] Sastry, <em>An Invitation to 3-D Vision</em></p>
 <p>[4] Zissermann, <em>Multiple View Geometry</em></p>
