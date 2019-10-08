@@ -269,16 +269,16 @@ print hmm.viterbi_path([0,1,1])
 
 <p>Eğer 1 ve 3'e en soldan giriş yapan bir başlangıç noktası S, ve en sonda
 tüm düğümlerin gittiği bir bitiş noktası E hayal edersek, aslında üstteki
-tarif edilen <em>Bilgisayar Bilim, Dinamik Programlama</em> yazısında
-anlatılan kısayol algoritmasına benziyor. Elimizde bir yönlü ve çevrimsiz
-bir çizit (directed, acyclic graph) var, S'den başlıyoruz, sürekli adım
-atarak arkada bıraktığımız yolun uzunluğunu (bu durumda olasılığını)
-sürekli toplayarak her adımda hesaplıyoruz, ve hatırlıyoruz (gerçi üstteki
-örnekte olasılıklar çarpıldı -çünkü o yolun birleşik olasılığı
-hesaplanmalıydı- fakat log alınıp toplanabilirdi, hatta sayısal stabilite
-sebepleriyle bu yapılmalıdır). Trellis'teki her geçiş çizitte bir kenar,
-daha önce kullandığımız örnek $t=1$ anındaki 3-1 geçişi için kenar
-0.4*0.5=0.2. Bu kenarlar takip edilerek bir kısayol bulunacaktır.</p>
+tarif edilen [6] yazısında anlatılan kısayol algoritmasına
+benziyor. Elimizde bir yönlü ve çevrimsiz bir çizit (directed, acyclic
+graph) var, S'den başlıyoruz, sürekli adım atarak arkada bıraktığımız yolun
+uzunluğunu (bu durumda olasılığını) sürekli toplayarak her adımda
+hesaplıyoruz, ve hatırlıyoruz (gerçi üstteki örnekte olasılıklar çarpıldı
+-çünkü o yolun birleşik olasılığı hesaplanmalıydı- fakat log alınıp
+toplanabilirdi, hatta sayısal stabilite sebepleriyle bu
+yapılmalıdır). Trellis'teki her geçiş çizitte bir kenar, daha önce
+kullandığımız örnek $t=1$ anındaki 3-1 geçişi için kenar 0.4*0.5=0.2. Bu
+kenarlar takip edilerek bir kısayol bulunacaktır.</p>
 <p>Model Öğrenmek, İleri-Geri Algoritması</p>
 <p>HMM'in güzellikleri bitmedi; sadece görünen semboller dizisini kullanarak,
 sadece kaç tane saklı konum olacağını tanımlayarak, tüm HMM modelini
@@ -564,3 +564,4 @@ Recoognition}</p>
 <p>[3] Murphy, <em>Machine Learning, A Probabilistic Perspective</em></p>
 <p>[4] Zuccini, <em>Hidden Markov Models for Time Series</em></p>
 <p>[5] Bayramli, Lineer Cebir, <em>Ders 21</em></p>
+<p>[6] Bayramli, Bilgisayar Bilim, <em>Dinamik Programlama</em></p>
