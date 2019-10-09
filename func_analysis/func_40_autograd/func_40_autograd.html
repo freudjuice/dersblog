@@ -150,7 +150,7 @@ plt.show()
 <p><img alt="" src="func_40_autograd_02.png" /></p>
 <p>Türevi <code>autograd</code> ile aldık, bu örnekte sembolik türev kolaydı, elle
 $f'(x)=2x$ diyebilirdik ama gösterim amaçlı direk yazılımla türevi aldık.</p>
-<p>Kisitlanmis Optimizasyon</p>
+<p>Kısıtlanmış Optimizasyon</p>
 <p>Mühendislik problemlerinde kısıtlanmış optimizasyon çok ortaya
 çıkar. Prototipik örnek bir düzlem üzerindeki orijine en yakın noktayı
 bulmak. Mesela düzlem $2x - y + z = 3$ olsun, ve mesafeyi minimize etmek
@@ -237,7 +237,7 @@ print (x,y,z)
 
 <p>Aynı sonuç bulundu. Şimdi merak ediyoruz, bu sonuç gerçekten minimum mu?
 Üstteki noktada Hessian'ın pozitif kesin olup olmadığını kontrol
-edebiliriz. Hessian'ı da <code>autoğrad</code> hesaplar!</p>
+edebiliriz. Hessian'ı da <code>autograd</code> hesaplar!</p>
 <pre><code class="python">from autograd import hessian
 h = hessian(objective, 0)
 res = h(np.array([x, y, z]))
@@ -257,9 +257,57 @@ pozitif olup olmadığına bakabiliriz, </p>
 <pre><code>[2. 2. 2.]
 </code></pre>
 
+<p>Birden Fazla Gradyan Değişkeni</p>
+<p>Diyelim ki elimizde </p>
+<p>$$
+g(w_1,w_2) = \tanh (w_1w_2)
+$$</p>
+<p>fonksiyonu var, bu üç boyutlu bir fonksiyon, ve optimizasyon amaçlı gradyan
+gerekiyor, gradyanın iki değişken üzerinden alınması gerekli. </p>
+<pre><code class="python">import autograd
+from autograd import numpy as anp
+
+def g(w_1,w_2):
+    return anp.tanh(w_1*w_2)
+
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+x = np.linspace(-4,4,20)
+y = np.linspace(-4,4,20)
+xx,yy = np.meshgrid(x,y)
+zz = g(xx,yy)
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+surf = ax.plot_surface(xx, yy, zz, cmap=cm.coolwarm)
+plt.savefig('func_40_autograd_03.png')
+</code></pre>
+
+<p><img alt="" src="func_40_autograd_03.png" /></p>
+<p>$g$'nin her iki kısmi türevini ve gradyanını, </p>
+<p>$$
+\nabla g(w_1,w_2) = \left[\begin{array}{r}
+\frac{\partial }{\partial w_1} g(w_1,w_2) \\
+\frac{\partial }{\partial w_2} g(w_1,w_2) 
+\end{array}\right]
+$$</p>
+<p><code>autograd</code> ile hesaplamak için </p>
+<pre><code class="python">dgdw1 = autograd.grad(g,0)
+dgdw2 = autograd.grad(g,1)
+</code></pre>
+
+<p>Şimdi mesela (1,2) noktasındaki gradyanı hesaplayabiliriz, </p>
+<pre><code class="python">gradg = [dgdw1(1.0,2.0), dgdw2(1.0,2.0)]
+print (gradg)
+</code></pre>
+
+<pre><code>[0.14130164970632894, 0.07065082485316447]
+</code></pre>
+
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Ders Notları, <em>Otomatik Türev Almak (Automatic Differentiation -AD-)</em></p>
 <p>[2] Schrimpf, <a href="http://faculty.arts.ubc.ca/pschrimpf/526/526.html">http://faculty.arts.ubc.ca/pschrimpf/526/526.html</a></p>
-<p>[3] <a href="https://nikstoyanov.me/post/2019-04-14-numerical-optimizations">https://nikstoyanov.me/post/2019-04-14-numerical-optimizations</a></p>
-<p>[5] <a href="http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/">http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/</a></p>
+<p>[3] Stoyanov, <a href="https://nikstoyanov.me/post/2019-04-14-numerical-optimizations">https://nikstoyanov.me/post/2019-04-14-numerical-optimizations</a></p>
+<p>[5] Kitchin, <a href="http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/">http://kitchingroup.cheme.cmu.edu/blog/2018/11/03/Constrained-optimization-with-Lagrange-multipliers-and-autograd/</a></p>
 <p>[6] Bayramli, Cok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
+<p>[7] Watt, <em>Automatic Differentiation</em>, 
+    \url{https://jermwatt.github.io/machine_learning_refined/notes/3_First_order_methods/3_5_Automatic.html}</p>
