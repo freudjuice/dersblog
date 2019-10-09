@@ -263,7 +263,7 @@ pozitif olup olmadığına bakabiliriz, </p>
 g(w_1,w_2) = \tanh (w_1w_2)
 $$</p>
 <p>fonksiyonu var, bu üç boyutlu bir fonksiyon, ve optimizasyon amaçlı gradyan
-gerekiyor, gradyanın iki değişken üzerinden alınması gerekli. </p>
+gerekiyor, gradyanın iki değişken üzerinden alınması gerekli [7]. </p>
 <pre><code class="python">import autograd
 from autograd import numpy as anp
 
@@ -295,7 +295,10 @@ $$</p>
 dgdw2 = autograd.grad(g,1)
 </code></pre>
 
-<p>Şimdi mesela (1,2) noktasındaki gradyanı hesaplayabiliriz, </p>
+<p>Dikkat edersek, 0 ve 1 parametreleri geçildi, bunlar sırasıyla $w_1$ ve
+$w_2$ değişkenlerine tekabül ediyorlar (<code>g</code> tanımındaki sıralarına
+göre, 0. ve 1. parametreler). Şimdi mesela (1.0,2.0) noktasındaki gradyanı
+hesaplayabiliriz,</p>
 <pre><code class="python">gradg = [dgdw1(1.0,2.0), dgdw2(1.0,2.0)]
 print (gradg)
 </code></pre>
