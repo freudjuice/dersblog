@@ -89,8 +89,8 @@ terimleri biraz farklı şekilde kullanabilirler. Ama herhalde herkes bir
 <p>2) Açık küme başlangıç şartlarını çeker.</p>
 <p>3) $A$'nin hiçbir muntazam altkümesi 1 ve 2'yi tatmin etmez (buna $A$'nin
 "minimal" olmasi da deniyor).</p>
-<p>Kaos tarifi yapmiyoruz dikkat, hala cekici tarifi yapiyoruz. </p>
-<p>Diyelim ki alttaki gibi iki stabil noktalali, faz portresi alttaki gibi
+<p>Kaos tarifi yapmıyoruz dikkat, hala çekici tarifi yapıyoruz. </p>
+<p>Diyelim ki alttaki gibi iki stabil noktalı, faz portresi alttaki gibi
 olan bir sistem var,</p>
 <p><img alt="" src="18_01.png" /></p>
 <p>Herşey iki stabil noktalardan birine akıyor. X-ekseninde değişmezlik var,
@@ -283,7 +283,7 @@ istediğimiz özelliklere sahip [tanım itibariyle orada her nokta kendisine
 eşit], o zaman bu kesikli çizginin $f$'yi kestiği yer $f$'te aradığımız
 sabit noktadır.</p>
 <p><img alt="" src="18_09.png" /></p>
-<p>Üstteki grafikte bu sabit noktayı görüyoruz, $z^<em>$ ismini verdik, $f(z^</em>) =
+<p>Üstteki grafikte bu sabit noktayı görüyoruz, $z^*$ ismini verdik, $f(z^*) =
 z^*$. Sabit noktalar diferansiyel denklemlerdeki sabit noktalar gibi burada
 sabit nokta özyineli eşleme (iterated map) için. </p>
 <p>Ama biraz önce gördüğümüz animasyonda o $z^*$ noktasına hiç gelmedik, çünkü
@@ -309,14 +309,21 @@ kullanabilirdik. Önce lineerleştirme ile yapalım,</p>
 etrafında lineerleştirme yapmak istiyoruz, üstteki tanımdan hareketle,</p>
 <p>$$ z_{n+1} =  z^* + \eta_{n+1} $$</p>
 <p>Diğer yandan $f(z_n)$ açılımını yapalım,</p>
-<p>$$ f(z_n) =  f(z^<em> + \eta_{n+1}) = f(z^</em>) + \eta_n f'(z^*) + O(\eta_n^2)$$</p>
+<p>$$ 
+f(z_n) =  f(z^* + \eta_{n+1}) = f(z^*) + \eta_n f'(z^*) + O(\eta_n^2)
+$$</p>
 <p>$O()$ terimlerini yok sayabiliriz çünkü lineerleştirme yapıyoruz. Lorenz
 eşlemesine göre $z_{n+1} = f(z_n)$, o zaman üstteki ile iki üstteki
 eşitliğin sol tarafları aynı, yani bu eşitliklerin sağ tarafları aynı.</p>
-<p>$$ z^<em> + \eta_{n+1} =  f(z^</em> + \eta_{n+1}) = f(z^<em>) + \eta_n f'(z^</em>) + O(\eta_n^2)$$</p>
-<p>Ve farkedelim ki tanım itibariyle $f(z^<em>) = z^</em>$, ve $O$ terimlerini atıp
+<p>$$ 
+z^* + \eta_{n+1} =  f(z^* + \eta_{n+1}) = f(z^*) + \eta_n f'(z^*) +
+O(\eta_n^2)
+$$</p>
+<p>Ve farkedelim ki tanım itibariyle $f(z^*) = z^*$, ve $O$ terimlerini atıp
 eşitliği yaklaşık temsil haline getirirsek,</p>
-<p>$$ \cancel{z^<em>} + \eta_{n+1} \approx \cancel{f(z^</em>)} + \eta_n f'(z^*) $$</p>
+<p>$$ 
+\cancel{z^*} + \eta_{n+1} \approx \cancel{f(z^*)} + \eta_n f'(z^*) 
+$$</p>
 <p>Elimizde $\eta_{n+1}$ için bir ifade kaldı, bu ifade bize sapma $\eta$'nin
 her döngüde nasıl büyüdüğünü ya da çürüdüğünü gösterecek.</p>
 <p>$$ \eta_{n+1} \approx f'(z^*) \eta_n $$</p>
