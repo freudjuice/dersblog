@@ -23,6 +23,34 @@
 </script>
 </head>
 
-<p>Newton birazdan bahsedecegimiz yontemi tek boyutlu problemler icin
-kullandi. Rhapson adli bilimci yontemi cok boyutlu problemler icin
-genisletti. Biz bu yonteme optimizasyon cercevesinde bakacagiz. </p>
+<p>Newton birazdan bahsedeceğimiz yöntemi tek boyutlu problemler için
+kullandı. Rhapson adlı bilimci yöntemi çok boyutlu problemler için
+genişletti. Biz bu yönteme optimizasyon çerçevesinde bakacağız. 
+Konunun tarihinden biraz bahsetmek istiyorum, bu dersi öğretmeye
+başladığımda 1986 senesiydi, Newton'un metodunu nasıl gördüğümüz o zamandan
+beri değişime uğradı. NM o zamanlar son başvurulan metot diye
+öğretiliyordu, çünkü metodu kullanmak için "büyük" bir denklem sistemi
+çözmek gerekiyordu, 500 x 500 bir sistem mesela. Bugüne gelelim artık NM
+ilk başvurulan metot haline geldi, 50,000 x 50,000 boyutlarında bir sistem
+çözmek "yetiyor" ve böyle bir sistem artık idare edilebilen bir boyut
+haline geldi. Yani hesapsal kapasite NM'in optimizasyon alanında oynadığı
+rolü tamamen değiştirdi. </p>
+<p>Diğer bir faktör ileride öğreneceğimiz iç nokta (interior-point)
+metotlarının Newton'un metodunu kullanıyor olmaları. İç nokta metotları
+icbukey optimizayonda çok popüler, onlar için NM gerekiyor, bu da NM'in
+popülaritesini arttırıyor.</p>
+<p>NM nedir? Elimde bir kısıtlanmamış (unconstrained) problemim var diyelim,</p>
+<p>$$
+\min f(x), \quad \textrm{ öyle ki } \quad x \in X = \mathbb{R}^n
+$$</p>
+<p>Bir Taylor açılımı yapabilirim,</p>
+<p>$$
+f(x) \approx f(\bar{x}) + \nabla f(\bar{x})^T (x-\bar{x}) + 
+\frac{1}{2} (x-\bar{x})^T H (x-\bar{x}) 
+$$</p>
+<p>ki $H$ Hessian matrisi. Ustteki formule $h(x)$ diyelim. Boylece bir karesel
+model ortaya cikartmis oldum, formulun sag tarafindaki carpim onu karesel
+yapiyor, ve simdi onu kesin olarak cozmek istiyorum. Bunu nasil yaparim?
+Formulun gradyanini sifira esitleyebilirim. Ustteki fonksiyonun $x$'tei
+gradyani nedir? </p>
+<p>[devam edecek]</p>
