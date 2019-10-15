@@ -23,18 +23,18 @@
 </script>
 </head>
 
-<p>([2] dersinden aldığımız notlar). Newton birazdan bahsedeceğimiz yöntemi
-tek boyutlu problemler için kullandı. Rhapson adlı bilimci yöntemi çok
-boyutlu problemler için genişletti. Biz bu yönteme optimizasyon
-çerçevesinde bakacağız.  Konunun tarihinden biraz bahsetmek istiyorum, bu
-dersi öğretmeye başladığımda 1986 senesiydi, Newton'un metodunu nasıl
-gördüğümüz o zamandan beri değişime uğradı. NM o zamanlar son başvurulan
-metot diye öğretiliyordu, çünkü metodu kullanmak için "büyük" bir denklem
-sistemi çözmek gerekiyordu, 500 x 500 bir sistem mesela. Bugüne gelelim
-artık NM ilk başvurulan metot haline geldi, 50,000 x 50,000 boyutlarında
-bir sistem çözmek "yetiyor" ve böyle bir sistem artık idare edilebilen
-bir boyut haline geldi. Yani hesapsal kapasite NM'in optimizasyon alanında
-oynadığı rolü tamamen değiştirdi.</p>
+<p>Bu notlar [2] dersinden alındı.</p>
+<p>Newton birazdan bahsedeceğimiz yöntemi tek boyutlu problemler için
+kullandı. Rhapson adlı bilimci yöntemi çok boyutlu problemler için
+genişletti. Biz bu yönteme optimizasyon çerçevesinde bakacağız.  Konunun
+tarihinden biraz bahsetmek istiyorum, bu dersi öğretmeye başladığımda 1986
+senesiydi, Newton'un metodunu nasıl gördüğümüz o zamandan beri değişime
+uğradı. NM o zamanlar son başvurulan metot diye öğretiliyordu, çünkü metodu
+kullanmak için "büyük" bir denklem sistemi çözmek gerekiyordu, 500 x 500
+bir sistem mesela. Bugüne gelelim artık NM ilk başvurulan metot haline
+geldi, 50,000 x 50,000 boyutlarında bir sistem çözmek "yetiyor" ve böyle
+bir sistem artık idare edilebilen bir boyut haline geldi. Yani hesapsal
+kapasite NM'in optimizasyon alanında oynadığı rolü tamamen değiştirdi.</p>
 <p>Diğer bir faktör ileride öğreneceğimiz iç nokta (interior-point)
 metotlarının Newton'un metodunu kullanıyor olmaları. İç nokta metotları
 icbukey optimizayonda çok popüler, onlar için NM gerekiyor, bu da NM'in
@@ -53,21 +53,36 @@ $$</p>
 <p>ki $H$ Hessian matrisi. Üstteki formüle $h(x)$ diyelim. Böylece bir karesel
 model ortaya çıkartmış oldum, formülün sağ tarafındaki çarpım onu karesel
 yapıyor, ve şimdi onu kesin olarak çözmek istiyorum. Bunu nasıl yaparım?
-Formülün gradyanını sıfıra eşitleyebilirim. Üstteki fonksiyonun $x$'tei
+Formülün gradyanını sıfıra eşitleyebilirim. Üstteki fonksiyonun $x$'teki
 gradyanı nedir? </p>
 <p>Gradyanı $x$'e göre aldığımızı unutmayalım, $h(x)$'in ikinci terimi
 $\nabla f(\bar{x})^T$ bir sabit sayı, ikinci gradyan alınırken sıfırlanır,
 ve tüm ikinci terim sıfırlanır. Üçüncü terimin gradyanını almak bir nevi
-$\frac{\partial (x^TAx)}{\partial x} $ almak gibi [1], $A$ simetrik olunca
-gradyan $2Ax$ sonucunu veriyordu, o zaman üçüncü terimde $H$ kalır, 2 ve
-$1/2$ birbirini iptal eder, sonuç</p>
+$\frac{\partial (x^TAx)}{\partial x} $ almak gibi [1], $H$ belli bir
+noktadaki ikinci türev matrisi olduğu için $A$ gibi bir sabit matris kabul
+edilebilir, $A$ simetrik olunca gradyan $2Ax$ sonucunu veriyordu, $H$
+simetrik, o zaman üçüncü terimde $H$ kalır, 2 ve $1/2$ birbirini iptal
+eder, sonuç</p>
 <p>$$
-\nabla h() = \nabla f(\bar{x}) + H(\bar{x})(x-\bar{x})
+\nabla h(\bar{x}) = \nabla f(\bar{x}) + H(\bar{x})(x-\bar{x}) 
 $$</p>
 <p>İki üstteki karesel yaklaşıksal ifadenin gradyanı bu işte. Onu sıfıra
-eşitleriz ve çözeriz, </p>
+eşitleriz ve çözeriz. $H$ tersi alinabilir bir matristir, o zaman </p>
+<p>$$
+\nabla h(\bar{x}) = \nabla f(\bar{x}) + H(\bar{x})(x-\bar{x}) = 0
+$$</p>
+<p>$$
+(x-\bar{x}) = -H^{-1} \nabla f(\bar{x})
+$$</p>
+<p>Üstteki ifadeye $d$ diyebilirim, ve bu $d$ benim Newton yönüm olarak
+görülebilir, yön derken optimizasyon bağlamında minimuma giden yön. </p>
+<p>Bu bizi gayet basit 4 adımlık bir algoritmaya taşıyor,</p>
+<p>0) $x^0$ verildi, bu başlangıç noktası, $k = 0$ yap.</p>
+<p>1) $d^k = -H(x^k)^{-1} \nabla f(x^k)$. Eğer $d^k=0$ ise dur.</p>
+<p>2) $\alpha^k = 1$ adım boyu seç</p>
+<p>3) $x^{k+1} = x^k + \alpha^k d^k$, $k = k + 1$. 1. adıma geri dön.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
-<p>[1] Bayramli, Cok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
+<p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
 <p>[2] Freund, <em>MIT OCW Nonlinear Programming Lecture</em>,
     <a href="https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/">https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/</a></p>
