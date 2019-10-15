@@ -80,9 +80,25 @@ Bu bizi gayet basit 4 adýmlýk bir algoritmaya taþýyor,
 
 3) $x^{k+1} = x^k + \alpha^k d^k$, $k = k + 1$. 1. adýma geri dön.
 
+Bu metodun önemli bir özelliðinin sadece bir lineer sistemi çözmek olduðunu
+görüyoruz. Bir lineer sistemi çözmek kolay midir? Sisteme göre deðiþir, 100
+x 100 sistem, problem yok. 10,000 x 10,000 yoðun bir sistem var ise (seyrek
+matrisle temsil edilen lineer sisteme nazaran) iþimiz daha zor
+olacaktýr. Bu tür sistemlerde Gaussian eliminasyon iþlemeyebilir, bir tür
+özyineli metot gerekli. Demek istediðim Newton yönteminin darboðazý bir
+lineer denklem sistemini her seferinde sýfýrdan baþlayarak çözmek, ve bunu
+her döngüde yapmak. 
 
+Fakat bu çözümün bize pek çok þey kazandýrdýðýný da görmek lazým;
+bahsedilen sistemi çözmek bize pek çok bilgi kazandýrýyor çünkü çözülen
+problem içinde 1. ve 2. türev bilgisi var. Bu bilgi minimizasyon açýsýndan
+daha akýllýca adým atýlabilmesini saðlýyor. 
 
-
+Metot Hessian'ýn her adýmda tersi alýnabilir olduðunu farzediyor, bu her
+zaman doðru olmayabilir. O sebeple bunun doðru olduðu türden problemler ile
+uðraþacaðýz, ya da Hessian'ýn tersi alýnabilir olmasýný saðlayan
+mekanizmalarý göreceðiz. $H$'nin özünü bozmadan deðiþtirerek tersi
+alýnabilir olmasýný saðlayan yöntemler var. 
 
 
 
