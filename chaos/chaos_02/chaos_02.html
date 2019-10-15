@@ -41,9 +41,9 @@ nokta var, onu unutmayalım, çünkü o noktadan başlarsam hiçbir yere hareket
 ($\dot{x}=0$).</p>
 <p>Çoğunlukla çizim yapacağız dedik, fakat bir analitik teknik var ki kullanması
 kolay ve oldukça faydalı, tekniğin ismi sabit bir nokta etrafında lineerleştirme
-(linearization around a fixed point). Bu teknikle bir sabit nokta $x^<em>$
+(linearization around a fixed point). Bu teknikle bir sabit nokta $x^*$
 etrafındaki (üst yıldız notasyonunu sabit noktalar için kullanıyorduk
-hatırlarsak) dinamiği incelemek istiyoruz, ki sabit noktalar $f(x^</em>)=0$ şartını
+hatırlarsak) dinamiği incelemek istiyoruz, ki sabit noktalar $f(x^*)=0$ şartını
 yerine getirecek noktalar, çünkü o noktalarda hız sıfır. Lineerleştirmeye göre
 bu noktanın "yakın komşularına" bakarız, hemen etrafına yani, ve eğer o
 noktalarda hız artıp bizi noktadan uzaklaşırıyorsa bir büyüme vardır, eğer
@@ -55,25 +55,34 @@ vardır. Tekniği şöyle kullanırız, diyelim ki</p>
 demek), çok küçüklüğü birazdan daha iyi açıklayacağım. Neyse amacım $\eta$ için
 bir denklem türetmek ki böylece büyüyor mu çürüyor mu onu görebileyim. Üstteki
 $x$'ten hareketle $\dot{x}$ nedir?</p>
-<p>$$ \dot{x} = \frac{d}{dt}( x^<em> + \eta \big) =
-\big( x^</em> + \eta \big)^{\textbf{.}} = \dot{\eta} $$</p>
+<p>$$ 
+\dot{x} = \frac{d}{dt}( x^* + \eta \big) =
+\big( x^* + \eta \big)^{\textbf{.}} = \dot{\eta} 
+$$</p>
 <p>Eşitliğin en sağı ortaya çıktı çünkü sabit noktada değişim sıfır demiştik,
 $\dot{x^*} = 0$, geriye sadece $\dot{\eta}$ kaldı. Diğer yandan $\dot{x}=f(x)$
 olduğu için</p>
-<p>$$ \dot{x} = \dot{\eta} = f(x) = f(x^* + \eta) $$</p>
+<p>$$ 
+\dot{x} = \dot{\eta} = f(x) = f(x^* + \eta) 
+$$</p>
 <p>Fakat hala tam ne olduğunu göremiyoruz çünkü $f$ karmaşık bir fonksiyon. Bu
 noktada lineerleştirmeyi devreye sokuyoruz, diyoruz ki $f$ yeteri kadar
 pürüzsüzdür (smooth) yani herhangi bir $x$ etrafında Taylor serisi
 yaklaşıklaması yapabilirim. </p>
-<p>$$ f(x^<em> + \eta) = f(x^</em>) + \eta f'(x^<em>) + \frac{\eta^2}{2}f"(x^</em>) + ...$$</p>
+<p>$$ 
+f(x^* + \eta) = f(x^*) + \eta f'(x^*) + \frac{\eta^2}{2}f"(x^*) + ...
+$$</p>
 <p>Tabii lineerleştirmeyi herhangi bir nokta etrafında değil sabit nokta etrafında
 yapıyoruz, o zaman $f(x^*)=0$ olduğu için</p>
-<p>$$ f(x^<em> + \eta) = \cancelto{0}{f(x^</em>)} + \eta f'(x^<em>) + \frac{\eta^2}{2}f"(x^</em>) + ...$$</p>
-<p>$$ f(x^<em> + \eta) =  \eta f'(x^</em>) + \frac{\eta^2}{2}f"(x^*) + ...$$</p>
-<p>Geri kalan formül $\eta$'ya lineer olarak bağlı. Ama hala $f'(x^<em>)$ var?
+<p>$$ 
+f(x^* + \eta) = \cancelto{0}{f(x^*)} + \eta f'(x^*) +
+\frac{\eta^2}{2}f"(x^*) + ...
+$$</p>
+<p>$$ f(x^* + \eta) =  \eta f'(x^*) + \frac{\eta^2}{2}f"(x^*) + ...$$</p>
+<p>Geri kalan formül $\eta$'ya lineer olarak bağlı. Ama hala $f'(x^*)$ var?
 $\eta$'nin çarptığı ibare çetrefilmiş gibi duruyor, ama unutmayalım, o ifade bir
 tek sayı aslında çünkü fonksiyona bir sabit nokta değeri geçiyoruz, ve bir sayı
-elde ediyoruz. $f'(x^</em>)$ sonuçta $f$'in türevinin $x^*$ noktasındaki değeri
+elde ediyoruz. $f'(x^*)$ sonuçta $f$'in türevinin $x^*$ noktasındaki değeri
 değil midir? Yani $f$'in sabit noktadaki eğiminden (slope) bahsediyoruz.</p>
 <p><img alt="" src="02_02.png" /></p>
 <p>Sonuç olarak elimde eşitliğin sağında bir sayı çarpı $\eta$, bir diğer sayı
@@ -83,17 +92,17 @@ daha da küçük olacağına göre $\eta^2$'den başlayarak sağa giden tüm ter
 atabiliriz. Lineerleşirmenin arkasında yatan fikir bu, karesel terimlerden
 (quadratic term) kurtulmak.</p>
 <p>Fakat kendimize bir daha soralım, $\eta^2$'li terimi $\eta$'li terimle
-kıyaslayarak düşünürsem, atılabileceğinden emin miyim? Evet, eğer $f'(x^<em>)$
+kıyaslayarak düşünürsem, atılabileceğinden emin miyim? Evet, eğer $f'(x^*)$
 sıfır değil ise. Çünkü eğer o ilk terim sıfır olursa yokolur, ve geri kalan tek
 önemli terim $\eta^2$'li terim olur, bu durumda ikinci terimi yok kabul
 edemezdik. Matematiksel olarak derli toplu bunu bir daha ifade edersek, eğer
-$f'(x^</em>) \ne 0$ ise, ufak $\eta$ için $|f'(x^<em>) \eta| &gt;&gt; |\frac{\eta^2}{2}
-f"(x^</em>)|$.</p>
+$f'(x^*) \ne 0$ ise, ufak $\eta$ için $|f'(x^*) \eta| &gt;&gt; |\frac{\eta^2}{2}
+f"(x^*)|$.</p>
 <p>Yani $O(\eta^2)$ ifadelerini formülden atarız ($O()$ notasyonu derece (order of)
 demektir, yani iki ve daha büyük dereceli terimlerden bahsediyoruz),</p>
-<p>$$ f(x^<em> + \eta) =  \eta f'(x^</em>) + \cancel{\frac{\eta^2}{2}f"(x^*)} + \cancel{...}$$</p>
-<p>$$ f(x^<em> + \eta) = \eta f'(x^</em>) $$</p>
-<p>Daha önce demiştik ki $\dot{\eta} = f(x^<em> + \eta)$, o zaman $x^</em>$ noktasında,</p>
+<p>$$ f(x^* + \eta) =  \eta f'(x^*) + \cancel{\frac{\eta^2}{2}f"(x^*)} + \cancel{...}$$</p>
+<p>$$ f(x^* + \eta) = \eta f'(x^*) $$</p>
+<p>Daha önce demiştik ki $\dot{\eta} = f(x^* + \eta)$, o zaman $x^*$ noktasında,</p>
 <p>$$\dot{\eta} = r \cdot \eta$$</p>
 <p>lineerizasyonunu elde ediyoruz ki $r=f'(x^*)$. $\dot{\eta} = r \cdot \eta$ sonucu
 güzel bir sonuç, çünkü bu ifade özünde basit bir lineer diferansiyel denklem,
@@ -113,9 +122,9 @@ gerekirse,</p>
 $$</p>
 <p>$$ \dot{x} = x^3, \qquad \dot{x} = -x^3 
 $$</p>
-<p>sistemlerini düşünelim. $x^<em>=0$ hepsi için bir sabit nokta. Bunu görmek kolay
+<p>sistemlerini düşünelim. $x^*=0$ hepsi için bir sabit nokta. Bunu görmek kolay
 herhalde, eşitliğin sağ tarafına sıfır verince hepsi $\dot{x} = 0$. Şimdi
-$f'(x^</em>)$ şartını kontrol edersek, hepsi için $f'(x^*) = f'(0) = 0$. Teker teker
+$f'(x^*)$ şartını kontrol edersek, hepsi için $f'(x^*) = f'(0) = 0$. Teker teker
 neler olduğuna bakalım şimdi, mesela $\dot{x} = x^2$, </p>
 <p><img alt="" src="02_03.png" /></p>
 <p>Soldan gelişte sabit noktaya "doğru" gittiğimiz için bunu bir stabil nokta
@@ -140,7 +149,7 @@ yanlış bir yaklaşım. Resimlere bakmak çok daha bilgi verici.</p>
 <p>Daha önce işlediğimiz bir denklem bu, hatırlarsak,</p>
 <p>$$ \dot{x} = rx ( 1 - \frac{x}{K}) $$</p>
 <p>ki $x$ nüfus sayısı, $K$ taşıma kapasitesi, $r &gt; 0$.</p>
-<p>$x^<em>=0$, ya da $x^</em>=k$ olduğu zamanda $\dot{x}=0$ olur. Sabit noktalar
+<p>$x^*=0$, ya da $x^*=k$ olduğu zamanda $\dot{x}=0$ olur. Sabit noktalar
 bunlar. Stabilite için $f'(x^*)$'e bakıyoruz,</p>
 <p>$$ f'(x) = r - \frac{2rx}{K} $$</p>
 <p>$f'(0) = r &gt; 0$. Bu sonuç bize $x^*=0$'in gayrı stabil olduğunu söylüyor. </p>
@@ -240,8 +249,8 @@ yarı-stabil noktalara odaklanmak iyi bir fikir].</p>
 <p>Çatallaşma Diyagramı</p>
 <p>Çatallaşmaları birkaç figürü arka arkaya çizerek gösterebiliriz, ama tüm bu
 değişimi tek bir figürde göstermeye yarayan diyagramlar var, bunlara çatallaşma
-diyagramı diyoruz. $x^<em>$ ile $r$ iki eksende olacak şekilde ortaya çıkan
-eğrileri çizeriz. Bizim kontrolümüzdeki $r$'dir, onu değiştirirken $x^</em>$'e ne
+diyagramı diyoruz. $x^*$ ile $r$ iki eksende olacak şekilde ortaya çıkan
+eğrileri çizeriz. Bizim kontrolümüzdeki $r$'dir, onu değiştirirken $x^*$'e ne
 olduğunu gözlemleriz (ve grafikleriz).</p>
 <p>$$ \dot{x}=0 \Rightarrow r + (x^*)^2 = 0  $$</p>
 <p>$$ x^* = \pm \sqrt{-r} $$</p>
@@ -262,7 +271,7 @@ temiz olmayabilir. O türden bir örneği de görelim.</p>
 <p>Bu oldukça okkalı, içinde gayrı lineer bir terim var, $\ln$. Bu sistemi $r$'nin
 bir fonksiyonu olarak incelemek istiyoruz. Önce sabit noktaları bulmak
 istiyoruz, $\dot{x}$'i sıfıra eşitliyoruz,</p>
-<p>$$ r + x^<em> = \ln(1+x^</em>) $$</p>
+<p>$$ r + x^* = \ln(1+x^*) $$</p>
 <p>Ama şimdi başımız dönmeye başladı, eyvah, bunu $r$'nin fonksiyonu olarak nasıl
 tekrar düzenleyeceğiz? Aslında problemi dersten önce öyle seçtim ki bunu yapmak
 imkansız. Eğer eski analitik türden düşüncede takılıp kalmış olsaydım, şimdi
@@ -333,8 +342,8 @@ formunda oluyor.</p>
 <p>Bu form daha öncekine kıyasla niceliksel bir fark yaratıyor, eşitliğin sağ
 tarafını açarsak,</p>
 <p>$$ = x(r-x) $$</p>
-<p>İki sabit nokta hemen ortaya çıkar, $x^<em>=0$ her $r$ için sabit noktadır. Öteki
-ise $x^</em> = r$. Önceki örnekte sabit noktalar ortaya çıkıyor, yokoluyordu, burada
+<p>İki sabit nokta hemen ortaya çıkar, $x^*=0$ her $r$ için sabit noktadır. Öteki
+ise $x^* = r$. Önceki örnekte sabit noktalar ortaya çıkıyor, yokoluyordu, burada
 yokedilemez bir sabit nokta var, $x^*=0$, $r$'yi değiştirerek bu arkadaşı
 ortadan kaldıramıyoruz.</p>
 <p>Doğal bilimlerden örnek düşünmek gerekirse, mesela biyolojik nüfus konusunu

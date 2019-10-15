@@ -80,7 +80,7 @@ görülebilir, yön derken optimizasyon bağlamında minimuma giden yön. </p>
 <p>0) $x^0$ verildi, bu başlangıç noktası, $k = 0$ yap.</p>
 <p>1) $d^k = -H(x^k)^{-1} \nabla f(x^k)$. Eğer $d^k=0$ ise dur.</p>
 <p>2) $\alpha^k = 1$ adım boyu seç</p>
-<p>3) $x^{k+1} = x^k + \alpha^k d^k$, $k = k + 1$. 1. adıma geri dön.</p>
+<p>3) $x^{k+1} = x^k + \alpha^k d^k$, $k = k + 1$ yap, ve 1. adıma geri dön.</p>
 <p>Bu metodun önemli bir özelliğinin sadece bir lineer sistemi çözmek olduğunu
 görüyoruz. Bir lineer sistemi çözmek kolay midir? Sisteme göre değişir, 100
 x 100 sistem, problem yok. 10,000 x 10,000 yoğun bir sistem var ise (seyrek
@@ -98,6 +98,23 @@ zaman doğru olmayabilir. O sebeple bunun doğru olduğu türden problemler ile
 uğraşacağız, ya da Hessian'ın tersi alınabilir olmasını sağlayan
 mekanizmaları göreceğiz. $H$'nin özünü bozmadan değiştirerek tersi
 alınabilir olmasını sağlayan yöntemler var. </p>
+<p>Ayrıca hedef her adımda fonksiyonunu oluşturduğumda bu fonksiyonun azalma
+garantisi yok. Öyle ya akıllı bir algoritmanin her adımda hedef
+fonksiyonumu daha iyiye götürdüğümü düşünebilirdim, ama şu anda kadar
+gördüklerimiz ışığında, bunun garantisi yok. Bu konuya sonra değineceğiz. </p>
+<p>Bir diğer nokta 2. adımın çizgi arama ile genişletilebilmesi [atlandı]</p>
+<p>NY'nin en çekici tarafı, eğer yakınsama (convergence) mümkün ise bu
+yakınsamanın çok hızlı bir şekilde olması, ki bu iyi. Bu konuya gelmeden
+metodun bazı ek özelliklerini görelim.</p>
+<p>Terminoloji: bir matrise SPD denir eger matris simetrik, pozitif kesin ise
+(simetric positive-definite). </p>
+<p>Teklif (Proposition) 1: </p>
+<p>Eger $H(x)$ SPD ise $d \ne 0$, o zaman $d$ $\bar{x}$ noktasinda bir inis
+yonune isaret eder. Inis yonu olmasi demek, eger makul ufak bir adim
+cercevesinde gidilen noktada $f$'in degerinin o an oldugumuz noktadan daha
+az olmasi demektir. </p>
+<p>Ispatlayalim. Onceki dersten hatirlarsak, eger yonum gradyan ile negatif ic
+carpima sahip ise, o zaman yonum kesinlikle bir inis yonuydu. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
