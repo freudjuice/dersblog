@@ -157,7 +157,7 @@ pozitif kesin ise değil mi? Genel matrislerden hatırlarsak, matris $A$ ve
 bir vektör için $v$ eğer $A$ pozitif kesin ise $v^TAv &gt; 0$. Daha önce
 $H$'nin pozitif kesin olduğunu söylemiştik, o zaman bir şekilde eğer $H$
 pozitif kesin olmasının sadece ve sadece $H$'nin tersinin pozitif kesin
-olmasına bağlı olduğuna gösterebiirsem amacıma ulaşabilirim. </p>
+olmasına bağlı olduğuna gösterebilirsem amacıma ulaşabilirim.</p>
 <p>Bunu yapmak aslında pek zor değil. Biliyorum ki $H(x)$ SPD. Simdi herhangi
 bir vektor $v$ icin </p>
 <p>$$
@@ -176,6 +176,60 @@ $$</p>
 <p>İşaretlenen bölümlerin birer vektör olduğunu görebiliriz, bu durumda
 $v^TAv &gt; 0$ pozitif kesinlik formülü farklı bir $v$ için hala geçerlidir, o
 zaman ortadaki $A$, bu durumda $H(x)$ pozitif kesin olmalıdır. </p>
+<p>Örnek 1</p>
+<p>$f(x) = 7x - \ln(x)$ olsun. O zaman $\nabla f(x) = 7 - \frac{1}{x}$ ve
+$H(x) = f"(x) = \frac{1}{x^2}$. Bu fonksiyonun özgün global minimumunun
+$x^* = 1/7 = 1.482..$ olduğunu kontrol etmek zor değil. $x$ noktasındaki
+Newton yönü</p>
+<p>$$
+d = -H(x)^{-1} \nabla f(x) = -\frac{f'(x)}{f"(x)} = 
+-x^2 \left( 7 - \frac{1}{x}  \right)=
+x - 7x^2
+$$</p>
+<p>Newton yöntemi ${ x^k }$ serisini üretecek, öyle ki</p>
+<p>$$
+x^{k+1} = x^k + ( x^k - 7(x^k)^2  ) = 2x^k - 7(x^k)^2
+$$</p>
+<pre><code class="python">import pandas as pd
+pd.set_option('display.notebook_repr_html', False)
+pd.set_option('display.max_columns', 20)
+pd.set_option('display.max_rows', 30) 
+pd.set_option('display.width', 82) 
+pd.set_option('precision', 6)
+
+df = pd.DataFrame(index=np.arange(11))
+
+def calculate_newton_ex1(x):
+    arr = []
+    for i in range(11):
+        arr.append(x)
+        x = 2*x - 7*x**2
+        if (x &gt; 1e100):  x = np.inf
+        if (x &lt; -1e100):  x = -np.inf
+    return arr
+
+df['1'] = calculate_newton_ex1(1.0)
+df['2'] = calculate_newton_ex1(0.0)
+df['3'] = calculate_newton_ex1(0.1)
+df['4'] = calculate_newton_ex1(0.01)
+
+print (df)    
+</code></pre>
+
+<pre><code>               1    2         3         4
+0   1.000000e+00  0.0  0.100000  0.010000
+1  -5.000000e+00  0.0  0.130000  0.019300
+2  -1.850000e+02  0.0  0.141700  0.035993
+3  -2.399450e+05  0.0  0.142848  0.062917
+4  -4.030157e+11  0.0  0.142857  0.098124
+5  -1.136952e+24  0.0  0.142857  0.128850
+6  -9.048612e+48  0.0  0.142857  0.141484
+7  -5.731417e+98  0.0  0.142857  0.142844
+8           -inf  0.0  0.142857  0.142857
+9           -inf  0.0  0.142857  0.142857
+10          -inf  0.0  0.142857  0.142857
+</code></pre>
+
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
