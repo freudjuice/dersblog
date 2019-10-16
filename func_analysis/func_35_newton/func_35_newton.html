@@ -81,14 +81,14 @@ görülebilir, yön derken optimizasyon bağlamında minimuma giden yön. </p>
 <p>1) $d^k = -H(x^k)^{-1} \nabla f(x^k)$. Eğer $d^k=0$ ise dur.</p>
 <p>2) $\alpha^k = 1$ adım boyu seç</p>
 <p>3) $x^{k+1} = x^k + \alpha^k d^k$, $k = k + 1$ yap, ve 1. adıma geri dön.</p>
-<p>Bu metodun önemli bir özelliğinin sadece bir lineer sistemi çözmek olduğunu
-görüyoruz. Bir lineer sistemi çözmek kolay midir? Sisteme göre değişir, 100
-x 100 sistem, problem yok. 10,000 x 10,000 yoğun bir sistem var ise (seyrek
-matrisle temsil edilen lineer sisteme nazaran) işimiz daha zor
-olacaktır. Bu tür sistemlerde Gaussian eliminasyon işlemeyebilir, bir tür
-özyineli metot gerekli. Demek istediğim Newton yönteminin darboğazı bir
-lineer denklem sistemini her seferinde sıfırdan başlayarak çözmek, ve bunu
-her döngüde yapmak. </p>
+<p>Bu metodun önemli bir özelliğinin her adımda sadece bir lineer sistemi
+çözmek olduğunu görüyoruz (tersini alma işlemi). Bir lineer sistemi çözmek
+kolay midir? Sisteme göre değişir, 100 x 100 sistem, problem yok. 10,000 x
+10,000 yoğun bir sistem var ise (seyrek matrisle temsil edilen lineer
+sisteme nazaran) işimiz daha zor olacaktır. Bu tür sistemlerde Gaussian
+eliminasyon işlemeyebilir, bir tür özyineli metot gerekli. Demek istediğim
+Newton yönteminin darboğazı bir lineer denklem sistemini her seferinde
+sıfırdan başlayarak çözmek, ve bunu her döngüde yapmak.</p>
 <p>Fakat bu çözümün bize pek çok şey kazandırdığını da görmek lazım;
 bahsedilen sistemi çözmek bize pek çok bilgi kazandırıyor çünkü çözülen
 problem içinde 1. ve 2. türev bilgisi var. Bu bilgi minimizasyon açısından
@@ -286,6 +286,7 @@ print (res)
  [0.333 0.333]]
 </code></pre>
 
+<p>54:37</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
