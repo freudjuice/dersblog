@@ -109,14 +109,42 @@ metodun bazı ek özelliklerini görelim.</p>
 <p>Terminoloji: bir matrise SPD denir eger matris simetrik, pozitif kesin ise
 (simetric positive-definite). </p>
 <p>Teklif (Proposition) 1: </p>
-<p>Eger $H(x)$ SPD ise $d \ne 0$, o zaman $d$ $\bar{x}$ noktasinda bir inis
-yonune isaret eder. Inis yonu olmasi demek, eger makul ufak bir adim
-cercevesinde gidilen noktada $f$'in degerinin o an oldugumuz noktadan daha
-az olmasi demektir. </p>
-<p>Ispatlayalim. Onceki dersten hatirlarsak, eger yonum gradyan ile negatif ic
-carpima sahip ise, o zaman yonum kesinlikle bir inis yonuydu. </p>
+<p>Eğer $H(x)$ SPD ise $d \ne 0$, o zaman $d$ $\bar{x}$ noktasında bir iniş
+yönüne işaret eder. İniş yönü olması demek, eğer makul ufak bir adım
+çerçevesinde gidilen noktada $f$'in değerinin o an olduğumuz noktadan daha
+az olması demektir.</p>
+<p>Nasıl ispatlarım? Önceki dersten hatırlarsak, eğer yönüm gradyan ile
+negatif iç çarpıma sahip ise, o zaman yönüm kesinlikle bir iniş yönüydü.</p>
+<p>Teori </p>
+<p>Diyelim ki $f(x)$ fonksiyonu $\bar{x}$ noktasında türevi alınabilir halde
+[2, sf. 9]. Eğer elimizde $\nabla f(\bar{x})^T d &lt; 0$ sonucunu veren bir
+$d$ vektörü var ise, öyle ki her yeterince küçük $\lambda &gt; 0$ için
+$f(\bar{x}+\lambda d) &lt; f(\bar{x})$ olacak şekilde, o zaman $d$ bir iniş
+yönüdür.</p>
+<p>İspat </p>
+<p>Taylor açılımı ile yönsel türev tanımına bakarsak,</p>
+<p>$$
+f(\bar{x} + \lambda d ) = 
+f(\bar{x}) + \lambda \nabla f(\bar{x})^T d + 
+\lambda ||d|| \alpha(\bar{x},\lambda d)
+$$</p>
+<p>öyle ki $\alpha(\bar{x},\lambda d) \to 0$, $\lambda \to 0$ olurken. Not:
+Norm içeren üçüncü terimdeki $\lambda ||d|| \alpha(\bar{x},\lambda d)$
+ifadesi Taylor serisinin artıklı tanımından geliyor. Detaylar için [3,
+sf. 360]'a bakılabilir.</p>
+<p>Üstteki ifadeyi tekrar düzenlersek,</p>
+<p>$$
+\frac{f(\bar{x} + \lambda d) - f(\bar{x})}{\lambda} = 
+\nabla f(\bar{x})^T + ||d||\alpha(\bar{x},\lambda d)
+$$</p>
+<p>$\nabla f(\bar{x})^T d &lt; 0$ olduğuna göre (aradığımız şart bu) o zaman, ve
+$\alpha(\bar{x},\lambda d) \to 0$, $\lambda \to 0$ iken, her yeterince
+küçük $\lambda &gt; 0$ için $f(\bar{x} + \lambda d)-f(\bar{x}) &lt; 0$ olmalıdır,
+yani her hangi bir yönde atılan adım bir önceki $f$ değerinden bizi daha
+ufak bir $f$ değerine götürmelidir. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
 <p>[2] Freund, <em>MIT OCW Nonlinear Programming Lecture</em>,
     <a href="https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/">https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/</a></p>
+<p>[3] Miller, <em>Numerical Analysis for Scientists and Engineers</em></p>
