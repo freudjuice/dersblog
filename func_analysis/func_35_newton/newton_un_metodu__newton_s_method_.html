@@ -142,6 +142,40 @@ $\alpha(\bar{x},\lambda d) \to 0$, $\lambda \to 0$ iken, her yeterince
 küçük $\lambda &gt; 0$ için $f(\bar{x} + \lambda d)-f(\bar{x}) &lt; 0$ olmalıdır,
 yani her hangi bir yönde atılan adım bir önceki $f$ değerinden bizi daha
 ufak bir $f$ değerine götürmelidir. </p>
+<p>Ana Teklif'e dönelim. Newton adımınıdaki SPD $H$ için $0 &lt; d^T \nabla f$
+olduğunu göstermemiz lazım (ki böylece iniş yönü olduğunü ispatlayabilelim,
+bir önceki teori),</p>
+<p>$$
+d = -H^{-1} \nabla f(\bar{x})
+$$</p>
+<p>demiştik, her iki tarafı $\nabla f(x)$ ile çarpalım,</p>
+<p>$$
+d \nabla f(x) = -\nabla f(x) H^{-1} \nabla f(x) 
+$$</p>
+<p>Eşitliğin sağ tarafındaki ifade hangi şartlarda eksi olur? Eğer $H$ matrisi
+pozitif kesin ise değil mi? Genel matrislerden hatırlarsak, matris $A$ ve
+bir vektör için $v$ eğer $A$ pozitif kesin ise $v^TAv &gt; 0$. Daha önce
+$H$'nin pozitif kesin olduğunu söylemiştik, o zaman bir şekilde eğer $H$
+pozitif kesin olmasının sadece ve sadece $H$'nin tersinin pozitif kesin
+olmasına bağlı olduğuna gösterebiirsem amacıma ulaşabilirim. </p>
+<p>Bunu yapmak aslında pek zor değil. Biliyorum ki $H(x)$ SPD. Simdi herhangi
+bir vektor $v$ icin </p>
+<p>$$
+0 &lt; v^T H(x)^{-1}v
+$$</p>
+<p>ifadeyi şöyle genişletelim, $H(x)H(x)^{-1}$ eklemek hiçbir şeyi değiştirmez
+çünkü bu çarpım birim matristir, </p>
+<p>$$
+v^T H(x)^{-1}v = v^T H(x)^{-1} H(x)H(x)^{-1} v &gt; 0
+$$</p>
+<p>Genişlemiş ifadenin harfiyen pozitif olduğunu biliyorum, iki üstteki
+tanımdan. Ama şimdi üstteki ifadeye farklı bir şekilde bakarsak,</p>
+<p>$$
+v^T H(x)^{-1}v = \underbrace{v^TH(x)^{-1}} H(x) \underbrace{H(x)^{-1} v} &gt; 0
+$$</p>
+<p>İşaretlenen bölümlerin birer vektör olduğunu görebiliriz, bu durumda
+$v^TAv &gt; 0$ pozitif kesinlik formülü farklı bir $v$ için hala geçerlidir, o
+zaman ortadaki $A$, bu durumda $H(x)$ pozitif kesin olmalıdır. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
