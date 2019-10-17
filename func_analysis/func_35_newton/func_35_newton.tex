@@ -332,11 +332,43 @@ print (res)
  [0.333 0.333]]
 \end{verbatim}
 
+[diger yakinsama konusu atlandi]
+
+Dikkat edilirse þimdiye kadar diþbukeylik (convexity) farzýný yapmadýk,
+sadece Hessian matrinin tersi alýnabilir olduðunu farzettik. 
+
+Devam edersek, özyineli þekilde güncelememizi yaparken Hessian'ýn eþsiz
+olduðu bazý noktalara gelmiþ olabiliriz. Bu olduðunda çoðu yazýlým bu
+durumu yakalayacak þekilde yazýlmýþtýr, ``yeterince eþsiz'' Hessian
+matrislere önceden tanýmlý ufak bir $\epsilon$ çarpý birim matrisi kadar
+bir ekleme yaparlar, böylece tersin alýnamama durumundan kurtulunmuþ olur. 
+Bu metotlara Newton-ýmsý (quasi-Newton) ismi de veriliyor. 
+
+Eskiden Newton-ýmsý metotlar koca bir araþtýrma sahasýydý. Benim bildiðim
+kadarýyla tarihte 15 sene kadar geriye gidersek, üstteki görüldüðü gibi her
+adýmda büyük bir denklem sistemi çözmek istemiyoruz, $x$ noktasýndayým,
+Hessian iþliyorum, Newton yönümü buluyorum, adým atýyorum, yeni bir
+noktadayým. Newton-imsi metotlarda bu yeni noktada sil baþtan bir Hessian
+iþlemek yerine bir önceki adýmdaki iþlenen Hessian sonuçlarýný, bir
+þekilde, az ek iþlem yaparak sonraki adýmda kullanmaya uðraþýyorlardý.
+Aslýnda pek çok farklý Newton-ýmsý metot var, hepsi farklý þekilde Newton
+metotundan farklý (!)
+
+Bu alaný çok iyi takip ettiðim söylenemez, Newton-ýmsý metotlar eskiden
+olduðu kadar on planda deðil çünkü bilgisayar hesaplama kapasitesi arttýkça
+onlara olan ihtiyaç azaldý.
 
 
 
 
-54:37
+
+
+
+
+
+
+
+
 
 [devam edecek]
 
