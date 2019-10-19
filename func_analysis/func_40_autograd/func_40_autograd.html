@@ -381,12 +381,12 @@ $$</p>
 <p>2) Newton metotu ile birkaç adım at (durma kriteri yaklaşıma göre değisebilir)</p>
 <p>3) $\mu$'yu küçült</p>
 <p>4) Ana durma kriterine bak, tamamsa dur. Yoksa başa dön</p>
-<p>Bu yaklaşımın dişbukey (convex) problemler için global minimuma
+<p>Bu yaklaşımın dışbükey (convex) problemler için global minimuma
 gittiği ispatlanmıştır [8, sf. 504].</p>
 <p>Örnek</p>
 <p>$\min (x_1 + 0.5)^2 + (x_2 - 0.5)^2$ problemini çöz, $x_1 \in [0,1]$ ve $x_2 \in
 [0,1]$ kriterine göre.</p>
-<p>Üstteki için log-bariyer,</p>
+<p>Üstteki fonksiyon için log-bariyer,</p>
 <p>$$
 P(x;\mu) = (x_1 + 0.5)^2 + (x_2-0.5)^2 -
 \mu 
@@ -394,10 +394,10 @@ P(x;\mu) = (x_1 + 0.5)^2 + (x_2-0.5)^2 -
 \log x_1 + \log (1-x_1) + \log x_2 + \log (1-x_2)
 \big]
 $$</p>
-<p>Bu formülasyonun nasıl olduğu bariz herhalde, $x_1 \ge 0$ ve $x_1 \le
-1$ var mesela,
-ikinci ifadeyi büyüktür işaretine çevirmek için eksi ile
-çarparız, $-x_1 \ge 1$, ya da  $1-x_1 \ge 0$ böylece $\log(1-x_1)$  olur. </p>
+<p>Bu formülasyonu nasıl elde ettiğimiz bariz herhalde, $x_1 \ge 0$ ve
+$x_1 \le 1$ kısıtlamaları var mesela, ikinci ifadeyi büyüktür
+işaretine çevirmek için eksi ile çarptık, $-x_1 \ge 1$, ya da $1-x_1
+\ge 0$ böylece $\log(1-x_1)$ oldu.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Ders Notları, <em>Otomatik Türev Almak (Automatic Differentiation -AD-)</em></p>
