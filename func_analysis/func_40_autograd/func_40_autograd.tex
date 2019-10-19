@@ -381,22 +381,22 @@ I(u) =
 \end{array} \right.
 $$
 
-Bu yaklaþýmýn nasýl iþleyeceðini kabaca tahmin edebiliriz. $I$
-fonksiyonu 0'dan büyük deðerler için müthiþ büyük deðerler veriyor, bu
-sebeple optimizasyon sýrasýnda o deðerlerden tabii ki kaçýnýlacak, ve
-arayýþ istediðimiz noktalara doðru kayacak. Tabii $x_1 > 3$ gibi bir
-þart varsa onu $x_1 - 3 > 0$ þartýna deðiþtiriyoruz ki üstteki
-göstergeci kullanabilelim. Bu yaklaþýma "bariyer metotu" ismi
-veriliyor çünkü $I$ ile bir bariyer yaratýlmýþ oluyor.
+Bu yaklaþýmýn nasýl iþleyeceðini kabaca tahmin edebiliriz. $I$ fonksiyonu
+0'dan büyük deðerler için müthiþ büyük deðerler veriyor, bu sebeple
+optimizasyon sýrasýnda o deðerlerden tabii ki kaçýnýlacak, ve arayýþ
+istediðimiz noktalara doðru kayacak. Tabii $x_1 > 3$ gibi bir þart varsa
+onu $x_1 - 3 > 0$ þartýna deðiþtiriyoruz ki üstteki göstergeci
+kullanabilelim. Bu yaklaþýma "bariyer metotu" ismi veriliyor çünkü $I$ ile
+bir bariyer yaratýlmýþ oluyor.
 
-Fakat bir problem var, göstergeç fonksiyonunu türevini almak, ve
-pürüzsüz rahat kullanýlabilen bir yeni fonksiyon elde etmek kolay
-deðil. Acaba $I$ yerine onu yaklaþýk temsil edebilen bir baþka sürekli
-fonksiyon kullanamaz mýyýz?
+Fakat bir problem var, göstergeç fonksiyonunun türevini almak, ve pürüzsüz
+rahat kullanýlabilen bir yeni fonksiyon elde etmek kolay deðil. Acaba $I$
+yerine onu yaklaþýk temsil edebilen bir baþka sürekli fonksiyon kullanamaz
+mýyýz?
 
 Log fonksiyonunu kullanabiliriz. Altta farklý $\mu$ deðerleri için
-$-\mu \log(u)$ fonksiyonun deðerlerini görüyoruz. Fonksiyon görüldüðü
-gibi $I$'ya oldukca yakýn.
+$-\mu \log(-u)$ fonksiyonun deðerlerini görüyoruz. Fonksiyon görüldüðü gibi
+$I$'ya oldukca yakýn.
 
 \begin{minted}[fontsize=\footnotesize]{python}
 def I(u): 
@@ -420,13 +420,19 @@ plt.savefig('func_40_autograd_04.png')
 
 \includegraphics[width=25em]{func_40_autograd_04.png}
 
-O zaman yeni birleþik fonksiyon,
+O zaman eldeki tüm $c_i(x) \ge 0$ kýsýtlamalarýný
 
 $$
-P(x;\mu) = f(x) + \mu \sum_{i=1}^{m} \log c_i(x) 
+- \sum_{i=1}^{m} \log c_i(x)
 $$
 
-Böylece elde edilen yaklaþým log-bariyer yaklaþýmý olacaktýr. 
+ile hedef fonksiyonuna dahil edebiliriz, yeni birleþik fonksiyon,
+
+$$
+P(x;\mu) = f(x) - \mu \sum_{i=1}^{m} \log c_i(x) 
+$$
+
+olur. Böylece elde edilen yaklaþým log-bariyer yaklaþýmý olacaktýr. 
 
 Algoritma olarak optimizasyon þu þekilde gider;
 
@@ -481,3 +487,6 @@ Kaynaklar
 [8] Nocedal, {\em Numerical Optimization}
 
 \end{document}
+
+
+
