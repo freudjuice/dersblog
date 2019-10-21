@@ -1,129 +1,128 @@
-from autograd.numpy import sqrt, exp, nan, e, log, power, sum
-from autograd import numpy as np
-from scipy import optimize
-import autograd
-
-import matplotlib.pyplot as plt
+import numpy as np, numpy.linalg as lin
 from mpl_toolkits.mplot3d import Axes3D
-from scipy.spatial.distance import cdist
+import matplotlib.pyplot as plt
 from matplotlib import cm
 
-def trapz(y, dx):
-    vals = y[1:-1]
-    vals = vals[vals>0.0]
-    return (y[0]+sum(vals*2.0)+y[-1])*(dx/2.0)
+OFFSET = 0.0
+np.random.seed(0)
 
-def gfunc(x, y, offset=0.0):
-    s1 = 2.2; x1 = 2.0; y1 = 2.0
-    s2 = 1.2; x2 = 4.0; y2 = 3.0
-    tmp = -4.0 *log(2.0) * ((x-x1)**2.0+(y-y1)**2.0) / s1**2.0
-    g1 = np.array([power(e,_) if _ != nan else 0.0 for _ in tmp])
-    tmp = -4.0 *log(2.0) * ((x-x2)**2.0+(y-y2)**2.0) / s2**2.0
-    g2 = np.array([power(e,_) if _ != nan else 0.0 for _ in tmp])
-    return g1+g2+offset
-
-def pfunc(x, y):
-    s1 = 2.2; x1 = 2.0; y1 = 2.0
-    s2 = 1.2; x2 = 4.0; y2 = 3.0
+def func(x, y):
+    s1 = 0.2; x1 = 36.5; y1 = 32.5
+    s2 = 0.4; x2 = 36.1; y2 = 32.8
     g1 = np.exp( -4 *np.log(2) * ((x-x1)**2+(y-y1)**2) / s1**2)
-    g2 = np.exp( -4 *np.log(2) * ((x-x2)**2+(y-y2)**2) / s2**2)
-    return g1 + g2
+    g2 = np.exp( -2 *np.log(2) * ((x-x2)**2+(y-y2)**2) / s2**2)    
+    return g1 + g2 
 
-def plot_surf_path(azim,elev,a0,a1,a2,a3,a4,b0,b1,b2,b3,b4):
+D = 100
 
-    D = 50
-    x = np.linspace(0,5,D)
-    y = np.linspace(0,5,D)
-    xx,yy = np.meshgrid(x,y)
-    zz = pfunc(xx,yy)
+x = np.linspace(36,37,D)
+y = np.linspace(32,33,D)
+
+xx,yy = np.meshgrid(x,y)
+zz = func(xx,yy)
+
+from scipy.interpolate import Rbf
+
+S = 50
+np.random.seed(0)
+idx = np.random.choice(range(D*D),S)
+xr = xx.reshape(D*D)[idx].reshape(S,1)
+yr = yy.reshape(D*D)[idx].reshape(S,1)
+zr = zz.reshape(D*D)[idx].reshape(S,1)
+
+rbfi = Rbf(xr,yr,zr,function='gaussian',epsilon=0.15)
+
+from autograd import numpy as anp
+import autograd
+
+def dist_matrix(X, Y):
+    sx = anp.sum(anp.power(X,2), 1)
+    sy = anp.sum(anp.power(Y,2), 1)
+    D2 =  sx[:, anp.newaxis] - 2.0*anp.dot(X,Y.T) + sy[anp.newaxis, :] 
+    D = anp.sqrt(D2)
+    return D
+
+def gaussian(r,eps): return anp.exp(-anp.power((r/eps),2))
+
+def f_interp(newp):    
+    nodes = rbfi.nodes.reshape(1,len(rbfi.nodes))
+    newp_dist = dist_matrix(newp, rbfi.xi.T)
+    elev = anp.dot(gaussian(newp_dist, rbfi.epsilon), nodes.T)
+    return elev
+
+nodes = rbfi.nodes.reshape(1,len(rbfi.nodes))
+
+def trapz(y, dx):
+    vals = anp.array([_ if anp.isnan(_)==False else OFFSET for _ in y[1:-1]])
+    tmp = anp.sum(vals*2.0)    
+    return (y[0]+tmp+y[-1])*(dx/2.0)
+
+
+DIV = 2.0
+alpha = 0.05
+LIM = 2.0
+mu = 2.0
+a1,a2,a3 = np.random.randn()/DIV,np.random.randn()/DIV,np.random.randn()/DIV
+b1,b2,b3 = np.random.randn()/DIV,np.random.randn()/DIV,np.random.randn()/DIV
+newx = anp.array([a1,a2,a3,b1,b2,b3])
+
+for i in range(6):
+    t = np.linspace(0,1,100)
+    a0,b0=(36.0,32.0)
+    ex,ey=(36.4,32.8)
+
+    def obj(xarg):
+        a1,a2,a3,b1,b2,b3=xarg[0],xarg[1],xarg[2],xarg[3],xarg[4],xarg[5]
+        a4 = ex - a0 - (a1+a2+a3)
+        b4 = ey - b0 - (b1+b2+b3)
+        sq = anp.sqrt(b1 + 2*b2*t + 3*b3*t**2 - 112.0*t**3 + (a1 + 2*a2*t + 3*a3*t**2 - 65.2*t**3)**2)
+        x = a0 + a1*t + a2*t**2 + a3*t**3 + a4*t**4 
+        y = b0 + b1*t + b2*t**2 + b3*t**3 + b4*t**4
+        z = [f_interp(anp.array([[xx,yy]]))[0][0] for xx,yy in zip(x,y)]
+        res = z * sq
+        T = trapz(res, 1.0/len(t))        
+        cons = mu * (anp.log(LIM+a1) + anp.log(LIM-a1) + \
+                     anp.log(LIM+a2) + anp.log(LIM-a2) + \
+                     anp.log(LIM+a3) + anp.log(LIM-a3) + \
+                     anp.log(LIM+b1) + anp.log(LIM-b1) + \
+                     anp.log(LIM+b2) + anp.log(LIM-b2) + \
+                     anp.log(LIM+b3) + anp.log(LIM-b3))
+        #print ('as bs',xarg)
+        #print ('cons',cons)
+        T = T - cons
+        #print ('T',T)
+        if ('ArrayBox' not in str(type(T))):
+            return float(T)
+        return T._value
+    
+    a1,a2,a3,b1,b2,b3=newx[0],newx[1],newx[2],newx[3],newx[4],newx[5]
+    a4 = ex - a0 - (a1+a2+a3)
+    b4 = ey - b0 - (b1+b2+b3)
 
     fig = plt.figure()
     ax = fig.gca(projection='3d')
-    ax.set_xlim(0,5)
-    ax.set_ylim(0,5)
-    ax.view_init(elev=elev, azim=azim)
-    surf = ax.plot_wireframe(xx, yy, zz,rstride=10, cstride=10)
+    ax.view_init(elev=29, azim=29)
+    ax.set_xlim(36,37)
+    ax.set_ylim(32,33)
+    test_3 = anp.column_stack((xx.ravel(), yy.ravel()))
+    znewnew = f_interp(test_3).reshape(xx.shape)
+    surf = ax.plot_wireframe(xx, yy, znewnew, rstride=10, cstride=10)
+        
+    j = autograd.jacobian(obj)
+    J = j(newx)
+    d = J
+    oldx = newx[:]
+    newx = newx + alpha*d
 
-    t = np.linspace(0,1.0,100)
+    print ('newx',newx)
+    print ('diff',np.sum(np.abs(newx-oldx)))
 
+    t = np.linspace(0,1,100)
     x = a0 + a1*t + a2*t**2 + a3*t**3 + a4*t**4 
     y = b0 + b1*t + b2*t**2 + b3*t**3 + b4*t**4
+    z = [f_interp(anp.array([[xx,yy]]))[0][0] for xx,yy in zip(x,y)]
+    ax.plot3D(x, y, z,'r.')
+    plt.savefig('linear_app88rbf_08-%d.png' % i)
 
-    ax.plot3D(x, y, gfunc(x,y),'r.')
-
-def find_path(ex,ey,a0,b0,offset):
     
-    cons=({'type': 'ineq','fun': lambda x: 30.0-x[0]}, # y<30
-          {'type': 'ineq','fun': lambda x: 30.0-x[1]},
-          {'type': 'ineq','fun': lambda x: 30.0-x[2]},
-          {'type': 'ineq','fun': lambda x: 30.0-x[3]},
-          {'type': 'ineq','fun': lambda x: 30.0-x[4]},
-          {'type': 'ineq','fun': lambda x: 30.0-x[5]},
-          {'type': 'ineq','fun': lambda x: x[0]}, # y>0
-          {'type': 'ineq','fun': lambda x: x[1]},
-          {'type': 'ineq','fun': lambda x: x[2]},
-          {'type': 'ineq','fun': lambda x: x[3]},
-          {'type': 'ineq','fun': lambda x: x[4]},
-          {'type': 'ineq','fun': lambda x: x[5]},
-    )
-
-
-    # rasgele secilmis baslangic degerleri
-    a1,a2,a3 = 0.1,0.2,0.4
-    b1,b2,b3 = 0.2,0.4,0.6
-    x0 = a1,a2,a3,b1,b2,b3
-
-    def pintval(p):
-        a1,a2,a3,b1,b2,b3 = p
-        a4 = ex - a0 - (a1+a2+a3)
-        b4 = ey - b0 - (b1+b2+b3)   
-        t = np.linspace(0,1,100)
-        tmp = b1 + 2.0*b2*t + 3.0*b3*t**2.0 - 112.0*t**3.0 + (a1 + 2.0*a2*t + 3.0*a3*t**2.0 - 65.2*t**3.0)**2.0
-        sq = [sqrt(_) if _ != nan else 0.0 for _ in tmp]
-        x = a0 + a1*t + a2*t**2.0 + a3*t**3.0 + a4*t**4.0
-        y = b0 + b1*t + b2*t**2.0 + b3*t**3.0 + b4*t**4.0
-        x = np.array(x)
-        y = np.array(y)   
-        z = gfunc(x,y,offset)
-        res = z * sq
-        T = trapz(res, 1.0/len(t))
-        print ('T',T)
-        return T
     
-    pintval_grad = autograd.grad(pintval)
-    
-    sol = optimize.minimize(pintval,
-                            x0,
-                            jac = pintval_grad,
-                            method = 'COBYLA',
-                            callback=print,
-                            tol=0.05,
-                            constraints=cons)
-
-    print (sol.x)
-    return sol.x
-    
-a0,b0=1.0,1.0
-OFFSET = 1.0
-
-ex,ey=0.3,4.0
-res = find_path(ex,ey,a0,b0,OFFSET)
-a1,a2,a3,b1,b2,b3 = res
-a4 = ex - a0 - (a1+a2+a3)
-b4 = ey - b0 - (b1+b2+b3)
-print (a0,a1,a2,a3,a4,b0,b1,b2,b3,b4)
-plot_surf_path(173,40,a0,a1,a2,a3,a4,b0,b1,b2,b3,b4)
-#plt.savefig('calc_multi_40_elev_04.png')
-plt.show()
-
-ex,ey=4.0,4.0
-res = find_path(ex,ey,a0,b0,OFFSET)
-a1,a2,a3,b1,b2,b3 = res
-a4 = ex - a0 - (a1+a2+a3)
-b4 = ey - b0 - (b1+b2+b3)
-print (a0,a1,a2,a3,a4,b0,b1,b2,b3,b4)
-plot_surf_path(173,40,a0,a1,a2,a3,a4,b0,b1,b2,b3,b4)
-#plt.savefig('calc_multi_40_elev_05.png')
-plt.show()
-
-

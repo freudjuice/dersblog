@@ -303,13 +303,13 @@ sebebiyle sürekli tercih edilebilmesi, yani upuzun bir yol yer seviyesinden
 gidebilir, çünkü orada gitmenin hiçbir bedeli yoktur. Biz de her yüksekliği
 suni bir yükseklik ekleyerek yerdeki çok uzun yolların tercih edilmemesini
 sağladık.</p>
-<p>RBF Tepeleri</p>
+<p>Iki Tepe, RBF</p>
 <p>İşleri biraz daha zorlaştıralım. Gerçek dünya şartlarında bir bölgenin
 yükseklik verisinden örneklem toplayıp, bu verileri RBF ile modelleyip [4],
 o modeli yükseklik için kullanmak isteyebiliriz. Eğer herhangi bir $x,y$
 noktasının yüksekliğinin verecek RBF toplam fonksiyonunu temiz bir şekilde
 işletmenin yolunu bulabilirsek, bunun üzerinden çizgi entegrali, ve bu
-entegral fonksiyonun <code>autoğrad</code> türevi üzerinden minimizasyonunu
+entegral fonksiyonun <code>autoğgrad</code> türevi üzerinden minimizasyonunu
 yapabiliriz. </p>
 <p>Hatta daha da zorlaştıralım, gerçek dünya şartlarında coğrafik kordinatları
 da parçalara bölüp her parça üzerinde RBF modellemesi yapmak
@@ -322,195 +322,15 @@ alıyoruz, ve bu iki RBF bloğu üzerinden optimizasyonun olmasını
 sağlayalım. </p>
 <p>Test amaçlı bir blok içinde iki tepe yaratalım, sonra aynı tepeleri bir
 başka blok içinde yaratacağız, ve ikisini yanyana koyacağız. </p>
-<pre><code class="python">from scipy import optimize
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
-
-np.random.seed(0)
-S = 50
-D = 100
-
-def func1(x, y):
-    s1 = 0.2; x1 = 36.5; y1 = 32.5
-    s2 = 0.4; x2 = 36.1; y2 = 32.8
-    g1 = np.exp( -4 *np.log(2) * ((x-x1)**2+(y-y1)**2) / s1**2)
-    g2 = np.exp( -2 *np.log(2) * ((x-x2)**2+(y-y2)**2) / s2**2)    
-    return g1 + g2 
-
-def func2(x, y):
-    s1 = 0.2; x1 = 36.5; y1 = 33.5
-    s2 = 0.4; x2 = 36.1; y2 = 33.8
-    g1 = np.exp( -4 *np.log(2) * ((x-x1)**2+(y-y1)**2) / s1**2)
-    g2 = np.exp( -2 *np.log(2) * ((x-x2)**2+(y-y2)**2) / s2**2)    
-    return g1 + g2 
-
-def create_rbfi_hills(latint,lonint):
-    x = np.linspace(latint,latint+1,D)
-    y = np.linspace(lonint,lonint+1,D)
-
-    xx,yy = np.meshgrid(x,y)
-    from scipy.interpolate import Rbf
-
-    xx = xx.reshape(D,D)
-    yy = yy.reshape(D,D)
-    if lonint==32:
-       zz = func1(xx,yy)
-    if lonint==33:
-       zz = func2(xx,yy)
-
-    idx = np.random.choice(range(D*D),S)
-    xr = xx.reshape(D*D)[idx].reshape(S,1)
-    yr = yy.reshape(D*D)[idx].reshape(S,1)
-    zr = zz.reshape(D*D)[idx].reshape(S,1)
-
-    rbfi = Rbf(xr,yr,zr,function='gaussian',epsilon=0.15)
-    return rbfi
-
-edict = {}
-
-edict[(36,32)] = create_rbfi_hills(36,32)
-edict[(36,33)] = create_rbfi_hills(36,33)
-
-def dist_matrix(X, Y):
-    sx = np.sum(X**2, 1)
-    sy = np.sum(Y**2, 1)
-    D2 =  sx[:, np.newaxis] - 2.0*X.dot(Y.T) + sy[np.newaxis, :] 
-    D2[D2 &lt; 0] = 0
-    D = np.sqrt(D2)
-    return D
-
-def gaussian(r,eps): return np.exp(-(r/eps)**2)
-
-def f_interp(x,y,rbfi,offset=0):
-    newp = np.array([[x,y]])
-    nodes = rbfi.nodes.reshape(1,len(rbfi.nodes))
-    newp_dist = dist_matrix(newp, rbfi.xi.T)
-    res = np.dot(gaussian(newp_dist, rbfi.epsilon), nodes.T)
-    res = np.float(res[[0]])
-    return res+offset
-
-def rbfi_combo(x,y,offset=0):
-    xint = int(x)
-    yint = int(y)
-    rbfi = edict.get((xint,yint))
-    if not rbfi: return 0.0
-    return f_interp(x,y,rbfi,offset)
-
-x = np.linspace(36,37,D)
-y = np.linspace(32,34,D)
-xx,yy = np.meshgrid(x,y)
-zz = [rbfi_combo(xxx,yyy)  for xxx,yyy in zip(xx.flatten(),yy.flatten())]
-zz = np.array(zz).reshape(D,D)
-
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-ax.view_init(elev=60, azim=30)
-surf = ax.plot_surface(xx, yy, zz, cmap=cm.coolwarm)
-
-plt.savefig('calc_multi_40_elev_06.png')
-</code></pre>
-
-<p><img alt="" src="calc_multi_40_elev_06.png" /></p>
 <p>Şimdi çizgi entegrali hesabı ve optimizasyon için gerekli rutinleri
 yazalım, ve bir başlangıç noktası <code>(36.0,32.0)</code>'dan
 <code>(36.4,34.0)</code>'a giden optimal yolu bulmaya çalışalım.</p>
-<pre><code class="python">def trapz(y, dx):
-    vals = np.nan_to_num(y[1:-1],0)
-    tmp = np.sum(vals*2.0)    
-    return (y[0]+tmp+y[-1])*(dx/2.0)
-
-def intval(t,a0,a1,a2,a3,a4,b0,b1,b2,b3,b4):
-   sq = np.sqrt(b1 + 2*b2*t + 3*b3*t**2 - 112.0*t**3 + \
-        (a1 + 2*a2*t + 3*a3*t**2 - 65.2*t**3)**2)
-   x = a0 + a1*t + a2*t**2 + a3*t**3 + a4*t**4 
-   y = b0 + b1*t + b2*t**2 + b3*t**3 + b4*t**4
-   x = np.array(x)
-   y = np.array(y)   
-   z = [rbfi_combo(xxx,yyy)  for xxx,yyy in zip(x,y)]
-   res = z * sq
-   T = trapz(res, 1.0/len(t))
-   return T
-
-def find_path(ex,ey,a0,b0):
-
-    cons=({'type': 'ineq','fun': lambda x: 4.0-x[0]}, # y&lt;30
-      {'type': 'ineq','fun': lambda x: 4.0-x[1]},
-      {'type': 'ineq','fun': lambda x: 4.0-x[2]},
-      {'type': 'ineq','fun': lambda x: 4.0-x[3]},
-      {'type': 'ineq','fun': lambda x: 4.0-x[4]},
-      {'type': 'ineq','fun': lambda x: 4.0-x[5]},
-      {'type': 'ineq','fun': lambda x: x[0]}, # y&gt;0
-      {'type': 'ineq','fun': lambda x: x[1]},
-      {'type': 'ineq','fun': lambda x: x[2]},
-      {'type': 'ineq','fun': lambda x: x[3]},
-      {'type': 'ineq','fun': lambda x: x[4]},
-      {'type': 'ineq','fun': lambda x: x[5]},
-    )
-
-    # baslangic degerleri
-    a1,a2,a3 = 3,2,1
-    b1,b2,b3 = 1,2,3
-    x0 = a1,a2,a3,b1,b2,b3
-
-    def pintval(p):
-        a1,a2,a3,b1,b2,b3 = p
-        t = np.linspace(0,1,100)
-        a4 = ex - a0 - (a1+a2+a3)
-        b4 = ey - b0 - (b1+b2+b3)   
-        sq = np.sqrt(b1 + 2*b2*t + 3*b3*t**2 - 112.0*t**3 + (a1 + 2*a2*t + 3*a3*t**2 - 65.2*t**3)**2)
-        x = a0 + a1*t + a2*t**2 + a3*t**3 + a4*t**4 
-        y = b0 + b1*t + b2*t**2 + b3*t**3 + b4*t**4
-        x = np.array(x)
-        y = np.array(y)   
-        z = np.array([rbfi_combo(xxx,yyy,offset=2.0) for xxx,yyy in zip(x,y)])
-        res = z * sq
-        T = trapz(res, 1.0/len(t))
-        return T
-
-    sol = optimize.minimize(pintval,
-                x0,
-                method = 'COBYLA',
-                tol=0.00001,
-                constraints=cons)
-
-    return sol.x
-
-a0,b0=(36.0,32.0)
-ex,ey=(36.4,34.0)
-res = find_path(ex,ey,a0,b0)
-print (res)
-</code></pre>
-
-<pre><code>[1.93790581 1.18886277 2.05012843 0.73404354 1.79221447 2.97475768]
-</code></pre>
-
-<p>Bir yol bulundu. Grafikleyelim,</p>
-<pre><code class="python">a1,a2,a3,b1,b2,b3 = res
-
-a4 = ex - a0 - (a1+a2+a3)
-b4 = ey - b0 - (b1+b2+b3)
-
-t = np.linspace(0,1.0,100)
-xl = a0 + a1*t + a2*t**2 + a3*t**3 + a4*t**4 
-yl = b0 + b1*t + b2*t**2 + b3*t**3 + b4*t**4
-zl = [rbfi_combo(xxx,yyy)  for xxx,yyy in zip(xl,yl)]
-
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-ax.view_init(elev=60, azim=30)
-strides = 10
-surf = ax.plot_wireframe(xx, yy, zz,rstride=strides, cstride=strides)
-ax.plot3D(xl, yl, zl,'r.')  
-
-plt.savefig('calc_multi_40_elev_07.png')
-</code></pre>
-
-<p><img alt="" src="calc_multi_40_elev_07.png" /></p>
 <p>Autograd, Otomatik Türev</p>
 <p>Şimdiye kadar gördüğümüz yöntem gradyan /türev bilgisinin sayısal olarak
-hesaplayan bir yöntem kullandı, COBYLA. Fakat gradyan bilgisini 
-otomatik türev olarak aldırıp (sembolik türev ile aynı kuvvette),
-minimizasyon adımını kendimiz de atabilirdik.</p>
+hesaplayan bir yöntem kullandı, ÇOBYLA. Fakat gradyan bilgisini otomatik
+türev olarak aldırıp (sembolik türev ile aynı kuvvette), minimizasyon
+adımını kendimiz de atabilirdik. Ayrıca sınır şartlarını [5]'te gördüğümüz
+gibi log-bariyer yöntemi ile kendimiz sisteme dahil edebilirdik.</p>
 <p>İki tepeli örnek üzerinde görelim. Tepeleri yaratıp, örneklem alıp, RBF
 modelleme yapıyoruz, o modelle çizgi entegrali hesaplıyoruz, ve belli
 başlangıç bitiş noktalarına tekabül eden katsayılar üzerinden bu entegrali
@@ -528,12 +348,12 @@ farklı isimlendirdik.</p>
 <p>Gradyan inişi için gereken gradyan her parametre için
 <code>autograd.grad(intval,...)</code> ile alınır [5], ve 0,1,2,.. diye giden
 parametreler sırasıyla egrinin katsayıları $a_1,a_2,..$'ye tekabül ediyor.</p>
-<pre><code class="python">import numpy as np
+<pre><code class="python">import numpy as np, numpy.linalg as lin
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
-OFFSET = 1.0
+OFFSET = 0.0
 np.random.seed(0)
 
 def func(x, y):
@@ -587,43 +407,45 @@ def trapz(y, dx):
     tmp = anp.sum(vals*2.0)    
     return (y[0]+tmp+y[-1])*(dx/2.0)
 
-t = np.linspace(0,1,100)
-a0,b0=(36.0,32.0)
-ex,ey=(36.4,32.8)
-
-def intval(a1,a2,a3,b1,b2,b3):
-   a4 = ex - a0 - (a1+a2+a3)
-   b4 = ey - b0 - (b1+b2+b3)
-   sq = anp.sqrt(b1 + 2*b2*t + 3*b3*t**2 - 112.0*t**3 + (a1 + 2*a2*t + 3*a3*t**2 - 65.2*t**3)**2)
-   x = a0 + a1*t + a2*t**2 + a3*t**3 + a4*t**4 
-   y = b0 + b1*t + b2*t**2 + b3*t**3 + b4*t**4
-   z = [f_interp(anp.array([[xx,yy]]))[0][0] for xx,yy in zip(x,y)]
-   res = z * sq
-   T = trapz(res, 1.0/len(t))
-   if ('ArrayBox' not in str(type(T))): return float(T)
-   return T._value
-
-
-intval_grad_a1 = autograd.grad(intval,0)
-intval_grad_a2 = autograd.grad(intval,1)
-intval_grad_a3 = autograd.grad(intval,2)
-intval_grad_b1 = autograd.grad(intval,3)
-intval_grad_b2 = autograd.grad(intval,4)
-intval_grad_b3 = autograd.grad(intval,5)
 
 DIV = 2.0
+alpha = 0.05
+LIM = 2.0
+mu = 2.0
 a1,a2,a3 = np.random.randn()/DIV,np.random.randn()/DIV,np.random.randn()/DIV
 b1,b2,b3 = np.random.randn()/DIV,np.random.randn()/DIV,np.random.randn()/DIV
-
-alpha = 0.1
 newx = anp.array([a1,a2,a3,b1,b2,b3])
 
-for i in range(3):
-    oldx = newx
-    a1,a2,a3,b1,b2,b3 = newx
+for i in range(6):
+    t = np.linspace(0,1,100)
+    a0,b0=(36.0,32.0)
+    ex,ey=(36.4,32.8)
 
-    T = intval(a1,a2,a3,b1,b2,b3)
+    def obj(xarg):
+        a1,a2,a3,b1,b2,b3=xarg[0],xarg[1],xarg[2],xarg[3],xarg[4],xarg[5]
+        a4 = ex - a0 - (a1+a2+a3)
+        b4 = ey - b0 - (b1+b2+b3)
+        sq = anp.sqrt(b1 + 2*b2*t + 3*b3*t**2 - 112.0*t**3 + (a1 + 2*a2*t + 3*a3*t**2 - 65.2*t**3)**2)
+        x = a0 + a1*t + a2*t**2 + a3*t**3 + a4*t**4 
+        y = b0 + b1*t + b2*t**2 + b3*t**3 + b4*t**4
+        z = [f_interp(anp.array([[xx,yy]]))[0][0] for xx,yy in zip(x,y)]
+        res = z * sq
+        T = trapz(res, 1.0/len(t))        
+        cons = mu * (anp.log(LIM+a1) + anp.log(LIM-a1) + \
+                     anp.log(LIM+a2) + anp.log(LIM-a2) + \
+                     anp.log(LIM+a3) + anp.log(LIM-a3) + \
+                     anp.log(LIM+b1) + anp.log(LIM-b1) + \
+                     anp.log(LIM+b2) + anp.log(LIM-b2) + \
+                     anp.log(LIM+b3) + anp.log(LIM-b3))
+        #print ('as bs',xarg)
+        #print ('cons',cons)
+        T = T - cons
+        #print ('T',T)
+        if ('ArrayBox' not in str(type(T))):
+            return float(T)
+        return T._value
 
+    a1,a2,a3,b1,b2,b3=newx[0],newx[1],newx[2],newx[3],newx[4],newx[5]
     a4 = ex - a0 - (a1+a2+a3)
     b4 = ey - b0 - (b1+b2+b3)
 
@@ -636,28 +458,32 @@ for i in range(3):
     znewnew = f_interp(test_3).reshape(xx.shape)
     surf = ax.plot_wireframe(xx, yy, znewnew, rstride=10, cstride=10)
 
+    j = autograd.jacobian(obj)
+    J = j(newx)
+    d = J
+    oldx = newx[:]
+    newx = newx + alpha*d
+
+    print ('newx',newx)
+    print ('diff',np.sum(np.abs(newx-oldx)))
+
     t = np.linspace(0,1,100)
     x = a0 + a1*t + a2*t**2 + a3*t**3 + a4*t**4 
     y = b0 + b1*t + b2*t**2 + b3*t**3 + b4*t**4
     z = [f_interp(anp.array([[xx,yy]]))[0][0] for xx,yy in zip(x,y)]
     ax.plot3D(x, y, z,'r.')
-    plt.title('T=%0.2f, katsayilar=' % T +', '.join([str(np.round(xcurr,2)) for xcurr in newx]))
     plt.savefig('linear_app88rbf_08-%d.png' % i)
 
-    grad_1 = [intval_grad_a1(a1,a2,a3,b1,b2,b3),\
-              intval_grad_a2(a1,a2,a3,b1,b2,b3),\
-              intval_grad_a3(a1,a2,a3,b1,b2,b3),\
-              intval_grad_b1(a1,a2,a3,b1,b2,b3),\
-              intval_grad_b2(a1,a2,a3,b1,b2,b3),\
-              intval_grad_b3(a1,a2,a3,b1,b2,b3)]
-    grad_1 = anp.array(grad_1)    
-    newx = newx - alpha * grad_1
-    print ('after update', newx, anp.abs(anp.sum(oldx-newx)))    
+
+
 </code></pre>
 
 <p><img alt="" src="linear_app88rbf_08-0.png" />
-<img alt="" src="linear_app88rbf_08-1.png" />
-<img alt="" src="linear_app88rbf_08-2.png" /></p>
+<img alt="" src="linear_app88rbf_08-1.png" /></p>
+<p><img alt="" src="linear_app88rbf_08-2.png" />
+<img alt="" src="linear_app88rbf_08-3.png" /></p>
+<p><img alt="" src="linear_app88rbf_08-4.png" />
+<img alt="" src="linear_app88rbf_08-5.png" /></p>
 <p>Üstte her gradyan adımı sonrası hesaplanan yolları görüyoruz. Rasgele
 katsayılarla başladık (ilk grafik), ve tek bir gradyan inişi adımı ile
 optimal bir yola oldukca yaklaştık. Bir adım daha daha da iyi sonuç verdi.</p>
