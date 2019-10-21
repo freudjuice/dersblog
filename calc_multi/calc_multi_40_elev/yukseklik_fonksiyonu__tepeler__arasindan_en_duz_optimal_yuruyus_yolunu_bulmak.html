@@ -309,8 +309,8 @@ yükseklik verisinden örneklem toplayıp, bu verileri RBF ile modelleyip [4],
 o modeli yükseklik için kullanmak isteyebiliriz. Eğer herhangi bir $x,y$
 noktasının yüksekliğinin verecek RBF toplam fonksiyonunu temiz bir şekilde
 işletmenin yolunu bulabilirsek, bunun üzerinden çizgi entegrali, ve bu
-entegral fonksiyonun <code>autoğgrad</code> türevi üzerinden minimizasyonunu
-yapabiliriz. </p>
+entegral fonksiyonun <code>autograd</code> türevi üzerinden minimizasyonunu
+yapabiliriz.</p>
 <p>Hatta daha da zorlaştıralım, gerçek dünya şartlarında coğrafik kordinatları
 da parçalara bölüp her parça üzerinde RBF modellemesi yapmak
 gerekebilir. Diyelim ki kordinatları tam sayı bazında bölüyoruz, mesela tüm
@@ -322,12 +322,9 @@ alıyoruz, ve bu iki RBF bloğu üzerinden optimizasyonun olmasını
 sağlayalım. </p>
 <p>Test amaçlı bir blok içinde iki tepe yaratalım, sonra aynı tepeleri bir
 başka blok içinde yaratacağız, ve ikisini yanyana koyacağız. </p>
-<p>Şimdi çizgi entegrali hesabı ve optimizasyon için gerekli rutinleri
-yazalım, ve bir başlangıç noktası <code>(36.0,32.0)</code>'dan
-<code>(36.4,34.0)</code>'a giden optimal yolu bulmaya çalışalım.</p>
 <p>Autograd, Otomatik Türev</p>
 <p>Şimdiye kadar gördüğümüz yöntem gradyan /türev bilgisinin sayısal olarak
-hesaplayan bir yöntem kullandı, ÇOBYLA. Fakat gradyan bilgisini otomatik
+hesaplayan bir yöntem kullandı, COBYLA. Fakat gradyan bilgisini otomatik
 türev olarak aldırıp (sembolik türev ile aynı kuvvette), minimizasyon
 adımını kendimiz de atabilirdik. Ayrıca sınır şartlarını [5]'te gördüğümüz
 gibi log-bariyer yöntemi ile kendimiz sisteme dahil edebilirdik.</p>
@@ -342,12 +339,11 @@ olarak alacağız. Bu sebeple entegral, ve onun içinde çağırdığı tüm met
 üzerinden, ve autograd dışından çağrılmalarında farklılıklar olabiliyor,
 ayrıca her türlü Python çağrısını autograd-perver kodlar içinden
 yapamayabiliriz. </p>
-<p>Neyse, kodlamayı yapalım. Kodlamadaki değişimi açık olsun,
-<code>import numpy as anp</code>  ile dahil edilen <code>numpy</code> versiyoununu
-farklı isimlendirdik.</p>
-<p>Gradyan inişi için gereken gradyan her parametre için
-<code>autograd.grad(intval,...)</code> ile alınır [5], ve 0,1,2,.. diye giden
-parametreler sırasıyla egrinin katsayıları $a_1,a_2,..$'ye tekabül ediyor.</p>
+<p>Şimdi çizgi entegrali hesabı ve optimizasyon için gerekli rutinleri
+yazalım, ve bir başlangıç noktası <code>(36.0,32.0)</code>'dan
+<code>(36.4,34.0)</code>'a giden optimal yolu bulmaya çalışalım.  Kodlamadaki
+değişimi açık olsun, <code>import numpy as anp</code>  ile dahil edilen
+<code>numpy</code> versiyonunu farklı isimlendirdik.</p>
 <pre><code class="python">import numpy as np, numpy.linalg as lin
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
