@@ -116,28 +116,28 @@ $$
 $$
 
 $$  
-= \sum _{n=1}^{N} 
-\bigg\[ 
+= \sum_{n=1}^{N} 
+\bigg[ 
 \frac{1}{2} x_i^{(n)^T}x_j^{(n)} - 
 \frac{\partial}{\partial w_{ij}}  \ln Z(W) 
-\bigg\]
+\bigg]
 $$
 
 $$  
 = \sum _{n=1}^{N} 
-\bigg\[ 
+\bigg[ 
 \frac{1}{2} x_i^{(n)^T}x_j^{(n)} - 
 \frac{1}{2}< x_i x_j >_{P(x;W)}
-\bigg\]
+\bigg]
 $$ 
 
 1/2 sabitlerini atalım, 
 
 $$  
 = \sum _{n=1}^{N} 
-\bigg\[ 
+\bigg[ 
  x_i^{(n)^T}x_j^{(n)} - < x_i x_j >_{P(x;W)}
-\bigg\]
+\bigg]
 $$
 
 Eğer 
@@ -157,7 +157,7 @@ $$
 
 $$ 
 \frac{\partial \mathcal{L}}{\partial w_{ij}}  = 
-N \big\[ < x_i x_j >_{Data}  - < x_ix_j >_{P(x;W)} \big\] 
+N \big[ < x_i x_j >_{Data}  - < x_ix_j >_{P(x;W)} \big] 
 $$
 
 Her ne kadar $N$ veri noktası sayısını gösteriyor olsa da, üstteki ifade
