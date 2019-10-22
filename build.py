@@ -185,6 +185,9 @@ if __name__ == "__main__":
             fout = codecs.open(dir + "/index.html",mode="w",encoding="utf-8")
             fout.write("<html>\n")
             fout.write(u"""
+            <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>            
             <p>
             <a href='..'>Ana Menü</a>
             </p>
