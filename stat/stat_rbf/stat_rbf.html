@@ -450,21 +450,3 @@ $$</p>
 \frac{\partial f(x)}{\partial x} = \sum_{i=1}^{m} \frac{\beta_i\phi'(r_i)}{r_i(x)}
 (x-x_i)^T
 $$</p>
-<p>Hessian'ini alttaki gibi hesaplayabiliriz [3]. [4]'teki formul</p>
-<p>$$
-\frac{\partial^2 f(x)}{\partial x^2} = 
-\sum_{i=1}^{m} \bigg\{ 
-\phi'(r_i) I + \bigg[\phi"(r_i) - \frac{\phi'(r_i)}{r_i(x)} \bigg] 
-(x-x_i) \frac{\partial r_i}{\partial x}
-\bigg\}
-\qquad (2)
-$$</p>
-<p>Türetmek için, radyal vektörler $\,w_k = (x - x_k)\in{\mathbb R}^n\,$
-tanımlanır, dikkat bunların $\,dw_k = dx$ türevleri aynı. Şimdi vektörleri
-tek bir matriste birleştir,</p>
-<p>$$
-\Omega = \big[\,w_1\;w_2\;\ldots\;w_m\big] \in {\mathbb R}^{n\times m} 
-$$</p>
-<p>$$
-d\Omega = \big[\,dx\;dx\;\ldots\;dx\big] =  dx\,{\tt\large 1}^T 
-$$</p>
