@@ -559,15 +559,15 @@ $$
 $$
 
 $$
-  r = {\rm diag}(R),\quad g = {\rm diag}(G),\quad g''=\ldots 
+r = {\rm diag}(R),\quad g = {\rm diag}(G),\quad g''=\ldots 
 $$
 
 $$
-  r  = R{\tt\large 1},\quad g = G{\tt\large 1},\quad g''=\ldots 
+r  = R{\tt\large 1},\quad g = G{\tt\large 1},\quad g''=\ldots 
 $$
 
 $$
-  dg = G'dr,\quad dg' = G''dr 
+dg = G'dr,\quad dg' = G''dr 
 $$
 
 ayrýca iþ kolaylaþtýrmasý için alttaki taným faydalý,
@@ -584,7 +584,7 @@ r\odot r = {\rm diag}(\Omega^T\Omega)
 $$
 
 $$
- \;=\; 2{\,\rm {diag}}(\Omega^Td\Omega) 
+\;=\; 2{\,\rm {diag}}(\Omega^Td\Omega) 
 $$
 
 $$
@@ -608,7 +608,7 @@ $$
 
 $$
 \frac{\partial r_i}{\partial x} 
- \;=\; \frac{1}{r_i}\;e_i^T\Omega^T
+\;=\; \frac{1}{r_i}\;e_i^T\Omega^T
 $$
 
 $$
@@ -626,29 +626,23 @@ $\;A:B = {\rm Tr}(A^TB)$
 Þimdi Hessian
 
 $$
-dJ
- = d\Omega\,PG'B{\tt\large 1} + \Omega PdG'B{\tt\large 1} + \Omega\,dP\,G'B{\tt\large 1} 
-\\ 
+dJ = d\Omega\,PG'B{\tt\large 1} + \Omega PdG'B{\tt\large 1} + \Omega\,dP\,G'B{\tt\large 1} 
 $$
 
 $$
- = dx\,{\tt\large 1}^TPG'B{\tt\large 1} + \Omega PB\,dg' - \Omega (P\,dR\,P)G'B{\tt\large 1}
-\\
+= dx\,{\tt\large 1}^TPG'B{\tt\large 1} + \Omega PB\,dg' - \Omega (P\,dR\,P)G'B{\tt\large 1}
 $$
 
 $$
  = dx\,({\tt\large 1}^TPG'B{\tt\large 1}) +\Omega PB\,dg' -\Omega PG'PB\,dr
-\\
 $$
 
 $$
  = (G':PB)\,dx +\Omega PBG''\,dr -\Omega PG'PB\,dr
-\\
 $$
 
 $$
  = \Big((G':PB)I +\Omega PB(G'' - PG')P\Omega^T\Big)\,dx
-\\
 $$
 
 $$
@@ -657,7 +651,8 @@ H = \frac{\partial J}{\partial x}
 $$
 
 $$
-= \Big((p\odot b):g'\Big)\,I \;+\; \bigg(\frac{\partial r}{\partial x}\bigg)^T\Big(BG''-BPG'\Big)\bigg(\frac{\partial r}{\partial x}\bigg) 
+= \Big((p\odot b):g'\Big)\,I \;+\; 
+\bigg(\frac{\partial r}{\partial x}\bigg)^T\Big(BG''-BPG'\Big)\bigg(\frac{\partial r}{\partial x}\bigg) 
 $$
 
 Pek öyle durmasa da bu formül (2) formülü ile ayný.
