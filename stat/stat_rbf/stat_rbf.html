@@ -420,33 +420,3 @@ plt.savefig('linear_app88rbf_06.png')
 </code></pre>
 
 <p><img alt="" src="linear_app88rbf_06.png" /></p>
-<p>RBF Türev ve Hessian Matrisi</p>
-<p>Ana formülü hatırlayalım, </p>
-<p>$$
-f(x) = \sum _{i=1}^{m} \beta_i \phi(|| x-x_i||)
-$$</p>
-<p>ki $\beta_1,...,\beta_m$ oyle seciliyor ki </p>
-<p>$$
-f(x_i) = F(x_i), \quad i=1,2,...,m
-$$</p>
-<p>eşitliği tatmin edilsin, burada $F$ modellenen ana fonksiyondur, ve $\phi$
-bizim seçtiğimiz baz fonksiyondur. RBF'in turevi nedir? Analitik olarak
-hesaplayabiliriz,</p>
-<p>$$
-\frac{\partial f(x)}{\partial x} = \beta^T \frac{\partial g}{\partial x} =
-\sum_{i=1}^{m} \beta_i \phi'(r_i) \frac{\partial r_i}{\partial x} 
-$$</p>
-<p>öyle ki $\phi'(r) = \mathrm{d} \phi / \mathrm{d} r$, ve </p>
-<p>$$
-r_i(x) = ||x-x_i|| = \sqrt{(x-x_i)^T(x-x_i)} 
-\qquad (1)
-$$</p>
-<p>Ayrıca</p>
-<p>$$
-\frac{\partial r_i}{\partial x} = \frac{1}{r_i(x)} (x-x_i)^T
-$$</p>
-<p>Hepsi bir arada [4]</p>
-<p>$$
-\frac{\partial f(x)}{\partial x} = \sum_{i=1}^{m} \frac{\beta_i\phi'(r_i)}{r_i(x)}
-(x-x_i)^T
-$$</p>
