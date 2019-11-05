@@ -531,9 +531,9 @@ $$
 d\Omega = \big[\,dx\;dx\;\ldots\;dx\big] =  dx\,{\tt\large 1}^T 
 $$
 
-Dikkat $\,r_j=\|w_j\|\,$ ogelerinin kendisi $\,r\in{\mathbb R}^m$
-vektorunun ayni zamanda ogesi.  Kartezyen baz vektorleri The cartesian base vector
-$\,e_k\in{\mathbb R}^m$ usttekini 
+Dikkat $\,r_j=\|w_j\|\,$ öðelerinin kendisi $\,r\in{\mathbb R}^m$
+vektörünün ayný zamanda ögesi.  Kartezyen baz vektörleri The cartesian base vector
+$\,e_k\in{\mathbb R}^m$ üsttekini 
 
 $$w_k=\Omega\,e_k,\quad dx=d\Omega\,e_k,\quad r_j=e_j^Tr$$
 
@@ -548,13 +548,14 @@ $$
 dg=g'\odot dr,\quad dg'=g''\odot dr \; \in{\mathbb R}^m 
 $$
 
-ile yazabiliriz, ki $\odot$ ogesel bazli Hadamard carpimidir.
+ile yazabiliriz, ki $\odot$ öðesel bazlý Hadamard çarpýmýdýr.
 
-Ayrica vektorler kosegen matrisler arasinda gecis yapabilmek faydalidir, ki
-bu matrisleri buyuk harfle belirtecegiz, mesela
+Ayrýca vektörler köþegen matrisler arasýnda geçiþ yapabilmek faydalýdýr, ki
+bu matrisleri büyük harfle belirteceðiz, mesela
 
 $$
-  R={\rm Diag}(r),\quad G={\rm Diag}(g),\quad G''={\rm Diag}(g'')\;\in{\mathbb R}^{m\times m} 
+ R={\rm Diag}(r),\quad G=
+{\rm Diag}(g),\quad G''={\rm Diag}(g'')\;\in{\mathbb R}^{m\times m} 
 $$
 
 $$
@@ -598,12 +599,11 @@ $$
 \frac{\partial r}{\partial x} = P\Omega^T 
 $$
 
-
-$i^{th}$ bileseni kontrol edersek (1) formulunu ortaya cikartabilecegimizi
-goruyoruz, demek ki dogru yoldayiz,
+$i^{th}$ bileþeni kontrol edersek (1) formülünü ortaya çýkartabileceðimizi
+görüyoruz, demek ki doðru yoldayýz,
 
 $$
-e_i^T\bigg(\frac{\partial r}{\partial x}\bigg) = e_i^TP\Omega^T \\
+e_i^T\bigg(\frac{\partial r}{\partial x}\bigg) = e_i^TP\Omega^T 
 $$
 
 $$
@@ -653,11 +653,11 @@ $$
 
 $$
 H = \frac{\partial J}{\partial x}
- = (G':PB)I + \Omega PB(G''-PG')P\Omega^T \\
+ = (G':PB)I + \Omega PB(G''-PG')P\Omega^T
 $$
 
 $$
- = \Big((p\odot b):g'\Big)\,I \;+\; \bigg(\frac{\partial r}{\partial x}\bigg)^T\Big(BG''-BPG'\Big)\bigg(\frac{\partial r}{\partial x}\bigg) \\
+= \Big((p\odot b):g'\Big)\,I \;+\; \bigg(\frac{\partial r}{\partial x}\bigg)^T\Big(BG''-BPG'\Big)\bigg(\frac{\partial r}{\partial x}\bigg) 
 $$
 
 Pek öyle durmasa da bu formül (2) formülü ile ayný.
