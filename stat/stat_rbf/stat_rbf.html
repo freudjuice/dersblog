@@ -420,3 +420,191 @@ plt.savefig('linear_app88rbf_06.png')
 </code></pre>
 
 <p><img alt="" src="linear_app88rbf_06.png" /></p>
+<p>RBF Türev ve Hessian Matrisi</p>
+<p>Ana formülü hatırlayalım, </p>
+<p>$$
+f(x) = \sum _{i=1}^{m} \beta_i \phi(|| x-x_i||)
+$$</p>
+<p>ki $\beta_1,...,\beta_m$ oyle seciliyor ki </p>
+<p>$$
+f(x_i) = F(x_i), \quad i=1,2,...,m
+$$</p>
+<p>eşitliği tatmin edilsin, burada $F$ modellenen ana fonksiyondur, ve $\phi$
+bizim seçtiğimiz baz fonksiyondur. RBF'in turevi nedir? Analitik olarak
+hesaplayabiliriz,</p>
+<p>$$
+\frac{\partial f(x)}{\partial x} = \beta^T \frac{\partial g}{\partial x} =
+\sum_{i=1}^{m} \beta_i \phi'(r_i) \frac{\partial r_i}{\partial x} 
+$$</p>
+<p>öyle ki $\phi'(r) = \mathrm{d} \phi / \mathrm{d} r$, ve </p>
+<p>$$
+r_i(x) = ||x-x_i|| = \sqrt{(x-x_i)^T(x-x_i)} 
+\qquad (1)
+$$</p>
+<p>Ayrıca</p>
+<p>$$
+\frac{\partial r_i}{\partial x} = \frac{1}{r_i(x)} (x-x_i)^T
+$$</p>
+<p>Hepsi bir arada [4]</p>
+<p>$$
+\frac{\partial f(x)}{\partial x} = \sum_{i=1}^{m} \frac{\beta_i\phi'(r_i)}{r_i(x)}
+(x-x_i)^T
+$$</p>
+<p>Hessian'ini alttaki gibi hesaplayabiliriz [3]. [4]'teki formul</p>
+<p>$$
+\frac{\partial^2 f(x)}{\partial x^2} = 
+\sum_{i=1}^{m} \bigg\{ 
+\phi'(r_i) I + \bigg[\phi"(r_i) - \frac{\phi'(r_i)}{r_i(x)} \bigg] 
+(x-x_i) \frac{\partial r_i}{\partial x}
+\bigg\}
+\qquad (2)
+$$</p>
+<p>Türetmek için, radyal vektörler $\,w_k = (x - x_k)\in{\mathbb R}^n\,$
+tanımlanır, dikkat bunların $\,dw_k = dx$ türevleri aynı. Şimdi vektörleri
+tek bir matriste birleştir,</p>
+<p>$$
+\Omega = \big[\,w_1\;w_2\;\ldots\;w_m\big] \in {\mathbb R}^{n\times m} 
+$$</p>
+<p>$$
+d\Omega = \big[\,dx\;dx\;\ldots\;dx\big] =  dx\,{\tt\large 1}^T 
+$$</p>
+<p>Dikkat $\,r_j=\|w_j\|\,$ öğelerinin kendisi $\,r\in{\mathbb R}^m$
+vektörünün aynı zamanda ögesi.  Kartezyen baz vektörleri The cartesian base vector
+$\,e_k\in{\mathbb R}^m$ üsttekini </p>
+<p>$$w_k=\Omega\,e_k,\quad dx=d\Omega\,e_k,\quad r_j=e_j^Tr$$</p>
+<p>şeklinde yazmamıza izin veriyor. RBF'i öğesel bazda uygulayarak indisli
+toplam notasyonundan kurtulmuş oluyoruz. Şimdi türevleri, diferansiyelleri </p>
+<p>$$
+g=\phi(r),\quad g'=\phi'(r),\quad g"=\phi"(r)\; \in{\mathbb R}^m 
+$$</p>
+<p>$$
+dg=g'\odot dr,\quad dg'=g"\odot dr \; \in{\mathbb R}^m 
+$$</p>
+<p>ile yazabiliriz, ki $\odot$ öğesel bazlı Hadamard çarpımıdır.</p>
+<p>Ayrıca vektörler köşegen matrisler arasında geçiş yapabilmek faydalıdır, ki
+bu matrisleri büyük harfle belirteceğiz, mesela</p>
+<p>$$
+ R={\rm Diag}(r),\quad G=
+{\rm Diag}(g),\quad G"={\rm Diag}(g")\;\in{\mathbb R}^{m\times m} 
+$$</p>
+<p>$$
+r = {\rm diag}(R),\quad g = {\rm diag}(G),\quad g"=\ldots 
+$$</p>
+<p>$$
+r  = R{\tt\large 1},\quad g = G{\tt\large 1},\quad g"=\ldots 
+$$</p>
+<p>$$
+dg = G'dr,\quad dg' = G"dr 
+$$</p>
+<p>ayrıca iş kolaylaştırması için alttaki tanım faydalı,</p>
+<p>$$
+P=R^{-1}\quad\implies PR=I,\;\;p\odot r = {\tt\large 1}
+$$</p>
+<p>Şimdi ana ilişkiyi yazalım ve türevini alalım,</p>
+<p>$$
+r\odot r = {\rm diag}(\Omega^T\Omega) 
+2r\odot dr = {\rm diag}(\Omega^Td\Omega+d\Omega^T\Omega)
+$$</p>
+<p>$$
+\;=\; 2{\,\rm {diag}}(\Omega^Td\Omega) 
+$$</p>
+<p>$$
+R\,dr = {\rm diag}(\Omega^Tdx\,{\tt\large 1}^T) \;=\; \Omega^Tdx 
+$$</p>
+<p>$$
+dr = P\Omega^Tdx 
+$$</p>
+<p>$$
+\frac{\partial r}{\partial x} = P\Omega^T 
+$$</p>
+<p>$i^{th}$ bileşeni kontrol edersek (1) formülünü ortaya çıkartabileceğimizi
+görüyoruz, demek ki doğru yoldayız,</p>
+<p>$$
+e_i^T\bigg(\frac{\partial r}{\partial x}\bigg) = e_i^TP\Omega^T 
+$$</p>
+<p>$$
+\frac{\partial r_i}{\partial x} 
+\;=\; \frac{1}{r_i}\;e_i^T\Omega^T
+$$</p>
+<p>$$
+ \;=\; \frac{w_i^T}{\|w_i\|} 
+$$</p>
+<p>Model fonksiyonu ($\beta$ $b$ kullandık daha kısa) </p>
+<p>$$f = b^Tg = b:g$$</p>
+<p>İki nokta üst üste iz (trace) için Frobenius çarpım notasyonudur</p>
+<p>$\;A:B = {\rm Tr}(A^TB)$</p>
+<p>Şimdi Hessian</p>
+<p>$$
+dJ = d\Omega\,PG'B{\tt\large 1} + \Omega PdG'B{\tt\large 1} + \Omega\,dP\,G'B{\tt\large 1} 
+$$</p>
+<p>$$
+= dx\,{\tt\large 1}^TPG'B{\tt\large 1} + \Omega PB\,dg' - \Omega (P\,dR\,P)G'B{\tt\large 1}
+$$</p>
+<p>$$
+ = dx\,({\tt\large 1}^TPG'B{\tt\large 1}) +\Omega PB\,dg' -\Omega PG'PB\,dr
+$$</p>
+<p>$$
+ = (G':PB)\,dx +\Omega PBG"\,dr -\Omega PG'PB\,dr
+$$</p>
+<p>$$
+ = \Big((G':PB)I +\Omega PB(G" - PG')P\Omega^T\Big)\,dx
+$$</p>
+<p>$$
+H = \frac{\partial J}{\partial x}
+ = (G':PB)I + \Omega PB(G"-PG')P\Omega^T
+$$</p>
+<p>$$
+= \Big((p\odot b):g'\Big)\,I \;+\; 
+\bigg(\frac{\partial r}{\partial x}\bigg)^T\Big(BG"-BPG'\Big)\bigg(\frac{\partial r}{\partial x}\bigg) 
+$$</p>
+<p>Pek öyle durmasa da bu formül (2) formülü ile aynı.</p>
+<p>Akılda tutalım $(R,G,B)$ matrisleri köşegen ve birbirleri ile sırabağımsız
+ilişkileri var, ama $\,\Omega\,$ matrisi tam matris ve diğer matrislerle
+sırabağımsız ilişkiye giremiyor.</p>
+<p>Autograd ile Gradyan ve Hessian</p>
+<p>Otomatik türev üzerinden de üstteki hesapları yapabiliriz. Daha önceki
+kodlarda iki dağlı veriden örneklem alıp RBF yaratmıştık, bu obje
+<code>rbfi</code> içinde, oradan devam edersek,</p>
+<pre><code class="python">import autograd.numpy as anp
+import autograd
+
+def dist_matrix(X, Y):
+    X = X.reshape(1, X.shape[0])
+    sx = anp.sum(X**2, 1)
+    sy = anp.sum(Y**2, 1)
+    D2 =  sx[:, anp.newaxis] - 2.0*anp.dot(X,Y.T) + sy[anp.newaxis, :] 
+    D = anp.sqrt(D2)
+    return D
+
+nodes = rbfi.nodes.reshape(1,len(rbfi.nodes))
+def gaussian(r,eps): return anp.exp(-(r/eps)**2)
+
+def f_interp(newp):
+    nodes = rbfi.nodes.reshape(1,len(rbfi.nodes))    
+    newp_dist = dist_matrix(newp, rbfi.xi.T)
+    return anp.dot(gaussian(newp_dist, rbfi.epsilon), nodes.T)
+
+test_1 = anp.array([36.0,32.0])
+test_1_dist = dist_matrix(test_1, rbfi.xi.T)
+print ('f',f_interp(test_1))
+
+grbf = autograd.grad(f_interp)
+hrbf = autograd.hessian(f_interp)
+print ('gradyan',grbf(test_1))
+print ('hessian',hrbf(test_1))
+</code></pre>
+
+<pre><code>f [[-0.00387063]]
+gradyan [0.02331737 0.08191414]
+hessian [[[[0.6466522  0.74921925]
+   [0.74921925 1.92847522]]]]
+</code></pre>
+
+<p>Kaynaklar</p>
+<p>[1] Neto, <em>Radial Basis Functions</em>, <a href="http://www.di.fc.ul.pt/~jpn/r/rbf/rbf.html">http://www.di.fc.ul.pt/~jpn/r/rbf/rbf.html</a></p>
+<p>[2] Pouderoux, <em>Adaptive Hierarchical RBF Interpolation for Creating Smooth Digital Elevation Models</em>
+    <a href="https://hal.archives-ouvertes.fr/hal-00308008/document">https://hal.archives-ouvertes.fr/hal-00308008/document</a>    </p>
+<p>[3] Math Stackexchange, <em>The Hessian of a Radial Basis Function</em>, 
+    <a href="https://math.stackexchange.com/questions/3417706/the-hessian-of-a-radial-basis-function">https://math.stackexchange.com/questions/3417706/the-hessian-of-a-radial-basis-function</a></p>
+<p>[4] Mcdonald, <em>Global and local optimization using radial basis function response surface models</em>, 
+    <a href="https://www.sciencedirect.com/science/article/pii/S0307904X06002009">https://www.sciencedirect.com/science/article/pii/S0307904X06002009</a></p>
