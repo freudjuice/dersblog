@@ -425,12 +425,12 @@ plt.savefig('linear_app88rbf_06.png')
 <p>$$
 f(x) = \sum _{i=1}^{m} \beta_i \phi(|| x-x_i||)
 $$</p>
-<p>ki $\beta_1,...,\beta_m$ oyle seciliyor ki </p>
+<p>ki $\beta_1,...,\beta_m$ öyle seçiliyor ki </p>
 <p>$$
 f(x_i) = F(x_i), \quad i=1,2,...,m
 $$</p>
-<p>eşitliği tatmin edilsin, burada $F$ modellenen ana fonksiyondur, ve $\phi$
-bizim seçtiğimiz baz fonksiyondur. RBF'in turevi nedir? Analitik olarak
+<p>eşitliği tatmin edilsin. Burada $F$ modellenen ana fonksiyondur, ve $\phi$
+bizim seçtiğimiz baz fonksiyondur. RBF'in türevi nedir? Analitik olarak
 hesaplayabiliriz,</p>
 <p>$$
 \frac{\partial f(x)}{\partial x} = \beta^T \frac{\partial g}{\partial x} =
@@ -450,7 +450,7 @@ $$</p>
 \frac{\partial f(x)}{\partial x} = \sum_{i=1}^{m} \frac{\beta_i\phi'(r_i)}{r_i(x)}
 (x-x_i)^T
 $$</p>
-<p>Hessian'ini alttaki gibi hesaplayabiliriz [3]. [4]'teki formul</p>
+<p>Hessian'ı alttaki gibi hesaplayabiliriz [3]. [4]'teki formül</p>
 <p>$$
 \frac{\partial^2 f(x)}{\partial x^2} = 
 \sum_{i=1}^{m} \bigg\{ 
@@ -461,7 +461,7 @@ $$</p>
 $$</p>
 <p>Türetmek için, radyal vektörler $\,w_k = (x - x_k)\in{\mathbb R}^n\,$
 tanımlanır, dikkat bunların $\,dw_k = dx$ türevleri aynı. Şimdi vektörleri
-tek bir matriste birleştir,</p>
+tek bir matriste birleştirelim,</p>
 <p>$$
 \Omega = \big[\,w_1\;w_2\;\ldots\;w_m\big] \in {\mathbb R}^{n\times m} 
 $$</p>
@@ -469,8 +469,8 @@ $$</p>
 d\Omega = \big[\,dx\;dx\;\ldots\;dx\big] =  dx\,{\tt\large 1}^T 
 $$</p>
 <p>Dikkat $\,r_j=\|w_j\|\,$ öğelerinin kendisi $\,r\in{\mathbb R}^m$
-vektörünün aynı zamanda ögesi.  Kartezyen baz vektörleri The cartesian base vector
-$\,e_k\in{\mathbb R}^m$ üsttekini </p>
+vektörünün aynı zamanda ögesi.  Kartezyen baz vektörleri
+$\,e_k\in{\mathbb R}^m$ üsttekini</p>
 <p>$$w_k=\Omega\,e_k,\quad dx=d\Omega\,e_k,\quad r_j=e_j^Tr$$</p>
 <p>şeklinde yazmamıza izin veriyor. RBF'i öğesel bazda uygulayarak indisli
 toplam notasyonundan kurtulmuş oluyoruz. Şimdi türevleri, diferansiyelleri </p>
@@ -503,9 +503,9 @@ $$</p>
 <p>Şimdi ana ilişkiyi yazalım ve türevini alalım,</p>
 <p>$$
 r\odot r = {\rm diag}(\Omega^T\Omega) 
-2r\odot dr = {\rm diag}(\Omega^Td\Omega+d\Omega^T\Omega)
 $$</p>
 <p>$$
+2r\odot dr = {\rm diag}(\Omega^Td\Omega+d\Omega^T\Omega)
 \;=\; 2{\,\rm {diag}}(\Omega^Td\Omega) 
 $$</p>
 <p>$$
@@ -525,14 +525,12 @@ $$</p>
 <p>$$
 \frac{\partial r_i}{\partial x} 
 \;=\; \frac{1}{r_i}\;e_i^T\Omega^T
-$$</p>
-<p>$$
- \;=\; \frac{w_i^T}{\|w_i\|} 
+\;=\; \frac{w_i^T}{\|w_i\|} 
 $$</p>
 <p>Model fonksiyonu ($\beta$ $b$ kullandık daha kısa) </p>
 <p>$$f = b^Tg = b:g$$</p>
-<p>İki nokta üst üste iz (trace) için Frobenius çarpım notasyonudur</p>
-<p>$\;A:B = {\rm Tr}(A^TB)$</p>
+<p>İki nokta üst üste iz (trace) için Frobenius çarpım notasyonudur, mesela
+$\;A:B = {\rm Tr}(A^TB)$. </p>
 <p>Şimdi Hessian</p>
 <p>$$
 dJ = d\Omega\,PG'B{\tt\large 1} + \Omega PdG'B{\tt\large 1} + \Omega\,dP\,G'B{\tt\large 1} 
