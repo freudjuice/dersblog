@@ -34,7 +34,7 @@ biliyoruz herhalde. Mesela elimizde</p>
 <p>$$ y = f(x) $$</p>
 <p>var. Dolaylı türevler ile $x$ üzerindeki sonsuz küçük bir değişimi $y$
 üzerindeki sonsuz küçük bir değişime bağlayabiliyoruz. </p>
-<p>$$ dy = f'(x) dx $$</p>
+<p>$$ dy = f'(x) \mathrm{d} x $$</p>
 <p>Örnek</p>
 <p>$$ y = \sin^{-1} x $$</p>
 <p>Bu formülün türevini bulmak için, şöyle bir zincir takip
@@ -232,16 +232,17 @@ yapamadığımızı hatırlamak amacıyla değişik semboller kullanıyoruz. </p
 <p>Ve elimizde bir $f=f(x,y)$ var ise, üstteki $x,y$ formüllerini yerine
 koyup $f$ formülünü $r,\theta$ bazında elde edebiliriz.</p>
 <p>Sonra şu hesabı yaparız</p>
-<p>$$ \frac{\partial f}{\partial r} = 
+<p>$$ 
+\frac{\partial f}{\partial r} = 
 \frac{\partial f}{\partial x}
 \frac{\partial x}{\partial r} +
 \frac{\partial f}{\partial y}
 \frac{\partial y}{\partial r}
- $$</p>
+$$</p>
 <p>$$ = f_x\cos \theta + f_y \sin \theta $$</p>
 <p>Bu tür numaralar sonraki derste faydalı olacak. Mesela gradyan vektörü
 kısmi türevlerden oluşan bir vektördür. </p>
-<p>$$ \nabla f = <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#102;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#120;&#44;&#102;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#121;&#44;&#102;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#120;">&#102;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#120;&#44;&#102;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#121;&#44;&#102;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#120;</a> $$</p>
+<p>$$ \nabla f = &lt; f_x,f_y,f_x &gt; $$</p>
 <p>Yani aslında bir diferansiyeli kısmi türevleri bir paket halinde bir araya
 getirip size sunan bir şey olarak görebilirsiniz. Gradyan vektör de bu
 paketlemeyi değişik bir şekilde yapan bir diğer nesnedir. </p>
