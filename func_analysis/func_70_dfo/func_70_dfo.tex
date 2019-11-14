@@ -135,7 +135,17 @@ $$
 x_1 x_2 a_{12} + x_2 x_2 a_{22} + x_2 a_{32} +  
 $$
 $$
-x_1 a_{13} + x_2 x_2 a_{23} +  a_{33} 
+x_1 a_{13} + x_2 x_3 a_{23} +  a_{33} 
+$$
+
+$$
+=  a_{11} x_1^2 + a_{21} x_1 x_2  + a_{31}x_1  +
+$$
+$$
+a_{12}x_1 x_2  + a_{22}x_2^2 +  a_{32} x_2+  
+$$
+$$
+a_{13} x_1  + a_{23} x_2 x_3 +  a_{33} 
 $$
 
 denklemini saðlar, yani iki boyutta tam bize gereken denklem. O zaman en az
@@ -143,10 +153,10 @@ kareler için üç boyutta hazýrlayacaðýmýz hesap bize iki boyut için gereken
 sonucu verir. Tek hatýrlamamýz gereken gerekli noktalarda bir '1' deðerini
 vektöre eklemektir.
 
-Þimdi optimizasyonun klasik fonksiyonlarýndan Rosenbrock fonksiyonunu
+Þimdi optimizasyonun klasik problemlerinden Rosenbrock fonksiyonunu
 görelim. Bu fonksiyonun belli noktalarýndan örneklem alacaðýz, ve bu
 noktalarý kullanarak o noktada bir karesel ara deðerleme (interpolation)
-yapacaðýz. 
+yapacaðýz.
 
 \begin{minted}[fontsize=\footnotesize]{python}
 from scipy.interpolate import Rbf

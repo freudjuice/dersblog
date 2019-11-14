@@ -136,16 +136,25 @@ $$
 x_1 x_2 a_{12} + x_2 x_2 a_{22} + x_2 a_{32} +<br />
 $$
 $$
-x_1 a_{13} + x_2 x_2 a_{23} +  a_{33} 
+x_1 a_{13} + x_2 x_3 a_{23} +  a_{33} 
+$$</p>
+<p>$$
+=  a_{11} x_1^2 + a_{21} x_1 x_2  + a_{31}x_1  +
+$$
+$$
+a_{12}x_1 x_2  + a_{22}x_2^2 +  a_{32} x_2+<br />
+$$
+$$
+a_{13} x_1  + a_{23} x_2 x_3 +  a_{33} 
 $$</p>
 <p>denklemini sağlar, yani iki boyutta tam bize gereken denklem. O zaman en az
 kareler için üç boyutta hazırlayacağımız hesap bize iki boyut için gereken
 sonucu verir. Tek hatırlamamız gereken gerekli noktalarda bir '1' değerini
 vektöre eklemektir.</p>
-<p>Şimdi optimizasyonun klasik fonksiyonlarından Rosenbrock fonksiyonunu
+<p>Şimdi optimizasyonun klasik problemlerinden Rosenbrock fonksiyonunu
 görelim. Bu fonksiyonun belli noktalarından örneklem alacağız, ve bu
 noktaları kullanarak o noktada bir karesel ara değerleme (interpolation)
-yapacağız. </p>
+yapacağız.</p>
 <pre><code class="python">from scipy.interpolate import Rbf
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
