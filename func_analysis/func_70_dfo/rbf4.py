@@ -36,10 +36,10 @@ np.random.seed(0)
 N = 20
 
 def rosenbrock(x):
-    return (1 + x[0])**2 + 100*(x[1] - x[0]**2)**2
+    return (1 - x[0])**2 + 100*(x[1] - x[0]**2)**2
 
 def Rosenbrock(x,y):
-    return (1 + x)**2 + 100*(y - x**2)**2
+    return (1 - x)**2 + 100*(y - x**2)**2
 
 def norm(x):
     M = sqrt(abs(x).power(2).sum(axis=a))
@@ -48,7 +48,12 @@ def get_fvals_in_region(xcurr, f, radius):
     b = random_ball(N, 2, radius)
     pts = xcurr+b
     vals = [f(p) for p in pts]
-    return xcurr+b, np.array(vals)
+    return pts, np.array(vals)
+
+def get_model(xcurr, f, radius):
+    xms,yms = get_fvals_in_region(xcurr, f, radius)
+    rbfi = Rbf(res[:,0],res[:,1],res[:,2],function='gaussian')
+    
 
 x0 = anp.array([1.5,0])
 xs,vs = get_fvals_in_region(x0, rosenbrock, 0.5)
