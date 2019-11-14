@@ -31,7 +31,7 @@ p(x) =
 \left[\begin{array}{ccccc} x_1 &amp; x_2 &amp; x_1^2 &amp; x_1x_2 &amp; x_2^2 \end{array}\right]^T
 $$</p>
 <p>bir baz olabilir, ki $x=\left[\begin{array}{cc} x_1 &amp; x_2 \end{array}\right]^T$ 
-olmak üzere, böylece $f(x) = p(x)^T c$ çarpımı ile bir özgün fonksiyon 
+olmak üzere, böylece $f(x) = p(x)^T a$ çarpımı ile bir özgün fonksiyon 
 yaratabiliriz, $a = [a_0, a_1, ...]$ içinde sabitler vardır bu sabitler 
 fonksiyonu özgün olarak belirleyen değerlerdir. Bir anlamda</p>
 <p>$$
@@ -51,7 +51,7 @@ tekabül eden $y^1,y^2,...,y^n$ değerleri için</p>
 \vdots &amp; &amp; &amp; &amp; \vdots \\
  (x_1^n) &amp; (x_2^n) &amp; (x_1^n)^2 &amp; (x_1^n)(x_2^n) &amp; (x_2^n)^2  \\
 \end{array}\right] 
-\mathbf{x} = 
+\mathbf{a} = 
 \left[\begin{array}{c}
 y^1 \\ \vdots \\ y^n
 \end{array}\right]
@@ -209,7 +209,8 @@ plt.savefig('func_70_dfo_01.png')
 </code></pre>
 
 <p><img alt="" src="func_70_dfo_01.png" /></p>
-<p>Şimdi karesel fonksiyonu bulalım,</p>
+<p>Şimdi üstteki örneklem noktalarını kullanarak ona en yakın karesel
+fonksiyonu bulalım,</p>
 <pre><code class="python">import itertools
 import numpy.linalg as lin
 

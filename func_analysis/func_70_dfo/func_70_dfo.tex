@@ -13,7 +13,7 @@ p(x) =
 $$
 
 bir baz olabilir, ki $x=\left[\begin{array}{cc} x_1 & x_2 \end{array}\right]^T$ 
-olmak üzere, böylece $f(x) = p(x)^T c$ çarpýmý ile bir özgün fonksiyon 
+olmak üzere, böylece $f(x) = p(x)^T a$ çarpýmý ile bir özgün fonksiyon 
 yaratabiliriz, $a = [a_0, a_1, ...]$ içinde sabitler vardýr bu sabitler 
 fonksiyonu özgün olarak belirleyen deðerlerdir. Bir anlamda
 
@@ -37,7 +37,7 @@ $$
 \vdots & & & & \vdots \\
  (x_1^n) & (x_2^n) & (x_1^n)^2 & (x_1^n)(x_2^n) & (x_2^n)^2  \\
 \end{array}\right] 
-\mathbf{x} = 
+\mathbf{a} = 
 \left[\begin{array}{c}
 y^1 \\ \vdots \\ y^n
 \end{array}\right]
@@ -214,7 +214,8 @@ plt.savefig('func_70_dfo_01.png')
 
 \includegraphics[height=6cm]{func_70_dfo_01.png}
 
-Þimdi karesel fonksiyonu bulalým,
+Þimdi üstteki örneklem noktalarýný kullanarak ona en yakýn karesel
+fonksiyonu bulalým,
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import itertools
@@ -318,3 +319,6 @@ adýmý yönlerini hesapladýk.
 [devam edecek]
 
 \end{document}
+
+
+
