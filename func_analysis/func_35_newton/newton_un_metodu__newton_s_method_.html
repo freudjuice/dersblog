@@ -287,7 +287,7 @@ print (res)
 </code></pre>
 
 <p>[diğer yakınsama konusu atlandı]</p>
-<p>Dikkat edilirse şimdiye kadar dişbukeylik (convexity) farzını yapmadık,
+<p>Dikkat edilirse şimdiye kadar dişbükeylik (convexity) farzını yapmadık,
 sadece Hessian matrinin tersi alınabilir olduğunu farzettik. </p>
 <p>Devam edersek, özyineli şekilde güncelememizi yaparken Hessian'ın eşsiz
 olduğu bazı noktalara gelmiş olabiliriz. Bu olduğunda çoğu yazılım bu
@@ -299,17 +299,27 @@ Bu metotlara Newton-ımsı (quasi-Newton) ismi de veriliyor. </p>
 kadarıyla tarihte 15 sene kadar geriye gidersek, üstteki görüldüğü gibi her
 adımda büyük bir denklem sistemi çözmek istemiyoruz, $x$ noktasındayım,
 Hessian işliyorum, Newton yönümü buluyorum, adım atıyorum, yeni bir
-noktadayım. Newton-imsi metotlarda bu yeni noktada sil baştan bir Hessian
+noktadayım. Newton-ımsı metotlarda bu yeni noktada sil baştan bir Hessian
 işlemek yerine bir önceki adımdaki işlenen Hessian sonuçlarını, bir
-şekilde, az ek işlem yaparak sonraki adımda kullanmaya uğraşıyorlardı.
+şekilde, az ek işlem yaparak sonraki adımda kullanmaya uğraşıyorlar.
 Aslında pek çok farklı Newton-ımsı metot var, hepsi farklı şekilde Newton
 metotundan farklı (!)</p>
 <p>Bu alanı çok iyi takip ettiğim söylenemez, Newton-ımsı metotlar eskiden
 olduğu kadar on planda değil çünkü bilgisayar hesaplama kapasitesi arttıkça
 onlara olan ihtiyaç azaldı.</p>
+<p>Not: Hocanın söylediklerine bu noktada bir ek yapmak lazım, [4, pg. 522]'de
+belirtildiği gibi Hessian'ın silbaştan yaratılması yerine güncellenmesi
+aslında paradoksal bir şekilde daha iyi optimizasyon yapılmasını
+sağlayabiliyor. Newton yönünün iniş yönü olması için $H$ pozitif kesin
+olmalıdır, fakat minimum noktasından uzaktaki yerlerde bunun garantisi
+yoktur. Yani gerçek Hessian ile gerçek Newton adımını atmak bizi
+fonksiyonun arttığı yerlere götürebilir. Newton-ımsı metotların esprisi
+pozitif kesin bir şekilde başlamak ve ınise giderken azar azar $H$'yi
+yaklaşıksal şekilde öyle günellemek ki $H$ hep pozitif kesin kalsın.</p>
 <p>[Teori 1.1 İspatı Atlandı]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
 <p>[2] Freund, <em>MIT OCW Nonlinear Programming Lecture</em>,
     <a href="https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/">https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/</a></p>
 <p>[3] Miller, <em>Numerical Analysis for Scientists and Engineers</em></p>
+<p>[4] Flannery, <em>Numerical Recipes, 3rd Edition</em></p>
