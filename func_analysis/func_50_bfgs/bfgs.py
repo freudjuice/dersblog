@@ -1,12 +1,7 @@
-from scipy.interpolate import Rbf
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
-from matplotlib import cm
 from scipy.optimize import minpack2
 import warnings
-import numpy as np
-import itertools
 import numpy
+import numpy as np
 from scipy._lib.six import xrange
 import numpy.linalg as lin
 import scipy.linalg as slin

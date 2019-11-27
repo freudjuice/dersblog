@@ -269,3 +269,28 @@ I &amp; F \\
 <p>Üstteki özet tüm dersin özeti hakikaten. Kerte size kaç çözüm olduğu
 hakkında her şeyi söyler, tabii çözümün kendisi için matrise danışmanız
 gerekir, vs.</p>
+<p>Kerte 1 Matrisi (Rank-1 Matrix)</p>
+<p>Bir matrisin kerte 1 olmasını nasıl garantileriz? Ya da $dim(A)=1$ olacak
+bir $A$'yi nasıl yaratırız? </p>
+<p>Burada bir çözüm $v \in \mathbb{R}^n$ ve $w \in \mathbb{R}^m$ olacak
+şekilde iki vektörü $A = v w^T$ şeklinde çarpmaktır, bu bize $n \times m$
+boyutlarında bir $A$ matrisi verir [1]. Peki $A$'nin kerte 1 olduğunu nasıl
+ispatlarız?</p>
+<p>$$
+A = v w^T
+$$</p>
+<p>ise bir $u \in \mathbb{R}^m$ seçelim, ve </p>
+<p>$$
+Au = v w^Tu = (u \cdot w) v
+$$</p>
+<p>Bu demektir ki $A$ matrisi her $u$ vektörünü $v$'nin skalar, tek sayı
+katına götürüyor (çünkü $u \cdot w$ bir skalar sonuç verir). Götürüyor
+derken $A$, $u$ üzerinde bir nevi fonksiyon şeklinde etki yapıyor, ama bu
+fonksiyonun sonucu sadece $v$'nin katı olabiliyor, bu tek, bir vektör
+haricinde başka bir şans yok, demek ki kerte eşittir bir.</p>
+<p>Bu kavramı optimizasyon dersinde "kerte 1 güncellemesi (rank-1 update)"
+bağlamında görmek mümkün, bir matrise "kerte 1 eki" yapmak gerektiğinde
+üstteki metot kullanılıyor.</p>
+<p>Kaynaklar </p>
+<p>[1] <em>A rank-one matrix is the product of two vectors</em>,<br />
+    <a href="https://math.stackexchange.com/questions/1545118/a-rank-one-matrix-is-the-product-of-two-vectors">https://math.stackexchange.com/questions/1545118/a-rank-one-matrix-is-the-product-of-two-vectors</a></p>
