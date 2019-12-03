@@ -23,6 +23,18 @@
 </script>
 </head>
 
+<p>Newton yöntemine göre özyineli döngü şu şekilde belirtilir, </p>
+<p>$$
+x_{i+1} = x_i - H_i^{-1} \nabla f (x_i)<br />
+$$</p>
+<p>ki $f$ fonksiyonunun $H$ Hessian matrisidir. Newton-imsi (quası-Newton)
+metotlarda ya $H_i$ matrisi bir diğer $A_i$ ile yaklaşık olarak temsil
+edilir (ya da $H_i ^{-1}$ matrisi $B_i$ ile). O zaman ustteki denklem yerine</p>
+<p>$$
+x_{i+1} = x_i - \lambda_i B_i \nabla f(x_i)
+$$</p>
+<p>ki $\lambda_i$ $s_i = -\lambda_i B_i \nabla f(x_i)$ yönünde bir optimal
+adım uzunluğudur.</p>
 <p>[devam edecek]</p>
 <pre><code class="python">from numpy import *
 from math import *
@@ -77,3 +89,6 @@ print (&quot;Final Result: &quot; + str(result))
 print (&quot;Iteration Count: &quot; + str(counter))
 
 </code></pre>
+
+<p>Kaynaklar </p>
+<p>Dutta, <em>Optimization in Chemical Engineering</em></p>
