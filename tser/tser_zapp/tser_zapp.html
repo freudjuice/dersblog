@@ -43,7 +43,8 @@ kazandı, B 10 TL kazandı. Eğer log uzayına çevirirsek, </p>
 <p>A $\log_{10}(1)$'den $\log_{10}(1.10)$'a çıktı yani 0'dan 0.0413'e çıktı. 
 B $\log_{10}(100)$'den $\log_{10}(110)$'a çıktı yani 2'de 2.0413'e çıktı. </p>
 <p>Görüldüğü gibi yüzde değişiklik salt değer değişimine dönmüş oldu.</p>
-<p>\newpage</p>
+<hr>
+
 <p>Bazı Zaman Serileri Hesaplama Numaraları</p>
 <p>Faiz Getiri Hesabı</p>
 <p>Eldeki sermaye 100 lira, ve her ay yüzde 5 kazandıran bir yatırım var, 10
@@ -122,7 +123,8 @@ print cumret.tail(1)
 Name: dice, dtype: float64
 </code></pre>
 
-<p>\newpage</p>
+<hr>
+
 <p>Zaman Serisinden Trend Çıkartmak (Detrending)</p>
 <p>Bazen bir zaman serisi verisinde genel gidişata değil diğer değişikliklere
 odaklanmak istiyoruz. O zaman genel gidişat, yani trendi veriden
@@ -194,7 +196,8 @@ plt.savefig('tser_z001_01.png')
 
 <p><img alt="" src="tser_z001_01.png" /></p>
 <p>Üstteki grafiği artıklar ile direk <code>resid</code> kullanarak yaptık. </p>
-<p>\newpage</p>
+<hr>
+
 <p>Getiri Eğrisi (Yield Curve)</p>
 <p>Bir tahvilin getirisinden bahsettik. Önemli bir grafik türü farklı olgunlaşma
 (maturity) tarihlerindeki aynı tip tahvillerin herhangi bir gündeki
@@ -231,14 +234,15 @@ piyasaları ileride faizlerin daha düşük olacağını tahmin ediyor.  Bu tür
 eğrilere "tersine dönmüş (inverted)" deniyor, normalde olanın tersi
 çünkü. Terse dönmüş eğrilerin gelmekte olan ekonomik durgunluğu tahmin ettiği
 söylenir [4, sf. 85]. </p>
-<p>\newpage</p>
+<hr>
+
 <p>Taylor Kuralı (Taylor Rule)</p>
 <p>Merkez Bankalarına yardımcı olan araçlardan biri Taylor Kuralı; bu kural,
 yani formül, olması gereken Merkez Bankası faiz oranı, mevcut enflasyon
-$\pi$, hedef enflasyon $\pi^<em>$, ideal faiz oranı $r^</em>$ ve reel ve
+$\pi$, hedef enflasyon $\pi^*$, ideal faiz oranı $r^*$ ve reel ve
 potansiyel gayrısafi milli hasıla (GSYH) farkı arasında bir ilişki kurar.</p>
 <p>$$
-FF_t = r^<em> + \pi_t + 0.5 (\pi_t-\pi^</em>) + 0.5 Gap_t
+FF_t = r^* + \pi_t + 0.5 (\pi_t-\pi^*) + 0.5 Gap_t
 $$</p>
 <p>Alttaki script ile ABD için kuralı hesaplayabiliriz, FEDFUNDS ABD Merkez Bankası
 FED'in ne yaptığı, Taylor ise formülün taviyesi,</p>
@@ -261,8 +265,9 @@ tabii; ve fomülü keşfeden John Taylor'a göre bunlar FED'in hata yaptığı
 yerler. Mesela 2000'lı yılların başlarında faizler formülün dediğinden daha
 düşük, ve 2008 krizine giden yol taşlarından birinin aşırı düşük faizler olduğu
 biliniyor. Daha fazla detay için [4, sf. 278]. </p>
-<p>\newpage
-Alış Fiyatı-Satış Fiyatı Aralık Tahmini (Bid/Ask Spread Estimation)</p>
+<hr>
+
+<p>Alış Fiyatı-Satış Fiyatı Aralık Tahmini (Bid/Ask Spread Estimation)</p>
 <p>AFSF aralığının tanımı terimler kısminda bulunabilir. Akla soru gelebilir, aynen
 günün en düşük, en yüksek fiyatları gibi AFSF fiyatları piyasalar tarafından
 kaydedilmiyor mu?  Bazen hayır. Özellikle açık kaynaklardan veri alınınca her
@@ -325,7 +330,7 @@ print df.head()
 durumda bir yaklaşım bu değerleri sıfır yapmak, ve bu aralığı "çok küçük"
 olarak kabul etmek. Eğer birkaç gün üzerinden ortalama alınırsa tabii ki bu
 sıfır değerleri nihai ortalamanın aşağı inmesini sağlayacaktır. </p>
-<p>\newpage
+<p><hr>
 Finans Terimleri Açıklamaları</p>
 <p>Arbitrage (Arbitraj)</p>
 <p>Bir teminatın döviz kuru vs. gibi nedenlerle farkı piyasalarda çok kısa
@@ -504,6 +509,7 @@ siler. Dikkat! </p>
 <p>[5] Corvin, Schultz, <em>A Simple Way to Estimate Bid-Ask Spreads from Daily High and Low Prices</em></p>
 <p>[6] Kostanjcar, Jeren, <em>Relationship between bid-ask spreads and fluctuations in market prices</em></p>
 <p>[7] Heydt, <em>Mastering Pandas for Finance</em></p>
-<p>\newpage</p>
+<hr>
+
 <p>Yunan Harfleri</p>
 <p><img alt="" src="../../algs/zapp/letters.png" /></p>
