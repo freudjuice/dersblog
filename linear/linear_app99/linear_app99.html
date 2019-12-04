@@ -188,10 +188,25 @@ koyarsak,</p>
 (A + cd^T)^{-1} = I - \frac{A^{-1}cd^T}{1+d^TA^{-1}c} A^{-1} 
 $$</p>
 <p>sonucuna erişmiş oluyoruz. </p>
+<p>Sherman-Morrison-Woodburry</p>
+<p>Bu son formül Sherman-Morrison formülünün daha genelleştirilmiş hali
+[3]. Diyelim ki $A \in \mathbb{R}^{n \times n}$ eşsiz değil, ve
+$U,V \in \mathbb{R}^{n \times p}$ öyle ki </p>
+<p>$$
+U + V^T A^{-1} U \in \mathbb{R}^{p \times p}
+$$</p>
+<p>O zaman </p>
+<p>$$B = A + UV^T$$</p>
+<p>eşsiz değildir, ve </p>
+<p>$$
+B^{-1} = A^{-1} - A^{-1} U ( I + V^T A^{-1} U)^{-1} V^T A^{-1} 
+$$</p>
 <p>Kaynaklar </p>
 <p>[1] Meyer, <em>Matrix Analysis and Applied Linear Algebra</em></p>
 <p>[2] Gadzinski, {How to Derive the Sherman-Morrison Base Formula, Math Stackexchange Sorusuna Cevap}, 
     <a href="https://math.stackexchange.com/a/3462542/6786">https://math.stackexchange.com/a/3462542/6786</a></p>
+<p>[3] Gockenbach, <em>Numerical Optimization MA 5630, Globalizing Newton's method: Descent Directions (II)</em>
+    <a href="https://pages.mtu.edu/~msgocken/ma5630spring2003/lectures.html">https://pages.mtu.edu/~msgocken/ma5630spring2003/lectures.html</a></p>
 <p>\newpage </p>
 <p>Yunan Harfleri</p>
 <p><img alt="" src="../../algs/zapp/letters.png" /></p>
