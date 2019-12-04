@@ -168,6 +168,64 @@ Kaynaklar
 
 \newpage 
 
+Sherley-Morrison Formülü
+
+Bu formulun temeli su esitlikten basliyor [1, sf. 124],
+
+$$
+(I+cd^T)^{-1} = I - \frac{cd^T}{1+dc^T}
+$$
+
+Esitligin dogru oldugunu kontrol icin iki tarafi $(I+cd^T)$ ile
+carpabiliriz, eger sag tarafta birim matrisi elde edersek esitlik dogru
+demektir,
+
+$$
+I + cd^T - \frac{cd^T (I + cd^T)}{1+d^Tc}
+$$
+
+$$
+= I + cd^T - \frac{I cd^T (1+cd^T)}{1+d^Tc}
+$$
+
+$$
+= I + cd^T - cd^T = I
+$$
+
+Eðer sýfýrdan baþlayarak türetmek istesek, öyle bir $\alpha$ arýyoruz ki
+$(I + cd^T)$ ifadesini $(I + \alpha cd^T)$ ile çarpýnca bize birim matrisi
+versin. Çarpýmý yaparsak,
+
+$$
+(I + cd^T) (I + \alpha cd^T) = I + cd^T + \alpha cd^T + \alpha cd^Tcd^T 
+$$
+
+$$
+= I + (1 + \alpha + \alpha d^T c) cd^T
+$$
+
+Üsttekinin birim matrisi $I$ olmasý için $1 + \alpha + \alpha d^T c$ sýfýr
+olmalý, onun sýfýr olmasý için de
+
+$$\alpha = \frac{-1}{1 + d^Tc}$$
+
+doðru olmalý. $\alpha$'yi yerine koyarsak, 
+
+$$
+(I + \alpha cd^T) = I - \frac{cd^T}{1+dc^T}
+$$
+
+elde ederiz, yani $(I + \alpha cd^T)^{-1}$ açýlýmý budur. 
+
+Kaynaklar 
+
+[1] Meyer, {\em Matrix Analysis and Applied Linear Algebra}
+
+[2] Gadzinski, {How to Derive the Sherman-Morrison Base Formula, Math Stackexchange Sorusuna Cevap}, 
+    \url{https://math.stackexchange.com/a/3462542/6786}
+
+\newpage 
+
 Yunan Harfleri
 
 \includegraphics[width=30em]{../../algs/zapp/letters.png}

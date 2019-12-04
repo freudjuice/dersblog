@@ -128,5 +128,44 @@ demektir (pozitif kesinliğin tersi), o zaman şunu da söyleyebiliriz,</p>
 <p>[4] Bishop, <em>Pattern Recognition and Machine Learning</em></p>
 <p>[5] Wikipedia, <em>Matrix norm</em>, \url{https://en.wikipedia.org/wiki/Matrix_norm}</p>
 <p>\newpage </p>
+<p>Sherley-Morrison Formülü</p>
+<p>Bu formulun temeli su esitlikten basliyor [1, sf. 124],</p>
+<p>$$
+(I+cd^T)^{-1} = I - \frac{cd^T}{1+dc^T}
+$$</p>
+<p>Esitligin dogru oldugunu kontrol icin iki tarafi $(I+cd^T)$ ile
+carpabiliriz, eger sag tarafta birim matrisi elde edersek esitlik dogru
+demektir,</p>
+<p>$$
+I + cd^T - \frac{cd^T (I + cd^T)}{1+d^Tc}
+$$</p>
+<p>$$
+= I + cd^T - \frac{I cd^T (1+cd^T)}{1+d^Tc}
+$$</p>
+<p>$$
+= I + cd^T - cd^T = I
+$$</p>
+<p>Eğer sıfırdan başlayarak türetmek istesek, öyle bir $\alpha$ arıyoruz ki
+$(I + cd^T)$ ifadesini $(I + \alpha cd^T)$ ile çarpınca bize birim matrisi
+versin. Çarpımı yaparsak,</p>
+<p>$$
+(I + cd^T) (I + \alpha cd^T) = I + cd^T + \alpha cd^T + \alpha cd^Tcd^T 
+$$</p>
+<p>$$
+= I + (1 + \alpha + \alpha d^T c) cd^T
+$$</p>
+<p>Üsttekinin birim matrisi $I$ olması için $1 + \alpha + \alpha d^T c$ sıfır
+olmalı, onun sıfır olması için de</p>
+<p>$$\alpha = \frac{-1}{1 + d^Tc}$$</p>
+<p>doğru olmalı. $\alpha$'yi yerine koyarsak, </p>
+<p>$$
+(I + \alpha cd^T) = I - \frac{cd^T}{1+dc^T}
+$$</p>
+<p>elde ederiz, yani $(I + \alpha cd^T)^{-1}$ açılımı budur. </p>
+<p>Kaynaklar </p>
+<p>[1] Meyer, <em>Matrix Analysis and Applied Linear Algebra</em></p>
+<p>[2] Gadzinski, {How to Derive the Sherman-Morrison Base Formula, Math Stackexchange Sorusuna Cevap}, 
+    <a href="https://math.stackexchange.com/a/3462542/6786">https://math.stackexchange.com/a/3462542/6786</a></p>
+<p>\newpage </p>
 <p>Yunan Harfleri</p>
 <p><img alt="" src="../../algs/zapp/letters.png" /></p>
