@@ -36,58 +36,80 @@ $$</p>
 <p>ki $\lambda_i$ $s_i = -\lambda_i B_i \nabla f(x_i)$ yönünde bir optimal
 adım uzunluğudur.</p>
 <p>[devam edecek]</p>
-<pre><code class="python">from numpy import *
-from math import *
-from numpy.linalg import *
+<pre><code class="python">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import numpy.linalg as lin
 
-rosen = lambda x: (1-x[0])**2 + 100*(x[1]-x[0]**2)**2
+def rosen(x):
+    y = 100*(x[1]-x[0]**2)**2+(1-x[0])**2;
 
-def rosen_d(x):
-    return array([2*100*(x[1] - x[0]**2)*(-2*x[0]) - 2*(1.-x[0]), 2*100*(x[1]-x[0]**2)])
+    gy =[-400*(x[1]-x[0]**2)*x[0]-2*(1-x[0]),
+         200*(x[1]-x[0]**2)]
 
-def BFGS(F,Fprime, Start, epsi = 10e-8, tol = 10e-6, sigma= 10**-1, beta = 10 ): 
-    def LineSearch(g,x,s,sigma= 10**-1, beta = 10, convergval = 0.00001):
-        def QFind(alpha):
-            if abs(alpha) &lt; convergval: return 1
-            return (F(x + alpha*s) - F(x))/(alpha * dot(g,s))
+    return y,gy
 
-        alpha = 1.
+def linesearch_secant(f, d, x):
+    epsilon=10**(-5)
+    max = 500
+    alpha_curr=0
+    alpha=10**-5
+    y,grad=f(x)
+    dphi_zero=np.dot(np.array(grad).T,d)
 
-        while QFind(alpha) &gt;= sigma:
-            alpha=alpha * 2
+    dphi_curr=dphi_zero
+    i=0;
+    while np.abs(dphi_curr)&gt;epsilon*np.abs(dphi_zero):
+        alpha_old=alpha_curr
+        alpha_curr=alpha
+        dphi_old=dphi_curr
+        y,grad=f(x+alpha_curr*d)
+        dphi_curr=np.dot(np.array(grad).T,d)
+        alpha=(dphi_curr*alpha_old-dphi_old*alpha_curr)/(dphi_curr-dphi_old);
+        i += 1
+        if (i &gt;= max) and (np.abs(dphi_curr)&gt;epsilon*np.abs(dphi_zero)):
+            print('Line search terminating with number of iterations:')
+            print(i)
+            print(alpha)
+            break
 
-        while QFind(alpha)&lt; sigma:
-            alphap=alpha / ( 2.0* ( 1- QFind(alpha)))
-            alpha=max(1.0/beta * alpha, alphap)
+    return alpha
 
-        return alpha
+x=np.array([-1.0,0])
 
-    x = Start
-    xold = inf
-    N = shape(x)[0]
-    H = 1.0 * eye(N)
-    counter = 1
-    alpha = 1
-    g = Fprime(x)
-    while norm(g) &gt; epsi and norm(xold - x) &gt; tol:
-        s = -dot(H,g)
-        alpha = LineSearch(g,x,s)
-        x = x+alpha*s
-        gold = g
-        g = Fprime(x)
-        y = (g - gold)/alpha
-        dotsy = dot(s,y)
-        if dotsy&gt;0:
-            z = dot(H,y)
-            H += outer(s,s)*(dot(s,y) + dot(y, z))/dotsy**2 - \
-                 (outer(z,s)+ outer(s, z)) / dotsy
-        counter+=1
-    return (x , counter)
+H = np.eye(2)
 
-(result, counter) =  BFGS(rosen, rosen_d, array([-1,0]))
-print (&quot;Custom BFGS:&quot;)
-print (&quot;Final Result: &quot; + str(result))
-print (&quot;Iteration Count: &quot; + str(counter))
+tol = 1e-20
+
+y,grad = rosen(x)
+
+dist=2*tol
+epsilon = tol
+
+iter=0;
+
+while lin.norm(grad)&gt;1e-6:
+    value,grad=rosen(x)
+    p=np.dot(-H,grad)
+    lam = linesearch_secant(rosen,p,x)
+    iter += 1
+    xt = x
+    x = x + lam*p
+    s = lam*p
+    dist=lin.norm(s)
+    newvalue,newgrad=rosen(x)
+    y = np.array(newgrad)-grad
+    rho=1/np.dot(y.T,s)
+    s = s.reshape(2,1)
+    y = y.reshape(2,1)
+    tmp1 = np.eye(2)-rho*np.dot(s,y.T)
+    tmp2 = np.eye(2)-rho*np.dot(y,s.T)
+    tmp3 = rho*np.dot(s,s.T)
+    H= np.dot(np.dot(tmp1,H),tmp2) + tmp3
+    print ('lambda:',lam)
+
+print (xt)
+print ('iter',iter)
 
 </code></pre>
 
