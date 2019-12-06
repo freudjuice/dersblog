@@ -109,11 +109,23 @@ $$</p>
 
 <p>Sayısal Türev</p>
 <p>Sonlu farklılıklar (finite differences) ile yaklaşık türev almak için,
-herhangi bir $x$ noktasında </p>
+herhangi bir $x$ noktasında</p>
 <p>$$
 f'(x) = \frac{f(x + \epsilon) - f(x)}{\epsilon}
 $$</p>
-<p>hesabını yapabiliriz. Alttaki kod [3]'teki <code>approx_fprime</code> metotunu
+<p>hesabını yapabiliriz. Tek boyutta tek sayı $\epsilon$ ile adım atılıp $f$
+üzerindeki değişiklik üzerinden hesap yapılır, çok boyutlu durumda birer
+birer her kordinatta $\epsilon$ kadar adım atılır, ve bu adım üzerinden $f$
+türevi alinip o kordinat için kısmı türev olarak kaydedilir, $x =
+\left[\begin{array}{ccc} x_0 &amp; ... &amp; x_n \end{array}\right]$ için</p>
+<p>$$
+f'(x) = \left[\begin{array}{c}
+\frac{ f \left( [\begin{array}{ccc} x_0 + \epsilon &amp; ... &amp; x_n \end{array}]\right) - f(x)}{\epsilon} \\
+\vdots \\
+\frac{ f \left( [\begin{array}{ccc} x_0  &amp; ... &amp; x_n+\epsilon \end{array}]\right) - f(x)}{\epsilon} 
+\end{array}\right]
+$$</p>
+<p>Alttaki kod [3]'teki <code>approx_fprime</code> metotunu
 baz almıştır, </p>
 <pre><code class="python">eps = np.sqrt(np.finfo(float).eps)
 
