@@ -41,13 +41,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import numpy.linalg as lin
 
+eps = np.sqrt(np.finfo(float).eps)
+
 def rosen(x):
-    y = 100*(x[1]-x[0]**2)**2+(1-x[0])**2;
+    return 100*(x[1]-x[0]**2)**2+(1-x[0])**2
 
-    gy =[-400*(x[1]-x[0]**2)*x[0]-2*(1-x[0]),
-         200*(x[1]-x[0]**2)]
-
-    return y,gy
+def rosen_real(x):
+    gy =[-400*(x[1]-x[0]**2)*x[0]-2*(1-x[0]), 200*(x[1]-x[0]**2)]
+    return rosen(x), gy
 
 def linesearch_secant(f, d, x):
     epsilon=10**(-5)
@@ -75,42 +76,76 @@ def linesearch_secant(f, d, x):
 
     return alpha
 
-x=np.array([-1.0,0])
+def bfgs(x, func):
 
-H = np.eye(2)
+    H = np.eye(2)
+    tol = 1e-20
+    y,grad = func(x)
+    dist=2*tol
+    epsilon = tol
+    iter=0;
 
-tol = 1e-20
+    while lin.norm(grad)&gt;1e-6:
+        value,grad=func(x)
+        p=np.dot(-H,grad)
+        lam = linesearch_secant(func,p,x)
+        iter += 1
+        xt = x
+        x = x + lam*p
+        s = lam*p
+        dist=lin.norm(s)
+        newvalue,newgrad=func(x)
+        y = np.array(newgrad)-grad
+        rho=1/np.dot(y.T,s)
+        s = s.reshape(2,1)
+        y = y.reshape(2,1)
+        tmp1 = np.eye(2)-rho*np.dot(s,y.T)
+        tmp2 = np.eye(2)-rho*np.dot(y,s.T)
+        tmp3 = rho*np.dot(s,s.T)
+        H= np.dot(np.dot(tmp1,H),tmp2) + tmp3
+        #print ('lambda:',lam)
 
-y,grad = rosen(x)
+    print (xt)
+    print ('iter',iter)
+</code></pre>
 
-dist=2*tol
-epsilon = tol
+<pre><code class="python">x=np.array([-1.0,0])
+bfgs(x,rosen_real)    
+</code></pre>
 
-iter=0;
+<pre><code>[1. 1.]
+iter 19
+</code></pre>
 
-while lin.norm(grad)&gt;1e-6:
-    value,grad=rosen(x)
-    p=np.dot(-H,grad)
-    lam = linesearch_secant(rosen,p,x)
-    iter += 1
-    xt = x
-    x = x + lam*p
-    s = lam*p
-    dist=lin.norm(s)
-    newvalue,newgrad=rosen(x)
-    y = np.array(newgrad)-grad
-    rho=1/np.dot(y.T,s)
-    s = s.reshape(2,1)
-    y = y.reshape(2,1)
-    tmp1 = np.eye(2)-rho*np.dot(s,y.T)
-    tmp2 = np.eye(2)-rho*np.dot(y,s.T)
-    tmp3 = rho*np.dot(s,s.T)
-    H= np.dot(np.dot(tmp1,H),tmp2) + tmp3
-    print ('lambda:',lam)
+<pre><code class="python">def _approx_fprime_helper(xk, f, epsilon):
+    f0 = f(xk)
+    grad = np.zeros((len(xk),), float)
+    ei = np.zeros((len(xk),), float)
+    for k in range(len(xk)):
+        ei[k] = 1.0
+        d = epsilon * ei
+        df = (f(xk + d) - f0) / d[k]
+        if not np.isscalar(df):
+            try:
+                df = df.item()
+            except (ValueError, AttributeError):
+                raise ValueError(&quot;The user-provided &quot;
+                                 &quot;objective function must &quot;
+                                 &quot;return a scalar value.&quot;)
+        grad[k] = df
+        ei[k] = 0.0
+    return grad
 
-print (xt)
-print ('iter',iter)
 
+def rosen_approx(x):
+    g = _approx_fprime_helper(x, rosen, eps)
+    return rosen(x),g
+
+bfgs(x,rosen_approx)
+</code></pre>
+
+<pre><code>[0.99999552 0.99999104]
+iter 19
 </code></pre>
 
 <p>Kaynaklar </p>
