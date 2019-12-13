@@ -209,6 +209,35 @@ x3 [ 4.          2.99987048 -5.00331169]
 </code></pre>
 
 <p>Optimal noktaya erişmiş olduk.</p>
+<p>Duruş Şartları </p>
+<p>Optimizasyonda minimum varlığı için birinci-derecen gerekli şart
+(first-order necessary condition -FONC-) minimumda $\nabla f(x) = 0$ olması. Eğer
+böyle bir noktaya erişmişsek, diyelim $x^k$ için $\nabla f(x^k) = 0$ ölmüş,
+bu nokta FONC'yi tatmin eder çünkü o zaman $x^{k+1} = x^k$ olur, ve
+minimumdayız demektir. Bu teorik bilgiyi algoritmamizin ne zaman duracağını
+anlaması için bir şart olarak kullanamaz mıyız? </p>
+<p>Ne yazık ki sayısal hesaplarda, yani pratikte $\nabla f(x^k) = 0$ hesabı
+nadiren ortaya çıkar. Bir çözüm gradyanın normu $|| \nabla f(x) ||$ sıfır
+olmasına bakmak. Ya da $| f(x^{k+1}) - f(x^k) |$ mutlak değerine bakmak,
+yani hedef fonksiyonun iki nokta arasındaki farkının mutlak değerine, bu
+değer eğer daha önceden belirlenmiş bir eşik değeri $\epsilon$'un altına
+düşmüşse durmak. Aynı şeyi $x^{n+1}$ ve $x^n$ değerlerinin kendisi için de
+yapabiliriz.</p>
+<p>Fakat bu yöntemler ölçek açısından problemli olabilir. Mesela 1 ve 1000
+arasında gidip gelen $f(x)$'lerle 0 ve 1 arasında tanımlı $f(x)$'lerin
+kullanacağı $\epsilon$ farklı olabilir. Bir tanesi için $\epsilon = 100$
+iyidir, diğeri için belki $\epsilon = 0.001$. Bu sebeple izafi bir hesap
+daha faydalı olur, mesela </p>
+<p>$$
+\frac{|f(x^{k+1} - f(x^k))|}{|f(x^k)|} &lt; \epsilon
+$$</p>
+<p>ya da </p>
+<p>$$
+\frac{||x^{k+1} - x^k||}{||x^k||} &lt; \epsilon
+$$</p>
+<p>Üstteki yaklaşım "ölçekten bağımsız" olduğu için daha tercih edilir
+yaklaşımdır, bir problemden diğerine geçtiğimizde farklı bir $\epsilon$
+kullanmamız gerekmez.  </p>
 <p>Kaynaklar </p>
 <p>[1] Zak, <em>An Introduction to Optimization, 4th Edition</em></p>
 <p>[2] Bayramli, <em>Diferansiyel Denklemler, Kök Bulmak, Karesel Formül (Root Finding, Quadratic Formula)</em></p>
