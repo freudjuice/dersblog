@@ -25,8 +25,8 @@
 
 <p>Daha önce gradyan inişi konusunda işlediğimiz üzere bir $f$ fonksiyonu için
 hesaplanan $-\nabla f(x)$ gradyanı $x$ noktasında fonksiyon için en yüksek
-iniş (descent) olacak yönü gösterir [1, sf. 151]. Dikkat, <em>yön</em>
-kelimesini kullandık, o yönde ne kadar adım atılacağını
+iniş (descent) olacak yönü gösteriyordu [1, sf. 151]. Fakat fikkat, {\em
+  yön} kelimesini kullandık, o yönde ne kadar adım atılacağını
 belirtmedik. Gradyanın temel hesabı türeve dayalı olduğu için ve türev
 hesapladığı noktaya yakın bir yerde doğru bir yaklaşıklama olacağı için o
 yönde atılan adımın büyüklüğüne göre minimizasyon iyi ya da kötü sonuçlar
@@ -219,20 +219,21 @@ x3 [ 4.          2.99987048 -5.00331169]
 olması. Eğer böyle bir noktaya erişmişsek, diyelim $x^k$ için
 $\nabla f(x^k) = 0$ olmuş, bu nokta FONC'yi tatmin eder çünkü o zaman
 $x^{k+1} = x^k$ olur, ve minimumdayız demektir. Bu teorik bilgiyi
-algoritmamizin ne zaman duracağını anlaması için bir şart olarak kullanamaz
+algoritmamızın ne zaman duracağını anlaması için bir şart olarak kullanamaz
 mıyız?</p>
 <p>Ne yazık ki sayısal hesaplarda, yani pratikte $\nabla f(x^k) = 0$ hesabı
 nadiren ortaya çıkar. Bir çözüm gradyanın normu $|| \nabla f(x) ||$ sıfır
-olmasına bakmak. Ya da $| f(x^{k+1}) - f(x^k) |$ mutlak değerine bakmak,
-yani hedef fonksiyonun iki nokta arasındaki farkının mutlak değerine, bu
-değer eğer daha önceden belirlenmiş bir eşik değeri $\epsilon$'un altına
-düşmüşse durmak. Aynı şeyi $x^{n+1}$ ve $x^n$ değerlerinin kendisi için de
+olmasına bakmak. </p>
+<p>Ya da $| f(x^{k+1}) - f(x^k) |$ mutlak değerine bakmak, yani hedef
+fonksiyonun iki nokta arasındaki farkının mutlak değerine, bu değer eğer
+daha önceden belirlenmiş bir eşik değeri $\epsilon$'un altına düşmüşse
+durmak. Aynı şeyi $x^{n+1}$ ve $x^n$ değerlerinin kendisi için de
 yapabiliriz.</p>
 <p>Fakat bu yöntemler ölçek açısından problemli olabilir. Mesela 1 ve 1000
-arasında gidip gelen $f(x)$'lerle 0 ve 1 arasında tanımlı $f(x)$'lerin
+arasında gidip gelen $f(x)$'lerle 0 ve 1 arasında gidip gelen $f(x)$'lerin
 kullanacağı $\epsilon$ farklı olabilir. Bir tanesi için $\epsilon = 100$
 iyidir, diğeri için belki $\epsilon = 0.001$. Bu sebeple izafi bir hesap
-daha faydalı olur, mesela </p>
+daha faydalı olur, mesela</p>
 <p>$$
 \frac{|f(x^{k+1} - f(x^k))|}{|f(x^k)|} &lt; \epsilon
 $$</p>
@@ -241,8 +242,8 @@ $$</p>
 \frac{||x^{k+1} - x^k||}{||x^k||} &lt; \epsilon
 $$</p>
 <p>Üstteki yaklaşım "ölçekten bağımsız" olduğu için daha tercih edilir
-yaklaşımdır, bir problemden diğerine geçtiğimizde farklı bir $\epsilon$
-kullanmamız gerekmez.  </p>
+yaklaşım, bir problemden diğerine geçtiğimizde farklı bir $\epsilon$
+kullanmamız gerekmez.</p>
 <p>Kaynaklar </p>
 <p>[1] Zak, <em>An Introduction to Optimization, 4th Edition</em></p>
 <p>[2] Bayramli, <em>Diferansiyel Denklemler, Kök Bulmak, Karesel Formül (Root Finding, Quadratic Formula)</em></p>
