@@ -29,26 +29,30 @@ iniş (descent) olacak yönü gösterir [1, sf. 151]. Dikkat, <em>yön</em>
 kelimesini kullandık, o yönde ne kadar adım atılacağını
 belirtmedik. Gradyanın temel hesabı türeve dayalı olduğu için ve türev
 hesapladığı noktaya yakın bir yerde doğru bir yaklaşıklama olacağı için o
-yönde atılan adımın büyüklüğüne göre minimizasyon doğru ya da yanlış yöne
-gidiyor olabilir. Bu sebeple gradyan inişi algoritmaları, ki</p>
+yönde atılan adımın büyüklüğüne göre minimizasyon iyi ya da kötü sonuçlar
+verebilir. Bu sebeple gradyan inişi algoritmaları, ki</p>
 <p>$$
 x^{x+1} = x^k + \alpha_k \nabla f(x^k)
 $$</p>
-<p>ile kodlanırlar, çoğunlukla pek çok ufak adım atarlar, yani $\alpha_k$
-sabitleri ufak seçilir.</p>
-<p>En Dik İniş (SD) algoritmasi bu noktada bir ilerleme sağlar. Her $\alpha$,
-yani $\alpha_k$ öyle seçilir ki
-$\phi(\alpha) \equiv f(x^k - \alpha \nabla f(x^k))$ minimize edilsin. Ya da</p>
+<p>ile kodlanırlar, çoğunlukla ufak ve pek çok adım atarlar, yani $\alpha_k$
+sabitleri ufak seçilir. En Dik İniş (SD) algoritmasi bu noktada bir
+ilerleme. Her $\alpha$, yani $\alpha_k$ öyle seçilir ki
+$\phi(\alpha) \equiv f(x^k - \alpha \nabla f(x^k))$ kesinlikle minimize
+edilsin / belli bir yöndeki en minimum noktaya vardıracak büyüklükte adım
+atılsın. Ya da</p>
 <p>$$
 \alpha_k = \arg\min_{\alpha \ge 0} f(x^k - \alpha \nabla f(x^k))
 $$</p>
 <p>Yani gradyanın işaret ettiği yönde bir tür "arama" yapmış oluyoruz, adım
 büyüklüğünü öyle seçiyoruz ki fonksiyon o yönde o kadar adım atıldığında en
-fazla inişi gerçekleştirmiş olsun. </p>
-<p>Arama derken akla ikinci bir döngü içinde yine ufak ufak adımlar atarak
-adım büyüklük hesabı yapmak geliyor, bu kabaca doğru, ama bize yardımcı
-olacak bazı cebirsel numaralar var. En basiti atılan adım $\alpha$'yi
-cebirsel olarak çözmek, altta bir örnek[3, sf. 101] var. </p>
+fazla inişi gerçekleştirmiş olsun. Bu sebeple bu metota çizgi araması (line
+search) metotu deniyor.</p>
+<p>Tabii arama derken akla ikinci bir döngü içinde yine ufak ufak adımlar
+atarak çizgi üzerinde gelinen yere bakıp büyüklük hesabını böyle yapmak
+gelebilir, bu sonuçsal olarak, kabaca doğru, ama asıl adım hesabı bazı
+cebirsel temellerle, ya da onu çözen yaklaşıksal şekilde yapılıyor. </p>
+<p>En basiti atılan adım $\alpha$'yi pür cebirsel olarak çözmek, altta bir
+örnek [3, sf. 101].</p>
 <p>Soru</p>
 <p>$f(x) = 9x_1^2 + 4x_1x_2 + 7x_2^2$ fonksiyonunun optimal noktasını bul.</p>
 <p>Çözüm</p>
@@ -57,7 +61,7 @@ cebirsel olarak çözmek, altta bir örnek[3, sf. 101] var. </p>
 $\frac{\partial  f}{\partial x_2} = 4 x_1 + 14 x_2$. Şimdi SD yöntemini
 uygulayalım, başlangıç noktası $x^0 = \left[\begin{array}{cc} 1 &amp; 1 \end{array}\right]^T$
 olsun. Bu durumda $f(x^0) = 20$, ve $\nabla f(x_0) = \left[\begin{array}{cc} 22 18 \end{array}\right]^T$. 
-Adim denklemine gore, </p>
+Adım denklemine göre, </p>
 <p>$$
 x^1 = x^0 - \alpha_0 \nabla f(x^0)
 $$</p>
@@ -75,15 +79,15 @@ x_1 \\ x_2
 22 \\ 18
 \end{array}\right]
 $$</p>
-<p>Simdi oyle bir $\alpha_0$ secmeliyiz ki $f(x^1)$ minimum olsun. Ustteki
-degerlerin bize verdigi $x_1$ ve $x_2$ degerleri (ki $\alpha_0$ bazli
-degerler olacaklar) ana formule yeni $x$ olarak sokarsak, $\alpha_o$  bazli
-bir denklem edecegiz, </p>
+<p>Şimdi öyle bir $\alpha_0$ seçmeliyiz ki $f(x^1)$ minimum olsun. Üstteki
+değerlerin bize verdiği $x_1$ ve $x_2$ değerleri (ki $\alpha_0$ bazlı
+olacaklar) ana formüle yeni $x$ olarak sokarsak, $\alpha_o$ bazlı bir
+denklem edeceğiz,</p>
 <p>$$
 f(\alpha_0) = 20 - 808 \alpha_0 + 8208 (\alpha_0)^2
 $$</p>
-<p>Bu denkleme ve $\frac{\mathrm{d} f(\alpha_0)}{\mathrm{d} \alpha_0} = 0$ üzerinden
-$\alpha_0$'nun optimum değeri $0.05$'tır. Yani adımı şu şekilde atmalıyız,</p>
+<p>$\frac{\mathrm{d} f(\alpha_0)}{\mathrm{d} \alpha_0} = 0$ üzerinden $\alpha_0$'nun optimum
+değeri $0.05$'tır. Yani adımı şu şekilde atmalıyız,</p>
 <p>$$
 x^1 = 
 \left[\begin{array}{c}
@@ -161,12 +165,12 @@ $$</p>
 <p>$$
 \alpha_0 = \arg\min_{\alpha \ge 0} f(x^0 - \alpha \nabla f(x^0))
 $$</p>
-<p>lazım, tam acilmis haliyle, </p>
+<p>lazım, tam açılmış haliyle, </p>
 <p>$$
 = \arg\min_{\alpha \ge 0} (0 + (2+2\alpha-3)^2 + 4(-1-1024\alpha+5)^4
 $$</p>
 <p>Ama üstteki cebirle boğuşmaya gerek yok, gradyan fonksiyonu ve gidiş yönü
-üzerinden kok bulup bize döndürecek üstteki hesabı kullanabiliriz,</p>
+üzerinden kök bulup bize döndürecek üstteki hesabı kullanabiliriz,</p>
 <pre><code class="python">x0 = np.array([4,2,-1])
 print (g(x0))
 d0 = -g(x0)
@@ -211,11 +215,12 @@ x3 [ 4.          2.99987048 -5.00331169]
 <p>Optimal noktaya erişmiş olduk.</p>
 <p>Duruş Şartları </p>
 <p>Optimizasyonda minimum varlığı için birinci-derecen gerekli şart
-(first-order necessary condition -FONC-) minimumda $\nabla f(x) = 0$ olması. Eğer
-böyle bir noktaya erişmişsek, diyelim $x^k$ için $\nabla f(x^k) = 0$ ölmüş,
-bu nokta FONC'yi tatmin eder çünkü o zaman $x^{k+1} = x^k$ olur, ve
-minimumdayız demektir. Bu teorik bilgiyi algoritmamizin ne zaman duracağını
-anlaması için bir şart olarak kullanamaz mıyız? </p>
+(first-order necessary condition -FONC-) minimumda $\nabla f(x) = 0$
+olması. Eğer böyle bir noktaya erişmişsek, diyelim $x^k$ için
+$\nabla f(x^k) = 0$ olmuş, bu nokta FONC'yi tatmin eder çünkü o zaman
+$x^{k+1} = x^k$ olur, ve minimumdayız demektir. Bu teorik bilgiyi
+algoritmamizin ne zaman duracağını anlaması için bir şart olarak kullanamaz
+mıyız?</p>
 <p>Ne yazık ki sayısal hesaplarda, yani pratikte $\nabla f(x^k) = 0$ hesabı
 nadiren ortaya çıkar. Bir çözüm gradyanın normu $|| \nabla f(x) ||$ sıfır
 olmasına bakmak. Ya da $| f(x^{k+1}) - f(x^k) |$ mutlak değerine bakmak,
