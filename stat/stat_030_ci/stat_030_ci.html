@@ -34,6 +34,10 @@ yapabilir miyiz? Yani Büyük Sayılar Kanunua göre $\mu$ hakkında noktasal
 tahmin yapabiliriz fakat, belki ondan bir adım ötesi, bir "güven aralığı"
 hesaplamaktan bahsediyoruz. Bu tahmin "gerçek $\mu$, \%95 ihtimalde şu iki
 değer arasındadır" türünde bir tahmin olacak.</p>
+<p>Dikkat: burada verinin yüzde kaçının belli bir aralıkta olup olmadığından
+bahsetmiyoruz, tahminsel hesabı yapılan ortalamanın hangi güven seviyesinde
+bir aralıkta olup olmadığından bahsediyoruz. Verinin güven aralığı
+hakkındaki notlar bu yazının sonunda.</p>
 <p>Bu aralığın hesabı için önce $\bar{X}$'i standardize edelim, yani $N(0,1)$
 haline çevirelim,</p>
 <p>$$ Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} $$</p>
@@ -136,13 +140,13 @@ bakarak kafa ölçümü ortalaması için bir \%95 güvenlik aralığı
 oluşturabiliriz, ve eğer bugünkü İtalyanların ölçüsü o aralığa düşmüyorsa,
 Etrusyalılarla bağlantılarının olmadığını iddia edebiliriz.</p>
 <pre><code class="python">import pandas as pd
-df = pd.read_csv('etrus.csv')
-print float(df.mean()-1.96*(6.0/np.sqrt(84)))
-print float(df.mean()+1.96*(6.0/np.sqrt(84)))
+dfetr = pd.read_csv('../stat_035_tests/etrus.csv')
+print (float(dfetr.mean()-1.96*(6.0/np.sqrt(84))))
+print (float(dfetr.mean()+1.96*(6.0/np.sqrt(84))))
 </code></pre>
 
-<pre><code>142.524107721
-145.09035011
+<pre><code>142.524107721075
+145.09035011025028
 </code></pre>
 
 <p>Bugünkü İtalyanların kafa ortalaması $\mu=132.4$ bu aralığa düşmüyor. Diğer
@@ -421,6 +425,21 @@ print (mb-ma) + np.array([-1,1]) * norm.ppf(0.975)*sw
 
 <p>Yüzde 95 güven aralığı 0 değerini içermediği için nüfus ortalamalarının
 birbirinden farklı olduğu sonucuna varıyoruz.</p>
+<p>Verinin Yüzde Kaçı, Ortalama</p>
+<p>Verinin yüzde 68'inin hangi aralık olduğu hesabı biraz farklı, ve
+daha basit. Mesela kafatası ölçümü için</p>
+<pre><code class="python">print (np.array([dfetr.mean() - dfetr.std(),
+                 dfetr.mean() + dfetr.std()]).T)
+</code></pre>
+
+<p>Yani ortalam etrafında sağda ve solda tek standart sapmayla belirli bölge,
+bir Normal dağılımın yüzde 68'ine tekabül eder, ve bir veri Normal şekilde
+dağılmış ise, o verinin yüzde 68'inin hangi aralıkta olduğu bu şekilde
+hesaplanabilir.</p>
+<pre><code>[[137.80833099 149.80612685]]
+</code></pre>
+
+<p><img alt="" src="areanorm.jpg" /></p>
 <p>Kaynaklar </p>
 <p>[1] Larsen, <em>Introduction to Mathematical Statistics and Its Applications</em></p>
 <p>[2] Runger, <em>Applied Statistics and Probability for Engineers</em></p>
