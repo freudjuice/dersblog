@@ -35,8 +35,8 @@ edilmiş bir Gaussian üzerinden) bu sonucu verecektir. Tahmin edici,</p>
 <p>olarak bilinir. Bu formülü pek çok yazıda gördük, mesela [3]. O zaman</p>
 <p>$$ \hat{\beta} = (A^TA)^{-1}A^T(A\beta + \epsilon) $$</p>
 <p>$$ 
-\qquad (1)
 \hat{\beta} = \beta  + (A^TA)^{-1}A^T \epsilon 
+\qquad (1)
 $$</p>
 <p>Eğer $E( \hat{\beta} )$ hesaplamak istersek, </p>
 <p>$$ E( \hat{\beta} ) = E(  \beta  + (A^TA)^{-1}A^T \epsilon )$$</p>
@@ -52,12 +52,12 @@ E \big[
 $$</p>
 <p>Biraz önce $E( \hat{\beta} ) = \beta $ demiştik, o zaman üstteki </p>
 <p>$$ 
-\qquad (2)
 Var(\hat{\beta}) = 
 E \big[
 (\hat{\beta} - \beta)<br />
 (\hat{\beta} - \beta)^T 
 \big]
+\qquad (2)
 $$</p>
 <p>olur. Üstte $\hat{\beta} - \beta$ var, bu (1)'den $\beta$ çıkartılıyor
 anlamına gelir, o zaman oradaki $\beta$ kaybolur, geriye </p>
@@ -77,8 +77,8 @@ simetriktir, simetrik matrisin devriği yine kendisidir.</p>
 <p>$$  = (A^TA)^{-1}A^TA E[\epsilon \epsilon^T]  (A^TA)^{-1} $$</p>
 <p>$$  = E[\epsilon \epsilon^T]  (A^TA)^{-1} $$</p>
 <p>$$ 
-\qquad (3)
 Var(\hat{\beta})  = \sigma^2  (A^TA)^{-1} 
+\qquad (3)
 $$</p>
 <p>Yeni bir tahmin $a$ için </p>
 <p>$$ \hat{y}_a = a^T \hat{\beta}  $$</p>
