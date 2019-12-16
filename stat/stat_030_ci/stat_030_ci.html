@@ -440,6 +440,29 @@ hesaplanabilir.</p>
 </code></pre>
 
 <p><img alt="" src="areanorm.jpg" /></p>
+<p>Yüzde 95 hesabı için sağda ve solda iki standart sapmaya bakmak gerekir,</p>
+<pre><code class="python">print (np.array([dfetr.mean() - 2*dfetr.std(),
+                 dfetr.mean() + 2*dfetr.std()]).T)
+</code></pre>
+
+<pre><code>[[131.80943306 155.80502478]]
+</code></pre>
+
+<p>Peki yüzde 68, yüzde 95, gibi değerlerin standart sapma ile bağlantısının
+nereden biliyoruz? Düşünelim, her normal dağılım standart normal dağılıma
+indirgenebilir, ve standart normal dağılım $N(0,1)$'dir, yani ortalaması 0
+standart sapması 1. O zaman bu dağılımın, sıfır etrafında -1 ve +1
+sınırları içindeki alan nedir hesabı basit kumulatif yoğunluk ile
+yapılabilir, </p>
+<pre><code class="python">from scipy.stats.distributions import norm
+print (norm.cdf(1)-norm.cdf(-1)) # tek standart sapma
+print (norm.cdf(2)-norm.cdf(-2)) # iki standart sapma
+</code></pre>
+
+<pre><code>0.6826894921370859
+0.9544997361036416
+</code></pre>
+
 <p>Kaynaklar </p>
 <p>[1] Larsen, <em>Introduction to Mathematical Statistics and Its Applications</em></p>
 <p>[2] Runger, <em>Applied Statistics and Probability for Engineers</em></p>
