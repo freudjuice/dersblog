@@ -304,19 +304,17 @@ işlemek yerine bir önceki adımdaki işlenen Hessian sonuçlarını, bir
 şekilde, az ek işlem yaparak sonraki adımda kullanmaya uğraşıyorlar.
 Aslında pek çok farklı Newton-ımsı metot var, hepsi farklı şekilde Newton
 metotundan farklı (!)</p>
-<p>Bu alanı çok iyi takip ettiğim söylenemez, Newton-ımsı metotlar eskiden
-olduğu kadar on planda değil çünkü bilgisayar hesaplama kapasitesi arttıkça
-onlara olan ihtiyaç azaldı.</p>
-<p>Not: Hocanın söylediklerine bu noktada bir ek yapmak lazım, [4, pg. 522]'de
-belirtildiği gibi Hessian'ın silbaştan yaratılması yerine güncellenmesi
-aslında paradoksal bir şekilde daha iyi optimizasyon yapılmasını
-sağlayabiliyor. Newton yönünün iniş yönü olması için $H$ pozitif kesin
-olmalıdır, fakat minimum noktasından uzaktaki yerlerde bunun garantisi
-yoktur. Yani gerçek Hessian ile gerçek Newton adımını atmak bizi
-fonksiyonun arttığı yerlere götürebilir. Newton-ımsı metotların esprisi
-pozitif kesin bir şekilde başlamak ve ınise giderken azar azar $H$'yi
-yaklaşıksal şekilde öyle günellemek ki $H$ hep pozitif kesin kalsın.</p>
-<p>[Teori 1.1 İspatı Atlandı]</p>
+<p>[atlandı]</p>
+<p>Not: Hocanın söylediklerine ek [4, pg. 522]'de belirtildiği gibi Hessian'ın
+silbaştan yaratılması yerine güncellenmesi aslında paradoksal bir şekilde
+daha iyi optimizasyon yapılmasını sağlayabiliyor. Newton yönünün iniş yönü
+olması için $H$ pozitif kesin olmalıdır, fakat minimum noktasından uzaktaki
+yerlerde bunun garantisi yoktur. Yani gerçek Hessian ile gerçek Newton
+adımını atmak bizi fonksiyonun arttığı yerlere götürebilir. Newton-ımsı
+metotların esprisi pozitif kesin bir şekilde başlamak ve inişe giderken
+azar azar $H$'yi yaklaşıksal şekilde öyle güncellemek ki $H$ hep pozitif
+kesin kalsın.</p>
+<p>[teori 1.1 ispatı atlandı]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
 <p>[2] Freund, <em>MIT OCW Nonlinear Programming Lecture</em>,
