@@ -1,0 +1,243 @@
+<h1>Newton-umsu Matotlar (Quasi-Newton Methods), DFP, BFGS</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Newton-umsu Matotlar (Quasi-Newton Methods), DFP, BFGS 
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>Bir $f$ hedef fonksiyonunun minimizasyonu için Newton'un özyineli
+algoritmasi</p>
+<p>$$
+x^{k+1} = x^k - F(x^k)^{-1} g^k
+$$</p>
+<p>ki $g$ gradyan, $F$ ise Hessian. </p>
+<p>Ya da</p>
+<p>$$
+x^{k+1} = x^k - (\nabla^2 f(x^k))^{-1} \nabla f(x^k)
+$$</p>
+<p>Newton'umsu metotların ana fikri Hessian matrisı yerine sadece gradyan
+bilgisini kullanarak yaklaşık bir $H_k$ kullanmak. Bunu nasıl yapacağız? </p>
+<p>$f(\cdot)$'un karesel olarak temsilini yazalım, özyineli gidişat sirasinda,
+bir herhangi bir $x^{k+1}$ etrafında Taylor açılımı</p>
+<p>$$
+m_k(x) \equiv f(x^{k+1}) + \nabla f(x^{k+1})^T (x-x^{k+1}) + 
+\frac{1}{2} (x-x^{k+1}) ^T H_{t+1}^T (x-x^{k+1}) 
+$$</p>
+<p>Eger gradyani alirsak </p>
+<p>$$
+\nabla m_k(x) = \nabla f(x^{k+1}) + H_{k+1}^{-1} (x-x^{k+1})
+$$</p>
+<p>Şimdi $k$ ve $k+1$ noktaları, gradyanları üzerinden bir $H^{k+1}$ ilişkisi
+ortaya çıkartmak istiyoruz ki çözüp bir sonuç elde edebilelim. Ek
+denklemler elde etmek için şu akla yatkın şartları öne sürebiliriz, $k$ ve
+$k+1$ için $m$ ve $f$ gradyanları birbirine uysun. Yanı, </p>
+<p>$$
+\nabla m_k(x) = \nabla f(x_k)
+$$</p>
+<p>O zaman, "Newton-umsu metot şartı" da denen iki üstteki denklemle
+beraber, ve açılımda $x$ herhangi bir $x$ olabileceği için onun yerine
+$x^k$ kullanarak,</p>
+<p>$$
+\nabla f(x^{k+1}) + H_{k+1}^{-1} (x^k-x^{k+1}) = \nabla f(x^k)
+$$</p>
+<p>$$
+H_{k+1}^{-1} (x^k-x^{k+1}) = \nabla f(x^k) - \nabla f(x^{k+1}) 
+$$</p>
+<p>$$
+H_{k+1}^{-1} (x^{k+1}-x^k) = \nabla f(x^{k+1}) - \nabla f(x^k) 
+$$</p>
+<p>Üsttekine sekant denklemi adı veriliyor, şu figürle alakalı, </p>
+<p><img alt="" src="func_50_bfgs_01.png" /></p>
+<p>Yani sekant denklemine göre $H_{k+1}^{-1}$ değeri, yatay kordinattaki
+$x^{k+1}-x^k$ değişimini, gradyan değişimi $\nabla f(x^{k+1}) - \nabla
+f(x^k)$'e eşler [4]/i0p.</p>
+<p>Kısaltma amaçlı,</p>
+<p>$$
+H_{k+1}^{-1} \underbrace{(x^{k+1}-x^k)}_{y_t} = 
+\underbrace{\nabla f(x^{k+1}) - \nabla f(x^k)}_{s_t}
+$$</p>
+<p>$$
+H_{k+1}^{-1} y_k = s_k
+\qquad (1)
+$$</p>
+<p>Özyineli bağlamda bir $H_0$'dan başlayarak ufak değişimlerle sonuca
+ulaşılmaya uğraşılır. Değişimlerin ufak olması ve bu değişimlerin kerte 1
+eki [5] ile olması sonucu yine [4]'teki matris normu üzerinden
+görülebilir. Biz farklı bir yönden, eğer ufak değişim kerte 1 ve 2 ile
+yapılsa nereye varılacağına bakacağız [1, sf. 111]. </p>
+<p>Kerte 1 eki ile $H_k$'yi $H_{k+1}$ yapmak demek</p>
+<p>$$
+H_{k+1} = H_k + czz^T 
+$$</p>
+<p>eşitliği demektir. Bunu iki üstteki formül içine koyarsak</p>
+<p>$$
+s_k = (H_k + czz^T) y_k = H_k y_k + cz (z^T y_k)
+$$</p>
+<p>$z^T y_k$ bir skalar olduğu için </p>
+<p>$$
+cz = \frac{s_k - H_k y_k}{z^T y_k}
+$$</p>
+<p>Bu denklemi çözen en basit $c,z$ seçenekleri</p>
+<p>$$
+z = s_k - H_ky_k
+$$</p>
+<p>$$
+c = \frac{1}{z^Ty_k}
+$$</p>
+<p>Bu bize kerte 1 güncelleme formülünü verir,</p>
+<p>$$
+H_{k+1} = H_k + \frac{ (s-H_ky_k) (s-H_ky_k)^T }{(s-H_ky_k) y_k}
+$$</p>
+<p>Ne yazık ki kerte 1 güncelemesinin bazı problemleri var. Bunlardan en
+önemlisi güncelleme sonrası elde edilen yeni $H_{k+1}$'in pozitif kesin
+olmasının garanti olmaması, bu sebeple bir sonraki döngüde elde edilecek
+yön $d_k = -H_k \nabla f(x_k)$'nin bir iniş yönü olmasının garantisinin de
+tehlikeye girmesi. </p>
+<p>Çözüm olarak $H_{k+1}$'in pozitif kesin kalmasını garantileyecek kerte 2
+güncellemesi keşfedilmiştir. Yani</p>
+<p>$$
+H_{k+1} = H_k + c_1z_1z_1^T + c_2z_2z_2^T 
+$$</p>
+<p>% d -&gt; s, g -&gt; y</p>
+<p>Yine (1)'deki Newton-umsu metot sartiyla beraber</p>
+<p>$$
+s_k = H_k y_k + c_1z_1(z_1z_1^T) + c_2z_2(z_2z_2^T)
+$$</p>
+<p>[devam edecek]</p>
+<pre><code class="python">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import numpy.linalg as lin
+
+eps = np.sqrt(np.finfo(float).eps)
+
+def rosen(x):
+    return 100*(x[1]-x[0]**2)**2+(1-x[0])**2
+
+def rosen_real(x):
+    gy =[-400*(x[1]-x[0]**2)*x[0]-2*(1-x[0]), 200*(x[1]-x[0]**2)]
+    return rosen(x), gy
+
+def linesearch_secant(f, d, x):
+    epsilon=10**(-5)
+    max = 500
+    alpha_curr=0
+    alpha=10**-5
+    y,grad=f(x)
+    dphi_zero=np.dot(np.array(grad).T,d)
+
+    dphi_curr=dphi_zero
+    i=0;
+    while np.abs(dphi_curr)&gt;epsilon*np.abs(dphi_zero):
+        alpha_old=alpha_curr
+        alpha_curr=alpha
+        dphi_old=dphi_curr
+        y,grad=f(x+alpha_curr*d)
+        dphi_curr=np.dot(np.array(grad).T,d)
+        alpha=(dphi_curr*alpha_old-dphi_old*alpha_curr)/(dphi_curr-dphi_old);
+        i += 1
+        if (i &gt;= max) and (np.abs(dphi_curr)&gt;epsilon*np.abs(dphi_zero)):
+            print('Line search terminating with number of iterations:')
+            print(i)
+            print(alpha)
+            break
+
+    return alpha
+
+def bfgs(x, func):
+
+    H = np.eye(2)
+    tol = 1e-20
+    y,grad = func(x)
+    dist=2*tol
+    epsilon = tol
+    iter=0;
+
+    while lin.norm(grad)&gt;1e-6:
+        value,grad=func(x)
+        p=np.dot(-H,grad)
+        lam = linesearch_secant(func,p,x)
+        iter += 1
+        xt = x
+        x = x + lam*p
+        s = lam*p
+        dist=lin.norm(s)
+        newvalue,newgrad=func(x)
+        y = np.array(newgrad)-grad
+        rho=1/np.dot(y.T,s)
+        s = s.reshape(2,1)
+        y = y.reshape(2,1)
+        tmp1 = np.eye(2)-rho*np.dot(s,y.T)
+        tmp2 = np.eye(2)-rho*np.dot(y,s.T)
+        tmp3 = rho*np.dot(s,s.T)
+        H= np.dot(np.dot(tmp1,H),tmp2) + tmp3
+        #print ('lambda:',lam)
+
+    print (xt)
+    print ('iter',iter)
+</code></pre>
+
+<pre><code class="python">x=np.array([-1.0,0])
+bfgs(x,rosen_real)    
+</code></pre>
+
+<pre><code>[1. 1.]
+iter 19
+</code></pre>
+
+<pre><code class="python">def _approx_fprime_helper(xk, f, epsilon):
+    f0 = f(xk)
+    grad = np.zeros((len(xk),), float)
+    ei = np.zeros((len(xk),), float)
+    for k in range(len(xk)):
+        ei[k] = 1.0
+        d = epsilon * ei
+        df = (f(xk + d) - f0) / d[k]
+        if not np.isscalar(df):
+            try:
+                df = df.item()
+            except (ValueError, AttributeError):
+                raise ValueError(&quot;The user-provided &quot;
+                                 &quot;objective function must &quot;
+                                 &quot;return a scalar value.&quot;)
+        grad[k] = df
+        ei[k] = 0.0
+    return grad
+
+
+def rosen_approx(x):
+    g = _approx_fprime_helper(x, rosen, eps)
+    return rosen(x),g
+
+bfgs(x,rosen_approx)
+</code></pre>
+
+<pre><code>[0.99999552 0.99999104]
+iter 19
+</code></pre>
+
+<p>Kaynaklar </p>
+<p>[1] Dutta, <em>Optimization in Chemical Engineering</em></p>
+<p>[2] Zak, <em>An Introduction to Optimization, 4th Edition</em></p>
+<p>[3] Bayramli, <em>Hesapsal Bilim, Sayısal Entegrasyon ve Sonlu Farklılıklar ile Sayısal Türev</em></p>
+<p>[4] Chen, <em>ELE522 - Large Scale Optimization Lecture, Princeton</em>,
+    \url{http://www.princeton.edu/~yc5/ele522_optimization/}</p>
+<p>[5] Bayramli, <em>Lineer Cebir, Ders 8, Kerte Konusu</em></p>
