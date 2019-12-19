@@ -26,24 +26,24 @@
 <p>Bir $f$ hedef fonksiyonunun minimizasyonu için Newton'un özyineli
 algoritmasi</p>
 <p>$$
-x^{k+1} = x^k - F(x^k)^{-1} g^k
+x_{k+1} = x_k - F(x_k)^{-1} g_k
 $$</p>
 <p>ki $g$ gradyan, $F$ ise Hessian. </p>
 <p>Ya da</p>
 <p>$$
-x^{k+1} = x^k - (\nabla^2 f(x^k))^{-1} \nabla f(x^k)
+x_{k+1} = x_k - (\nabla^2 f(x_k))^{-1} \nabla f(x_k)
 $$</p>
 <p>Newton'umsu metotların ana fikri Hessian matrisi yerine sadece gradyan
 bilgisini kullanarak yaklaşık bir $F_k$ kullanmak. Bunu nasıl yapacağız? </p>
 <p>$f(\cdot)$'un karesel olarak temsilini yazalım, özyineli gidişat sırasında,
 bir herhangi bir $x^{k+1}$ etrafında Taylor açılımı</p>
 <p>$$
-m_k(x) \equiv f(x^{k+1}) + \nabla f(x^{k+1})^T (x-x^{k+1}) + 
-\frac{1}{2} (x-x^{k+1}) ^T F_{t+1}^T (x-x^{k+1}) 
+m_k(x) \equiv f(x_{k+1}) + \nabla f(x_{k+1})^T (x - x_{k+1}) + 
+\frac{1}{2} (x - x_{k+1}) ^T F_{k+1}^T (x - x_{k+1}) 
 $$</p>
-<p>Eger gradyani alirsak </p>
+<p>Eğer gradyanı alırsak </p>
 <p>$$
-\nabla m_k(x) = \nabla f(x^{k+1}) + F_{k+1}^{-1} (x-x^{k+1})
+\nabla m_k(x) = \nabla f(x_{k+1}) + F_{k+1}^{-1} (x-x_{k+1})
 $$</p>
 <p>Şimdi $k$ ve $k+1$ noktaları, gradyanları üzerinden bir $H^{k+1}$ ilişkisi
 ortaya çıkartmak istiyoruz ki çözüp bir sonuç elde edebilelim. Ek
@@ -56,13 +56,13 @@ $$</p>
 beraber, ve açılımda $x$ herhangi bir $x$ olabileceği için onun yerine
 $x^k$ kullanarak,</p>
 <p>$$
-\nabla f(x^{k+1}) + F_{k+1}^{-1} (x^k-x^{k+1}) = \nabla f(x^k)
+\nabla f(x_{k+1}) + F_{k+1}^{-1} (x_k-x_{k+1}) = \nabla f(x_k)
 $$</p>
 <p>$$
-H_{k+1}^{-1} (x^k-x^{k+1}) = \nabla f(x^k) - \nabla f(x^{k+1}) 
+H_{k+1}^{-1} (x_k-x_{k+1}) = \nabla f(x_k) - \nabla f(x_{k+1}) 
 $$</p>
 <p>$$
-H_{k+1}^{-1} (x^{k+1}-x^k) = \nabla f(x^{k+1}) - \nabla f(x^k) 
+H_{k+1}^{-1} (x_{k+1}-x_k) = \nabla f(x_{k+1}) - \nabla f(x_k) 
 $$</p>
 <p>Üsttekine sekant denklemi adı veriliyor, şu figürle alakalı, </p>
 <p><img alt="" src="func_50_bfgs_01.png" /></p>
@@ -71,8 +71,8 @@ $x^{k+1}-x^k$ değişimini, gradyan değişimi $\nabla f(x^{k+1}) - \nabla
 f(x^k)$'e taşıyor / eşliyor [4].</p>
 <p>Kısaltma amaçlı,</p>
 <p>$$
-F_{k+1}^{-1} \underbrace{(x^{k+1}-x^k)}_{y_t} = 
-\underbrace{\nabla f(x^{k+1}) - \nabla f(x^k)}_{s_t}
+F_{k+1}^{-1} \underbrace{(x_{k+1}-x_k)}_{y_k} = 
+\underbrace{\nabla f(x_{k+1}) - \nabla f(x_k)}_{s_k}
 $$</p>
 <p>$$
 F_{k+1}^{-1} y_k = s_k
@@ -137,6 +137,38 @@ $$</p>
 H_{k+1} = H_k + \frac{y_ky_k^T}{s_k^Ty_k} - \frac{(H_k y_k)(H_k y_k)^T}{(H_ky_k)^Ty_k}
 $$</p>
 <p>Bu formüle Davidon-Fletcher-Powell (DFP) formülü adı verilir. </p>
+<p>Algoritma şöyle</p>
+<p>% delta x = y, g = s</p>
+<ol>
+<li>
+<p>$k=0$ yap. Bir $x_0$'dan başla, ve herhangi bir simetrik, pozitif kesin
+bir $H_0$ al</p>
+</li>
+<li>
+<p>Eğer $s_k = 0$ ise dur, yoksa $d_k = -H_k g_k$</p>
+</li>
+<li>
+<p>Şunu hesapla</p>
+</li>
+</ol>
+<p>$$
+\alpha_k = \arg\min_{\alpha \ge 0} f(x_k + \alpha d_k)
+$$</p>
+<p>$$
+x_{k+1} = x_k + \alpha_k d_k
+$$</p>
+<ol>
+<li>Hesapla</li>
+</ol>
+<p>$$
+y_k = \alpha_k d_k
+$$</p>
+<p>$$
+s_k = g_{k+1} - g_k
+$$</p>
+<p>$$
+H_{k+1} = H_k + \frac{y_ky_k^T}{s_k^Ty_k} - \frac{(H_k y_k)(H_k y_k)^T}{(H_ky_k)^Ty_k}
+$$</p>
 <p>BFGS</p>
 <p>DFP ile kerte 2 güncellemesi oluyor böylece $H_{k+1}$ pozitif kesin
 kalıyor, güzel. Fakat DFP'nin hala sayısal olarak bazı problemleri
@@ -235,7 +267,6 @@ katarak, yani</p>
 H_kB_k = B_kH_k=I_n
 $$</p>
 <p>diyerek, alttakini elde ediyoruz,</p>
-<p>% \delta x -&gt; y, g -&gt; s</p>
 <p>$$
 H_{k+1}^{BFGS} = H_k - \frac{H_ks_ks_k^TH_k}{s_k^Ty_k + s_k^TH_ks_k} -
 \frac
