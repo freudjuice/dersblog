@@ -175,8 +175,6 @@ Devam etmeden önce iþimize yarayacak baþka bir konu, ikizlik konusundan
 bahsedelim. Eðer DFP formülünün tersinin alýrsak belli bir sonuç elde
 ederiz (bunun benzerini yapacaðýz). Ama biz bu noktaya (1)'deki
 
-% d -> s, g -> y
-
 $$
 H_{k+1} y_k = s_k
 $$
@@ -211,7 +209,67 @@ $$
 
 ki eðer $1+v^TA ^{-1} y \ne 0$ ise.
 
+Simdi eger ana guncelleme formulunu 
 
+$$
+B_{k+1} = A_0 + u_0v_0^T + u_1v_1^T
+$$
+
+formuna getirebilirsek SM kullanabiliriz. Þu eþitlikleri kullanalým, 
+
+$$
+A_0 = B_k, \quad u_o = \frac{s_k}{s_k^Ty_k}, \quad v_0^T = s_k^T
+$$
+ 
+$$
+A_1 = B_k + \frac{s_k s_k^T}{s_k^Ty_k} = A_0 + u_0v_0^T, \quad 
+u_1 = -\frac{B_k y_k}{y_k^TB_ky_k}
+$$
+
+$$
+v_1^T = y_k^T B_k
+$$
+
+Böylece 
+
+$$
+B_{k+1} = A_0 + u_0v_0^T + u_1v_1^T
+$$
+
+formülüne eriþmiþ olduk. Bu $B_{k+1}$ üzerinden bir ters elde etmek için,
+ki bu sonuca $H_{k+1}^{BFGS}$ diyelim, 
+
+$$
+H_{k+1}^{BFGS} = B_{k+1}^{-1} 
+$$
+
+$$
+= (A_1 + u_1v_1^T)^{-1} 
+$$
+
+SM açýlýmýna göre,
+
+$$
+= A_1^{-1} - \frac{A_1^{-1}u_1v_1^TA_1^{-1}}{1+v_1^TA_1^{-1}u_1 }
+$$
+
+% d -> s, g -> y, 
+
+% \delta x -> y, g -> s
+
+Ustteki $A_1^{-1}$ icin bir daha SM uygulamak lazim,
+
+$$
+H_{k+1}^{BFGS} = 
+A_0^{-1} - \frac{A_0 ^{-1} u_0v_0^T A_0 ^{-1}}{1+v_0^TA_0^{-1}u_0 } -
+\frac
+  {
+    (A_0^{-1} - \frac{A_0 ^{-1} u_0v_0^T A_0 ^{-1}}{1+v_0^TA_0^{-1}u_0})
+     u_1v_1^T
+    (A_0^{-1} - \frac{A_0 ^{-1} u_0v_0^T A_0 ^{-1}}{1+v_0^TA_0^{-1}u_0})
+   }
+  {1 + v_1^T (A_0^{-1} - \frac{A_0 ^{-1} u_0v_0^T A_0 ^{-1}}{1+v_0^TA_0^{-1}u_0})u_1}
+$$
 
 
 
