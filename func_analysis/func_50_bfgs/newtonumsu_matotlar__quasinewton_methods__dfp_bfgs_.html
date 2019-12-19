@@ -33,17 +33,17 @@ $$</p>
 <p>$$
 x^{k+1} = x^k - (\nabla^2 f(x^k))^{-1} \nabla f(x^k)
 $$</p>
-<p>Newton'umsu metotların ana fikri Hessian matrisı yerine sadece gradyan
-bilgisini kullanarak yaklaşık bir $H_k$ kullanmak. Bunu nasıl yapacağız? </p>
-<p>$f(\cdot)$'un karesel olarak temsilini yazalım, özyineli gidişat sirasinda,
+<p>Newton'umsu metotların ana fikri Hessian matrisi yerine sadece gradyan
+bilgisini kullanarak yaklaşık bir $F_k$ kullanmak. Bunu nasıl yapacağız? </p>
+<p>$f(\cdot)$'un karesel olarak temsilini yazalım, özyineli gidişat sırasında,
 bir herhangi bir $x^{k+1}$ etrafında Taylor açılımı</p>
 <p>$$
 m_k(x) \equiv f(x^{k+1}) + \nabla f(x^{k+1})^T (x-x^{k+1}) + 
-\frac{1}{2} (x-x^{k+1}) ^T H_{t+1}^T (x-x^{k+1}) 
+\frac{1}{2} (x-x^{k+1}) ^T F_{t+1}^T (x-x^{k+1}) 
 $$</p>
 <p>Eger gradyani alirsak </p>
 <p>$$
-\nabla m_k(x) = \nabla f(x^{k+1}) + H_{k+1}^{-1} (x-x^{k+1})
+\nabla m_k(x) = \nabla f(x^{k+1}) + F_{k+1}^{-1} (x-x^{k+1})
 $$</p>
 <p>Şimdi $k$ ve $k+1$ noktaları, gradyanları üzerinden bir $H^{k+1}$ ilişkisi
 ortaya çıkartmak istiyoruz ki çözüp bir sonuç elde edebilelim. Ek
@@ -56,7 +56,7 @@ $$</p>
 beraber, ve açılımda $x$ herhangi bir $x$ olabileceği için onun yerine
 $x^k$ kullanarak,</p>
 <p>$$
-\nabla f(x^{k+1}) + H_{k+1}^{-1} (x^k-x^{k+1}) = \nabla f(x^k)
+\nabla f(x^{k+1}) + F_{k+1}^{-1} (x^k-x^{k+1}) = \nabla f(x^k)
 $$</p>
 <p>$$
 H_{k+1}^{-1} (x^k-x^{k+1}) = \nabla f(x^k) - \nabla f(x^{k+1}) 
@@ -66,28 +66,31 @@ H_{k+1}^{-1} (x^{k+1}-x^k) = \nabla f(x^{k+1}) - \nabla f(x^k)
 $$</p>
 <p>Üsttekine sekant denklemi adı veriliyor, şu figürle alakalı, </p>
 <p><img alt="" src="func_50_bfgs_01.png" /></p>
-<p>Yani sekant denklemine göre $H_{k+1}^{-1}$ değeri, yatay kordinattaki
+<p>Yani sekant denklemine göre $F_{k+1}^{-1}$ değeri, yatay kordinattaki
 $x^{k+1}-x^k$ değişimini, gradyan değişimi $\nabla f(x^{k+1}) - \nabla
 f(x^k)$'e taşıyor / eşliyor [4].</p>
 <p>Kısaltma amaçlı,</p>
 <p>$$
-H_{k+1}^{-1} \underbrace{(x^{k+1}-x^k)}_{y_t} = 
+F_{k+1}^{-1} \underbrace{(x^{k+1}-x^k)}_{y_t} = 
 \underbrace{\nabla f(x^{k+1}) - \nabla f(x^k)}_{s_t}
 $$</p>
 <p>$$
-H_{k+1}^{-1} y_k = s_k
+F_{k+1}^{-1} y_k = s_k
 \qquad (1)
 $$</p>
+<p>Ve $F_{k}^{-1}$ yerine $H_k$ diyelim. </p>
 <p>Özyineli bağlamda bir $H_0$'dan başlayarak ufak değişimlerle sonuca
-ulaşılmaya uğraşılır. Değişimlerin ufak olması ve bu değişimlerin kerte 1
-eki [5] ile olması sonucu yine [4]'teki matris normu üzerinden
-görülebilir. Biz farklı bir yönden, eğer ufak değişim kerte 1 ve 2 ile
-yapılsa nereye varılacağına bakacağız [1, sf. 111]. </p>
-<p>Kerte 1 eki ile $H_k$'yi $H_{k+1}$ yapmak demek</p>
+ulaşılmaya uğraşılır. Değişimlerin ufak olması gerekliliği üzerinden ve bu
+değişimlerin kerte 1 eki ile olması sonucu [4]'teki matris normu ile
+beraber aslında birazdan türeteceğimiz güncelleme denklemi
+alınabiliyor. Kerte 1 eki konusu için bkz [5]. Biz farklı bir yönden, eğer
+ufak değişim kerte 1 ve 2 ile yapılsa nereye varılacağına bakacağız [1,
+sf. 111].</p>
+<p>Kerte 1 eki ile $H_k$'yi $H_{k+1}$ yapmak demek aslında</p>
 <p>$$
 H_{k+1} = H_k + czz^T 
 $$</p>
-<p>eşitliği demektir. Bunu iki üstteki formül içine koyarsak</p>
+<p>demektir. Bunu iki üstteki formül içine koyarsak</p>
 <p>$$
 s_k = (H_k + czz^T) y_k = H_k y_k + cz (z^T y_k)
 $$</p>
@@ -116,11 +119,61 @@ güncellemesi keşfedilmiştir. Yani</p>
 <p>$$
 H_{k+1} = H_k + c_1z_1z_1^T + c_2z_2z_2^T 
 $$</p>
-<p>% d -&gt; s, g -&gt; y</p>
-<p>Yine (1)'deki Newton-umsu metot sartiyla beraber</p>
+<p>Pozitif kesinliğin ispatı için [2, sf. 206].</p>
+<p>Yine (1)'deki Newton-umsu metot şartıyla beraber</p>
 <p>$$
-s_k = H_k y_k + c_1z_1(z_1z_1^T) + c_2z_2(z_2z_2^T)
+s_k = H_k y_k + c_1 z_1 (z_1^Ty_k) + c_2z_2 (z_2^Ty_k)
 $$</p>
+<p>$z_1$ ve $z_2$ için özgün çözüm olmamasına rağmen üstteki denklemi tatmin
+edecek seçenekler bulunabilir,</p>
+<p>$$
+z_1 = s_k, \quad 
+z_2 = H_k y_k, \quad
+c_1 = \frac{1}{z_1^Ty_k}, \quad
+c_2 = \frac{1}{z_2^Ty_k}
+$$</p>
+<p>Ve böylece kerte 2 güncellemesi şu hale gelir, </p>
+<p>$$
+H_{k+1} = H_k + \frac{y_ky_k^T}{s_k^Ty_k} - \frac{(H_k y_k)(H_k y_k)^T}{(H_ky_k)^Ty_k}
+$$</p>
+<p>Bu formüle Davidon-Fletcher-Powell (DFP) formülü adı verilir. </p>
+<p>BFGS</p>
+<p>DFP ile kerte 2 güncellemesi oluyor böylece $H_{k+1}$ pozitif kesin
+kalıyor, güzel. Fakat DFP'nin hala sayısal olarak bazı problemleri
+var. Burada problem Hessian'ın değil Hessian'ın tersinin yaklaşıklamasının
+güncelleniyor olması. Daha iyi bir seçim Hessian'ın <em>kendisinin</em>
+yaklaşıklamasının güncellenmesi ve onun üzerinden bir terslik elde
+edilmesi olmaz mıydı? Evet.</p>
+<p>Devam etmeden önce işimize yarayacak başka bir konu, ikizlik konusundan
+bahsedelim. Eğer DFP formülünün tersinin alırsak belli bir sonuç elde
+ederiz (bunun benzerini yapacağız). Ama biz bu noktaya (1)'deki</p>
+<p>% d -&gt; s, g -&gt; y</p>
+<p>$$
+H_{k+1} y_k = s_k
+$$</p>
+<p>ile geldiğimizi biliyoruz, ve üstteki formülde ufak bir takla atarsak</p>
+<p>$$
+y_k = B_{k+1} s_k
+$$</p>
+<p>ki $B_k$ $F_k$'nin yaklaşık hali, sonucuna gelebileceğimizi de
+biliyoruz. Dikkat edersek bu yeni Newton-umsuluk kuralı form olarak bir
+öncekine çok benziyor, sadece $H_k$ yerine $B_k$ var ve $y_k,s_k$ yerleri
+değişti!  Bundan istifade edebiliriz, ve şimdiye kadar yapılan tüm türetme
+işlemlerini kullanarak ve sadece $y_k,s_k$ yerini değiştirerek $B_k$ için
+bir güncelleme formülü elde edebiliriz.</p>
+<p>$$
+B_{k+1} = B_k + \frac{s_ks_k^T}{y_k^Ts_k} - \frac{(B_k s_k)(B_k s_k)^T}{(B_ks_k)^Ts_k}
+$$</p>
+<p>İşte $B_k$'nin BFGS güncellemesi budur, isim Broyden, Fletcher, Goldfarb,
+and Shannon adlı araştırmacılardan geliyor. Şimdi <em>üsttekinin tersini</em>
+alırsak arka planda yapılan ve daha stabil olan $H_k$'nin güncellenmesinden
+faydalanmış oluyoruz, ama hala her adımda bizim ilgilendiğimiz matris
+tersine erişmiş oluyoruz. Üsttekinin tersi için [6]'daki Sherman-Morrison
+tekniğini kullanacağız. SM formülü neydi?</p>
+<p>$$
+(A+uv^T)^{-1} = A ^{-1} - \frac{(A^{-1} u)(v^TA^{-1})}{1 + v^T A^{-1} u}
+$$</p>
+<p>ki eğer $1+v^TA ^{-1} y \ne 0$ ise.</p>
 <p>[devam edecek]</p>
 <pre><code class="python">import pandas as pd
 import numpy as np
@@ -241,3 +294,4 @@ iter 19
 <p>[4] Chen, <em>ELE522 - Large Scale Optimization Lecture, Princeton</em>,
     \url{http://www.princeton.edu/~yc5/ele522_optimization/}</p>
 <p>[5] Bayramli, <em>Lineer Cebir, Ders 8, Kerte Konusu</em></p>
+<p>[6] Bayramli, <em>Lineer Ceir, Ekler, Sherley-Morrison Formülü</em></p>
