@@ -23,8 +23,8 @@
 </script>
 </head>
 
-<p>Bir $f$ hedef fonksiyonunun minimizasyonu için Newton'un özyineli
-algoritmasi</p>
+<p>Bir $f$ hedef fonksiyonunun minimizasyonu için Newton metodunun özyineli 
+algoritması</p>
 <p>$$
 x_{k+1} = x_k - F(x_k)^{-1} g_k
 $$</p>
@@ -34,16 +34,16 @@ $$</p>
 x_{k+1} = x_k - (\nabla^2 f(x_k))^{-1} \nabla f(x_k)
 $$</p>
 <p>Newton'umsu metotların ana fikri Hessian matrisi yerine sadece gradyan
-bilgisini kullanarak yaklaşık bir $F_k$ kullanmak. Bunu nasıl yapacağız? </p>
-<p>$f(\cdot)$'un karesel olarak temsilini yazalım, özyineli gidişat sırasında,
+bilgisini kullanarak yaklaşık bir $F_k$ kullanmak, diyelim ki $H_k$. Sonra
+$f(\cdot)$'un karesel olarak temsilini yazalım, özyineli gidişat sırasında,
 bir herhangi bir $x^{k+1}$ etrafında Taylor açılımı</p>
 <p>$$
 m_k(x) \equiv f(x_{k+1}) + \nabla f(x_{k+1})^T (x - x_{k+1}) + 
-\frac{1}{2} (x - x_{k+1}) ^T F_{k+1}^T (x - x_{k+1}) 
+\frac{1}{2} (x - x_{k+1}) ^T H_{k+1}^T (x - x_{k+1}) 
 $$</p>
 <p>Eğer gradyanı alırsak </p>
 <p>$$
-\nabla m_k(x) = \nabla f(x_{k+1}) + F_{k+1}^{-1} (x-x_{k+1})
+\nabla m_k(x) = \nabla f(x_{k+1}) + H_{k+1}^{-1} (x-x_{k+1})
 $$</p>
 <p>Şimdi $k$ ve $k+1$ noktaları, gradyanları üzerinden bir $H^{k+1}$ ilişkisi
 ortaya çıkartmak istiyoruz ki çözüp bir sonuç elde edebilelim. Ek
@@ -52,11 +52,11 @@ $f$ gradyanları birbirine uysun. Yani,</p>
 <p>$$
 \nabla m_k(x) = \nabla f(x_k)
 $$</p>
-<p>O zaman, "Newton-umsu metot şartı" da denen iki üstteki denklemle
-beraber, ve açılımda $x$ herhangi bir $x$ olabileceği için onun yerine
-$x^k$ kullanarak,</p>
+<p>O zaman, "Newton-umsuluk şartı (quasi-Newton condition)" da denen iki
+üstteki denklemle beraber, ve açılımda $x$ herhangi bir $x$ olabileceği
+için onun yerine $x^k$ kullanarak,</p>
 <p>$$
-\nabla f(x_{k+1}) + F_{k+1}^{-1} (x_k-x_{k+1}) = \nabla f(x_k)
+\nabla f(x_{k+1}) + H_{k+1}^{-1} (x_k-x_{k+1}) = \nabla f(x_k)
 $$</p>
 <p>$$
 H_{k+1}^{-1} (x_k-x_{k+1}) = \nabla f(x_k) - \nabla f(x_{k+1}) 
