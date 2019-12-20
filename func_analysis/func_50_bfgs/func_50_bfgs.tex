@@ -161,12 +161,12 @@ Bu formüle Davidon-Fletcher-Powell (DFP) formülü adý verilir.
 
 Algoritma þöyle
 
-1. $k=0$ yap. Bir $x_0$'dan baþla, ve herhangi bir simetrik, pozitif kesin
+1) $k=0$ yap. Bir $x_0$'dan baþla, ve herhangi bir simetrik, pozitif kesin
 bir $H_0$ al
 
-2. Eðer $s_k = 0$ ise dur, yoksa $d_k = -H_k g_k$
+2) Eðer $s_k = 0$ ise dur, yoksa $d_k = -H_k g_k$
 
-3. Þunu hesapla
+3) Þunu hesapla
 
 $$
 \alpha_k = \arg\min_{\alpha \ge 0} f(x_k + \alpha d_k)
@@ -176,7 +176,7 @@ $$
 x_{k+1} = x_k + \alpha_k d_k
 $$
 
-4. Hesapla
+4) Hesapla
 
 $$
 y_k = \alpha_k d_k
@@ -539,6 +539,3 @@ Kaynaklar
 [7] Fletcher, {\em A new approach to variable metric problems}
 
 \end{document}
-
-
-

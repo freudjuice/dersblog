@@ -137,27 +137,17 @@ H_{k+1} = H_k + \frac{y_ky_k^T}{s_k^Ty_k} - \frac{(H_k y_k)(H_k y_k)^T}{(H_ky_k)
 $$</p>
 <p>Bu formüle Davidon-Fletcher-Powell (DFP) formülü adı verilir. </p>
 <p>Algoritma şöyle</p>
-<ol>
-<li>
-<p>$k=0$ yap. Bir $x_0$'dan başla, ve herhangi bir simetrik, pozitif kesin
+<p>1) $k=0$ yap. Bir $x_0$'dan başla, ve herhangi bir simetrik, pozitif kesin
 bir $H_0$ al</p>
-</li>
-<li>
-<p>Eğer $s_k = 0$ ise dur, yoksa $d_k = -H_k g_k$</p>
-</li>
-<li>
-<p>Şunu hesapla</p>
-</li>
-</ol>
+<p>2) Eğer $s_k = 0$ ise dur, yoksa $d_k = -H_k g_k$</p>
+<p>3) Şunu hesapla</p>
 <p>$$
 \alpha_k = \arg\min_{\alpha \ge 0} f(x_k + \alpha d_k)
 $$</p>
 <p>$$
 x_{k+1} = x_k + \alpha_k d_k
 $$</p>
-<ol>
-<li>Hesapla</li>
-</ol>
+<p>4) Hesapla</p>
 <p>$$
 y_k = \alpha_k d_k
 $$</p>
