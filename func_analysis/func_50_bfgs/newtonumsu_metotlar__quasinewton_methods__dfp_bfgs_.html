@@ -66,19 +66,18 @@ H_{k+1}^{-1} (x_{k+1}-x_k) = \nabla f(x_{k+1}) - \nabla f(x_k)
 $$</p>
 <p>Üsttekine sekant denklemi adı veriliyor, şu figürle alakalı, </p>
 <p><img alt="" src="func_50_bfgs_01.png" /></p>
-<p>Yani sekant denklemine göre $F_{k+1}^{-1}$ değeri, yatay kordinattaki
+<p>Yani sekant denklemine göre $H_{k+1}^{-1}$ değeri, yatay kordinattaki
 $x^{k+1}-x^k$ değişimini, gradyan değişimi $\nabla f(x^{k+1}) - \nabla
 f(x^k)$'e taşıyor / eşliyor [4].</p>
 <p>Kısaltma amaçlı,</p>
 <p>$$
-F_{k+1}^{-1} \underbrace{(x_{k+1}-x_k)}_{y_k} = 
+H_{k+1}^{-1} \underbrace{(x_{k+1}-x_k)}_{y_k} = 
 \underbrace{\nabla f(x_{k+1}) - \nabla f(x_k)}_{s_k}
 $$</p>
 <p>$$
-F_{k+1}^{-1} y_k = s_k
+H_{k+1}^{-1} y_k = s_k
 \qquad (1)
 $$</p>
-<p>Ve $F_{k}^{-1}$ yerine $H_k$ diyelim. </p>
 <p>Özyineli bağlamda bir $H_0$'dan başlayarak ufak değişimlerle sonuca
 ulaşılmaya uğraşılır. Değişimlerin ufak olması gerekliliği üzerinden ve bu
 değişimlerin kerte 1 eki ile olması sonucu [4]'teki matris normu ile
