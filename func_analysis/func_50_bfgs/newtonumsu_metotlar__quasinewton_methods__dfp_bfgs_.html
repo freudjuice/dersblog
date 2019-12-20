@@ -36,7 +36,7 @@ $$</p>
 <p>Newton'umsu metotların ana fikri Hessian matrisi yerine sadece gradyan
 bilgisini kullanarak yaklaşık bir $F_k$ kullanmak, diyelim ki $H_k$. Sonra
 $f(\cdot)$'un karesel olarak temsilini yazalım, özyineli gidişat sırasında,
-bir herhangi bir $x^{k+1}$ etrafında Taylor açılımı</p>
+bir herhangi bir $x_{k+1}$ etrafında Taylor açılımı</p>
 <p>$$
 m_k(x) \equiv f(x_{k+1}) + \nabla f(x_{k+1})^T (x - x_{k+1}) + 
 \frac{1}{2} (x - x_{k+1}) ^T H_{k+1}^T (x - x_{k+1}) 
@@ -54,7 +54,7 @@ $f$ gradyanları birbirine uysun. Yani,</p>
 $$</p>
 <p>O zaman, "Newton-umsuluk şartı (quasi-Newton condition)" da denen iki
 üstteki denklemle beraber, ve açılımda $x$ herhangi bir $x$ olabileceği
-için onun yerine $x^k$ kullanarak,</p>
+için onun yerine $x_k$ kullanarak,</p>
 <p>$$
 \nabla f(x_{k+1}) + H_{k+1}^{-1} (x_k-x_{k+1}) = \nabla f(x_k)
 $$</p>
@@ -266,7 +266,7 @@ H_{k+1}^{BFGS} = H_k - \frac{H_ks_ks_k^TH_k}{s_k^Ty_k + s_k^TH_ks_k} -
 }
 {y_k^T B_k y_k + y_k^T (B_k - \frac{s_k^Ts_k}{s_k^Ty_k + s_k^TH_ks_k})(-y_k)  }
 $$</p>
-<p>Sembolik islemlerimize devam ediyoruz. $y_k$ ve $y_k^T$ carparak alttakini
+<p>Sembolik işlemlerimize devam ediyoruz. $y_k$ ve $y_k^T$ çarparak alttakini
 elde ediyoruz, </p>
 <p>$$
 H_{k+1}^{BFGS} =  H_k - \frac{H_ks_ks_k^TH_k}{s_k^Ty_k + s_k^TH_ks_k} - 
