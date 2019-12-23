@@ -23,9 +23,8 @@
 </script>
 </head>
 
-<p>Bu notlar [2] dersinden alındı.</p>
-<p>Newton birazdan bahsedeceğimiz yöntemi tek boyutlu problemler için
-kullandı. Rhapson adlı bilimci yöntemi çok boyutlu problemler için
+<p>Newton birazdan bahsedeceğimiz yöntemi tek boyutlu problemler için kullandı
+[2]. Rhapson adlı bilimci yöntemi çok boyutlu problemler için
 genişletti. Biz bu yönteme optimizasyon çerçevesinde bakacağız.  Konunun
 tarihinden biraz bahsetmek istiyorum, bu dersi öğretmeye başladığımda 1986
 senesiydi, Newton'un metodunu nasıl gördüğümüz o zamandan beri değişime
@@ -48,9 +47,9 @@ $$</p>
 f(x) \approx 
 f(\bar{x}) + 
 \nabla f(\bar{x})^T (x-\bar{x}) + 
-\frac{1}{2} (x-\bar{x})^T H (x-\bar{x}) 
+\frac{1}{2} (x-\bar{x})^T F (x-\bar{x}) 
 $$</p>
-<p>ki $H$ Hessian matrisi. Üstteki formüle $h(x)$ diyelim. Böylece bir karesel
+<p>ki $F$ Hessian matrisi. Üstteki formüle $h(x)$ diyelim. Böylece bir karesel
 model ortaya çıkartmış oldum, formülün sağ tarafındaki çarpım onu karesel
 yapıyor, ve şimdi onu kesin olarak çözmek istiyorum. Bunu nasıl yaparım?
 Formülün gradyanını sıfıra eşitleyebilirim. Üstteki fonksiyonun $x$'teki
@@ -58,27 +57,27 @@ gradyanı nedir? </p>
 <p>Gradyanı $x$'e göre aldığımızı unutmayalım, $h(x)$'in ikinci terimi
 $\nabla f(\bar{x})^T$ bir sabit sayı, ikinci gradyan alınırken sıfırlanır,
 ve tüm ikinci terim sıfırlanır. Üçüncü terimin gradyanını almak bir nevi
-$\frac{\partial (x^TAx)}{\partial x} $ almak gibi [1], $H$ belli bir
+$\frac{\partial (x^TAx)}{\partial x} $ almak gibi [1], $F$ belli bir
 noktadaki ikinci türev matrisi olduğu için $A$ gibi bir sabit matris kabul
-edilebilir, $A$ simetrik olunca gradyan $2Ax$ sonucunu veriyordu, $H$
-simetrik, o zaman üçüncü terimde $H$ kalır, 2 ve $1/2$ birbirini iptal
+edilebilir, $A$ simetrik olunca gradyan $2Ax$ sonucunu veriyordu, $F$
+simetrik, o zaman üçüncü terimde $F$ kalır, 2 ve $1/2$ birbirini iptal
 eder, sonuç</p>
 <p>$$
-\nabla h(\bar{x}) = \nabla f(\bar{x}) + H(\bar{x})(x-\bar{x}) 
+\nabla h(\bar{x}) = \nabla f(\bar{x}) + F(\bar{x})(x-\bar{x}) 
 $$</p>
 <p>İki üstteki karesel yaklaşıksal ifadenin gradyanı bu işte. Onu sıfıra
-eşitleriz ve çözeriz. $H$ tersi alinabilir bir matristir, o zaman </p>
+eşitleriz ve çözeriz. $F$ tersi alinabilir bir matristir, o zaman </p>
 <p>$$
-\nabla h(\bar{x}) = \nabla f(\bar{x}) + H(\bar{x})(x-\bar{x}) = 0
+\nabla h(\bar{x}) = \nabla f(\bar{x}) + F(\bar{x})(x-\bar{x}) = 0
 $$</p>
 <p>$$
-(x-\bar{x}) = -H^{-1} \nabla f(\bar{x})
+(x-\bar{x}) = -F^{-1} \nabla f(\bar{x})
 $$</p>
 <p>Üstteki ifadeye $d$ diyebilirim, ve bu $d$ benim Newton yönüm olarak
 görülebilir, yön derken optimizasyon bağlamında minimuma giden yön. </p>
 <p>Bu bizi gayet basit 4 adımlık bir algoritmaya taşıyor,</p>
 <p>0) $x^0$ verildi, bu başlangıç noktası, $k = 0$ yap.</p>
-<p>1) $d^k = -H(x^k)^{-1} \nabla f(x^k)$. Eğer $d^k=0$ ise dur.</p>
+<p>1) $d^k = -F(x^k)^{-1} \nabla f(x^k)$. Eğer $d^k=0$ ise dur.</p>
 <p>2) $\alpha^k = 1$ adım boyu seç</p>
 <p>3) $x^{k+1} = x^k + \alpha^k d^k$, $k = k + 1$ yap, ve 1. adıma geri dön.</p>
 <p>Bu metodun önemli bir özelliğinin her adımda sadece bir lineer sistemi
@@ -96,20 +95,21 @@ daha akıllıca adım atılabilmesini sağlıyor. </p>
 <p>Metot Hessian'ın her adımda tersi alınabilir olduğunu farzediyor, bu her
 zaman doğru olmayabilir. O sebeple bunun doğru olduğu türden problemler ile
 uğraşacağız, ya da Hessian'ın tersi alınabilir olmasını sağlayan
-mekanizmaları göreceğiz. $H$'nin özünü bozmadan değiştirerek tersi
+mekanizmaları göreceğiz. $F$'nin özünü bozmadan değiştirerek tersi
 alınabilir olmasını sağlayan yöntemler var. </p>
 <p>Ayrıca hedef her adımda fonksiyonunu oluşturduğumda bu fonksiyonun azalma
 garantisi yok. Öyle ya akıllı bir algoritmanin her adımda hedef
 fonksiyonumu daha iyiye götürdüğümü düşünebilirdim, ama şu anda kadar
 gördüklerimiz ışığında, bunun garantisi yok. Bu konuya sonra değineceğiz. </p>
-<p>Bir diğer nokta 2. adımın çizgi arama ile genişletilebilmesi [atlandı]</p>
+<p>Bir diğer nokta 2. adımın çizgi arama ile genişletilebilmesi [bu konuya
+altta baska kaynaklardan deginiyoruz]</p>
 <p>NY'nin en çekici tarafı, eğer yakınsama (convergence) mümkün ise bu
 yakınsamanın çok hızlı bir şekilde olması, ki bu iyi. Bu konuya gelmeden
 metodun bazı ek özelliklerini görelim.</p>
 <p>Terminoloji: bir matrise SPD denir eger matris simetrik, pozitif kesin ise
 (simetric positive-definite). </p>
 <p>Teklif (Proposition) 1: </p>
-<p>Eğer $H(x)$ SPD ise $d \ne 0$, o zaman $d$ $\bar{x}$ noktasında bir iniş
+<p>Eğer $F(x)$ SPD ise $d \ne 0$, o zaman $d$ $\bar{x}$ noktasında bir iniş
 yönüne işaret eder. İniş yönü olması demek, eğer makul ufak bir adım
 çerçevesinde gidilen noktada $f$'in değerinin o an olduğumuz noktadan daha
 az olması demektir.</p>
@@ -142,47 +142,47 @@ $\alpha(\bar{x},\lambda d) \to 0$, $\lambda \to 0$ iken, her yeterince
 küçük $\lambda &gt; 0$ için $f(\bar{x} + \lambda d)-f(\bar{x}) &lt; 0$ olmalıdır,
 yani her hangi bir yönde atılan adım bir önceki $f$ değerinden bizi daha
 ufak bir $f$ değerine götürmelidir. </p>
-<p>Ana Teklif'e dönelim. Newton adımınıdaki SPD $H$ için $0 &lt; d^T \nabla f$
-olduğunu göstermemiz lazım (ki böylece iniş yönü olduğunü ispatlayabilelim,
+<p>Ana Teklif'e dönelim. Newton adımınıdaki SPD $F$ için $0 &lt; d^T \nabla f$
+olduğunu göstermemiz lazım (ki böylece iniş yönü olduğunu ispatlayabilelim,
 bir önceki teori),</p>
 <p>$$
-d = -H^{-1} \nabla f(\bar{x})
+d = -F^{-1} \nabla f(\bar{x})
 $$</p>
 <p>demiştik, her iki tarafı $\nabla f(x)$ ile çarpalım,</p>
 <p>$$
-d \nabla f(x) = -\nabla f(x) H^{-1} \nabla f(x) 
+d \nabla f(x) = -\nabla f(x) F^{-1} \nabla f(x) 
 $$</p>
-<p>Eşitliğin sağ tarafındaki ifade hangi şartlarda eksi olur? Eğer $H$ matrisi
+<p>Eşitliğin sağ tarafındaki ifade hangi şartlarda eksi olur? Eğer $F$ matrisi
 pozitif kesin ise değil mi? Genel matrislerden hatırlarsak, matris $A$ ve
 bir vektör için $v$ eğer $A$ pozitif kesin ise $v^TAv &gt; 0$. Daha önce
-$H$'nin pozitif kesin olduğunu söylemiştik, o zaman bir şekilde eğer $H$
-pozitif kesin olmasının sadece ve sadece $H$'nin tersinin pozitif kesin
+$F$'nin pozitif kesin olduğunu söylemiştik, o zaman bir şekilde eğer $F$
+pozitif kesin olmasının sadece ve sadece $F$'nin tersinin pozitif kesin
 olmasına bağlı olduğuna gösterebilirsem amacıma ulaşabilirim.</p>
-<p>Bunu yapmak aslında pek zor değil. Biliyorum ki $H(x)$ SPD. Simdi herhangi
+<p>Bunu yapmak aslında pek zor değil. Biliyorum ki $F(x)$ SPD. Simdi herhangi
 bir vektor $v$ icin </p>
 <p>$$
-0 &lt; v^T H(x)^{-1}v
+0 &lt; v^T F(x)^{-1}v
 $$</p>
-<p>ifadeyi şöyle genişletelim, $H(x)H(x)^{-1}$ eklemek hiçbir şeyi değiştirmez
+<p>ifadeyi şöyle genişletelim, $F(x)F(x)^{-1}$ eklemek hiçbir şeyi değiştirmez
 çünkü bu çarpım birim matristir, </p>
 <p>$$
-v^T H(x)^{-1}v = v^T H(x)^{-1} H(x)H(x)^{-1} v &gt; 0
+v^T F(x)^{-1}v = v^T F(x)^{-1} F(x)F(x)^{-1} v &gt; 0
 $$</p>
 <p>Genişlemiş ifadenin harfiyen pozitif olduğunu biliyorum, iki üstteki
 tanımdan. Ama şimdi üstteki ifadeye farklı bir şekilde bakarsak,</p>
 <p>$$
-v^T H(x)^{-1}v = \underbrace{v^TH(x)^{-1}} H(x) \underbrace{H(x)^{-1} v} &gt; 0
+v^T F(x)^{-1}v = \underbrace{v^TF(x)^{-1}} F(x) \underbrace{F(x)^{-1} v} &gt; 0
 $$</p>
 <p>İşaretlenen bölümlerin birer vektör olduğunu görebiliriz, bu durumda
 $v^TAv &gt; 0$ pozitif kesinlik formülü farklı bir $v$ için hala geçerlidir, o
-zaman ortadaki $A$, bu durumda $H(x)$ pozitif kesin olmalıdır. </p>
+zaman ortadaki $A$, bu durumda $F(x)$ pozitif kesin olmalıdır. </p>
 <p>Örnek 1</p>
 <p>$f(x) = 7x - \ln(x)$ olsun. O zaman $\nabla f(x) = 7 - \frac{1}{x}$ ve
-$H(x) = f"(x) = \frac{1}{x^2}$. Bu fonksiyonun özgün global minimumunun
+$F(x) = f"(x) = \frac{1}{x^2}$. Bu fonksiyonun özgün global minimumunun
 $x^* = 1/7 = 1.428..$ olduğunu kontrol etmek zor değil. $x$ noktasındaki
 Newton yönü</p>
 <p>$$
-d = -H(x)^{-1} \nabla f(x) = -\frac{f'(x)}{f"(x)} = 
+d = -F(x)^{-1} \nabla f(x) = -\frac{f'(x)}{f"(x)} = 
 -x^2 \left( 7 - \frac{1}{x}  \right)=
 x - 7x^2
 $$</p>
@@ -246,7 +246,7 @@ $(1/3,1/3)$. Bakalım bu değeri bulabilecek miyiz?</p>
 \end{array}\right]
 $$</p>
 <p>$$
-H(x) = 
+F(x) = 
 \left[\begin{array}{rr}
 (\frac{1}{1-x_1-x_2})^2 - (\frac{1}{x_1})^2 &amp; (\frac{1}{1-x_1-x_2} )^2 \\
 (\frac{1}{1-x_1-x_2} )^2 &amp; (\frac{1}{1-x_1-x_2})^2 - (\frac{1}{x_2})^2
@@ -260,14 +260,14 @@ def calculate_newton_ex2(x):
     for i in range(8):
         arr.append(x)
         x1,x2 = x[0],x[1]    
-        H = [[(1.0/(1.0-x1-x2))**2 + (1.0/x1)**2.0, (1.0/(1.0-x1-x2))**2.0],
+        F = [[(1.0/(1.0-x1-x2))**2 + (1.0/x1)**2.0, (1.0/(1.0-x1-x2))**2.0],
              [(1.0/(1.0-x1-x2))**2, (1.0/(1.0-x1-x2))**2.0 + (1.0/x2)**2.0]]
-        H = np.array(H)
+        F = np.array(F)
 
         Df = [[1.0/(1.0-x1-x2) - (1.0/x1)], [1.0/(1.0-x1-x2)-(1.0/x2)]]
         Df = np.array(Df)
 
-        d = np.dot(-lin.inv(H),Df)
+        d = np.dot(-lin.inv(F),Df)
         x = x + d.flatten()
 
     return np.array(arr)
@@ -287,22 +287,22 @@ print (res)
 </code></pre>
 
 <p>[diğer yakınsama konusu atlandı]</p>
-<p>Dikkat edilirse şimdiye kadar dişbükeylik (convexity) farzını yapmadık,
+<p>Dikkat edilirse şimdiye kadar dışbükeylik (convexity) farzını yapmadık,
 sadece Hessian matrinin tersi alınabilir olduğunu farzettik. </p>
 <p>Devam edersek, özyineli şekilde güncelememizi yaparken Hessian'ın eşsiz
 olduğu bazı noktalara gelmiş olabiliriz. Bu olduğunda çoğu yazılım bu
 durumu yakalayacak şekilde yazılmıştır, "yeterince eşsiz" Hessian
 matrislere önceden tanımlı ufak bir $\epsilon$ çarpı birim matrisi kadar
 bir ekleme yaparlar, böylece tersin alınamama durumundan kurtulunmuş olur. 
-Bu metotlara Newton-ımsı (quasi-Newton) ismi de veriliyor. </p>
-<p>Eskiden Newton-ımsı metotlar koca bir araştırma sahasıydı. Benim bildiğim
+Bu metotlara Newton-umsu (quasi-Newton) ismi de veriliyor. </p>
+<p>Eskiden Newton-umsu metotlar koca bir araştırma sahasıydı. Benim bildiğim
 kadarıyla tarihte 15 sene kadar geriye gidersek, üstteki görüldüğü gibi her
 adımda büyük bir denklem sistemi çözmek istemiyoruz, $x$ noktasındayım,
 Hessian işliyorum, Newton yönümü buluyorum, adım atıyorum, yeni bir
-noktadayım. Newton-ımsı metotlarda bu yeni noktada sil baştan bir Hessian
+noktadayım. Newton-umsu metotlarda bu yeni noktada sil baştan bir Hessian
 işlemek yerine bir önceki adımdaki işlenen Hessian sonuçlarını, bir
 şekilde, az ek işlem yaparak sonraki adımda kullanmaya uğraşıyorlar.
-Aslında pek çok farklı Newton-ımsı metot var, hepsi farklı şekilde Newton
+Aslında pek çok farklı Newton-umsu metot var, hepsi farklı şekilde Newton
 metotundan farklı (!)</p>
 <p>[atlandı]</p>
 <p>Not: Hocanın söylediklerine ek [4, pg. 522]'de belirtildiği gibi Hessian'ın
@@ -310,14 +310,53 @@ silbaştan yaratılması yerine güncellenmesi aslında paradoksal bir şekilde
 daha iyi optimizasyon yapılmasını sağlayabiliyor. Newton yönünün iniş yönü
 olması için $H$ pozitif kesin olmalıdır, fakat minimum noktasından uzaktaki
 yerlerde bunun garantisi yoktur. Yani gerçek Hessian ile gerçek Newton
-adımını atmak bizi fonksiyonun arttığı yerlere götürebilir. Newton-ımsı
+adımını atmak bizi fonksiyonun arttığı yerlere götürebilir. Newton-umsu
 metotların esprisi pozitif kesin bir şekilde başlamak ve inişe giderken
 azar azar $H$'yi yaklaşıksal şekilde öyle güncellemek ki $H$ hep pozitif
 kesin kalsın.</p>
 <p>[teori 1.1 ispatı atlandı]</p>
+<p>Ekler</p>
+<p>Newton metodunun eğer başlangıç noktası nihai minimuma yakınsa iyi
+yakınsaklık özellikleri var. Fakat eğer sonuca uzaktan bir yerden
+başlamışsak yakınsaklık garantisi yok. Geldiğimiz yeni noktada Hessian
+eşsiz olabilir. Bu sebeple metot sürekli iniş özelliğine (descent property)
+sahip olmayacaktır, yani $f(x_{x+1}) \ge f(x_k)$ olabilir, ve yakınsaklık
+garantisi bu durumda kaybolur [5, sf. 167]. Fakat bu algoritmayı biraz
+değiştirerek sürekli iniş özelliğine sahip olmasını sağlayabiliriz. </p>
+<p>Teori</p>
+<p>$x_1,x_2,...$ ya da kısaca ${x_k}$ Newton'un metodu tarafından üretilmiş
+$f(x)$ hedef fonksiyonunu minimize etme amaçlı bir çözüm dizisi olsun. Eğer
+Hessian $F(x)_k$ pozitif kesin ise ve gradyan $g_k = \nabla f(x_k) \ne 0$
+ise, o zaman çözüm yönü</p>
+<p>$$
+d_k = -F(x_k)^{-1} g_k = x_{k+1} - x_k
+$$</p>
+<p>bir iniş yönüdür, ki bu ifadeyle kastedilen bir $\bar{\alpha} &gt; 0$
+kesinlikle vardır öyle ki her $\alpha \in  (0,\bar{\alpha})$ için </p>
+<p>$$
+f(x_k + \alpha d_k) &lt; f(x_k)
+$$</p>
+<p>ifadesi doğrudur. </p>
+<p>İspat</p>
+<p>$\phi(\alpha)$ diye yeni bir eşitlik yaratalım,</p>
+<p>$$
+\phi(\alpha) = f(x_k + \alpha d_k)
+$$</p>
+<p>Üstteki formülün türevini alalım. Zincirleme Kuralını kullanarak,</p>
+<p>$$
+\phi(\alpha)' = f(x_k + \alpha d_k) d_k
+$$</p>
+<p>elde ederiz. Şimdi $\phi(0)'$ ne oluyor ona bakalım,</p>
+<p>$$
+\phi(0)' = \nabla f(x_k) d_k = -g_k^T F(x_k) ^{-1} g_k &lt; 0
+$$</p>
+<p>$-g_k^T F(x_k) ^{-1} g_k$ ifadesinin sıfırdan küçük olduğunu biliyoruz
+$F(x_k) ^{-1}$ pozitif kesin, ve $g_k \ne 0$. </p>
+<p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
 <p>[2] Freund, <em>MIT OCW Nonlinear Programming Lecture</em>,
     <a href="https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/">https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/</a></p>
 <p>[3] Miller, <em>Numerical Analysis for Scientists and Engineers</em></p>
 <p>[4] Flannery, <em>Numerical Recipes, 3rd Edition</em></p>
+<p>[5] Zak, <em>An Introduction to Optimization, 4th Edition</em></p>
