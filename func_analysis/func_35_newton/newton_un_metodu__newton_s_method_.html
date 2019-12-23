@@ -351,8 +351,34 @@ $$</p>
 \phi(0)' = \nabla f(x_k) d_k = -g_k^T F(x_k) ^{-1} g_k &lt; 0
 $$</p>
 <p>$-g_k^T F(x_k) ^{-1} g_k$ ifadesinin sıfırdan küçük olduğunu biliyoruz
-$F(x_k) ^{-1}$ pozitif kesin, ve $g_k \ne 0$. </p>
-<p>[devam edecek]</p>
+çünkü $F(x_k) ^{-1}$ pozitif kesin, ve $g_k \ne 0$. O zaman diyebiliriz ki 
+bir $\bar{\alpha} &gt; 0$ mevcuttur öyle ki her $\alpha \in (0,\bar{\alpha})$
+için $\phi(\alpha) &lt; \phi(0)$. Bu da demektir ki her $\alpha \in
+(0,\bar{\alpha})$ için</p>
+<p>$$
+\phi(\alpha) &lt; \phi(0) =  f(x_k + \alpha x_k) &lt; f(x_k)
+$$</p>
+<p>İspat tamamlandı.</p>
+<p>Üstteki gördüklerimiz $d_k$ yönünde bir arama yaparsak, muhakkak bir
+minimum bulacağımızı söylüyor. Eğer her geldiğimiz noktada, bir sonraki
+gidiş noktasını hesap için bu minimum yeri ararsak, sürekli iniş özelliğine
+kavuşmuş olacağız, ve böylece Newton metodunu kurtarmış olacağız. Demek ki
+Newton metotunu şu şekilde değiştirmemiz gerekiyor, </p>
+<p>$$
+x_{k+1} = x_k - \alpha_k F(x_k)^{-1} g_k
+$$</p>
+<p>ki </p>
+<p>$$
+\alpha_k = \arg\min_{\alpha \ge 0} f(x_k -\alpha F(x_k)^{-1} g_k)
+$$</p>
+<p>Yani döngünün her adımında $-F(x_k)^{-1} g_k$ yönünde bir arama
+gerçekleştiriyoruz, o yöndeki en fazla azalmayı buluyoruz, ve $\alpha_k$
+adımını o büyüklükte seçiyoruz. Ve üstteki teori sayesinde $g_k \ne 0$
+olduğu sürece </p>
+<p>$$
+f(x_{k+1}) &lt; f(x_k)
+$$</p>
+<p>sürekli iniş özelliğinin mevcut olduğundan emin oluyoruz. </p>
 <p>Kaynaklar </p>
 <p>[1] Bayramlı, Çok Boyutlu Calculus, <em>Vektör Calculus, Kurallar, Matris Türevleri</em></p>
 <p>[2] Freund, <em>MIT OCW Nonlinear Programming Lecture</em>,
