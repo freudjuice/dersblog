@@ -1,25 +1,12 @@
 from math import copysign
 import numpy as np
 import itertools, time
-import scipy.sparse as sps
-from scipy.linalg import get_blas_funcs
-import scipy.sparse.linalg
 from numpy.linalg import norm
 from warnings import warn
-from scipy.sparse import (bmat, csc_matrix, eye, issparse)
-from scipy.optimize._numdiff import approx_derivative
-from scipy.optimize import (Bounds,
-                            NonlinearConstraint,
-                            LinearConstraint, OptimizeResult)
-
-from scipy.sparse.linalg import LinearOperator
-
-TERMINATION_MESSAGES = {
-    0: "The maximum number of function evaluations is exceeded.",
-    1: "`gtol` termination condition is satisfied.",
-    2: "`xtol` termination condition is satisfied.",
-    3: "`callback` function requested termination"
-}
+from scipy.linalg import get_blas_funcs
+from util import LinearOperator, approx_derivative, OptimizeResult
+import scipy.sparse as sps
+import scipy.sparse.linalg
 
 class BFGS:
     _syr = get_blas_funcs('syr', dtype='d')  # Symmetric rank 1 update
@@ -43,8 +30,6 @@ class BFGS:
                              "or 'damp_update'.")
 
         self.init_scale = init_scale
-        # Until initialize is called we can't really use the class,
-        # so it makes sense to set everything to None.
         self.first_iteration = None
         self.approx_type = None
         self.B = None
@@ -64,44 +49,12 @@ class BFGS:
             self.H = np.eye(n, dtype=float)
 
     def _update_inverse_hessian(self, ys, Hy, yHy, s):
-        """Update the inverse Hessian matrix.
-
-        BFGS update using the formula:
-
-            ``H <- H + ((H*y).T*y + s.T*y)/(s.T*y)^2 * (s*s.T)
-                     - 1/(s.T*y) * ((H*y)*s.T + s*(H*y).T)``
-
-        where ``s = delta_x`` and ``y = delta_grad``. This formula is
-        equivalent to (6.17) in [1]_ written in a more efficient way
-        for implementation.
-
-        References
-        ----------
-        .. [1] Nocedal, Jorge, and Stephen J. Wright. "Numerical optimization"
-               Second Edition (2006).
-        """
         self.H = self._syr2(-1.0 / ys, s, Hy, a=self.H)
         self.H = self._syr((ys+yHy)/ys**2, s, a=self.H)
 
     def _update_hessian(self, ys, Bs, sBs, y):
-        """Update the Hessian matrix.
-
-        BFGS update using the formula:
-
-            ``B <- B - (B*s)*(B*s).T/s.T*(B*s) + y*y^T/s.T*y``
-
-        where ``s`` is short for ``delta_x`` and ``y`` is short
-        for ``delta_grad``. Formula (6.19) in [1]_.
-
-        References
-        ----------
-        .. [1] Nocedal, Jorge, and Stephen J. Wright. "Numerical optimization"
-               Second Edition (2006).
-        """
         self.B = self._syr(1.0 / ys, y, a=self.B)
         self.B = self._syr(-1.0 / sBs, Bs, a=self.B)
-
-        
             
     def _auto_scale(self, delta_x, delta_grad):
         s_norm2 = np.dot(delta_x, delta_x)
@@ -122,33 +75,20 @@ class BFGS:
         else:
             w = delta_grad
             z = delta_x
-        # Do some common operations
         wz = np.dot(w, z)
         Mw = self.dot(w)
         wMw = Mw.dot(w)
-        # Guarantee that wMw > 0 by reinitializing matrix.
-        # While this is always true in exact arithmetics,
-        # indefinite matrix may appear due to roundoff errors.
         if wMw <= 0.0:
             scale = self._auto_scale(delta_x, delta_grad)
-            # Reinitialize matrix
             if self.approx_type == 'hess':
                 self.B = scale * np.eye(self.n, dtype=float)
             else:
                 self.H = scale * np.eye(self.n, dtype=float)
-            # Do common operations for new matrix
             Mw = self.dot(w)
             wMw = Mw.dot(w)
-        # Check if curvature condition is violated
         if wz <= self.min_curvature * wMw:
-            # If the option 'skip_update' is set
-            # we just skip the update when the condion
-            # is violated.
             if self.exception_strategy == 'skip_update':
                 return
-            # If the option 'damp_update' is set we
-            # interpolate between the actual BFGS
-            # result and the unmodified matrix.
             elif self.exception_strategy == 'damp_update':
                 update_factor = (1-self.min_curvature) / (1 - wz/wMw)
                 z = update_factor*z + (1-update_factor)*Mw
@@ -164,19 +104,13 @@ class BFGS:
         if np.all(delta_x == 0.0):
             return
         if np.all(delta_grad == 0.0):
-            warn('delta_grad == 0.0. Check if the approximated '
-                 'function is linear. If the function is linear '
-                 'better results can be obtained by defining the '
-                 'Hessian as zero instead of using quasi-Newton '
-                 'approximations.', UserWarning)
+            warn('delta_grad == 0.0', UserWarning)
             return
         if self.first_iteration:
-            # Get user specific scale
             if self.init_scale == "auto":
                 scale = self._auto_scale(delta_x, delta_grad)
             else:
                 scale = float(self.init_scale)
-            # Scale initial matrix with ``scale * np.eye(n)``
             if self.approx_type == 'hess':
                 self.B *= scale
             else:
@@ -198,7 +132,42 @@ class BFGS:
         li = np.tril_indices_from(M, k=-1)
         M[li] = M.T[li]
         return M
-           
+
+class NonlinearConstraint(object):
+    def __init__(self, fun, lb, ub, jac='2-point', hess=BFGS(),
+                 keep_feasible=False, finite_diff_rel_step=None,
+                 finite_diff_jac_sparsity=None):
+        self.fun = fun
+        self.lb = lb
+        self.ub = ub
+        self.finite_diff_rel_step = finite_diff_rel_step
+        self.finite_diff_jac_sparsity = finite_diff_jac_sparsity
+        self.jac = jac
+        self.hess = hess
+        self.keep_feasible = keep_feasible
+
+
+class LinearConstraint(object):
+    def __init__(self, A, lb, ub, keep_feasible=False):
+        self.A = A
+        self.lb = lb
+        self.ub = ub
+        self.keep_feasible = keep_feasible
+
+
+
+class Bounds(object):
+    def __init__(self, lb, ub, keep_feasible=False):
+        self.lb = lb
+        self.ub = ub
+        self.keep_feasible = keep_feasible
+
+    def __repr__(self):
+        if np.any(self.keep_feasible):
+            return "{}({!r}, {!r}, keep_feasible={!r})".format(type(self).__name__, self.lb, self.ub, self.keep_feasible)
+        else:
+            return "{}({!r}, {!r})".format(type(self).__name__, self.lb, self.ub)
+    
 class CanonicalConstraint(object):
 
     def __init__(self, n_eq, n_ineq, fun, jac, hess, keep_feasible):
@@ -449,15 +418,7 @@ class ScalarFunction(object):
         self._update_fun_impl = update_fun
         self._update_fun()
 
-        if callable(grad):
-            def grad_wrapped(x):
-                self.ngev += 1
-                return np.atleast_1d(grad(x, *args))
-
-            def update_grad():
-                self.g = grad_wrapped(self.x)
-
-        elif grad in FD_METHODS:
+        if grad in FD_METHODS:
             def update_grad():
                 self._update_fun()
                 self.g = approx_derivative(fun_wrapped, self.x, f0=self.f,
@@ -466,71 +427,29 @@ class ScalarFunction(object):
         self._update_grad_impl = update_grad
         self._update_grad()
 
-        # Hessian Evaluation
-        if callable(hess):
-            self.H = hess(x0, *args)
-            self.H_updated = True
-            self.nhev += 1
+        self.H = hess
+        self.H.initialize(self.n, 'hess')
+        self.H_updated = True
+        self.x_prev = None
+        self.g_prev = None
 
-            if sps.issparse(self.H):
-                def hess_wrapped(x):
-                    self.nhev += 1
-                    return sps.csr_matrix(hess(x, *args))
-                self.H = sps.csr_matrix(self.H)
-
-            elif isinstance(self.H, LinearOperator):
-                def hess_wrapped(x):
-                    self.nhev += 1
-                    return hess(x, *args)
-
-            else:
-                def hess_wrapped(x):
-                    self.nhev += 1
-                    return np.atleast_2d(np.asarray(hess(x, *args)))
-                self.H = np.atleast_2d(np.asarray(self.H))
-
-            def update_hess():
-                self.H = hess_wrapped(self.x)
-
-        elif hess in FD_METHODS:
-            def update_hess():
-                self._update_grad()
-                self.H = approx_derivative(grad_wrapped, self.x, f0=self.g,
-                                           **finite_diff_options)
-                return self.H
-
-            update_hess()
-            self.H_updated = True
-        elif isinstance(hess, BFGS):
-            self.H = hess
-            self.H.initialize(self.n, 'hess')
-            self.H_updated = True
-            self.x_prev = None
-            self.g_prev = None
-
-            def update_hess():
-                self._update_grad()
-                self.H.update(self.x - self.x_prev, self.g - self.g_prev)
+        def update_hess():
+            self._update_grad()
+            self.H.update(self.x - self.x_prev, self.g - self.g_prev)
 
         self._update_hess_impl = update_hess
 
-        if isinstance(hess, BFGS):
-            def update_x(x):
-                self._update_grad()
-                self.x_prev = self.x
-                self.g_prev = self.g
+        def update_x(x):
+            self._update_grad()
+            self.x_prev = self.x
+            self.g_prev = self.g
 
-                self.x = np.atleast_1d(x).astype(float)
-                self.f_updated = False
-                self.g_updated = False
-                self.H_updated = False
-                self._update_hess()
-        else:
-            def update_x(x):
-                self.x = np.atleast_1d(x).astype(float)
-                self.f_updated = False
-                self.g_updated = False
-                self.H_updated = False
+            self.x = np.atleast_1d(x).astype(float)
+            self.f_updated = False
+            self.g_updated = False
+            self.H_updated = False
+            self._update_hess()
+
         self._update_x_impl = update_x
 
     def _update_fun(self):
@@ -565,8 +484,6 @@ class ScalarFunction(object):
             self._update_x_impl(x)
         self._update_hess()
         return self.H
-
-
 
 class BarrierSubproblem:
     def __init__(self, x0, s0, fun, grad, lagr_hess, n_vars, n_ineq, n_eq,
@@ -849,7 +766,7 @@ def strict_bounds(lb, ub, keep_feasible, n_vars):
 
 def orthogonality(A, g):
     norm_g = np.linalg.norm(g)
-    if issparse(A):
+    if sps.issparse(A):
         norm_A = scipy.sparse.linalg.norm(A, ord='fro')
     else:
         norm_A = np.linalg.norm(A, ord='fro')
@@ -865,7 +782,7 @@ def orthogonality(A, g):
         
 def augmented_system_projections(A, m, n, orth_tol, max_refin, tol):
 
-    K = csc_matrix(bmat([[eye(n), A.T], [A, None]]))
+    K = sps.csc_matrix(sps.bmat([[sps.eye(n), A.T], [A, None]]))
     try:
         solve = scipy.sparse.linalg.factorized(K)
     except RuntimeError:
@@ -914,9 +831,9 @@ def projections(A, method=None, orth_tol=1e-12, max_refin=3, tol=1e-15):
     m, n = np.shape(A)
 
     if m*n == 0:
-        A = csc_matrix(A)
+        A = sps.csc_matrix(A)
 
-    if issparse(A):
+    if sps.issparse(A):
         if method is None:
             method = "AugmentedSystem"
         if method not in ("NormalEquation", "AugmentedSystem"):
@@ -1530,7 +1447,7 @@ def _minimize_trustregion_constr(fun, x0, args, grad,
         factorization_method)
 
     result.success = True if result.status in (1, 2) else False
-    result.message = TERMINATION_MESSAGES[result.status]
+    result.message = 'done'
     result.niter = result.nit
 
     return result
