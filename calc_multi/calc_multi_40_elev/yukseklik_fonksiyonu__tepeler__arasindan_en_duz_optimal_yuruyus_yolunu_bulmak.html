@@ -47,10 +47,10 @@ olacağını biliyoruz. 1000 metrelik bir tepeye çıkıp onun üzerinde düz
 yürümek habire 1000 metreyi inmek çıkmaktan çok daha rahat.</p>
 <p>Şu şekilde bir bedel belki daha iyi; Bir eğriyi düşünelim, onun $z$
 eksenindeki yansıması da bir eğridir, $x,y$ düzlemindeki yansıması bir
-başka eğri. Bu eğrilerin <em>uzunglunu</em> hesaplarsak ve dikey yöndeki
+başka eğri. Bu eğrilerin <em>uzunluğunu</em> hesaplarsak ve dikey yöndeki
 uzunluğu yatay olan uzunluğu farklı ağırlıklarla çarpıp toplarsak bu bir
 bedeli temsil eder. Ağırlık dikey/yatay uzunluklar için 5/1 oranında
-olabilir, o zaman yatay yöndeki bir uzunluk (katedilen yol) dikeye göre 5
+olabilir, o zaman yatay yöndeki bir uzunluk / katedilen yol dikeye göre 5
 kat daha tercih edilir olur.</p>
 <p>Önce yükseklikleri ve eğrileri iki örnek üzerinde görelim. Bir rasgele
 tepe, ve bir rasgele yol çiziyoruz,</p>
@@ -139,12 +139,14 @@ I_h = \int_{t=0}^{t=1} \sqrt{
 \mathrm{d} t
 $$</p>
 <p>Formülde görülen $\mathrm{d} z/\mathrm{d} t$, $\mathrm{d} x/\mathrm{d} t$ ve $\mathrm{d} y/\mathrm{d} t$, parametrik
-eğri üzerinde alınacak tabii ki. Problem çözümü açısından $\mathrm{d} z/\mathrm{d} t$
-hesabı külfetli olabilir, üstteki örnekteki yükseklik fonksiyonu basit, ama
-daha çetrefil durumlarda da kullanabileceğimiz bir yaklaşım daha iyi
-olur. Biz bu türevi hesapsal yapacağız.</p>
-<p>Ama yatay türevler, bunların karesi hesaplarını sembolik olarak
-yapabiliriz, çünkü bu formül polinom, formu şimdiden belli.</p>
+eğri üzerinden alınacak tabii ki. Problem çözümü açısından $\mathrm{d} z/\mathrm{d} t$
+hesabı külfetli olabilir, çünkü $z = f(x,y)$ yükşelik
+fonksiyonundur. Üstteki örnekteki yükseklik fonksiyonu basit, ama daha
+çetrefil durumlarda da kullanabileceğimiz bir yaklaşım daha iyi olur. Bu
+sebeple $\mathrm{d} z/\mathrm{d} t$ türevini hesapsal yapacağız.</p>
+<p>Ama yatay türevler $\mathrm{d} x/\mathrm{d} t$ ve $\mathrm{d} y/\mathrm{d} t$ için, türevi almak, kare,
+toplam, karekök hesaplarını sembolik olarak yapabiliriz, çünkü bu formül
+polinom, formu şimdiden belli.</p>
 <pre><code class="python">import sympy
 
 vars = 't a0 a1 a2 a3 b0 b1 b2 b3 gamma x y'
@@ -166,7 +168,11 @@ b1 + 2*b2*t + 3*b3*t**2 - 84.0*t**3
 sqrt(b1 + 2*b2*t + 3*b3*t**2 - 84.0*t**3 + (a1 + 2*a2*t + 3*a3*t**2 - 57.2*t**3)**2)
 </code></pre>
 
-<p>Entegrallerin hesabına gelelim, bu hesaplar da sayısal yapılacak. </p>
+<p>Entegraller $I_v,I_h$ hesapları da sayısal yapılacak.</p>
+<p>Hepsini bir araya koyarsak, uzunluklar (entegraller) üzerinden bir bedel
+elde ediyoruz, ve bu bedeli minimize edecek eğri parametrelerini bulmak
+için ise optimizasyon işletiyoruz. Optimizasyon kısıtlamalar içerecek, eğri
+parametrelerinin -5/+5 arasında olmasını istiyoruz mesela.</p>
 <pre><code class="python">from scipy.optimize import minimize, Bounds, SR1, BFGS
 import numpy as np
 import matplotlib.pyplot as plt
