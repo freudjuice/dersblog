@@ -1,0 +1,30 @@
+<h1>Tam Varyasyon ile Gürültü Çıkartmak (Total Variation Denoising)</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tam Varyasyon ile Gürültü Çıkartmak (Total Variation Denoising)
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>Kaynaklar</p>
+<p>[1] <em>ROF and TV-L1 denoising with Primal-Dual algorithm</em>, 
+    \url{https://github.com/znah/notebooks/blob/master/TV_denoise.ipynb}</p>
+<p>[2] <em>An introduction to continuous optimization for imaging</em>, 
+    <a href="https://hal.archives-ouvertes.fr/hal-01346507/document">https://hal.archives-ouvertes.fr/hal-01346507/document</a></p>
