@@ -23,11 +23,41 @@
 </script>
 </head>
 
-<pre><code class="python">f = 'xcor.mat'
-import scipy.io as sio
-xcor = sio.loadmat(f)
-xcor = xcor['xcor']
-xcor = np.reshape(xcor,(len(xcor)))
+<p>Bir sinyalden, görüntüden gürültü çıkartmak için optimizasyon
+kullanılabilir. Orijinal sinyal $x$'in $y = B x + n$ ile bir $n$ gürültüsü
+eklenerek bozulduğu (corrupted) farzedilebilir ($B$ bir değişim matrisidir,
+tutarlı, bilinen değişimleri temsil eder) biz eldeki $y$ ile $x$'i
+kestirmeye uğraşırız. </p>
+<p>Literatürde iyi bilindiği üzere $x$'i $y$'den tahmin etmeye uğraşmak kötü
+konumlanmış (ill-posed) bir sorudur. Çözüm olabilecek pek çok $x$
+bulunabilir, bu sebeple arama alanını bir şekilde daraltmak gerekir, ve
+bunun için bir tür düzenlileştirme / regülarizasyon (regülarization)
+kullanılması şarttır [3].  </p>
+<p>Görüntüden gürültü çıkartma alanında iyi bilinen bir yöntem problemi iki
+hedefli bir halde konumlandırmak, </p>
+<p>$$
+|| x-x_{cor}||_2, \qquad \phi_{tv} (x) = \sum_{i=1}^{n-1} | x_{i+1} - x_i |
+$$</p>
+<p>Burada $x_{cor} \in \mathbb{R}^n$ bize verilen bozulmuş sinyal,
+$x \in \mathbb{R}^n$ ise bizim bulmak istediğimiz, gürültüsü çıkartılmış
+sinyal, $\phi_{tv}$ ise tam varyasyon fonksiyonu. Ustteki iki hedefi
+minimize etmek istiyoruz, boylece ayni anda hem sinyalin kendi icindeki
+varyasyonu azaltan hem de bozulmus sinyale mumkun oldugunca yakin duran bir
+gercek $x$ elde edebilelim.</p>
+<p>Her iki hedef fonksiyonunu birlestirip tek bir fonksiyon haline getirip onu
+kisitlanmamis (unconstrained) bir optimizasyon problemi olarak cozebiliriz,</p>
+<p>$$
+|| x-x_{cor}||_2 + \mu \phi_{tv} 
+$$</p>
+<p>ki $\mu$ bizim sececegimiz bir parametre olabilir. Cozum icin mesela Newton
+metodunu kullanabiliriz, fakat tek bir problem var, Newton ve pek çok diğer
+optimizasyon metotu için türev almak gerekli, fakat $\phi_{tv}$'deki
+L1-norm'un (tek boyutta mutlak değer fonksiyonu) $x=0$'da türevi yoktur. Bu
+durumda</p>
+<p>Tam varyasyon (total variation)</p>
+<pre><code class="python">import pandas as pd
+df = pd.read_csv('xcor.csv',header=None)
+xcor = np.reshape(np.array(df[0]), (5000,1))
 plt.plot(range(len(xcor)), xcor)
 plt.savefig('func_60_tvd_01.png')
 </code></pre>
@@ -47,8 +77,8 @@ def phi_atv(x):
 def f(u):
    return np.sum(np.power(u-xcor, 2)) + mu*phi_atv(u)
 
-print (phi_tv(xcor))
-print (phi_atv(xcor))
+print (phi_tv(xcor[:,0]))
+print (phi_atv(xcor[:,0]))
 </code></pre>
 
 <pre><code>155.63025715999999
@@ -137,3 +167,5 @@ plt.savefig('func_60_tvd_03.png')
     \url{https://github.com/znah/notebooks/blob/master/TV_denoise.ipynb}</p>
 <p>[2] <em>An introduction to continuous optimization for imaging</em>, 
     <a href="https://hal.archives-ouvertes.fr/hal-01346507/document">https://hal.archives-ouvertes.fr/hal-01346507/document</a></p>
+<p>[3] Afonso, <em>Fast Image Recovery Using Variable Splitting and Constrained Optimization</em>,
+    \url{http://www.lx.it.pt/~mtf/Afonso_BioucasDias_Figueiredo_twocolumn_v7.pdf}</p>
