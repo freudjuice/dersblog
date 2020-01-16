@@ -123,8 +123,18 @@ plt.savefig('func_60_tvd_02.png')
 <p>Sonuç fena olmadı. Fakat üstteki yaklaşımın hesabı uzun sürecektir, eğer
 eldeki problem hakkında bazı ek şeyler biliyorsak, bu bilgileri dahil
 ederek elde edilen çözüm daha hızlı olabilir. Mesela analitik olarak
-türevler Jacobian ve Hessian bulunabilir, ayrıca problemdeki matrislerde
-muhtemel bir seyreklikten (sparsity) faydalanılabilir.</p>
+türevler Jacobian ve Hessian bulunabilir, Newton adımı elle kodlanabilir,
+ayrıca problemdeki matrislerde muhtemel bir seyreklikten (sparsity)
+faydalanılabilir.</p>
+<p>Hedef fonksiyonu $\psi(x)$ diyelim, icin birinci ve ikinci turev, </p>
+<p>$$
+\nabla \psi(x) = 2 (x-x_{cor}) + \mu \nabla \phi_{atv}(x), \qquad
+\nabla^2 \psi(x) = 2 I + \mu \nabla^2 \phi_{atv} (x)
+$$</p>
+<p>Zincirleme Kuralı uygulandı tabii, ve şimdi $\phi_{atv}$ üzerindeki
+türevleri bulmak gerekiyor. Sorun değil, üstteki tüm yaklaşıklamayı bunun
+için yapmıştık zaten. </p>
+<p>[devam edecek]</p>
 <pre><code class="python">import pandas as pd
 import scipy.sparse as sps
 import scipy.sparse.linalg as slin
