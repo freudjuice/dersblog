@@ -32,18 +32,18 @@ tahmin etmeye uğraşmak kötü konumlanmış (ill-posed) bir sorudur. Çözüm
 olabilecek pek çok $x$ bulunabilir, bu sebeple arama alanını bir şekilde
 daraltmak gerekir, ve bunun için bir tür düzenlileştirme / regülarizasyon
 (regularization) kullanılması şarttır [3].</p>
-<p>Bir sayisal resimden gürültü çıkartma alanında iyi bilinen bir yöntem,
+<p>Bir sayısal resimden gürültü çıkartma alanında iyi bilinen bir yöntem
 problemi çift hedefli bir halde konumlandırmak [4],</p>
 <p>$$
 || x-x_{cor}||_2, \qquad \phi_{tv} (x) = \sum_{i=1}^{n-1} | x_{i+1} - x_i | 
 \qquad (1)
 $$</p>
 <p>Burada $x_{cor} \in \mathbb{R}^n$ bize verilen bozulmuş sinyal,
-$x \in \mathbb{R}^n$ ise bizim bulmak istediğimiz, gürültüsü çıkartılmış
-sinyal, $\phi_{tv}$ ise tam varyasyon fonksiyonu. Üstteki iki hedefi
-minimize etmek istiyoruz, böylece aynı anda hem sinyalin kendi içindeki
-varyasyonu azaltan hem de bozulmuş sinyale mümkün olduğunca yakın duran bir
-gerçek $x$ elde edebilelim.</p>
+$x \in \mathbb{R}^n$ ise bulmak istediğimiz, gürültüsü çıkartılmış sinyal,
+$\phi_{tv}$ ise tam varyasyon fonksiyonu. Üstteki iki hedefi minimize etmek
+istiyoruz, böylece aynı anda hem sinyalin kendi içindeki varyasyonu azaltan
+hem de bozulmuş sinyale mümkün olduğunca yakın duran bir gerçek $x$ elde
+edebilelim.</p>
 <p>Her iki hedef fonksiyonunu birleştirip tek bir fonksiyon haline getirip onu
 kısıtlanmamış (unconstrained) bir optimizasyon problemi olarak çözebiliriz,</p>
 <p>$$
@@ -62,29 +62,27 @@ sağlayabiliriz. Bu yeni fonksiyona $\phi_{atv}$ diyelim,</p>
 \left( \sqrt{ \epsilon^2 + (x_{i+1})-x_i  } - \epsilon \right)
 $$</p>
 <p>ki $\epsilon &gt; 0$ yaklaşıklamanın seviyesini ayarlıyor. Bu fonksiyonun iyi
-bir yaklaşıklama olduğunu görmek zor değil, tabii deneyerek görelim,</p>
+bir yaklaşıklama olduğunu görmek zor değil, toplam içindeki kısmı deneyerek
+görelim,</p>
 <pre><code class="python">import numpy as np
 
 eps = 1e-6
 mu = 50.0
 
-def phi_tv(x):
+def norm_tv(x):
    return np.sum(np.abs(np.diff(x)))
 
-def phi_atv(x):
+def norm_atv(x):
    return np.sum(np.sqrt(eps + np.power(np.diff(x),2)) - eps)
-
-def f(u):
-   return np.sum(np.power(u-xcor, 2)) + mu*phi_atv(u)
 
 xcor = np.random.randn(1000)
 
-print (phi_tv(xcor))
-print (phi_atv(xcor))
+print (norm_tv(xcor))
+print (norm_atv(xcor))
 </code></pre>
 
-<pre><code>1037.4372101629049
-1037.438996069622
+<pre><code>1103.2561038302395
+1103.2571969067808
 </code></pre>
 
 <p>Üstteki fonksiyonun iki kez türevi alınabilir. Şimdi analitik şekilde devam
@@ -104,6 +102,9 @@ plt.savefig('func_60_tvd_01.png')
 print (f(u0))
 
 from scipy.optimize import minimize, Bounds, SR1, BFGS
+
+def f(u):
+   return np.sum(np.power(u-xcor, 2)) + mu*norm_atv(u)
 
 opts = {'maxiter': 400, 'verbose': 2}
 
