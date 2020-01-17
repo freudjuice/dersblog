@@ -142,7 +142,47 @@ $$</p>
 f'(u) = u(\epsilon^2 + u^{-1/2} ), \qquad
 f"(u) = \epsilon^2 (\epsilon^2 + u^2)^{-3/2}
 $$</p>
-<p>[devam edecek]</p>
+<p>Simdi bir $F$ tanimlayalim,</p>
+<p>$$
+F(u_1,..., u_{n-1}) = \sum_{i=1}^{n-1} f(u_i)
+$$</p>
+<p>Yani $F(u)$ $u$'nun bilesenlerinin yaklasik L1 norm'unun toplamidir. Nihai
+amacimiz bu tanimdan bir $\phi_{atv}$ ifadesine ulasmak. $F$'in gradyani ve
+Hessian'i</p>
+<p>$$
+\nabla F(u) = \left[\begin{array}{ccc} f'(u_1) &amp; \dots &amp; f'(u_{n-1}) \end{array}\right]
+$$</p>
+<p>$$
+\nabla^2 F(u) = 
+\diag 
+\left[\begin{array}{ccc} f"(u_1) &amp; \dots &amp; f"(u_{n-1}) \end{array}\right] 
+$$</p>
+<p>Eğer bir ileri farklılık matrisı $D$ tanımlarsak, </p>
+<p>$$
+D = \left[\begin{array}{ccccc}
+-1  &amp; 1 &amp; &amp; &amp;    \\
+ &amp; -1 &amp; 1 &amp; &amp;   \\
+ &amp;  &amp; \ddots  &amp; \ddots &amp;  \\
+ &amp;  &amp;  &amp;  -1 &amp; 1
+\end{array}\right]
+$$</p>
+<p>O zaman $\phi_{atv}(x) = F(Dx)$ diyebiliriz. Bir $x$ vektörünü
+üstteki matris ile soldan çarpınca öğeleri 
+$\left[\begin{array}{ccc} x_2-x_1 &amp; x_3-x_2 &amp; \dots \end{array}\right]$ 
+şeklinde giden bir yeni vektör elde edeceğimizi doğrulamak zor değil. Yine
+Zincirleme Kuralını uygularsak,</p>
+<p>$$
+\nabla \phi_{atv}(x) = D^T \nabla F(Dx), \qquad
+\nabla^2 \phi_{atv}(x) = D^T \nabla^2 F(Dx) D
+$$</p>
+<p>Hepsini bir araya koyarsak </p>
+<p>$$
+\nabla \psi(x) = 2(x-x_{cor}) + \mu D^T \nabla F(Dx)
+$$</p>
+<p>$$
+\nabla^2 \psi(x) = 2 I  + \mu D^T \nabla^2 F(Dx) D
+$$</p>
+<p>Kodlamayı alttaki gibi yapabiliriz,</p>
 <pre><code class="python">import pandas as pd
 import scipy.sparse as sps
 import scipy.sparse.linalg as slin
@@ -197,6 +237,8 @@ plt.savefig('func_60_tvd_03.png')
 </code></pre>
 
 <p><img alt="" src="func_60_tvd_03.png" /></p>
+<p>Çok daha iyi bir gürültüsüz sonuç elde ettik, üstteki bu işlem çok daha
+hızlı. </p>
 <p>Kaynaklar</p>
 <p>[1] <em>ROF and TV-L1 denoising with Primal-Dual algorithm</em>, 
     \url{https://github.com/znah/notebooks/blob/master/TV_denoise.ipynb}</p>
