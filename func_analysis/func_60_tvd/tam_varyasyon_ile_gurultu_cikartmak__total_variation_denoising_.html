@@ -27,37 +27,36 @@
 kullanılabilir. Orijinal sinyal $x$'in $y = B x + n$ ile bir $n$ gürültüsü
 eklenerek bozulduğu (corrupted) farzedilebilir ($B$ bir değişim matrisidir,
 tutarlı, bilinen değişimleri temsil eder) biz eldeki $y$ ile $x$'i
-kestirmeye uğraşırız. </p>
-<p>Literatürde iyi bilindiği üzere $x$'i $y$'den tahmin etmeye uğraşmak kötü
-konumlanmış (ill-posed) bir sorudur. Çözüm olabilecek pek çok $x$
-bulunabilir, bu sebeple arama alanını bir şekilde daraltmak gerekir, ve
-bunun için bir tür düzenlileştirme / regülarizasyon (regülarization)
-kullanılması şarttır [3].  </p>
-<p>Görüntüden gürültü çıkartma alanında iyi bilinen bir yöntem problemi iki
-hedefli bir halde konumlandırmak [4], </p>
+kestirmeye uğraşırız.  Fakat literatürde iyi bilindiği üzere $x$'i $y$'den
+tahmin etmeye uğraşmak kötü konumlanmış (ill-posed) bir sorudur. Çözüm
+olabilecek pek çok $x$ bulunabilir, bu sebeple arama alanını bir şekilde
+daraltmak gerekir, ve bunun için bir tür düzenlileştirme / regülarizasyon
+(regularization) kullanılması şarttır [3].</p>
+<p>Bir sayisal resimden gürültü çıkartma alanında iyi bilinen bir yöntem,
+problemi çift hedefli bir halde konumlandırmak [4],</p>
 <p>$$
 || x-x_{cor}||_2, \qquad \phi_{tv} (x) = \sum_{i=1}^{n-1} | x_{i+1} - x_i | 
 \qquad (1)
 $$</p>
 <p>Burada $x_{cor} \in \mathbb{R}^n$ bize verilen bozulmuş sinyal,
 $x \in \mathbb{R}^n$ ise bizim bulmak istediğimiz, gürültüsü çıkartılmış
-sinyal, $\phi_{tv}$ ise tam varyasyon fonksiyonu. Ustteki iki hedefi
-minimize etmek istiyoruz, boylece ayni anda hem sinyalin kendi icindeki
-varyasyonu azaltan hem de bozulmus sinyale mumkun oldugunca yakin duran bir
-gercek $x$ elde edebilelim.</p>
-<p>Her iki hedef fonksiyonunu birlestirip tek bir fonksiyon haline getirip onu
-kisitlanmamis (unconstrained) bir optimizasyon problemi olarak cozebiliriz,</p>
+sinyal, $\phi_{tv}$ ise tam varyasyon fonksiyonu. Üstteki iki hedefi
+minimize etmek istiyoruz, böylece aynı anda hem sinyalin kendi içindeki
+varyasyonu azaltan hem de bozulmuş sinyale mümkün olduğunca yakın duran bir
+gerçek $x$ elde edebilelim.</p>
+<p>Her iki hedef fonksiyonunu birleştirip tek bir fonksiyon haline getirip onu
+kısıtlanmamış (unconstrained) bir optimizasyon problemi olarak çözebiliriz,</p>
 <p>$$
-|| x-x_{cor}||_2 + \mu \phi_{tv} 
+\psi = || x-x_{cor}||_2 + \mu \phi_{tv} 
 $$</p>
 <p>ki $\mu$ bizim seçeceğimiz bir parametre olabilir. Çözüm için mesela Newton
-metodunu kullanabiliriz, fakat tek bir problem var, Newton ve pek çok diğer
-optimizasyon metotu için türev almak gerekli, fakat $\phi_{tv}$'deki
-L1-norm'unun (tek boyutta mutlak değer fonksiyonu) $x=0$'da türevi yoktur
-(birinci terimdeki Oklit normunun karesi alındığı için onun iki kere türevi
-alınabilir). Bu durumda $\phi_{tv}$'yi yaklaşık olarak temsil edebilirsek,
-onun da türevi alınır hale gelmesi sağlayabiliriz. Bu yeni fonksiyona
-$\phi_{atv}$ diyelim,</p>
+metodunu kullanabiliriz, fakat tek bir problem var, Newton ve ona benzer
+diğer optimizasyon metotları için türev almak gerekli, fakat
+$\phi_{tv}$'deki L1-norm'unun (tek boyutta mutlak değer fonksiyonu)
+$x=0$'da türevi yoktur (birinci terimdeki Oklit normunun karesi alındığı
+için onun iki kere türevi alınabilir). Bu durumda $\phi_{tv}$'yi yaklaşık
+olarak temsil edebilirsek, onun da türevi alınır hale gelmesi
+sağlayabiliriz. Bu yeni fonksiyona $\phi_{atv}$ diyelim,</p>
 <p>$$
 \phi_{atv} = \sum _{i=1}^{n-1} 
 \left( \sqrt{ \epsilon^2 + (x_{i+1})-x_i  } - \epsilon \right)
@@ -88,9 +87,10 @@ print (phi_atv(xcor))
 1037.438996069622
 </code></pre>
 
-<p>Buradan analitik olarak devam etmeden önce sayısal olarak bir çözüme
-bakalım. Üstteki fonksiyonları olduğu gibi kodlayarak sayısal türev
-alabilen bir kütüphane çağrısıyla hedefi minimize edelim, eldeki sinyal,</p>
+<p>Üstteki fonksiyonun iki kez türevi alınabilir. Şimdi analitik şekilde devam
+etmeden önce pür sayısal açıdan bir çözüme bakalım. Üstteki fonksiyonları
+direk kodlayarak ve sayısal türev üzerinden işleyebilen bir kütüphane
+çağrısıyla hedefi minimize edelim, eldeki sinyal,</p>
 <pre><code class="python">import pandas as pd
 df = pd.read_csv('xcor.csv',header=None)
 xcor = np.reshape(np.array(df[0]), (5000,1))
@@ -132,8 +132,16 @@ faydalanılabilir.</p>
 \nabla^2 \psi(x) = 2 I + \mu \nabla^2 \phi_{atv} (x)
 $$</p>
 <p>Zincirleme Kuralı uygulandı tabii, ve şimdi $\phi_{atv}$ üzerindeki
-türevleri bulmak gerekiyor. Sorun değil, üstteki tüm yaklaşıklamayı bunun
-için yapmıştık zaten. </p>
+türevleri bulmak gerekiyor. Sorun değil, daha önceki yaklaşıklamayı bunun
+için yapmıştık zaten. Yaklaşık fonksiyonu genel olarak belirtirsek, </p>
+<p>$$
+f(u) = \sqrt{\epsilon^2 + u^2} - \epsilon
+$$</p>
+<p>Bu fonksiyonun 1. ve 2. türevi</p>
+<p>$$
+f'(u) = u(\epsilon^2 + u^{-1/2} ), \qquad
+f"(u) = \epsilon^2 (\epsilon^2 + u^2)^{-3/2}
+$$</p>
 <p>[devam edecek]</p>
 <pre><code class="python">import pandas as pd
 import scipy.sparse as sps
