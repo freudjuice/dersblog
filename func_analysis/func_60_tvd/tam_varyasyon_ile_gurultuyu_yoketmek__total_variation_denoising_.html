@@ -127,7 +127,7 @@ ederek elde edilen çözüm daha hızlı olabilir. Mesela analitik olarak
 türevler Jacobian ve Hessian bulunabilir, Newton adımı elle kodlanabilir,
 ayrıca problemdeki matrislerde muhtemel bir seyreklikten (sparsity)
 faydalanılabilir.</p>
-<p>Hedef fonksiyonu $\psi(x)$ diyelim, icin birinci ve ikinci turev, </p>
+<p>Hedef fonksiyonu, $\psi(x)$ diyelim, için birinci ve ikinci türev,</p>
 <p>$$
 \nabla \psi(x) = 2 (x-x_{cor}) + \mu \nabla \phi_{atv}(x), \qquad
 \nabla^2 \psi(x) = 2 I + \mu \nabla^2 \phi_{atv} (x)
@@ -143,13 +143,13 @@ $$</p>
 f'(u) = u(\epsilon^2 + u^{-1/2} ), \qquad
 f"(u) = \epsilon^2 (\epsilon^2 + u^2)^{-3/2}
 $$</p>
-<p>Simdi bir $F$ tanimlayalim,</p>
+<p>Şimdi bir $F$ tanımlayalım,</p>
 <p>$$
 F(u_1,..., u_{n-1}) = \sum_{i=1}^{n-1} f(u_i)
 $$</p>
-<p>Yani $F(u)$ $u$'nun bilesenlerinin yaklasik L1 norm'unun toplamidir. Nihai
-amacimiz bu tanimdan bir $\phi_{atv}$ ifadesine ulasmak. $F$'in gradyani ve
-Hessian'i</p>
+<p>Yani $F(u)$ $u$'nun bileşenlerinin yaklaşık L1 norm'unun toplamıdır. Nihai
+amacımız bu tanımdan bir $\phi_{atv}$ ifadesine ulaşmak. $F$'in gradyanı ve
+Hessian'ı</p>
 <p>$$
 \nabla F(u) = \left[\begin{array}{ccc} f'(u_1) &amp; \dots &amp; f'(u_{n-1}) \end{array}\right]
 $$</p>
@@ -158,7 +158,7 @@ $$</p>
 \mathrm{diag} 
 \left[\begin{array}{ccc} f"(u_1) &amp; \dots &amp; f"(u_{n-1}) \end{array}\right] 
 $$</p>
-<p>Eğer bir ileri farklılık matrisı $D$ tanımlarsak, </p>
+<p>Eğer bir ileri farklılık matrisi $D$ tanımlarsak, </p>
 <p>$$
 D = \left[\begin{array}{ccccc}
 -1  &amp; 1 &amp; &amp; &amp;    \\
