@@ -239,6 +239,145 @@ plt.savefig('func_60_tvd_03.png')
 <p><img alt="" src="func_60_tvd_03.png" /></p>
 <p>Çok daha iyi bir gürültüsüz sonuç elde ettik, üstteki bu işlem çok daha
 hızlı. </p>
+<p>Görüntüden Gürültü Silmek</p>
+<p>Aynen tek boyutlu sinyalden gürültü silebildiğimiz gibi iki boyutlu
+görüntüden de gürültü silmek mümkün. Bu durumda tam varyasyon </p>
+<p>$$
+\sum_{i=2}^{m} \sum_{j=2}^{n} (|U_{i,j} - U_{i-1,j}| + |U_{i,j} - U_{i,j-1}|)
+$$</p>
+<p>olabilir, yani her pikselin bir yanindaki ve bir altındaki pikselle olan
+uzaklığının L1-norm'unu almak. Üstteki hesabı yapmak için aslında yine daha
+önce hesapladığımız $D$ matrisini kullanabiliriz. Bir $X$ imajı üzerinde
+$DX$ hesabı, yani $D$ ile soldan çarpım dikey farklılıkları, sağdan çarpım
+$XD$ ise yatay farklılıkları verecektir.</p>
+<pre><code class="python">import scipy.sparse as sps
+
+X = [[1, 2, 3, 4],
+     [5, 6, 7, 8],
+     [1, 2, 3, 4],
+     [5, 6, 7, 8]]
+
+X = np.array(X)
+print (X)
+n = X.shape[0]
+data = np.array([-1*np.ones(n), np.ones(n)])
+diags = np.array([0, 1])
+D = sps.lil_matrix(sps.spdiags(data, diags, n, n))
+print (D.todense())
+print ('Dikey Farklilik')
+print (D.dot(X))
+print ('Yatay Farklilik')
+print (D.transpose().dot(X.T))
+</code></pre>
+
+<pre><code>[[1 2 3 4]
+ [5 6 7 8]
+ [1 2 3 4]
+ [5 6 7 8]]
+[[-1.  1.  0.  0.]
+ [ 0. -1.  1.  0.]
+ [ 0.  0. -1.  1.]
+ [ 0.  0.  0. -1.]]
+Dikey Farklilik
+[[ 4.  4.  4.  4.]
+ [-4. -4. -4. -4.]
+ [ 4.  4.  4.  4.]
+ [-5. -6. -7. -8.]]
+Yatay Farklilik
+[[-1. -5. -1. -5.]
+ [-1. -1. -1. -1.]
+ [-1. -1. -1. -1.]
+ [-1. -1. -1. -1.]]
+</code></pre>
+
+<p>L1 norm yaklaşıksallığı için daha önceki yöntemi kullanabiliriz.  </p>
+<p>Gradyan almak için ise bu sefer <code>tensörflow</code> paketini kullanacağız
+[5]. Bir vektöre göre değil bir matrise göre türev alıyoruz, bunu sembolik
+yapmak yerine sembolik yaklaşım kadar kuvvetli olan otomatik türev ile
+gradyanı elde edebiliriz.</p>
+<p>Üstteki tüm hesapları TF ile bir hesap grafiği içinde kodlayıp,
+<code>tf.gradients</code> ile hedef fonksiyonunun gradyanını alacağız, ve
+standart gradyan inişi optimizasyonu ile bir noktadan başlayıp gradyan yönü
+tersinde adım atarak minimum noktaya varmaya uğraşacağız. </p>
+<pre><code class="python">from skimage import io
+import tensorflow as tf
+
+MU = 50.0
+#MU = 0.001
+EPSILON = 0.001
+n = 225
+
+img = io.imread('lena.jpg', as_gray=True)
+io.imsave('lenad0.jpg', img)
+img = io.imread('lena-noise.jpg', as_gray=True)
+io.imsave('lenad1.jpg', img)
+xorig = tf.cast(tf.constant( io.imread('lena-noise.jpg', as_gray=True)),dtype=tf.float32)
+x = tf.placeholder(dtype=&quot;float&quot;,shape=[n,n],name=&quot;x&quot;)
+
+D = np.zeros((n,n))
+idx1, idx2 = [], []
+for i in range(n):
+    idx1.append([i,i])
+    if i&lt;n-1: idx2.append([i,i+1])
+idx = idx1 + idx2
+ones = [1.0 for i in range(n)]
+negs = [-1.0 for i in range(n-1)]
+vals = ones + negs
+vals = np.array(vals).astype(np.float32)
+D = tf.SparseTensor(indices=idx, values=vals, dense_shape=[n, n])
+
+diff = tf.square(tf.norm(xorig-x, ord='euclidean'))
+
+Ux = tf.sparse_tensor_dense_matmul(D, x)
+Uy = tf.sparse_tensor_dense_matmul(tf.sparse_transpose(D), tf.transpose(x))
+Uy = tf.transpose(Uy)
+
+fUx = tf.reduce_sum(tf.sqrt(EPSILON**2 + tf.square(Ux)) - EPSILON)
+fUy = tf.reduce_sum(tf.sqrt(EPSILON**2 + tf.square(Uy)) - EPSILON)
+
+phi_atv = fUx + fUy
+
+psi = diff + MU*phi_atv
+g = tf.gradients(psi, x)
+g = tf.reshape(g,[n*n])
+
+init = tf.global_variables_initializer()
+
+sess = tf.Session()
+
+sess.run(init)
+
+def tv(xvec):
+    xmat = xvec.reshape(n,n)
+    p = sess.run(psi, {x: xmat} )
+    return p
+
+def tv_grad(xvec):
+    xmat = xvec.reshape(n,n)
+    gres = sess.run(g, {x: xmat} )
+    return gres
+
+MUG = 0.001
+x0 = np.zeros(n*n)
+xcurr = x0
+
+N = 130
+for i in range(1,N):
+    gcurr = tv_grad(xcurr)
+    gcurr /= gcurr.max()/0.3
+    chg = np.sum(np.abs(xcurr))
+    xcurr = xcurr - gcurr
+
+xcurr /= xcurr.max()/255.0
+io.imsave('lenad2.jpg', np.reshape(xcurr,(n,n)))
+</code></pre>
+
+<p><img alt="" src="lenad0.jpg" />
+<img alt="" src="lenad1.jpg" />
+<img alt="" src="lenad2.jpg" /></p>
+<p>Yine total varyasyon kullanan ama farklı optimizasyon çözücüyle hesabı
+yapan bir yöntem <code>tlv_prim_dual.py</code> kodunda [1], sonuç</p>
+<p><img alt="" src="lenad3.jpg" /></p>
 <p>Kaynaklar</p>
 <p>[1] Mordvintsev, <em>ROF and TV-L1 denoising with Primal-Dual algorithm</em>,
     <a href="https://github.com/znah/notebooks/blob/master/TV_denoise.ipynb">https://github.com/znah/notebooks/blob/master/TV_denoise.ipynb</a></p>
@@ -249,3 +388,5 @@ hızlı. </p>
 <p>[4] Boyd, 
     <em>Additional Exercises for Convex Optimization</em>
     <a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook_extra_exercises.pdf">https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook_extra_exercises.pdf</a></p>
+<p>[5] Bayramli, 
+    <em>Bilgisayar Bilim, Yapay Zeka, Tensorflow</em></p>
