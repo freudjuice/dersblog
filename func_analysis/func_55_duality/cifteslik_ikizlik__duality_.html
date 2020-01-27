@@ -1,0 +1,246 @@
+<h1>Çifteşlik, İkizlik (Duality)</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Çifteşlik, İkizlik (Duality)
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>Bu benim en favori konularımdan. Çok faydalı ve çok güzel bir teknik, bakış
+açısı. Bu konu üzerinde iki ders zamanı harcayacağız. Konuyu lineer
+programlama (LP) üzerinden göreceğiz, çünkü bu alanda çifteşlik pratik
+olarak rahatça gösterilebiliyor.</p>
+<p>[önceki ders özeti atlandı]</p>
+<p>Önümüzdeki iki ders için teori şapkamızı takacağız, tabii çifteşliğin pek
+çok optimizasyon problemi üzerinde çok ciddi etkileri var. Yani bu konu
+bulutlar üzerinde, aşırı soyut bir konu değil, onu vurgulamak istiyorum. </p>
+<p>Ama şimdilik soyut denebilecek bir problemle başlayalım. Diyelim ki elimde
+bir LP var ve bu LP'nin optimal değeri için bir alt sınır bulmak istiyorum,
+$B \le \min_x f(x)$. Çifteşliğe bu çok basit soru üzerinden giriş
+yapacağız. Örnek</p>
+<p>$$
+\min_{x,y} x+y, \quad \textrm{öyle ki}
+$$
+$$
+x + y \ge 2 
+$$
+$$
+x,y \ge 0
+$$</p>
+<p>dogru olsun. </p>
+<p>İki skalar değişken var, ve pozitif olmalılar. Bu problem için alt sınır
+nedir? Çıplak gözle bile bakarak bunu bulabiliriz, cevap 2. Değil mi? $x+y
+\ge 2$ şartına uymak gerekiyorsa alt sınır 2 olacaktır. </p>
+<p>Bazılarınız düşünebilir ki "şanslıydık, problem şartları aradığımız şeyi
+söylüyordu zaten". Doğru fakat iddia ediyorum ki bu stratejiyi metodik bir
+şekilde de kullanabilirdik. Benzer bir problem, </p>
+<p>$$
+\min_{x,y} x + 3y, \quad \textrm{öyle ki}
+$$
+$$
+x + y \ge 2 
+$$
+$$
+x \ge 0, y \ge 0
+$$</p>
+<p>Bu problemin alt sınırını nasıl buluruz?</p>
+<p>Eğer $y \ge 0$ şartını ikiyle çarparsak $2y \ge 0$ diye yeni bir şart elde
+ederiz (hala doğru), bu yeni şartı alıp $x + y \ge 2 $'a eklersek $x + 3y
+\ge 2 $ şeklinde bir şart daha elde etmiş oluruz. Bu şart hedef
+fonksiyonuna benzediği için alt sınırı direk söylüyor, alt sınır yine 2.</p>
+<p>Üstteki probleme daha genel bir açıdan bakalım,</p>
+<p>$$
+\min_{x,y} px + qy, \quad \textrm{öyle ki}
+$$
+$$
+x + y \ge 2
+$$
+$$
+x,y \ge 0
+$$</p>
+<p>Alt sınır nedir? Öncekine göre biraz farklı bir strateji izleyeceğiz,
+diyelim ki her şartı $a,b,c$ sabitleri ile çarptım, </p>
+<p>$$
+ax + ay \ge 2a
+$$
+$$
+bx \ge 0
+$$
+$$
+cy \ge 0
+$$</p>
+<p>Bu tabii ki $a,b,c \ge 0$ ise yapılabilir yoksa işaretler değişirdi. Devam
+edelim, yine bazı ek koşullar yaratmış oldum. Bu yeni şartları toplarsam
+bir yeni şart daha elde ederim,</p>
+<p>$$
+(a+b)x + (a+c)y \ge 2a
+$$</p>
+<p>Yeni değişken isimleri $p,q$ atarsam</p>
+<p>$$
+px + qy \ge 2a
+$$</p>
+<p>atama</p>
+<p>$$
+a+b = p, \quad a+c = q
+$$</p>
+<p>Aslında alt sınırı iki üstteki denklemden bulmuş olduk, $2a$ (bir üstteki
+şartlara uyulduğu sürece tabii).</p>
+<p>Eğer en iyi alt sınırı isteseydim, onu nasıl elde ederdim? Bu demektir ki
+$2a$ olabildiğince büyük olmalı, tabii belli şartlara uyulduğu
+sürece. Aslında bu soru bizi ikinci bir LP'ye götürüyor, literatürde ana
+LP'nin çifteşi / ikizi denen LP'ye. İki değişkenli ortamda,</p>
+<p>$$
+\max_{a,b,c} 2a \quad \textrm{öyle ki}
+$$
+$$
+a + b = p
+$$
+$$
+a + c = q
+$$
+$$
+a,b,c \ge 0
+$$</p>
+<p>Maksimum arandığına dikkat ve bu problemde üç tane değişken var (ana
+problemde iki taneydi). Ve böylece deriz ki üstteki şartlara uyan her
+$a,b,c$ (ki bu şartlara ikizin olurluk / fizibilite şartları deniyor)
+maksimal noktada ana problemin alt sınırını minimize eder.</p>
+<p>Bir soru sorayım: acaba üstteki problemden bir eşitlik elde etmem mümkün
+mü? Yani ikizdeki problemin optimal değeri ana problemdeki optimal değere
+eşit olabilir mi? Cevap evet. Peki arada boşluk olması mümkün mü? Cevap
+(bazen) evet. İyi bir sezgisel bakış bu, ana ve ikiz LP optimal değerleri
+neredeyse her zaman birbirine eşittir, bazı istanai patolojik durumlar
+dışında.</p>
+<p>Farklı bir probleme bakalım. Bu problemde bir eşitlik te olacak. </p>
+<p>$$
+\min_{a,b,c} px + qy \quad \textrm{öyle ki}
+$$
+$$
+x \ge 0
+$$
+$$
+y \le 1
+$$
+$$
+3x + y = 2
+$$</p>
+<p>İkizi bulmak için her koşul için bir değişken atayalım, ama ondan önce her
+ana koşulda eşitsizlikler aynı şekilde ise işimiz daha rahatlaşır (çünkü
+$a,b,c,..$ değişkenlerini sıfırdan büyük yapacağız, ama farklı yönleri
+gösteren ana koşullar ile bu zorlaşıyor), $y \le 1$ yerine $-y \ge -1$
+mesela, o zaman</p>
+<p>$$
+\min_{a,b,c} px + qy \quad \textrm{öyle ki}
+$$
+$$
+x \ge 0
+$$
+$$
+-y \ge -1
+$$
+$$
+3x + y = 2
+$$</p>
+<p>Yine $a,b,c$ ile çarpıyorum, </p>
+<p>$$
+a x \ge 0
+$$
+$$
+-by \ge -b
+$$
+$$
+3cx + cy = 2c
+$$
+$$
+a,b \ ge 0
+$$</p>
+<p>$c$ üzerinde koşul var mı? Hayır, çünkü $c$'nin çarptığı koşul bir eşitlik,
+$c$ ne olursa olsun yeni koşul geçerli, işaret değişiminden korkmaya gerek
+yok.</p>
+<p>Önceden olduğu gibi bir toplam alıyoruz, </p>
+<p>$$
+(a+3c) x + (-b+c)y \ge -b + 2c
+$$</p>
+<p>Yine $p,q$ atamasını yaparsam,</p>
+<p>$$
+p x + q y \ge -b + 2c
+$$</p>
+<p>$$
+p = a+3c, \quad q = -b + c 
+$$</p>
+<p>İkiz problemi elde ettik, amaç ana problemin alt sınırı $-b+2c$'yi maksimize
+etmek, üstteki iki şart ve $a,b \ge 0$ olacak şekilde. </p>
+<p>$$
+\max_{a,b,c} 2c - b \quad \textrm{öyle ki}
+$$
+$$
+a + 3c = p
+$$
+$$
+-b + c = q
+$$
+$$
+a,b \ge 0
+$$</p>
+<p>Dersin geri kalanında ikizlikten genel bir çerçevede bahsedeceğim, sonra 
+bir ilginç örnek göreceğiz, ardından ikizliğe yeni bir bakış açısından
+yaklaşacağız, bu acı çok önemli olacak. Dersi ikinci bir örnekle
+bitireceğiz. </p>
+<p>LP'lere tüm genelliği ile bakalım şimdi. Önceki format neler olup bittiğini
+görmek açısından faydalı, ama genel şablonu da görmek lazım. </p>
+<p>Tanımlar</p>
+<p>$c \in \mathbb{R}^n$, 
+$A \in \mathbb{R}^{m \times n}$, 
+$b \in \mathbb{R}^m$,
+$G \in \mathbb{R}^{r \times n}$, 
+$h \in \mathbb{R}^r$ verili. </p>
+<p>Ana Problem</p>
+<p>$$
+\min_x c^T x \quad \textrm{öyle ki}
+$$
+$$
+Ax = b
+$$
+$$
+Gx \le h
+$$</p>
+<p>İkiz Problem</p>
+<p>$$
+\max_{u,v} -b^T u - h^T v \quad \textrm{öyle ki}
+$$
+$$
+-A^Tu - G^Tv = c
+$$
+$$
+v \ge 0
+$$</p>
+<p>İkizi nasıl elde ettik? </p>
+<p>$Ax = b$ ve $Gx \le h$ için iki (vektör) değişkeni tanımlıyoruz, sırasıyla
+$u,v$. $u$ için kısıtlama yok, çünkü eşitlik için. Sadece $v \ge 0$
+olmalı. </p>
+<p>Eger $x$ olurlu ise </p>
+<p>$$
+a^T (Ax - b) + v^T (Gx-h) \le 0
+$$</p>
+<p>olur çünkü olurlu anda $Ax - b=0$ ve $Gx-h \le 0$, toplam tabii ki sıfırdan küçük.</p>
+<p>[devam edecek]</p>
+<p>Kaynaklar</p>
+<p>[1] Tibshirani, <em>Convex Optimization, Lecture 10</em>, 
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
