@@ -239,7 +239,22 @@ olmalı. </p>
 <p>$$
 a^T (Ax - b) + v^T (Gx-h) \le 0
 $$</p>
-<p>olur çünkü olurlu anda $Ax - b=0$ ve $Gx-h \le 0$, toplam tabii ki sıfırdan küçük.</p>
+<p>olur çünkü olurluluk noktasında $Ax - b=0$ ve $Gx-h \le 0$, bu sebeple
+üstteki toplam tabii ki sıfırdan küçük.</p>
+<p>Gruplarsak,</p>
+<p>$$
+(A^T u + G^T v)^T x - b^Tu - h^T v \ge 0
+$$</p>
+<p>$$
+(-A^T u - G^T v)^T x \ge  -b^Tu - h^T v 
+$$</p>
+<p>Parantez içini $c$'ye atarsam o zaman </p>
+<p>$$
+c^T x \ge  -b^Tu - h^T v 
+$$</p>
+<p>Böylece eşitliğin sağ tarafı alt sınırım olur, sol tarafı ise ikiz
+değişkenlerim üzerinde kısıtlama haline gelir, $v \ge 0$. Böylece ikiz
+probleme erişmiş oluyoruz.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture 10</em>, 
