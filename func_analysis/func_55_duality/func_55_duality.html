@@ -1,8 +1,8 @@
-<h1>Çifteşlik (Duality)</h1>
+<h1>Çifteşlik, İkizlik (Duality)</h1>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Çifteşlik (Duality)
+    <title>Çifteşlik, İkizlik (Duality)
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/x-mathjax-config">
@@ -23,8 +23,8 @@
 </script>
 </head>
 
-<p>Bu benim en favori konularımdan. Çok faydalı ve çok güzel bir fikir. O
-sebeple bu konu üzerinde iki ders zamanı harcayacağız. Konuyu lineer
+<p>Bu benim en favori konularımdan. Çok faydalı ve çok güzel bir teknik, bakış
+açısı. Bu konu üzerinde iki ders zamanı harcayacağız. Konuyu lineer
 programlama (LP) üzerinden göreceğiz, çünkü bu alanda çifteşlik pratik
 olarak rahatça gösterilebiliyor.</p>
 <p>[önceki ders özeti atlandı]</p>
@@ -46,7 +46,7 @@ x,y \ge 0
 $$</p>
 <p>dogru olsun. </p>
 <p>İki skalar değişken var, ve pozitif olmalılar. Bu problem için alt sınır
-nedir? Çıplak gözle bile bakarak bunu bulabiliriz, cevap 2. Değil mi? $x+2
+nedir? Çıplak gözle bile bakarak bunu bulabiliriz, cevap 2. Değil mi? $x+y
 \ge 2$ şartına uymak gerekiyorsa alt sınır 2 olacaktır. </p>
 <p>Bazılarınız düşünebilir ki "şanslıydık, problem şartları aradığımız şeyi
 söylüyordu zaten". Doğru fakat iddia ediyorum ki bu stratejiyi metodik bir
@@ -60,7 +60,6 @@ $$
 $$
 x \ge 0, y \ge 0
 $$</p>
-<p>doğru olsun.  </p>
 <p>Bu problemin alt sınırını nasıl buluruz?</p>
 <p>Eğer $y \ge 0$ şartını ikiyle çarparsak $2y \ge 0$ diye yeni bir şart elde
 ederiz (hala doğru), bu yeni şartı alıp $x + y \ge 2 $'a eklersek $x + 3y
@@ -119,15 +118,16 @@ $$
 $$
 a,b,c \ge 0
 $$</p>
-<p>olsun. Maksimum arandigina dikkat ve bu problemde uc tane degisken var (ana
-problemde iki taneydi). Ve boylece deriz ki ustteki sartlara uyan her
-$a,b,c$ (ki bu sartlara ikizdeki fizibilite sartlari deniyor) maksimal
-noktada ana problemin alt sinirini minimize eder. </p>
+<p>Maksimum arandığına dikkat ve bu problemde üç tane değişken var (ana
+problemde iki taneydi). Ve böylece deriz ki üstteki şartlara uyan her
+$a,b,c$ (ki bu şartlara ikizin olurluk / fizibilite şartları deniyor)
+maksimal noktada ana problemin alt sınırını minimize eder.</p>
 <p>Bir soru sorayım: acaba üstteki problemden bir eşitlik elde etmem mümkün
 mü? Yani ikizdeki problemin optimal değeri ana problemdeki optimal değere
-eşit. Cevap evet. Peki arada boşluk olması mümkün mü? Cevap (bazen)
-evet. İyi bir sezgisel bakış bu, ana ve ikiz LP opptımal değerleri birbirine
-eşittir, bazı istanai patolojik durumlar dışında.</p>
+eşit olabilir mi? Cevap evet. Peki arada boşluk olması mümkün mü? Cevap
+(bazen) evet. İyi bir sezgisel bakış bu, ana ve ikiz LP optimal değerleri
+neredeyse her zaman birbirine eşittir, bazı istanai patolojik durumlar
+dışında.</p>
 <p>Farklı bir probleme bakalım. Bu problemde bir eşitlik te olacak. </p>
 <p>$$
 \min_{a,b,c} px + qy \quad \textrm{öyle ki}
@@ -136,12 +136,110 @@ $$
 x \ge 0
 $$
 $$
-y = 1
+y \le 1
 $$
 $$
 3x + y = 2
 $$</p>
-<p>Iki problem, </p>
+<p>İkizi bulmak için her koşul için bir değişken atayalım, ama ondan önce her
+ana koşulda eşitsizlikler aynı şekilde ise işimiz daha rahatlaşır (çünkü
+$a,b,c,..$ değişkenlerini sıfırdan büyük yapacağız, ama farklı yönleri
+gösteren ana koşullar ile bu zorlaşıyor), $y \le 1$ yerine $-y \ge -1$
+mesela, o zaman</p>
+<p>$$
+\min_{a,b,c} px + qy \quad \textrm{öyle ki}
+$$
+$$
+x \ge 0
+$$
+$$
+-y \ge -1
+$$
+$$
+3x + y = 2
+$$</p>
+<p>Yine $a,b,c$ ile çarpıyorum, </p>
+<p>$$
+a x \ge 0
+$$
+$$
+-by \ge -b
+$$
+$$
+3cx + cy = 2c
+$$
+$$
+a,b \ ge 0
+$$</p>
+<p>$c$ üzerinde koşul var mı? Hayır, çünkü $c$'nin çarptığı koşul bir eşitlik,
+$c$ ne olursa olsun yeni koşul geçerli, işaret değişiminden korkmaya gerek
+yok.</p>
+<p>Önceden olduğu gibi bir toplam alıyoruz, </p>
+<p>$$
+(a+3c) x + (-b+c)y \ge -b + 2c
+$$</p>
+<p>Yine $p,q$ atamasını yaparsam,</p>
+<p>$$
+p x + q y \ge -b + 2c
+$$</p>
+<p>$$
+p = a+3c, \quad q = -b + c 
+$$</p>
+<p>İkiz problemi elde ettik, amaç ana problemin alt sınırı $-b+2c$'yi maksimize
+etmek, üstteki iki şart ve $a,b \ge 0$ olacak şekilde. </p>
+<p>$$
+\max_{a,b,c} 2c - b \quad \textrm{öyle ki}
+$$
+$$
+a + 3c = p
+$$
+$$
+-b + c = q
+$$
+$$
+a,b \ge 0
+$$</p>
+<p>Dersin geri kalanında ikizlikten genel bir çerçevede bahsedeceğim, sonra 
+bir ilginç örnek göreceğiz, ardından ikizliğe yeni bir bakış açısından
+yaklaşacağız, bu acı çok önemli olacak. Dersi ikinci bir örnekle
+bitireceğiz. </p>
+<p>LP'lere tüm genelliği ile bakalım şimdi. Önceki format neler olup bittiğini
+görmek açısından faydalı, ama genel şablonu da görmek lazım. </p>
+<p>Tanımlar</p>
+<p>$c \in \mathbb{R}^n$, 
+$A \in \mathbb{R}^{m \times n}$, 
+$b \in \mathbb{R}^m$,
+$G \in \mathbb{R}^{r \times n}$, 
+$h \in \mathbb{R}^r$ verili. </p>
+<p>Ana Problem</p>
+<p>$$
+\min_x c^T x \quad \textrm{öyle ki}
+$$
+$$
+Ax = b
+$$
+$$
+Gx \le h
+$$</p>
+<p>İkiz Problem</p>
+<p>$$
+\max_{u,v} -b^T u - h^T v \quad \textrm{öyle ki}
+$$
+$$
+-A^Tu - G^Tv = c
+$$
+$$
+v \ge 0
+$$</p>
+<p>İkizi nasıl elde ettik? </p>
+<p>$Ax = b$ ve $Gx \le h$ için iki (vektör) değişkeni tanımlıyoruz, sırasıyla
+$u,v$. $u$ için kısıtlama yok, çünkü eşitlik için. Sadece $v \ge 0$
+olmalı. </p>
+<p>Eger $x$ olurlu ise </p>
+<p>$$
+a^T (Ax - b) + v^T (Gx-h) \le 0
+$$</p>
+<p>olur çünkü olurlu anda $Ax - b=0$ ve $Gx-h \le 0$, toplam tabii ki sıfırdan küçük.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture 10</em>, 
