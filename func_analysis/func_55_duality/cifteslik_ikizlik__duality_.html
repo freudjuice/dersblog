@@ -255,6 +255,54 @@ $$</p>
 <p>Böylece eşitliğin sağ tarafı alt sınırım olur, sol tarafı ise ikiz
 değişkenlerim üzerinde kısıtlama haline gelir, $v \ge 0$. Böylece ikiz
 probleme erişmiş oluyoruz.</p>
+<p>Sonraki ornege gelelim. Bu probleme maks akis min kesis (max flow min cut)
+problemi deniyor. Konunun gelismesindeki ilginc bir hikaye 20. yuzyil
+basinda Sovyetler maks akis Amerikalilar ise min kesis problemlerini
+cozmeye odaklanmisti, fakat bu iki problem ikizlik uzerinden aslinda ayni
+problem.</p>
+<p>Maksimum akış problemi şöyle: bir yönlü çizit verildi diyelim,</p>
+<p><img alt="" src="func_55_duality_01.png" /></p>
+<p>İki nokta arasında bağlantı varsa $c_{ij}$ o iki nokta $i,j$ arasındaki
+bağlantının kapasitesini gösteriyor, eğer bir tren hattından bahsediyorsak
+o bağlantıdan geçebilecek yük miktarı, eğer şu borusu ise oradan akabilecek
+su miktarı, ya da bir yol ise o yolun uzunluğu, vs. olabilir. Bir
+bağlantıdan gerçekte olan akışı $f_{ij}$ olarak tanımlayabiliriz,</p>
+<p>$$
+0 \le f_{ij} \le c_{ij}
+$$</p>
+<p>ve $i,j \in E$ olacak, burada $E$ tüm kenarların (edges) indisleri, çizit
+$G = (V,E)$ olarak tanımlı, $V$ çizitin düğüm noktaları (vertices). Bir
+diğer şart (ki aslında bu bariz) bir düğüme giren akışın çıkan akışla eşit
+olması. </p>
+<p>$$
+\sum_{(i,k) \in E} f_{ik} = \sum_{kj} f_{kj} \quad k \in V \backslash {s,t} 
+$$</p>
+<p>Not: $\backslash$ işareti "hariç" demek. </p>
+<p>Maks akış problemi eldeki bir mali, nakliyatı diyelim, bir başlangıç
+noktası $s$ bitişi noktası $t$'ye maksimum miktarda nakil edebilecek yolu
+bulmaktır. Dikkat: $s$'den mal göndermek deyince $s$'den çıkan pek çok
+yoldan nakliyat paylaştırılarak gönderilebilir, altta görüldüğü gibi
+(kırmızı hat kapasitesi, yeşil bir optimal akış örneği, başlangıç 0 bitiş
+7).</p>
+<p><img alt="" src="func_55_duality_02.png" /></p>
+<p>O zaman maksimum akisi bir LP olarak kodlayalim,</p>
+<p>$$
+\max_{f \in \mathbb{R}^{|E|}} \sum_{(s,j)\in E} f_{sj}, \quad \textrm{öyle ki}
+$$
+$$
+0 \le f_{ij} \le c_{ij}, \quad \forall i,j \in E
+$$
+$$
+\sum_{(i,k) \in E} f_{ik} = \sum_{kj} f_{kj} \quad k \in V \backslash {s,t} 
+$$</p>
+<p>Fakat tek bir toplam ile tüm çizit üzerinden maksimum akışı nasıl formülize
+edebildik? Hedef fonksiyonundaki toplam sadece başlangıç $s$'den çıkan
+akışa bakıyor? Buradaki ufak numara yaptığımız kısıtlamayla bağlantılı,
+akışın muhafaza edilmesini şart koştuğumuz için optimal akış, her ne ise,
+çıkış noktasından olan toplamı ile varış noktasına girişi aynı tutmalı
+(aradaki geçiş düğümleri için de aynı şey geçerli olduğu için tabii), bu
+sebeple optimizasyonu tek bir toplam ile tanımlayabildik. Ustteki grafik
+ornekte goruluyor, çıkış toplam 3+2+1 varis toplam 4+2.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture 10</em>, 
