@@ -305,7 +305,91 @@ sebeple optimizasyonu tek bir toplam ile tanımlayabildik. Üstteki grafik
 örnekte görülüyor, çıkış toplam 3+2+1 varış toplam 4+2. O zaman çıkışı
 optimize edersek $t$'ye varan, tüm düğümler üzerinden olabilecek akışı
 maksimize etmiş oluruz.</p>
+<p>Bu programın ikizini hesaplayabiliriz, üstteki bir LP ikizini bulmayi
+biliyoruz, ana LP'dekiler kısıtlamalar kadar yeni değişken elde ederiz,
+vs.. Daha önce minimizasyon problemlerinin ikizine baktık, ana problemde
+bir alt sınır elde etmeye uğraşıyorduk. Şimdi ana problem maksimizasyon, o
+zaman hedef için üst sınır aramak bizi ikize götürür. Min probleminde bile
+hedefe bir eksi işareti eklesem onu maksimizasyon olarak görebilirdim, ve
+üst sınıra bakabilirdim. İkizin türetisi için notlara bakabilirsiniz
+[2]. Sonuçta şu minimizasyonu elde ediyorum,</p>
+<p>$$
+\min_{b \in \mathbb{R}^{|E|}, x \in \mathbb{R}^{|V|}} 
+\sum _{(i,j) \in E} b_{ij} c_{ij} \quad \textrm{öyle ki}
+$$</p>
+<p>$$
+b_{ij} \ge x_i - x_j
+$$
+$$
+b_{ij}, x_i,x_j \in { 0,1} \quad \forall i,j
+$$</p>
+<p>Elde ettiğimiz sonuc (hala ikize gelmedik) şunu söylüyor, elimdeki
+düğümleri öyle iki gruba ayırmak istiyorum ki (altta bir grup görülüyor,
+renkli kısım), bir gruptan diğer gruba geçen kapasitelerin, geçen
+kenarların kapasitelerinin toplamı minimal olsun.</p>
+<p><img alt="" src="func_55_duality_03.png" /></p>
+<p>Bu arada üstteki program bir LP değil, bir tamsayı programı (ınteğer
+program) çünkü eldeki düğümleri bir gruba ya da diğerine (0,1 değerleri
+üzerinden) atıyoruz, değişkenler ikisel, doğal olarak tam sayılar. Şimdi
+ikize geliyoruz, ana problemi ikiz üstteki tamsayı programının gevşetilmiş
+(relaxation) hali. 0,1 tamsayılarını alıp onları 0 ile 1 arasında gidip
+gelebilen reel değişkenler olarak tanımlarsak bir LP elde ederiz. </p>
+<p>Yani ana / ikizlik ve üstteki gevşetme arasındaki ilişkiler şöyle</p>
+<p>maksimum akış değeri $\le$ 
+gevşetilmiş minimum kesiş $\le$ 
+minimum kesişin kapasitesi</p>
+<p>Gevşetme ile minimum değer daha azaldı, tamsayı programını gevşetip
+dışbükey program haline getirince bunun olduğu biliniyor, kısıtlama
+kümesini genişlettim, bu minimumu küçültecektir. </p>
+<p>Herhalde keşiş kelimesinin nereden geldiği anlaşılıyor şimdi, eğer elimde
+bir makasla renkli bölgeye giden bağlantıları kessem, en az mıktarda akışı
+kesmiş olurum, ve o renkli bölge içindeki akış en yüksek kapasitede olur.
+Ve buradaki problemde güçlü ikizlik durumu olduğu için bu iki değer
+birbirine eşit! </p>
+<p>Şimdi LP ikizliğine farklı bir açıdan bakalım, ki bu açı oldukca faydalı
+olacak. </p>
+<p>Örnek</p>
+<p><img alt="" src="func_55_duality_04.png" />
+<img alt="" src="func_55_duality_05.png" /></p>
+<pre><code class="python">from scipy.optimize import linprog
+import numpy as np
+
+A_ub = np.eye(5)
+b_ub = np.array([1.,2.,2.,3.,1.])
+A_eq = np.array([[1, 0, -1, -1, 0],
+                 [0, 1, 1, 0, -1]])
+b_eq = np.array([ 0, 0 ]);
+f = np.array( [ 1, 1, 0, 0, 0 ])
+res = linprog(-f, A_ub=A_ub, b_ub=b_ub, \
+                 A_eq=A_eq, b_eq=b_eq)
+print (np.round(res.x))
+</code></pre>
+
+<pre><code>[1. 1. 0. 1. 1.]
+</code></pre>
+
+<pre><code class="python">print (res.x.dot(f))
+</code></pre>
+
+<pre><code>1.9999999998438802
+</code></pre>
+
+<p>Not: <code>linprog</code> minimize etmeye ayarlı olduğu için hedefi eksi ile
+çarptık, yani maksimizasyon yaptırmış olduk.</p>
+<p>Maksimum akış 2.0 olarak bulundu. Optimize edilen $-c^T x$ dersek vektör
+$x$ içindeki öğeler $e_1,e_2,e_3,e_4,e_5$, ve $c$ içinde $1,1,0,0,0$ var,
+yani aslında sadece $e_1,e_2$'nin akış toplamına bakmış oluyoruz. Bu normal,
+sebeplerinden önce bahsetmiştik. Bulunan sonuç $x^* = (1,1,0,1,1)$, onu
+$c^Tx^*$ çarpımı ilk iki öğeyi toplatıyor, ve 1+1 = 2. </p>
+<p>Eşitlik kısıtlamaları $A_{eq}$ ve $b_{eq}$ içinde, sadece iki kısıtlama
+var, bu kısıtlamalardan ilki 1'e giren $e_1$ ile ondan çıkan $e_3,e_4$'un
+eşit olması gerektiğini söylüyor, bu sebeple ilk kısıtlama $1,0,-1,-1,0$,
+ve ona tekabül eden $b_{eq}$ sıfır değerinde, $e_1$ akışı ile $e_3,e_4$
+toplanırsa sıfır olsun demiş oluyoruz. İkinci kısıtlama 2'ye giren iki akış
+$e_2,e_3$ ile çıkan $e_5$'i dengeliyor.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
-<p>[1] Tibshirani, <em>Convex Optimization, Lecture 10</em>, 
+<p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 10</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
+<p>[1] Tibshirani, <em>Convex Optimization, Lecture Notes</em>, 
+<a href="https://www.stat.cmu.edu/~ryantibs/convexopt/">https://www.stat.cmu.edu/~ryantibs/convexopt/</a></p>
