@@ -383,10 +383,31 @@ $$
 $$
 v \ge 0
 $$</p>
-<p>Bu ikizi turetmenin bir baska yoludur. Ustteki problemden gelen $g$ ki ona
-cogunlukla $g^*$ denir, $f^*$ icin bir alt sinir olusturacaktir,</p>
+<p>Bu ikizi türetmenin bir başka yoludur. Üstteki problemden gelen $g$ ki ona
+çoğunlukla $g^*$ denir, $f^*$ için bir alt sınır oluşturacaktır,</p>
 <p>$$
 g^* \le f^*
+$$</p>
+<p>Şimdi $g$'nin nasıl bir fonksiyon olduğuna yakında bakalım. Tanım şöyleydi,</p>
+<p>$$
+g(u,v) = \min_x c^T x + u^T (Ax-b) + v^T (Gx-h)
+$$</p>
+<p>Bir gruplama yapalım,</p>
+<p>$$
+\min_x (c^T + A^Tu + G^T v)^T x - b^T u - h^Tu
+$$</p>
+<p>Üstteki $x$ bağlamında bir lineer fonksiyon değil mi? Birşeyler devriği
+çarpı $x$ artı birşeyler. Tüm $x$'ler üzerinden bu fonksiyonun minimumu
+nedir? Eksi sonsuzluk - eğer parantez içindeki değer sıfır değilse. Değil
+mi? Eğer $x$ sıfırla çarpılıp yokedilmiyorsa $x$'i istediğim tarafa çekip
+hedefi istediğim kadar negatife götürebilirim. </p>
+<p>Ama $c^T + A^Tu + G^T v$ sifir ise o zaman minimum nedir? Sifirdan geri
+kalanlar, $- b^T u - h^Tu$, o zaman </p>
+<h1>$$</h1>
+<p>\left\{ \begin{array}{ll}
+-\infty &amp; \text{eğer} \quad c^T + A^Tu + G^T v \ne 0 \\
+- b^T u - h^Tu &amp; \text{eğer} \quad c^T + A^Tu + G^T v = 0 
+\end{array} \right.
 $$</p>
 <p>[devam edecek]</p>
 <p>Örnek</p>
