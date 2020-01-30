@@ -220,6 +220,7 @@ Ax = b
 $$
 $$
 Gx \le h
+\qquad (1)
 $$</p>
 <p>İkiz Problem</p>
 <p>$$
@@ -230,6 +231,7 @@ $$
 $$
 $$
 v \ge 0
+\qquad (2)
 $$</p>
 <p>İkizi nasıl elde ettik? </p>
 <p>$Ax = b$ ve $Gx \le h$ için iki (vektör) değişkeni tanımlıyoruz, sırasıyla
@@ -348,6 +350,45 @@ Ve buradaki problemde güçlü ikizlik durumu olduğu için bu iki değer
 birbirine eşit! </p>
 <p>Şimdi LP ikizliğine farklı bir açıdan bakalım, ki bu açı oldukca faydalı
 olacak. </p>
+<p>(1) ve (2) formunu tekrar hatırlayalım. Ana problemdeki $c^Tx$'e eşitlik ve
+eşitsizlik  kısıtlamalarını daha önce bir kez gördüğümüz gibi ekleyince,</p>
+<p>$$
+c^T x \ge c^T x + u^T (Ax-b) + v^T (Gx-h)
+$$</p>
+<p>Bu doğru çünkü olurlu $x$ için $Ax-b$ sıfır ve $Gx-h$ sıfırdan küçük,
+$v \ge 0$. Yani toplam $c^T x$'dan muhakkak daha küçük. </p>
+<p>Ayrıca şunu da söylemek mümkün, diyelim ki $x \in C$ olurlu değerler, </p>
+<p>$$
+f^* = \min_{x \in C} c^T x \ge 
+\min_{x \in C} c^T x + u^T (Ax-b) + v^T (Gx-h) \ge
+\min_x c^T x + u^T (Ax-b) + v^T (Gx-h)
+$$</p>
+<p>En sağdaki eşitsizlik yeni eklendi, buradaki ifadenin ortadakinen tek farkı
+$x$'lerinin sadece olurlu kümeden değil mümkün tüm $x$'ler
+olabilmesi. Herhangi bir $x$ de bizi herhangi bir hedefe götürebilecegi
+icin (kısıtlama kalmadı) $-\infty$ bile olmak mümkün, üstteki eşitsizlik bu
+sebeple doğru.</p>
+<p>En sagdaki ifadeyi $g(u,v)$ olarak yazabiliriz, $u,v$'nin bir
+fonksiyonu olarak. Bu fonksiyon $f^*$'ye bir alt sinir saglar, </p>
+<p>$$
+f^* \ge g(u,v)
+$$</p>
+<p>ki $v \ge 0$ olduğu sürece. </p>
+<p>O zaman mümkün olan en büyük alt sınır $g(u,v)$'yi hesaplamak istiyorsak,
+ikiz problemimiz $g(u,v)$'yi olabildiğince büyük yapmak olabilir, yani onu
+maksimize etmek. </p>
+<p>$$
+\max_{u,v} g(u,v) \quad \textrm{öyle ki}
+$$
+$$
+v \ge 0
+$$</p>
+<p>Bu ikizi turetmenin bir baska yoludur. Ustteki problemden gelen $g$ ki ona
+cogunlukla $g^*$ denir, $f^*$ icin bir alt sinir olusturacaktir,</p>
+<p>$$
+g^* \le f^*
+$$</p>
+<p>[devam edecek]</p>
 <p>Örnek</p>
 <p>Alttaki örnekte [3] bir maksimum akış çözümü görelim. Çizit ve her kenarın
 kapasiteleri görülüyor</p>
@@ -397,7 +438,6 @@ Ve optimal sonuç bulunuyor.</p>
 kazandırdı. Diğer yandan üstteki problemi bilgisayar bilim bağlamında çözen
 yaklaşımlar da vardır, hatta çizitin özel yapısından faydalanarak bu
 yaklaşımların bazıları oldukca hızlı.</p>
-<p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 10</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
