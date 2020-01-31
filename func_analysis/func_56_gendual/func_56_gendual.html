@@ -1,0 +1,46 @@
+<h1>Genel Çifteslik / İkizlik (General Dualıty)</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Genel Çifteslik / İkizlik (General Dualıty)
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>Ders notlari [1]'den alinmistir. </p>
+<p>Bu derste genel dışbükey problemlerinde ikizlik konusunu göreceğiz, ek
+olarak dışbükey olmayan durumlara da bakacağız. İkizlik oldukca genel bir
+konu. </p>
+<p>Önceki derste ikizliği elde etmenin ikinci yönteminde </p>
+<p>$$
+L(x,u,v) \equiv c^T x + u^T (Ax-b) + v^T (Gx-h) 
+$$</p>
+<p>tanımı üzerinden (Lagrangian)</p>
+<p>$$
+f^* = \min_{x \in C} L(x,u,v) \ge \min_x L(x,u,v) \equiv g(u,v)
+$$</p>
+<p>şeklinde bir formül elde etmiştik, $u,v$ sabitlendiği durumda ve $x \in C$
+olurlu çözümleri kümesi olacak şekilde, ve bu küme üzerinden Lagrangian'in,
+tüm $x$'ler üzerinden olan Lagrangian'dan her zaman daha büyük olacağını
+görmüştük. Aslında bu çok basit bir fikir ama bu basit ve kuvvetli fikir
+sayesinde ikizliği genel problemlere uygulamak mümkün oluyor. </p>
+<p>[devam edecek]</p>
+<p>Kaynaklar</p>
+<p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
