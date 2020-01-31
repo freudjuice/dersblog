@@ -201,7 +201,7 @@ a,b \ge 0
 $$</p>
 <p>Dersin geri kalanında ikizlikten genel bir çerçevede bahsedeceğim, sonra 
 bir ilginç örnek göreceğiz, ardından ikizliğe yeni bir bakış açısından
-yaklaşacağız, bu acı çok önemli olacak. Dersi ikinci bir örnekle
+yaklaşacağız, bu açı çok önemli olacak. Dersi ikinci bir örnekle
 bitireceğiz. </p>
 <p>LP'lere tüm genelliği ile bakalım şimdi. Önceki format neler olup bittiğini
 görmek açısından faydalı, ama genel şablonu da görmek lazım. </p>
@@ -257,10 +257,10 @@ $$</p>
 <p>Böylece eşitliğin sağ tarafı alt sınırım olur, sol tarafı ise ikiz
 değişkenlerim üzerinde kısıtlama haline gelir, $v \ge 0$. Böylece ikiz
 probleme erişmiş oluyoruz.</p>
-<p>Sonraki ornege gelelim. Bu probleme maks akis min kesis (max flow min cut)
-problemi deniyor. Konunun gelismesindeki ilginc bir hikaye 20. yuzyil
-basinda Sovyetler maks akis Amerikalilar ise min kesis problemlerini
-cozmeye odaklanmisti, fakat bu iki problem ikizlik uzerinden aslinda ayni
+<p>Sonraki örneğe gelelim. Bu probleme maks akış min keşiş (max flow min cut)
+problemi deniyor. Konunun gelişmesindeki ilginç bir hikaye 20. yüzyıl
+başında Sovyetler maks akış Amerikalılar ise min keşiş problemlerini
+çözmeye odaklanmıştı, fakat bu iki problem ikizlik üzerinden aslında aynı
 problem.</p>
 <p>Maksimum akış problemi şöyle: bir yönlü çizit verildi diyelim,</p>
 <p><img alt="" src="func_55_duality_01.png" /></p>
@@ -368,8 +368,8 @@ $x$'lerinin sadece olurlu kümeden değil mümkün tüm $x$'ler
 olabilmesi. Herhangi bir $x$ de bizi herhangi bir hedefe götürebilecegi
 icin (kısıtlama kalmadı) $-\infty$ bile olmak mümkün, üstteki eşitsizlik bu
 sebeple doğru.</p>
-<p>En sagdaki ifadeyi $g(u,v)$ olarak yazabiliriz, $u,v$'nin bir
-fonksiyonu olarak. Bu fonksiyon $f^*$'ye bir alt sinir saglar, </p>
+<p>En sağdaki ifadeyi $g(u,v)$ olarak yazabiliriz, $u,v$'nin bir
+fonksiyonu olarak. Bu fonksiyon $f^*$'ye bir alt sınır sağlar, </p>
 <p>$$
 f^* \ge g(u,v)
 $$</p>
@@ -394,14 +394,14 @@ g(u,v) = \min_x c^T x + u^T (Ax-b) + v^T (Gx-h)
 $$</p>
 <p>Bir gruplama yapalım,</p>
 <p>$$
-\min_x (c^T + A^Tu + G^T v)^T x - b^T u - h^Tu
+= \min_x (c^T + A^Tu + G^T v)^T x - b^T u - h^Tu
 $$</p>
 <p>Üstteki $x$ bağlamında bir lineer fonksiyon değil mi? Birşeyler devriği
 çarpı $x$ artı birşeyler. Tüm $x$'ler üzerinden bu fonksiyonun minimumu
-nedir? Eksi sonsuzluk - eğer parantez içindeki değer sıfır değilse. Değil
+nedir? Eksi sonsuzluk, eğer parantez içindeki değer sıfır değilse.. Değil
 mi? Eğer $x$ sıfırla çarpılıp yokedilmiyorsa $x$'i istediğim tarafa çekip
-hedefi istediğim kadar negatife götürebilirim. </p>
-<p>Ama $c^T + A^Tu + G^T v$ sifir ise o zaman minimum nedir? Sifirdan geri
+hedefi istediğim kadar negatife götürebilirim.</p>
+<p>Ama $c^T + A^Tu + G^T v$ sıfır ise o zaman minimum nedir? Sıfırdan geri
 kalanlar, $- b^T u - h^Tu$, o zaman </p>
 <p>$$
 = \left\{ \begin{array}{ll}
@@ -409,7 +409,58 @@ kalanlar, $- b^T u - h^Tu$, o zaman </p>
 - b^T u - h^Tu &amp; \text{eğer} \quad c^T + A^Tu + G^T v = 0 
 \end{array} \right.
 $$</p>
+<p>Negatif sonsuz olmayan duruma bakıyoruz, $c^T + A^Tu + G^T v = 0 $ şartı
+aynı zamanda $c = -A^Tu - G^T v $ demektir, o zaman $g(u,v)$'yi
+$v \ge 0$ olacak şekilde maksimize etmek demek</p>
+<p>$$
+\max_{u,v} - b^T u - h^Tu   \quad \textrm{öyle ki}
+$$
+$$
+c = -A^Tu - G^T v, \quad v \ge 0
+$$</p>
+<p>programıyla eşdeğerdir. </p>
+<p>İkiz programa erişmiş olduk, farklı bir yönden geldik, ama yine (2) ile
+aynı noktaya ulaştık. </p>
+<p>Bu ikinci türetiş şeklinin daha faydalı olmasının sebebini anlatalım
+şimdi. İlk ikiz alma stratejimiz neydi? Elimizde </p>
+<p>$$
+\min f(x) \quad \textrm{öyle ki}
+$$
+$$
+Ax = b
+$$
+$$
+Gx \ge h
+$$
+$$
+v \ge 0
+$$</p>
+<p>var, her kısıtlamaları ikiz değişkenler $u,v$ ile çarpıyoruz, birleşik bir
+denklem, bir lineer kombinasyon elde ediyoruz,</p>
+<p>$$
+u^T(Ax-b) + v^T (Gx-h) \le 0
+$$</p>
+<p>Sonra üstteki ifadeyi bir şekilde $f(x)$'e eşitlemem lazım, ya da $f(x)$'i
+içeren bir şeylere eşitlemem lazım, ki onu kullanarak ana değer için bir
+alt sınır elde edebileyim. İlk stratejimiz buydu değil mi? </p>
+<p>$$
+f(x) + \textrm{birşeyler} \ge 0
+$$</p>
+<p>elde etmek. </p>
+<p>Bu iyi güzel ama genel bağlamda bu yöntem her zaman işlemez. Eğer $f(x)$
+lineer değilse, onu lineer kombinasyonlar kullanarak nasıl elde edebiliriz
+ki? Mümkün değil. Yani üstteki yöntem $f(x)$ lineer ise işler, diğer
+durumlarda işlemez.</p>
+<p>İkinci stratejinin güzel tarafı burada. Her zaman işler, yeter ki $f$
+dişbukey olsun. Aslında bir açıdan dişbukeylik olmasa da işliyor, buna
+sonra geleceğiz. İkinci stratejiyi tekrar hatırlarsak, bir Lagrangian
+oluşturmuştuk, bu ifadede ana hedefe ikiz değişkenlerle noktasal çarpım
+üzerinden eklenen kısıtlamalar vardı, ve minimizasyonu olurlu set yerine
+tüm $x$'ler üzerinden yapıyorduk, ve bu bize her zaman ana hedef için bir
+alt sınır veriyordu.</p>
 <p>[devam edecek]</p>
+<p>Ekler</p>
+<p>Altta maksimum akışı LP olarak çözen sayısal bir örnek görüyoruz.</p>
 <p>Örnek</p>
 <p>Alttaki örnekte [3] bir maksimum akış çözümü görelim. Çizit ve her kenarın
 kapasiteleri görülüyor</p>
