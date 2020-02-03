@@ -49,7 +49,7 @@ ve işin güzel tarafı çoğunlukla hesaplanabilir bir fonksiyon. Yanı
 $L(x,u,v)$'yi $x$ üzeriden minimize etmek $u,v$'nin bir fonksiyonu. </p>
 <p>Bir diğer deyişle, $g(u,v)$ fonksiyonu $f^*$ üzerinde herhangi bir $u$ ve
 $v \ge 0$ için bir alt sınır. Ikiz fonksiyonu olarak isimlendirilen $g$.</p>
-<p>Lagrangian'i tekrar düzenleyerek alttakini elde etmiştik, </p>
+<p>Lagrangian'ı tekrar düzenleyerek alttakini elde etmiştik, </p>
 <p>$$
 g(u,v) = \left\{ \begin{array}{ll}
 -\infty &amp; \text{eğer} \quad c^T + A^Tu + G^T v \ne 0 \\
@@ -60,7 +60,7 @@ $$</p>
 bakacağız. Dişbukey (convex) olması şart değil ama tabii ki dışbükey
 durumlara özel ilgi göstereceğiz. Form,</p>
 <p>$$
-\min_{x} f(x), \quad \textrm{oyle ki}
+\min_{x} f(x), \quad \textrm{öyle ki}
 $$
 $$
 h_i(x) \le 0, \quad i=1,..,m
@@ -85,7 +85,7 @@ istemiyoruz. </p>
 <p>$$
 f(x) \ge L(x,u,v)
 $$</p>
-<p>Niye? Daha önce gördüğümüz bir fikirle aynı durum, olurlu noktalarda</p>
+<p>Niye? Daha önce LP'lerle gördüğümüz fikirle aynı durum, olurlu noktalarda</p>
 <p>$$
 L(x,u,v) =  f(x) + 
 \sum_{i=1}^{m} u_i \underbrace{h_i(x)}_{\le 0} + 
@@ -96,6 +96,38 @@ $u_i$'lerin hepsi sıfırdan büyük olmalı ve olurlu noktada $h_i$'ler
 sıfırdan küçük, pozitif çarpı negatif eşittir negatif, toplam negatif,
 $f(x)$'den bir değer eksiltilmiş olacaktır, bu da muhakkak $f(x)$'den küçük
 bir sonuca sebep olacaktır, iki üstteki bu şekilde ispatlanmış olur.</p>
+<p>Üstteki fonksiyonu, parçalarını grafiksel olarak alttaki gibi görebiliriz,</p>
+<p><img alt="" src="func_56_gendual_01.png" /></p>
+<p>Kesiksiz çizgi kriter / hedef fonksiyonu örnek bir $f$. Dikkat edersek
+görülen $f$ dışbükey değil, bunu genel dışbükey olmayan ortamlarda da
+tekniğin işlediğini göstermek için yaptık. </p>
+<p>Noktalı eğrilerin her biri farklı $u$'lar için $L$'nin değerleri, ayrıca
+olurlu kümeyi $[-0.46,0.46]$ arasında olacak şekilde seçtik. Yani </p>
+<p>$$
+\min_{x} f(x), \quad \textrm{öyle ki}
+$$
+$$
+h_i(x) \le 0
+$$</p>
+<p>programını ele almış olduk, noktalalı eğriler ile çizilen ise </p>
+<p>$$
+L(x,u) = f(x) + u l(x)
+$$</p>
+<p>Devam edersek belli bir $f^*$ minimumu düşünelim, </p>
+<p>$$
+f^* \ge \min_{x \in C} L(x,u,v) \ge \min_x L(x,u,v) \equiv g(u,v)
+$$ </p>
+<p>LP örneğindeki yaklaşım, sadece olurlu küme $C$ yerine tüm $x$'ler
+üzerinden minimizasiyon bir alt sınır oluşturur. $g(u,v)$'ye ikiz fonksiyon
+diyoruz.</p>
+<p>Peki niye $g(u,v)$ tanımını $\min_{x \in C} L(x,u,v)$ için yapmadım, tüm
+$x$'ler üzerinden olan kısıtlanmamış versiyon için yaptım? Çünkü tüm
+$x$'ler üzerinden olan tanım bizim için daha faydalı. O tür ifadeler
+üzerinde analitik çözüm geliştirmek daha rahattır, analitik çözüm olmasa
+bile tüm $x$'ler üzerinden yaklaşım daha faydalı. Tabii hala bazı
+kısıtlamalar var, mesela $u \ge 0$ olmalı.</p>
+<p>Ikiz fonksiyon $g$'nin bir grafigi </p>
+<p><img alt="" src="func_56_gendual_02.png" /></p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
