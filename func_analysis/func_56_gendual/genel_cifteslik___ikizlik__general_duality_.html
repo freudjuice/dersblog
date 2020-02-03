@@ -197,13 +197,69 @@ $$</p>
 <p>Yani eğer bana verilen her $u \ge 0$ olan $u$, ve herhangi $v$ için
 hesaplayacağım üstteki formül, bana karesel programın optimumu için bir alt
 sınır veriyor.</p>
-<p>Ne kadar onemsiz olmayan bir sonuc. Bu noktaya son derece onemsiz (gibi
-gozuken), gayet basit ifadeleri bir araya koyarak geldik. Ama karesel
-program icin elde ettigimiz sonuca bakin. Basta gordugumuz genel form bir
-QP. (3)'un bu QP'nin optimal degeri icin bir alt sinir olusturacagi ilk
-bakista bariz gibi durmuyor. Ama bu boyle, ve Lagrangian ikiz fonksiyonun
-bir ozelliginin sonucu bizi buraya getiriyor, birkac satirlik ifadeyle
-ustteki kuvvetli sonucu dogrulayabiliyoruz.</p>
+<p>Ne kadar önemsiz olmayan bir sonuç. Bu noktaya son derece önemsiz (gibi
+gözüken), gayet basit ifadeleri bir araya koyarak geldik. Ama karesel
+program için elde ettiğimiz sonuca bakın. Başta gördüğümüz genel form bir
+QP. (3)'un bu QP'nin optimal değeri için bir alt sınır oluşturacağı ilk
+bakışta bariz gibi durmuyor. Ama bu böyle, ve Lagrangian ikiz fonksiyonun
+bir özelliğinin sonucu bizi buraya getiriyor, birkaç satırlık ifadeyle
+üstteki kuvvetli sonucu doğrulayabiliyoruz.</p>
+<p>Farklı bir varyasyona bakalım şimdi, ya $Q \succeq 0$ olsaydı, yani $Q$
+pozitif yarı kesin olsaydı?</p>
+<p>Bu durumda yine Lagrangian'in gradyanını alıp sıfıra eşitlerdik, vs. ve </p>
+<p>$$
+Qx = -(c-u+A^Tv) 
+\qquad (4)
+$$</p>
+<p>elde ederdik, fakat $Q$'nun tersini alıp $x$'i elde edemezdik çünkü $Q$
+pozitif kesin değil. </p>
+<p>Çözüm için iki şartı gözönüne almak lazım,</p>
+<p>1) $c-u+A^T v \in col(Q)$ ki $col(Q)$ $Q$'nun kolon uzayı demek, yani (4)
+lineer ifadesini tatmin eden bir $x$ var. Bu durumda $x^*$'i</p>
+<p>$$
+x^* = -Q^{+}(c-u+A^Tv)
+$$</p>
+<p>olarak yazılabilir, ki $^+$ işareti genelleştirilmiş ters (generalized ınverse)
+demek. Bu işleme bazen sözde ters (pseudo ınverse) ismi de veriliyor. Bu
+işlem çoğunlukla eşsiz değer ayrıştırması (singular value decomposition)
+üzerinden tanımlanır. Ama $Q$ simetrik olduğu için onun öz ayrıştırmasını
+(eigen decomposition) yazsam da olur herhalde, $Q$'yu su sekilde yazsaydim,</p>
+<p>$$
+Q = U D U^T
+$$</p>
+<p>Eğer $Q$ pozitif yarı kesin ise o zaman $D$ içinde bazı değerlerin sıfır
+olması mümkün, yani şunun gibi bir durum olabilir, </p>
+<p>$$
+= U \left[\begin{array}{ccccc}
+d_1 &amp; &amp; &amp; &amp; \\
+&amp; \ddots &amp; &amp; &amp; \\
+&amp; &amp; d_r &amp; &amp; \\
+&amp; &amp;  &amp; 0 &amp; \\
+&amp; &amp;  &amp;  &amp; 0 
+\end{array}\right]
+U^T
+$$</p>
+<p>Ve $Q^+$ sözde tersini tanımlamanın bir yolu üstteki öz ayrıştırma
+üzerinden (dikdörtgensel matrisler için SVD üzerinden) olur. Ama ondan önce
+bir soru, eğer tüm değerleri sıfır olmayan bir $D$ üzerinden bir öz
+ayrıştırmam olsaydı? Basit, $U D^{-1} U^T$ değil mi? Unutmayalım $U$
+matrisi dikgen. </p>
+<p>Ama pozitif yarı kesinlik var, o yüzden $D$'nin tersini alamıyorum. Bu
+sebeple sözde ters işlemi $D$ içindeki tersi alınabilen değerlerin tersini
+alıp diğerlerini olduğu gibi bırakmak üzerinden tanımlanmıştır. </p>
+<p>$$
+Q^+ = U \left[\begin{array}{ccccc}
+1/d_1 &amp; &amp; &amp; &amp; \\
+&amp; \ddots &amp; &amp; &amp; \\
+&amp; &amp; 1/d_r &amp; &amp; \\
+&amp; &amp;  &amp; 0 &amp; \\
+&amp; &amp;  &amp;  &amp; 0 
+\end{array}\right]
+U^T
+$$</p>
+<p>Üsttekine bazen "Moore-Penrose sözde tersi" ismi verildiğini de
+duyabilirsiniz, aslında pek çok farklı sözde ters yöntemleri var, ama
+standart olan üstteki.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
