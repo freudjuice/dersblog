@@ -126,8 +126,69 @@ $x$'ler üzerinden olan tanım bizim için daha faydalı. O tür ifadeler
 üzerinde analitik çözüm geliştirmek daha rahattır, analitik çözüm olmasa
 bile tüm $x$'ler üzerinden yaklaşım daha faydalı. Tabii hala bazı
 kısıtlamalar var, mesela $u \ge 0$ olmalı.</p>
-<p>Ikiz fonksiyon $g$'nin bir grafigi </p>
+<p>İkiz fonksiyon $g$'nin $\lambda$'ya (aslında $u$) gore bir grafiğini altta görüyoruz,</p>
 <p><img alt="" src="func_56_gendual_02.png" /></p>
+<p>Kesikli çizgi kriter, ve $g$ her $\lambda$ için kriterin hep altında.</p>
+<p>Peki niye ikizi yapabildiğim en büyük değer kriterin olurlu kümede
+olabilecek en ufak değerine eşit değil (ikizin tepesi kesikli çizgiye
+değmiyor)? Çünkü elimizdeki bir dişbukey olmayan fonksiyon. Dişbukeylik
+olsaydı alt sınır sıkı olurdu. Dişbukey olmayan fonksiyonlarda da sıkılık
+görülebilir ama dışbükeylık durumundaki gibi bu şart değildir.</p>
+<p>Biraz daha zor bir örneğe bakalım. </p>
+<p>Standart formda bir karesel program (QP). </p>
+<p>$$
+\min_x \frac{1}{2} x^T Q x + c^T x \quad \textrm{öyle ki}
+$$
+$$
+Ax = b, \quad x \ge 0
+$$</p>
+<p>ki $Q$ pozitif kesin, $Q \succ 0$ olarak gösterilir, en küçük özdeğeri
+harfiyen sıfırdan büyük (yani $&gt;0$, $\ge 0$ değil), bu durumda üstteki
+problem harfiyen dışbükey olur.</p>
+<p>Lagrangian için öğrendiğimiz tarifi uygularsak, </p>
+<p>$$
+L(x,u,v) = \frac{1}{2} x^T Q x + c^Tx  - u^T x + v^T (Ax - b)
+\qquad (2)
+$$</p>
+<p>Ikiz fonksiyonu bulalim simdi. $x$ uzerinden minimizasyon yapilan degisken
+olacagi icin $g$'de olmayacak, yani</p>
+<p>$$
+g(u,v) = \min_x L(x,u,v) 
+$$</p>
+<p>$x$'ler üzerinden ufak bir gruplama sonrası</p>
+<p>$$
+= \min_x \frac{1}{2} x^T Q x + (c - u + A^T v)^T x - b^T v<br />
+\qquad (1)
+$$</p>
+<p>Bu minimumu nasıl buluruz? Gradyanı alıp sıfıra eşitleriz değil mi? Tabii
+üstteki tanıdık bir formda, eğer tek boyuttan hatırlarsak, </p>
+<p>$$
+ax^2 + bx + c
+$$</p>
+<p>formülü olsaydı, çözüm $x^* = \frac{-b}{2a}$ olurdu. Çok boyutlu vektörel
+formda</p>
+<p>$$
+\frac{1}{2} x^T Q x + b^T x
+$$</p>
+<p>icin cozum $x^* = -Q^{-1} b$. Bunu biliyorum cunku pek cok kez bu cozumu
+turettim, hatirliyorum. Bu formu bizim probleme uygularsak, (1) icindeki
+parantezde gorulen $c - u + A^T v$ kismi ustteki $b$ oluyor. O zaman
+Lagrangian'in minimize edicisi</p>
+<p>$$
+x^* = -Q^{-1} (c - u + A^T v)
+$$</p>
+<p>O zaman Lagrangian'in minimum noktasi ustteki minimize ediciyi formule geri
+sokunca elde edecegim sey</p>
+<p>$$
+\min_x L(x,u,v) = L(x^*,u,v)
+$$</p>
+<p>$$
+= \frac{1}{2} 
+(c - u + A^Tv)^T Q^{-1} (c - u + A^Tv) - 
+(c - u + A^Tv)^T Q^{-1} (c - u + A^Tv)
+$$</p>
+<p>Geriye tek $Q^{-1} $ kaldı çünkü (2)'ye $x^*$'i soktuğumuz zaman $Q$ ile
+çarpılan ilk $Q^{-1} $ iptal oldu, ikincisi geriye kaldı.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
