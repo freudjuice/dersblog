@@ -170,10 +170,10 @@ formda</p>
 <p>$$
 \frac{1}{2} x^T Q x + b^T x
 $$</p>
-<p>icin cozum $x^* = -Q^{-1} b$. Bunu biliyorum cunku pek cok kez bu cozumu
-turettim, hatirliyorum. Bu formu bizim probleme uygularsak, (1) icindeki
-parantezde gorulen $c - u + A^T v$ kismi ustteki $b$ oluyor. O zaman
-Lagrangian'in minimize edicisi</p>
+<p>için çözüm $x^* = -Q^{-1} b$. Bunu biliyorum çünkü pek çok kez bu çözümü
+türettim, hatırlıyorum. Bu formu bizim probleme uygularsak, (1) içindeki
+parantezde görülen $c - u + A^T v$ kısmı üstteki $b$ oluyor. O zaman
+Lagrangian'ın minimize edicisi</p>
 <p>$$
 x^* = -Q^{-1} (c - u + A^T v)
 $$</p>
@@ -290,8 +290,42 @@ olarak $u,v$ üzerinde bir eşitlik kısıtlamasına. $null(Q)$'ya dikgen olmak
 demek $Q$'nun sıfır uzayına olan yansıtma matrisini, $P$ diyelim, alıp $c -
 u + A^Tv$ ile çarparsam sıfır sonucunu almalıyım. Bunu eşitlik kısıtlaması
 olarak kodlayabilirim.</p>
-<p>Bir diger ornege bakalim. Bu cok daha basit bir karesel program, iki
+<p>Bir diğer örneğe bakalım. Bu çok daha basit bir karesel program, iki
 boyutlu. </p>
+<p>$$
+\min_{x \in (x_1,x_2)} f(x) = \frac{1}{2} x^T Q x b^T x \quad \textrm{oyle ki}
+$$
+$$
+x \ge 0
+$$</p>
+<p>İkiz fonksiyon</p>
+<p>$$
+g(u) = \min_x \frac{1}{2} x^T Q x + b^T x - u^T x 
+$$</p>
+<p>ki $u = (u_1,u_2)$</p>
+<p>Ana problem karesel, ikiz de karesel. Problemleri grafik olarak görelim,
+hem ana (primal) hem de ikiz (dual) aynı grafikte olacak şekilde,</p>
+<p><img alt="" src="func_56_gendual_03.png" /></p>
+<p>İkizin nasıl gözükeceğini daha önceki örneklerden tahmin edebilirdik, (3)
+formülünde eksi işareti var, ikiz bir içbukey yüzey olacak.</p>
+<p>İlginç bir şey görüyoruz, ana problemin en küçük olduğu nokta ikizin en
+büyük olduğu noktada. Üstteki sistem sıkı olacak gibi duruyor, eğer üstteki
+$g(u)$'yu maksimize etmek bana $f^*$'i geri verecek.  Bu durumun bu örneğe
+özel olmadığını belirtmek isterim, dışbükey problemlerde sık sık olan bir
+şey bu. </p>
+<p>Bir diğer ilginç durum, ikiz çözümün nerede olduğu, yani $u_1,u_2$'den
+bahsediyorum, kriterden değil. Kriter çözüm noktasında ana ve ikizde
+uymalı. İkiz çözüm $(0,0)$'da. Ana çözüm, resimden pek belli olmuyor ama
+$x_1,x_2$ kordinat sisteminin içlerine doğru bir yerlerde yani her ikisi de
+harfiyen pozitif. Bu bir raslantı mı? Yani $x_1,x_2$ harfiyen pozitif ise
+(yani $&gt;0$) ikizin sıfır olma durumu? </p>
+<p>Değil. Burada olan birbirini tamamlayan serbestlik (complementary
+slackness) durumu. Bu kavramı Karush-Kuhn-Tucker (KKT) şartlarını
+işlediğimizde öğreneceğiz. Eğer problemde gördüğümüz sınırlamaların
+herhangi biri çözüm noktasında sıkı değilse ona tekabül eden ikiz değişken
+sıfır olmalı. Bu olması gereken bir fenomen ve ispatını da yapacağız.</p>
+<p>Üstteki örnekte her iki şart da çözümde sıkı değil, $x$ her iki kordinatta
+da sıfırda büyük, bu her iki ikiz değişkeni çözümde sıfır olmaya zorluyor. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
