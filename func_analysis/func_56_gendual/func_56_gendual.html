@@ -259,6 +259,39 @@ $$</p>
 <p>Üsttekine bazen "Moore-Penrose sözde tersi" ismi verildiğini de
 duyabilirsiniz, aslında pek çok farklı sözde ters yöntemleri var, ama
 standart olan üstteki.</p>
+<p>Yani bu durumda $c-u+A^T v$'nin içinde $Q$'nun kolon uzayında olmayan bazı
+öğeleri var, yani bu bazı öğeler $col(Q)$'a dikgen olan bir uzaydalar,
+sıfır (null) uzayındalar. $Q$ simetrik olduğu için kolon uzayıyla sıfır
+uzayı birbirini dikgen tamamlıyor.</p>
+<p>$$
+c-u+A^T v \perp null(Q)
+$$</p>
+<p>2) Bu durumda üstteki sıfır uzayıyla olan dikgenlik doğru değil. O zaman ne
+olur? O durumda (4)'ün çözümü yoktur. O zaman (1)'ın minimizasyonuna ne
+olacak? (1)'i istediğimiz kadar ufak yapabiliriz, yani $-\infty$'a kadar
+gidebiliriz. Çünkü düşünürsek sıfır uzayında olan $x$ seçeneği (1)'in ilk
+terimini sıfır yapar, ama ikinci terimi istediğimiz yöne çekebiliriz, ta ki
+$-\infty$ kadar.</p>
+<p>$$
+g(u,v) = 
+\left\{ \begin{array}{ll}
+-\frac{1}{2} (c - u + A^Tv)^T Q^{-1}  (c - u + A^Tv) - b^Tv &amp; 
+  \textrm{eger } c - u + A^Tv \perp null(Q)\\
+-\infty &amp; \textrm{tersi doğruysa}
+\end{array} \right.
+$$</p>
+<p>Şimdi geri bir adım atıp her şeye bakalım. Elimizde bir QP varsa Lagrange
+ikiz fonksiyon da karesel, o zaman Lagrange ikizi maksimize etmek hala bir
+QP. Yani QP'lerin ikizleri yine QP. </p>
+<p>Biraz önce gördüğümüz QP örneğinde Lagrange ikiz karesel, ama tanım
+kümesinde (domain) bir kısıtlama var, üstteki $g(u,v)$'de görüyoruz. Fakat
+bu tanım kümesi kısıtlamaını bir QP kısıtlamasına çevirebiliriz, spesifik
+olarak $u,v$ üzerinde bir eşitlik kısıtlamasına. $null(Q)$'ya dikgen olmak
+demek $Q$'nun sıfır uzayına olan yansıtma matrisini, $P$ diyelim, alıp $c -
+u + A^Tv$ ile çarparsam sıfır sonucunu almalıyım. Bunu eşitlik kısıtlaması
+olarak kodlayabilirim.</p>
+<p>Bir diger ornege bakalim. Bu cok daha basit bir karesel program, iki
+boyutlu. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
