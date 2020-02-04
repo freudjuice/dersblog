@@ -131,9 +131,9 @@ kısıtlamalar var, mesela $u \ge 0$ olmalı.</p>
 <p>Kesikli çizgi kriter, ve $g$ her $\lambda$ için kriterin hep altında.</p>
 <p>Peki niye ikizi yapabildiğim en büyük değer kriterin olurlu kümede
 olabilecek en ufak değerine eşit değil (ikizin tepesi kesikli çizgiye
-değmiyor)? Çünkü elimizdeki bir dişbukey olmayan fonksiyon. Dişbukeylik
-olsaydı alt sınır sıkı olurdu. Dişbukey olmayan fonksiyonlarda da sıkılık
-görülebilir ama dışbükeylık durumundaki gibi bu şart değildir.</p>
+değmiyor)? Çünkü elimizdeki bir dışbükey olmayan fonksiyon. Dişbukeylik
+olsaydı alt sınır sıkı olurdu. Dışbükey olmayan fonksiyonlarda da sıkılık
+görülebilir ama dışbükeylik durumundaki gibi bu şart değildir.</p>
 <p>Biraz daha zor bir örneğe bakalım. </p>
 <p>Standart formda bir karesel program (QP). </p>
 <p>$$
@@ -289,11 +289,12 @@ bu tanım kümesi kısıtlamaını bir QP kısıtlamasına çevirebiliriz, spesi
 olarak $u,v$ üzerinde bir eşitlik kısıtlamasına. $null(Q)$'ya dikgen olmak
 demek $Q$'nun sıfır uzayına olan yansıtma matrisini, $P$ diyelim, alıp $c -
 u + A^Tv$ ile çarparsam sıfır sonucunu almalıyım. Bunu eşitlik kısıtlaması
-olarak kodlayabilirim.</p>
+olarak kodlayabilirim. Tabii bu tür bir eşitlik kısıtlaması eklemek ikiz
+problemi daha çetrefil hale getirecektir.</p>
 <p>Bir diğer örneğe bakalım. Bu çok daha basit bir karesel program, iki
 boyutlu. </p>
 <p>$$
-\min_{x \in (x_1,x_2)} f(x) = \frac{1}{2} x^T Q x b^T x \quad \textrm{oyle ki}
+\min_{x \in (x_1,x_2)} f(x) = \frac{1}{2} x^T Q x b^T x \quad \textrm{öyle ki}
 $$
 $$
 x \ge 0
@@ -323,9 +324,9 @@ harfiyen pozitif. Bu bir raslantı mı? Yani $x_1,x_2$ harfiyen pozitif ise
 slackness) durumu. Bu kavramı Karush-Kuhn-Tucker (KKT) şartlarını
 işlediğimizde öğreneceğiz. Eğer problemde gördüğümüz sınırlamaların
 herhangi biri çözüm noktasında sıkı değilse ona tekabül eden ikiz değişken
-sıfır olmalı. Bu olması gereken bir fenomen ve ispatını da yapacağız.</p>
-<p>Üstteki örnekte her iki şart da çözümde sıkı değil, $x$ her iki kordinatta
-da sıfırda büyük, bu her iki ikiz değişkeni çözümde sıfır olmaya zorluyor. </p>
+sıfır olmalı. Bu olması gereken bir fenomen ve ispatını da yapacağız.
+Üstteki örnekte her iki şart da çözümde sıkı değil, $x$ her iki kordinatta
+da sıfırdan büyük, bu her iki ikiz değişkeni çözümde sıfır olmaya zorluyor.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
