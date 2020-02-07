@@ -329,7 +329,7 @@ sıfır olmalı. Bu olması gereken bir fenomen ve ispatını da yapacağız.
 da sıfırdan büyük, bu her iki ikiz değişkeni çözümde sıfır olmaya zorluyor.</p>
 <p>Tekrar uzerinden gecersek, bir ana problem,</p>
 <p>$$
-\min_x f(x) \textrm{oyle ki}
+\min_x f(x) \textrm{öyle ki}
 $$
 $$
 h_i(x) \le 0, \quad i=1,..,m
@@ -342,7 +342,7 @@ olacaktir her $u \ge 0$ ve $v$ icin. O zaman en iyi alt sinir $g(u,v)$'yi
 <em>tum</em> olurlu $u,v$'ler uzerinden maksimize ederek elde edilir. Bu bize
 Lagrange ikizi problemi verir,</p>
 <p>$$
-\max_{u,v} g(u,v) \textrm{oyle ki}
+\max_{u,v} g(u,v) \textrm{öyle ki}
 $$
 $$
 u \ge 0
@@ -358,16 +358,16 @@ bir yol miktarı, vs gibi bir şeyi temsil ediyor ve ona iyi bir alt sınır
 bulmak bile bize önemli bir bilgi veriyor.</p>
 <p>Şimdi sıkı durun, dahası da var. Birazdan bahsedeceğim şey ilk duyanları
 çok şaşırtıyor. İkiz problem <em>her zaman</em> bir içbukey / dişbukey
-optimizasyon problemi. Bu önemli çünkü dişbukey programları bir şekilde
+optimizasyon problemi. Bu önemli çünkü dışbükey programları bir şekilde
 muhakkak sayısal olarak çözebiliyoruz, <code>cvx</code> paketi ile belki, ya da
 alt gradyan (şubgradient) metotlarıyla.. bir şekilde bu olur. Bilimin
 vardığı nokta burası, o problem çözüldü. Bu çok iyi çünkü eğer ana problem
-minimizasyon problemi ise ikiz her zaman içbukey maksimizasyon, ya da diğer
-yönde ana problem maksimizasyon ise ikiz dişbukey minimizasyon, ve içbükey
+minimizasyon problemi ise ikiz her zaman içbükey maksimizasyon, ya da diğer
+yönde ana problem maksimizasyon ise ikiz dişbükey minimizasyon, ve içbükey
 / dışbükey problemi çözebiliyoruz. Bu her zaman dogru, ana problem ne
 olursa olsun. </p>
 <p>Niye? İspatını yapacağız, ana maksimizasyondan başlayarak $g$'nin her zaman
-bir içbukey fonksiyon olduğunu ispatlayacağız. Bu ispat çok basit
+bir içbükey fonksiyon olduğunu ispatlayacağız. Bu ispat çok basit
 aslında. Tanım itibariyle,</p>
 <p>$$
 g(u,v) = \min_x \left\{ 
@@ -383,9 +383,19 @@ $$</p>
 <p>Şimdi $\max$ basındaki eksiye bakmadan geri kalanlara bakalım. $u,v$
 üzerinden düşünürsek üstte çarpımlar ve toplamlar var. $u,v$ açısından
 $f(x)$ bile bir sabitin toplamı demektir. Çarpım toplamlar doğrusal
-fonksiyondur, doğrusal fonksiyonlar ise dışbükeydır. Şimdi $\max$ basındaki
+fonksiyondur, doğrusal fonksiyonlar ise dışbükeydir. Şimdi $\max$ basındaki
 eksiyi de hesaba katarsak dışbükey içbükey olur (ama hala aynı
 familyadayız). Yani ikizde elimizde kesinlikle bir içbükey problem olmalı.</p>
+<p>Fakat genel uygulamalarda önümüze bazı engeller çıkabiliyor. Mesela
+Lagrangian'ın kendisinin hesabı oldukca çetrefil olabilir. Eğer ana problem
+dışbükey ise Lagrangian hesabı kolay ama çetrefil $f(x)$'ler için bu iş
+daha zor. Yani dışbükey olmayan ana problemin şanslıysak ikiz hesabı
+kolaydır, ama çoğunlukla iş zor. </p>
+<p>Altta bir ornek sectim, oyle ki ikiz hesaplanabilir halde olacak, her ne
+kadar ana problem olmasa da. </p>
+<p>$$
+\max f(x) = x^4 - 50x^2 + 100x, \quad \textrm{öyle ki} \quad x \ge -4.5
+$$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
