@@ -327,6 +327,65 @@ herhangi biri çözüm noktasında sıkı değilse ona tekabül eden ikiz deği�
 sıfır olmalı. Bu olması gereken bir fenomen ve ispatını da yapacağız.
 Üstteki örnekte her iki şart da çözümde sıkı değil, $x$ her iki kordinatta
 da sıfırdan büyük, bu her iki ikiz değişkeni çözümde sıfır olmaya zorluyor.</p>
+<p>Tekrar uzerinden gecersek, bir ana problem,</p>
+<p>$$
+\min_x f(x) \textrm{oyle ki}
+$$
+$$
+h_i(x) \le 0, \quad i=1,..,m
+$$
+$$
+l_j(x) = 0, \quad j=1,..,r
+$$</p>
+<p>icin bir ikiz $g(u,v)$ olusturabiliriz ki her zaman $f^* \ge g(u,v)$
+olacaktir her $u \ge 0$ ve $v$ icin. O zaman en iyi alt sinir $g(u,v)$'yi
+<em>tum</em> olurlu $u,v$'ler uzerinden maksimize ederek elde edilir. Bu bize
+Lagrange ikizi problemi verir,</p>
+<p>$$
+\max_{u,v} g(u,v) \textrm{oyle ki}
+$$
+$$
+u \ge 0
+$$</p>
+<p>Önemli bir özellik zayıf ikizlik durumu, eğer ikizin optimal değerine $g^*$
+dersek $f^* \ge g^*$.</p>
+<p>Üstteki ilişki ana problem dışbükey olmasa bile işliyor. Yani elimizde
+müthiş dışbükey olmayan çok zor bir optimizasyon problemi olabilir, ama
+onun ikizini oluşturursak bu yeni problemin optimal değeri her zaman ana
+problem için bir alt sınır oluşturuyor. Bazen bu optimal değerin kendisi
+bile faydalı, belki kriter fonksiyonun kendisi mesela bir ekonomik bedel,
+bir yol miktarı, vs gibi bir şeyi temsil ediyor ve ona iyi bir alt sınır
+bulmak bile bize önemli bir bilgi veriyor.</p>
+<p>Şimdi sıkı durun, dahası da var. Birazdan bahsedeceğim şey ilk duyanları
+çok şaşırtıyor. İkiz problem <em>her zaman</em> bir içbukey / dişbukey
+optimizasyon problemi. Bu önemli çünkü dişbukey programları bir şekilde
+muhakkak sayısal olarak çözebiliyoruz, <code>cvx</code> paketi ile belki, ya da
+alt gradyan (şubgradient) metotlarıyla.. bir şekilde bu olur. Bilimin
+vardığı nokta burası, o problem çözüldü. Bu çok iyi çünkü eğer ana problem
+minimizasyon problemi ise ikiz her zaman içbukey maksimizasyon, ya da diğer
+yönde ana problem maksimizasyon ise ikiz dişbukey minimizasyon, ve içbükey
+/ dışbükey problemi çözebiliyoruz. Bu her zaman dogru, ana problem ne
+olursa olsun. </p>
+<p>Niye? İspatını yapacağız, ana maksimizasyondan başlayarak $g$'nin her zaman
+bir içbukey fonksiyon olduğunu ispatlayacağız. Bu ispat çok basit
+aslında. Tanım itibariyle,</p>
+<p>$$
+g(u,v) = \min_x \left\{ 
+f(x) + \sum _{i=1}^{m} u_i h_i(x) + \sum _{i=1}^{r} v_i l_i(x) + 
+\right\}
+$$</p>
+<p>Her şeyi eksi ile çarparsak üsttekini bir maksimizasyona çevirebiliriz,</p>
+<p>$$
+= -\max_x \left\{ 
+-f(x) - \sum_{i=1}^{m} u_i h_i(x) - \sum_{i=1}^{r} v_i l_i(x) + 
+\right\}
+$$</p>
+<p>Şimdi $\max$ basındaki eksiye bakmadan geri kalanlara bakalım. $u,v$
+üzerinden düşünürsek üstte çarpımlar ve toplamlar var. $u,v$ açısından
+$f(x)$ bile bir sabitin toplamı demektir. Çarpım toplamlar doğrusal
+fonksiyondur, doğrusal fonksiyonlar ise dışbükeydır. Şimdi $\max$ basındaki
+eksiyi de hesaba katarsak dışbükey içbükey olur (ama hala aynı
+familyadayız). Yani ikizde elimizde kesinlikle bir içbükey problem olmalı.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
