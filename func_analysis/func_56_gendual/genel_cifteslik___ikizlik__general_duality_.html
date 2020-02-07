@@ -417,17 +417,17 @@ güçlü ikizlik ismi veriliyor. Hatta bu durum neredeyse her dışbükey
 optimizasyon probleminde ortaya çıkıyor. Neredeyse dedik çünkü Slater şartı
 denen bir şart da lazım bu şarta göre eğer olurlu kümede tüm eşitlik tüm
 eşitsizlik şartlarını harfiyen yerine getiren en az bir nokta varsa o zaman
-güçlü ikizlik var. Harfiyen ile tüm eşitlik şartları sıfıra eşit, tüm
-eşitsizlikler sıfırdan küçük olmalı. </p>
+güçlü ikizlik var. Harfiyen derken tüm eşitlik şartları sıfıra eşit, tüm
+eşitsizlikler sıfırdan küçük olmalı.</p>
 <p>Çoğunlukla bu çok, çok zayıf bir şart, yani yerine getirmesi çok
-kolay. Yani ana problemin dışbükey olup da Slater şartına uyulmaması çok
+kolay. Yani ana problemin dışbükey olup da Slater şartına uymaması çok
 nadirdir, eğer ana problemde çok absürt şartların olması lazım. </p>
 <p>Slater şartının LP'ler için anlamı nedir? LP'ler zaten doğal olarak
 dışbükeydir, ama onlar için zaten tüm şartlar doğrusal olduğu için LP
 olurlu ise otomatik olarak güçlü ikizlik vardır [gerisi atlandı] </p>
 <p>İkizlik Boşluğu (Duality Gap)</p>
-<p>Bir basit kavrama daha deginelim. Basit ama cok faydali olabilir, mesela
-ana ve ikizi optimize etmek ici bir ozyineli algoritma gelistiriyorsunuz,
+<p>Bir basit kavrama daha değinelim. Basit ama çok faydalı olabilir, mesela
+ana ve ikizi optimize etmek içi bir özyineli algoritma geliştiriyorsunuz,
 ve bir olurlu $x$'imiz ve olurlu $u,v$'miz var ise, </p>
 <p>$$
 f(x) - g(u,v)
@@ -442,15 +442,15 @@ $$</p>
 $-g(u,v) \ge -f^*$. Sonra $f(x)=f(x)$ ile başlayarak bir tarafa $-f^*$
 diğerine $-g(u,v)$ ekleriz, üstteki eşitsizliği elde ederiz.</p>
 <p>O zaman ana ve ikizi optimize etmek içi bir özyineli algoritma
-geliştirirken "optimal kritere ne kadar yakınım?" diye merak ediyoruz,
+geliştirirken "optimal kritere ne kadar yakınım?" diye merak ediyorsak,
 (5) hesabını yaparsak o değerden daha uzak olamayacağımızı biliriz. Eğer
 0.001 almışsak, 0.001'dan uzak olamayız. Tabii aynı argüman ikiz kriteri
-içi de geçerli, ondan da 0.001'den daha uzakta olamayız, $g^*-g(u,v)$ aynı
-şekilde sınırlanmıştır. </p>
+için de geçerli, ondan da 0.001'den daha uzakta olamayız, $g^*-g(u,v)$ aynı
+şekilde sınırlanmıştır.</p>
 <p>Bu kavramları özyineli algoritmada bir durma şartı olarak kullanabiliriz.
 Eğer $f(x) - g(u,v) &lt; \epsilon$ ise $f(x) - f^* &lt; \epsilon$ olması
-garantidir, geldiğimiz nokta bir $\epsilon$ "alt optimalliktir", ya da
-$\epsilon$ alt optimal sonucu elde etmişizdir. </p>
+garantidir, geldiğimiz nokta bir "$\epsilon$ alt optimalliktir", ya da
+bir "$\epsilon$ alt optimal sonucu" elde etmişizdir.</p>
 <p>Bu kavram KKT şartlarına gelince de faydalı olacak. </p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
