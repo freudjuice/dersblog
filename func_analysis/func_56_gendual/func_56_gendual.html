@@ -327,9 +327,9 @@ herhangi biri çözüm noktasında sıkı değilse ona tekabül eden ikiz deği�
 sıfır olmalı. Bu olması gereken bir fenomen ve ispatını da yapacağız.
 Üstteki örnekte her iki şart da çözümde sıkı değil, $x$ her iki kordinatta
 da sıfırdan büyük, bu her iki ikiz değişkeni çözümde sıfır olmaya zorluyor.</p>
-<p>Tekrar uzerinden gecersek, bir ana problem,</p>
+<p>Tekrar üzerinden geçersek, bir ana problem,</p>
 <p>$$
-\min_x f(x) \textrm{öyle ki}
+\min_x f(x) \quad \textrm{öyle ki}
 $$
 $$
 h_i(x) \le 0, \quad i=1,..,m
@@ -342,7 +342,7 @@ olacaktir her $u \ge 0$ ve $v$ icin. O zaman en iyi alt sinir $g(u,v)$'yi
 <em>tum</em> olurlu $u,v$'ler uzerinden maksimize ederek elde edilir. Bu bize
 Lagrange ikizi problemi verir,</p>
 <p>$$
-\max_{u,v} g(u,v) \textrm{öyle ki}
+\max_{u,v} g(u,v) \quad \textrm{öyle ki}
 $$
 $$
 u \ge 0
@@ -396,6 +396,32 @@ kadar ana problem olmasa da. </p>
 <p>$$
 \max f(x) = x^4 - 50x^2 + 100x, \quad \textrm{öyle ki} \quad x \ge -4.5
 $$</p>
+<p>Problemin grafigi altta</p>
+<p><img alt="" src="func_56_gendual_04.png" /></p>
+<p>Sol grafikteki köyü siyah nokta ikizdeki maksimuma tekabül eden nokta,
+gerçek minimum değil, o minimum biraz daha sola doğru. Sağdaki ikiz
+grafiğini hesapladım, $u$ yök tabii çünkü eşitlik kısıtlaması yok. İkizin
+içbükey olduğuna dikkat. Ana problem dışbükey değil, ama ikiz içbükey. </p>
+<p>Ayrıca ikiz aşağı yukarı "parçalı lineer" denebilecek bir halde, ki bu
+durum da ana problem dışbükey olmadığında yaygın şekilde görülen bir durum.</p>
+<p>Bu arada eğer $g$'yi cebirsel olarak türetirsek, oldukca çetrefil bir form
+elde edeceğimizi görebiliriz [türetim atlandı, burada benim notum, içbükey
+bir problemi pür sayısal olarak çözmenin nasıl olsa mümkün olacağı].</p>
+<p>Güçlü İkizlik </p>
+<p>Daha önce $f^* \ge g^*$ olması gerektiğini gördük. Fakat pek çok problemde </p>
+<p>$$
+f^* = g^*
+$$</p>
+<p>olduğunu da gördük. Yani ana ve ikiz problem arasında hiç boşluk yok. Buna
+güçlü ikizlik ismi veriliyor. Hatta bu durum neredeyse her dışbükey
+optimizasyon probleminde ortaya çıkıyor. Neredeyse dedik çünkü Slater şartı
+denen bir şart da lazım bu şarta göre eğer olurlu kümede tüm eşitlik tüm
+eşitsizlik şartlarını harfiyen yerine getiren en az bir nokta varsa o zaman
+güçlü ikizlik var. Harfiyen ile tüm eşitlik şartları sıfıra eşit, tüm
+eşitsizlikler sıfırdan küçük olmalı. </p>
+<p>Çoğunlukla bu çok, çok zayıf bir şart, yani yerine getirmesi çok
+kolay. Yani ana problemin dışbükey olup da Slater şartına uyulmaması çok
+nadirdir, eğer ana problemde çok absürt şartların olması lazım. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 11</em>, 
