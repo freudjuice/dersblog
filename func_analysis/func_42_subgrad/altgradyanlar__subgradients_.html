@@ -32,12 +32,42 @@ f(y) \ge f(x) + \nabla f(x)^T (y-x)  \quad \forall x,y
 $$</p>
 <p>gerekli ve yeterli bir şart. Yani fonksiyonuma herhangi bir noktada
 oluşturacağım lineer yaklaşıksallık, yani teğet eğri, fonksiyonum için bir
-global eksik / az tahmin edici (ünderestimator) olacaktır, yani hep ondan küçük
-kalacaktır. Bu mantıklı, görsel olaral hayal edersek kap şeklinde, yani
-dışbükey olan bir fonksiyona nerede teğet çizgi çekersem çekeyim
+global eksik / az tahmin edici (ünderestimator) olacaktır, yani hep ondan
+küçük kalacaktır. Bu mantıklı, görsel olaral hayal edersek kap şeklinde,
+yani dışbükey olan bir fonksiyona nerede teğet çizgi çekersem çekeyim
 fonksiyonun kendisi hep o çizginin üstünde kalır. Eğer fonksiyonum kap
 olmasaydı, habire aşağı yukarı inip çıkıyor olsaydı bir noktada o çizginin
-altına düşülebilirdi.</p>
+altına düşülebilirdi. Eğer $f$ türevi alınabilir ise dışbükey olmasının
+şartı üstteki ifadenin doğru olması.</p>
+<p>Altgradyan nedir? Altgradyan üstteki gradyanin yerini alabilecek herhangi
+bir $g$ vektörüdür, yerine alabilecek derken üstteki ifade her $y$ için
+hala doğru olacak şekilde. </p>
+<p>$$
+f(y) \ge f(x) + g^T (y-x) \quad \forall y
+$$</p>
+<p>Dışbükey fonksiyonlar için $g$ her zaman mevcuttur (dışbükey olmayan
+fonksiyonlar için $g$'nin mevcudiyeti şart değildir). Mantıki olarak
+düşünürsek bir $f$ için ona eksik tahmin edici olacak bir çizgiyi her zaman
+çizebiliriz. Bir noktayı seç, bir $f$ noktasından geçen bir çizgi çek.</p>
+<p>Eğer $x$ noktasında $f$'in türevi alınabilir ise, tek bir altgradyan
+vardır, o da türevin kendisidir, $g = \nabla f(x)$. </p>
+<p>Pürüzsüz olan dışbükey olmayan ve altgradyani olmayan bir fonksiyon örneği
+görelim, </p>
+<p><img alt="" src="func_42_subgrad_01.png" /></p>
+<p>Bu fonksiyonun hiçbir yerde altgradyani yok. Eğri üzerinde bir nokta
+arıyorum öyle ki oradan geçen bir çizgi tüm fonksiyonu üstte
+bıraksın.. böyle bir çizgi çizilemez. Altgradyan yok. Bazılarımız itiraz
+edebilir, "üstteki bir içbükey fonksiyon, dışbükeyin ters çevrilmiş
+hali". O zaman $x^3$ diyelim, pürüzsüz, ve altgradyanı yok.</p>
+<p>Altgradyanı olan fonksiyonlar görelim, mesela mutlak değer fonksiyonu $f(x) = |x|$.</p>
+<p><img alt="" src="func_42_subgrad_02.png" /></p>
+<p>Altgradyanlar için farklı şartları görelim.$x&gt;0$ için tek bir altgradyan
+var, o da $g = 1$, yani fonksiyonun eğiminin ta kendisi, eğim 1. Aynı
+şekilde $x&lt;0$ için, o zaman $g=-1$. Bu sonuç "eğer $f$'in türevi
+alınabilir ise $g=\nabla f$" açıklaması ile uyuyor. $x=0$ noktası için
+birçok seçenek var, herhangi bir $[-1,1]$ öğesi için, yani -1 ve +1
+arasındaki herhangi bir sayı olabilir, çizgili noktalar seçeneklerden
+ikisi.</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
