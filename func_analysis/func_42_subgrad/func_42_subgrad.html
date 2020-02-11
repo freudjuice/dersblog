@@ -60,21 +60,21 @@ edebilir, "üstteki bir içbükey fonksiyon, dışbükeyin ters çevrilmiş
 hali". O zaman $x^3$ diyelim, pürüzsüz, ve altgradyanı yok.</p>
 <p>Altgradyanı olan fonksiyonlar görelim, mesela mutlak değer fonksiyonu $f(x) = |x|$.</p>
 <p><img alt="" src="func_42_subgrad_02.png" /></p>
-<p>Altgradyanlar için farklı şartları görelim.$x&gt;0$ için tek bir altgradyan
-var, o da $g = 1$, yani fonksiyonun eğiminin ta kendisi, eğim 1. Aynı
-şekilde $x&lt;0$ için, o zaman $g=-1$. Bu sonuç "eğer $f$'in türevi
-alınabilir ise $g=\nabla f$" açıklaması ile uyuyor. $x=0$ noktası için
-birçok seçenek var, herhangi bir $[-1,1]$ öğesi için, yani -1 ve +1
-arasındaki herhangi bir sayı olabilir, çizgili noktalar seçeneklerden
-ikisi.</p>
+<p>Altgradyanlar için farklı şartları görelim.</p>
+<p>$x&gt;0$ için tek bir altgradyan var, o da $g = 1$, yani fonksiyonun eğiminin
+ta kendisi, eğim=1. Aynı şekilde $x&lt;0$ için, o zaman $g=-1$. Bu sonuç
+"eğer $f$'in türevi alınabilir ise $g=\nabla f$" açıklaması ile
+uyuyor. $x=0$ noktası için birçok seçenek var, herhangi bir $[-1,1]$ öğesi
+için, yani -1 ve +1 arasındaki herhangi bir sayı olabilir, çizgili noktalar
+seçeneklerden ikisi.</p>
 <p>Boyut atlayalım, $f(x) = ||x||_2$ fonksiyonunu görelim, $x$'in L2
 norm'u. Iki boyutta,</p>
 <p><img alt="" src="func_42_subgrad_03.png" /></p>
 <p>Eğer $x \ne 0$ ise bu fonksiyonun türevi alınabilir (yoksa alınamaz, bir
-yaygın görüşe göre $x=0$'da problem yok, ama var) ve altgradyani onun
-mevcut gradyani, $x / ||x||_2$. $x=0$ noktasında altgradyan $g$
+yaygın görüşe göre $x=0$'da problem yok, ama var) ve altgradyanı onun
+mevcut gradyanı, $x / ||x||_2$. $x=0$ noktasında altgradyan $g$
 ${ z: ||z||_2 &lt; 1}$ kümesinin herhangi bir öğesi.</p>
-<p>Simdi $f(x) = ||x||_1$'i gorelim,</p>
+<p>Şimdi $f(x) = ||x||_1$'e bakalım,</p>
 <p><img alt="" src="func_42_subgrad_04.png" /></p>
 <p>Bu fonksiyonun $x=0$'da türevi alınamaz, aynen tek boyutlu (mutlak değer
 fonksiyonu) versiyonunda olduğu gibi. Ayrıca bu fonksiyonun herhangi bir
@@ -126,7 +126,7 @@ tamına Zincirleme Kanunu olurdu. </p>
 $$</p>
 <p>Biraz karmaşık duruyor ama daha önce iki fonksiyon maksimumu üzerinden
 gördüğümüz kavrama benziyor. Her noktada maks olan $f_i$'leri alıyoruz, ve
-bu fonksiyonların altgradyanlarını alıyoruz. Ama bu altgradyanların
+bu fonksiyonların altgradyanlarını hesaplıyoruz. Ama bu altgradyanların
 birleşimi her zaman bir dışbükey küme oluşturmayabilir, ve
 altdiferansiyelin bir dışbükey küme olması gerekir, o zaman için elimizde
 olan altgradyanların $conv$ ile dışbükey zarfına (convex hull)
@@ -134,16 +134,16 @@ bakarız. Yani sadece birleşim $\cup$ ile elde ettiğim kümeyi bir işlemden
 daha geçirerek onun dışbükey küme halini alıyorum.</p>
 <p>[atlandi, norm]</p>
 <p>Niye Altgradyanlar?</p>
-<p>1) Optimizasyon: Önemli bir sebep optimizasyon. Bir dışbükey fonksiyonun
-altgradyanini hesaplamak her zaman mümkündür, o zaman her dışbükey
-fonksiyonu minimize edebilirim. Bazı durumlarda bu yavaş olabilir ama en
-azından minimizasyon mümkün olur.</p>
-<p>2) Dişbukey Analizi: Her $f$ için, dışbükey olsun olmasın, </p>
+<p>1) Optimizasyon: Önemli bir sebep. Bir dışbükey fonksiyonun altgradyanını
+hesaplamak her zaman mümkündür, o zaman her dışbükey fonksiyonu minimize
+edebilirim. Bazı durumlarda bu yavaş olabilir ama en azından minimizasyon
+mümkün olur.</p>
+<p>2) Dişbükey Analizi: Her $f$ için, dışbükey olsun olmasın, </p>
 <p>$$
 f(x^*) = \min_x f(x) \iff 0 \in \partial f(x^*)
 $$</p>
 <p>Yani $x^*$ bir minimize edicidir sadece ve sadece 0 $f$'in $x^*$ noktasında
-bir altgradyani ise. Bu özelliğe çoğunlukla "altgradyan optimalliği" adı
+bir altgradyanı ise. Bu özelliğe çoğunlukla "altgradyan optimalliği" adı
 veriliyor. İspatı basit. Eğer $g$ vektörü $x^*$ noktasındaki altgradyan
 ise o zaman alttaki ifade her $y$ için doğrudur,</p>
 <p>$$
@@ -152,7 +152,7 @@ $$</p>
 <p>$$
 f(y) \ge f(x^*) \quad \forall y
 $$</p>
-<p>Üstteki ifade $x^*$ bir minimize edicidir diyor, o zaman sifir bir
+<p>Üstteki ifade $x^*$ bir minimize edicidir diyor, o zaman sıfır bir
 altgradyandir. </p>
 <p>Bazen üstteki ifadenin dışbükey olmayan fonksiyonlar için bile geçerli
 olduğunu unutanlar oluyor. Bu her $f$ için doğru diyorum bazen bana
@@ -170,7 +170,7 @@ mevcut değildir. </p>
 <p>Şimdi altgradyan yönteminin gücüne bir örnek görelim. Derslerimizin başında
 1. derece optimallik şartını görmüştük, </p>
 <p>$$
-\min_x f(x) \quad \textrm{oyle ki} x \in C
+\min_x f(x) \quad \textrm{öyle ki} x \in C
 $$</p>
 <p>problemini çözmek istiyoruz, diyelim $f$ dışbükey ve türevi alınabilir. Bu
 problem için $x$'in çözüm olmasının şartı </p>
@@ -178,7 +178,7 @@ problem için $x$'in çözüm olmasının şartı </p>
 \nabla f(x)^T (y-x) \ge 0 \quad \forall y \in C
 $$</p>
 <p>eşitsizliğinin doğru olmasıdır. Yani 1. derece minimallik gradyan sıfırı
-verir, o zaman herhangi bir $\nabla f(x)^T y-x$ yönünde adım atmak bizi her
+verir, o zaman herhangi bir $\nabla f(x)^T(y-x)$ yönünde adım atmak bizi her
 zaman bu minimallikten uzaklaştırmalıdır. Bu durum her olurlu $y \in C$
 için doğru ise minimal yerdeyiz demektir.</p>
 <p>Üsttekini altgradyan perspektifinden ispatlayabiliriz. Önce problemimizi
@@ -190,7 +190,7 @@ $$</p>
 <p>ki $I_C(x) = 0$ eğer $x$, $C$ kümesi içindeyse, dışındaysa sonsuzluk. Şimdi
 üstteki fonksiyona altgradyan optimalliği uygulayalım, eğer üstteki
 fonksiyonu minimize eden bir nokta varsa elimde, bunun tercümesi sıfırın o
-noktada fonksiyonun altgradyani olması. Fonksiyonun altgradyanini
+noktada fonksiyonun altgradyanı olması. Fonksiyonun altgradyanini
 hesaplayalım, kurallarımıza göre iki dışbükey fonksiyon toplamının
 altgradyani o fonksiyonların ayrı ayrı altgradyanlarının toplamı. $f$
 dışbükey, $I_C$ dışbükey (çünkü $C$ kümesi dışbükey küme). $f$ pürüzsüz, o
