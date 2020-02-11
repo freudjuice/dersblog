@@ -95,10 +95,45 @@ altgradyan özgün, $g = \nabla f_2(x)$. </p>
 <p><img alt="" src="func_42_subgrad_06.png" /></p>
 <p>onların maks halleri yeşil ile [çok kabaca benim eklediğim] çizgi, yani
 kesişmenin solunda $f_2$ sağında $f_1$. Tabii ki sol tarafta $f_2$ aktif o
-zaman onun gradyani geçerli, sağ tarafta $f_1$. Kesişme noktası, $f_1=f_2$
+zaman onun gradyanı geçerli, sağ tarafta $f_1$. Kesişme noktası, $f_1=f_2$
 ilginç, $g = \alpha \nabla f_1(x) + (1-\alpha) f_2(x)$, yani $f_1,f_2$'nin
 herhangi bir dışbükey kombinasyonu, ki iki üstteki resimde görülen iki
 kesikli çizgiler bazı örnekler. </p>
+<p>Altdiferansiyel (Subdifferential)</p>
+<p>Dişbükey $f$'in tüm altgradyanlarına altdiferansiyel denir. Çoğunlukla
+kısmi türev için kullanılan aynı sembolle gösterilir, $\partial$ ile.</p>
+<p>$$
+\partial f(x) = { 
+g \in \mathbb{R}^n: \quad g, f\textrm{'in altgradyanıdır}
+}
+$$</p>
+<p>Yani $x$ noktasındaki tüm mümkün altgradyanların kümesi altdiferansiyel
+oluyor. </p>
+<p>[atlandi]</p>
+<p>Altgradyanların kendine has bir Calculus'u var, aynen gradyanları,
+vs. içere Çok Değişkenli Calculus'ta olduğu gibi. </p>
+<p>Ölçekleme: $\partial (af) = a \cdot \partial f$, $a$ sabit ise ve $a &gt; 0$
+olacak şekilde</p>
+<p>Toplama: $\partial (f_1 + f_2) = \partial f_1 + \partial f_2$</p>
+<p>Doğrusal Bileşim: Eğer $g(x) = f(Ax + b)$ ise o zaman
+$\partial g(x) = A^T \partial f(Ax + b)$. Bu altgradyanlar için bir tür
+Zincirleme Kanunu gibi. Hatta eğer $f$ türevi alınabilir ise, bu ifade tamı
+tamına Zincirleme Kanunu olurdu. </p>
+<p>Noktasal Sonlu Maksimum: Eger $f(x) = \max_{i=1,..,m} f_i(x)$ ise, o zaman </p>
+<p>$$
+\partial f(x) = conv \left( 
+\bigcup_{i: f_i(x)=f(x)} \partial f_i(x)
+\right)
+$$</p>
+<p>Biraz karmaşık duruyor ama daha önce iki fonksiyon maksimumu üzerinden
+gördüğümüz kavrama benziyor. Her noktada maks olan $f_i$'leri alıyoruz, ve
+bu fonksiyonların altgradyanlarını alıyoruz. Ama bu altgradyanların
+birleşimi her zaman bir dışbükey küme oluşturmayabilir, ve
+altdiferansiyelin bir dışbükey küme olması gerekir, o zaman için elimizde
+olan altgradyanların $conv$ ile dışbükey zarfına (convex hull)
+bakarız. Yani sadece birleşim $\cup$ ile elde ettiğim kümeyi bir işlemden
+daha geçirerek onun dışbükey küme halini alıyorum.</p>
+<p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
