@@ -69,13 +69,35 @@ $$</p>
 o $x$'in ana problemi, $u,v$'nin ikiz problemi çözmesi anlamına geliyor. </p>
 <p>Bunu ispatlayalım. Önce ters yönden gelerek bir ispat, diyelim ki elimde
 ana ve ikiz çözümler var. Eğer o "çözüm varsa, oradan KKT şartları meydana
-çıkmalı" ispatını görelim. </p>
-<p>Diyelim ki $x^*$, ve $u^*,v^*$ ana ve ikiz çözümleri var, ve ikizlik
-boşluğu sıfır (yani güçlü ikizlik aktif, Slater şartını hatırlarsak). O
-zaman </p>
+çıkmalı" ispatını görelim. Bu yone "gereklilik" denebilir. Diyelim ki
+$x^*$, ve $u^*,v^*$ ana ve ikiz çözümleri var, ve ikizlik boşluğu sıfır
+(yani güçlü ikizlik aktif, Slater şartını hatırlarsak). O zaman</p>
 <p>$$
 f(x^*) = g(u^*,v^*)
 $$</p>
+<p>Tanım itibariyle, her $u,v$ için $g(u,v)$ fonksiyou Lagrangian'in $x$
+üzerinden minimumu. Üsttekinden hareketle ve $u,v$ için $u^*,v^*$
+kullanırsak,</p>
+<p>$$
+= \min_x f(x) + \sum_{i=1}^{m} u_i^* h_i(x) + \sum_{j=1}^{r} v_j^* l_j(x) 
+$$</p>
+<p>Üstte minimum buluyorum yani $x$ üzerinden üstteki Lagrangian'i $x^*$'deki
+halinden dahafazla ufaltmam mümkün değil,</p>
+<p>$$
+\le f(x^*) + \sum_{i=1}^{m} u_i{^*} h_i(x^*) + \sum_{j=1}^{r} v_j{^*} l_j(x^*) 
+$$</p>
+<p>Devam edersek, $u_i^*$ olurlu, o zaman üstteki ortadaki terim $\ge 0$,
+$v_i^*$ olurlu o zaman üçüncü terim sıfır. Bu demektir ki üstteki ifade
+$f(x^*)$'den daha az olmalı.</p>
+<p>$$
+\le f(x^*) 
+$$</p>
+<p>Sonuç olarak </p>
+<p>$$
+f(x^*) \le f(x^**)
+$$</p>
+<p>elde ettik, o zaman üstteki ifade aslında eşitsizlik değil bir eşitlik
+çünkü eşitsizliğin iki tarafında aynı şey var. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 12</em>, 
