@@ -34,9 +34,49 @@ $$
 $$
 l_j(x) = 0, \quad j=1,..,r
 $$</p>
+<p>Lagrangian'i hatırlarsak, </p>
+<p>$$
+L(x,u,v) =  f(x) + 
+\sum_{i=1}^{m} u_i \underbrace{h_i(x)}_{\le 0} + 
+\sum_{i=1}^{r} v_i \underbrace{l_i(x)}_{=0}
+$$</p>
+<p>Problemin dışbükey olması garanti değil. </p>
 <p>Bu sartlar,</p>
 <p>1) Duraganlik sarti</p>
-<p>11:30</p>
+<p>Lagrangian'da $u,v$ sabitledim, ve $x$'e gore Lagrangian'in altgradyanini
+alirsam, 0 degeri bu altgradyan icinde olmali. </p>
+<p>$$
+0 \in \partial_x \left(
+f(x) + \sum_{i=1}^{m} u_i h_i(x) + \sum_{j=1}^{r} v_j l_j(x) 
+\right)
+$$</p>
+<p>2) Tamamlayici Gevseklik (Complementary Slackness)</p>
+<p>$$
+u_i \cdot h_i(x) = 0 \quad \forall i
+$$</p>
+<p>Üstteki şart diyor ki ya $h_i(x)$ sıfır olmalı, yani $i$'inci eşitsizlik
+sıkı olmalı, ya da ona tekabül eden ikiz değişken $u_i$ sıfır olmalı (yani
+eşitsizlik ya sıkı (eşitlik) ya da dikkate alınmamalı).</p>
+<p>3) Ana Olurluk</p>
+<p>$$
+h_i(x) \le 0, l_j(x) = 0 \quad \forall i,j
+$$</p>
+<p>4) İkiz Olurluğu</p>
+<p>$$
+u_i \ge 0, \quad \forall i
+$$</p>
+<p>Optimallik için $x,u,v$ üstteki 4 şartı yerine getirmeli, genel bağlamda bu
+o $x$'in ana problemi, $u,v$'nin ikiz problemi çözmesi anlamına geliyor. </p>
+<p>Bunu ispatlayalım. Önce ters yönden gelerek bir ispat, diyelim ki elimde
+ana ve ikiz çözümler var. Eğer o "çözüm varsa, oradan KKT şartları meydana
+çıkmalı" ispatını görelim. </p>
+<p>Diyelim ki $x^*$, ve $u^*,v^*$ ana ve ikiz çözümleri var, ve ikizlik
+boşluğu sıfır (yani güçlü ikizlik aktif, Slater şartını hatırlarsak). O
+zaman </p>
+<p>$$
+f(x^*) = g(u^*,v^*)
+$$</p>
+<p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 12</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
