@@ -55,8 +55,8 @@ $$</p>
 u_i \cdot h_i(x) = 0 \quad \forall i
 $$</p>
 <p>Üstteki şart diyor ki ya $h_i(x)$ sıfır olmalı, yani $i$'inci eşitsizlik
-sıkı olmalı, ya da ona tekabül eden ikiz değişken $u_i$ sıfır olmalı (yani
-eşitsizlik ya sıkı (eşitlik) ya da dikkate alınmamalı).</p>
+sıkı olmalı, ya da ona tekabül eden ikiz değişken $u_i$ sıfır olmalı, yani
+eşitsizlik ya sıkı -eşitlik- ya da dikkate alınmamalı.</p>
 <p>3) Ana Olurluk</p>
 <p>$$
 h_i(x) \le 0, l_j(x) = 0 \quad \forall i,j
@@ -113,14 +113,39 @@ ana-ikiz olurlu olmalı. </p>
 <p>Yani ispatlamış olduk ki eğer elimizde ana-ikiz boşluğu olmayan bir çözüm
 varsa, $x^*,u^*,v^*$ çözüm üçlüsü KKT koşullarına uymaktadır. KKT
 koşularının güçlü ikizlik durumunda şart olduğunu göstermiş olduk.</p>
-<p>Diğer yönden ispat etmeye uğraşalım. Elimizde KKT şartlarını tatmin eden
-bir $x^*,u^*,v^*$ üçlüsü olduğunü düşünelim, ve bu üçlünün optimal olması
-gerektiğini ispat edelim, yani $x^*$'in ana $u^*,v^*$'nin ikiz problem için
-optimal olması gerektiğini.. Eğer $x^*,u^*,v^*$ KKT şartlarına uygunsa,
-durağanlığa göre</p>
+<p>Diğer yönden ispat etmeye uğraşalım. </p>
+<p>Elimizde KKT şartlarını tatmin eden bir $x^*,u^*,v^*$ üçlüsü olduğunü
+düşünelim, ve bu üçlünün optimal olması gerektiğini ispat edelim, yani
+$x^*$'in ana $u^*,v^*$'nin ikiz problem için optimal olması
+gerektiğini.. Eğer $x^*,u^*,v^*$ KKT şartlarına uygunsa, durağanlığa göre</p>
 <p>$$
 g(u^*,v^*) = f(x^*) + \sum_{i=1}^{m} u_i{^*} h_i(x^*) + \sum_{j=1}^{r} v_j{^*} l_j(x^*) 
+\qquad (3)
 $$</p>
+<p>Bu tabii $g$ tanımı ile bağlı,</p>
+<p>$$
+g(u^*,v^*) = \min_x L(x,u^*,v^*)
+$$</p>
+<p>ve durağanlıkla </p>
+<p>$$
+= \min_x L(x^*,u^*,v^*)
+$$</p>
+<p>böylece üç üstteki tanım ortaya çıkıyor. </p>
+<p>(3) içindeki ikinci terimde tamamlayıcı gevşekliği uygularsak toplamdaki
+her öge $x^*$ için sıfır, toplam sıfır, ikinci terim tamamen sıfır.</p>
+<p>KKT koşullarından bir diğeri olurluk, o zaman (3)'teki üçüncü terimde her
+toplam öğesi sıfır, toplam sıfır. Geriye tek kalan</p>
+<p>$$
+g(u^*,v^*) = f(x^*) + 
+\cancel{\sum_{i=1}^{m} u_i{^*} h_i(x^*)} + 
+\cancel{\sum_{j=1}^{r} v_j{^*} l_j(x^*)}
+$$</p>
+<p>$$
+= f(x^*)
+$$</p>
+<p>Eğer $g(u^*,v^*) = f(x^*)$ ise o zaman ana ve ikiz kriter arasında ikizlik
+boşluğu yoktür demektir, ve daha önce gördüğümüz gibi bu elimizdekinin bir
+çözüm olduğunun işaretidir. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 12</em>, 
