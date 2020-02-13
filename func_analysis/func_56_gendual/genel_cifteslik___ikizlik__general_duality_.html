@@ -23,10 +23,9 @@
 </script>
 </head>
 
-<p>Ders notları [1]'den alınmıştır. </p>
-<p>Bu derste genel dışbükey problemlerinde ikizlik konusunu göreceğiz, ek
-olarak dışbükey olmayan durumlara da bakacağız. İkizlik oldukca genel bir
-konu. </p>
+<p>Bu derste [1] genel dışbükey problemlerinde ikizlik konusunu göreceğiz, ek
+olarak dışbükey olmayan durumlara da bakacağız. İkizlik oldukça genel bir
+konu.</p>
 <p>Önceki derste ikizliği elde etmenin ikinci yönteminde </p>
 <p>$$
 L(x,u,v) \equiv c^T x + u^T (Ax-b) + v^T (Gx-h) 
@@ -45,7 +44,7 @@ noktasına sıkı (tight), yani olurlu kümeyi bir yana atarak bir şey
 kaybetmiş olmadık. Yani üstte görülen eşitsizlik bazılarına gevşek
 gelebilir, ama doğru $u,v$'de son derece sıkıdır. </p>
 <p>Neyse devam edersek, yine üstte görülen $g(u,v)$ $u,v$'nin bir fonksiyonu
-ve işin güzel tarafı çoğunlukla hesaplanabilir bir fonksiyon. Yanı
+ve işin güzel tarafı çoğunlukla hesaplanabilir bir fonksiyon. Yani
 $L(x,u,v)$'yi $x$ üzeriden minimize etmek $u,v$'nin bir fonksiyonu. </p>
 <p>Bir diğer deyişle, $g(u,v)$ fonksiyonu $f^*$ üzerinde herhangi bir $u$ ve
 $v \ge 0$ için bir alt sınır. Ikiz fonksiyonu olarak isimlendirilen $g$.</p>
@@ -150,8 +149,8 @@ problem harfiyen dışbükey olur.</p>
 L(x,u,v) = \frac{1}{2} x^T Q x + c^Tx  - u^T x + v^T (Ax - b)
 \qquad (2)
 $$</p>
-<p>Ikiz fonksiyonu bulalim simdi. $x$ uzerinden minimizasyon yapilan degisken
-olacagi icin $g$'de olmayacak, yani</p>
+<p>İkiz fonksiyonu bulalım şimdi. $x$, üzerinden minimizasyon yapılan değişken
+olacağı için $g$'de olmayacak, yani</p>
 <p>$$
 g(u,v) = \min_x L(x,u,v) 
 $$</p>
@@ -276,7 +275,7 @@ $-\infty$ kadar.</p>
 g(u,v) = 
 \left\{ \begin{array}{ll}
 -\frac{1}{2} (c - u + A^Tv)^T Q^{-1}  (c - u + A^Tv) - b^Tv &amp; 
-  \textrm{eger } c - u + A^Tv \perp null(Q)\\
+  \textrm{eğer } c - u + A^Tv \perp null(Q)\\
 -\infty &amp; \textrm{tersi doğruysa}
 \end{array} \right.
 $$</p>
@@ -337,9 +336,9 @@ $$
 $$
 l_j(x) = 0, \quad j=1,..,r
 $$</p>
-<p>icin bir ikiz $g(u,v)$ olusturabiliriz ki her zaman $f^* \ge g(u,v)$
-olacaktir her $u \ge 0$ ve $v$ icin. O zaman en iyi alt sinir $g(u,v)$'yi
-<em>tum</em> olurlu $u,v$'ler uzerinden maksimize ederek elde edilir. Bu bize
+<p>için bir ikiz $g(u,v)$ oluşturabiliriz ki her zaman $f^* \ge g(u,v)$
+olacaktır her $u \ge 0$ ve $v$ için. O zaman en iyi alt sınır $g(u,v)$'yi
+<em>tüm</em> olurlu $u,v$'ler üzerinden maksimize ederek elde edilir. Bu bize
 Lagrange ikizi problemi verir,</p>
 <p>$$
 \max_{u,v} g(u,v) \quad \textrm{öyle ki}
@@ -360,27 +359,27 @@ bulmak bile bize önemli bir bilgi veriyor.</p>
 çok şaşırtıyor. İkiz problem <em>her zaman</em> bir içbükey / dışbükey
 optimizasyon problemi. Bu önemli çünkü dışbükey programları bir şekilde
 muhakkak sayısal olarak çözebiliyoruz, <code>cvx</code> paketi ile belki, ya da
-alt gradyan (subgradient) metotlarıyla.. bir şekilde bu olur. Bilimin
+altgradyan (subgradient) metotlarıyla.. bir şekilde bu olur. Bilimin
 vardığı nokta burası, o problem çözüldü. Bu çok iyi çünkü eğer ana problem
 minimizasyon problemi ise ikiz her zaman içbükey maksimizasyon, ya da diğer
 yönde ana problem maksimizasyon ise ikiz dışbükey minimizasyon, ve içbükey
 / dışbükey problemi çözebiliyoruz. Bu her zaman doğru, ana problem ne
-olursa olsun. </p>
+olursa olsun.</p>
 <p>Niye? İspatını yapacağız, ana maksimizasyondan başlayarak $g$'nin her zaman
 bir içbükey fonksiyon olduğunu ispatlayacağız. Bu ispat çok basit
 aslında. Tanım itibariyle,</p>
 <p>$$
 g(u,v) = \min_x \left\{ 
-f(x) + \sum _{i=1}^{m} u_i h_i(x) + \sum _{i=1}^{r} v_i l_i(x) + 
+f(x) + \sum _{i=1}^{m} u_i h_i(x) + \sum _{i=1}^{r} v_i l_i(x) 
 \right\}
 $$</p>
 <p>Her şeyi eksi ile çarparsak üsttekini bir maksimizasyona çevirebiliriz,</p>
 <p>$$
 = -\max_x \left\{ 
--f(x) - \sum_{i=1}^{m} u_i h_i(x) - \sum_{i=1}^{r} v_i l_i(x) + 
+-f(x) - \sum_{i=1}^{m} u_i h_i(x) - \sum_{i=1}^{r} v_i l_i(x) 
 \right\}
 $$</p>
-<p>Şimdi $\max$ basındaki eksiye bakmadan geri kalanlara bakalım. $u,v$
+<p>Şimdi $\max$ başındaki eksiye bakmadan geri kalanlara bakalım. $u,v$
 üzerinden düşünürsek üstte çarpımlar ve toplamlar var. $u,v$ açısından
 $f(x)$ bile bir sabitin toplamı demektir. Çarpım toplamlar doğrusal
 fonksiyondur, doğrusal fonksiyonlar ise dışbükeydir. Şimdi $\max$ basındaki
@@ -391,14 +390,14 @@ Lagrangian'ın kendisinin hesabı oldukca çetrefil olabilir. Eğer ana problem
 dışbükey ise Lagrangian hesabı kolay ama çetrefil $f(x)$'ler için bu iş
 daha zor. Yani dışbükey olmayan ana problemin şanslıysak ikiz hesabı
 kolaydır, ama çoğunlukla iş zor. </p>
-<p>Altta bir ornek sectim, oyle ki ikiz hesaplanabilir halde olacak, her ne
+<p>Altta bir örnek seçtim, öyle ki ikiz hesaplanabilir halde olacak, her ne
 kadar ana problem olmasa da. </p>
 <p>$$
 \max f(x) = x^4 - 50x^2 + 100x, \quad \textrm{öyle ki} \quad x \ge -4.5
 $$</p>
 <p>Problemin grafigi altta</p>
 <p><img alt="" src="func_56_gendual_04.png" /></p>
-<p>Sol grafikteki köyü siyah nokta ikizdeki maksimuma tekabül eden nokta,
+<p>Sol grafikteki koyu siyah nokta ikizdeki maksimuma tekabül eden nokta,
 gerçek minimum değil, o minimum biraz daha sola doğru. Sağdaki ikiz
 grafiğini hesapladım, $u$ yök tabii çünkü eşitlik kısıtlaması yok. İkizin
 içbükey olduğuna dikkat. Ana problem dışbükey değil, ama ikiz içbükey. </p>
