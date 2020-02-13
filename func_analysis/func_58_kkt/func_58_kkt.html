@@ -168,6 +168,54 @@ kullanmanın zor tarafı budur.</p>
 <p>Bu sebeple formel bir uyarıyı slaytlara koyduk, "eğer $f$ dışbükey değilse
 türevi alınabilir bir $f$ için bile direk $\partial f = {\nabla f(x)}$
 diyemeyiz". </p>
+<p>Eğer ana problemde hiçbir kısıtlama olmasaydı o zaman 2. 3. ve 4. KKT
+şartları yokoluyor bu normal çünkü ikiz değişken olmayacak, 1. şarttaki
+2. ve 3. terim yokolur, sadece altgradyanın sıfırı içerme şartı geriye
+kalıyor. Bazen bilimcilerin bu tür problemlerde salt altgradyan optimalliği
+kullanıp "KKT koşulları kullandım" dediğini duyabilirsiniz, ben bile
+dalgınlıkla bunu söyleyebiliyorum bazen. Fonksiyon var, altgradyanini alıp
+sıfıra eşitliyorum, bu "KKT koşulu" diyorum. Bu doğru tabii, sadece
+KKT'nin çok basit bir hali. </p>
+<p>Ornek</p>
+<p>Eşitlik şartları olan karesel bir fonksiyounun minimizasyonuna bakalım. </p>
+<p>$$
+\min_x \frac{1}{2} x^T Q x + c^T x \quad \textrm{oyle ki}
+$$
+$$
+Ax = 0
+$$</p>
+<p>$Q \succ 0$ olacak, yani $Q$ pozitif yarı-kesin, o zaman üstteki problem
+dışbükey. Eşitsizlik şartı yok.</p>
+<p>KKT şartlarını yazalım. Lagrangian nedir? </p>
+<p>$$
+L(x,u) = \frac{1}{2} x^T Q x + c^T x + u^T A x
+$$</p>
+<p>Durağanlık için üsttekinin gradyanini alıp sıfıra eşitlerim, </p>
+<p>$$
+Qx + c + A^T u = 0
+$$</p>
+<p>Tamamlayıcı gevşeklik</p>
+<p>(Boş, çünkü eşitsizlik şartları yok)</p>
+<p>Ana-ikiz olurluk</p>
+<p>İkiz olurluk boş, çünkü eşitsizlik yok, yani $u$'nin pozitif olma şartı
+yok. Ana olurluk ise </p>
+<p>$$
+Ax = 0
+$$</p>
+<p>Biliyoruz ki üstteki iki şartı tatmin edersem $x$ ana, $u$ ikiz optimal
+çözüm olacak. </p>
+<p>Guzel degil mi? Hatta bu lineer bir sistem olarak yazilabilir,</p>
+<p>$$
+\left[\begin{array}{ccc}
+Q &amp; A^T \\ A &amp; 0
+\end{array}\right]
+\left[\begin{array}{c}
+x \\ u
+\end{array}\right] =
+\left[\begin{array}{r}
+-c \\ 0
+\end{array}\right] 
+$$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 12</em>, 
