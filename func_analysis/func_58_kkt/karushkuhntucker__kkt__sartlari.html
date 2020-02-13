@@ -24,7 +24,7 @@
 </head>
 
 <p>KKT şartları birkaç basit kavramın bir araya gelmesiyle oluşan çok kuvvetli
-bir kavram. BU sartlar 4 tane. Alttaki gibi genel bir problemle baglantililar,</p>
+bir kavram. BU sartlar 4 tane. Alttaki gibi genel bir problemle bağlantılılar,</p>
 <p>$$
 \min_x f(x) \quad \textrm{öyle ki}
 $$
@@ -40,7 +40,7 @@ L(x,u,v) =  f(x) +
 \sum_{i=1}^{m} u_i \underbrace{h_i(x)}_{\le 0} + 
 \sum_{i=1}^{r} v_i \underbrace{l_i(x)}_{=0}
 $$</p>
-<p>Problemin dışbükey olması garanti değil. </p>
+<p>Problemin dışbükey olması mecbur değil. </p>
 <p>Bu şartlar,</p>
 <p>1) Durağanlık şartı</p>
 <p>Lagrangian'da $u,v$ sabitledim, ve $x$'e göre Lagrangian'ın altgradyanını
@@ -102,8 +102,8 @@ $$</p>
 çünkü eşitsizliğin iki tarafında aynı şey var. </p>
 <p>Eşitsizliklerin eşitlik olması ne anlama gelir? Demek ki $x^*$ Lagrangian'ı
 $u^*,v^*$ noktasında minimize edecektir. Durağanlık bu demek zaten değil
-mi? $x$'e göre Lagrangian'ın altgradyanını aldım ve bu sıfıra eşit. </p>
-<p>Ayrıca tamamlayan gevşeklik şartı da ispatlanmış oluyor, (1) ile (2) eşit
+mi? $x$'e göre Lagrangian'ın altgradyanını aldım ve bu sıfıra eşit.  Ayrıca
+tamamlayan gevşeklik şartı da ispatlanmış oluyor, (1) ile (2) eşit
 olmalıysa, ve (1)'deki 3. terimin sıfır olduğunu biliyoruz, 2. terimdeki
 tamamı pozitif olan toplam öğeleride sıfır olmalı çünkü başka türlü (2)'ye
 eşitliği elde edemeyiz. Eh bu durum da tamamlayan gevşeklik şartı değil
@@ -160,9 +160,9 @@ problemi KKT üzerinde rahatça çözebilir miyim?</p>
 <p>Hayır - çünkü 1. KKT şartı, durağanlık şartıyla problem çıkabilir. Pürüzsüz
 bir problem için durağanlık için $f$ ve $h_i,l_i$'in gradyanlarını almam
 yeter, sıfıra eşitlerim vs. Bir de dışbükeylik varsa tipik olarak
-altgradyani yazmak basittir. Sonucu bulmak her zaman kolay olmayabilir ama
+altgradyanı yazmak basittir. Sonucu bulmak her zaman kolay olmayabilir ama
 en azından durağanlığı formülize etmek kolaydır. Fakat bazı fonksiyonlarda
-dışbükeylık yoksa altgradyanları hesaplamanın zorluğu ötesinde bazen
+dışbükeylik yoksa altgradyanları hesaplamanın zorluğu ötesinde bazen
 altgradyan olmayabilir bile. Genelde pürüzsüz durumlarda KKT koşullarını
 kullanmanın zor tarafı budur.</p>
 <p>Bu sebeple formel bir uyarıyı slaytlara koyduk, "eğer $f$ dışbükey değilse
@@ -173,10 +173,10 @@ diyemeyiz". </p>
 2. ve 3. terim yokolur, sadece altgradyanın sıfırı içerme şartı geriye
 kalıyor. Bazen bilimcilerin bu tür problemlerde salt altgradyan optimalliği
 kullanıp "KKT koşulları kullandım" dediğini duyabilirsiniz, ben bile
-dalgınlıkla bunu söyleyebiliyorum bazen. Fonksiyon var, altgradyanini alıp
-sıfıra eşitliyorum, bu "KKT koşulu" diyorum. Bu doğru tabii, sadece
-KKT'nin çok basit bir hali. </p>
-<p>Ornek</p>
+dalgınlıkla bunu söyleyebiliyorum bazen. Fonksiyon var, altgradyanını alıp
+sıfıra eşitliyorum, bu "KKT koşulu" diyorum. Teknik olarak doğru tabii,
+sadece KKT'nin çok basit bir hali bu.</p>
+<p>Örnek</p>
 <p>Eşitlik şartları olan karesel bir fonksiyounun minimizasyonuna bakalım. </p>
 <p>$$
 \min_x \frac{1}{2} x^T Q x + c^T x \quad \textrm{oyle ki}
@@ -216,6 +216,12 @@ x \\ u
 -c \\ 0
 \end{array}\right] 
 $$</p>
+<p>Eğer üstteki sistemi $x,u$ bulmak için çözersem, optimal noktaları
+bulabilirim. Eğer matris tersi alınabilir ise tersini alırım, eşitliğin
+sağındaki ifade ile çarparım, bu bana ana-ikiz sonucu verir. </p>
+<p>Üstteki matrise bazen KKT matrisi deniyor, KKT koşullarını kullanarak
+oluşturulduğu için. </p>
+<p>[atlandi, su doldurma problemi, SVM]</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 12</em>, 
