@@ -41,8 +41,8 @@ L(x,u,v) =  f(x) +
 \sum_{i=1}^{r} v_i \underbrace{l_i(x)}_{=0}
 $$</p>
 <p>Problemin dışbükey olması garanti değil. </p>
-<p>Bu sartlar,</p>
-<p>1) Duraganlik sarti</p>
+<p>Bu şartlar,</p>
+<p>1) Durağanlık şartı</p>
 <p>Lagrangian'da $u,v$ sabitledim, ve $x$'e göre Lagrangian'ın altgradyanını
 alırsam, 0 değeri bu altgradyan içinde olmalı. </p>
 <p>$$
@@ -50,7 +50,7 @@ alırsam, 0 değeri bu altgradyan içinde olmalı. </p>
 f(x) + \sum_{i=1}^{m} u_i h_i(x) + \sum_{j=1}^{r} v_j l_j(x) 
 \right)
 $$</p>
-<p>2) Tamamlayici Gevseklik (Complementary Slackness)</p>
+<p>2) Tamamlayıcı Gevşeklik (Complementary Slackness)</p>
 <p>$$
 u_i \cdot h_i(x) = 0 \quad \forall i
 $$</p>
@@ -144,8 +144,30 @@ $$</p>
 = f(x^*)
 $$</p>
 <p>Eğer $g(u^*,v^*) = f(x^*)$ ise o zaman ana ve ikiz kriter arasında ikizlik
-boşluğu yoktür demektir, ve daha önce gördüğümüz gibi bu elimizdekinin bir
+boşluğu yoktur demektir, ve daha önce gördüğümüz gibi bu elimizdekinin bir
 çözüm olduğunun işaretidir. </p>
+<p>Yani birkaç farklı yönden gelerek ispatladık ki $x^*$ ve $u^*,v^*$ KKT
+koşullarına uyuyorsa, o zaman elimizdekiler optimal ana ve ikiz
+çözümleridir. KKT koşulları her zaman yeterlidir. Dikkat edilirse
+dışbükeylikten hiç bahsetmedik, KKT yeterli (sufficient), onlara uygunluk
+varsa optimal ana ve ikiz çözüme erişmişiz demektir. Gereklilik (necessary)
+durumu eğer güçlü dışbükeylik varsa, elimizdeki çözüm KKT koşullarına da
+uymaya mecbur. Biraz söz cambazlığı gibi gelebilir ama tanımların net
+olması, ve ilerideki teorilere faydası açısından bu iyi. </p>
+<p>Soru</p>
+<p>Eğer KKT koşullarını tatmin etmek optimallik için yeterliyse dünyadaki her
+problemi KKT üzerinde rahatça çözebilir miyim?</p>
+<p>Hayır - çünkü 1. KKT şartı, durağanlık şartıyla problem çıkabilir. Pürüzsüz
+bir problem için durağanlık için $f$ ve $h_i,l_i$'in gradyanlarını almam
+yeter, sıfıra eşitlerim vs. Bir de dışbükeylik varsa tipik olarak
+altgradyani yazmak basittir. Sonucu bulmak her zaman kolay olmayabilir ama
+en azından durağanlığı formülize etmek kolaydır. Fakat bazı fonksiyonlarda
+dışbükeylık yoksa altgradyanları hesaplamanın zorluğu ötesinde bazen
+altgradyan olmayabilir bile. Genelde pürüzsüz durumlarda KKT koşullarını
+kullanmanın zor tarafı budur.</p>
+<p>Bu sebeple formel bir uyarıyı slaytlara koyduk, "eğer $f$ dışbükey değilse
+türevi alınabilir bir $f$ için bile direk $\partial f = {\nabla f(x)}$
+diyemeyiz". </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 12</em>, 
