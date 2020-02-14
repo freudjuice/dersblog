@@ -32,7 +32,7 @@ hazırlamak [1]. </p>
 eşitsizlik sınırlarını içerecek şekilde genişletmek. Eşitsizlik sınırları
 kullanması zor olan türden sınırlar. Bu durumda yapılan </p>
 <p>$$
-\min_x f(x) + I_C(x) \quad \textrm{oyle ki}
+\min_x f(x) + I_C(x) \quad \textrm{öyle ki}
 $$
 $$
 Ax = b
@@ -40,14 +40,14 @@ $$</p>
 <p>$I_C$ ifadesi $x$'lerin bir $C$ kümesinden gelmesi gerektiğini söylüyor
 sadece. Üstteki problemi </p>
 <p>$$
-\min_x f(x) + \frac{1}{t} \phi(x) \quad \textrm{oyle ki}
+\min_x f(x) + \frac{1}{t} \phi(x) \quad \textrm{öyle ki}
 $$
 $$
 Ax = b
 $$</p>
 <p>şeklinde yaklaşıklayabiliyoruz. Üstteki problemin bir diğer şekli</p>
 <p>$$
-\min_x t f(x) + \phi(x) \quad \textrm{oyle ki}
+\min_x t f(x) + \phi(x) \quad \textrm{öyle ki}
 $$
 $$
 Ax = b
@@ -65,8 +65,35 @@ bize güzel bir ikizlik boşluğu veriyor, </p>
 <p>$$
 f(x^*(t)) - f^* \le m/t
 $$</p>
-<p>$t$ disaridan ayarlanabilir, buyuk $t$ kriteri daha iyi yaklasiklama yapar,
+<p>$t$ dışarıdan ayarlanabilir, büyük $t$ kriteri daha iyi yaklaşıklama yapar,
 vs. </p>
+<p>Simdi genel formatta bir ana problemi tekrar verelim,</p>
+<p>$$
+\min_x f(x) \quad \textrm{öyle ki}
+$$
+$$
+h_i(x) \le 0, \quad i=1,..,m
+$$
+$$
+l_j(x) = 0, \quad j=1,..,r
+$$</p>
+<p>Üsttekinin illa dışbükey olması gerekmiyor. Bu fonksiyon için bir
+Lagrangian oluşturuyoruz,</p>
+<p>$$
+L(x,u,v) =  f(x) + \sum_{i=1}^{m} u_i h_i(x) +  \sum_{i=1}^{r} v_i l_i(x)
+$$</p>
+<p>Ana problemi şu şekilde yazabiliriz, bu notasyon sadece daha önce
+gördüklerimizden pek bir farkı yok,</p>
+<p>$$
+\min_x \max_{\substack{{u,v} \\ u\ge 0}} L(x,u,v) 
+$$</p>
+<p>Bu işler çünkü maksimizasyon ifadesinin kısıtlamaları yerine getirdiğini
+düşünebiliriz. Eğer herhangi bir kısıtlama ihlal edilirse, mesela
+$h_i$'lerden biri pozitif haline gelmiş, ya da $l_j$'lerden biri sıfır
+değil, o zaman öne tekabül eden çarpanı arttırabilirdik, ve $\max$ ifadesi
+buyurdu. Ama $\max$ optimizasyonu sıfıra gider. Üstteki yaklaşımla doğal
+olarak ikizi elde ederiz, $\min$ ve $\max$'in yerini değiştirirsek ikiz
+problemi elde ederiz. </p>
 <p>[devam edecek]</p>
 <p>Daha önce bariyer metodundan bahsettik. Fakat bir açıdan bariyer metotu en
 basit iç nokta yöntemidir. Püf noktayı hatırlarsak IN yöntemlerinde
