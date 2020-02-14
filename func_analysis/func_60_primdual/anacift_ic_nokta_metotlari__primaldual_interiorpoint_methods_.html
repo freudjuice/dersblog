@@ -23,31 +23,18 @@
 </script>
 </head>
 
-<p>İkizliğe Dönüş</p>
-<p>Dişbukey optimizasyonun en güzel tarafı bence ikizlik. Harika, muazzam bir
-fikir benim gözümde. Bu konunun üzerinden bir daha geçeceğiz, bazı eklerle,
-amacımız ardından işleyeceğimiz ana-çift iç nokta yöntemi için altyapıyı
-hazırlamak [1]. </p>
-<p>Bariyer metotlarını hatırlarsak amaçları Newton'un yöntemini eşitlik ve
-eşitsizlik sınırlarını içerecek şekilde genişletmek. Eşitsizlik sınırları
-kullanması zor olan türden sınırlar. Bu durumda yapılan </p>
+<p>Daha önce bariyer metotlarını gördük,</p>
+<p>Verili problem </p>
 <p>$$
-\min_x f(x) + I_C(x) \quad \textrm{öyle ki}
+\min_x f(x) \quad \textrm{öyle ki}
 $$
 $$
-Ax = b
+h_i(x) \le 0, \quad i=1,..,m
 $$</p>
-<p>$I_C$ ifadesi $x$'lerin bir $C$ kümesinden gelmesi gerektiğini söylüyor
-sadece. Üstteki problemi </p>
+<p>$f$,$h_i$ dışbükey ve pürüzsüz olmalı. Bu problemi şu şekilde yaklaşık
+şekilde ifade ediyoruz,</p>
 <p>$$
 \min_x f(x) + \frac{1}{t} \phi(x) \quad \textrm{öyle ki}
-$$
-$$
-Ax = b
-$$</p>
-<p>şeklinde yaklaşıklayabiliyoruz. Üstteki problemin bir diğer şekli</p>
-<p>$$
-\min_x t f(x) + \phi(x) \quad \textrm{öyle ki}
 $$
 $$
 Ax = b
@@ -59,53 +46,12 @@ $\log$ fonksiyonu, </p>
 <p>$$
 \phi(x) = -\sum_{i=1}^{m} \log(-h_i(x))
 $$</p>
-<p>Bu tabii $f$ ve $h_i$ dışbükey ve pürüzsüz ise işler. Eğer KKT koşulları
-hem orijinal problem hem de onun bariyer hali için geçerliyse, o zaman KKT
-bize güzel bir ikizlik boşluğu veriyor, </p>
-<p>$$
-f(x^*(t)) - f^* \le m/t
-$$</p>
-<p>$t$ dışarıdan ayarlanabilir, büyük $t$ kriteri daha iyi yaklaşıklama yapar,
-vs. </p>
-<p>Simdi genel formatta bir ana problemi tekrar verelim,</p>
-<p>$$
-\min_x f(x) \quad \textrm{öyle ki}
-$$
-$$
-h_i(x) \le 0, \quad i=1,..,m
-$$
-$$
-l_j(x) = 0, \quad j=1,..,r
-$$</p>
-<p>Üsttekinin illa dışbükey olması gerekmiyor. Bu fonksiyon için bir
-Lagrangian oluşturuyoruz,</p>
-<p>$$
-L(x,u,v) =  f(x) + \sum_{i=1}^{m} u_i h_i(x) +  \sum_{i=1}^{r} v_i l_i(x)
-$$</p>
-<p>Ana problemi şu şekilde yazabiliriz, bu notasyon sadece daha önce
-gördüklerimizden pek bir farkı yok,</p>
-<p>$$
-\min_x \max_{\substack{{u,v} \\ u\ge 0}} L(x,u,v) 
-$$</p>
-<p>Bu işler çünkü maksimizasyon ifadesinin kısıtlamaları yerine getirdiğini
-düşünebiliriz. Eğer herhangi bir kısıtlama ihlal edilirse, mesela
-$h_i$'lerden biri pozitif haline gelmiş, ya da $l_j$'lerden biri sıfır
-değil, o zaman öne tekabül eden çarpanı arttırabilirdik, ve $\max$ ifadesi
-buyurdu. Ama $\max$ optimizasyonu sıfıra gider. Üstteki yaklaşımla doğal
-olarak ikizi elde ederiz, $\min$ ve $\max$'in yerini değiştirirsek ikiz
-problemi elde ederiz. </p>
-<p>[devam edecek]</p>
-<p>Daha önce bariyer metodundan bahsettik. Fakat bir açıdan bariyer metotu en
-basit iç nokta yöntemidir. Püf noktayı hatırlarsak IN yöntemlerinde
-eşitsizlik kısıtlamalarından bazılarını bir bariyer fonksiyonuna
-koyuyorduk. Bu fena bir teknik değil, ama dışbükey optimizasyon problemleri
-için en etkili, en hızlı yöntem olduğu söylenemez. Hem teorik hem pratik
-açıdan dışbükey optimizasyon problemlerini iç nokta bağlamında çözmenin en
-hızlı yolu ana-çift iç nokta metotudur.</p>
-<p>Bir açıdan aslında ana-çift tekniği bariyer yönteminin bir varyasyonu, o
-yüzden birazdan göreceklerimizin bir kısmı tanıdık gelebilir. Fakat kodlama
-açısından bazı nüans farkları var ki bu farklar performansa pozitif yönde
-etki ediyor.</p>
+<p>İki üstteki Newton yöntemi ile çözülüyor, her adımda $t$ arttırılıyor, vs. </p>
+<p>Bariyer ve ana-çift metotları birbirlerine çok benziyor. Her ikisi de iç
+nokta tekniği mesela. Ama bazı net farkları da var. </p>
+<p>Her iki yöntem de sarsım uygulamış (pertürbed) KKT yöntemi olarak
+görülebilir fakat log bariyer birkaç adım atar, ana-çift tek Newton adımı
+atar. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
