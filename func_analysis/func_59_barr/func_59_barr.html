@@ -94,6 +94,40 @@ h_i(x) \le 0, \quad i=1,..,m
 $$</p>
 <p>Kriter dışbükey, sınırlamalar lineer, ve dışbükey eşitsizlik
 sınırlamaları, $h_i(x) \le 0$ ile.</p>
+<p>Bariyer metotu eşitsizliklerle başetmenin bir yolu. Eşitsizlik içeren
+programların en büyük problemi sınırlarda ne yapılacağına karar vermek,
+yani olurlu kümenin sınırlarında. Başetmek için olurlu küme 
+$C \equiv { x: h_i(x) \le 0 , i=1,..,m}$ </p>
+<p>$$
+\min_x f(x) + I_C(x)
+$$
+$$
+Ax = b
+$$</p>
+<p>ile kritere dahil edilir, ki $I_C$ göstergeç fonksiyonudur. Ana fikir sınır
+noktalarında işler zorlaşıyorsa niye oralardan uzak durmuyoruz? Fakat
+göstergeç fonksiyonu ile çalışmak zor, onu da yaklaşıksal olarak temsil
+ederiz, işte bariyer fonksiyonu budur. Öyle bir fonksiyon seçeriz ki
+sınırlarda aşırı büyük değerler vererek bizi minimizasyon bağlamında
+oralardan "geri iter". Sanki sınırlara bir manyetik alan koyuyoruz,
+oralara yaklaşınca geri itiliyoruz. </p>
+<p>Tabii bir yandan Newton metotu da kullanabilmek istiyoruz, ideal olarak
+pürüzsüz bir metot olursa elimizde iyi olur. Log bariyer fonksiyonu böyle
+bir fonksiyon</p>
+<p>$$
+\phi(x) = -\sum_{i=1}^{m} \log(-h_i(x))
+$$</p>
+<p>Böylece ana problemi şu hale getirebiliriz,</p>
+<p>$$
+\min_x f(x) + \frac{1}{t} \phi(x) \quad \textrm{öyle ki}
+$$
+$$
+Ax = b
+$$</p>
+<p>ki $t&gt;0$. Görülen $1/t$ dışarıdan bizim tanımladığımız bir parametre,
+optimizasyonu ayarlamak için kullanıyoruz onu. Eğer $t$ küçükse, sıfıra
+yakınsa o zaman bariyer baskın haldedir (daha büyüktür), tabii o zaman
+sınırlardan kaçmak optimizasyon için daha önemli hale gelir. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 14</em>, 
