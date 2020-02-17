@@ -1,0 +1,102 @@
+<h1>Log-Bariyer Yöntemi</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Log-Bariyer Yöntemi
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>[Newton yöntemi özeti atlandı]</p>
+<p>Şimdiye kadar kısıtlanmamış Newton yönteminden bahsettik [1, 53:18]. Şimdi
+lineer olarak kısıtlanmış, $Ax=b$ ile, olan duruma bakalım, çünkü ileride
+faydalı olacak.</p>
+<p>En bariz yaklaşım $Ax=b$'nin bir doğrusal (affine) uzay yaratması, ve
+optimizasyonun bu daha ufak uzayda iş yapması. Bir değişken değişimi
+yaparız, $x = Fy + x_0$, ki $F$, $A$'nin sıfır uzayını kapsıyor, ardından
+optimizasyon problemini $y$ bazlı bir probleme indirge. Bu yaklaşıma
+"indirgenmiş uzay yaklaşımı" deniyor. Tarif edilen gayet doğal, basit bir
+yaklaşım aslında, fakat bir bedeli de var. Eğer orijinal problem seyrek ise
+değişim sonrası çok miktarda yapı kaybı (yaı seyreklik) olacak.</p>
+<p>Bir diğer seçenek eşitlikle kısıtlanmış Newton (equality constrained
+Newton). Bu yöntemle $x^+ = x + t v$ adımında $v$ karesel
+yaklaşıksallamanın çözümü, fakat bu çözüm sınırlanmış bir problemin çözümü,
+bir sonraki $x^+$'yi olurlu halde tutacak bir sınırlama bu.</p>
+<p>Çözülen problem </p>
+<p>$$
+v = \arg\min_{Az = 0} \nabla f(x)^T (z-x) + \frac{1}{2} (z-x)^T \nabla^2 f(x)(z-x)
+$$</p>
+<p>Üstteki $x^+$'i olurlu kümede tutar çünkü </p>
+<p>$$
+Ax^+ = Ax + tAv = b + 0 = b
+$$</p>
+<p>KKT koşulları üzerinden çözüm</p>
+<p>$$
+\left[\begin{array}{cc}
+\nabla^2 f(x) &amp; A^T \\
+A &amp; 0
+\end{array}\right]
+\left[\begin{array}{c}
+v \\
+w
+\end{array}\right] = 
+- 
+\left[\begin{array}{c}
+\nabla f(x) \\
+Ax - b
+\end{array}\right]
+$$</p>
+<p>ile belirtilebilir. KKT bölümünde karesel problem örneğindeki gördüğümüz
+$Q$ burada $\nabla^2 f(x)$ oluyor, atılan adım sonrası gelinen yerin ne
+olacağı da kısıtlama içinde görülebilir.</p>
+<p>Olurlu noktadan basliyorsak, ozel durum $Ax = b$, tabii o zaman </p>
+<p>$$
+\left[\begin{array}{cc}
+\nabla^2 f(x) &amp; A^T \\
+A &amp; 0
+\end{array}\right]
+\left[\begin{array}{c}
+v \\
+w
+\end{array}\right] = 
+- 
+\left[\begin{array}{c}
+\nabla f(x) \\
+0
+\end{array}\right]
+$$</p>
+<p>O zaman bariyer metotu nedir? Bu metotla yine Newton metotunu uzatacağız,
+ve eşitsizlik olan problemlerle uğraşacağız. </p>
+<p>$$
+\min_x f(x) \quad \textrm{oyle ki}
+$$
+$$
+Ax = b
+$$
+$$
+h_i(x) \le 0, \quad i=1,..,m
+$$</p>
+<p>Kriter dışbükey, sınırlamalar lineer, ve dışbükey eşitsizlik
+sınırlamaları, $h_i(x) \le 0$ ile.</p>
+<p>[devam edecek]</p>
+<p>Kaynaklar</p>
+<p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 14</em>, 
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
+<p>[2] Tibshirani, <em>Convex Optimization, Lecture Video 15</em>, 
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
