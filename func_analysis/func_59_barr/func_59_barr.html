@@ -116,6 +116,7 @@ pürüzsüz bir metot olursa elimizde iyi olur. Log bariyer fonksiyonu böyle
 bir fonksiyon</p>
 <p>$$
 \phi(x) = -\sum_{i=1}^{m} \log(-h_i(x))
+\qquad (1)
 $$</p>
 <p>Böylece ana problemi şu hale getirebiliriz,</p>
 <p>$$
@@ -127,7 +128,52 @@ $$</p>
 <p>ki $t&gt;0$. Görülen $1/t$ dışarıdan bizim tanımladığımız bir parametre,
 optimizasyonu ayarlamak için kullanıyoruz onu. Eğer $t$ küçükse, sıfıra
 yakınsa o zaman bariyer baskın haldedir (daha büyüktür), tabii o zaman
-sınırlardan kaçmak optimizasyon için daha önemli hale gelir. </p>
+sınırlardan kaçmak optimizasyon için daha önemli hale gelir. Eğer $t$'yi
+büyütürsek bu "orijinal kriter $f$'ye daha fazla önem ver" demektir.</p>
+<p>Dersin geri kalanında üstteki format yerine alttaki ile çalışacağız,
+üstteki ile aynı, </p>
+<p>$$
+\min_x t f(x) + \phi(x) \quad \textrm{öyle ki}
+$$
+$$
+Ax = b
+$$</p>
+<p>Log-Bariyer Calculus</p>
+<p>(1) için türev</p>
+<p>$$
+\nabla \phi(x) = - \sum_{i=1}^{m} \frac{1}{h_i(x)} \nabla h_i(x)
+$$</p>
+<p>Hessian</p>
+<p>$$
+\nabla^2 \phi(x) = 
+\sum _{i=1}^{m} \nabla h_i(x) \nabla h_i(x)^T - 
+\sum _{i=1}^{m} \frac{1}{h_i(x)} \nabla^2 h_i(x)
+$$</p>
+<p>Örnek</p>
+<p>Pek çok yerde kullanılan bir eşitsizlik görelim, mesela bütün $x_i &lt; 0$
+olduğu bir durum, yani $h_i(x) = -x$. O zaman bariyer neye benzer? </p>
+<p>$$
+\phi(x) = - \sum _{i=1}^{n} \log x_i
+$$</p>
+<p>$$
+\nabla \phi(x) = 
+- \left[\begin{array}{c}
+1/x_1  \\ 
+\vdots \\
+1/x_n
+\end{array}\right] 
+= - X^{-1} \mathds{1} 
+$$</p>
+<p>Burada $X$ matrisi </p>
+<p>$$
+X = Diag(x) = 
+\left[\begin{array}{ccc}
+x_1 &amp; &amp; \\
+    &amp; \ddots &amp; \\
+    &amp; &amp; x_n
+\end{array}\right]
+$$</p>
+<p>ve $\mathds{1}$ matrisi tamamen 1'lerden oluşan matris. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 14</em>, 
