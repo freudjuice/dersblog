@@ -137,6 +137,7 @@ büyütürsek bu "orijinal kriter $f$'ye daha fazla önem ver" demektir.</p>
 $$
 $$
 Ax = b
+\qquad (2)
 $$</p>
 <p>Log-Bariyer Calculus</p>
 <p>(1) için türev</p>
@@ -173,7 +174,54 @@ x_1 &amp; &amp; \\
     &amp; &amp; x_n
 \end{array}\right]
 $$</p>
-<p>ve $\textbf{1}$ sembolu tamamen 1'lerden oluşan matris.</p>
+<p>ve $\textbf{1}$ sembolu tamamen 1'lerden oluşan matris. </p>
+<p>Hessian</p>
+<p>$$
+\nabla^2 \phi (x) = \left[\begin{array}{ccc}
+1/x_1^2 &amp; &amp; \\
+    &amp; \ddots &amp; \\
+    &amp; &amp; 1/x_n^2
+\end{array}\right] = X^2 
+$$</p>
+<p>Problemi yaklaşık olarak temsil ettik. Uygun şartlarda problem (2)'nin
+çözümü vardır. Neden olduğunu görmek zor değil, $\phi$ beni sınırlardan
+uzak tutar, ve hedefim $f$'ye ulaşırım, lineer diğer sınırları dikkate
+alarak tabii. Gidis yolu neye benzerdi?</p>
+<p>Eğer problemim $\min c^T x$ öyle ki $D x \le e$ olsaydı,</p>
+<p><img alt="" src="func_59_barr_01.png" /></p>
+<p>Sınırlar görülüyor, başlangıç o sınırların ortasında diyelim, ufak $t$
+olduğu zaman oradayım, çünkü sınırlar kuvvetli şekilde bizi her taraftan
+itiyor. Nihai sonuç $x^*$ iki sınırın kesiştiği yerde görülüyor. 
+$t$'yi arttırdıkça $f$'nin önemi artacak, ve sonuca yaklaşacağız.</p>
+<p>Merkezi gidiş yolu, (1) için KKT koşulları üzerinden gösterilebilir?  Bu
+yol (1) probleminin $t$ üzerinden fonksiyon haline getirilmiş
+çözümüdür. Her $t$ için (1)'i çözebilirim, çözüme $x^*(t)$ derim, ve
+$x^*$'ye $t$'nin bir fonksiyonu olarak bakınca, bariyer metot çerçevesinde,
+ortaya çıkan çözüm serisine merkezi gidiş yolu denir. Her $t$ için (1)'in
+çözümünü KKT koşulları üzerinden temsil edebilirim, böylece her adımda
+$x^*(t)$'nin optimal olması için ne gerekir sorusunu formülize etmiş
+oluyorum.  Önce KKT ana olurluk şartları</p>
+<p>$$
+A x^* = b, \quad h_i(x^*(t)) \le 0
+$$</p>
+<p>Geri kalanlar, Lagrangian üzerinden </p>
+<p>$$
+t f(x) + \phi(x) + w^T (Ax - b)
+$$</p>
+<p>Bu Lagrangian'in $x$ üzerinden gradyanını alıp sıfıra eşitlersem durağanlık
+şartını elde ediyorum. </p>
+<p>$$
+t \nabla f(x^*(t)) - \sum_{i=1}^{m} \frac{1}{h_i(x^* (t))} 
+\nabla h_i(x^*(t)) + A^T w = 0
+$$</p>
+<p>Gradyan kullanmak yeterli çünkü tüm fonksiyonlar dışbükey ve pürüzsüz. </p>
+<p>Üstteki problemi bazı herhangi bir $w$ için çözebilirsem o zaman merkezi
+gidiş yolundaki bir çözümü her $t$ için karakterize etmiş oldum. Umudumuz o
+ki $t$'yi sonsuzluğa doğru iterken gördüğümüz KKT koşullarının ima ettiği
+çözümler orijinal problemdeki sonuçlara yaklaşsın. Çünkü bariyer
+fonksiyonunu $1/t$ ile çarptım ve $t$'yi büyüttükçe çarpım gösterge
+fonksiyonuna yaklaşacaktır, o zaman optimizasyonu yaparken $t$'yi
+büyüttükçe orijinal problemin gerçek sonucuna yaklaşmış olalım. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 14</em>, 
