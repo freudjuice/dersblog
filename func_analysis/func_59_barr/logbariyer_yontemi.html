@@ -84,13 +84,14 @@ $$</p>
 <p>O zaman bariyer metotu nedir? Bu metotla yine Newton metotunu uzatacağız,
 ve eşitsizlik olan problemlerle uğraşacağız. </p>
 <p>$$
-\min_x f(x) \quad \textrm{oyle ki}
+\min_x f(x) \quad \textrm{öyle ki}
 $$
 $$
 Ax = b
 $$
 $$
 h_i(x) \le 0, \quad i=1,..,m
+\qquad (3)
 $$</p>
 <p>Kriter dışbükey, sınırlamalar lineer, ve dışbükey eşitsizlik
 sınırlamaları, $h_i(x) \le 0$ ile.</p>
@@ -220,7 +221,7 @@ büyüttükçe orijinal problemin gerçek sonucuna yaklaşmış olurum.</p>
 <p>Şimdi bir lineer program üzerinden merkezi gidiş yoluna bakalım. Basit bir
 LP, eşitlik şartlarını attım, </p>
 <p>$$
-\min_x c^T x, \quad \textrm{oyle ki}
+\min_x c^T x, \quad \textrm{öyle ki}
 $$
 $$
 Dx \le e
@@ -237,11 +238,61 @@ sonucuna yaklaşacağım.</p>
 büyüttükçe yolda ilerliyoruz, ve sonuca erişiyoruz. Gidiş pürüzsüz, ve
 LP'lerin karakterinden biliyoruz ki nihai sonuç çokyüzlümün (polyhedra)
 ekstrem noktalarının birinde olmalı. Yarı yolda $t=10$'daki bir nokta
-gösteriliyor, nihai sonuç belki $t=100$'da. </p>
-<p>KKT koşulu üzerinden durağanlığı temiz bir şekilde gösterebiliyoruz, </p>
+egösteriliyor, nihai sonuç belki $t=100$'da [1, 26:59]</p>
+<p>KKT koşulu üzerinden durağanlığı temiz bir şekilde gösterebiliyoruz, ya da
+iç nokta ve ortada, merkezde bir yol takip edilmesini zorlama bağlamında,
+merkezlik şartı da deniyor buna, gradyan alınınca</p>
 <p>$$
 = tc - \sum _{i=1}^{m} \frac{1}{e_i - d_t ^T x^(t)} d_i
 $$</p>
+<p>Bu demektir ki gradyan $\nabla (x<em>(t))$ $-c$'ye paralel olmalıdır, ya da
+${ x: c^T x = c^T x</em>(t)}$ hiper düzlemi $\phi$'nin $x*(t)$'deki konturuna
+teğet durmalıdır. </p>
+<p>Birazdan merkezi yoldan ikiz noktalar alabileceğimizi göreceğiz. Bu çok
+faydalı olacak çünkü bu ikiz noktaları bir ikiz boşluğu hesaplamak için
+kullanacağız. </p>
+<p>Merkezi yoldayken bu yoldaki noktalar $x*(t)$'leri kullanarak  ölürlü  ikiz
+noktalar hesaplayabiliriz. Orijinal problem (3)'e tekrar bakarsak, bu
+problem için ikiz değişkenleri elde etmek için her eşitsizlik için
+bir $u_i$'ye, her eşitlik şartı için bir $v_i$'ya ihtiyacım var. Onları
+nasıl tanımlarım? Merkezi yol üzerindeki çözümler üzerinden,</p>
+<p>$$
+u_i^*(t) = \frac{1}{t h_i(x^*(t))}, \quad i=1,..,m, \quad v^*(t) = w/t
+$$</p>
+<p>$w$ bariyer problemi için KKT koşullarını çözerken elde ettiğim değişken
+idi. </p>
+<p>Niye üsttekiler orijinal problem için olurlu? Bunu görmek kolay, ilk önce,
+$u_i^*(t)$'nin her ögesi harfiyen pozitif, çünkü $h_i(x^*(t))$'nin her
+ögesi harfiyen negatif. Bu bariyer probleminin ana olurluk şartından
+geliyor. Ayrıca $(u^*(t),v^*(t))$ Lagrange ikiz fonksiyonu $g(u,v)$'nin
+tanım kümesinde (domain). Hatırlarsak Lagrange ikizi formülize ettiğimizde
+tanım kümesinde bazı dolaylı sınırlamalar elde ediyorduk. Tarif itibariyle</p>
+<p>$$
+\nabla f(x^*(t)) + \sum _{i=1}^{m} u_i (x^*(t)) \nabla h_i(x^*(t)) + 
+A^T v^*(t) = 0
+$$</p>
+<p>Yani $x^*(t)$, Lagrangian $L(x,u^*(t),v^*(t))$'i tüm $x$'ler üzerinden
+minimize edeceği için $g(u^*(t),v^*(t)) &gt; -\infty$. Bu direk durağanlık
+şartından geliyor işte. O kadar bariz birşey ki aslında bazen kafa
+karıştırıyor. Merkezi yol probleminden çözdüğümüz durağanlık koşulu
+şöyleydi,</p>
+<p>$$
+t \nabla f(x^*(t)) - \sum \frac{1}{h_i(x^*(t))} \nabla h_i(x^*(t)) + A^T w= 0
+$$</p>
+<p>Bir $x^*$ çözümü ve $w$ olduğunu farz ediyoruz. Tüm formülü $t$ ile
+bölersem,</p>
+<p>$$
+\nabla f(x^*(t)) - \sum \frac{1}{t h_i(x^*(t))} \nabla h_i(x^*(t)) + A^T \frac{w}{t}= 0
+$$</p>
+<p>Tek yaptımız "üstteki orijinal problemdeki durağanlık şartına çok
+benziyor" demek, değil mi, çünkü </p>
+<p>$$
+\nabla f(x^*(t)) +
+\sum \underbrace{\frac{-1}{t h_i(x^*(t))}}_{u_i} \nabla h_i(x^*(t)) + 
+A^T \underbrace{\frac{w}{t}}_{v}= 0
+$$</p>
+<p>desem, orijinal problemin durağanlık şartına benzeyen bir ifade elde etmiş
+olurum. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 14</em>, 
