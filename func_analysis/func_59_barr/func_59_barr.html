@@ -238,7 +238,7 @@ sonucuna yaklaşacağım.</p>
 büyüttükçe yolda ilerliyoruz, ve sonuca erişiyoruz. Gidiş pürüzsüz, ve
 LP'lerin karakterinden biliyoruz ki nihai sonuç çokyüzlümün (polyhedra)
 ekstrem noktalarının birinde olmalı. Yarı yolda $t=10$'daki bir nokta
-egösteriliyor, nihai sonuç belki $t=100$'da [1, 26:59]</p>
+egösteriliyor, nihai sonuç belki $t=100$'da [2, 26:59]</p>
 <p>KKT koşulu üzerinden durağanlığı temiz bir şekilde gösterebiliyoruz, ya da
 iç nokta ve ortada, merkezde bir yol takip edilmesini zorlama bağlamında,
 merkezlik şartı da deniyor buna, gradyan alınınca</p>
@@ -284,15 +284,48 @@ bölersem,</p>
 <p>$$
 \nabla f(x^*(t)) - \sum \frac{1}{t h_i(x^*(t))} \nabla h_i(x^*(t)) + A^T \frac{w}{t}= 0
 $$</p>
-<p>Tek yaptımız "üstteki orijinal problemdeki durağanlık şartına çok
+<p>Tek yaptığımız "üstteki orijinal problemdeki durağanlık şartına çok
 benziyor" demek, değil mi, çünkü </p>
 <p>$$
 \nabla f(x^*(t)) +
 \sum \underbrace{\frac{-1}{t h_i(x^*(t))}}_{u_i} \nabla h_i(x^*(t)) + 
-A^T \underbrace{\frac{w}{t}}_{v}= 0
+A^T \underbrace{\frac{w}{t}}_{v}= 0 
+\qquad (4)
 $$</p>
 <p>desem, orijinal problemin durağanlık şartına benzeyen bir ifade elde etmiş
-olurum. </p>
+olurum [2, 33:48]. Demiştik ki üstteki $u_i,v$ tanımları üzerinden orijinal
+problem için olurlu ikiz noktaları alabiliyoruz. </p>
+<p>Soru: niye orijinal problem için optimal noktaları elde etmedim? Biraz önce
+gördük, durağanlık koşulunu tatmin ettim, ana, ikiz olurluk
+var.. ama.. tamamlayıcı gevşeklik tatmin edilmedi. Çok önemli. Onun yerine
+ne var? $u_i h_i (x) = 0$ olması lazım, onun yerine ne var? Tanım
+itibariyle $u_i = -1/t ..$ var. O zaman sıfıra yakınsak çok yakınsak bölüm
+büyür, dolaylı olarak $t$'yi büyüttükçe orijial problemin KKT koşullarını
+yaklaşıksallamış oluruz. O zaman log bariyer problemini çözmüş olmamıza
+rağmen belli bir $t$ değer için orijinal problem için çözüm olmamasının
+sebebi tamamlayıcı gevşekliğin tatmin edilmiyor olması.</p>
+<p>Ama elimizdekiler hala çok faydalı, çünkü herhangi bir anda merkez yol
+üzerinde $t$'nin fonksiyonu olarak ne kadar alt optimal olduğumuzu
+sınırlamak mümkün oluyor. Bunun için sadece ikiz boşluğunu hesaplıyoruz, o
+kadar. O zaman $u^*,v^*$'da Lagrange ikiz fonksiyonu hesaplıyorum, ve $f^*$
+ile bu Lagrange farkını buluyorum, ve ikiz boşluğu hesaplanmış oluyor. 
+(4)'te gördük ki $x^*$ Lagrangian'i $u^*,v^*$'da minimize eder, o zaman
+ikizi alttaki gibi hesaplayarak </p>
+<p>$$
+g(u^^(t),v^*(t)) = f(x^*(t)) + 
+\sum_{i=1}^{m} u_i^*(t) h_i(x^*(t)) + v^*(t)^T (Ax^*(t) - b)
+$$</p>
+<p>Büyük toplamdaki ikinci terim sıfır, çünkü merkezi yolda $Ax^*$ her zaman
+$b$'ye eşittir. Birince terimde, $u_i$'i $-1/t$'ye eşitledik, ve bu $m$
+kere toplanacak, sonuç</p>
+<p>$$
+= f(x^*(t)) - m/t
+$$</p>
+<p>Yani göstermiş olduk ki merkezi yolun optimallikten olan uzaklığı en fazla
+$m/t$ olacaktır [2, 36:59],</p>
+<p>$$
+f(x^*(t)) - f^* \le m/t
+$$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 14</em>, 
