@@ -322,9 +322,39 @@ kere toplanacak, sonuç</p>
 = f(x^*(t)) - m/t
 $$</p>
 <p>Yani göstermiş olduk ki merkezi yolun optimallikten olan uzaklığı en fazla
-$m/t$ olacaktır [2, 36:59],</p>
+$m/t$ olacaktır,</p>
 <p>$$
 f(x^*(t)) - f^* \le m/t
+$$</p>
+<p>Üstteki bariyer metorun işlediğine dair ispata en yakın sonuç, bize diyor
+ki eğer herhangi bir $t$ için bariyer problemini çözersem optimalliğe
+yakınlık her zaman $m/t$'den küçük olur. $t$'yi isteğe bağlı olarak
+büyüttükçe o ölçüde optimalliğe yaklaşmış olurum. </p>
+<p>Merkezi yolu yorumlamanın bir diğer yolu "sarsıma uğratılmış KKT
+koşulları" denen bir teknik üzerinden. Şimdiye kadar gördük ki merkez yol
+ve ona tekabül eden ikiz değerler (4)'teki durağanlık şartını çözüyor. 
+$u_i \ge 0$, $h_i(x) \le 0$, ve $Ax = b$. Tamamlayıcı gevşeklik haricinde tüm
+koşullar tatmin. Esas KKT koşullarında </p>
+<p>$$
+u_i^*(t) \cdot h_i^*(t) = 0, \quad i=1,..,m
+$$</p>
+<p>olurdu, biz onun yerine </p>
+<p>$$
+u_i^*(t) \cdot h_i^*(t) = -1/t, \quad i=1,..,m
+$$</p>
+<p>dedik. Yani bir anlamda log bariyer fonksiyonunu unutuyoruz, onun yerine şu
+probleme bakıyoruz,</p>
+<p>$$
+\nabla f(x^*(t)) + \sum_{i=1}^{m} u_i(x^*(t))\nabla h_i(x^*(t)) + A^T v^*(t) = 0
+$$</p>
+<p>$$
+u_i^*(t) \cdot h_i^*(t) = -1/t, \quad i=1,..,m
+$$</p>
+<p>$$
+h_i(x^*(t)) \le 0, \quad i=1,..,m, \quad Ax^*(t) = b
+$$</p>
+<p>$$
+u_i(x^*(t)) \ge 0, 
 $$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
