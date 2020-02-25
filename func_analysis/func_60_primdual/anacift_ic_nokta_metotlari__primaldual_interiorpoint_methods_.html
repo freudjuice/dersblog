@@ -47,6 +47,60 @@ yaparak başarıyor. </p>
 $h_i(x) \le 0, i=1,..,m$ formunda eşitsizlik kısıtlamaları eklemek.  Bu
 derste bu tür problemleri ana-çift yöntemi ile çözeceğiz, daha önceki bir
 derste bariyer yöntemi iç nokta metotu ile çözdük. </p>
+<p>Genel olarak yaptığımız herhangi bir seviyedeki problemi çözmeye
+uğraştığımızda onu bir önce seviyedeki probleme indirgemek, problemi belli
+adımlara bölerek her adımda nasıl işlediğini bildiğimiz önceki seviyedeki
+tekniği uygulamak. Bariyer metotunda öyle oldu mesela, eşitsizlik
+problemini bariyer terimini kritere ekleyerek bilinen Newton adımlarıyla
+onu çözmeye uğraştık. </p>
+<p>Ana-çift metotu biraz daha farklı olacak. Onu öğrendiğimizde göreceksiniz
+ki bir problemi açık bir şekilde başka bir probleme indirgemediğini
+göreceksiniz [1, 5:55]. Bu tekniği sarsıma puğratılmış KKT koşulları
+ışığında ele almak lazım, ana prensibi bu. </p>
+<p>[bariyer metot ozeti atlandi]</p>
+<p>Ana-çift metotu, bariyer metodundan farklı olarak, $t$ parametresinin
+güncellemeden önce sadece tek Newton adımı atar. Yani ana-çift metotunda da
+yaklaşıksallamanın kuvvetini kontrol eden bir $t$ var, ama o belli bir $t$
+üzerinden yakınsama oluncaya kadar Newton adımı atmak yerine her $t$ için
+tek Newton adımı atılıyor. Bu demektir ki dış döngü, iç döngü farkı yok,
+her şey tek bir döngü içinde.</p>
+<p>Bir diğer fark ana-çift döngüsünde giderken üretilen (ziyaret edilen)
+noktalar illa olurlu olmayabiliyor. Yapısı itibariyle metot döngüsü
+sırasında eşitsizlik kısıtlamalarını tatmin eder, fakat her zaman eşitlik
+kısıtlamalarını tatmin etmeyebilir. Hatta bazen ikiz olurlu noktalar bile
+mevcut olmayabilir, bu daha ciddi bir durum. Hatırlarsak bariyer metotunda
+ikiz olurlu nokta her zaman vardı ve bu noktayı bir ikiz boşluğu hesaplamak
+için kullanabiliyorduk. Bu boşluğu hesaplamak kolaydı, her noktada
+$m / t &lt; \epsilon$ değerindeydi.</p>
+<p>O zaman ana-çift ile bu hesap yoksa, ne zaman duracağımızı tam bilmiyoruz
+demektir, demek ki akıllıca uydurma (heuristic) yaparak bir durma şartı
+bulmamız lazım.</p>
+<p>Pozitif bağlamda ana-çift metotları daha verimli çalışır. İspatına
+girmeyeceğiz ama ana-çift yakınsaması lineerden daha iyidir.</p>
+<p>Negatif olarak ana-çift metotlarını kabaca, sezgisel kavramak bariyer
+metotu kadar direk olmayabilir. Şahsen bu alanda araştırmacı olan ben bile
+ana-çift metot adımlarının temelii hatırlamakta bazen zorlanıyorum, bariyer
+metotunu hatırlamak basit, kısıtlamanın log'unu alıp kritere ekliyorsunuz,
+sonra Newton metotu uyguluyorsunuz [13:35].</p>
+<p>Detaylara gelelim. KKT koşul sarsımını hatırlarsak, bariyer metotunu 
+KKT koşul sarsımi olarak  görebiliyorduk, şu ifadeler yerine</p>
+<p>$$
+\nabla f(x) + \sum_{i=1}^{m} u_i\nabla h_i + A^T v = 0
+$$</p>
+<p>$$
+u_i \cdot h_i(x) = (-1/t) 1, \quad i=1,..,m
+$$</p>
+<p>$$
+h_i(x) \le 0, \quad i=1,..,m, \quad Ax = b
+$$</p>
+<p>$$
+u_i \ge 0
+$$</p>
+<p>Bloktaki ikinci ifade yerine </p>
+<p>$$
+u_i \cdot h_i(x) = 0, \quad i=1,..,m
+$$</p>
+<p>kullanıyoruz.  </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
