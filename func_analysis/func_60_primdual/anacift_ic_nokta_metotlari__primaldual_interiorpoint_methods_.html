@@ -83,9 +83,10 @@ ana-çift metot adımlarının temelii hatırlamakta bazen zorlanıyorum, bariye
 metotunu hatırlamak basit, kısıtlamanın log'unu alıp kritere ekliyorsunuz,
 sonra Newton metotu uyguluyorsunuz [13:35].</p>
 <p>Detaylara gelelim. KKT koşul sarsımını hatırlarsak, bariyer metotunu 
-KKT koşul sarsımi olarak  görebiliyorduk, şu ifadeler yerine</p>
+KKT koşul sarsımı olarak  görebiliyorduk, şu ifadelerde</p>
 <p>$$
 \nabla f(x) + \sum_{i=1}^{m} u_i\nabla h_i + A^T v = 0
+\qquad (1)
 $$</p>
 <p>$$
 u_i \cdot h_i(x) = (-1/t) 1, \quad i=1,..,m
@@ -99,8 +100,23 @@ $$</p>
 <p>Bloktaki ikinci ifade yerine </p>
 <p>$$
 u_i \cdot h_i(x) = 0, \quad i=1,..,m
+\qquad (2)
 $$</p>
 <p>kullanıyoruz.  </p>
+<p>Yine hatirlamak icin ana problem neydi? </p>
+<p>$$
+\min_x f(x) \quad \textrm{öyle ki}
+$$
+$$
+Ax = b
+$$
+$$
+h_i(x) \le 0, \quad i=1,..,m
+$$</p>
+<p>Bu problemin KKT sartlari gorulen blokta iste, duraganlik icin gradyan alip
+sifira esitliyoruz, (1)'i elde ediyoruz, tabii $f,h_i$'in puruzsuz ve
+disbukey oldugunu farz ettik, o sebeple gradyan yeterli, altgradyana gerek
+yok. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
