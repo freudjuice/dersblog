@@ -119,11 +119,40 @@ olduğu farz edilir, o sebeple gradyan yeterli, altgradyana gerek yok, vs.
 Tek değiştirdiğimiz tamamlayıcı gevşeklik ve onun artık sıfıra eşit
 olmasını şart koşmuyorum, ufak başka bir değere, ve doğru işarete sahip
 olan başka bir değere eşit olmasını zorluyorum, $u_i \cdot h_i(x) = (-1/t)$
-şartı bu. $1/t$ gibi bir degerin sebebi aslinda $\log(x)$'in türevinin
+şartı bu. $1/t$ gibi bir değerin sebebi aslında $\log(x)$'in türevinin
 $1/\log(x)$ olmasıyla alakalı, çünkü log bariyerleştirilmiş kriterin
 türevini alıp sıfıra eşitleyince ve ikiz değişkenleri uygun şekilde
-tanımlayınca log bariyer metotunun orijinal KKT kosullari yerine üstteki
-şekilde bir problemi çözdüğünü görmüştük [1, 16:19]. </p>
+tanımlayınca log bariyer metotunun orijinal KKT koşulları yerine üstteki
+şekilde bir problemi çözülebildiğini görmüştük [1, 16:19], ve $t$
+büyütüldükçe görülen değiştirilmiş tamamlayıcı gevşeklik esas versiyonuna
+daha da yaklaşıyordu.</p>
+<p>[bariyer KKT matris versiyonu atlandı]</p>
+<p>a-c metotlarına erişmenin bir diğer yolu sarşımın ortaya çıkarttığı
+denklemleri birarada çözmek ve Newton adımını ona göre atmak [1, 22:55]. 
+Sarşım denklem sistemini sıfıra eşitlemek amacıyla matris formunda
+düzenlersek, </p>
+<p>$$
+r(x,u,v) = 
+\left[\begin{array}{c}
+\nabla f(x) + Dh(x)^T u + A^T v \\
+-\mathrm{diag}(u)h(x) - 1/t \\
+Ax - b
+\end{array}\right]
+$$</p>
+<p>ki</p>
+<p>$$
+h(x) = \left[\begin{array}{c}
+h_1(x) \\
+\dots
+h_m(x)
+\end{array}\right]
+\quad
+D h(x) = \left[\begin{array}{c}
+D h_1(x)^T \\
+\dots \\
+D h_m(x)^T
+\end{array}\right]
+$$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
