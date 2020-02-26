@@ -128,8 +128,18 @@ büyütüldükçe görülen değiştirilmiş tamamlayıcı gevşeklik esas versi
 daha da yaklaşıyordu.</p>
 <p>[bariyer KKT matris versiyonu atlandı]</p>
 <p>Ana-çift metotlarına erişmenin bir diğer yolu sarsımın ortaya çıkarttığı
-denklemleri birarada çözmek ve Newton adımını ona göre atmak [1, 22:55]. 
-Sarsım denklem sistemini sıfıra eşitlemek amacıyla matris formunda
+denklemleri birarada çözmek ve Newton adımını ona göre atmak [1, 22:55]. </p>
+<p>Denklemler ayrı ayrı olarak </p>
+<p>$$
+r_{dual}= \nabla f(x) + Dh(x)^T u + A^T v 
+$$</p>
+<p>$$
+r_{cent} = -\mathrm{diag}(u)h(x) - 1/t 
+$$</p>
+<p>$$
+r_{prim} = Ax - b
+$$</p>
+<p>Sarsım denklem sistemini sıfıra eşitlemek amacıyla matris formunda
 düzenlersek, </p>
 <p>$$
 r(x,u,v) = 
@@ -208,10 +218,11 @@ A &amp; 0 &amp; 0
 \Delta x \\ \Delta y \\ \Delta v
 \end{array}\right] = 
 \left[\begin{array}{c}
-r_1 \\ r_2 \\ r_3 
-\end{array}\right] 
+r_{dual} \\ r_{cent} \\ r_{prim}
+\end{array}\right]<br />
+\qquad (5)
 $$</p>
-<p>Buyuk Jacobian'i nasil elde ettik? Mesela (3)'un ilk satirina bakalim, </p>
+<p>Büyük Jacobian'ı nasıl elde ettik? Mesela (3)'ün ilk satırına bakalım, </p>
 <p>$$
 \nabla f(x) + Dh(x)^T u + A^T v 
 $$</p>
@@ -228,10 +239,10 @@ geldi, ve bu koşullara ana ve ikiz değişkenler aynı yerde mevcuttur, ve
 çözerken tüm $x,u,v$ için çözüyoruz. </p>
 <p>Not: Bu yaklaşımla bariyer metotuna erişmek mümkün, o durumda sistemden $u$
 çıkartılır, ve geri kalanlar çözülür. </p>
-<p>Metotu algoritmik olarak görmeden önce bir konudan daha bahsetmek istiyorum
-- alternatif ikizlik boşluğu. Bu gerçek ikizlik boşluğu değil, çünkü daha
-önce belirttiğimiz gibi bu metotta ikiz değişkenler her zaman olurlu
-olmayabiliyor. </p>
+<p>Metotu algoritmik olarak görmeden önce bir konudan daha bahsetmek
+istiyorum; alternatif ikizlik boşluğu. Bu gerçek ikizlik boşluğu değil,
+çünkü daha önce belirttiğimiz gibi bu metotta ikiz değişkenler her zaman
+olurlu olmayabiliyor.</p>
 <p>Bariyer metotu için ikizlik boşluğu basitti, $m/t$ çünkü
 $u_i = -1 / (t h_i(x))$, $i=1,..,m$ tanımlamıştık ve bu ikiz olurlu idi.
 Alternatif boşluk için sanki ikiz olurluk varmış gibi yapıyoruz, ve </p>
@@ -262,7 +273,16 @@ $\eta^{(0)} = -h(x^{(0)})^T u^{(0)}$ olarak tanımla [1, 45:21].</p>
 $\mu$ ile çarpıp yeni $t$ elde edeceğiz.  </p>
 <p>Adımlar</p>
 <p>1) $t = \mu \eta^{(k-1)} / m$ tanımla. </p>
-<p>2) Ana-çift güncelleme yönü $\Delta y$'yi hesapla.</p>
+<p>2) Ana-çift güncelleme yönü $\Delta y$'yi hesapla (nasıl yapılacağını
+gördük, (5)'teki lineer sistemi çözerek).</p>
+<p>3) Geri iz sürme tekniği ile adım büyüklüğü $s$'yi hesapla (birazdan nasıl
+yapılacağını göreceğiz)</p>
+<p>4) $y^{(k)} = y^{(k-1)} + s \cdot \Delta y$ ile $y$'yi güncelle. Yani bu
+hesapla tüm ana, ikiz değişkenleri güncellemiş oluyoruz, $x,u,v$. </p>
+<p>5) Alternatif ikizlik boşluğunu hesapla $\eta^{(k)} = -h(x^{(k)})^T
+u^{(k)}$. </p>
+<p>6) Ana ve ikiz artiklar ufak ise, yani eğer $\eta^{(k)} &lt; \epsilon$ ise ve 
+$(|| r_{prim} ||_2^2 + ||r_{dual}||_2^2)^{1/2} &lt; \epsilon$ ise dur. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
