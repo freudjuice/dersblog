@@ -35,7 +35,7 @@ buluyorum. </p>
 <p>Sonraki seviye, biraz daha zor, üstteki probleme $Ax=b$ formunda eşitlik
 kısıtlaması getirmek. Bu problemi de kapalı / analitik halde (closed-form)
 çözebiliriz, KKT koşullarını kullanarak. $Ax=b$ ifadesini ek değişkenler
-üzerinden kritere ekleriz, Lagrangian'i oluştururuz, KKT koşulunda iki tane
+üzerinden kritere ekleriz, Lagrangian'ı oluştururuz, KKT koşulunda iki tane
 öğe olur, durağanlık, ve ana olurluk, bu iki öğeyi eşzamanlı olarak çözerek
 sonuca ulaşırız, koca bir lineer sistemdir bu. </p>
 <p>Bir sonraki pürüzsüz minimizasyon, yani üstteki kriterin yerine $f(x)$
@@ -138,6 +138,7 @@ r(x,u,v) =
 -\mathrm{diag}(u)h(x) - 1/t \\
 Ax - b
 \end{array}\right]
+\qquad (3)
 $$</p>
 <p>ki</p>
 <p>$$
@@ -152,7 +153,7 @@ D h_1(x)^T \\
 \dots \\
 D h_m(x)^T
 \end{array}\right]
-\qquad (3)
+\qquad (4)
 $$</p>
 <p>$r(x,u,v)$'yu sıfıra eşitliyoruz, yani bir anlamda </p>
 <p>$$
@@ -164,7 +165,7 @@ $$</p>
 \Delta x \\ \Delta u \\ \Delta v
 \end{array}\right]
 $$</p>
-<p>Üstteki denklemde (3) öğelerini kullanarak özyineli şekilde dönersem
+<p>Üstteki denklemde (3,4) öğelerini kullanarak özyineli şekilde dönersem
 gayri-lineer denklemi çözmüş olurum. Notasyonu biraz degistirirsek, $y =
 (x,u,v)$ ile, </p>
 <p>$$
@@ -191,7 +192,33 @@ $$</p>
 <p>$$
 DF(y) \Delta y = -F(y) 
 $$</p>
-<p>Bu problemde $F$ yerine $r$ var, </p>
+<p>Bu problemde $F$ yerine $r$ var. </p>
+<p>$$
+D r(y) \Delta y = -r(y) 
+$$</p>
+<p>O zaman (3)'teki $r(y)$'nin türevi, yani Jacobian'ı gerekiyor. Üsttekini
+şöyle yazıyoruz, </p>
+<p>$$
+\left[\begin{array}{ccc}
+\nabla^2 f(x) + \sum _{i=1}^{m} u_i \nabla^2 h_i(x) &amp; D h(x)^T &amp; A^T \\
+-\mathrm{diag}(u) D h(x) &amp; -\mathrm{diag}(h(x)) &amp; 0 \\
+A &amp; 0 &amp; 0
+\end{array}\right]
+\left[\begin{array}{c}
+\Delta x \\ \Delta y \\ \Delta v
+\end{array}\right] = 
+\left[\begin{array}{c}
+r_1 \\ r_2 \\ r_3 
+\end{array}\right] 
+$$</p>
+<p>Buyuk Jacobian'i nasil elde ettik? Mesela (3)'un ilk satirina bakalim, </p>
+<p>$$
+\nabla f(x) + Dh(x)^T u + A^T v 
+$$</p>
+<p>var, onun $x,u,v$'ye göre türevlerini almak bize iki üstteki matrisin
+1. satır 1. 2. ve 3. kolonunu veriyor, mesela $x$'e göre türev alınca bir
+üstteki ifadede 1. ve 2. terimin türevi alınır, $A^T v $ yokolur, bu bize
+$\nabla^2 f(x) + \sum _{i=1}^{m} u_i \nabla^2 h_i(x)$ verir, vs [1, 28:43]</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
