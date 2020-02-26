@@ -219,7 +219,30 @@ $$</p>
 1. satır 1. 2. ve 3. kolonunu veriyor, mesela $x$'e göre türev alınca bir
 üstteki ifadede 1. ve 2. terimin türevi alınır, $A^T v $ yokolur, bu bize
 $\nabla^2 f(x) + \sum _{i=1}^{m} u_i \nabla^2 h_i(x)$ verir [1, 28:43].
-Aynı şekilde devam edersek görülen matrisi elde ederiz.</p>
+Aynı şekilde devam edersek görülen matrisi elde ederiz. Tüm sistemi
+$\Delta y$ için çözünce de istediğimiz Newton yönünü elde ederiz.</p>
+<p>Bu yönteme ana-çift denmesinin sebebi üstte görülüyor aslında, çünkü dikkat
+edersek hem ana hem ikiz değişkenleri aynı sistemde, aynı anda
+çözüyoruz. Değil mi? Denklem sistemi KKT koşularının formülize edilmesinden
+geldi, ve bu koşullara ana ve ikiz değişkenler aynı yerde mevcuttur, ve
+çözerken tüm $x,u,v$ için çözüyoruz. </p>
+<p>Not: Bu yaklaşımla bariyer metotuna erişmek mümkün, o durumda sistemden $u$
+çıkartılır, ve geri kalanlar çözülür. </p>
+<p>Metotu algoritmik olarak görmeden önce bir konudan daha bahsetmek istiyorum
+- alternatif ikizlik boşluğu. Bu gerçek ikizlik boşluğu değil, çünkü daha
+önce belirttiğimiz gibi bu metotta ikiz değişkenler her zaman olurlu
+olmayabiliyor. </p>
+<p>Bariyer metotu için ikizlik boşluğu basitti, $m/t$ çünkü
+$u_i = -1 / (t h_i(x))$, $i=1,..,m$ tanımlamıştık ve bu ikiz olurlu idi.
+Alternatif boşluk için sanki ikiz olurluk varmış gibi yapıyoruz, ve </p>
+<p>$$
+\eta = -h(x)^T u = - \sum _{i=1}^{m} u_i h_i(x)
+$$</p>
+<p>hesabını yapıyoruz. Eğer üstteki hesabı bariyer problemi için yapıyor
+olsaydık, $u_i = -1/t$ tanımlamış olacaktık ve o zaman bariyer metotu için
+olan boşluğu elde edecektik. Ana-çift yönteminde böyle değil tabii, sistemi
+çözerken $u_i$ için de çözüm yapıyoruz, onu önceden tanımlamıyoruz, fakat
+üstteki formu kullanarak alternatif ikizlik boşluğunu elde edebiliriz.  </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
