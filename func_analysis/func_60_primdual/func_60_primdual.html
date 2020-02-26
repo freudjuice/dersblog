@@ -242,7 +242,15 @@ $$</p>
 olsaydık, $u_i = -1/t$ tanımlamış olacaktık ve o zaman bariyer metotu için
 olan boşluğu elde edecektik. Ana-çift yönteminde böyle değil tabii, sistemi
 çözerken $u_i$ için de çözüm yapıyoruz, onu önceden tanımlamıyoruz, fakat
-üstteki formu kullanarak alternatif ikizlik boşluğunu elde edebiliriz.  </p>
+üstteki formu kullanarak alternatif ikizlik boşluğunu elde edebiliriz.<br />
+$\eta$ her zaman pozitif olacak, çünkü kendimizi her zaman $h_i(x) \le 0$
+olacak şekilde kısıtlayacağız, ve $u_i \ge 0$ zaten, o zaman çarpımlarının
+ekşi ile çarpılması pozitif sonuç verir.</p>
+<p>Tüm bunları durma şartı için nasıl kullanırız? Her ne kadar $u_i$'lar
+olurlu olmayabilse bile yine de boşluğu hesaplıyoruz, ardından ikiz
+değişkenlerin olurluğa ne kadar yakın olduğunu ayrı bir yerde
+hesaplıyoruz. Yani eğer alternatif boşluk az, ve olurluğa yakınlık varsa,
+akıllıca bir uydurma ile kullanarak durma / durmama kararı verebiliriz. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
