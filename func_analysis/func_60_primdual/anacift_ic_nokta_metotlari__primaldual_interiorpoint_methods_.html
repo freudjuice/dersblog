@@ -127,9 +127,9 @@ tanımlayınca log bariyer metotunun orijinal KKT koşulları yerine üstteki
 büyütüldükçe görülen değiştirilmiş tamamlayıcı gevşeklik esas versiyonuna
 daha da yaklaşıyordu.</p>
 <p>[bariyer KKT matris versiyonu atlandı]</p>
-<p>a-c metotlarına erişmenin bir diğer yolu sarşımın ortaya çıkarttığı
+<p>Ana-çift metotlarına erişmenin bir diğer yolu sarsımın ortaya çıkarttığı
 denklemleri birarada çözmek ve Newton adımını ona göre atmak [1, 22:55]. 
-Sarşım denklem sistemini sıfıra eşitlemek amacıyla matris formunda
+Sarsım denklem sistemini sıfıra eşitlemek amacıyla matris formunda
 düzenlersek, </p>
 <p>$$
 r(x,u,v) = 
@@ -143,7 +143,7 @@ $$</p>
 <p>$$
 h(x) = \left[\begin{array}{c}
 h_1(x) \\
-\dots
+\dots \\
 h_m(x)
 \end{array}\right]
 \quad
@@ -152,7 +152,46 @@ D h_1(x)^T \\
 \dots \\
 D h_m(x)^T
 \end{array}\right]
+\qquad (3)
 $$</p>
+<p>$r(x,u,v)$'yu sıfıra eşitliyoruz, yani bir anlamda </p>
+<p>$$
+0 = r (x+\Delta x, u + \Delta u, v + \Delta v)
+$$</p>
+<p>çözülecek, bunu 1. derece Taylor açılımı ile yaklaşıklarım,</p>
+<p>$$
+\approx r(x,u,v) + D r(x,u,v) \left[\begin{array}{c}
+\Delta x \\ \Delta u \\ \Delta v
+\end{array}\right]
+$$</p>
+<p>Üstteki denklemde (3) öğelerini kullanarak özyineli şekilde dönersem
+gayri-lineer denklemi çözmüş olurum. Notasyonu biraz degistirirsek, $y =
+(x,u,v)$ ile, </p>
+<p>$$
+0 = r(y + \Delta y) \approx r(y) + D r(y) \Delta y
+$$</p>
+<p>ve $\Delta y$ için çözmek istiyoruz. </p>
+<p>Ya da, genel bir $F$ için $F(y) = 0$ çözümü, yani "kök bulmak" amacıyla
+her döngü adımında bir $\Delta y$ hesaplayabilmek istiyoruz. Şu şekilde</p>
+<p>$$
+F(y + \Delta y) \approx F(y) + D F(y) \Delta y
+$$</p>
+<p>yaklaşıklarsak, ve kök amaçlı $F(y)=0$ olmalı ama $F(y + \Delta y) = 0$ da
+denebilir,</p>
+<p>$$
+0 \approx F(y) + D F(y) \Delta y
+$$</p>
+<p>$$
+-F(y) =  D F(y) \Delta y
+$$</p>
+<p>$$
+\Delta y = -(DF(y))^{-1} F(y) 
+$$</p>
+<p>Ya da</p>
+<p>$$
+DF(y) \Delta y = -F(y) 
+$$</p>
+<p>Bu problemde $F$ yerine $r$ var, </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
