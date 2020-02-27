@@ -132,6 +132,7 @@ denklemleri birarada çözmek ve Newton adımını ona göre atmak [1, 22:55]. <
 <p>Denklemler ayrı ayrı olarak </p>
 <p>$$
 r_{dual}= \nabla f(x) + Dh(x)^T u + A^T v 
+\qquad (6)
 $$</p>
 <p>$$
 r_{cent} = -\mathrm{diag}(u)h(x) - 1/t 
@@ -272,7 +273,7 @@ $\eta^{(0)} = -h(x^{(0)})^T u^{(0)}$ olarak tanımla [1, 45:21].</p>
 <p>$t$'yi büyütmek için $\mu &gt; 1$ kullanıyoruz. Her döngü sonunda eski $t$'yi
 $\mu$ ile çarpıp yeni $t$ elde edeceğiz.  </p>
 <p>Adımlar</p>
-<p>1) $t = \mu \eta^{(k-1)} / m$ tanımla. </p>
+<p>1) $t = \mu m / \eta^{(k-1)}$ tanımla. </p>
 <p>2) Ana-çift güncelleme yönü $\Delta y$'yi hesapla (nasıl yapılacağını
 gördük, (5)'teki lineer sistemi çözerek).</p>
 <p>3) Geri iz sürme tekniği ile adım büyüklüğü $s$'yi hesapla (birazdan nasıl
@@ -281,8 +282,31 @@ yapılacağını göreceğiz)</p>
 hesapla tüm ana, ikiz değişkenleri güncellemiş oluyoruz, $x,u,v$. </p>
 <p>5) Alternatif ikizlik boşluğunu hesapla $\eta^{(k)} = -h(x^{(k)})^T
 u^{(k)}$. </p>
-<p>6) Ana ve ikiz artiklar ufak ise, yani eğer $\eta^{(k)} &lt; \epsilon$ ise ve 
+<p>6) Ana ve ikiz artıklar ufak ise, yani eğer $\eta^{(k)} &lt; \epsilon$ ise ve 
 $(|| r_{prim} ||_2^2 + ||r_{dual}||_2^2)^{1/2} &lt; \epsilon$ ise dur. </p>
+<p>$r_{prim}$ hatırlarsak eşitlik sınırlamasından ne kadar uzak
+olduğumüz. $r_{dual}$ ise durağanlık şartıydı, onun sıfırdan ne kadar uzak
+olduğuydu. Niye ona "ikiz (dual)" etiketi verdik? Bunun ikiz olurluk ile
+ne alakası var? Burada biraz nüans var.. </p>
+<p>Not: artık kelimesini kullandık daha önce  $r_{dual}$ ikiz artık,
+$r_{prim}$ ana artık. </p>
+<p>Hatırlarsak $u,v$ üzerindeki kısıtlamalar nelerdi? $u \ge 0$, ve $v$
+herhangi bir şey olabilir. Ama dolaylı bir kısıtlama daha var aslında, o da
+$u,v$'nin Lagrange iki fonksiyonunun tanım alanında olma zorunluluğu.. Ve
+bu kısıtlamalar işte (6)'dan başlayan üç denklemde aslında belirtiliyor. 
+Yani, çünkü eğer alttaki sıfır ise</p>
+<p>$$
+\nabla f(x) + D h(x)^T u + A^T v = 0
+$$</p>
+<p>bu sadece ve sadece doğru olabilir $x$ eğer $x$ üzerinden $L(x,u,v)$'i
+minimize ediyorsa. Ki bu durumda </p>
+<p>$$
+g(u,v) = L(x,u,v)
+$$</p>
+<p>doğru olur. Yani $x$ Lagrangian'i minimize ediyorsa, tanım itibariyle
+$L(x,u,v)$ ekşi sonsuzluk değildir. Değil mi? Çünkü eksi sonsuzluğa gidiş
+olmasın diye ikizde spesifik kısıtlamalar getirdik. Ve bu da demektir ki
+$u,v$ Lagrangian'in tanım alanında olmalı.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
