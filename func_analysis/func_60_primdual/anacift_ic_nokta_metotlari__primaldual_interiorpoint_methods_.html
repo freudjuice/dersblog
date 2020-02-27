@@ -83,7 +83,7 @@ ana-çift metot adımlarının temelii hatırlamakta bazen zorlanıyorum, bariye
 metotunu hatırlamak basit, kısıtlamanın log'unu alıp kritere ekliyorsunuz,
 sonra Newton metotu uyguluyorsunuz [13:35].</p>
 <p>Detaylara gelelim. KKT koşul sarsımını hatırlarsak, bariyer metotunu KKT
-koşullarinda bir sarsım olarak görebiliyorduk, şu ifadelerde</p>
+koşullarında bir sarsım olarak görebiliyorduk, şu ifadelerde</p>
 <p>$$
 \nabla f(x) + \sum_{i=1}^{m} u_i\nabla h_i + A^T v = 0
 \qquad (1)
@@ -97,12 +97,12 @@ $$</p>
 <p>$$
 u_i \ge 0
 $$</p>
-<p>Bloktaki ikinci ifade yerine </p>
+<p>Normal sartlarda bloktaki ikinci ifade yerine </p>
 <p>$$
 u_i \cdot h_i(x) = 0, \quad i=1,..,m
 \qquad (2)
 $$</p>
-<p>kullanıyoruz. Değisen tamamlayıcı gevşeklik yani.</p>
+<p>olacaktı. Değişen tamamlayıcı gevşeklik yani.</p>
 <p>Ana problem neydi?</p>
 <p>$$
 \min_x f(x) \quad \textrm{öyle ki}
@@ -114,7 +114,7 @@ $$
 h_i(x) \le 0, \quad i=1,..,m
 $$</p>
 <p>Bu problemin KKT şartları görülen blokta, durağanlık için gradyan alıp
-sıfıra eşitlenir, (1)'i elde edilir, tabii $f,h_i$'in pürüzsüz ve dışbükey
+sıfıra eşitlenir, (1) elde edilir, tabii $f,h_i$'in pürüzsüz ve dışbükey
 olduğu farz edilir, o sebeple gradyan yeterli, altgradyana gerek yok, vs.
 Tek değiştirdiğimiz tamamlayıcı gevşeklik ve onun artık sıfıra eşit
 olmasını şart koşmuyorum, ufak başka bir değere, ve doğru işarete sahip
@@ -126,7 +126,6 @@ tanımlayınca log bariyer metotunun orijinal KKT koşulları yerine üstteki
 şekilde bir problemi çözülebildiğini görmüştük [1, 16:19], ve $t$
 büyütüldükçe görülen değiştirilmiş tamamlayıcı gevşeklik esas versiyonuna
 daha da yaklaşıyordu.</p>
-<p>[bariyer KKT matris versiyonu atlandı]</p>
 <p>Ana-çift metotlarına erişmenin bir diğer yolu sarsımın ortaya çıkarttığı
 denklemleri birarada çözmek ve Newton adımını ona göre atmak [1, 22:55]. </p>
 <p>Denklemler ayrı ayrı olarak </p>
@@ -176,9 +175,9 @@ $$</p>
 \Delta x \\ \Delta u \\ \Delta v
 \end{array}\right]
 $$</p>
-<p>Üstteki denklemde (3,4) öğelerini kullanarak özyineli şekilde dönersem
-gayri-lineer denklemi çözmüş olurum. Notasyonu biraz degistirirsek, $y =
-(x,u,v)$ ile, </p>
+<p>Üstteki denklemde (3) ve (4) öğelerini kullanarak özyineli şekilde dönersem
+gayrı-lineer denklemi çözmüş olurum. Notasyonu biraz degistirirsek,
+$y = (x,u,v)$ ile,</p>
 <p>$$
 0 = r(y + \Delta y) \approx r(y) + D r(y) \Delta y
 $$</p>
