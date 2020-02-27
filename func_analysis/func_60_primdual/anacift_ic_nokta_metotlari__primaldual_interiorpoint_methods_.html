@@ -276,8 +276,8 @@ $\mu$ ile çarpıp yeni $t$ elde edeceğiz.  </p>
 <p>1) $t = \mu m / \eta^{(k-1)}$ tanımla. </p>
 <p>2) Ana-çift güncelleme yönü $\Delta y$'yi hesapla (nasıl yapılacağını
 gördük, (5)'teki lineer sistemi çözerek).</p>
-<p>3) Geri iz sürme tekniği ile adım büyüklüğü $s$'yi hesapla (birazdan nasıl
-yapılacağını göreceğiz)</p>
+<p>3) Geri iz sürme (backtracking) tekniği ile adım büyüklüğü $s$'yi hesapla
+(birazdan nasıl yapılacağını göreceğiz)</p>
 <p>4) $y^{(k)} = y^{(k-1)} + s \cdot \Delta y$ ile $y$'yi güncelle. Yani bu
 hesapla tüm ana, ikiz değişkenleri güncellemiş oluyoruz, $x,u,v$. </p>
 <p>5) Alternatif ikizlik boşluğunu hesapla $\eta^{(k)} = -h(x^{(k)})^T
@@ -307,7 +307,36 @@ $$</p>
 $L(x,u,v)$ ekşi sonsuzluk değildir. Değil mi? Çünkü eksi sonsuzluğa gidiş
 olmasın diye ikizde spesifik kısıtlamalar getirdik. Ve bu da demektir ki
 $u,v$ Lagrangian'in tanım alanında olmalı.</p>
+<p>Geri İz Sürme</p>
+<p>Üstteki algoritmada #4 adımında bir adım atıldığını gördük, fakat bu adım
+atılırken $s$'nin nasıl bulunacağını anlatmadık. Adım atılırken
+$y^+ = y + s \Delta y$ ile, $h_i(x) \le 0$, ve $u_i(x) &gt; 0$ şartlarının
+hala geçerli olmasını garantilemek istiyoruz, ve $s$'yi bu olacak şekilde
+seçeceğiz. Tabii $y^+ = y + s \Delta y$ derken</p>
+<p>$$
+x^+ = x + s \Delta y
+$$</p>
+<p>$$
+u^+ = u + s \Delta y
+$$</p>
+<p>$$
+v^+ = v + s \Delta y
+$$</p>
+<p>demek istiyoruz. Bu seçim şöyle yapılabilir, önce $s$'yi her öge için
+$u_i &gt; 0, i=1,..,m$ olacak sekide mümkün en büyük adımdan başlarız. Bu
+çözüm kolaydır, çünkü her $u_i$ için her $\Delta u_i$ bizi sıfıra
+yaklaştırıyor mu, eğer yaklaştırıyorsa sıfıra gelmeden ne kadar uzağa
+gidebiliriz sorusunuz sorabiliriz, ve tüm bu uzaklıklar arasından en ufak
+olanı $s$ seçimi için başlayacağımız en büyük uzaklık olacaktır. Tabii
+harfiyen olurluk istiyoruz, yani $u &gt; 0$ o zaman bulunan büyüklüğün 0.999'ü
+kadarını alırız. </p>
+<p>Bu değeri alınca oradan "geriye iz sürmeye" başlarız, yani küçülte
+küçülte bu sefer $h$ şartlarını da tatmin eden bir $s$ aramaya
+başlayabiliriz. Bu aramayı yaparken $u$ şartını tatmin edeceğimizden
+eminizdir çünkü en büyük $s$'yi özellikle $u$ için ayarladık.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
-<p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16</em>, 
+<p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 16 (Part 1)</em>, 
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
+<p>[2] Tibshirani, <em>Convex Optimization, Lecture Video 16 (Part 2)</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
