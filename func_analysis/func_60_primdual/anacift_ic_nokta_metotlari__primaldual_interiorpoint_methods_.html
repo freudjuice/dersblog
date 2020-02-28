@@ -326,13 +326,28 @@ $u_i &gt; 0, i=1,..,m$ olacak sekide mümkün en büyük adımdan başlarız. Bu
 çözüm kolaydır, çünkü her $u_i$ için her $\Delta u_i$ bizi sıfıra
 yaklaştırıyor mu, eğer yaklaştırıyorsa sıfıra gelmeden ne kadar uzağa
 gidebiliriz sorusunuz sorabiliriz, ve tüm bu uzaklıklar arasından en ufak
-olanı $s$ seçimi için başlayacağımız en büyük uzaklık olacaktır. Tabii
-harfiyen olurluk istiyoruz, yani $u &gt; 0$ o zaman bulunan büyüklüğün 0.999'ü
-kadarını alırız. </p>
-<p>Bu değeri alınca oradan "geriye iz sürmeye" başlarız, yani küçülte
-küçülte bu sefer $h$ şartlarını da tatmin eden bir $s$ aramaya
-başlayabiliriz. Bu aramayı yaparken $u$ şartını tatmin edeceğimizden
-eminizdir çünkü en büyük $s$'yi özellikle $u$ için ayarladık.</p>
+olanı $s$ seçimi için başlayacağımız en büyük uzaklık
+olacaktır. Matematiksel olarak </p>
+<p>$$
+s_{max} = \min \bigg\{
+  1, \min { -u_i / \Delta u_i : \Delta u_i &lt; 0  }
+\bigg\}
+$$</p>
+<p>Tabii harfiyen olurluk istiyoruz, yani $u &gt; 0$ o zaman bulunan büyüklüğün
+0.999'ü kadarını alırız. Bu değeri alınca oradan "geriye iz sürmeye"
+başlarız, yani küçülte küçülte bu sefer $h$ şartlarını da tatmin eden bir
+$s$ aramaya başlayabiliriz. Bu aramayı yaparken $u$ işaretini tatmin
+edeceğimizden eminizdir çünkü en büyük $s$'yi özellikle $u$ için ayarladık.</p>
+<p>Döngünün bu aşamasında her küçültme sonrası alttaki şartları da kontrol
+edeceğiz, şu şekilde;</p>
+<p>$s = \beta s$ yap, ta ki </p>
+<p>1) $h_i(x^+) &lt; 0, i=1,..,m$. </p>
+<p>2) $|| r(x^+, u^+, v^+) ||_2 \le (1-\alpha s) || r(x,u,v) ||_2 $</p>
+<p>olana kadar. </p>
+<ol>
+<li>şartta eşitsizliğin sol tarafı sarsıma uğratılmış KKT koşulları, onu
+$1-\alpha s$ oranında azaltıyorum.</li>
+</ol>
 <pre><code class="python">import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -370,17 +385,15 @@ for iters in (range(MAXITERS)):
       break
   tinv = gap/(m*MU)
 
-  tmp1 = np.hstack((P, A.T))
-  tmp2 = np.hstack((A, np.diag(  (-s/z).T[0]  )))
-  tmp3 = -np.vstack((tmp1,tmp2))
-  tmp4 = np.vstack(( np.dot(P,x)+q+np.dot(A.T,z), -s+tinv*(1.0/z) )) 
-  sol = lin.solve(tmp3, tmp4)
+  tmp1 = -np.vstack((np.hstack((P, A.T)),
+                     np.hstack((A, np.diag(  (-s/z).T[0]  )))))
+  tmp2 = np.vstack(( np.dot(P,x)+q+np.dot(A.T,z), -s+tinv*(1.0/z) )) 
+  sol = lin.solve(tmp1, tmp2)
   dx = sol[0:n]
   dz = sol[n:n+m]
   ds = -np.dot(A,dx)
-  tmp1 = np.dot(P,x)+q+np.dot(A.T,z)
-  tmp2 = z*s-tinv
-  r = np.vstack((tmp1, tmp2))
+  r = np.vstack((np.dot(P,x)+q+np.dot(A.T,z),
+                 z*s-tinv))
   step = np.min([1.0, 0.99/np.max(-dz/z)]);
   while (np.min(s+step*ds) &lt;= 0):
     step = BETA*step
@@ -398,9 +411,8 @@ for iters in (range(MAXITERS)):
     newz = z+step*dz
     newx = x+step*dx
     news = s+step*ds
-    tmp1 = np.dot(P,newx)+q+np.dot(A.T,newz)
-    tmp2 = newz*news-tinv
-    newr = np.vstack((tmp1,tmp2))
+    newr = np.vstack((np.dot(P,newx)+q+np.dot(A.T,newz),
+                      newz*news-tinv))
 
   x = x+step*dx
   z = z +step*dz
