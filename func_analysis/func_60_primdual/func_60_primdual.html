@@ -417,12 +417,13 @@ x,u \ge 0
 $$</p>
 <p>İç-nokta yöntemleri ilk ve son iki şarta uyacak şekilde ayarlanır ve döngü
 içinde yavaş yavaş 2. şartı yerine getirmeye uğraşır [2, 13:47]. </p>
-<p>Sarsıma uğratılmış KKT şartları ise</p>
+<p>Sarşıma uğratılmış KKT şartları, üstteki formülde tamamlayıcı gevşeklik için
+eşitlike $1/t$ kullanarak  elde edilir,</p>
 <p>$$
 A^T v + u = c
 $$
 $$
-x_i u_i = 1/t, i=1,..,n
+x_i u_i = 1/t, \quad i=1,..,n
 $$
 $$
 Ax = b
@@ -430,6 +431,20 @@ $$
 $$
 x,u \ge 0
 $$</p>
+<p>Sonra ustteki tum esitlik sinirlamalarini aliyorum (esitsizlikleri dongu
+sirasinda tatmin etmeye ugrasacagim) ve onlari bir matriste istifliyorum,</p>
+<p>$$
+0 = r_{pd}(x,u,v)
+$$</p>
+<p>$$
+= \left[\begin{array}{c}
+A^T v + u - c \\
+\mathrm{diag}(x) u - (1/t) 1 \\
+Ax - b
+\end{array}\right]
+$$</p>
+<p>Sonra matrisin türevini alıyorum, bir lineer yaklaşıklama yaratıyorum,
+güncelleme yönünü buluyorum, geriye iz sürme yapıyorum, vs [2, 15:42]. </p>
 <p>Kod</p>
 <pre><code class="python">import pandas as pd
 import numpy as np
