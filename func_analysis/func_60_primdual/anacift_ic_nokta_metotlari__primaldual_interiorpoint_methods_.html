@@ -387,8 +387,49 @@ metotu, gradyan inişi, hep bu bağlamda devreye girer, vs. </p>
 <p>Tabii simplex bir bağlamda değişik bir mahluktur, "direk yöntem" denen
 bir metot sınıfında, şimdiye kadar gördüğümüz metotlarda olduğu gibi döngü
 içinde daha iyi, daha iyi çözüme gitmiyor, en iyi, kesin çözümü bulmaya
-uğraşıyor [tabii lineerlik burada faydalı herhalde, ayriksal sekilde
-secenek arama acisindan, ama diğer yandan lineerlik ötesine geçilemiyor].</p>
+uğraşıyor [tabii lineerlik burada faydalı herhalde, ayrıksal şekilde
+seçenek arama açısından, ama diğer yandan lineerlik ötesine geçilemiyor].</p>
+<p>Simplex iyi isler fakat bir sure sonra anlasildi ki en-kotu durum
+cetrefilligi oldukca kotu. </p>
+<p>İç-nokta metotları simplex'den sonra geliştirildi, burada 70'ler, 80'lerde
+müthiş bir aktivite oldu. Khachiyan ve Karmarkar burada önemli isimler,
+LP'ler için ilk ispatlanabilir polinom zamanlı çözümü
+geliştirdiler. Khachiyan'ın metotu elipsoid yakasımını kullanıyordu, teorik
+olarak çok kuvvetliydi ama pratikte ne yazık ki böyle olmadığın görüldü,
+fakat en azından alternatif bir şekilde LP çözülebileceğini
+gösterdi. Karmarkar'ın buluşu en önemlisi, buluşu bugün gördüğümüz ana-çift
+iç nokta yöntemine benziyordu, ispatlanabilir polinom hızdaydı, ve pratikte
+oldukca verimliydi. Karmarkar'ın yaklaşımı iç-nokta alanında bir
+araştırma patlamasına sebep oldu.  </p>
+<p>Örnekle devam edelim. Bir LP'yi ana-çift yöntemi ve bariyer yöntemi ile
+çözeceğiz ve farklarına bakacağız. Standart form LP'nin KKT koşulları, </p>
+<p>$$
+A^T v + u = c
+$$
+$$
+x_i u_i = 0, i=1,..,n
+$$
+$$
+Ax = b
+$$
+$$
+x,u \ge 0
+$$</p>
+<p>İç-nokta yöntemleri ilk ve son iki şarta uyacak şekilde ayarlanır ve döngü
+içinde yavaş yavaş 2. şartı yerine getirmeye uğraşır [2, 13:47]. </p>
+<p>Sarsıma uğratılmış KKT şartları ise</p>
+<p>$$
+A^T v + u = c
+$$
+$$
+x_i u_i = 1/t, i=1,..,n
+$$
+$$
+Ax = b
+$$
+$$
+x,u \ge 0
+$$</p>
 <p>Kod</p>
 <pre><code class="python">import pandas as pd
 import numpy as np
