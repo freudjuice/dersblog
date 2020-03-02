@@ -302,11 +302,11 @@ minimize ediyorsa. Ki bu durumda </p>
 <p>$$
 g(u,v) = L(x,u,v)
 $$</p>
-<p>doğru olur. Yani $x$ Lagrangian'i minimize ediyorsa, tanım itibariyle
+<p>doğru olur. Yani $x$ Lagrangian'ı minimize ediyorsa, tanım itibariyle
 $L(x,u,v)$ ekşi sonsuzluk değildir. Değil mi? Çünkü eksi sonsuzluğa gidiş
 olmasın diye ikizde spesifik kısıtlamalar getirdik. Ve bu da demektir ki
-$u,v$ Lagrangian'in tanım alanında olmalı.</p>
-<p>Geri İz Sürme</p>
+$u,v$ Lagrangian'ın tanım alanında olmalı.</p>
+<p>Geriye İz Sürme</p>
 <p>Üstteki algoritmada #4 adımında bir adım atıldığını gördük, fakat bu adım
 atılırken $s$'nin nasıl bulunacağını anlatmadık. Adım atılırken
 $y^+ = y + s \Delta y$ ile, $h_i(x) \le 0$, ve $u_i(x) &gt; 0$ şartlarının
@@ -381,7 +381,7 @@ ediyoruz. </p>
 <p>Şimdi bu konunun tarihi hakkında biraz konuşalım. Lineer programları ilk
 çözen araştırmacı Dantzig, simplex adlı bir metodu keşfetti. Hala bu yöntem
 LP çözmek için en yaygın metotdur. Ne yazık ki onu LP'ler ötesine
-genelleştirmek mümkün değil, o sebeple bu derste önü işlemedik. İç nokta
+genelleştirmek mümkün değil, o sebeple bu derste onu işlemedik. İç nokta
 metotları, kıyasla, çok daha geniş bir problem sınıfında geçerlidir, Newton
 metotu, gradyan inişi, hep bu bağlamda devreye girer, vs. </p>
 <p>Tabii simplex bir bağlamda değişik bir mahluktur, "direk yöntem" denen
@@ -417,8 +417,8 @@ x,u \ge 0
 $$</p>
 <p>İç-nokta yöntemleri ilk ve son iki şarta uyacak şekilde ayarlanır ve döngü
 içinde yavaş yavaş 2. şartı yerine getirmeye uğraşır [2, 13:47]. </p>
-<p>Sarşıma uğratılmış KKT şartları, üstteki formülde tamamlayıcı gevşeklik için
-eşitlike $1/t$ kullanarak  elde edilir,</p>
+<p>Sarsıma uğratılmış KKT şartları, üstteki formülde tamamlayıcı gevşeklik için
+eşitlikte $1/t$ kullanarak  elde edilir,</p>
 <p>$$
 A^T v + u = c
 $$
@@ -431,8 +431,8 @@ $$
 $$
 x,u \ge 0
 $$</p>
-<p>Sonra ustteki tum esitlik sinirlamalarini aliyorum (esitsizlikleri dongu
-sirasinda tatmin etmeye ugrasacagim) ve onlari bir matriste istifliyorum,</p>
+<p>Sonra üstteki tüm eşitlik sınırlamalarını alıyorum (eşitsizlikleri döngü
+sırasında tatmin etmeye uğraşacağım) ve onları bir matriste istifliyorum,</p>
 <p>$$
 0 = r_{pd}(x,u,v)
 $$</p>
@@ -479,7 +479,6 @@ for iters in (range(MAXITERS)):
   gap = np.dot(s.T,z)
   res = np.dot(P,x) + q + np.dot(A.T,z)
   if (gap &lt; TOL) &amp; (lin.norm(res) &lt; RESTOL):
-      print ('breaking')
       break
   tinv = gap/(m*MU)
 
@@ -518,6 +517,11 @@ for iters in (range(MAXITERS)):
 
 print (x)
 
+</code></pre>
+
+<pre><code>[[-4.50000029]
+ [ 2.25000012]
+ [-0.75000002]]
 </code></pre>
 
 <p>[devam edecek]</p>
