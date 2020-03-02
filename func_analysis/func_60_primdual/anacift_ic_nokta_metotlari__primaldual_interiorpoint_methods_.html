@@ -439,12 +439,29 @@ $$</p>
 <p>$$
 = \left[\begin{array}{c}
 A^T v + u - c \\
-\mathrm{diag}(x) u - (1/t) 1 \\
+\mathrm{diag}(x) u - (1/t) \\
 Ax - b
 \end{array}\right]
 $$</p>
 <p>Sonra matrisin türevini alıyorum, bir lineer yaklaşıklama yaratıyorum,
 güncelleme yönünü buluyorum, geriye iz sürme yapıyorum, vs [2, 15:42]. </p>
+<p>Genel olarak ana-çift yönteminin (log bariyere nazaran) daha büyük bir
+sistemi çözdüğünü söyleyebiliriz, $0 = r_{pd}(y + \Delta y) \approx
+r_{pd}(y) + D r_{pd}(y) + D r_{pd}(y) \Delta y$ diyoruz, ve alttaki sistemi
+çözüyoruz, </p>
+<p>$$
+\left[\begin{array}{ccc}
+0 &amp; I &amp; A^T \\
+\mathrm{diag}(u) &amp; \mathrm{diag}(x) &amp; 0 \\
+A &amp; 0 &amp; 0 
+\end{array}\right]
+\left[\begin{array}{c}
+\Delta x \\ \Delta u \\ \Delta v<br />
+\end{array}\right] = -r_{pd}(x,u,v)
+$$</p>
+<p>Güncelleme için her $t$ ile tek bir adım atıyorum,m adım $y^+ = y + \Delta
+s$ (tabii $s &gt; 0$ için çizgi araması yaparak) ama tek bir kez. Sonra 
+$t = \mu t$ ile $t$'yi güncelliyorum. </p>
 <p>Kod</p>
 <pre><code class="python">import pandas as pd
 import numpy as np
