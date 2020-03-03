@@ -257,16 +257,16 @@ $$</p>
 <p>Böylece eşitliğin sağ tarafı alt sınırım olur, sol tarafı ise ikiz
 değişkenlerim üzerinde kısıtlama haline gelir, $v \ge 0$. Böylece ikiz
 probleme erişmiş oluyoruz.</p>
-<p>Sonraki örneğe gelelim. Bu probleme maks akış min keşiş (max flow min cut)
+<p>Sonraki örneğe gelelim. Bu probleme maks akış min kesiş (max flow min cut)
 problemi deniyor. Konunun gelişmesindeki ilginç bir hikaye 20. yüzyıl
-başında Sovyetler maks akış Amerikalılar ise min keşiş problemlerini
+başında Sovyetler maks akış Amerikalılar ise min kesiş problemlerini
 çözmeye odaklanmıştı, fakat bu iki problem ikizlik üzerinden aslında aynı
 problem.</p>
 <p>Maksimum akış problemi şöyle: bir yönlü çizit verildi diyelim,</p>
 <p><img alt="" src="func_55_duality_01.png" /></p>
 <p>İki nokta arasında bağlantı varsa $c_{ij}$ o iki nokta $i,j$ arasındaki
 bağlantının kapasitesini gösteriyor, eğer bir tren hattından bahsediyorsak
-o bağlantıdan geçebilecek yük miktarı, eğer şu borusu ise oradan akabilecek
+o bağlantıdan geçebilecek yük miktarı, eğer su borusu ise oradan akabilecek
 su miktarı, ya da bir yol ise o yolun uzunluğu, vs. olabilir. Bir
 bağlantıdan gerçekte olan akışı $f_{ij}$ olarak tanımlayabiliriz,</p>
 <p>$$
@@ -300,14 +300,14 @@ $$</p>
 <p>Fakat tek bir toplam ile tüm çizit üzerinden maksimum akışı nasıl formülize
 edebildik? Hedef fonksiyonundaki toplam sadece başlangıç $s$'den çıkan
 akışa bakıyor? Buradaki ufak numara yaptığımız kısıtlamayla bağlantılı,
-akisin muhafaza edilmesini şart koştuğumuz için optimal akış, her ne ise,
+akışın muhafaza edilmesini şart koştuğumuz için optimal akış, her ne ise,
 çıkış noktasından olan toplamı ile varış noktasına girişi aynı tutmalı
 (aradaki geçiş düğümleri için de aynı şey geçerli olduğu için tabii), bu
 sebeple optimizasyonu tek bir toplam ile tanımlayabildik. Üstteki grafik
 örnekte görülüyor, çıkış toplam 3+2+1 varış toplam 4+2. O zaman çıkışı
 optimize edersek $t$'ye varan, tüm düğümler üzerinden olabilecek akışı
 maksimize etmiş oluruz.</p>
-<p>Bu programın ikizini hesaplayabiliriz, üstteki bir LP ikizini bulmayi
+<p>Bu programın ikizini hesaplayabiliriz, üstteki bir LP ikizini bulmayı
 biliyoruz, ana LP'dekiler kısıtlamalar kadar yeni değişken elde ederiz,
 vs.. Daha önce minimizasyon problemlerinin ikizine baktık, ana problemde
 bir alt sınır elde etmeye uğraşıyorduk. Şimdi ana problem maksimizasyon, o
