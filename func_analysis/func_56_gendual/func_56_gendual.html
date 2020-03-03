@@ -219,9 +219,9 @@ x^* = -Q^{+}(c-u+A^Tv)
 $$</p>
 <p>olarak yazılabilir, ki $^+$ işareti genelleştirilmiş ters (generalized
 inverse) demek. Bu işleme bazen sözde ters (pseudo inverse) ismi de
-veriliyor. Bu işlem çoğunlukla eşsiz değer ayrıştırması (singular value
-decomposition) üzerinden tanımlanır. Ama $Q$ simetrik olduğu için onun öz
-ayrıştırmasını (eigen decomposition) yazsam da olur herhalde, $Q$'yu su
+veriliyor, ve çoğunlukla eşsiz değer ayrıştırması (singular value
+decomposition) üzerinden tanımlanıyor. Ama $Q$ simetrik olduğu için onun öz
+ayrıştırmasını (eigen decomposition) yazsam da olur herhalde, $Q$'yu şu
 sekilde yazsaydım,</p>
 <p>$$
 Q = U D U^T
@@ -271,13 +271,13 @@ olur? O durumda (4)'ün çözümü yoktur. O zaman (1)'ın minimizasyonuna ne
 olacak? (1)'i istediğimiz kadar ufak yapabiliriz, yani $-\infty$'a kadar
 gidebiliriz. Çünkü düşünürsek sıfır uzayında olan $x$ seçeneği (1)'in ilk
 terimini sıfır yapar, ama ikinci terimi istediğimiz yöne çekebiliriz, ta ki
-$-\infty$ kadar.</p>
+$-\infty$ olana kadar.</p>
 <p>$$
 g(u,v) = 
 \left\{ \begin{array}{ll}
 -\frac{1}{2} (c - u + A^Tv)^T Q^{-1}  (c - u + A^Tv) - b^Tv &amp; 
   \textrm{eğer } c - u + A^Tv \perp null(Q)\\
--\infty &amp; \textrm{tersi doğruysa}
+-\infty &amp; \textrm{eğer tersi doğruysa}
 \end{array} \right.
 $$</p>
 <p>Şimdi geri bir adım atıp her şeye bakalım. Elimizde bir QP varsa Lagrange
@@ -285,12 +285,12 @@ ikiz fonksiyon da karesel, o zaman Lagrange ikizi maksimize etmek hala bir
 QP. Yani QP'lerin ikizleri yine QP. </p>
 <p>Biraz önce gördüğümüz QP örneğinde Lagrange ikiz karesel, ama tanım
 kümesinde (domain) bir kısıtlama var, üstteki $g(u,v)$'de görüyoruz. Fakat
-bu tanım kümesi kısıtlamaını bir QP kısıtlamasına çevirebiliriz, spesifik
+bu tanım kümesi kısıtlamasını bir QP kısıtlamasına çevirebiliriz, spesifik
 olarak $u,v$ üzerinde bir eşitlik kısıtlamasına. $null(Q)$'ya dikgen olmak
-demek $Q$'nun sıfır uzayına olan yansıtma matrisini, $P$ diyelim, alıp $c -
-u + A^Tv$ ile çarparsam sıfır sonucunu almalıyım. Bunu eşitlik kısıtlaması
-olarak kodlayabilirim. Tabii bu tür bir eşitlik kısıtlaması eklemek ikiz
-problemi daha çetrefil hale getirecektir.</p>
+demek $Q$'nun sıfır uzayına olan yansıtma matrisini, $P$ diyelim, alıp
+$c - u + A^Tv$ ile çarparsam sıfır sonucunu almalıyım. Bunu eşitlik
+kısıtlaması olarak kodlayabilirim. Tabii bu tür bir eşitlik kısıtlaması
+eklemek ikiz problemi daha çetrefil hale getirecektir.</p>
 <p>Bir diğer örneğe bakalım. Bu çok daha basit bir karesel program, iki
 boyutlu. </p>
 <p>$$
