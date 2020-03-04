@@ -254,7 +254,8 @@ $$
 x_2 \\ x_2
 \end{array}\right] = 5
 $$</p>
-<p>(Sıfır vektörü var çünkü tek başına $x_1,x_2$ ifadeleri yok)</p>
+<p>(Sıfır vektörü var çünkü $x_1^2,x_2^2$ içeren terimler var ama $x_1,x_2$
+içeren terimler yok)</p>
 <p>KKT matrisini şöyle oluştururuz, </p>
 <p>$$
 \left[\begin{array}{ccc}
@@ -316,6 +317,18 @@ Optimal solution found.
 [ 2.50e+00]
 </code></pre>
 
+<p>Ekler</p>
+<p>Soru</p>
+<p>Eğer KKT şartını eşitlik sınırlanmış QP (bilahere LP) çözmek için
+kullanabiliyorsam, ve mesela LP diyelim, her eşitsizlik içeren problemi
+standardizasyon ile eşitlikle sınırlı probleme çevirebiliyorsam, KKT
+matrisi ile her türlü LP'yi çözemez miyim? Niye farklı metotlara giriş
+yapmak gerekiyor? </p>
+<p>Cevap</p>
+<p>Standardizasyon sonrası hala elimizde pozitiflik sınırlamaları var, ki
+bunlar da birer eşitsizlik sınırı aslında. KKT matrisi çözmek bu
+eşitsizlikleri tatmin etmez, basit bir matris tersi alıyoruz, elimize geçen
+değişkenlerin pozitif kalma zorunluluğunu bu metot ile zorlayamayız.</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 12</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
