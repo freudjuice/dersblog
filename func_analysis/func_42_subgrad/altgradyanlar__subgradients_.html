@@ -23,52 +23,59 @@
 </script>
 </head>
 
-<p>Altgradyanlar aslında bir algoritma değil, bir matematiksel kavram [1], ve hem
-optimizasyon, hem analiz, hem de pratik bağlamda çok faydalı bir kavram.
-Hatırlarsak dışbükey ve türevi alınabilir bir $f$ için</p>
+<p>Altgradyanlar aslında bir algoritma değil, bir matematiksel kavram [1,
+40:29], ve hem optimizasyon, hem analiz, hem de pratik bağlamda çok faydalı
+bir kavram.  Hatırlarsak dışbükey ve türevi alınabilir bir $f$ için</p>
 <p>$$
 f(y) \ge f(x) + \nabla f(x)^T (y-x)  \quad \forall x,y
 $$</p>
 <p>gerekli ve yeterli bir şart. Yani fonksiyonuma herhangi bir noktada
-oluşturacağım lineer yaklaşıksallık, yani teğet eğri, fonksiyonum için bir
-global eksik / az tahmin edici (ünderestimator) olacaktır, yani hep ondan
-küçük kalacaktır. Bu mantıklı, görsel olaral hayal edersek kap şeklinde,
-yani dışbükey olan bir fonksiyona nerede teğet çizgi çekersem çekeyim
+oluşturacağım teğet eğri, yani lineer yaklaşıksallık fonksiyonum için bir
+global eksik / az tahmin edici (underestimator) olacaktır, yani hep ondan
+küçük kalacaktır [1, 41:18]. </p>
+<p>Altgradyan nedir? Altgradyan üstteki gradyanin yerini alabilecek herhangi
+bir $g$ vektörüdür, yerine alabilecek derken üstteki ifade her $y$ için
+hala doğru olacak şekilde. Dışbükey fonksiyon $f$'nin $x$ noktasında
+altgradyanı herhangi bir $g \in \mathbb{R}^n$'dir öyle ki</p>
+<p>$$
+f(y) \ge f(x) + g^T (y-x) \quad \forall y
+$$</p>
+<p>olacak şekilde.</p>
+<p>Teğet çizgi hakkında: görsel olaral hayal edersek kap şeklinde, yani
+dışbükey olan bir fonksiyona nerede teğet çizgi çekersem çekeyim
 fonksiyonun kendisi hep o çizginin üstünde kalır. Eğer fonksiyonum kap
 olmasaydı, habire aşağı yukarı inip çıkıyor olsaydı bir noktada o çizginin
 altına düşülebilirdi. Eğer $f$ türevi alınabilir ise dışbükey olmasının
 şartı üstteki ifadenin doğru olması.</p>
-<p>Altgradyan nedir? Altgradyan üstteki gradyanin yerini alabilecek herhangi
-bir $g$ vektörüdür, yerine alabilecek derken üstteki ifade her $y$ için
-hala doğru olacak şekilde. </p>
-<p>$$
-f(y) \ge f(x) + g^T (y-x) \quad \forall y
-$$</p>
-<p>Dışbükey fonksiyonlar için $g$ her zaman mevcuttur (dışbükey olmayan
-fonksiyonlar için $g$'nin mevcudiyeti şart değildir). Mantıki olarak
-düşünürsek bir $f$ için ona eksik tahmin edici olacak bir çizgiyi her zaman
-çizebiliriz. Bir noktayı seç, bir $f$ noktasından geçen bir çizgi çek.</p>
-<p>Eğer $x$ noktasında $f$'in türevi alınabilir ise, tek bir altgradyan
-vardır, o da türevin kendisidir, $g = \nabla f(x)$. </p>
-<p>Pürüzsüz olan dışbükey olmayan ve altgradyani olmayan bir fonksiyon örneği
-görelim, </p>
+<p>Dışbükey fonksiyonlar için </p>
+<p>1) $g$ her zaman mevcuttur (dışbükey olmayan fonksiyonlar için $g$'nin
+mevcudiyeti şart değildir). Bu güzel bir özellik. </p>
+<p>2) Eğer $x$ noktasında $f$'in türevi alınabilir ise, tek bir altgradyan
+vardır, o da türevin kendisidir [1, 43:12], $g = \nabla f(x)$.</p>
+<p>Aslında #2 kalemi dışbükey olmayan bir $f$ için bile geçerli, eğer $g$
+varsa. Bu durumlarda illa altgradyan olması gerekmiyor, hatta türevi
+alınabilir dışbükey olmayan $f$ için bile $g$ olmayabiliyor. </p>
+<p>Dışbükey olmayan (pürüzsüz) ve altgradyanı olmayan bir fonksiyon örneği
+nedir? Alttaki,</p>
 <p><img alt="" src="func_42_subgrad_01.png" /></p>
-<p>Bu fonksiyonun hiçbir yerde altgradyani yok. Eğri üzerinde bir nokta
+<p>Bu fonksiyonun hiçbir yerde altgradyanı yok. Eğri üzerinde bir nokta
 arıyorum öyle ki oradan geçen bir çizgi tüm fonksiyonu üstte
-bıraksın.. böyle bir çizgi çizilemez. Altgradyan yok. Bazılarımız itiraz
-edebilir, "üstteki bir içbükey fonksiyon, dışbükeyin ters çevrilmiş
-hali". O zaman $x^3$ diyelim, pürüzsüz, ve altgradyanı yok.</p>
-<p>Altgradyanı olan fonksiyonlar görelim, mesela mutlak değer fonksiyonu $f(x) = |x|$.</p>
+bıraksın.. böyle bir çizgi çizilemez. Altgradyan yok [1,
+43:54]. Bazılarımız itiraz edebilir, "üstteki bir içbükey fonksiyon,
+dışbükeyin ters çevrilmiş hali". O zaman $x^3$ diyelim, pürüzsüz, ve
+altgradyanı yok.</p>
+<p>Altgradyanı mevcut fonksiyonlar görelim, mesela mutlak değer fonksiyonu
+$f(x) = |x|$.</p>
 <p><img alt="" src="func_42_subgrad_02.png" /></p>
 <p>Altgradyanlar için farklı şartları görelim.</p>
 <p>$x&gt;0$ için tek bir altgradyan var, o da $g = 1$, yani fonksiyonun eğiminin
 ta kendisi, eğim=1. Aynı şekilde $x&lt;0$ için, o zaman $g=-1$. Bu sonuç
-"eğer $f$'in türevi alınabilir ise $g=\nabla f$" açıklaması ile
-uyuyor. $x=0$ noktası için birçok seçenek var, herhangi bir $[-1,1]$ öğesi
-için, yani -1 ve +1 arasındaki herhangi bir sayı olabilir, çizgili noktalar
-seçeneklerden ikisi.</p>
+"eğer $f$'in $x$'te türevi alınabilir ise o noktada $g=\nabla f$"
+açıklaması ile uyuyor. $x=0$ noktası için birçok seçenek var, herhangi bir
+$[-1,1]$ öğesi için, yani -1 ve +1 arasındaki herhangi bir sayı olabilir,
+çizgili noktalar seçeneklerden ikisi.</p>
 <p>Boyut atlayalım, $f(x) = ||x||_2$ fonksiyonunu görelim, $x$'in L2
-norm'u. Iki boyutta,</p>
+norm'u. İki boyutta [1, 45:51],</p>
 <p><img alt="" src="func_42_subgrad_03.png" /></p>
 <p>Eğer $x \ne 0$ ise bu fonksiyonun türevi alınabilir (yoksa alınamaz, bir
 yaygın görüşe göre $x=0$'da problem yok, ama var) ve altgradyanı onun
@@ -81,11 +88,11 @@ fonksiyonu) versiyonunda olduğu gibi. Ayrıca bu fonksiyonun herhangi bir
 eksende sıfır değer olduğu zamanda da türevi alınamaz. Altgradyan için öğe öğe
 yaklaşmak lazım, eğer bir öğe $x_i \ne 0$ ise $g_i = \mathrm{sign}(x_i)$, eğer
 $x_i = 0$ ise $g_i \in [-1,+1]$.</p>
-<p>En son örnek iki dışbükey fonksiyonun maksimumu olanı, yani
+<p>En son örnek [1, 48:35] iki dışbükey fonksiyonun maksimumu olanı, yani
 $f(x) = \max {f_1(x),f_2(x) }$ ki $f_1,f_2$ dışbükey ve türevi alınabilir
 olmak üzere, ve $f(x)$ bu iki fonksiyonun her $x$ noktasında $f_1(x)$ ve
 $f_2(x)$'den hangisi büyükse o. Bu tür bir maks fonksiyonunun sonucunun
-dışbükey olduğunu önceki derslerden biliyoruz. </p>
+dışbükey olduğunu önceki derslerden biliyoruz.</p>
 <p><img alt="" src="func_42_subgrad_05.png" /></p>
 <p>Altgradyan yine farklı şartlara göre değişik oluyor. Eğer $f_1(x) &gt; f_2(x)$
 o zaman altgradyan özgün, $g = \nabla f_1(x)$. Eğer $f_2(x) &gt; f_1(x)$ ise
@@ -99,8 +106,9 @@ ilginç, $g = \alpha \nabla f_1(x) + (1-\alpha) f_2(x)$, yani $f_1,f_2$'nin
 herhangi bir dışbükey kombinasyonu, ki iki üstteki resimde görülen iki
 kesikli çizgiler bazı örnekler. </p>
 <p>Altdiferansiyel (Subdifferential)</p>
-<p>Dişbükey $f$'in tüm altgradyanlarına altdiferansiyel denir. Çoğunlukla
-kısmi türev için kullanılan aynı sembolle gösterilir, $\partial$ ile.</p>
+<p>Dişbükey $f$'in tüm altgradyanlarına altdiferansiyel denir [1,
+52:35]. Çoğunlukla kısmi türev için kullanılan aynı sembolle gösterilir,
+$\partial$ ile.</p>
 <p>$$
 \partial f(x) = { 
 g \in \mathbb{R}^n: \quad g, f\textrm{'in altgradyanıdır}
@@ -108,17 +116,52 @@ g \in \mathbb{R}^n: \quad g, f\textrm{'in altgradyanıdır}
 $$</p>
 <p>Yani $x$ noktasındaki tüm mümkün altgradyanların kümesi altdiferansiyel
 oluyor. </p>
-<p>[atlandi]</p>
+<p>1) $\partial f(x)$ kapalı ve dışbükey bir kümedir. İşin ilginç tarafı bu
+dışbükey olmayan $f$'ler için bile geçerlidir. Niye olduğuna bakalım,
+$\partial f(x)$ $x$'te $f(x)$'in tüm altgradyanlarıdır. Diyelim ki
+$g_1,g_2$ altgradyanları bu altdiferansiyel kümesinde, $g_1 \in \partial
+f(x)$ ve $g_2 \in \partial f(x)$. Simdi $\alpha g_1 + (1-\alpha) g_2$
+nerededir ona bakalım [1, 53:59]. Bu değerin $y-x$ ile iş çarpımını alırsak
+ve ona $f(x)$ eklersek acaba $f(y)$'den büyük bir değer elde eder miyiz?</p>
+<p>$$
+(\alpha g_1 + (1-\alpha) g_2)^T (y-x) + f(x) \underbrace{\le}_{?} f(y) \forall y
+\qquad (1)
+$$</p>
+<p>Üsttekini ispatlayabilirsek $\partial f(x)$'in bir dışbükey küme olduğunu
+ispatlayabilirim, çünkü iki geçerli altgradyanin herhangi bir dışbükey
+kombinasyonunu almışım ve hala küme içindeysem o küme dışbükey küme
+demektir. </p>
+<p>Alttaki iki ifadenin doğru olduğunu biliyoruz, </p>
+<p>$$
+ g_1^T (y-x) + f(x) \le f(y) 
+$$</p>
+<p>$$
+ g_2^T (y-x) + f(x) \le f(y) 
+$$</p>
+<p>Eğer iki üstteki ifadeyi $\alpha$ ile bir üstteki ifadeyi $1-\alpha$ ile
+çarparsam ve toplarsam, basitleştirme sonrası (1)'i elde ederim. İspat
+böylece tamamlanır [1, 55:11].</p>
+<p>Dikkat edersek $f$'nin dışbükey olup olmadığından bahsetmedik bile. </p>
+<p>2) Boş Olmamak: eğer $f$ dışbükey ise $\partial f(x)$ boş değildir.</p>
+<p>3) Tek Altgradyan: önceden bahsettik ama eğer $f$ $x$ noktasında türevi
+alınabilir ise altdiferansiyelde tek bir öğe vardır o da o noktadaki
+gradyandır, $\partial f(x) = { \nabla f(x) }$. </p>
+<p>4) Üstteki özelliğe tersten bakarsak, eğer $\partial f(x) = { g }$, yani
+altdiferansiyelde tek bir öğe var ise, o zaman $f$ o noktada türevi
+alınabilir demektir ve o noktadaki gradyan $g$'dir. </p>
+<p>Altdiferansiyel Calculus</p>
 <p>Altgradyanların kendine has bir Calculus'u var, aynen gradyanları,
-vs. içere Çok Değişkenli Calculus'ta olduğu gibi. </p>
+vs. içeren Çok Değişkenli Calculus'ta olduğu gibi [1, 59:53]. Bu
+özellikler,</p>
 <p>Ölçekleme: $\partial (af) = a \cdot \partial f$, $a$ sabit ise ve $a &gt; 0$
 olacak şekilde</p>
 <p>Toplama: $\partial (f_1 + f_2) = \partial f_1 + \partial f_2$</p>
+<p>[under review]</p>
 <p>Doğrusal Bileşim: Eğer $g(x) = f(Ax + b)$ ise o zaman
 $\partial g(x) = A^T \partial f(Ax + b)$. Bu altgradyanlar için bir tür
 Zincirleme Kanunu gibi. Hatta eğer $f$ türevi alınabilir ise, bu ifade tamı
 tamına Zincirleme Kanunu olurdu. </p>
-<p>Noktasal Sonlu Maksimum: Eger $f(x) = \max_{i=1,..,m} f_i(x)$ ise, o zaman </p>
+<p>Noktasal Sonlu Maksimum: Eğer $f(x) = \max_{i=1,..,m} f_i(x)$ ise, o zaman </p>
 <p>$$
 \partial f(x) = conv \left( 
 \bigcup_{i: f_i(x)=f(x)} \partial f_i(x)
@@ -222,9 +265,9 @@ problemler sınırsız-sınırlı halde birbirine eşit şekilde tanımlanabilir
 ama sınırlı tanımları çözmek daha kolay. KKT koşulları burada devreye
 girecek.  Yani her şeyi kritere tıkmak, gösterge vs ile uğraşmak,
 altgradyan almak yerine bu tür tanımla çalışmak daha rahat oluyor.</p>
-<p>[atlandi]</p>
+<p>[atlandı]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
-<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
 <p>[2] Tibshirani, <em>Convex Optimization, Lecture Video 7</em>, 
-<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
