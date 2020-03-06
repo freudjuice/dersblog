@@ -300,7 +300,7 @@ problemler sınırsız-sınırlı halde birbirine eşit şekilde tanımlanabilir
 ama sınırlı tanımları çözmek daha kolay. KKT koşulları burada devreye
 girecek.  Yani her şeyi kritere tıkmak, gösterge vs ile uğraşmak,
 altgradyan almak yerine bu tür tanımla çalışmak daha rahat oluyor [2, 12:00].</p>
-<p>Altgradyan optimalliğinin bazı diğer örneklerini görelim. Mesela Lasso
+<p>Altgradyan optimalliğinin bazı diğer örneklerini görelim, mesela Lasso
 için altgradyan optimalliği. Bazılarının bilebileceği üzere Lasso
 problemini parametrize etmenin iki yolu vardır, birisi katsayılar üzerinde
 bir L1 norm kısıtlaması tanımlamak, diğeri ise alttaki gibi onu kritere
@@ -315,7 +315,17 @@ geçerliyse elimizde bir çözüm var diyebiliyoruz, bu şart, </p>
 \frac{1}{2} || y - X \beta ||_2^2 + \lambda ||\beta||_1
 \big)
 $$</p>
-<p>yani eğer 0 kriterimin altgradyan kümesinde ise. </p>
+<p>yani eğer 0 kriterimin altgradyan kümesinde ise. Üstteki altgradyanın
+uygulandığı toplam işaretinin iki tarafı da dışbükey o zaman onları
+altgradyanların toplamı olarak açabilirim, ayrıca soldaki terim bir de
+pürüzsüz olduğu için tek altgradyan normal gradyandır,</p>
+<p>$$
+\iff 0 \in -X^T (y - X\beta) + \lambda \partial ||\beta||_1
+$$</p>
+<p>$$
+\iff X^T (y - X\beta) = \lambda v
+$$</p>
+<p>herhangi bir $v \in \partial ||\beta||_1$ için.</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
