@@ -124,11 +124,12 @@ f(x)$ ve $g_2 \in \partial f(x)$. Simdi $\alpha g_1 + (1-\alpha) g_2$
 nerededir ona bakalım [1, 53:59]. Bu değerin $y-x$ ile iş çarpımını alırsak
 ve ona $f(x)$ eklersek acaba $f(y)$'den büyük bir değer elde eder miyiz?</p>
 <p>$$
-(\alpha g_1 + (1-\alpha) g_2)^T (y-x) + f(x) \underbrace{\le}_{?} f(y) \forall y
+(\alpha g_1 + (1-\alpha) g_2)^T (y-x) + f(x) 
+\underbrace{\le}_{?} f(y) \quad \forall y
 \qquad (1)
 $$</p>
 <p>Üsttekini ispatlayabilirsek $\partial f(x)$'in bir dışbükey küme olduğunu
-ispatlayabilirim, çünkü iki geçerli altgradyanin herhangi bir dışbükey
+ispatlayabilirim, çünkü iki geçerli altgradyanın herhangi bir dışbükey
 kombinasyonunu almışım ve hala küme içindeysem o küme dışbükey küme
 demektir. </p>
 <p>Alttaki iki ifadenin doğru olduğunu biliyoruz, </p>
@@ -149,14 +150,15 @@ gradyandır, $\partial f(x) = { \nabla f(x) }$. </p>
 <p>4) Üstteki özelliğe tersten bakarsak, eğer $\partial f(x) = { g }$, yani
 altdiferansiyelde tek bir öğe var ise, o zaman $f$ o noktada türevi
 alınabilir demektir ve o noktadaki gradyan $g$'dir. </p>
+<p>[disbukey geometri baglantisi atlanti]</p>
 <p>Altdiferansiyel Calculus</p>
 <p>Altgradyanların kendine has bir Calculus'u var, aynen gradyanları,
-vs. içeren Çok Değişkenli Calculus'ta olduğu gibi [1, 59:53]. Bu
-özellikler,</p>
+vs. içeren Çok Değişkenli Calculus'ta olduğu gibi [1, 59:53]. Birazdan
+göstereceklerimizden daha fazlası ama alttakiler en faydalı olanları [1,
+1:00:00].</p>
 <p>Ölçekleme: $\partial (af) = a \cdot \partial f$, $a$ sabit ise ve $a &gt; 0$
 olacak şekilde</p>
 <p>Toplama: $\partial (f_1 + f_2) = \partial f_1 + \partial f_2$</p>
-<p>[under review]</p>
 <p>Doğrusal Bileşim: Eğer $g(x) = f(Ax + b)$ ise o zaman
 $\partial g(x) = A^T \partial f(Ax + b)$. Bu altgradyanlar için bir tür
 Zincirleme Kanunu gibi. Hatta eğer $f$ türevi alınabilir ise, bu ifade tamı
@@ -175,20 +177,20 @@ altdiferansiyelin bir dışbükey küme olması gerekir, o zaman için elimizde
 olan altgradyanların $conv$ ile dışbükey zarfına (convex hull)
 bakarız. Yani sadece birleşim $\cup$ ile elde ettiğim kümeyi bir işlemden
 daha geçirerek onun dışbükey küme halini alıyorum.</p>
-<p>[atlandi, norm]</p>
-<p>Niye Altgradyanlar?</p>
-<p>1) Optimizasyon: Önemli bir sebep. Bir dışbükey fonksiyonun altgradyanını
-hesaplamak her zaman mümkündür, o zaman her dışbükey fonksiyonu minimize
-edebilirim. Bazı durumlarda bu yavaş olabilir ama en azından minimizasyon
-mümkün olur.</p>
-<p>2) Dişbükey Analizi: Her $f$ için, dışbükey olsun olmasın, </p>
+<p>[atlandi, norm, 1:09:00]</p>
+<p>Niye Altgradyanlar? </p>
+<p>1) Optimizasyon: Önemli bir sebep [1, 1:12:00]. Bir dışbükey fonksiyonun
+altgradyanını hesaplamak her zaman mümkündür, o zaman her dışbükey
+fonksiyonu minimize edebilirim. Bazı durumlarda bu yavaş olabilir ama en
+azından minimizasyon mümkün olur.</p>
+<p>2) Dışbükey Analizi: Her $f$ için, dışbükey olsun olmasın, </p>
 <p>$$
 f(x^*) = \min_x f(x) \iff 0 \in \partial f(x^*)
 $$</p>
-<p>Yani $x^*$ bir minimize edicidir sadece ve sadece 0 $f$'in $x^*$ noktasında
-bir altgradyanı ise. Bu özelliğe çoğunlukla "altgradyan optimalliği" adı
-veriliyor. İspatı basit. Eğer $g$ vektörü $x^*$ noktasındaki altgradyan
-ise o zaman alttaki ifade her $y$ için doğrudur,</p>
+<p>Yani $x^*$ bir minimize edicidir sadece ve sadece 0 değeri $f$'in $x^*$
+noktasında bir altgradyanı ise. Bu özelliğe çoğunlukla "altgradyan
+optimalliği" adı veriliyor. İspatı basit. Eğer $g$ vektörü $x^*$
+noktasındaki altgradyan ise o zaman alttaki ifade her $y$ için doğrudur,</p>
 <p>$$
 f(y) \ge f(x^*) + 0^T (y-x^*) = f(x^*)
 $$</p>
@@ -196,23 +198,28 @@ $$</p>
 f(y) \ge f(x^*) \quad \forall y
 $$</p>
 <p>Üstteki ifade $x^*$ bir minimize edicidir diyor, o zaman sıfır bir
-altgradyandir. </p>
+altgradyandır. </p>
 <p>Bazen üstteki ifadenin dışbükey olmayan fonksiyonlar için bile geçerli
-olduğunu unutanlar oluyor. Bu her $f$ için doğru diyorum bazen bana
-şaşırmış şekilde bakıyorlar. Söylenen biraz sürpriz edici, evet. İkizlik ve
-KKT şartları hakkında konuşurken benzer şaşırtıcı ifadeler olacak. </p>
+olduğunu unutanlar oluyor [1:14:32]. Bu her $f$ için doğru diyorum bazen
+bana şaşırmış şekilde bakıyorlar. Söylenen biraz sürpriz edici,
+evet. İkizlik ve KKT şartları hakkında konuşurken benzer şaşırtıcı ifadeler
+olacak.</p>
 <p>Tabii eklemek gerekir bazen dışbükey olmayan fonksiyonlar için altgradyan
 hesaplanamaz, ya da mevcut değillerdir. Her problemi çözmek için bir yemek
 tarifi değil bu. Mesela başta gördüğümüz içbükey fonksiyon,</p>
 <p><img alt="" src="func_42_subgrad_01.png" /></p>
 <p>Altgradyanı yok (ama tabii minimize edicisi de yok). </p>
-<p>Altgradyanlar bir dışbükey fonksiyon için her zaman mevcuttur [2], bazı aşırı
-durumlar haricinde, mesela gösterge fonksiyonu $I$'nin uç noktalarında
-mevcut değildir. </p>
+<p>Altgradyanlarla devam edelim [2, 01:11], onlar bir dışbükey fonksiyonun
+gradyanı kavramının genelleştirilmiş hali idi. </p>
+<p>Bir dikkat edilmesi gereken durum var ama, altgradyanlar bir dışbükey
+fonksiyon için her zaman mevcuttur, ama bunu spesifik olarak "tanim
+kumesinin nispeten ic bolgelerinde olacak sekilde" diye vurgulamak
+gerekir. Mesela gösterge fonksiyonu $I$'nin uç noktalarında mevcut değildir.</p>
 <p>Şimdi altgradyan yönteminin gücüne bir örnek görelim. Derslerimizin başında
-1. derece optimallik şartını görmüştük, </p>
+1. derece optimallik şartını görmüştük [2, 05:30],</p>
 <p>$$
 \min_x f(x) \quad \textrm{öyle ki} \quad x \in C
+\qquad (3)
 $$</p>
 <p>problemini çözmek istiyoruz, diyelim $f$ dışbükey ve türevi alınabilir. Bu
 problem için $x$'in çözüm olmasının şartı </p>
@@ -220,30 +227,42 @@ problem için $x$'in çözüm olmasının şartı </p>
 \nabla f(x)^T (y-x) \ge 0 \quad \forall y \in C
 $$</p>
 <p>eşitsizliğinin doğru olmasıdır. Yani 1. derece minimallik gradyan sıfırı
-verir, o zaman herhangi bir $\nabla f(x)^T(y-x)$ yönünde adım atmak bizi her
-zaman bu minimallikten uzaklaştırmalıdır. Bu durum her olurlu $y \in C$
-için doğru ise minimal yerdeyiz demektir.</p>
+verir, o zaman herhangi bir $\nabla f(x)^T(y-x)$ yönünde adım atmak bizi
+her zaman bu minimallikten uzaklaştırmalıdır. Bu durum her olurlu $y \in C$
+için doğru ise minimal yerdeyiz demektir [2, 05:50]. Ya da şöyle anlatalım,
+$x$ noktasındayız, $y$ noktasına gitmeyi düşünüyoruz. O zaman $y-x$
+vektörünü oluşturuyoruz, ve su soruyu soruyoruz, "kriter fonksiyonunun
+gradyanı aynı çizgi de mi?". Eğer aynı yönde ise o yönde hareket etmek
+kriter $f(x)$'i arttırır. Yani eğer gradyan her mümkün olurlu yön ile aşağı
+yukarı aynı yönü gösteriyorsa (azaltma / çoğaltma, -90/+90 derece
+bağlamında) o zaman minimum noktadayız demektir. </p>
+<p><img alt="" src="func_42_subgrad_07.png" /></p>
+<p>İşte bunu altgradyan perspektifinden ispatlayabiliriz [2, 06:33]. </p>
 <p>Üsttekini altgradyan perspektifinden ispatlayabiliriz. Önce problemimizi
 sınırsız bir formatta tekrar tanımlayacağız.  Sınırlamayı bir gösterge $I_C$
 haline getirerek bunu yapabiliriz,</p>
 <p>$$
 \min_x f(x) + I_C(x)
+\qquad (2)
 $$</p>
 <p>ki $I_C(x) = 0$ eğer $x$, $C$ kümesi içindeyse, dışındaysa sonsuzluk. Şimdi
 üstteki fonksiyona altgradyan optimalliği uygulayalım, eğer üstteki
 fonksiyonu minimize eden bir nokta varsa elimde, bunun tercümesi sıfırın o
-noktada fonksiyonun altgradyanı olması. Fonksiyonun altgradyanini
+noktada fonksiyonun altgradyanı olması. Fonksiyonun altgradyanını
 hesaplayalım, kurallarımıza göre iki dışbükey fonksiyon toplamının
 altgradyani o fonksiyonların ayrı ayrı altgradyanlarının toplamı. $f$
 dışbükey, $I_C$ dışbükey (çünkü $C$ kümesi dışbükey küme). $f$ pürüzsüz, o
 zaman $x$'te onun altgradyan kümesi sadece o noktadaki gradyan. $I_C$'nin
 altgradyanı normal koni $N_C$. O zaman </p>
 <p>$$
-0 \in \partial ( f(x) + I_C(x) ) = \nabla f(x) + N_C(x) 
+0 \in \partial ( f(x) + I_C(x) ) 
+$$</p>
+<p>$$
+\iff 0 \in \nabla f(x) + N_C(x) 
 $$</p>
 <p>olmalı, ya da</p>
 <p>$$
-- \nabla f(x) \in N_C(x) 
+\iff - \nabla f(x) \in N_C(x) 
 $$</p>
 <p>olmalı. Şimdi normal koniyi hatırlayalım, tanımı</p>
 <p>$$
@@ -251,21 +270,37 @@ N_C(x) = { g \in \mathbb{R}^n: g^T x \ge g^T y \quad \forall y \in C
 $$</p>
 <p>buna göre iki üstteki $N_C$, $g=-\nabla f$ üzerinden</p>
 <p>$$
--\nabla f(x)^T x \ge -\nabla f(x)^T y \quad \forall y \in C
+\iff -\nabla f(x)^T x \ge -\nabla f(x)^T y \quad \forall y \in C
 $$</p>
 <p>olarak açılabilir. Ya da</p>
 <p>$$
-\nabla f(x)^T(y-x) \ge 0 \quad \forall y \in C
+\iff \nabla f(x)^T(y-x) \ge 0 \quad \forall y \in C
 $$</p>
 <p>Üstteki 1. derece optimallik şartına benziyor zaten. $-\nabla f(x)$ üstteki
 tanımın bir öğesidir, o zaman 0 altgradyan kümesinin öğesidir. </p>
+<p>İşte gayet temiz bir şekilde optimallik ispatı yapmış olduk. Bu arada
+sınırlama içeren optimizasiyon problemi için alttaki tanım</p>
+<p>$$
+0 \in \partial f(x) + N_c
+$$</p>
+<p>ifadesi her nasılsa tamamen genel, yani dışbükey bir problem tanımı için
+gerekli ve yeterli bir şart çünkü hatırlarsak bahsettik ki tüm dışbükey
+problemleri (2) ya da (3) formunda öne sürmek mümkün. Tabii üstteki formlea
+iş yapmak kolay değildir, çünkü $N_C$ ile çalışmak zor. Eğer $C$ çetrefil
+bir küme ise, mesela</p>
+<p>$$
+C = { x: g_i(x) \le 0, Ax = b }
+$$</p>
+<p>gibi, o zaman normal koniyi oluşturmak zor olacaktır. Yani iki üstteki
+tanımın her zaman faydalı olduğunu söyleyemeyiz, ama her dışbükey problem
+için gerekli ve yeterli şart olduğunu söyleyebiliyoruz.</p>
+<p>[under review]</p>
 <p>Sonradan optimalliği tanımlamanın farklı bir yolunu göreceğiz. Sınırlama
 ifadeleri olduğu zaman problemler daha az çetin / çözülür hale gelir,
 problemler sınırsız-sınırlı halde birbirine eşit şekilde tanımlanabilirler,
 ama sınırlı tanımları çözmek daha kolay. KKT koşulları burada devreye
 girecek.  Yani her şeyi kritere tıkmak, gösterge vs ile uğraşmak,
-altgradyan almak yerine bu tür tanımla çalışmak daha rahat oluyor.</p>
-<p>[atlandı]</p>
+altgradyan almak yerine bu tür tanımla çalışmak daha rahat oluyor [2, 12:00].</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
