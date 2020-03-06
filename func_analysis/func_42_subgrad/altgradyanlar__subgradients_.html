@@ -155,7 +155,7 @@ alınabilir demektir ve o noktadaki gradyan $g$'dir. </p>
 <p>Altgradyanların kendine has bir Calculus'u var, aynen gradyanları,
 vs. içeren Çok Değişkenli Calculus'ta olduğu gibi [1, 59:53]. Birazdan
 göstereceklerimizden daha fazlası ama alttakiler en faydalı olanları [1,
-1:00:00].</p>
+1:00:00]. Dişbukey $f$ fonksiyonları için alttakiler geçerlidir,</p>
 <p>Ölçekleme: $\partial (af) = a \cdot \partial f$, $a$ sabit ise ve $a &gt; 0$
 olacak şekilde</p>
 <p>Toplama: $\partial (f_1 + f_2) = \partial f_1 + \partial f_2$</p>
@@ -212,8 +212,8 @@ tarifi değil bu. Mesela başta gördüğümüz içbükey fonksiyon,</p>
 <p>Altgradyanlarla devam edelim [2, 01:11], onlar bir dışbükey fonksiyonun
 gradyanı kavramının genelleştirilmiş hali idi. </p>
 <p>Bir dikkat edilmesi gereken durum var ama, altgradyanlar bir dışbükey
-fonksiyon için her zaman mevcuttur, ama bunu spesifik olarak "tanim
-kumesinin nispeten ic bolgelerinde olacak sekilde" diye vurgulamak
+fonksiyon için her zaman mevcuttur, ama bunu spesifik olarak "tanım
+kümesinin nispeten iç bölgelerinde olacak şekilde" diye vurgulamak
 gerekir. Mesela gösterge fonksiyonu $I$'nin uç noktalarında mevcut değildir.</p>
 <p>Şimdi altgradyan yönteminin gücüne bir örnek görelim. Derslerimizin başında
 1. derece optimallik şartını görmüştük [2, 05:30],</p>
@@ -300,6 +300,22 @@ problemler sınırsız-sınırlı halde birbirine eşit şekilde tanımlanabilir
 ama sınırlı tanımları çözmek daha kolay. KKT koşulları burada devreye
 girecek.  Yani her şeyi kritere tıkmak, gösterge vs ile uğraşmak,
 altgradyan almak yerine bu tür tanımla çalışmak daha rahat oluyor [2, 12:00].</p>
+<p>Altgradyan optimalliğinin bazı diğer örneklerini görelim. Mesela Lasso
+için altgradyan optimalliği. Bazılarının bilebileceği üzere Lasso
+problemini parametrize etmenin iki yolu vardır, birisi katsayılar üzerinde
+bir L1 norm kısıtlaması tanımlamak, diğeri ise alttaki gibi onu kritere
+dahil etmek, </p>
+<p>$$
+\min_\beta \frac{1}{2} || y - X \beta ||_2^2 + \lambda ||\beta||_1
+$$</p>
+<p>ki $\lambda \ge 0$. Altgradyan optimalliğinde sadece ve sadece alttaki şart
+geçerliyse elimizde bir çözüm var diyebiliyoruz, bu şart, </p>
+<p>$$
+0 \in \big( 
+\frac{1}{2} || y - X \beta ||_2^2 + \lambda ||\beta||_1
+\big)
+$$</p>
+<p>yani eğer 0 kriterimin altgradyan kümesinde ise. </p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
