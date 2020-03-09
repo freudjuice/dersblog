@@ -377,7 +377,7 @@ optimallik şartı,</p>
 <p>$$
 \left\{ \begin{array}{ll}
 X_i^T (y-X\beta) = \lambda \cdot \mathrm{sign}(\beta_i) &amp; \textrm{eger } \beta_i \ne 0 \\
-| X_i^T (y-X\beta)  | \le \lambda  &amp; \textrm{eger } \beta_i \ne 0 
+| X_i^T (y-X\beta)  | \le \lambda  &amp; \textrm{eger } \beta_i = 0 
 \end{array} \right.
 $$</p>
 <p>haline geldi. İkinci satırı nasıl elde ettik? Eğer $\beta_i=0$ ise bu bana
@@ -386,10 +386,19 @@ olabilir diyor (çünkü $v_i$ parçalı fonksiyonunda $\beta_i=0$ ise $v_i$ -1
 ve +1 arası herhangi bir değer dedik), ve $-\lambda$ ve $+\lambda$ arası
 olma durumunu son satırdaki mutlak değer ifadesine tercüme edebiliriz.</p>
 <p>Dikkat, üstteki ifade optimalliğe bakma / kontrol etmek için bir
-yöntem. Birisi size bir vektör veriyor, sonra soruyor "bu vektör Lasso
-kriterine göre optimal midir?" Öyle olup olmadığına bakmak için vektörün
-her ögesine bakıyoruz, ve üstteki kontrolü işletiyoruz. Eğer her öge
-optimal ise evet diyoruz, tek bir öğe bile optimal değilse hayır diyoruz. </p>
+yöntem. Birisi size bir vektör veriyor [2, 16:57], sonra soruyor "bu
+vektör Lasso kriterine göre optimal midir?" Öyle olup olmadığına bakmak
+için vektörün her ögesine bakıyoruz, ve üstteki kontrolü işletiyoruz. Eğer
+her öge optimal ise evet diyoruz, tek bir öğe bile optimal değilse hayır
+diyoruz.</p>
+<p>Üstteki parçalı formüldeki ikinci bölümü ilginç bir şekilde
+kullanabiliriz. Diyelim ki 100 değişkenlik modeli LASSO ile veriye
+uydurduk, ve $\beta$ katsayıları elde ettik, bir regresyon yaptık
+yani. Diyelim ki çözümden sonra birisi geliyor size 101. kolon veriyor,
+acaba tüm uydurma işlemini baştan tekrar mı yapmak lazım? Belki hayır, 
+$| X_{101}^T (y-X\beta)  | \le \lambda$ kontrolünü yaparız, eğer koşul
+doğru ise o zaman $\beta_{100} = 0$ demektir, ve bu katsayıya gerek
+yoktur, modelin geri kalanı değişmeden kalır [2, 20:42]. </p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>

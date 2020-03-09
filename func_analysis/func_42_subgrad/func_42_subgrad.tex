@@ -466,7 +466,7 @@ optimallik þartý,
 $$
 \left\{ \begin{array}{ll}
 X_i^T (y-X\beta) = \lambda \cdot \sign(\beta_i) & \textrm{eger } \beta_i \ne 0 \\
-| X_i^T (y-X\beta)  | \le \lambda  & \textrm{eger } \beta_i \ne 0 
+| X_i^T (y-X\beta)  | \le \lambda  & \textrm{eger } \beta_i = 0 
 \end{array} \right.
 $$
 
@@ -477,10 +477,20 @@ ve +1 arasý herhangi bir deðer dedik), ve $-\lambda$ ve $+\lambda$ arasý
 olma durumunu son satýrdaki mutlak deðer ifadesine tercüme edebiliriz.
 
 Dikkat, üstteki ifade optimalliðe bakma / kontrol etmek için bir
-yöntem. Birisi size bir vektör veriyor, sonra soruyor ``bu vektör Lasso
-kriterine göre optimal midir?'' Öyle olup olmadýðýna bakmak için vektörün
-her ögesine bakýyoruz, ve üstteki kontrolü iþletiyoruz. Eðer her öge
-optimal ise evet diyoruz, tek bir öðe bile optimal deðilse hayýr diyoruz. 
+yöntem. Birisi size bir vektör veriyor [2, 16:57], sonra soruyor ``bu
+vektör Lasso kriterine göre optimal midir?'' Öyle olup olmadýðýna bakmak
+için vektörün her ögesine bakýyoruz, ve üstteki kontrolü iþletiyoruz. Eðer
+her öge optimal ise evet diyoruz, tek bir öðe bile optimal deðilse hayýr
+diyoruz.
+
+Üstteki parçalý formüldeki ikinci bölümü ilginç bir þekilde
+kullanabiliriz. Diyelim ki 100 deðiþkenlik modeli LASSO ile veriye
+uydurduk, ve $\beta$ katsayýlarý elde ettik, bir regresyon yaptýk
+yani. Diyelim ki çözümden sonra birisi geliyor size 101. kolon veriyor,
+acaba tüm uydurma iþlemini baþtan tekrar mý yapmak lazým? Belki hayýr, 
+$| X_{101}^T (y-X\beta)  | \le \lambda$ kontrolünü yaparýz, eðer koþul
+doðru ise o zaman $\beta_{100} = 0$ demektir, ve bu katsayýya gerek
+yoktur, modelin geri kalaný deðiþmeden kalýr [2, 20:42]. 
 
 
 
