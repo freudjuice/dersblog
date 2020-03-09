@@ -392,13 +392,54 @@ için vektörün her ögesine bakıyoruz, ve üstteki kontrolü işletiyoruz. E�
 her öge optimal ise evet diyoruz, tek bir öğe bile optimal değilse hayır
 diyoruz.</p>
 <p>Üstteki parçalı formüldeki ikinci bölümü ilginç bir şekilde
-kullanabiliriz. Diyelim ki 100 değişkenlik modeli LASSO ile veriye
+kullanabiliriz. Diyelim ki 100 değişkenlik modeli Lasso ile veriye
 uydurduk, ve $\beta$ katsayıları elde ettik, bir regresyon yaptık
 yani. Diyelim ki çözümden sonra birisi geliyor size 101. kolon veriyor,
 acaba tüm uydurma işlemini baştan tekrar mı yapmak lazım? Belki hayır, 
 $| X_{101}^T (y-X\beta)  | \le \lambda$ kontrolünü yaparız, eğer koşul
 doğru ise o zaman $\beta_{100} = 0$ demektir, ve bu katsayıya gerek
 yoktur, modelin geri kalanı değişmeden kalır [2, 20:42]. </p>
+<p>Bir diğer ilginç uygulama Lasso'nun basitleştirilmiş hali; $X = I$ yani
+birim matrisi olduğu durum. Bu yaklaşımla bazılarının gürültü silme
+(denoising) dediği işlemi yapabilmiş oluyoruz. $X=I$ deyince Lasso'da geri
+kalan, </p>
+<p>$$
+\min_\beta \frac{1}{2} || y - \beta ||_2^2 + \lambda ||\beta||_1
+$$</p>
+<p>Bu problem ifadesi diyor ki "öyle bir $\beta$ vektörü bul ki $y$'ye
+olabildiği kadar yakın olsun ve $\beta$ üzerinde bir L1 cezası
+olsun". Yana bana içinde bir sürü gözlem noktası taşıyan bir $y$ veriliyor
+ve ben bu gözlemleri en iyi şekilde yaklaşıklayan $\beta$'yi arıyorum ve bu
+$\beta$'nin seyrek olmasını [2, 24:23] tercih ediyorum (L1 cezası ile bu
+oluyor, büyük değerler cezalandırılınca çözü katsayının sıfıra yakın
+olmasını özendirmiş oluruz). Artık biliyoruz ki üstteki problemi altgradyan
+optimalliği ile çözmek mümkün.</p>
+<p>Daha önce gördüğümüz Lasso altgradyan optimalliğini $X=I$  için tekrar
+yazarsak</p>
+<p>$$
+\left\{ \begin{array}{ll}
+(y-\beta_i) = \lambda \cdot \mathrm{sign}(\beta_i) &amp; \textrm{eger } \beta_i \ne 0 \\
+| |y-\beta_i|  | \le \lambda  &amp; \textrm{eger } \beta_i = 0 
+\end{array} \right.
+$$</p>
+<p>Çözüm $\beta = S_\lambda(y)$, ki $S_\lambda(y)$'ye yumuşak eşikleme
+operatörü deniyor. Üstteki optimalliğe uyan bir çözüm, hatta tek çözüm,
+budur.</p>
+<p>$$
+[ S_\lambda(y) ]_i = 
+\left\{ \begin{array}{ll}
+y_i - \lambda &amp; \textrm{eğer } y_i &gt; \lambda_i \\
+0 &amp; \textrm{eğer } -\lambda \ge y_i \ge \lambda, \quad i=1,..,n \\
+y_i + \lambda &amp; \textrm{eğer } y_i &lt; -\lambda_i 
+\end{array} \right.
+$$</p>
+<p>Çözümün optimallik şartlarına uyup uymadığı rahatça kontrol
+edilebilir. Formülde $\beta=S_\lambda(y)$ diyerek alttakilerin doğru olup
+olmadığına bakarız, </p>
+<p>Eğer $y_i &gt; \lambda, \beta_i = y_i - \lambda &gt; 0$ ise $y_i-\beta_i =
+\lambda = \lambda \cdot 1$ mı?</p>
+<p>Eğer $y_i &lt; -\lambda$ ise benzer şekilde</p>
+<p>Eğer $|y_i| \ge \lambda, \beta_i=0$ ise $|y_i-\beta_i| = |y_i| \ge \lambda$ mi?</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
