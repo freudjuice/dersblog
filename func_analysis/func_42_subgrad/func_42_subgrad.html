@@ -492,12 +492,41 @@ toplanabilir değil", yani şu iki şart,</p>
 <p>$$
 \sum  _{k=1}^{\infty} t_k^2 &lt; \infty, \quad \sum  _{k=1}^{\infty} t_k - \infty
 $$</p>
-<p>Simdi iki teoriyi tanimlayabiliriz,</p>
+<p>Şimdi iki teoriyi tanımlayabiliriz,</p>
 <p>Teori 1</p>
 <p>Sabitlenmiş $t$ için altgradyan metotu alttaki şartı tanımlar, </p>
 <p>$$
 \lim_{k \to \infty} f(x_{best}^{(k)} ) \le f^* + G^2 t / 2
 $$</p>
+<p>Üstteki ifade diyor ki eğer altgradyan metotunu sonsuza kadar işletirsek
+eldeki en iyi noktadan elde edilecek fonksiyon değeri gerçek optimum artı
+Lipschitz sabitinin karesi çarpı $t/2$'dan küçük olacaktır, ki $t$
+sabitlenmiş adım büyüklüğü. Ama üstteki yine de çözüm için bir limit
+vermiyor. Onun için alttaki lazım,</p>
+<p>Teori 2</p>
+<p>Yokolan adım büyüklükleri için</p>
+<p>$$
+\lim_{k \to \infty} f(x_{best}^{(k)} ) = f^*
+$$</p>
+<p>[ek detaylar atlandi]</p>
+<p>Altgradyan metotuna bir örnek olarak [2, 1:01:36] regülarize edilmiş
+lojistik regresyona bakabiliriz. $\beta$ katsayılarını bulmaya uğraşıyoruz,
+ve veriye uydurma bağlamında bir kayıp fonksiyonunu minimize etmeye
+uğracağız. Önce normal regresyon,</p>
+<p>$$
+f(\beta) = \sum _{i=1}^{n} \left(-y_ix_i^T\beta + \log( 1 + \exp (x_i^T\beta) \right) 
+$$</p>
+<p>Üstteki pürüzsüz ve dışbükey bir fonksiyon. </p>
+<p>$$
+\nabla f(\beta) = \sum _{i=1}^{n} (y_i - p_i(\beta)) x_i
+$$</p>
+<p>ki $p_i(x) = \exp(x_i^T\beta) / (1+ \exp(x_i^T\beta))$, $i=1,..,n$. </p>
+<p>Regülarize edilmiş lojistik regresyon</p>
+<p>$$
+\min_\beta f(\beta) + \lambda \cdot P(\beta)
+$$</p>
+<p>ki $P(\beta) = ||\beta||_2^2$ olabilir (Ridge cezası) ya da $P(\beta) =
+||\beta|_1|$ (Lasso cezası).</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
