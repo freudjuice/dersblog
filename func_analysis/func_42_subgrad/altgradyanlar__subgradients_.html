@@ -455,7 +455,7 @@ zorunluluğu yok.</p>
 x^{(k)} = x^{(k-1)} - t_k \cdot g^{(k-1)}, \quad k=1,2,3,..
 $$</p>
 <p>adım atarak ilerliyoruz, öyle ki $g^{(k-1)} \in \partial f(x^{(k-1)})$
-yani $f$'nin $x^{(k-1)}$ noktasındaki herhangi bir altgradyani. Adım ata
+yani $f$'nin $x^{(k-1)}$ noktasındaki herhangi bir altgradyanı. Adım ata
 ata gidiyorum, her adımda mevcut altgradyanlara bakıyorum, herhangi birini
 seçiyorum, ona $g^{(k-1)}$ diyelim, ve $x$'i bu yönde olacak şekilde bir
 $t_k$'ye oranlı olarak güncelliyorum [2, 49:50]. </p>
@@ -508,7 +508,7 @@ vermiyor. Onun için alttaki lazım,</p>
 <p>$$
 \lim_{k \to \infty} f(x_{best}^{(k)} ) = f^*
 $$</p>
-<p>[ek detaylar atlandi]</p>
+<p>[ek detaylar atlandı]</p>
 <p>Altgradyan metotuna bir örnek olarak [2, 1:01:36] regülarize edilmiş
 lojistik regresyona bakabiliriz. $\beta$ katsayılarını bulmaya uğraşıyoruz,
 ve veriye uydurma bağlamında bir kayıp fonksiyonunu minimize etmeye
@@ -525,10 +525,63 @@ $$</p>
 <p>$$
 \min_\beta f(\beta) + \lambda \cdot P(\beta)
 $$</p>
-<p>ki $P(\beta) = ||\beta||_2^2$ olabilir (Ridge cezası) ya da $P(\beta) =
-||\beta|_1|$ (Lasso cezası).</p>
+<p>ki $P(\beta) = ||\beta||_2^2$ olabilir (Ridge cezası) ya da
+$P(\beta) = ||\beta|_1|$ (Lasso cezası). Bu cezalardan ilki pürüzsüz,
+diğeri değil. Böylece birinde gradyan inişi diğerinde altgradyan metotu
+kullanmak zorunda olacağız.</p>
+<p>Ekler</p>
+<p>Alttaki ornek [3]'ten,</p>
+<p>$$
+\min_w F(w) = \frac{1}{2} \sum _{i=1}^{N} (x_i^T w - y_i)^2 + \lambda ||w||_1
+$$</p>
+<p>gibi bir Lasso ornegi var. </p>
+<pre><code class="python">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+def subgrad(w):
+    return X.T*(X*w-y) + lamda*np.sign(w)
+
+def obj(w):
+    r = X*w-y;
+    return np.sum(np.multiply(r,r))/2 + lamda * np.sum(np.abs(w))
+
+N = 40
+dim = 10
+max_iter = 100
+lamda = 1/np.sqrt(N);
+np.random.seed(50)
+w = np.matrix(np.random.multivariate_normal([0.0]*dim, np.eye(dim))).T
+X = np.matrix(np.random.multivariate_normal([0.0]*dim, np.eye(dim), size = N))
+y = X*w
+
+w = np.matrix([0.0]*dim).T
+obj_SD = []
+gamma = 0.01
+for t in range(0, max_iter):
+    obj_val = obj(w)
+    w = w - gamma * subgrad(w)/np.sqrt(t+1)
+    obj_SD.append(obj_val.item())
+
+print (w)        
+</code></pre>
+
+<pre><code>[[-1.50683072]
+ [-0.03159227]
+ [-0.60208853]
+ [-1.39146151]
+ [ 1.28375374]
+ [-0.4670357 ]
+ [-0.80951798]
+ [ 1.01964403]
+ [-1.25206724]
+ [-1.33062765]]
+</code></pre>
+
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
 <p>[2] Tibshirani, <em>Convex Optimization, Lecture Video 7</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
+<p>[3] He, <em>IE 598 - BIG DATA OPTIMIZATION</em>,<br />
+    <a href="http://niaohe.ise.illinois.edu/IE598_2016/">http://niaohe.ise.illinois.edu/IE598_2016/</a></p>
