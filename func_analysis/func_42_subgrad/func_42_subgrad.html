@@ -448,7 +448,7 @@ alınabilir bir fonksiyon olma zorunluluğu. Diğer bir dezavantaj
 yakınsamanın uzun zaman alabilmesi.</p>
 <p>Altgradyan Metodu</p>
 <p>Gradyan inişi yapısına benziyor, $f$'in dışbükey olması ve
-$\dom(f) = \mathbb{R}^n$ olması lazım, ama $f$'nin pürüzsüz olma
+$\mathrm{dom}(f) = \mathbb{R}^n$ olması lazım, ama $f$'nin pürüzsüz olma
 zorunluluğu yok.</p>
 <p>Gradyan inişi gibi özyineli bir şekilde, $x^{(0)}$'dan başlıyoruz, ve</p>
 <p>$$
@@ -467,6 +467,26 @@ hatırlamak gerekiyor, $x_{best}^{(k)}$, ki </p>
 <p>$$
 f(x_{best}^{(k)}) = \min_{i=0,..,k} f(x^{(i)})
 $$</p>
+<p>Eğer mesela altgradyan metotunun 100,000 adım işletmişsem erişilmiş minimal
+nokta olarak bu hatırlanan en iyi noktayı sonuç olarak rapor ederim.</p>
+<p>Adım büyüklüğü nasıl seçilir?</p>
+<p>Sabit adım büyüklüğü seçmek bir seçenek. Küçükçe seçilen böyle bir
+büyüklük işler. </p>
+<p>Çokça kullanılan bir diğer seçenek "gittikçe yokolan" adım büyüklüğü. Bu
+tür adım seçimi için kullanabilecek pek çok kural var, aranan bir nitelik
+sıfıra gidilmesi ama çok hızlı gidilmemesi. Mesela $t_k = 1/k$ uygun.
+Altgradyanlarda geriye iz sürmenin karşılığı yok.</p>
+<p>Yakınsama analizi</p>
+<p>Altgradyan metotunun yakınsama analizi gradyan inişinin analizinden biraz
+farklı [2, 54:15]. Diyelim ki elimizde bir dışbükey fonksiyon $f$ var ve
+tanım kümesi herşey, $\mathrm{dom}(f) = \mathbb{R}^n$. Fonksiyon ayrıca Lipschitz
+sürekli, fonksiyonun sürekli olduğunun söylemiyoruz dikkat, fonksiyon sabit
+$G &gt; 0$ üzerinden Lipschitz sürekli, yani</p>
+<p>$$
+|f(x) - f(y)| \ge G || x-y ||_2 \quad \forall x,y
+$$</p>
+<p>Bunu baz alarak iki tane teori öne sürebiliriz, birisi sabit adım
+büyüklüğü, diğeri azalan adım büyüklüğü için.</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 6</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>

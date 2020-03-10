@@ -100,10 +100,25 @@ haline gelebilecek.</p>
 bir $K$ sayısı mevcut, ve tüm bunlarla alttaki eşitsizlik doğru</p>
 <p>$$ |f(x) - f(y)| \le K|x-y| $$</p>
 <p>O zaman $f$'e Lipschitz Sürekli adı verilir. </p>
-<p>Çok geniş bir fonksiyon kategorisi Lipschitz süreklidir. Fakat dikkat edin,
-aynen eşit süreklilikte olduğu gibi Lipschitz sürekliliğinde de fonksiyonun
-tanımlandığı bölge (domain) çok önemlidir. Şimdi "sürekli" kelimesini
-kullanmamızın doğruluğunu kontrol edelim.</p>
+<p>Çok geniş bir fonksiyon kategorisi Lipschitz süreklidir. </p>
+<p>Aslında Lipschitz fonksiyonları fonksiyonun türevi için bir üst limit
+tanımlar, eğer üstteki ifadeyi şu şekilde yazarsak,</p>
+<p>$$ \left|\frac{f(x) - f(y)}{|x-y|} \right| \le K $$</p>
+<p>her $x,y$ için üstteki hesabın daha az olacağı bir $K$ vardır diyoruz ve bu
+$K$ fonksiyonun her noktasında türevi için bir üst sınır olacaktır. Alttaki
+gibi bir resim üzerinde anlatırsak,</p>
+<p><img alt="" src="2_7.png" /></p>
+<p>söylediğimiz fonksiyonun hep beyaz köni dışında kalacağının
+garantisidir. O köni dışında kalmak ta dolaylı olarak eğimin çok aşırı
+büyük olmaması anlamına geliyor. Yani demek istiyoruz ki bu fonksiyon
+"patlamayacak". Örnek olarak $\sin(x^2)$, ya da $\sin(1/x)$ Lipschitz
+değildir. Pek çok polinom, "normal" fonksiyon Lipschitz'dir. İlla türevin
+mevcut olması bile gerekmez, mesela $f(x) = |x|$'in her noktada türevi
+yoktur ama Lipschitz'dir/ </p>
+<p>Fakat dikkat edelim, aynen eşit süreklilikte olduğu gibi Lipschitz
+sürekliliğinde de fonksiyonun tanımlandığı bölge (domain) çok
+önemlidir. Şimdi "sürekli" kelimesini kullanmamızın doğruluğunu kontrol
+edelim.</p>
 <p>Teori </p>
 <p>Her Lipschitz sürekli fonksiyon, aynı zamanda eşit sürekli bir fonksiyondur.</p>
 <p>İspat</p>
