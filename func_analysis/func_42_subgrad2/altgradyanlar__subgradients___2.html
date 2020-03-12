@@ -56,7 +56,23 @@ bırakıyorum, 1-norm en zoru. </p>
 <p>Bir uyarıda bulunalım, tanımı basit duran kümeler ortaya çıkartmak
 kolaydır, fakat bu kümelere yansıtma yapan operatörler çok zor
 olabilir. Mesela gelişigüzel bir çokyüzlü $C = { x: Ax \le b }$ kümesine
-yansıtma yapmak zordur.</p>
+yansıtma yapmak zordur. Bu problemin kendisi apayrı bir optimizasyon
+problemi aslında, bir QP. </p>
+<p>[stochastic subgradient method atlandı]</p>
+<p>Altgradyanların iyi tarafı genel uygulanabilirlik. Altgradyan metotları
+dışbükey, Lipschitz fonksiyonları üzerinde bir anlamda optimaldir. Ünlü
+bilimci Neşterov'un bu bağlamda bir teorisi vardır [1, 45:12], pürüzsüz
+durumlarda ve 1. derece yöntemlerde altgradyanların lineer kombinasyonları
+üzerinden güncellemenin sonucu olan adımların başarısına bir alt sınır
+tanımlar. </p>
+<p>Proksimal / Yakınsal Gradyan Metotu (Proximal Gradient Method) </p>
+<p>Bu metot, herhangi bir pürüzsüz olmayan fonksiyonu optimize etmeye uğraşmak
+yerine belli bir yapıya uyan çetrefil fonksiyonları optimize etmeye
+uğraşır. Bu yapı</p>
+<p>$$
+f(x) = g(x) + h(x)
+$$</p>
+<p>formundadir. </p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 8</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
