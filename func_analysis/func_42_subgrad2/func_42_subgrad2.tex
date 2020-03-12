@@ -71,7 +71,7 @@ $$
 
 formundadýr [1, 45:59]. $g,h$'in ikisi de dýþbükey. $g$'nin pürüzsüz,
 türevi alýnabilir olduðu farz edilir (çoðunlukla oldukca çetrefil olabilir)
-ve $\dom(g) = \mathbb{}^n$, $h$ ise pürüzsüz olmayabilir. Tabii pürüzsüz
+ve $\dom(g) = \mathbb{R}^n$, $h$ ise pürüzsüz olmayabilir. Tabii pürüzsüz
 artý pürüzsüz olmayan iki fonksýsyon toplamý kriterin tamamýný pürüzsüz
 olmayan hale çevirir. Ama bu toplam daha basittir denebilir, onun üzerinde
 proksimal operatörü uygulanabilir.
@@ -143,7 +143,7 @@ for t in range(0, max_iter):
     w= soft_threshod(w,lamda/L)
     
     obj_PG.append(obj_val.item())
-    if (t%5==0):
+    if (t % 5==0):
         print('iter= {},\tobjective= {:3f}'.format(t, obj_val.item()))
 \end{minted}
 
@@ -181,15 +181,4 @@ Kaynaklar
 
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
 

@@ -74,7 +74,7 @@ f(x) = g(x) + h(x) \qquad (1)
 $$</p>
 <p>formundadır [1, 45:59]. $g,h$'in ikisi de dışbükey. $g$'nin pürüzsüz,
 türevi alınabilir olduğu farz edilir (çoğunlukla oldukca çetrefil olabilir)
-ve $\mathrm{dom}(g) = \mathbb{}^n$, $h$ ise pürüzsüz olmayabilir. Tabii pürüzsüz
+ve $\mathrm{dom}(g) = \mathbb{R}^n$, $h$ ise pürüzsüz olmayabilir. Tabii pürüzsüz
 artı pürüzsüz olmayan iki fonksısyon toplamı kriterin tamamını pürüzsüz
 olmayan hale çevirir. Ama bu toplam daha basittir denebilir, onun üzerinde
 proksimal operatörü uygulanabilir.</p>
@@ -130,7 +130,7 @@ for t in range(0, max_iter):
     w= soft_threshod(w,lamda/L)
 
     obj_PG.append(obj_val.item())
-    if (t%5==0):
+    if (t % 5==0):
         print('iter= {},\tobjective= {:3f}'.format(t, obj_val.item()))
 </code></pre>
 
