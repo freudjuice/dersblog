@@ -26,6 +26,22 @@
 <p>Bir dışbükey kümesi üzerinden tanımlı ama pürüzsüz olmayabilecek bir
 dışbükey fonksiyonu minimize etmek için yansıtılan altgradyan (projected
 subgradient) metotu adlı bir metot ta kullanılabilir [1, 22:04].  </p>
+<p>Dişbukey $f$'yi dışbükey küme $C$ üzerinden optimize etmek için </p>
+<p>$$
+\min_x f(x) \quad \textrm{oyle ki}, x \in C
+$$</p>
+<p>$$
+x^{(k)} = P_C \left( x^{(k-1)} - t_k g_k^{(k-1)} \right)
+$$</p>
+<p>Bu metot normal altgradyan metotu gibi, tek fark parantez içinde görülen
+altgradyan adımı atıldıktan sonra elde edilen sonucun $C$ kümesine geri
+yansıtılması (projection), çünkü atılan adım sonucunda olurlu bir sonuç
+elde etmemiş olabiliriz. </p>
+<p>Yakınsama analizi normal altgraydan metotuna benziyor, bu metotla da benzer
+yakınsama garantisi elde edilebiliyor, yakınsama oranı da buna dahil.</p>
+<p>Yansıtma adımı bazen zor olabilir, hangi durumlarda kolay olduğunun listesi
+aşağıda [1, 23:53]. Hangi kümelere yansıtmak kolaydır?</p>
+<p>1) Dogrusal goruntuler: ${  Ax + b: x \in \mathbb{R}^n  }$</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 8</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
