@@ -66,10 +66,42 @@ yerine belli bir yapýya uyan çetrefil fonksiyonlarý optimize etmeye
 uðraþýr. Bu yapý
 
 $$
-f(x) = g(x) + h(x)
+f(x) = g(x) + h(x) \mlabel{1}
 $$
 
-formundadýr [1, 45:59]. 
+formundadýr [1, 45:59]. $g,h$'in ikisi de dýþbükey. $g$'nin pürüzsüz,
+türevi alýnabilir olduðu farz edilir (çoðunlukla oldukca çetrefil olabilir)
+ve $\dom(g) = \mathbb{}^n$, $h$ ise pürüzsüz olmayabilir. Tabii pürüzsüz
+artý pürüzsüz olmayan iki fonksýsyon toplamý kriterin tamamýný pürüzsüz
+olmayan hale çevirir. Ama bu toplam daha basittir denebilir, onun üzerinde
+proksimal operatörü uygulanabilir.
+
+Hatýrlarsak eðer $f$ türevi alýnabilir olsaydý gradyan iniþ güncellemesi 
+
+$$
+x^{+} = x - t \cdot \nabla f(x)
+$$
+
+Bu formüle eriþmenin bir yöntemi karesel yaklaþýklama üzerinden idi,
+$f$'nin $x$ etrafýndaki yaklaþýklamasýnda $\nabla^2f(x)$ yerine
+$\frac{1}{t} I$ koyunca,
+
+$$
+x^{+} = \arg \min_x f(x) + 
+\underbrace{\nabla f(x)^T (z-x) + \frac{1}{2t} ||z-x||_2^2 }_{f_t(z)}
+$$
+
+elde ediliyordu. Yani gradyan iniþi sanki ardý ardýna geldiði her noktada
+bir karesel yaklaþýklama yapýyor, ve onu adým atarak minimize etmeye
+uðraþýyor.
+
+Ama (1)'deki $f$ pürüzsüz deðil, o sebeple üstteki mantýk ise
+yaramayacak. Fakat, belki de karesel yaklaþýklamanýn bir kýsmýný hala
+kullanabiliriz, ve minimizasyonu sadece $g$'ye uygularýz çünkü pürüzsüz
+olan kýsým o. Yani niye $g$'nin yerine karesel yaklaþýklama koymayalým?
+Þimdi bunu yapacaðýz. 
+
+
 
 
 

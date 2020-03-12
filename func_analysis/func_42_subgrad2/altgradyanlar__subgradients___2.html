@@ -70,9 +70,33 @@ tanımlar. </p>
 yerine belli bir yapıya uyan çetrefil fonksiyonları optimize etmeye
 uğraşır. Bu yapı</p>
 <p>$$
-f(x) = g(x) + h(x)
+f(x) = g(x) + h(x) \qquad (1)
 $$</p>
-<p>formundadır [1, 45:59]. </p>
+<p>formundadır [1, 45:59]. $g,h$'in ikisi de dışbükey. $g$'nin pürüzsüz,
+türevi alınabilir olduğu farz edilir (çoğunlukla oldukca çetrefil olabilir)
+ve $\mathrm{dom}(g) = \mathbb{}^n$, $h$ ise pürüzsüz olmayabilir. Tabii pürüzsüz
+artı pürüzsüz olmayan iki fonksısyon toplamı kriterin tamamını pürüzsüz
+olmayan hale çevirir. Ama bu toplam daha basittir denebilir, onun üzerinde
+proksimal operatörü uygulanabilir.</p>
+<p>Hatırlarsak eğer $f$ türevi alınabilir olsaydı gradyan iniş güncellemesi </p>
+<p>$$
+x^{+} = x - t \cdot \nabla f(x)
+$$</p>
+<p>Bu formüle erişmenin bir yöntemi karesel yaklaşıklama üzerinden idi,
+$f$'nin $x$ etrafındaki yaklaşıklamasında $\nabla^2f(x)$ yerine
+$\frac{1}{t} I$ koyunca,</p>
+<p>$$
+x^{+} = \arg \min_x f(x) + 
+\underbrace{\nabla f(x)^T (z-x) + \frac{1}{2t} ||z-x||_2^2 }_{f_t(z)}
+$$</p>
+<p>elde ediliyordu. Yani gradyan inişi sanki ardı ardına geldiği her noktada
+bir karesel yaklaşıklama yapıyor, ve onu adım atarak minimize etmeye
+uğraşıyor.</p>
+<p>Ama (1)'deki $f$ pürüzsüz değil, o sebeple üstteki mantık ise
+yaramayacak. Fakat, belki de karesel yaklaşıklamanın bir kısmını hala
+kullanabiliriz, ve minimizasyonu sadece $g$'ye uygularız çünkü pürüzsüz
+olan kısım o. Yani niye $g$'nin yerine karesel yaklaşıklama koymayalım?
+Şimdi bunu yapacağız. </p>
 <p>Proksimal [2]</p>
 <pre><code class="python">N = 100
 dim = 30
