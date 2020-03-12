@@ -86,8 +86,10 @@ $$</p>
 $f$'nin $x$ etrafındaki yaklaşıklamasında $\nabla^2f(x)$ yerine
 $\frac{1}{t} I$ koyunca,</p>
 <p>$$
-x^{+} = \arg \min_x f(x) + 
-\underbrace{\nabla f(x)^T (z-x) + \frac{1}{2t} ||z-x||_2^2 }_{f_t(z)}
+x^{+} = \arg\min_x f(x) + 
+\underbrace{
+  \nabla f(x)^T (z-x) + \frac{1}{2t} ||z-x||_2^2 
+}_{f_t(z)}
 $$</p>
 <p>elde ediliyordu. Yani gradyan inişi sanki ardı ardına geldiği her noktada
 bir karesel yaklaşıklama yapıyor, ve onu adım atarak minimize etmeye
