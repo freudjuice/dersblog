@@ -139,7 +139,23 @@ minimizasyon. Peki bu minimizasyon problemi dışbükey mi? Evet. Peki bu
 problemin özgün bir sonucu var mıdır? Vardır çünkü üstteki problem harfiyen
 dışbükey. Değil mi? Eğer $h$ harfiyen dışbükey olmasa bile ifadenin tümü
 harfiyen dışbükey olurdu çünkü $\frac{1}{2t} ||x-z||_2^2 $ harfiyen
-dışbükey, $z-x$'in karesi var [ayrıca $x$ değişkeni $h$'ye geçilmiyor]. </p>
+dışbükey [1, 55:09], $z-x$'in karesi var [ayrıca $x$ değişkeni $h$'ye
+geçilmiyor].</p>
+<p>Yani harfiyen dışbükey, o zaman özgün sonuç var. Biz de bu özgün sonucu
+alarak bir iniş algoritması yazıyoruz [1, 56:28], </p>
+<p>$$
+x^{(k)} = \mathrm{prox}_{t_k} \big( 
+x^{(k-1)} - t_k \nabla g(x^{(k-1)})
+\big), \quad k=1,2,...
+$$</p>
+<p>Güncelleme adımını tanıdık şekilde yazmak için </p>
+<p>$$
+x^{(k)} = x^{(k-1)} - t_k \cdot G_{t_k} (x^{(k-1)})
+$$</p>
+<p>ki $G_t$'ye $f$'nin genelleştirilmiş gradyanı denebilir,</p>
+<p>$$
+G_t(x) = \frac{x - \mathrm{prox}_{t}(x - t \nabla g(x))}{t}
+$$</p>
 <p>[devam edecek]</p>
 <p>Proksimal [2]</p>
 <pre><code class="python">N = 100
