@@ -198,6 +198,33 @@ olmamız lazım. $h$'nin $\mathrm{prox}$ operatörü,</p>
 <p>$$
 \mathrm{prox}_t(\beta) = \arg\min_z \frac{1}{2t} ||\beta-z||_2^2 + \lambda ||z||_1
 $$</p>
+<p>Her şeyi $t$ ile çarparsam,</p>
+<p>$$
+\mathrm{prox}_t(\beta) = \arg\min_z \frac{1}{2} ||\beta-z||_2^2 + \lambda t ||z||_1
+$$</p>
+<p>Üstteki minimizasyonun çözümünü daha önce altgradyanlar üzerinden
+görmüştük, </p>
+<p>$$
+= S_{\lambda t}(\beta)
+$$</p>
+<p>Yine yumuşak eşikleme operatörüne gelmiş olduk, </p>
+<p>$$
+[ S_{\lambda} (\beta) ]_i = 
+\left\{ \begin{array}{ll}
+\beta_i - \lambda &amp; \textrm{eğer } \beta_i &gt; \lambda_i \\
+0 &amp; \textrm{eğer } -\lambda \ge \beta_i \ge \lambda, \quad i=1,..,n \\
+\beta_i + \lambda &amp; \textrm{eğer } \beta_i &lt; -\lambda_i 
+\end{array} \right.
+$$</p>
+<p>Tüm algoritma neye benziyor? Önce $g$'ye göre bir graydan güncellemesi
+yaparım, gradyan</p>
+<p>$$
+\nabla g(\beta) = -X^T (y-X\beta)
+$$</p>
+<p>Güncelleme</p>
+<p>$$
+\beta^+ = S_{\lambda t}(\beta + t X^T (y-X\beta))
+$$</p>
 <p>[devam edecek]</p>
 <p>Proksimal [2]</p>
 <pre><code class="python">N = 100
