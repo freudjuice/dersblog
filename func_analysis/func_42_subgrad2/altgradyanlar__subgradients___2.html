@@ -128,6 +128,7 @@ algoritmaları daha temiz olarak yazmamıza yardımcı olacak. </p>
 <p>Bir $h$ fonksiyonu için bir $\mathrm{prox}$ operatörü tanımlıyoruz, </p>
 <p>$$
 \mathrm{prox}_{t} (x) = \arg\min_z \frac{1}{2t} ||x-z||_2^2 + h(z)
+\qquad (3)
 $$</p>
 <p>Üstteki $x$'in bir fonksiyonu olarak $\arg\min$'de gösterilen kriteri
 minimize eden $z$'yi buluyor. Operatör $t$'ye bağlı, dışarıdan verilen
@@ -164,10 +165,19 @@ alakalı ispatlarda kullanılabilir.</p>
 <p>Şimdiye kadar anlattıklarımıza bakanlara bu komik bir hikaye gibi
 gelebilir. Bir $g + h$ toplamını minimize etmek istiyordum, bunu yapabilmek
 için (2) formunda adımlar atacağım, bir $\mathrm{prox}$ operatörüm var, ama bu
-operatör bir sonuç donduruyor aslında, ve bu sonuç bir başka
+operatör bir sonuç döndürüyor aslında, ve bu sonuç bir başka
 minimizasyondan geliyor. Yani $g + h$ türü bir toplam minimizasyonu yerine
 her adımda, bir sürü minimizasyonları koymuş oldum. Bu nasıl daha iyi bir
 sonuç verecek ki?</p>
+<p>Şunu belirtmek lazım, sadece eğer proksimal gradyanları analitik, ya da
+hızlı bir şekilde hesaplayabiliyorsak onları çözüm için düşünürüz. Yani her
+ne kadar her adımda (3) turu optimizasiyonlar yapıyorsak ta, bunu pürüzsüz
+olan kısım $h$ yeterince basit olduğu zaman yapıyoruz ki tüm (3) için
+analitik  ya da hızlı hesapsal çözüm olsun [1, 58:54]. </p>
+<p>Diğer noktalar, dikkat edersek proksimal operatör $g$'ye bağlı değil,
+tamamen $h$ bazlı. Eğer $h$ basit ise ama $g$ müthiş çetrefil ise bu
+proksimal hesaplarını çok zorlaştırmıyor. Eğer o çok çetrefil (ve pürüzsüz)
+$g$ için gradyan hesaplanabiliyorsa, durumu kurtardık demektir. </p>
 <p>[devam edecek]</p>
 <p>Proksimal [2]</p>
 <pre><code class="python">N = 100
