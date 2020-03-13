@@ -70,7 +70,8 @@ tanımlar. </p>
 yerine belli bir yapıya uyan çetrefil fonksiyonları optimize etmeye
 uğraşır. Bu yapı</p>
 <p>$$
-f(x) = g(x) + h(x) \qquad (1)
+f(x) = g(x) + h(x) 
+\qquad (1)
 $$</p>
 <p>formundadır [1, 45:59]. $g,h$'in ikisi de dışbükey. $g$'nin pürüzsüz,
 türevi alınabilir olduğu farz edilir (çoğunlukla oldukca çetrefil olabilir)
@@ -128,10 +129,10 @@ algoritmaları daha temiz olarak yazmamıza yardımcı olacak. </p>
 <p>$$
 \mathrm{prox}_{t} (x) = \arg\min_z \frac{1}{2t} ||x-z||_2^2 + h(z)
 $$</p>
-<p>Ustteki $x$'in bir fonksiyonu olarak $\arg\min$'de gosterilen kriteri
-minimize eden $z$'yi buluyor. Operator $t$'ye bagli, disaridan verilen
-parametre. Tabii ki $h$'ye de bagli, ki bazen ustteki operatoru
-$\mathrm{prox}_{h,t}$ olarak ta gorebiliyoruz. </p>
+<p>Üstteki $x$'in bir fonksiyonu olarak $\arg\min$'de gösterilen kriteri
+minimize eden $z$'yi buluyor. Operatör $t$'ye bağlı, dışarıdan verilen
+parametre. Tabii ki $h$'ye de bağlı, ki bazen üstteki operatörü
+$\mathrm{prox}_{h,t}$ olarak ta görebiliyoruz. </p>
 <p>Üstteki ifadenin eşleme olduğunu kontrol edelim. Ciddi tanımlı bir
 fonksiyon üstteki değil mi? Ona bir $x$ veriyorsunuz, o da size tek bir
 sonuç donduruyor. Ayrıca bu eşleme / fonksiyonun kendisi bir
@@ -147,6 +148,7 @@ alarak bir iniş algoritması yazıyoruz [1, 56:28], </p>
 x^{(k)} = \mathrm{prox}_{t_k} \big( 
 x^{(k-1)} - t_k \nabla g(x^{(k-1)})
 \big), \quad k=1,2,...
+\qquad (2)
 $$</p>
 <p>Güncelleme adımını tanıdık şekilde yazmak için </p>
 <p>$$
@@ -156,6 +158,16 @@ $$</p>
 <p>$$
 G_t(x) = \frac{x - \mathrm{prox}_{t}(x - t \nabla g(x))}{t}
 $$</p>
+<p>$G$'nin dışbükey fonksiyonların alışılageldik gradyanlarına benzer pek çok
+özelliği vardır, ki bu özellikler proksimal metotların yakınsadığıyla
+alakalı ispatlarda kullanılabilir.</p>
+<p>Şimdiye kadar anlattıklarımıza bakanlara bu komik bir hikaye gibi
+gelebilir. Bir $g + h$ toplamını minimize etmek istiyordum, bunu yapabilmek
+için (2) formunda adımlar atacağım, bir $\mathrm{prox}$ operatörüm var, ama bu
+operatör bir sonuç donduruyor aslında, ve bu sonuç bir başka
+minimizasyondan geliyor. Yani $g + h$ türü bir toplam minimizasyonu yerine
+her adımda, bir sürü minimizasyonları koymuş oldum. Bu nasıl daha iyi bir
+sonuç verecek ki?</p>
 <p>[devam edecek]</p>
 <p>Proksimal [2]</p>
 <pre><code class="python">N = 100
