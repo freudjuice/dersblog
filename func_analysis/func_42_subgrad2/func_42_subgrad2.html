@@ -99,6 +99,28 @@ yaramayacak. Fakat, belki de karesel yaklaşıklamanın bir kısmını hala
 kullanabiliriz, ve minimizasyonu sadece $g$'ye uygularız çünkü pürüzsüz
 olan kısım o. Yani niye $g$'nin yerine karesel yaklaşıklama koymayalım?
 Şimdi bunu yapacağız [1, 50:10]. </p>
+<p>$$
+x^{+} = \arg\min_z \tilde{g}_t(z) + h(z)
+$$</p>
+<p>ki $\tilde{g}_t(z)$ $g$'nin $x$ noktası etrafındaki karesel yaklaşıklaması
+oluyor.  Eğer elimizde $h$ olmasaydı üstteki sadece bir gradyan
+güncellemesine indirgenebilirdi. Neyse açılımı yaparsak</p>
+<p>$$
+= \arg\min_z g(x) + \nabla g(x)^T (z-x) + \frac{1}{2t} ||z-x||_2^2 + h(z)
+$$</p>
+<p>Daha uygun bir formda yazabiliriz, $z$'nin $g$ üzerindeki değişikliğe
+karesel uzaklığı olarak,</p>
+<p>$$
+= \arg\min_z \frac{1}{2t} 
+\big|\big| z - \big( x-t\nabla g(x) \big) \big|\big|_2^2 + 
+h(z)
+$$</p>
+<p>Yani söylenmek istenen, hem sadece $g$ olsaydı atacağımız gradyan adımına
+yakın durmaya çalışmak, hem de $h$'nin kendisini ufak tutmak. Dışarıdan
+ayarlanan $t$ parametresi $g$ gradyan adımı ile $h$ arasında bir denge
+kurmak gibi görülebilir, eğer $t$ ufak ise o zaman gradyan adımına yakın
+durmaya daha fazla önem atfetmiş olacağız, $h$'nin ufak tutulmasına daha
+az. $t$ çok büyük ise tam tersi olacak. </p>
 <p>[devam edecek]</p>
 <p>Proksimal [2]</p>
 <pre><code class="python">N = 100

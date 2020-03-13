@@ -103,6 +103,42 @@ kullanabiliriz, ve minimizasyonu sadece $g$'ye uygularýz çünkü pürüzsüz
 olan kýsým o. Yani niye $g$'nin yerine karesel yaklaþýklama koymayalým?
 Þimdi bunu yapacaðýz [1, 50:10]. 
 
+$$
+x^{+} = \arg\min_z \tilde{g}_t(z) + h(z)
+$$
+
+ki $\tilde{g}_t(z)$ $g$'nin $x$ noktasý etrafýndaki karesel yaklaþýklamasý
+oluyor.  Eðer elimizde $h$ olmasaydý üstteki sadece bir gradyan
+güncellemesine indirgenebilirdi. Neyse açýlýmý yaparsak
+
+$$
+= \arg\min_z g(x) + \nabla g(x)^T (z-x) + \frac{1}{2t} ||z-x||_2^2 + h(z)
+$$
+
+Daha uygun bir formda yazabiliriz, $z$'nin $g$ üzerindeki deðiþikliðe
+karesel uzaklýðý olarak,
+
+$$
+= \arg\min_z \frac{1}{2t} 
+\big|\big| z - \big( x-t\nabla g(x) \big) \big|\big|_2^2 + 
+h(z)
+$$
+
+Yani söylenmek istenen, hem sadece $g$ olsaydý atacaðýmýz gradyan adýmýna
+yakýn durmaya çalýþmak, hem de $h$'nin kendisini ufak tutmak. Dýþarýdan
+ayarlanan $t$ parametresi $g$ gradyan adýmý ile $h$ arasýnda bir denge
+kurmak gibi görülebilir, eðer $t$ ufak ise o zaman gradyan adýmýna yakýn
+durmaya daha fazla önem atfetmiþ olacaðýz, $h$'nin ufak tutulmasýna daha
+az. $t$ çok büyük ise tam tersi olacak. 
+
+
+
+
+
+
+
+
+
 
 
 
