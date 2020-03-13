@@ -221,10 +221,23 @@ yaparım, gradyan</p>
 <p>$$
 \nabla g(\beta) = -X^T (y-X\beta)
 $$</p>
-<p>Güncelleme</p>
+<p>O zaman güncelleme </p>
+<p>$$\beta + t X^T (y-X\beta)$$ </p>
+<p>olur. Buna $\mathrm{prox}$ uygularsak,</p>
 <p>$$
 \beta^+ = S_{\lambda t}(\beta + t X^T (y-X\beta))
 $$</p>
+<p>Yumuşak eşikleme ne yapar? Her ögeye teker teker bakar, eğer mutlak değeri
+çok ufaksa onu ya sıfıra eşitler, ya da onu $\lambda \cdot t$ kadar sıfıra
+yaklaştırır. </p>
+<p>Üstteki Lasso algoritmasina İSTA adı da verilir. </p>
+<p>Geriye Cizgisel Iz Surme  (Backtracking line search)</p>
+<p>Graydan inişinde görmüştük ki adım büyüklüklerini dinamik olarak
+seçebiliyorduk, her adımdaki duruma adapte olabiliyorduk, tipik olarak
+Lipschitz sabitini bilmiyoruz çünkü. O sebeple geriye iz sürme pratikte
+iyi işlemesiyle beraber, teorik olarak yakınsamayı da garantiliyordu. </p>
+<p>Proksimal gradyanları için benzer bir kavram geçerli. Ayrıca proksimal
+durumda geriye doğru iz sürmenin birden fazla yolu var. </p>
 <p>[devam edecek]</p>
 <p>Proksimal [2]</p>
 <pre><code class="python">N = 100
