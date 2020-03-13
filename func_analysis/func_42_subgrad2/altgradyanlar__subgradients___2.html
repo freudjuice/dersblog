@@ -178,6 +178,26 @@ analitik  ya da hızlı hesapsal çözüm olsun [1, 58:54]. </p>
 tamamen $h$ bazlı. Eğer $h$ basit ise ama $g$ müthiş çetrefil ise bu
 proksimal hesaplarını çok zorlaştırmıyor. Eğer o çok çetrefil (ve pürüzsüz)
 $g$ için gradyan hesaplanabiliyorsa, durumu kurtardık demektir. </p>
+<p>Tekrar bir Lasso problemi göreceğiz. Bu Lasso için gördüğümüz ikinci
+algoritma, ve belirtmek gerekir ki Proksimal metot altgradyan metotuna göre
+çok daha verimlidir, hızlıdır.</p>
+<p>Verili bir $y \in \mathbb{R}^n$, $X \in \mathbb{R}^{n \times p}$ için Lasso
+kriterini hatırlarsak, </p>
+<p>$$
+f(\beta) = \frac{1}{2} || y - X \beta ||_2^2 + \lambda ||\beta||_1 
+$$</p>
+<p>Kriterdeki ilk terim en az kareler kayıp fonksiyonu, ikinci terim bir ayar
+parametresi üzerinden katsayıların 1. normu. Bu kriteri pürüzsüz, ve
+pürüzsüz olmayan ama basitçe olan iki kısma ayıracağız, yani zaten oldukca
+bariz, pürüzsüz kısım 1. terim, $g(\beta)$ diyelim, olmayan 2. terim,
+$h(\beta)$ diyelim. Proksimal gradyan inişi için bize iki şey gerekiyor,
+birincisi $g$'nin gradyani, ikincisi $h$ için $\mathrm{prox}$ operatörünü
+hesaplayabilmek.</p>
+<p>$g$'nin gradyani oldukca basit, onu bu noktada uykumuzda bile bulabiliyor
+olmamız lazım. $h$'nin $\mathrm{prox}$ operatörü,</p>
+<p>$$
+\mathrm{prox}_t(\beta) = \arg\min_z \frac{1}{2t} ||\beta-z||_2^2 + \lambda ||z||_1
+$$</p>
 <p>[devam edecek]</p>
 <p>Proksimal [2]</p>
 <pre><code class="python">N = 100
@@ -240,5 +260,5 @@ iter= 95,   objective= 2.416218
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 8</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
-<p>[2] He, <em>IE 598 - BIG DATA OPTIMIZATION</em>,<br />
+<p>[2] He, <em>IE 598 - Big Data Optimization</em>,<br />
     <a href="http://niaohe.ise.illinois.edu/IE598_2016/">http://niaohe.ise.illinois.edu/IE598_2016/</a></p>
