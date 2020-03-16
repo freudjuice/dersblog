@@ -238,6 +238,7 @@ problemi olarak görmenin iyi işlediği görülmüştür. Bu problem aslıda da
 bir açıdan. Problem, </p>
 <p>$$
 \min_B \frac{1}{2} \sum _{(i,j) \in \omega} (Y_{ij} - B_{ij})^2 + \lambda ||B||_{tr}
+\qquad (4)
 $$</p>
 <p>ki $||B||_{tr}$ iz (ya da nükleer) normudur, </p>
 <p>$$
@@ -249,8 +250,34 @@ değerleridir.</p>
 <p>Minimizasyon ifadesindeki ilk toplam, $B$'deki değerleri zaten görülen,
 bildiğimiz değerlere $Y$'ye karesel kayıp yakın tut diyor, ve ona bir ayar
 parametresi üzerinden $B$'nin iz normunu ekliyoruz, bu istatistiki bağlamda
-bir tür reuglarizasiyon yapmış oluyor. Eğer bu ek olmsaydı problem kötü
-konumlanmış (ill-posed) olurdu. </p>
+bir tür regülarizasyon yapmış oluyor. Eğer bu ek olmsaydı problem kötü
+konumlanmış (ill-posed) olurdu [3, 15:06]. Eğer o terim olmasaydı ve
+$\lambda$ sıfır olsaydı o zaman optimizasyon $B$'yi $Y$'ye eşitlerdik, oldu
+bitti derdik, ama o zaman hiçbir iş yapmamış olurduk. Sağdaki terim ekiyle
+yapmaya uğraştığımız $Y$'ye olabildiğince yakın bir $B$ seçmek ve bu
+$B$'nin düşük kerte olmasını zorlamak. Bu bir regülarizasyon yöntemi,
+diyelim $B$ şu şekilde </p>
+<p>$$
+\underbrace{B}_{m \times n} = 
+\underbrace{U}_{m \times k}
+\underbrace{V^T}_{k \times n}
+$$</p>
+<p>yani $B$'yi güya oluşturan birer $U,V$'nin boyutlarındaki $k$'nin
+olabildiğince düşük olmasını istiyoruz. </p>
+<p>Bir diğer bakış açısı, daha önceki Lasso'yla ilintilendirmek bağlamında, iz
+normu L1-normun matrisler için olan versiyonu olarak görmek. Eğer elimde
+bir köşegen matris olsaydı iz köşegendeki öğelerin (tek öğeler onlar)
+toplamı olurdu, ki bu bir vektörün 1-norm'unu almak gibi değil mi? Eğer
+köşegeni bir vektör gibi görürsem, ve matriste bu vektörden başka bir şey
+yoksa.. bağlantıyı görüyoruz herhalde. </p>
+<p>Bir anlamda $||B||_{tr}$ $B$ matrisinin kertesini yaklaşıksal olarak temsil
+ediyor çünkü kerte bir matrisin sıfır olmayan eşsiz değerlerinin
+sayısıdır. $||B||_{tr}$ tabii ki eşsiz değerlerinin sayısı değil onların
+kendilerinin toplamı, ama yaklaşıksal olarak kullanabileceğimiz bir şey bu
+y [3, 17:49] , çünkü değer toplamı dışbükey [altgradyan, türevi
+alınabildiği için bu yaklaşıklık seçilmiş herhalde]. </p>
+<p>(4) problemi tamamen dışbükey bu arada, ilk terim dışbükey, ve ikinci terim
+düzgün bir norm'dur o zaman dışbükeydır. </p>
 <p>Ekler</p>
 <p>Örnek kod, Lasso problem çözümü [2], pür proksimal gradyan inişi, iz sürme yok</p>
 <pre><code class="python">import pandas as pd
