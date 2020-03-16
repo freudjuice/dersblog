@@ -202,13 +202,30 @@ alttakinin doğru olup olmadığını kontrol ediyorduk, </p>
 <p>$$
 f(x - t\nabla f(x) ) &gt; f(x) - \frac{t}{2} ||\nabla f||_2^2 
 $$</p>
-<p>Proksimal gradyan için benzer bir yöntem, ve $G$ üzerinde işlem yapıyoruz
-dikkat, $h$ değil, yani $G$ üzerinden yeterince "iniş" yapmaya
+<p>Proksimal gradyan için benzer bir yöntem [1:11:57], ve $G$ üzerinde işlem
+yapıyoruz dikkat, $h$ değil, yani $G$ üzerinden yeterince "iniş" yapmaya
 uğraşacağız, $g+h$ değil. Normal iz sürmede üsttekinin doğruluğunu kontrol
 ediyoruz, doğru ise $t$'yi belli bir ölçüde ufaltıyoruz. Doğru değilse yani
-yeterince iniş yaptıysak, o zaman eldeki değerlerle güncellemeyi
-yapıyoruz. </p>
-<p>Örnek kod, Lasso problem çözümü [2]</p>
+yeterince iniş yaptıysak, o zaman eldeki değerlerle güncellemeyi yapıyoruz.</p>
+<p>$$
+g(x - t G_t (x) ) &gt; g(x) - t \nabla g(x)^T G_x(x) + \frac{t}{2} ||G_x(x)||_2^2
+$$</p>
+<p>Yani gradyan güncellemesi 1. derece Taylor güncellemesinden geldi. Üstteki
+ifadede de eğime ek olarak 1. derece Taylor güncellemesine göre de
+yeterince iniş yapmış olmak istiyorum. Dikkat edersek eğer $G$ yerine
+$g$'nin gradyanini koyarsam, iki üstteki formüle benzer bir formül elde
+ederim.</p>
+<p>Geriye iz sürme genel algoritmasi şöyle, bir $0 &lt; \beta &lt; 1$ paremetresi
+var (dışarıdan ayarlanan bir parametre). $t=1$ ile başlıyoruz, ve üstteki
+formülü işletiyoruz, eğer gerekiyorsa $t = \beta t$ ile küçültme
+yapıyoruz. İz sürme bitince bulduğumuz $t$ ile güncelleme yapıyoruz [3,
+07:35].</p>
+<p>[bazi ek detaylar atlandi]</p>
+<p>Matris Tamamlamasi</p>
+<p>Şimdi prox operatörü sofistike olan bir örnek görelim [3, 11:38]. Buradan
+çıkan algoritma ilginç olacak. </p>
+<p>Ekler</p>
+<p>Örnek kod, Lasso problem çözümü [2], pür proksimal gradyan inişi, iz sürme yok</p>
 <pre><code class="python">import pandas as pd
 diabetes = pd.read_csv(&quot;../../stat/stat_120_regular/diabetes.csv&quot;,sep=';')
 y = np.array(diabetes['response'].astype(float)).reshape(442,1)
