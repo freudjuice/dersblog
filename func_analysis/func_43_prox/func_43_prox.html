@@ -194,8 +194,20 @@ seçebiliyorduk, her adımdaki duruma adapte olabiliyorduk, tipik olarak
 Lipschitz sabitini bilmiyoruz çünkü. O sebeple geriye iz sürme pratikte
 iyi işlemesiyle beraber, teorik olarak yakınsamayı da garantiliyordu. </p>
 <p>Proksimal gradyanları için benzer bir kavram geçerli. Ayrıca proksimal
-durumda geriye doğru iz sürmenin birden fazla yolu var. </p>
-<p>[atlandı]</p>
+durumda geriye doğru iz sürmenin birden fazla yolu var [1, 1:10:23]. Ben
+sadece $g$ üzerinde işlem yapan bir yöntem seçtim, çünkü bu metotu
+hatırlaması daha kolay. Gradyan inişi için iz sürmeyi hatırlarsak, $x$
+noktasındayız diyelim ve $x-t \nabla g$ yönünde gitmek istiyoruz, o zaman
+alttakinin doğru olup olmadığını kontrol ediyorduk, </p>
+<p>$$
+f(x - t\nabla f(x) ) &gt; f(x) - \frac{t}{2} ||\nabla f||_2^2 
+$$</p>
+<p>Proksimal gradyan için benzer bir yöntem, ve $G$ üzerinde işlem yapıyoruz
+dikkat, $h$ değil, yani $G$ üzerinden yeterince "iniş" yapmaya
+uğraşacağız, $g+h$ değil. Normal iz sürmede üsttekinin doğruluğunu kontrol
+ediyoruz, doğru ise $t$'yi belli bir ölçüde ufaltıyoruz. Doğru değilse yani
+yeterince iniş yaptıysak, o zaman eldeki değerlerle güncellemeyi
+yapıyoruz. </p>
 <p>Örnek kod, Lasso problem çözümü [2]</p>
 <pre><code class="python">import pandas as pd
 diabetes = pd.read_csv(&quot;../../stat/stat_120_regular/diabetes.csv&quot;,sep=';')
@@ -261,3 +273,5 @@ iter= 450,  objective= 5747817.840900
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
 <p>[2] He, <em>IE 598 - Big Data Optimization</em>,<br />
     <a href="http://niaohe.ise.illinois.edu/IE598_2016/">http://niaohe.ise.illinois.edu/IE598_2016/</a></p>
+<p>[3] Tibshirani, <em>Convex Optimization, Lecture Video 9</em>, 
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
