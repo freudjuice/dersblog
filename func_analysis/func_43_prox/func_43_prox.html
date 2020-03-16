@@ -239,6 +239,18 @@ bir açıdan. Problem, </p>
 <p>$$
 \min_B \frac{1}{2} \sum _{(i,j) \in \omega} (Y_{ij} - B_{ij})^2 + \lambda ||B||_{tr}
 $$</p>
+<p>ki $||B||_{tr}$ iz (ya da nükleer) normudur, </p>
+<p>$$
+||B||_{tr} = \sum _{i=1}^{r} \sigma_i(B)
+$$</p>
+<p>ile gösterilir, $r$ kertedir, $r = \mathrm{rank}(B)$, ve herhangi bir $X$ matrisi
+için $\sigma_1(X) \ge .. \ge \sigma_r(X) \ge 0$, $X$'in eşsiz (singular)
+değerleridir.</p>
+<p>Minimizasyon ifadesindeki ilk toplam, $B$'deki değerleri zaten görülen,
+bildiğimiz değerlere $Y$'ye karesel kayıp yakın tut diyor, ve ona bir ayar
+parametresi üzerinden $B$'nin iz normunu ekliyoruz, bu istatistiki bağlamda
+bir tür reuglarizasiyon yapmış oluyor. Eğer bu ek olmsaydı problem kötü
+konumlanmış (ill-posed) olurdu. </p>
 <p>Ekler</p>
 <p>Örnek kod, Lasso problem çözümü [2], pür proksimal gradyan inişi, iz sürme yok</p>
 <pre><code class="python">import pandas as pd
