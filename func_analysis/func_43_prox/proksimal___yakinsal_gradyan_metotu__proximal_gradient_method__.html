@@ -224,6 +224,21 @@ yapıyoruz. İz sürme bitince bulduğumuz $t$ ile güncelleme yapıyoruz [3,
 <p>Matris Tamamlamasi</p>
 <p>Şimdi prox operatörü sofistike olan bir örnek görelim [3, 11:38]. Buradan
 çıkan algoritma ilginç olacak. </p>
+<p>Bize bir $Y \in \mathbb{R}^{m \times n}$ matrisi veriliyor ama biz sadece
+bu matrisin bazı öğelerini görebiliyoruz, bu öğeler
+$Y_{i,j}, (i,j) \in \omega$ ile belirtiliyor ki $\omega$ belli bir indis
+kümesidir. Bu problem bir tavsiye sistemi olabilir, matrisin tamamı bir
+ideal müşteri / ürün eşlemesidir, biz sadece bu matrisin belli bir kısmını
+görüyoruz (tipik olarak mevcut müşterilerin tarihi veride yaptığı alımlar,
+ürünler üzerindeki beğendi/beğenmedi yorumları matrisın "görünen" kısmını
+temsil edebilir). </p>
+<p>Bu tür problemleri iz norm regülarizasyonu (trace norm regülarızation)
+problemi olarak görmenin iyi işlediği görülmüştür. Bu problem aslıda daha
+önce gördüğümüz Lasso problemine benzer, onun matrisler için olan formudur
+bir açıdan. Problem, </p>
+<p>$$
+\min_B \frac{1}{2} \sum _{(i,j) \in \omega} (Y_{ij} - B_{ij})^2 + \lambda ||B||_{tr}
+$$</p>
 <p>Ekler</p>
 <p>Örnek kod, Lasso problem çözümü [2], pür proksimal gradyan inişi, iz sürme yok</p>
 <pre><code class="python">import pandas as pd
