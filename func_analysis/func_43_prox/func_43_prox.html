@@ -446,6 +446,18 @@ proksimal yapısı dışında da bulunabilecek bir şey.</p>
 <p>Devam edelim, algoritmadaki prox operatörü ne kadar pahalı? Her adımda SVD
 işletmemiz lazım, bu İSTA'dan farklı. SVD oldukca pahalı bir işlemdir,
 özellikle büyük matrisler için. </p>
+<p>[atlandi]</p>
+<p>Matris tamamlama böyle. Şimdi proksimal gradyan inişine kategorik olarak
+bakalım, PGİ gradyan inişinin genelleştirilmiş halidir dedik. $f = g + h$
+kriterini çözüyorsak, </p>
+<p>$h=0$ ise normal gradyan inişini elde ederiz. </p>
+<p>$h = I_C$ ise yansıtılan gradyan inişini elde ederiz. </p>
+<p>$g=0$ ise proksimal minimizasyon algoritmasini elde ediyoruz. Bu durumda
+kriterde sadece pürüzsüz olmayan bir fonksiyon var, bu algoritma altgradyan
+inişine bir alternatif olarak kullanılabiliyor. </p>
+<p>Tabii üstteki tüm özel durumların da yakınsama oranı $O(1/\epsilon)$. Bunu
+biliyoruz çünkü proksimal gradyanin teorik yakınsama oranı öyle [3,
+48:30]. </p>
 <p>[devam edecek]</p>
 <p>Ekler</p>
 <p>Örnek kod, Lasso problem çözümü [2], pür proksimal gradyan inişi, iz sürme yok</p>
