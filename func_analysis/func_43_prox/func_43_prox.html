@@ -90,7 +90,7 @@ $$</p>
 <p>Üstteki $x$'in bir fonksiyonu olarak $\arg\min$'de gösterilen kriteri
 minimize eden $z$'yi buluyor. Operatör $t$'ye bağlı, dışarıdan verilen
 parametre. Tabii ki $h$'ye de bağlı, ki bazen üstteki operatörü
-$\mathrm{prox}_{h,t}$ olarak gösteren de oluyor. </p>
+$\mathrm{prox}_{h,t}$ olarak gösteren de oluyor.</p>
 <p>Üstteki ifadenin eşleme olduğunu kontrol edelim. Ciddi tanımlı bir
 fonksiyon üstteki değil mi? Ona bir $x$ veriyorsunuz, o da size tek bir
 sonuç döndürüyor. Ayrıca bu eşleme / fonksiyonun kendisi bir
@@ -121,7 +121,7 @@ $$</p>
 alakalı ispatlarda kullanılabilir.</p>
 <p>Şimdiye kadar anlattıklarımıza bakanlara bu komik bir hikaye gibi
 gelebilir. Bir $g + h$ toplamını minimize etmek istiyordum, bunu yapabilmek
-için (2) formunda adımlar atacağım, bir $\mathrm{prox}$ operatörüm var, ama bu
+için (2) formunda adımlar atacağım, bir prox operatörüm var, ama bu
 operatör bir sonuç döndürüyor aslında, ve bu sonuç bir başka
 minimizasyondan geliyor. Yani $g + h$ türü bir toplam minimizasyonu yerine
 her adımda, bir sürü minimizasyonları koymuş oldum. Bu nasıl daha iyi bir
@@ -148,10 +148,10 @@ parametresi üzerinden katsayıların 1. normu. Bu kriteri pürüzsüz, ve
 pürüzsüz olmayan ama basitçe olan iki kısma ayıracağız, yani zaten oldukca
 bariz, pürüzsüz kısım 1. terim, $g(\beta)$ diyelim, olmayan 2. terim,
 $h(\beta)$ diyelim. Proksimal gradyan inişi için bize iki şey gerekiyor,
-birincisi $g$'nin gradyanı, ikincisi $h$ için $\mathrm{prox}$ operatörünü
+birincisi $g$'nin gradyanı, ikincisi $h$ için prox operatörünü
 hesaplayabilmek.</p>
 <p>$g$'nin gradyanı oldukca basit, onu bu noktada uykumuzda bile bulabiliyor
-olmamız lazım. $h$'nin $\mathrm{prox}$ operatörü,</p>
+olmamız lazım. $h$'nin prox operatörü,</p>
 <p>$$
 \mathrm{prox}_t(\beta) = \arg\min_z \frac{1}{2t} ||\beta-z||_2^2 + \lambda ||z||_1
 $$</p>
@@ -180,7 +180,7 @@ yaparım, gradyan</p>
 $$</p>
 <p>O zaman güncelleme </p>
 <p>$$\beta + t X^T (y-X\beta)$$ </p>
-<p>olur. Buna $\mathrm{prox}$ uygularsak,</p>
+<p>olur. Buna prox uygularsak,</p>
 <p>$$
 \beta^+ = S_{\lambda t}(\beta + t X^T (y-X\beta))
 $$</p>
@@ -213,7 +213,7 @@ $$</p>
 <p>Yani gradyan güncellemesi 1. derece Taylor güncellemesinden geldi. Üstteki
 ifadede de eğime ek olarak 1. derece Taylor güncellemesine göre de
 yeterince iniş yapmış olmak istiyorum. Dikkat edersek eğer $G$ yerine
-$g$'nin gradyanini koyarsam, iki üstteki formüle benzer bir formül elde
+$g$'nin gradyanını koyarsam, iki üstteki formüle benzer bir formül elde
 ederim.</p>
 <p>Geriye iz sürme genel algoritmasi şöyle, bir $0 &lt; \beta &lt; 1$ paremetresi
 var (dışarıdan ayarlanan bir parametre). $t=1$ ile başlıyoruz, ve üstteki
@@ -295,8 +295,86 @@ $$</p>
 <p>Bu operatörün yaptığı verilen bir matrisin gözlem olmayan her öge için
 değeri sıfır yapmak, yoksa olduğu gibi bırakmak. Simdi kriteri yazabiliriz, </p>
 <p>$$
-f(B) = \frac{1}{2} || P_\Omega (Y) - P_\Omega(B) ||_F^2 + \lambda ||B||_{tr}
+f(B) = 
+\underbrace{\frac{1}{2} || P_\Omega (Y) - P_\Omega(B) ||_F^2}_{g(B)} + 
+\underbrace{\lambda ||B||_{tr}}_{h(B)}
 $$</p>
+<p>Problemi proksimalin beklediği $g + h$ formuna soktuk. Hatırlatalım, $g$
+dışbükey ama pürüzsüz değil. Bu yaklaşım için gerekenler neydi? Pürüzsüz
+kısım için gradyan hesaplayabilmek, ve pürüzsüz olmayan kısım için prox
+operatörünü hesaplayabilmek. Gradyan oldukca basit,</p>
+<p>$$
+\nabla g(B) = -(  P_\Omega (Y) - P_\Omega(B) ) 
+$$</p>
+<p>Sadece işaretleri biraz değiştirdim çünkü onu sonra gradyandan
+çıkartacağız, o sebeple parantez dışında bir eksi işareti olması
+faydalı. Şimdi ikinci terim için prox operatörünü görelim. </p>
+<p>$$
+\mathrm{prox}_t(B) = \arg\min_Z \frac{1}{2t} || B - Z ||_F^2 + \lambda ||Z||_{tr}
+\qquad (5)
+$$</p>
+<p>Tüm mümkün $Z$ matrisleri üzerinden minimizasyon yapıyoruz, ve $B_i$ ile
+$Z_i$ arasındaki tüm farkların kare toplamlarını alıyoruz, artı bir sabit
+çarpı $Z$'nin iz normu. Yani optimizasyon hedefi $Z$, ve bu minimizasyonu
+prox operatörünü $B$ üzerinde uygulayarak elde ediyoruz [3, 22:15]. </p>
+<p>Üstteki ifadeyi hesaplamak için altgradyan matematiğine inmek gerekiyor
+biraz. </p>
+<p>$$
+\mathrm{prox}_t(B) = S_{\lambda t} (B)
+$$</p>
+<p>Yani prox'u $\lambda$ seviyesinde bir matriste yumuşak eşikleme olarak
+görmek mümkün. Yani aynen 1-norm'un prox operatörünün vektörsel yumuşak
+eşikleme olduğu gibi burada matris seviyesinde bir eşikleme var [3, 22:46].
+Bu demektir ki herhangi bir matris $B$'nin prox operatörü için $B$'nin
+SVD'sini alıyoruz, yani $B = U\Sigma V^T$ diyoruz, ve köşegen matris
+$\Sigma$ üzerinde yumuşak eşikleme işletiyoruz, bunu yapmak için ya
+köşegendeki her ögeden $\lambda_i$ çıkartıyoruz ve eğer pozitifse o değeri
+kullanıyoruz, ya da sıfır alıyoruz. </p>
+<p>$$
+S_\lambda (B) = U \Sigma_\lambda V^T
+$$</p>
+<p>$$
+(\Sigma_\lambda)_{ii}  = \max { \Sigma_{ii} - \lambda_i 0 }
+$$</p>
+<p>$S_\lambda (B)$ normal $B$'den daha düşük kerteli olacaktır, çünkü üstteki
+işlem ile $\Sigma_\lambda$'nin köşegenindeki bazı değerler sıfırlanır, ve
+bu matris ile hesaplanan $U \Sigma_\lambda V^T$, çarpım sırasında
+$U,V$'deki bazı satırlar, kolonları da sıfırlar [3, 26:00].</p>
+<p>Peki $\mathrm{prox}_t(B) = S_{\lambda t} (B)$ nereden geliyor? Prox operatörünü
+oluşturan kriterin (5) altgradyanını alırız, sıfıra eşitleriz, ve ortaya
+çıkan formülü doğrulayan $Z$'yi buluruz. Cevabın ne olacağını biliyoruz,
+sadece tarif edilen altgradyan vs sonrası aynı formülü bulup
+bulmayacağımızı kontrol edeceğiz. </p>
+<p>(5)'teki ilk terim puruzsuz, direk gradyan alinir, </p>
+<p>$$
+0 \in Z - B + \lambda t \cdot \partial ||Z||_{tr} 
+$$</p>
+<p>İz normunun altgradyanını gösterelim, </p>
+<p>$$
+\partial ||Z||_{tr} = { 
+  UV^T + W : ||W||_{op} &lt; 1, U^TW = 0, WV = 0 
+}
+$$</p>
+<p>Üstteki notasyon diyor ki aradığımız $W$'ler en büyük eşsiz değeri 1'den
+küçük olan ve $U$'nun kolonlarına ve $W$'nin satırlarına dikgen
+olmalı. Yıne sonradan doğrulama ile ispat yapılabilir, üstteki tanımı baz
+alarak $Z = S_{\lambda t}(B)$ olarak formüle sokarsak sıfır sonucu
+aldığımızı göreceğiz. Ek bazı bilgiler, iz normu ve op normu birbirinin
+ikizidir. Yani</p>
+<p>$$
+||Z||_{tr} = \max_{||Y||_{op} \le 1}  Z \cdot Y
+$$</p>
+<p>Üstteki $\cdot$ işareti öğesel çarpım ve bu çarpımların toplamı
+anlamında. $||Y||_{op} \le 1$ şartına uyan tüm $Y$'lere bakıyorum, ve bu
+$Y$'lerle $Z$ arasında ögesel çarpım yapıyorum topluyorum bu bana $Z$'nin
+iz normunu veriyor. </p>
+<p>Ya da</p>
+<p>$$
+= \max_{||Y||_{op} \le 1}  \mathrm{trace}{Z^TY}
+$$</p>
+<p>işlemi de aynı kapıya çıkar. </p>
+<p>Bu arada iz normunun altgradyanını almak zordur. </p>
+<p>[devam edecek]</p>
 <p>Ekler</p>
 <p>Örnek kod, Lasso problem çözümü [2], pür proksimal gradyan inişi, iz sürme yok</p>
 <pre><code class="python">import pandas as pd
