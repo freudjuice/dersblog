@@ -598,11 +598,13 @@ hessian [[[[0.6466522  0.74921925]
    [0.74921925 1.92847522]]]]
 </code></pre>
 
-<p>Rasgele Noktalar Secmek</p>
-<p>Rasgele noktaları Hammersley noktaları adı verilen bir rasgele sayı üretme
-tekniği ile seçmek mümkün, bu şekilde son derece çetrefil fonksiyonlar bile
-az sayıda örneklem noktaları üzerinden temsil edilebiliyor [5]. Mesela
-altta 10 tane bu tur noktayi sectik. </p>
+<p>Rasgele Noktalar Seçmek</p>
+<p>Fonksiyonu RBF ile temsil etmek için gereken Rasgele noktaları Hammersley
+noktaları adı verilen bir rasgele sayı üretme tekniği ile seçmek mümkün, bu
+şekilde son derece çetrefil fonksiyonlar bile az sayıda örneklem noktaları
+üzerinden temsil edilebiliyor [5]. Mesela altta 10 tane bu tür noktayı 2
+boyut için seçtik. Sayılar 0 ile 1 arasında ama gereken aralığa
+ölçeklenerek, toplanarak taşınabilir.</p>
 <pre><code class="python">import hammer
 print (hammer.hammersley([2,3],10))
 </code></pre>
