@@ -51,8 +51,8 @@ $$
 olarak gösterilebilir, $\gamma$ her noktanýn etkisinin ne olduðunu
 dýþarýdan ayarlamak için genel bir sabit, ne kadar küçükse konulan tepe o
 kadar kenarlara yayýlýr, daha büyük deðerler daha noktasal olur. $N$ tane
-baz fonksiyonu olacak, $N$ tane $m_i,y_i$ verisine bakarak bu fonksiyonlarý
-bulacaðýz.
+baz fonksiyonu olacak, $N$ tane $m_i,y_i$, ya da $x_i,y_i$ verisine bakarak
+bu fonksiyonlarý bulacaðýz. 
 
 Ýki üstteki formüldeki $x-c$ kullanýmýna dikkat, bu aslýnda ``diðer noktalarý''
 temsil etmenin akýllýca bir yolu, $c$ üzerinde $x-c$ sýfýr deðerdedir, bu o
@@ -78,18 +78,35 @@ $$
 }_{\Phi}
 \underbrace{
 \left[\begin{array}{r}
- w_1  \\
- w_2  \\
- \vdots \\
- w_N
+ w_1  \\ w_2  \\ \vdots \\  w_N
 \end{array}\right]}_{w}
 =
 \underbrace{
-\left[\begin{array}{rrr}
- y_1  \\
- y_2  \\
- \vdots \\
- y_N
+\left[\begin{array}{rrr} y_1  \\
+ y_2  \\ \vdots \\  y_N
+\end{array}\right]}_{y}
+$$
+
+Tabii aslýnda verilerin kendisi RBF merkezleriyle ayný þey olduðu için
+þunu da söyleyebilirdik, 
+
+$$
+\underbrace{
+\left[\begin{array}{rrr} 
+    \exp(-\gamma \|x_1-x_1\|^2) & \cdots & \exp(-\gamma \|x_1-x_N\|^2)\\ 
+    \exp(-\gamma \|x_2-x_1\|^2) & \cdots & \exp(-\gamma \|x_2-x_N\|^2)\\ 
+    \vdots & \ddots & \vdots \\ 
+    \exp(-\gamma \|x_N-x_1\|^2) & \cdots & \exp(-\gamma \|x_N-x_N\|^2)
+\end{array}\right]
+}_{\Phi}
+\underbrace{
+\left[\begin{array}{r}
+ w_1  \\ w_2  \\ \vdots \\  w_N
+\end{array}\right]}_{w}
+=
+\underbrace{
+\left[\begin{array}{rrr} y_1  \\
+ y_2  \\ \vdots \\  y_N
 \end{array}\right]}_{y}
 $$
 

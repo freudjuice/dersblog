@@ -67,8 +67,8 @@ $$</p>
 <p>olarak gösterilebilir, $\gamma$ her noktanın etkisinin ne olduğunu
 dışarıdan ayarlamak için genel bir sabit, ne kadar küçükse konulan tepe o
 kadar kenarlara yayılır, daha büyük değerler daha noktasal olur. $N$ tane
-baz fonksiyonu olacak, $N$ tane $m_i,y_i$ verisine bakarak bu fonksiyonları
-bulacağız.</p>
+baz fonksiyonu olacak, $N$ tane $m_i,y_i$, ya da $x_i,y_i$ verisine bakarak
+bu fonksiyonları bulacağız. </p>
 <p>İki üstteki formüldeki $x-c$ kullanımına dikkat, bu aslında "diğer noktaları"
 temsil etmenin akıllıca bir yolu, $c$ üzerinde $x-c$ sıfır değerdedir, bu o
 noktayı temsil için diğer noktalar üzerindeki bazların devreye girmesi
@@ -90,18 +90,33 @@ sağlayacak regresyonu matris formunda şöyle gösterebiliriz,</p>
 }_{\Phi}
 \underbrace{
 \left[\begin{array}{r}
- w_1  \\
- w_2  \\
- \vdots \\
- w_N
+ w_1  \\ w_2  \\ \vdots \\  w_N
 \end{array}\right]}_{w}
 =
 \underbrace{
-\left[\begin{array}{rrr}
- y_1  \\
- y_2  \\
- \vdots \\
- y_N
+\left[\begin{array}{rrr} y_1  \\
+ y_2  \\ \vdots \\  y_N
+\end{array}\right]}_{y}
+$$</p>
+<p>Tabii aslında verilerin kendisi RBF merkezleriyle aynı şey olduğu için
+şunu da söyleyebilirdik, </p>
+<p>$$
+\underbrace{
+\left[\begin{array}{rrr} 
+    \exp(-\gamma \|x_1-x_1\|^2) &amp; \cdots &amp; \exp(-\gamma \|x_1-x_N\|^2)\\ 
+    \exp(-\gamma \|x_2-x_1\|^2) &amp; \cdots &amp; \exp(-\gamma \|x_2-x_N\|^2)\\ 
+    \vdots &amp; \ddots &amp; \vdots \\ 
+    \exp(-\gamma \|x_N-x_1\|^2) &amp; \cdots &amp; \exp(-\gamma \|x_N-x_N\|^2)
+\end{array}\right]
+}_{\Phi}
+\underbrace{
+\left[\begin{array}{r}
+ w_1  \\ w_2  \\ \vdots \\  w_N
+\end{array}\right]}_{w}
+=
+\underbrace{
+\left[\begin{array}{rrr} y_1  \\
+ y_2  \\ \vdots \\  y_N
 \end{array}\right]}_{y}
 $$</p>
 <p>Bu durumda $w = \Phi^{-1}y$ bize $w$ ağırlıklarını, yani nihai çözümü
