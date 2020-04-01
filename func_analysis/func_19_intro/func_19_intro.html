@@ -1,8 +1,8 @@
-<h1>Dışbükey Optimizasyonu (Convex Optimization) - Giriş</h1>
+<h1>Dışbükey Optimizasyonuna (Convex Optimization) Giriş</h1>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dışbükey Optimizasyonu (Convex Optimization) - Giriş
+    <title>Dışbükey Optimizasyonuna (Convex Optimization) Giriş
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/x-mathjax-config">
@@ -98,5 +98,27 @@ sürü yeni dışbükey olmayan ve yakınsadığı ispat edilen metotların bulu
 olmasıydı. Ama bir sonraki sene rasgele (stochastic) optimizasyon geri
 dönüş yapmıştı, rasgele gradyan inişi vs. Böyle her sene değişim oluyor, bu
 güzel bir şey demek ki hala ilerleme için oldukça alan var.</p>
+<p>Ornekler</p>
+<p>Bu orneklerin cogu tam varyasyon gurultu yoketmek (denoising) etrafinda,
+bunun bir diger ismi kaynasmis (fused) lasso. Elimizde iki boyutlu izgara
+halinde bir veri var, bir goruntu, $i,j$ kordinatlarinda bir renk degeri
+var, 3 ile 7 arasindaki renkler. </p>
+<p><img alt="" src="func_19_intro_01.png" /></p>
+<p>En soldaki gerçek resim. Ortadaki ise onun gürültülü hali, bizim elimizdeki
+veri bu diyelim. Görüntüyü $y$ vektörü olarak temil edeceğiz, bu tek
+boyutlu ama düşünün ki görüntüdeki iki boyutu alıp düzleştirdik, tek vektör
+yaptık, alt alta satır satırları yanyana koyduk mesela, vs. Bu resim
+hakkında şunu biliyoruz, görüntü parçasal olarak sabit, yani yanyana
+hücreler birbirinden çok farklı değil. Bazı yerlerde olabilir mesela mavi
+arka plandan kırmızı objeye geçiş yapılan yerlerde, ama diğer yerlerde
+benzerlik var. Biz gürültülü resimden gürültüsüz resmi çıkartmak istiyoruz.</p>
+<p>Gürültü yoketme alanında pek çok yöntem var. Fakat gürültü yoketme
+problemine optimizasyon açısından yaklaşabiliriz. Mesela, hedef kriteri şu
+haldeki bir optimizasyon problemi,</p>
+<p>$$
+\min_{\beta \in \mathbb{R}^n} 
+\frac{1}{2} \sum _{i=1}^{n} (y_i - \beta_i)^2 + 
+\lambda \sum _{(i,j) \in E)}  |\beta_i - \beta_j|
+$$</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 7</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
