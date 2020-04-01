@@ -120,5 +120,51 @@ haldeki bir optimizasyon problemi,</p>
 \frac{1}{2} \sum _{i=1}^{n} (y_i - \beta_i)^2 + 
 \lambda \sum _{(i,j) \in E)}  |\beta_i - \beta_j|
 $$</p>
+<p>İlk terimde aradığımız ideal resim ile gerçek resim arasındaki karesel
+kayıp hesabı var, yani her hücredeki $\theta_i$'in olabildiği kadar $y_i$
+verisine yakın olmasını istiyoruz. İkinci terimdeki $\lambda$ bizim
+dışarıdan atadığımız bir parametre, iki terim arasındaki dengeyi
+kuruyor. Bu parametrenin çarptığı ikinci terim bir ceza terimi. Yanyana
+olan her $i,j$'ye bakıyor, sağda solda altta üstte olsun, bu hücrelerin
+renk farkını cezalandırıyor, yani farkın daha az olmasını zorluyor çünkü
+resimde genel olarak bir süreklilik olmasını istiyoruz. Oldukça sofistike
+bir işlem aslında, ama optimizasyon formülasyonu açısından oldukca
+basit. İki terim var, o kadar.</p>
+<p>Çözüm resimde en sağdaki resimde görülüyor. $\lambda=25$ seçtim onun için,
+ve çözdüm. $\lambda$'yi arttırdıkça resmin daha kaba görüntülü olmaya
+başladığını görebilirdiniz, mesela kırmızı ile pembe bölgeler birbiri içine
+geçmeye başlayabilirdi. $\lambda=\infty$ için ne olur? Her şey tek bir renk
+olur, o renk $y$'nin ortalaması olurdu. $\lambda=0$ için gürültülü verinin
+aynısını elde ederiz. </p>
+<p>Çözümü nasıl elde ettim? Üstteki sonucu ADMM ile elde ettim. Bu ders
+bloğunun sonunda bu algoritmayi göreceğiz. Bu problemde ADMM'in spesifik
+bir versiyonunu kullandım, bu versiyonun bu problemde iyi işleyeceğini
+biliyordum. 300x200 boyutunda bir resimdi, 20 döngü sonrası sonucu elde
+ettim, her döngüde lineer zaman harcadı. Tüm işleyişi bir saniyenin ufak
+bir parçasıydı. </p>
+<p>Proksimal gradyan inişi ile 1000 kere döndük, sonuç fena değil ama bazı
+renkler tam birleşmedi. Eğer 10000 kere döndürseydim ADMM sonucuna
+yaklaşırdı. Bu metot ile de her döngüde lineer zaman harcanıyor, ama
+algoritmanın tamamı daha yavaş yakınsadı. Yani, amaç için doğru araç
+diyemeyiz. </p>
+<p>Sonra kordina iniş adında çok popüler bir diğer metot işlettim, 10000 kere
+döndü, adımlar lineer zaman, ama yakınsama olmadı. Hatta sonuç oldukca
+kötüydü. Kesinlikle amaç için yanlış araç. Yani iyi ile kötü metot arasında
+boyutsal fark var (order of magnitude), işlem hızı bakımından 1, 2, daha
+kötü değil, 10, 100 kat daha kötüden bahsediyoruz, ve kalite iyi değil.</p>
+<p>Bu arada kordinat inişini öğrenince üstteki kriteri nasıl kullandığım kafa
+karıştırabilir, cevap algoritmayi kriterin ikizi üzeride
+işlettim. Dersimizde ilerledikçe bunun anlamını öğreneceğiz. Bir problemin
+ikizini almak ve bu ikize algoritmaları nasıl uygulanacağını
+görmek.. bunları hep göreceğiz. </p>
+<p>Mesajım ne? ADMM her yerde çok iyi işler demek mi? Hayır. ADMM bazı
+yerlerde daha kötü işler. Diğer yerlerde proksimal gradyan daha iyidir. Bu
+sebeple tüm seçenek yelpazesinin bilmek, her algoritmanin özelliklerini
+anlamak faydalıdır. </p>
+<p>Bir diger ornek [1, 42:53]. Burada iki boyuta bakmak yerine tek boyuta
+bakiyoruz. </p>
+<p><img alt="" src="func_19_intro_02.png" /></p>
+<p>[devam edecek]</p>
+<p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 7</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
