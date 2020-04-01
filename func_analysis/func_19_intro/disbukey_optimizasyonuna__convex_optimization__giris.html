@@ -1,0 +1,124 @@
+<h1>Dışbükey Optimizasyonuna (Convex Optimization) Giriş</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dışbükey Optimizasyonuna (Convex Optimization) Giriş
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>Yapay öğrenme (machine learning) ve optimizasyonda sürekli optimizasyonu
+görürüz. Diğer disiplenlerde de görülür tabii ama bu ikisi benim ana
+konularım o yüzden o konulardan bu derste daha fazla bahsedeceğiz. Derste
+belirli bir amaç için gereken optimizasyon problemini çözmekten çok
+optimizasyon mekanizmasının detaylarını inceleyeceğiz. Optimallik
+şartlarına bakmak, varılan çözümün niteliğine bakmak bu detaylardan
+bazıları.</p>
+<p>Şimdi aklınıza gelen bazı optimizasyon örneklerini verin bana [öğrenciler
+söylüyor]</p>
+<p>1) Regresyon - En Az Kareler. Evet. Hata karelerinin toplamı minimize
+edilir burada, bir hedef $y$ vardır, onu bir formül üzerinden katsayıları
+olan bir denklem vardır, ve model uyum iyiliğini hata kare toplamı
+üzerinden ölçeriz.</p>
+<p>$$
+\min_\beta \sum (y_i - x_i^T \beta)^2 
+$$</p>
+<p>Başka ne tür regresyon şekilleri var?  </p>
+<p>2) Regülarize Edilmiş Regresyon - Lasso. Burada yine hata karelerin toplamı
+var, ama üstüne katsayıların L1 norm'unu minimize etmeye çalışırız. Yani </p>
+<p>$$
+\min_\beta \sum (y_i - x_i^T \beta)^2 \quad \textrm{oyle ki}
+$$
+$$
+\sum |\beta| \le t
+$$</p>
+<p>3) En Az Mutlak Sapma Regresyonu (Least Absolute Deviations) - bu da
+benden. Bu tür regresyon ile kare yerine mutlak değer operasyonu
+kullanılıyor [1, 14:35].   </p>
+<p>$$
+\min_\beta \sum |y_i - x_i^T \beta |
+$$</p>
+<p>BU tür regresyon ile aykırı (outlier) değerlere daha az önem verilmiş
+olur. Fakat mutlak değer hesabı kullanınca optimizasyon zorlaşıyor çünkü
+üstteki formül artık pürüzsüz değil. </p>
+<p>4) Sınıflama - Lojistik Regresyon. LR ile $y_i$ ikisel olur, 0 ya da 1. LR
+formülizasyonu normal regresyona benziyor, </p>
+<p>5) Bilgisayar Bilim - Seyahet Eden Satış Görevlisi Problemi (TSP),
+Planlama, Ayrıksal Optimizasyon. Bu ders bloklarının sonunda Tam Sayı
+Programlama (İnteğer Programming) konusuna bakacağız, bu tür konulara orada
+daha çok yaklaşmış olacağız. </p>
+<p>6) İstastistik - Maksimum Olurluk. MO istatistikte pek çok yaptığımız işin
+mihenk taşıdır. Hatta LR, En Az Kareler, vs aslinda MO'nun özel, spesifik
+halleridir. Burada vurgu içbükey olurluk elde etmek, ki bir içbükey
+fonksiyonu maksimize etmiş olalım, bu bir dışbükey fonksiyonu minimize
+etmek ile aynı şey. </p>
+<p>Böyle devam edebilirdik, optimizasyon örnekleri sayfalar
+doldurabilirdik. Optimizasyon her yerde. Ama belki de neyin optimizasyon
+olmadığına da bakmak iyi olur. Mesela istatistikte optimizasyon olmayan
+problemler nedir?</p>
+<p>Hipotez test etmek, p-değerleri. Ya da takviyelemek (boosting), önemli bir
+konu ama optimizasyon değil. Rasgele Ormanlar (Random Forests),
+değil. Önyükleyiciler (bootstrap), çapraz-sağlama (cross-validation), yine
+değil [1, 22:09].  </p>
+<p>Ve iddiam şu ki optimizasyon olmayan konular hakkında olanlara kıyasla daha
+fazla teorik bilgimiz var. Üstteki teknikler çoğunlukla prosedürsel. Ama
+mesela Lasso diyelim, bu bir dışbükey optimizasyonun çıktısı olduğu için
+optimalite şartları üzerinden onun çözümünün özellikleri hakkında konuşmak
+kolaylaşıyor. </p>
+<p>Peki biz niye bu dersteki konuyu ogrenmek isteriz, isteyebiliriz? Sonucta
+Lasso'yu birisi bulmus onun kodunu cagiririz, is biter. Uc sebep
+var. Birincisi farkli algoritmalar duruma gore daha iyi performans
+gosterebilir, durum derken veriden bahsediyorum. Bu sebeple her
+algoritmanin ozunu anlamak cok onemli. Ikincisi herhangi bir alandaki
+problemi cozen optimizasyonun temelini bilmek bize alan hakkinda ek gorus
+kazandirabilir. </p>
+<p>Üçüncü sebep optimizasyon hızlı hareket eden bir alan, eğlenceli! Mesela
+optimizasyon alanındaki NIPS Çalıştayına (Workshop) bakarsanız, her sene
+değişiyor! Birkaç sene önce dışbükey olmayan optimizasyon büyük konuydu,
+tabii o zaman bu dersi işlerken utanır gibi oluyorduk çünkü bizim konu
+dışbükey optimizasyon ve yapay öğrenimdeki en büyük konferansta dışbükey
+olmayan konular işleniyor.. Fakat o zamanki odağın sebebi o zamanlarda bir
+sürü yeni dışbükey olmayan ve yakınsadığı ispat edilen metotların bulunmuş
+olmasıydı. Ama bir sonraki sene rasgele (stochastic) optimizasyon geri
+dönüş yapmıştı, rasgele gradyan inişi vs. Böyle her sene değişim oluyor, bu
+güzel bir şey demek ki hala ilerleme için oldukça alan var.</p>
+<p>Ornekler</p>
+<p>Bu orneklerin cogu tam varyasyon gurultu yoketmek (denoising) etrafinda,
+bunun bir diger ismi kaynasmis (fused) lasso. Elimizde iki boyutlu izgara
+halinde bir veri var, bir goruntu, $i,j$ kordinatlarinda bir renk degeri
+var, 3 ile 7 arasindaki renkler. </p>
+<p><img alt="" src="func_19_intro_01.png" /></p>
+<p>En soldaki gerçek resim. Ortadaki ise onun gürültülü hali, bizim elimizdeki
+veri bu diyelim. Görüntüyü $y$ vektörü olarak temil edeceğiz, bu tek
+boyutlu ama düşünün ki görüntüdeki iki boyutu alıp düzleştirdik, tek vektör
+yaptık, alt alta satır satırları yanyana koyduk mesela, vs. Bu resim
+hakkında şunu biliyoruz, görüntü parçasal olarak sabit, yani yanyana
+hücreler birbirinden çok farklı değil. Bazı yerlerde olabilir mesela mavi
+arka plandan kırmızı objeye geçiş yapılan yerlerde, ama diğer yerlerde
+benzerlik var. Biz gürültülü resimden gürültüsüz resmi çıkartmak istiyoruz.</p>
+<p>Gürültü yoketme alanında pek çok yöntem var. Fakat gürültü yoketme
+problemine optimizasyon açısından yaklaşabiliriz. Mesela, hedef kriteri şu
+haldeki bir optimizasyon problemi,</p>
+<p>$$
+\min_{\beta \in \mathbb{R}^n} 
+\frac{1}{2} \sum _{i=1}^{n} (y_i - \beta_i)^2 + 
+\lambda \sum _{(i,j) \in E)}  |\beta_i - \beta_j|
+$$</p>
+<p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 7</em>, 
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a></p>
