@@ -268,6 +268,52 @@ f(x) \le f(y) \textrm{ her olurlu } y \textrm{ icin}
 $$</p>
 <p>ifadesi doğrudur, yani $\rho$ sonsuzluktur. Minimuma geldik, ne kadar uzağa
 bakarsak bakalım, sonsuz büyüklükte top içinde her yerde en minimum biziz.</p>
+<p>İspatlayalım. Bunu çelişki ile ispat üzerinden yapacağız. Diyelim ki
+elimizde olurlu bir nokta $z$ var, yani $\exists z \in D$ ve öyle ki 
+$f(z) &lt; f(x)$. Bu $z$ noktası $x$'den daha minimal. O zaman $||z-x||_2 &gt;
+\rho$ olmali, yerel optimal $x$'in etrafındaki $\rho$ topunun dışındayım. </p>
+<p>Şimdi $x$ ve $z$ arasındaki $y$ noktalarına bakalım, </p>
+<p>$$
+y = tx + (1-t) z, \quad 0 \le t \le 1
+$$</p>
+<p>$y$ hakkında neler biliyoruz? </p>
+<ul>
+<li>
+<p>$y \in D$? $y$ ortak küme içinde mi? $x,y$ küme içinde onların kesiştiği
+$y$ kümesi tabi ki $D$ içinde. </p>
+</li>
+<li>
+<p>$y$ olurlu mu? Evet. </p>
+</li>
+</ul>
+<p>$$
+g_i(tx + (1-t) z) \le t g_i(x) + (1-t) g_i(z)
+$$</p>
+<p>$$
+\le 0
+$$</p>
+<p>Ayrıca, bunu ödev olarak kontrol edin,</p>
+<p>$$
+h_i(tx + (1-t) z) = 0
+$$</p>
+<p>çünkü $h$ lineer. </p>
+<p>Yani $y$ olurlu, her kısıtlamaya uygun. </p>
+<p>Ayrıca yeterince büyük (1'e yakın) $t$ için </p>
+<p>$$
+||x-y||_2 \le \rho
+$$</p>
+<p>demek istiyoruz ki $x$'den $z$'ye bir çizgi çekiyorum ve yeterince $z$'ye
+yakın bir notkada $\rho$ topunun dışına çıkmış oluyorum. </p>
+<p><img alt="" src="func_19_intro_06.png" /></p>
+<p>Guzel. Top icinde olurlu bir noktam var, tanim kumesi icinde, $y$ de
+orada. $f(y)$ hakkinda ne soyleyebilirim?</p>
+<p>$$
+f( t x + (1-t) z) 
+$$</p>
+<p>$f$ disbukey degil mi? O zaman usttekini disbukeylik uzerinden acarsam,</p>
+<p>$$
+\le t f(x) + (1-t) f(z) 
+$$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 7</em>, 
