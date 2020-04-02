@@ -193,6 +193,81 @@ verildiğini kontrol ediyor. Fakat istatistiki öneme dönersek bu tür
 soruları sadece tam varyasyonu iyi anladığımız takdirde
 cevaplandırabiliriz. </p>
 <p><img alt="" src="func_19_intro_03.png" /></p>
+<p>Çünkü istatistiki önem hesabı için mesela 1. blok ile 2. bloktaki noktaların
+ortalamasının farkına bakılır, ve bir Normal dağılım referans alınarak
+sıfır hipotezi test edilir, ve bu hipotez neredeyse her seferinde
+rededilecektir (yani test bloklar farklıdır diyor ama biz olmadığını
+görüyoruz). Niye böyle oldu? Çünkü optimizasyonun kriterine bakarsak biz
+orada aktif olarak ortalama farkını fazlalaştırmaya uğraşıyoruz. Ve tabii
+ki uğraştığımız şeyi test edince farklılık olduğunu buluyoruz. Bu doğru
+değil! Eğer optimizasyonun ne yaptığını bilmesek bu sonuca varamazdık.</p>
+<p>Devam edelim; Bu dersin merkezi kavramı dışbükeylik. Tarihsel olarak ilk
+başta lineer programlar vardı, çok ciddi bir şekilde araştırıldı bu konu,
+koca dersler bu konuya harcandı. O zamanlar düşünülüyordu ki lineer olan ve
+olmayan ayrımı optimizasyonda en önemli ayrımdır. Bir tarafta
+çözebildiğimiz LP'ler var, diğer tarafta daha zor, çözülmez LP olmayan
+problemler.</p>
+<p>Ama sonradan anlaşıldı ki bazı LP olmayan problemler aslında o kadar
+çözülemez değil. Mesela biraz önceki 1D lasso problemi LP değil ama
+çözülebiliyor. Ama tabii bazı LP olmayan ve çok çetin problemler de
+var.. Devam eden araştırmayla ortaya çıktı ki esas ayrım LP/olmayan değil,
+dışbükey / olmayan arasında. Çünkü dışbükey problemler ve olmayan
+problemler çok çok farklı mahlukatlar. Dişbukey problemlerde genel
+algoritmalardan bahsedebiliyoruz, bu algoritmalar bazı şartlarda iyi, kötü
+işleyebilir ama hepsinin ispatlanabilir yakınsanabilirliği var. Elimizde
+KKT optimallik şartları ve ikizlik gibi teorik araçlar var bu sayede
+dışbükeylikte elde edilen sonuçların özelliğini anlamamıza yardım ediyor. </p>
+<p>Teoriye giriş yapalım artık. </p>
+<p>Dışbukey Kümeler ve Fonksiyonlar</p>
+<p>Dışbukey küme $C \subseteq \mathbb{R}^n$, öyle ki </p>
+<p>$$
+x,y \in C \Rightarrow tx + (1-t) y \in C, \quad \forall 0 \le t \le 1
+$$</p>
+<p>Yani dışbükey küme $C$ de seceğim herhangi iki nokta arasında çekeceğim düz
+çizgi o küme içinde kalmalıdır [1, 1:00:24]. </p>
+<p><img alt="" src="func_19_intro_04.png" /></p>
+<p>Üstteki resimde soldaki küme dışbükey değil, sağdaki dışbükey.</p>
+<p>Dışbükey fonksiyon $f: \mathbb{R}^n \to \mathbb{R}$, ki
+$\mathrm{dom}{(f)} \subseteq \mathbb{R}^n$ dışbükey olacak şekilde, ve </p>
+<p>$$
+f( tx + (1-t) y ) \le t f(x) + (1-t) f(y), \quad 0 \le t \le 1 \textrm{ için.} 
+$$</p>
+<p>Üstteki diyor ki dışbükey fonksiyonun tanım kümesi, alanı dışbükey küme
+olmalı, ki $\mathbb{R}^n$ öyledir, ve bu fonksiyonu herhangi iki noktada
+hesaplayınca elde ettiğim değer o iki nokta arasında çektiğim düz çizgi
+altında kalmalı. </p>
+<p><img alt="" src="func_19_intro_05.png" /></p>
+<p>Tipik problem </p>
+<p>$$
+\min_{x \in D} f(x), \quad \textrm{öyle ki}
+$$
+$$
+g_i(x) \le 0, \quad i=1,..,m
+$$
+$$
+h_j(x) \le 0, \quad j=1,..,r
+$$</p>
+<p>ki $D$ her $f,g,h$ fonksiyonunun ortak tanım kümesi. Dişbukey optimizasyon
+probleminde $f,g$ dışbükey ve $h$ lineer (affine) olmalıdır. $f,g$
+üzerinden gösterilen şartlara uyan değerler olurlu (feasible) değerler
+olarak bilinir.</p>
+<p>Dişbukey problemler için yerel minimum [1, 1:06:03] global minimumdur. Yani
+tek başına diğerlerinden izole bir yerel minima diye bir şey yoktur. Bu
+demektir ki eğer optimizasyon sırasında bir alt noktaya varırsanız, bu
+nokta global çözümdür. </p>
+<p>Formel şekilde, bir $x$ noktası yerel minimumdur, eğer</p>
+<p>$$
+f(x) \le f(y) \quad ||x-y||_2 \le \rho \textrm{ ve her olurlu } y \textrm{ icin}
+$$</p>
+<p>doğru ise, yani alt noktadayım ve $\rho$ büyüklüğünde bir top içinde olurlu
+değerler üzerinden etrafa bakınca $f(x)$'den daha ufak bir değer
+görmüyorum. </p>
+<p>Dişbukey problemlerde </p>
+<p>$$
+f(x) \le f(y) \textrm{ her olurlu } y \textrm{ icin}
+$$</p>
+<p>ifadesi doğrudur, yani $\rho$ sonsuzluktur. Minimuma geldik, ne kadar uzağa
+bakarsak bakalım, sonsuz büyüklükte top içinde her yerde en minimum biziz.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 7</em>, 
