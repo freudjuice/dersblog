@@ -377,8 +377,38 @@ io.imsave('lenad2.jpg', np.reshape(xcurr,(n,n)))
 <img alt="" src="lenad1.jpg" />
 <img alt="" src="lenad2.jpg" /></p>
 <p>Yine total varyasyon kullanan ama farklı optimizasyon çözücüyle hesabı
-yapan bir yöntem <code>tlv_prim_dual.py</code> kodunda [1], sonuç</p>
-<p><img alt="" src="lenad3.jpg" /></p>
+yapan bir yöntem <code>tlv_prim_dual.py</code> kodunda [1], sonuç (soldaki)</p>
+<p><img alt="" src="lenad3.jpg" />
+<img alt="" src="lenad4.jpg" /></p>
+<p>Ayrıca <code>cvxpy</code> adlı bir paket üzerinden aynı şeyi kodlayabiliriz, yani </p>
+<p>$$
+\min_{\beta \in \mathbb{R}^n} 
+\frac{1}{2} \sum _{i=1}^{n} (y_i - \beta_i)^2 + 
+\lambda \sum _{(i,j) \in E)}  |\beta_i - \beta_j|
+$$</p>
+<pre><code class="python">import cvxpy
+
+lam = 35.0
+
+u_corr = plt.imread(&quot;lenad1.jpg&quot;)
+
+rows, cols = u_corr.shape
+
+U = cvxpy.Variable(shape=(rows, cols))
+
+obj = cvxpy.Minimize(0.5 * cvxpy.sum_squares(u_corr-U) + lam*cvxpy.tv(U))
+
+prob = cvxpy.Problem(obj)
+
+prob.solve(verbose=True, solver=cvxpy.SCS)
+
+plt.imshow(U.value, cmap='gray')
+plt.imsave(lena4.jpg', U.value, cmap='gray')
+</code></pre>
+
+<p>Üstteki sağdaki resim bu sonucu gösteriyor. Bu yaklaşımda
+<code>cvxpy.tv</code> ile tam varyasyon hesabını yapan kütüphanenin kendi iç
+çağrısını kullandık. </p>
 <p>Kaynaklar</p>
 <p>[1] Mordvintsev, <em>ROF and TV-L1 denoising with Primal-Dual algorithm</em>,
     <a href="https://github.com/znah/notebooks/blob/master/TV_denoise.ipynb">https://github.com/znah/notebooks/blob/master/TV_denoise.ipynb</a></p>
