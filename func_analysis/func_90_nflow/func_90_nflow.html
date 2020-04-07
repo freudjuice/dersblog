@@ -1,0 +1,47 @@
+<h1>Çizit Akış Problemleri (Network flow problems)</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Çizit Akış Problemleri (Network flow problems)
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>Daha önce işlediğimiz bu konuyu biraz daha genişletelim [1]. Sailco adlı
+hayali bir şirket düşünelim, bu şirket yelkenli tekne (sailbot)
+üretiyor. Problem şöyle, önümüzdeki 4 ay içinde alttaki üretim sayısını
+gerçekleştirmesi gerekiyor. </p>
+<p>$$ 
+\begin{array}{|c|c|c|c|c|}
+\hline
+Month &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+\hline
+Number of boats &amp; 40 &amp; 60 &amp; 70 &amp; 25 \\
+\hline
+\end{array}
+$$</p>
+<ol>
+<li>ayda 40, 2. 60, vs.. Şirketin bir deposu da var, bitmiş teknelerin teslim
+etmeden önce tutuldukları yer burası. 1. ayın başında bu depoda 10 tane
+tekne var. </li>
+</ol>
+<p>Kaynaklar</p>
+<p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, </p>
+<p>University of Wisconsin-Madison
+    <a href="https://laurentlessard.com/teaching/524-intro-to-optimization">https://laurentlessard.com/teaching/524-intro-to-optimization</a></p>
