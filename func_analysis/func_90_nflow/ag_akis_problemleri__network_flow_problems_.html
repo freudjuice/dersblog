@@ -122,11 +122,36 @@ istediğimiz bu akış çünkü, bilahere karar değişkenleri. Bu kenarların h
 birinde ne kadar akış var? </p>
 <p>Her kenardaki akışın bir bedeli olabilir, ayrıca her kenarın bir kapasite
 sınırlaması olabilir (bedeli ne olursa olsun üzerine çıkılamayacak bir eşik
-değeri). Mesela bir kenar \$2/birimlik olabilir digeri \$10/birim bedelinde
-olabilir. O zaman ilk kenardan 5 birim göndermek istersem bunun bana bedeli
-\$10 ikincisinden gondermek istersem \$50 olacak. Her kenarın akış bedeli,
-kapasitesi bizim dışarıdan bir parametre ile tanımladığımız bir şey olacak
-tabii ki.</p>
+değeri). Bedel örneği olarakl mesela bir kenar \$2/birimlik olabilir diğeri
+\$10/birim bedelinde olabilir. O zaman ilk kenardan 5 birim göndermek
+istersem bunun bana bedeli \$10 ikincisinden gondermek istersem \$50
+olacak. Her kenarın akış bedeli, kapasitesi bizim dışarıdan bir parametre
+ile tanımladığımız bir şey olacak tabii ki. Kapasitenin illa sınırlanmış
+olması gerekmez, sınırsız da olabilir.</p>
+<p>Her düğüm bir akış kaynağı (source) da olabilir, yani akışı kendi içinden
+"doğuruyor" olabilir. Bazı düğümler akışı yutuyor olabilir, onlara akış
+gelir ve yokolur, bu düğümlere alıcı (sink) diyebiliriz. O zaman önceki
+gördüğümüz sadece aktarıcı düğümlere ek olarak bu iki tip düğümü de
+kullanabiliriz. Üstteki resimde en soldaki iki düğüm kaynak gibi duruyor,
+oradan sadece çıkan akış görüyoruz. En sağdaki ise alıcı, ona akış sadece
+giriyor. </p>
+<p>Optimizasyon probleminin sorduğu soru şu olacak, "en minimum bedelli akış
+hangisi?". Pek çok türlü akış olabilir, bizim aradığımız bedeli en az
+olan. Bugün göreceğimiz tüm problemler birer minimum bedelli akış problemi
+olarak formülize edilebilir. İlk önce en başta gördüğümüz problemi ağ
+yapısına tercüme edeceğiz, sonra diğer göreceğimiz problemlerin birer LP
+olup olmadığına bakacağız. </p>
+<p>Düğümleri numaralandıralım,</p>
+<p><img alt="" src="func_90_nflow_03.png" /></p>
+<p>Her akışı, karar değişkenini $x_{ij}$ olarak gösterebiliriz, ki
+$(i,j) \in \varepsilon$, 1'den 3'e akış $x_{13}$ olacak. Akış bedeli
+$c_{ij}$. Toplam bedel her akış çarpı o akışın bedeli toplanmış
+hali. Kapasite sınırları $p_{ij} \le x_{ij} \le q_{ij}$ ile gösterilebilir,
+her kenarın bir alt bir de üst sınırı olabilir ($p_{ij}$ çoğu problem için
+sıfırdır). Muhafaza denklemi, her düğüm $k$ için </p>
+<p>$$
+\sum_{j \in N} x_{kj} - \sum_{i \in N} x_{ik} = b_k, \quad \forall k \in N
+$$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, </p>
