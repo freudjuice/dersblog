@@ -26,11 +26,11 @@
 <p>Daha önce işlediğimiz bu konuyu biraz daha genişletelim [1]. Sailco adlı
 hayali bir şirket düşünelim, bu şirket yelkenli tekne (sailbot)
 üretiyor. Problem şöyle, önümüzdeki 4 ay içinde alttaki üretim sayısını
-gerçekleştirmesi gerekiyor. </p>
+gerçekleştirmesi gerekiyor (müşteri talebi)</p>
 <p>$$ 
 \begin{array}{|c|c|c|c|c|}
 \hline
-Ay &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+\textrm{Ay} &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
 \hline
 \textrm{Üretilen tekne sayısı} &amp; 40 &amp; 60 &amp; 70 &amp; 25 \\
 \hline
@@ -50,6 +50,15 @@ eğer o ayda daha fazla tekne yapmam gerekiyorsa fazla mesai kullanmam
 şart. </p>
 <p>Problem şöyle, öyle bir üretim ve depolama takvimi planla ki önümüzdeki 4
 aydaki üretimi minimum masrafla yapabileyim. </p>
+<p>Karar değişkenleri neler olacak? Görüyorum ki bu tür problemlerle uğraşan
+bazı öğrenciler genelde az sayıda değişken kullanmaya meyilli, mesela "X
+ayında üretilecek tekne sayısı" gibi, ve beklenti o ki formüller işin
+gerisini halletsin. Yani mesela ilk ay bariz zaten, depoda 10 tane tekne
+var, geri kalanını ilk ayda normal işçilere yaptırırım çünkü bu en ucuzu. O
+zaman o ayda üretilen tekne sayısı değişkeni yeter, vs. Fakat göreceğiz ki
+bu tür yaklaşımlar aslında işi daha zorlaştırıyor. Aslında işimize
+yaramayabilecek ekstra değişkenler tanımlamak, sonra o değişkenleri
+kısıtlayıp probleme uygun şekilde dahil etmek daha kolay.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, </p>
