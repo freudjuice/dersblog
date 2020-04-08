@@ -1,0 +1,109 @@
+<h1>Ağ Akış Problemleri (Network flow problems)</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ağ Akış Problemleri (Network flow problems)
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>Daha önce işlediğimiz bu konuyu biraz daha genişletelim [1]. Sailco adlı
+hayali bir şirket düşünelim, bu şirket yelkenli tekne (sailbot)
+üretiyor. Problem şöyle, önümüzdeki 4 ay içinde alttaki üretim sayısını
+gerçekleştirmesi gerekiyor (müşteri talebi)</p>
+<p>$$ 
+\begin{array}{|c|c|c|c|c|}
+\hline
+\textrm{Ay} &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+\hline
+\textrm{Üretilen tekne sayısı} &amp; 40 &amp; 60 &amp; 70 &amp; 25 \\
+\hline
+\end{array}
+$$</p>
+<p>Birinci ayda 40, ikinci ayda 60, vs.. Şirketin bir deposu da var, bitmiş
+teknelerin teslim etmeden önce tutuldukları yer burası. 1. ayın başında bu
+depoda 10 tane tekne var. Her ay kaç tane tekne (ve nasıl) üretileceğini
+hesaplamam lazım, burada işçi turu ve depoda olanlar sayıyı etkiler tabii,
+mesela bir ayda 10 tane üretmem gerekiyorsa ve depoda zaten 10 tane varsa,
+hiç üretim yapmama gerek yok. Ama gelecekte çok fazla üretmem gerektiğini
+biliyorsam ekstra yapıp onları depoda tutabilirim, ki sonra gönderebileyim.</p>
+<p>İşçi kısıtlaması şöyle, normal işçiyle \$400 / tekne üzerinden fazla mesai
+ile \$450 / tekne üzerinden üretim yapabilirim. Tek bir tekneyi depoda
+tutmak \$20. Ayrıca normal işçi ile ayda sadece 40 tekne yapabiliyorum,
+eğer o ayda daha fazla tekne yapmam gerekiyorsa fazla mesai kullanmam
+şart. </p>
+<p>Problem şöyle, öyle bir üretim ve depolama takvimi planla ki önümüzdeki 4
+aydaki üretimi minimum masrafla yapabileyim. </p>
+<p>Karar değişkenleri neler olacak? Görüyorum ki bu tür problemlerle uğraşan
+bazı öğrenciler genelde az sayıda değişken kullanmaya meyilli, mesela "X
+ayında üretilecek tekne sayısı" gibi, ve beklenti o ki formüller işin
+gerisini halletsin. Yani mesela ilk ay bariz zaten, depoda 10 tane tekne
+var, geri kalanını ilk ayda normal işçilere yaptırırım çünkü bu en ucuzu. O
+zaman o ayda üretilen tekne sayısı değişkeni yeter, vs. Fakat göreceğiz ki
+bu tür yaklaşımlar aslında işi daha zorlaştırıyor. Aslında işimize
+yaramayabilecek ekstra değişkenler tanımlamak, sonra o değişkenleri
+kısıtlayıp probleme uygun şekilde dahil etmek daha kolay.</p>
+<p>Biz de böyle yapacağız. Bir sürü değişken; mesela X ayı için kaç tane
+"normal işçi teknesi" üretilmesi gerektiği, yani bu sayı sadece normal
+işçiler tarafından üretilecek tekneleri kontrol edecek, fazla mesai için
+farklı olacak.. Her ay depoda kaç tekne tutulduğu ayrı sayılacak, her şey
+bir değişken olacak. Belki bu değişkenlerden bazıları fuzuli, hatta başka
+bir şeyi tekrar ediyor sanki, başka değişkenlerden türetilebilir gibi
+geliyor, olsun, yine de ekstra değişkeni koyun, ama diğer yandan
+aklınızdaki o kuralı probleme sınırlama olarak dahil edin. </p>
+<p>Yani literaturde bu degiskenlere karar degiskenleri deniyor ama aslinda
+onlarin direk karar verdigimiz seyler olmasina gerek yok. </p>
+<p>Degiskenler soyle,</p>
+<p>$x_1,x_2,x_3,x_4$: her ayda normal iscilik ile uretilen tekne sayisi</p>
+<p>$y_1,y_2,y_3,y_4$: her ayda fazla mesai ile uretilen tekne sayisi</p>
+<p>$h_1,h_2,h_3,h_4,h_5$: her ay başında depoda olan tekne sayısı. 5 ay var
+çünkü ay sonundaki sayıyı $h_5$ değişkeninde tutuyoruz. Tabii problemi iyi
+anlayanlarımız farketmiştir ki bu değişkende sıfır değeri olmalı, tüm
+tekneler gönderilmiş olmalı.</p>
+<p>Parametreler</p>
+<p>Bunlar değişken değil dikkat, dışarıdan tanımlanan parametreler. Başta
+gördüğümü sayılar bunlar, her ay müşteriden gelen talep, </p>
+<p>$d_1,d_2,d_3,d_4$: her ay için talep (demand). </p>
+<p>Kisitlamalar</p>
+<p>$0 \le x_i \le 40$, ki $i=1,2,3,4$: normal işçilikle üretilebilecek tekne
+sayısı, çünkü üstte belirttik, o tür üretimin sınırı bu</p>
+<p>$y_i \ge 0$: fazla mesai ile üretilebilecek tekne sayısı sınırsız. Tabii ki
+negatif tekne üretilemez, o sebeple sıfırdan büyüklük var. </p>
+<p>$h_i + x_i + y_i = d_i + h_{i+1}$: teknelerin muhafazası denklemi. Burada
+diyoruz ki her ay başında depodaki tekneler artı normal ve fazla mesai
+işçilik ile ürettiğim teknelerin toplamı, o aydaki talep ve sonraki aya
+kalacak depodaki teknelerin toplamı ile aynı olmalı. </p>
+<p>Ayrıca $h_1=10$ olduğunu biliyoruz.</p>
+<p>Önceki noktayı tekrar vurgulamak gerekirse üstteki $h$ değişkenlerini belki
+tanımlamam fuzuli, onları $h,d$'ler üzerinden de tanımlayabilirdim. Ama bu
+şekilde yapmak çok daha açık. </p>
+<p>[atlandi]</p>
+<p>Bu problemin lineer program olduğunu görebiliyoruz, ama hiçbir ağ akışı
+filan göstermedim. O zaman dersimizin başlığı niye ağ akışı? Çünkü bu
+problemi bir ağ yapısı içinden akış olarak görmek te oldukca doğal. 
+Ağdaki 1,2,3,4 düğümleri aylar olacak, ve tekneler o aylar içinden
+"akıyorlar", eğer bir ay sonrasında depoya bir tekne koyuyorsak sanki o
+tekne geleceğe doğru gönderiliyor, sonraki aya veriliyor, o sebeple aylar
+arasındaki oklar $h_i$. </p>
+<p><img alt="" src="func_90_nflow_01.png" /></p>
+<p>[devam edecek]</p>
+<p>Kaynaklar</p>
+<p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, </p>
+<p>University of Wisconsin-Madison
+    <a href="https://laurentlessard.com/teaching/524-intro-to-optimization">https://laurentlessard.com/teaching/524-intro-to-optimization</a></p>
