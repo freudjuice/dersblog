@@ -102,6 +102,31 @@ Ağdaki 1,2,3,4 düğümleri aylar olacak, ve tekneler o aylar içinden
 tekne geleceğe doğru gönderiliyor, sonraki aya veriliyor, o sebeple aylar
 arasındaki oklar $h_i$. </p>
 <p><img alt="" src="func_90_nflow_01.png" /></p>
+<p>Tabii tüm tekneler bir aydan ötekine akmıyor, müşterilerin (customers)
+talebine göre o aydan onlara da belli sayıda tekne "akıyor", $d_i$ ile
+gösterilenler. Her aya giren akış üretim, R ile gösterilen normal
+işçilikle, OT ile gösterilen fazla mesai ile.  Bu resimle problemi bir ağ
+akışı olarak göstermiş olduk.</p>
+<p>Daha önce gördüğümüz muhafaza denklemi bu resimde daha bariz hale geldi,
+çünkü bu resimle aslında şunu söylüyoruz, her ay düğümüne giren akışlar
+çıkış akışlarına eşit olmalı. Bu hem kuvvetli bir ifade ama aynı anda
+bariz. Düğümler içinde bir şey tutmamalı, oradan sadece akış var. </p>
+<p>Bugün genel olarak göreceğimiz konu minimum bedel akış problemleri olacak,
+ki üstteki problem bunun bir örneği. Pek çok optimizasyon problemi yönlü
+bir ağ üzerindeki akış olarak görülebiliyor. </p>
+<p>Alttaki gibi bir ağ düşünelim,</p>
+<p><img alt="" src="func_90_nflow_02.png" /></p>
+<p>8 tane düğümü var, bazı kenarları var. Bu ağdaki karar değişkenleri her
+kenardaki akış. Dikkat, karar değişkeni düğümde değil, kenarda. Bulmak
+istediğimiz bu akış çünkü, bilahere karar değişkenleri. Bu kenarların her
+birinde ne kadar akış var? </p>
+<p>Her kenardaki akışın bir bedeli olabilir, ayrıca her kenarın bir kapasite
+sınırlaması olabilir (bedeli ne olursa olsun üzerine çıkılamayacak bir eşik
+değeri). Mesela bir kenar \$2/birimlik olabilir digeri \$10/birim bedelinde
+olabilir. O zaman ilk kenardan 5 birim göndermek istersem bunun bana bedeli
+\$10 ikincisinden gondermek istersem \$50 olacak. Her kenarın akış bedeli,
+kapasitesi bizim dışarıdan bir parametre ile tanımladığımız bir şey olacak
+tabii ki.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, </p>
