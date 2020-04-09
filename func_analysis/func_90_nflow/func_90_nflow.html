@@ -191,6 +191,45 @@ $$
 $$
 p \le x \le q
 $$</p>
+<p>Denge konusundan bahsedelim, minimum bedelli akış probleminin "dengeli"
+olması durumu var. Üstteki örnekteki gibi bir problemi düşünürsek, bazı
+düğümle kaynak, bazıları alıcı, tüm düğümlerdeki girenler çıkanlar sıfıra
+toplanır, o zaman tüm kaynakların toplamının da tüm talebin toplamına eşit
+olması beklenir. Çünkü ekstra kaynak varsa mesela tüm denklemleri tatmin
+etmek mümkün olmaz. Bunu ispatlayabiliriz, geliş matrisinin bir özelliği
+tüm kolonlarının toplamının sıfır olması, yani $1^T A = 0$. Ayrıca $Ax =
+b$'nin de doğru olduğunu biliyoruz çünkü çözeceğimiz sistemin bir
+kısıtlaması bu formül. O zaman alttaki de doğru olmalı, </p>
+<p>$$
+1^T A x = 1^T b = 0
+$$</p>
+<p>Eşitliğin sağındaki $1^T b$ tüm $b$ öğelerinin toplamı demek, yani</p>
+<p>$$
+\sum _{i \in N} b_i = 0
+$$</p>
+<p>olmalı. Demek ki tüm arz tüm talebe eşit olacak. O zaman size $b$'sı sıfıra
+toplanmayan bir minimum bedel akış problemi verirsem bu problem olurlu
+olmayacaktır. Toplam sıfır ise bu probleme "dengeli problem"
+deniyor. Tabii dengeli bir modelin de illa olurlu olması şart değil, mesela
+öyle kapasite sınırlamaları getirebilirsiniz ki olurluluk mümkün olmaz, ama
+denge yoksa problem kesinlikle olurlu değildir.</p>
+<p>Ama bazen dengesiz problemleri de ufak değişiklikler ile çözmek mümkün
+oluyor, mesela bazı $=$'leri $\le$ yaparak, ki bunun karşılığı ağa bir
+kukla (dummy) düğüm eklemek olabilir .. Ya da pay bırakma (slack)
+değişkenleri ekleyip bazı eşitsizlikleri eşitlikge çevirerek..</p>
+<p>Örnek Alanlar </p>
+<p>Ne kadar çok problemin minimum akış problemi olabildiği şaşırtıcı
+olabilir. </p>
+<p>\begin{enumerate}
+<em> nakliyat problemleri  (transportation)
+</em> görev verme / atama problemleri (assignment)
+<em> aktarmalı gemi nakliyatı (transshipment)
+</em> en kısa yol problemleri (shortest path)
+* maksimum akış problemleri (max-flow)
+\end{enumerate}</p>
+<p>Nakliyat</p>
+<p>Hedef belli bir mali birkac kaynak noktasindan farkli varis noktalarina
+ulastirmak. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, 
