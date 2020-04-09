@@ -43,11 +43,11 @@ hesaplamam lazım, burada işçi turu ve depoda olanlar sayıyı etkiler tabii,
 mesela bir ayda 10 tane üretmem gerekiyorsa ve depoda zaten 10 tane varsa,
 hiç üretim yapmama gerek yok. Ama gelecekte çok fazla üretmem gerektiğini
 biliyorsam ekstra yapıp onları depoda tutabilirim, ki sonra gönderebileyim.</p>
-<p>İşçi kısıtlaması şöyle, normal işçiyle \$400 / tekne üzerinden fazla mesai
-ile \$450 / tekne üzerinden üretim yapabilirim. Tek bir tekneyi depoda
-tutmak \$20. Ayrıca normal işçi ile ayda sadece 40 tekne yapabiliyorum,
-eğer o ayda daha fazla tekne yapmam gerekiyorsa fazla mesai kullanmam
-şart. </p>
+<p>İşçi kısıtlaması şöyle, normal işçiyle 400 lira / tekne üzerinden fazla
+mesai ile 450 lira / tekne üzerinden üretim yapabilirim. Tek bir tekneyi
+depoda tutmak 20 lira. Ayrıca normal işçi ile ayda sadece 40 tekne
+yapabiliyorum, eğer o ayda daha fazla tekne yapmam gerekiyorsa fazla mesai
+kullanmam şart.</p>
 <p>Problem şöyle, öyle bir üretim ve depolama takvimi planla ki önümüzdeki 4
 aydaki üretimi minimum masrafla yapabileyim. </p>
 <p>Karar değişkenleri neler olacak? Görüyorum ki bu tür problemlerle uğraşan
@@ -122,12 +122,12 @@ istediğimiz bu akış çünkü, bilahere karar değişkenleri. Bu kenarların h
 birinde ne kadar akış var? </p>
 <p>Her kenardaki akışın bir bedeli olabilir, ayrıca her kenarın bir kapasite
 sınırlaması olabilir (bedeli ne olursa olsun üzerine çıkılamayacak bir eşik
-değeri). Bedel örneği olarakl mesela bir kenar \$2/birimlik olabilir diğeri
-\$10/birim bedelinde olabilir. O zaman ilk kenardan 5 birim göndermek
-istersem bunun bana bedeli \$10 ikincisinden gondermek istersem \$50
-olacak. Her kenarın akış bedeli, kapasitesi bizim dışarıdan bir parametre
-ile tanımladığımız bir şey olacak tabii ki. Kapasitenin illa sınırlanmış
-olması gerekmez, sınırsız da olabilir.</p>
+değeri). Bedel örneği olarakl mesela bir kenar 2 lira/birimlik olabilir
+diğeri 10 lira/birim bedelinde olabilir. O zaman ilk kenardan 5 birim
+göndermek istersem bunun bana bedeli 10 lira ikincisinden gondermek
+istersem 50 lira olacak. Her kenarın akış bedeli, kapasitesi bizim
+dışarıdan bir parametre ile tanımladığımız bir şey olacak tabii
+ki. Kapasitenin illa sınırlanmış olması gerekmez, sınırsız da olabilir.</p>
 <p>Her düğüm bir akış kaynağı (source) da olabilir, yani akışı kendi içinden
 "doğuruyor" olabilir. Bazı düğümler akışı yutuyor olabilir, onlara akış
 gelir ve yokolur, bu düğümlere alıcı (sink) diyebiliriz. O zaman önceki
@@ -169,6 +169,27 @@ $$
 $$
 $$
 p_{ij} \le x_{ij} \le q_{ij}
+$$</p>
+<p>Şimdi muhafaza kısıtlamasına dönmek istiyorum, aslında bu formülü matris
+formunda yazmanın çok güzel bir yolu var. </p>
+<p><img alt="" src="func_90_nflow_04.png" /></p>
+<p>Matrise $A$ sembolü verilir çoğunlukla ve ona oluş, geliş (incidence)
+matrisi denir.  Örnek olarak sonuncu satıra bakalım, bu satır 8'inci düğüme
+olanları gösteriyor, $-x_{68}-x_{78}$ hesabı var, eksi işareti düğüme giriş
+göstergesi, ve sonuç $b_8$'e eşit. </p>
+<p>$A$'da sadece 0, -1 ve +1 değerleri vardır ve eldeki düğüm kadar satırı
+vardır, ve eldeki kenar kadar kolonu vardır. Dikkat geliş matrisi sadece ağ
+yapısını kodlar, kenarlardan giden akış miktarı hala $x_{ij}$ değerlerinin
+kendisinde. </p>
+<p>Eğer gereken yerde vektörler de kullanırsak en öz haliyle model şöyle,</p>
+<p>$$
+\min_{x \in \mathbb{R}^{|\varepsilon|}} c^T x, \quad \textrm{oyle ki}
+$$
+$$
+Ax = b
+$$
+$$
+p \le x \le q
 $$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
