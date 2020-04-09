@@ -148,12 +148,30 @@ $(i,j) \in \varepsilon$, 1'den 3'e akış $x_{13}$ olacak. Akış bedeli
 $c_{ij}$. Toplam bedel her akış çarpı o akışın bedeli toplanmış
 hali. Kapasite sınırları $p_{ij} \le x_{ij} \le q_{ij}$ ile gösterilebilir,
 her kenarın bir alt bir de üst sınırı olabilir ($p_{ij}$ çoğu problem için
-sıfırdır). Muhafaza denklemi, her düğüm $k$ için </p>
+sıfırdır). Muhafaza denklemi, her düğüm $k$ için [1, 26:22]</p>
 <p>$$
 \sum_{j \in N} x_{kj} - \sum_{i \in N} x_{ik} = b_k, \quad \forall k \in N
 $$</p>
+<p>Toplam bedel</p>
+<p>$$
+\sum_{(i,j) \in \varepsilon } c_{ij} x_{ij}
+$$</p>
+<p>Üstteki ifade üzerinden toplam bedeli minimize eden akışı bulabiliriz. </p>
+<p>Bu bir lineer program değil mi? Bedel lineer, lineer eşitlik, eşitsizlik
+sınırlamaları. Evet bu bir LP. </p>
+<p>Formel ve öz bir şekilde yazmak gerekirse, </p>
+<p>$$
+\min_{x_{ij} \in \mathbb{R}} \sum_{(i,j) \in \varepsilon } c_{ij} x_{ij}
+\quad \textrm{öyle ki}
+$$
+$$
+\sum_{j \in N} x_{kj} - \sum_{i \in N} x_{ik} = b_k, \quad \forall k \in N
+$$
+$$
+p_{ij} \le x_{ij} \le q_{ij}
+$$</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
-<p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, </p>
-<p>University of Wisconsin-Madison
+<p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, 
+    University of Wisconsin-Madison,
     <a href="https://laurentlessard.com/teaching/524-intro-to-optimization">https://laurentlessard.com/teaching/524-intro-to-optimization</a></p>
