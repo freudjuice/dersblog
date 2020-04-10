@@ -301,8 +301,36 @@ ve arz tüm düğümlerde tanımlı, yani her düğüm ya bir kaynak ya da
 alıcı. Böyle olmayabilirdi, arada geçiş düğümleri olsaydı onlar üzerinde
 muhafaza mantığı sebebiyle sıfır tanımı yapmak gerekebilirdi. </p>
 <p>Atama (Assignment Problems)</p>
-<p>Bu tur problemler nakliyat problemine benzer, ama n tane calisanim n tane
-yapilacak isim var. Amac her n kisiye birer gorev vermek. </p>
+<p>Bu tür problemler nakliyat problemine benzer, ama n tane çalışanım n tane
+yapılacak isim var. Amaç her n kişiye birer görev vermek. Diyelim ki her
+çalışanın her görev için farklı tercihi var, mesela ev işlerinde bulaşık,
+çöp atmak, duvar boyamak için A, B kişileri 1 ile 10 ara]sında tercih
+belirtmiş olabilir. Amaç her işi bir kişiye atamak, öyle ki tüm işler
+yapılsın aynı anda herkes olabildiği kadar mutlu olsun. </p>
+<p>Bu problem de nakliyat problemi gibi! Ama şimdi akış 1 ya da 0. Her kaynağa
+1 giriyor, her alıcıdan 1 çıkıyor. Kenarlar üzerinde hiç kısıtlama yok. </p>
+<p>Ama bazılarımız sorabilir, 0.2 insanı bir göreve, 0.8 insani diğerine
+gönderme gibi bir sonuç ta istemem, bir tür tam sayı kısıtlaması da olmalı
+bu problemde, yani her kenardaki akış ya 0 ya da 1 olmalı. Bu tür
+kısıtlamaları ileride işleyeceğiz. </p>
+<p>Örnek görelim, bir yüzücü antrenörüyuz diyelim, eğittiğimiz 5 yüzücü
+arasından bayrak yarışı için seçme yapmamiz gerekiyor. Bayrak yarışında her
+gidiş gelişte ardı ardına dört ayrı stil gerekiyor, dört farklı yüzücü bu
+stillerde yarışabiliyor, bir gidip geliş sonrası bir yüzücü diğerine
+bayrağı aktarıyor. Stiller sırtüstü (backstroke), kurbağalama
+(breaststroke), kelebek (butterfly), serbest stil (freestyle). Her stil bir
+turda kullanılınca toplam tüm stilleri en çabuk kullanmış olan takım
+kazanıyor. Elimizdeki yüzücülerin bu her alandaki geçmişteki zamanlarını
+biliyoruz, bu o yüzücülerin her stildeki kuvvetleri bir bakıma,</p>
+<p><img alt="" src="func_90_nflow_07.png" /></p>
+<p>Şu mümkün; bir süper yüzücümüz olabilir her stilde en iyi o'dur. Ama bu tek
+adamı 4 kez, her stilde kullanamayız, her stil için farklı birini seçmemiz
+lazım. Bu adamı tabii ki bir stil için kullanmak isteriz, ama hangisi için?
+Optimal sonuç için bir dengeleme yapmak lazım. </p>
+<p>Bu bir atama / görevlendirme problemi işte, her yüzüs stilini birine
+"atıyorum". Bu arada elimizde 4 stil ama 5 yüzücü var, yani bir yüzücü
+görevsiz kalacak.</p>
+<p>Üstteki resimde kırmızı renk yapılan tercihi belirtiyor [1, 54:08]. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, 
