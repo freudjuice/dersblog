@@ -229,7 +229,80 @@ olabilir. </p>
 </ul>
 <p>Nakliyat</p>
 <p>Hedef belli bir mali birkaç kaynak noktasından farklı varış noktalarına
-ulaştırmak. </p>
+ulaştırmak. Kaynaklar bir sürü depo, ambar olabilir, varış noktası farklı
+müşteriler olabilir, ürünlerin depodan müşterilere gitmesi gerekiyor. Ama
+mesela ambar 1'den müşteri 2'ye gönderim olabilir, ya da ambar 4'ten aynı
+müşteriye.. ? Karar verilmesi gerekiyor, her müşterinin kendine göre talebi
+var, her nakliyat yolunun farklı bedeli var, yolların kapasite limitleri
+var, depoların arz limitleri var, bu problem en az bedelli talebi tatmin
+eden nakliyat kararını verecek.</p>
+<p><img alt="" src="func_90_nflow_05.png" /></p>
+<p>Örnek şöyle olabilir, Millco'nun (hayali bir şirket) üç tane bakır işleme
+fabrikası var, üç tane de maden bölgesi var. Nakliyatın bedeli km başına 2
+lira. Madenler ve fabrikalar arası mesafeler alttaki gibi, o zaman her
+talebi tatmin edip en az nakliyat masrafı için hangi nakliyat planı takip
+edilmeli?</p>
+<p>$$ 
+\begin{array}{|c|c|c|c|P{3cm}|}
+\hline
+Maden &amp; Fabrika 1 &amp; Fabrika 2 &amp; Fabrika 3 &amp; \textrm{Maden başına günlük
+                                            maksimum kamyon sevkiyatı}\\
+\hline
+1 &amp; 8 &amp; 15 &amp; 50 &amp; 20 \\
+\hline
+2 &amp; 10 &amp; 17 &amp; 20 &amp; 30 \\
+\hline
+3 &amp; 30 &amp; 26 &amp; 15 &amp; 45 \\
+\hline
+Fabrika talebi &amp; 30 &amp; 35 &amp; 30 &amp; \\
+\hline
+\end{array}
+$$</p>
+<p>İlk kontrol edebileceğimiz faktör acaba ağ dengeli mi? Tüm arz toplamı tüm
+talep toplamı ile aynı mı? Evet. O zaman üstteki çözülebilecek bir
+problem olabilir. Düğümleri $\left[\begin{array}{cccccc} 1&amp;2&amp;3&amp;A&amp;B&amp;C \end{array}\right]$
+olarak düzenleyeyim, kaynaklar bir blok olarak önce, alıcılar sonra. Geliş
+matrisi [1, 43:55],</p>
+<p><img alt="" src="func_90_nflow_06.png" /></p>
+<p>Bu tamamen bağlantılı (full connected) bir çiziti temsil ediyor, yani
+herhangi bir maden düğümünden herhangi bir fabrika düğümüne gitmenin yolu
+var. Çözüm</p>
+<pre><code>   A  B  C
+1 20  0  0 
+2 10 20  0
+3 0  15  30
+</code></pre>
+
+<p>Biz de <code>linprog</code> ile kontrol edelim,</p>
+<pre><code class="python">A = [[ 1,  1,  1,  0,  0,  0,  0,  0,  0],
+      [0,  0,  0,  1,  1,  1,  0,  0,  0],
+      [0,  0,  0,  0,  0,  0,  1,  1,  1],
+      [-1, 0,  0, -1,  0,  0, -1,  0,  0],
+      [0, -1,  0,  0, -1,  0,  0, -1,  0],
+      [0,  0, -1,  0,  0, -1,  0,  0, -1]]
+
+b = [ 20, 30, 45, -30, -35, -30 ]
+
+c = [ 8, 15, 50, 10, 17, 20, 30, 26, 15]
+
+A = np.array(A); b = np.array(b); c = np.array(c)
+
+from scipy.optimize import linprog
+
+res = linprog(-c, A_eq=A, b_eq=b)
+print (np.round(res.x))
+</code></pre>
+
+<pre><code>[ 0.  0. 20.  0. 20. 10. 30. 15.  0.]
+</code></pre>
+
+<p>Bu örnekteki $b$'de hiç sıfır öğesi yok, niye? Çünkü bu ağ yapısında talep
+ve arz tüm düğümlerde tanımlı, yani her düğüm ya bir kaynak ya da
+alıcı. Böyle olmayabilirdi, arada geçiş düğümleri olsaydı onlar üzerinde
+muhafaza mantığı sebebiyle sıfır tanımı yapmak gerekebilirdi. </p>
+<p>Atama (Assignment Problems)</p>
+<p>Bu tur problemler nakliyat problemine benzer, ama n tane calisanim n tane
+yapilacak isim var. Amac her n kisiye birer gorev vermek. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, 
