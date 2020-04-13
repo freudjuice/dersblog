@@ -141,19 +141,19 @@ $P$'nin tersini alıp bu tersi soldan iki tarafla çarpsak olmaz mı (solda
 $P$ yokolur, $X$ kalır)? Burada bir problem var, $P$ matrisi $3 \times 4$
 matrisi, kare matris olmadığı için tersi alınamıyor. Bu hesap için
 2. derste işlenen sözde ters (pseudoinverse) işlemini
-kullanacağız. Hatırlatarsak, $P$'nin sözde tersi $P^{\dag}$</p>
-<p>$$ P^{\dag} = P^T(PP^T)^{-1}$$</p>
-<p>işlemidir, ki $PP^{\dag} = I$. Ama $PP^T$ çarpımı sayısal iyi sonuçlar
+kullanacağız. Hatırlatarsak, $P$'nin sözde tersi $P^{+}$</p>
+<p>$$ P^{+} = P^T(PP^T)^{-1}$$</p>
+<p>işlemidir, ki $PP^{+} = I$. Ama $PP^T$ çarpımı sayısal iyi sonuçlar
 vermeyebilir (çarpımlar çok büyür), endişeye gerek yok, sayısal
 kütüphaneler sözde ters işlemini SVD üzerinden çözüyor (çok hızlı),
 bkz. 2. ders.</p>
-<p>O zaman $P^{\dag}x$ ile bahsettiğimiz ışındaki bir noktayı buluruz. Dikkat,
+<p>O zaman $P^{+}x$ ile bahsettiğimiz ışındaki bir noktayı buluruz. Dikkat,
 sadece birini buluruz, diğer noktalar da mümkündür. Ama o noktalar bizi
 ilgilendirmiyor (şimdilik) elimizde iki nokta olacak, biri kamera merkezi
 diğeri bu hesaplanacak olan, bu ikisi yeterli. Ondan önce üstteki hesabın
 gerçekten bir $X$ verip vermediğini kontrol edelim, hesaplanan noktayı
 tekrar geri kameraya yansıtırsak ne olur?</p>
-<p>$$ P (P^{\dag}x) = Ix = x$$</p>
+<p>$$ P (P^{+}x) = Ix = x$$</p>
 <p>Hesap doğruymuş demek ki. Işın hesabı yapalım. Bir önceki resimde $p_1$'e
 benzeyen bir nokta iki üstteki resimde mavi renkli gösterildi. Bu piksele
 doğru giden bir çizgi neye benzer?</p>
