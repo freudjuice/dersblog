@@ -328,22 +328,20 @@ matris $E$</p>
 ortalamasını $E$'nin SVD'sindeki en büyük iki eşsiz değer yapıyoruz, $E$'nin en
 küçük eşsiz değerini sıfır kabul ediyoruz, bu kadar. Niye bu basit ortalamanın
 işlediği teorinin ispatında.</p>
-<p>\begin{algorithm}[h]
-\begin{pseudocode}
-  \codename $\code{8nokta}\left(x_1^i,x_2^i\right)$\\
-  \codeline > Gerekli matrisin yaklaşık halini bul. \\
-  \codeline > $\chi = \left[\begin{array}{cccc} a^1 &amp; a^2 &amp; \dots &amp; a^n \end{array}\right]^T$'yi hesapla,  ki $a^i = x_1^i \otimes x_2^i$. \\
-  \codeline > $||\chi E^s||$'i minimize edecek şekilde $E^s \in \mathbb{R}^9$'i bul, yani  \\
-  \codeline > $\chi = U_\chi \Sigma_\chi V_\chi^T$ ayrıştırmasında $V_\chi$'nin 9. kolonunu al, \\
-  \codeline > çünkü o kolon en küçük eşsiz değere tekabül ediyor. \\
-  \codeline > $E^s$'i tersine yığma işlemiyle $3 \times 3$ $E$ vektörüne aç. \\
-  \codeline > Gerekli uzaya yansıtma yap; $E = U diag{\sigma_1,\sigma_2,\sigma_3} V^T $.\\
-  \codeline > $E$ belli bir skalara kadar tanımlı olduğu için $E$'yi normalize edilmiş \\
-  \codeline > gerekli uzayına yansıt, $\sigma_1,\sigma_2,\sigma_3$ yerine 1,1,0 değerleri kullan.\\
-  \codeline > $R,\hat{T}$'yi hesapla. Dört mümkün çözüm $R=UR_Z(\pm \pi/2)V^T$,$\hat{T}=UR_Z(\pm\pi/2)\Sigma U^T$\\
-  \codeline > $\code{return } R,\hat{T}$ 
-\end{pseudocode}
-\end{algorithm}</p>
+<p>Algoritma <code>8nokta</code> $\left(x_1^i,x_2^i\right)$</p>
+<ul>
+<li>Gerekli matrisin yaklaşık halini bul.</li>
+<li>$\chi = \left[\begin{array}{cccc} a^1 &amp; a^2 &amp; \dots &amp; a^n \end{array}\right]^T$'yi hesapla,  ki $a^i = x_1^i \otimes x_2^i$.</li>
+<li>$||\chi E^s||$'i minimize edecek şekilde $E^s \in \mathbb{R}^9$'i bul, yani
+    $\chi = U_\chi \Sigma_\chi V_\chi^T$ ayrıştırmasında $V_\chi$'nin 9. kolonunu al,
+    çünkü o kolon en küçük eşsiz değere tekabül ediyor. </li>
+<li>$E^s$'i tersine yığma işlemiyle $3 \times 3$ $E$ vektörüne aç. </li>
+<li>Gerekli uzaya yansıtma yap; $E = U diag{\sigma_1,\sigma_2,\sigma_3} V^T $.</li>
+<li>$E$ belli bir skalara kadar tanımlı olduğu için $E$'yi normalize edilmiş \\
+    gerekli uzayına yansıt, $\sigma_1,\sigma_2,\sigma_3$ yerine 1,1,0 değerleri kullan.</li>
+<li>$R,\hat{T}$'yi hesapla. Dört mümkün çözüm $R=UR_Z(\pm \pi/2)V^T$,$\hat{T}=UR_Z(\pm\pi/2)\Sigma U^T$
+  <code>return</code> $R,\hat{T}$ </li>
+</ul>
 <p>8'den daha az nokta mümkün mü? Evet. [Atlandı]</p>
 <p>Eğer sadece rotasyon var ama yer değiştirme yok ise, 8-nokta algoritması
 işlemez, çünkü o zaman $\hat{T}$ sıfır olacak, gerekli matris te sıfır
