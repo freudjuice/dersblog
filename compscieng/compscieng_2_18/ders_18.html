@@ -55,21 +55,29 @@ hızlı. Bir diğer özellik bağımsızlık. Bir diğeri baz vektörlerinin bir
 $K$ pek iyi bir baz değildir. Arnoldi'nin amacı Krylov bazını
 dikgenleştirmektir. $b,Ab,..$'yi alıp $q_1,q_2,..,q_j$ oluşturmaktır. Koda
 bakalım,</p>
-<p>\begin{algorithm}[h]
-\begin{pseudocode}
-\codename $\code{arnoldi}$\\
-\codeline $q_1 = b / ||b||$; // normalize et\\
-\codeline $\code{for }j = 1,..,n-1 // q_{j+1}$'i hesaplamaya başla\\
-\codeline > $t = A * q_j$;\\
-\codeline > $\code{for }i = 1,..,j $ // $t$, $\mathscr{K}_{j+1}$ uzayında\\
-\codeline > >  $h_{ij} = q_i^T t$  // $h_{ij}q_i$, $t$'nin $q_i$'ye yansıması\\
-\codeline > >   $t = t - h_{ij}q_i$ // yansımayı çıkart \\
-\codeline // $t$, $q_1,..,q_j$'ye dikgen\\
-\codeline $h_{j+1,j} = ||t||$ //  $t$'nin büyüklüğünü hesapla\\
-\codeline $q_{j+1} = t / h_{j+1,j}$\\
-\codeline // $q_1,..,q_j$ birimdik
-\end{pseudocode}
-\end{algorithm}</p>
+<p>Algoritma <code>arnoldi</code></p>
+<ul>
+<li>$q_1 = b / ||b||$, normalize et</li>
+<li>
+<p>Her $j = 1,..,n-1$ için $q_{j+1}$'i hesaplamaya başla</p>
+<ul>
+<li>$t = A * q_j$</li>
+<li>
+<p>Her $i = 1,..,j $ için $t$, $\mathscr{K}_{j+1}$ uzayında</p>
+</li>
+<li>
+<p>$h_{ij} = q_i^T t$,  $h_{ij}q_i$, $t$'nin $q_i$'ye yansıması</p>
+</li>
+<li>$t = t - h_{ij}q_i$, yansımayı çıkart</li>
+</ul>
+</li>
+<li>
+<p>// $t$, $q_1,..,q_j$'ye dikgen oldu</p>
+</li>
+<li>$h_{j+1,j} = ||t||$, $t$'nin büyüklüğünü hesapla</li>
+<li>// $q_{j+1} = t / h_{j+1,j}$
+  $q_1,..,q_j$ birimdik</li>
+</ul>
 <p>Fikir Gram-Schmidt fikriyle çok benzer. 1. satırda ilk vektörü olduğu gibi
 alıyoruz, sadece normalize ediyoruz. Sonra 3. satırda bir deneme
 amaçlı bir vektör $t$'ye  bakıyoruz. Bu vektör ilk baştaki $b$'ye dikgen

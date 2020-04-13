@@ -60,19 +60,17 @@ aynı uzay içindedir. O zaman </p>
 <p>$$ x_0 = 0 $$</p>
 <p>$$ r_0 = b - Ax_0  = b$$</p>
 <p>Simetrik Pozitif Kesin $A$ İçin Eşlenik Gradyan Metodu</p>
-<p>\begin{algorithm}[h]
-\begin{pseudocode}
-\codename $\code{eslenik\_gradyan}$\\
-\codeline $\alpha_k = r_{k-1}^T r_{k-1} / d_{k-1}^T A d_{k-1}$ \\
-\codeline $\alpha_k = \alpha_{k-1} + \alpha_k d_{k-1}$\\
-\codeline $r_k = r_{k-1} - \alpha_k Ad_{k-1}$\\
-\codeline $\beta_k = r_k^Tr_k / r_{k-1}^Tr_{k-1}$\\
-\codeline $d_k = r_k + \beta_k d_{k-1}$
-\end{pseudocode}
-\end{algorithm}</p>
+<p>Algoritma <code>eslenik_gradyan</code></p>
+<ul>
+<li>$\alpha_k = r_{k-1}^T r_{k-1} / d_{k-1}^T A d_{k-1}$ </li>
+<li>$\alpha_k = \alpha_{k-1} + \alpha_k d_{k-1}$</li>
+<li>$r_k = r_{k-1} - \alpha_k Ad_{k-1}$</li>
+<li>$\beta_k = r_k^Tr_k / r_{k-1}^Tr_{k-1}$</li>
+<li>$d_k = r_k + \beta_k d_{k-1}$</li>
+</ul>
 <p>$d$ "arama yönüdür", optimizasyon ilerlerken gideceğimiz
 istikamettir. 2. adımda güncellemeyi yapıyorum. Peki bir sonraki yönüm ne
-olmalı? </p>
+olmalı?</p>
 <p>Her Döngüde:</p>
 <ul>
 <li>$Ad$ çarpımını görüyoruz, çünkü $A$ ile çarpım bize yeni Krylov altuzayını
