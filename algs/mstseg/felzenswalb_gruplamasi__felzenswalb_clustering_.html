@@ -118,25 +118,29 @@ bir fark var ise ufak bileşenlere hala izin verilmiştir.</p>
 <p>Algoritma şöyledir, girdi olarak $G=(V,E)$ alır, ve $V$'yi $S$
 bileşenlerine ayırır ki her $S$ içinde ona ait olan kenarlar vardır, yani
 $S=(C_1,..,C_r)$ </p>
-<p>\begin{algorithm}[h]
-\begin{pseudocode}
-\codename $\code{felzenswalb}\left(G\right)$\\
-\codeline > $E$ kenarlarını $\pi = (o_1,..,o_m)$ şeklinde küçükten büyüğe doğru sırala. \\
-\codeline > İlk başta $S^0$ gruplamasını al. Bu durumda her kenar $v_i$
-kendi bileşeni içindedir. \\ 
-\codeline > $\code{for }$ $q = 1,..,m$ \\
-\codeline > > $S^{q-1}$ gruplamasını baz alıp $S^q$ gruplamasını şöyle
-yarat; $q$'inci sıradaki  \\
-\codeline > > kenarın birleştirdiği noktaların $v_i,v_j$ olduğunu farz
-edelim, yani $o_q = (v_i,v_j)$. \\ 
-\codeline > > Eğer $v_i,v_j$ $S^{q-1}$ gruplaması içinde farklı iki
-bileşen içindeyseler, ve $w(o_q)$ her  \\
-\codeline > > iki bileşenin içsel farkına kıyasla çok küçük ise, bu iki
-bileşeni birleştir, \\ 
-\codeline > > yoksa hiçbir şey yapma. \\
-\codeline > $\code{return } S^m$ 
-\end{pseudocode}
-\end{algorithm}</p>
+<p><code>felzenswalb</code>$\left(G\right)$</p>
+<ul>
+<li>$E$ kenarlarını $\pi = (o_1,..,o_m)$ şeklinde küçükten büyüğe doğru
+    sırala.</li>
+<li>İlk başta $S^0$ gruplamasını al. Bu durumda her kenar $v_i$
+    kendi bileşeni içindedir.</li>
+<li>
+<p>Her $q = 1,..,m$ icin</p>
+</li>
+<li>
+<p>$S^{q-1}$ gruplamasını baz alıp $S^q$ gruplamasını şöyle yarat;
+    $q$'inci sıradaki kenarın birleştirdiği noktaların $v_i,v_j$ olduğunu
+    farz edelim, yani $o_q = (v_i,v_j)$.</p>
+</li>
+<li>
+<p>Eğer $v_i,v_j$ $S^{q-1}$ gruplaması içinde farklı iki bileşen
+    içindeyseler, ve $w(o_q)$ her iki bileşenin içsel farkına kıyasla çok
+    küçük ise, bu iki bileşeni birleştir, yoksa hiçbir şey yapma.</p>
+</li>
+<li>
+<p><code>return</code> $S^m$ </p>
+</li>
+</ul>
 <p>Üstteki döngü içindeki en son irdelemede içsel farktan bahsediliyor, bu
 tabii ki $MInt(C_1,C_2)$. Daha formel şekilde $MInt(C_1^{q-1},C_2^{q-1})$
 çünkü bileşenlerin içerikleri hangi adımda olduğumuza göre değişebilir, $q$
@@ -144,21 +148,23 @@ adımında bir önceki $q-1$'den bize "miras kalan" gruplamalar ve
 bileşenler üzerinden iş yapıyoruz. Bir sonraki adıma ya birleşmiş, ya da
 birleşmemiş (aynı) gruplamaları aktarıyoruz. </p>
 <p>Aynı algoritmanın biraz daha fazla formül içeren hali [3]</p>
-<p>\begin{algorithm}[h]
-\begin{pseudocode}
-\codename $\code{felzenswalb}\left(G\right)$\\
-\codeline > Bütün kenarları küçükten büyüğe doğru sırala. \\
-\codeline > İlk başta kenar $v_i$ kendi bileşeni içinde olsun, buna $S^0$ gruplaması diyelim. \\ 
-\codeline > $\code{for}$ tüm kenarlar $e_i = (v_1,v_2) \in E$ için \\
-\codeline > > $v_1 \in C_1$ ve $v_2 \in C_2$'nin birbirinden ayrı, ayrı bileşenler içinde \\
-\codeline > >  ama aynı kenarı içeren noktalar olduğunu düşünelim, \\
-\codeline > > $\code{if}$ $w(e_i) \le MInt(C_1,C_2)$ \\
-\codeline > > > $C_1$ ve $C_2$'yi birleştir \\
-\codeline > > $\code{else}$ \\
-\codeline > > > $S^i = S^{i-1}$ \\
-\codeline > $\code{return } S$ 
-\end{pseudocode}
-\end{algorithm}</p>
+<p><code>felzenswalb</code>$\left(G\right)$</p>
+<ul>
+<li>Bütün kenarları küçükten büyüğe doğru sırala.</li>
+<li>İlk başta kenar $v_i$ kendi bileşeni içinde olsun, buna $S^0$ gruplaması diyelim.</li>
+<li>
+<p>Her tüm kenarlar $e_i = (v_1,v_2) \in E$ için</p>
+<ul>
+<li>$v_1 \in C_1$ ve $v_2 \in C_2$'nin birbirinden ayrı, ayrı
+  bileşenler içinde ama aynı kenarı içeren noktalar olduğunu düşünelim,</li>
+<li><code>if</code> $w(e_i) \le MInt(C_1,C_2)$ ise, o zaman</li>
+<li>$C_1$ ve $C_2$'yi birleştir</li>
+<li><code>else</code></li>
+<li>$S^i = S^{i-1}$ </li>
+</ul>
+</li>
+</ul>
+<p><code>return</code></p>
 <p>Felzenswalb gruplamasının Python ile yazılmış örneği alttadır, daha hızlı
 işleyen C++ bazlı kodu şurada [2] bulunabilir.</p>
 <pre><code class="python">import scipy.sparse as sps
