@@ -362,6 +362,65 @@ arzın bölünüp farklı yönlere gitmesini istemem ve yine bir tam sayı
 kısıtlaması gerektiği akla gelebilir. Bu konuya değineceğiz. Fakat bu
 problemi bir LP olarak çözünce tam sayı kısıtlaması olmasa bile 1/0 bazlı
 sonuçlar alıyorsunuz. Sihirli bir şey sanki.</p>
+<p>[uzun yol atlandi]</p>
+<p>Maksimum flow problemi de olabilirdi, bir çizit alalım mesela,</p>
+<p><img alt="" src="func_90_nflow_10.png" /></p>
+<p>Bu çizitteki kenarları kapasite olarak görebiliriz, yani her kenardan ne
+kadar akış olabileceği hakkında bir sınır var, mesela üstteki bir su boru
+hattı ağı olsaydı, her kenar bir boru olabilirdi ve bu boruların çapına
+göre, kimisi küçük kimisi büyük, o borudan ne kadar şu
+pompalayabileceğimizle alakalı bir kısıtlama var. Amaçım mavi düğümden
+kırmızı düğüme mümkün olduğunca fazla şu pompalamak. </p>
+<p>Peki çıplak gözle bakınca en fazla ne kadar akış gönderebileceğimizi
+görebilir miyiz? Evet. Alıcıya bakarsak en fazla 1+2=3 alabilir, o zaman
+3'ten fazla göndermeyiz. Bu 3 nasıl gönderilecek? 2 hattından 1, 3
+hattından 2 birimle belki.. Dikkat bu problemde yine kaynaktaki akışı
+bölebiliyoruz. </p>
+<p>[maks akışı min akışa çeviren numara atlandı]</p>
+<p>Tam sayı çözümleri</p>
+<p>Nihayet "sonra değineceğiz" dediğimiz konuya geldik [1, 1:09:21]. Atama
+problemi, en kısa yol gibi problemlerde tam sayı sonuçlara ihtiyacımız
+vardı. Tam sayı kısıtlama getirmeden tam sayı sonuç elde etmenin bir yolu
+var. Yani normal bir LP çözüyorsunuz ve tam sayı bazlı sonuçlar elde
+ediyorsunuz. Bu nasıl oluyor? Anlatmadan önce biraz lineer cebire dalmak
+gerekiyor. </p>
+<p>Tanım</p>
+<p>Bir matris $A$ tamamen tekbirimseldir (totally unimodular -TU-) eğer
+$A$'nin her mümkün kare altmatrisinin determinantı 0, 1 ya da -1
+ise. Hatırlarsak determinantlar kare matrisler üzerinde hesaplanan şeyler,
+burada tüm karesel altmatrislerden bahsediyoruz, ve onların determinanti
+belirttiğimiz gibi ise matris TU diyoruz. </p>
+<p>Aslında TU'lüğün kontrolü biraz çetrefil olabilir, düşünürsek bir matris ne
+kadar buyurse o kadar mümkün altmatrisi olur. Ama bir matris tamamen 0,1,-1
+öğelerinden oluşuyorsa bu kontrol belki daha kolay olur..? </p>
+<p>Alttaki matrislerde mesela soldaki TU, ama sağdaki değil. </p>
+<p>$$
+\left[\begin{array}{ccc}
+1 &amp; 1 &amp; 0 \\ -1 &amp; 0 &amp; 1
+\end{array}\right], \quad 
+\left[\begin{array}{ccc}
+1 &amp; 1 &amp; 1 \\ -1 &amp; 0 &amp; 1
+\end{array}\right]
+$$</p>
+<p>Tamam. Şimdi bir teori daha göreceğiz, resim iyice ortaya çıkacak. </p>
+<p>Teori</p>
+<p>Eğer bir matris $A$ TU ise ve $b$ bir tam sayı vektör ise, o zaman
+${ x : Ax \le b}$ çözümündeki $x$ tam sayı kordinatlarında olacaktır.
+Yani üstteki şartlar yerindeyse $Ax \le b$ çokyüzlüsünün (polyhedron) tüm
+köşeleri tam sayı noktalarındadır. Bu teoriyi ispatsız veriyoruz. Ve, bir LP
+için eğer elimizde tüm köşeleri tam sayı kordinatlar olan bir çokyüzlü var
+ise, o LP'nin çözümünün tam sayılar olacağını biliyoruz.</p>
+<p>O zaman, eger elimde matris $A$'si tamamen tekbirimsel olan bir LP var ise,
+o zaman tam sayi cozumler elde etmem garanti, tabii $b$ de tamamen tam
+sayilar iceriyorsa. </p>
+<p>Ve nihai zirveye geldik: tüm geliş matrisleri tamamen tekbirimseldir. </p>
+<p>Yani bir ağ akış problemindeki geliş matrisi tamamen tekbirimsel. Ayrıca
+eğer o problemin $b$ vektörü de tam sayı ise sonuç muhakkak tam sayılar
+içerecek. </p>
+<p>Bu çok önemli bir sonuç. </p>
+<p>O zaman bir minimum bedel akış problemindeki arzlar tam sayı ise, talepler
+tam sayı ise, ve tam sayı kenar kapasiteleri içeriyorsa, bu bir minimum
+bedel tam sayı akışıdır. </p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, 
