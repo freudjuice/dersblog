@@ -80,7 +80,7 @@ tekneler gönderilmiş olmalı.</p>
 <p>Bunlar değişken değil dikkat, dışarıdan tanımlanan parametreler. Başta
 gördüğümüz sayılar bunlar, her ay müşteriden gelen talep, </p>
 <p>$d_1,d_2,d_3,d_4$: her ay için talep (demand). </p>
-<p>Kisitlamalar</p>
+<p>Kısıtlamalar</p>
 <p>$0 \le x_i \le 40$, ki $i=1,2,3,4$: normal işçilikle üretilebilecek tekne
 sayısı, çünkü üstte belirttik, o tür üretimin sınırı bu</p>
 <p>$y_i \ge 0$: fazla mesai ile üretilebilecek tekne sayısı sınırsız. Tabii ki
@@ -424,10 +424,11 @@ bedel tam sayı akışıdır. </p>
 <p>Ekler</p>
 <p>Kısayol problemine örnek olarak [2]'deki probleme bakalım.</p>
 <p><img alt="" src="dijks_03.png" /></p>
-<p>Başlangıç <code>'s</code>'den bitiş <code>x</code>'e en kısa yol hangisi?
-Düğümlere $s=1,t=2,y=3,x=4,z=5$ olarak birer indis verelim, ve 
-$x = [x_{12}, x_{13}, x_{23}, x_{24}, x_{32}, x_{34}, x_{35}, x_{45}, x_{51}, x_{54}]$
-vektörünü tanımlayalım. Geliş matrisini ağdaki bağlantılara göre yapıp çözersek,</p>
+<p>Başlangıç <code>'s</code>'den bitiş <code>x</code>'e en kısa yol hangisi?  Düğümlere
+$s=1$,$t=2$,$y=3$,$x=4$,$z=5$ olarak birer indis verelim, ve
+$x = [x_{12}, x_{13}, x_{23}, x_{24}, x_{32}, x_{34}, x_{35}, x_{45},
+x_{51}, x_{54}]$ vektörünü tanımlayalım. Geliş matrisini ağdaki
+bağlantılara göre yapıp çözersek,</p>
 <pre><code class="python">A = [
      [ 1,  1,  0,  0,  0,  0,  0,  0,  0, 0],
      [ -1,  1,  1,  -1,  0,  0,  0,  0,  0, 0],
