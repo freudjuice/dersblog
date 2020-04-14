@@ -421,8 +421,56 @@ içerecek. </p>
 <p>O zaman bir minimum bedel akış problemindeki arzlar tam sayı ise, talepler
 tam sayı ise, ve tam sayı kenar kapasiteleri içeriyorsa, bu bir minimum
 bedel tam sayı akışıdır. </p>
-<p>[devam edecek]</p>
+<p>Ekler</p>
+<p>Kısayol problemine örnek olarak [2]'deki probleme bakalım.</p>
+<p><img alt="" src="dijks_03.png" /></p>
+<p>Başlangıç <code>'s</code>'den bitiş <code>x</code>'e en kısa yol hangisi?
+Düğümlere $s=1,t=2,y=3,x=4,z=5$ olarak birer indis verelim, ve 
+$x = [x_{12}, x_{13}, x_{23}, x_{24}, x_{32}, x_{34}, x_{35}, x_{45}, x_{51}, x_{54}]$
+vektörünü tanımlayalım. Geliş matrisini ağdaki bağlantılara göre yapıp çözersek,</p>
+<pre><code class="python">A = [
+     [ 1,  1,  0,  0,  0,  0,  0,  0,  0, 0],
+     [ -1,  1,  1,  -1,  0,  0,  0,  0,  0, 0],
+     [ 0,  -1,  -1,  0,  1,  1,  0,  0,  0, 0],
+     [ 0,  0,  0,  -1,  0,  -1,  0,  1,  0, -1],
+     [ 0,  0,  0,  0,  0,  0,  -1,  -1,  1, 1]]
+
+# tek birim yolla, 1'den arz, 4'ten talep
+# geri kalanlarda giris-cikis muhafaza
+b = [1, 0, 0, -1, 0]
+
+c= [10, 5, 2, 1, 3, 9, 2, 4, 7, 6]
+A = np.array(A); b = np.array(b); c = np.array(c)
+
+from scipy.optimize import linprog
+
+res = linprog(c, A_eq=A, b_eq=b)
+res = np.round(res.x)
+res = res.reshape(len(res),1)
+print (res)
+</code></pre>
+
+<pre><code>[[0.]
+ [1.]
+ [0.]
+ [1.]
+ [1.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]]
+</code></pre>
+
+<p>Sonuçta $x_{13}$, $x_{24}$, $x_{32}$ kenarlarının 1 değerini aldığını
+görüyoruz, bu yollar en kısa yolun parçalarıdır, demek ki 1-3, 3-2, ve 2-4
+yolu en kısa yoldur. Orijinal problem çözümünde [2] sonucun ['s', 'y', 't',
+'x'] olduğunu görmüştük. Yani aynı sonuca varmış olduk.  </p>
+<p>Dijkstra algoritmasının bir ayrıksal algoritma olduğunu unutmayalım,
+üstteki LP bazlı yaklaşım sürekli tanım kümesinde, optimizasyon araçları
+ile aynı sonuca varıyor!</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, 
     University of Wisconsin-Madison,
     <a href="https://laurentlessard.com/teaching/524-intro-to-optimization">https://laurentlessard.com/teaching/524-intro-to-optimization</a></p>
+<p>[2] Bayramli, <em>Bilgisayar Bilim, Dijkstra Algoritması ile En Kısa Yol</em></p>
