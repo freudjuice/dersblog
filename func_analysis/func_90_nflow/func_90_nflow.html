@@ -345,6 +345,23 @@ kenarlarda sınırlar olabilir, aktarma noktaları için giren ve çıkan
 birbirini dengelemeli, yani muhafaza denklemi onlar için geçerli [1,
 56:00]. Aslında başta gördüğümüz Sailco problemi bir aktarmalı nakliyat
 problemi.. Depo var, üretici, alıcı var..</p>
+<p>En kısa / en uzun yol problemleri</p>
+<p>En kısa yol problemleri de minimum bedel akış problemleridir. Size alttaki
+gibi bir çizit veriyorum mesela, her kenar, "yol" uzunluğu / zorluğu /
+bedeli çizitte veriliyor ve mavi düğümden kırmızı düğüme en kısa bedelle,
+en kısa şekilde ulaşmak istiyorum. Bu problemi minimum bedel akış olarak
+çözmek için elimizde sadece tek birimlik akış olduğunu hayal
+edebiliriz. </p>
+<p><img alt="" src="func_90_nflow_09.png" /></p>
+<p>Yani mavi düğümün tek birimlik arzı var, kırmızı düğümün tek birimlik
+talebi var, ve geri kalan her düğüm aktarıcı, yani girişi, çıkışı muhafaza
+etmesi gerekiyor. Kenarların bedeli tabii ki o yolun uzunluğu, kısalığı
+olarak yorumlanabilir. O zaman, bu akış problemini çözünce, elde ettiğim
+akış bana hangi yolun en kısa olduğunu söyleyecektir. Tabii 1 birimlik
+arzın bölünüp farklı yönlere gitmesini istemem ve yine bir tam sayı
+kısıtlaması gerektiği akla gelebilir. Bu konuya değineceğiz. Fakat bu
+problemi bir LP olarak çözünce tam sayı kısıtlaması olmasa bile 1/0 bazlı
+sonuçlar alıyorsunuz. Sihirli bir şey sanki.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, 
