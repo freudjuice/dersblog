@@ -447,20 +447,10 @@ from scipy.optimize import linprog
 
 res = linprog(c, A_eq=A, b_eq=b)
 res = np.round(res.x)
-res = res.reshape(len(res),1)
 print (res)
 </code></pre>
 
-<pre><code>[[0.]
- [1.]
- [0.]
- [1.]
- [1.]
- [0.]
- [0.]
- [0.]
- [0.]
- [0.]]
+<pre><code>[0. 1. 0. 1. 1. 0. 0. 0. 0. 0.]
 </code></pre>
 
 <p>Sonuçta $x_{13}$, $x_{24}$, $x_{32}$ kenarlarının 1 değerini aldığını
