@@ -23,487 +23,261 @@
 </script>
 </head>
 
-<p>[Newton yöntemi özeti atlandı]</p>
-<p>Şimdiye kadar kısıtlanmamış Newton yönteminden bahsettik [1, 53:18]. Şimdi
-lineer olarak kısıtlanmış, $Ax=b$ ile, olan duruma bakalım, çünkü ileride
-faydalı olacak.</p>
-<p>En bariz yaklaşım $Ax=b$'nin bir doğrusal (affine) uzay yaratması, ve
-optimizasyonun bu daha ufak uzayda iş yapması. Bir değişken değişimi
-yaparız, $x = Fy + x_0$, ki $F$, $A$'nin sıfır uzayını kapsıyor, ardından
-optimizasyon problemini $y$ bazlı bir probleme indirge. Bu yaklaşıma
-"indirgenmiş uzay yaklaşımı" deniyor. Tarif edilen gayet doğal, basit bir
-yaklaşım aslında, fakat bir bedeli de var. Eğer orijinal problem seyrek ise
-değişim sonrası çok miktarda yapı kaybı (yaı seyreklik) olacak.</p>
-<p>Bir diğer seçenek eşitlikle kısıtlanmış Newton (equality constrained
-Newton). Bu yöntemle $x^+ = x + t v$ adımında $v$ karesel
-yaklaşıksallamanın çözümü, fakat bu çözüm sınırlanmış bir problemin çözümü,
-bir sonraki $x^+$'yi olurlu halde tutacak bir sınırlama bu.</p>
-<p>Çözülen problem </p>
-<p>$$
-v = \arg\min_{Az = 0} \nabla f(x)^T (z-x) + \frac{1}{2} (z-x)^T \nabla^2 f(x)(z-x)
-$$</p>
-<p>Üstteki $x^+$'i olurlu kümede tutar çünkü </p>
-<p>$$
-Ax^+ = Ax + tAv = b + 0 = b
-$$</p>
-<p>KKT koşulları üzerinden çözüm</p>
-<p>$$
-\left[\begin{array}{cc}
-\nabla^2 f(x) &amp; A^T \\
-A &amp; 0
-\end{array}\right]
-\left[\begin{array}{c}
-v \\
-w
-\end{array}\right] = 
-- 
-\left[\begin{array}{c}
-\nabla f(x) \\
-Ax - b
-\end{array}\right]
-$$</p>
-<p>ile belirtilebilir. KKT bölümünde karesel problem örneğindeki gördüğümüz
-$Q$ burada $\nabla^2 f(x)$ oluyor, atılan adım sonrası gelinen yerin ne
-olacağı da kısıtlama içinde görülebilir.</p>
-<p>Olurlu noktadan basliyorsak, ozel durum $Ax = b$, tabii o zaman </p>
-<p>$$
-\left[\begin{array}{cc}
-\nabla^2 f(x) &amp; A^T \\
-A &amp; 0
-\end{array}\right]
-\left[\begin{array}{c}
-v \\
-w
-\end{array}\right] = 
-- 
-\left[\begin{array}{c}
-\nabla f(x) \\
-0
-\end{array}\right]
-$$</p>
-<p>O zaman bariyer metotu nedir? Bu metotla yine Newton metotunu uzatacağız,
-ve eşitsizlik olan problemlerle uğraşacağız. </p>
+<p>Bir dışbükey probleme bakalım şimdi, artık tanıdık olan genel form bu,</p>
 <p>$$
 \min_x f(x) \quad \textrm{öyle ki}
 $$
 $$
-Ax = b
-$$
-$$
 h_i(x) \le 0, \quad i=1,..,m
-\qquad (3)
-$$</p>
-<p>Kriter dışbükey, sınırlamalar lineer, ve dışbükey eşitsizlik
-sınırlamaları, $h_i(x) \le 0$ ile.</p>
-<p>Bariyer metotu eşitsizliklerle başetmenin bir yolu. Eşitsizlik içeren
-programların en büyük problemi sınırlarda ne yapılacağına karar vermek,
-yani olurlu kümenin sınırlarında. Başetmek için olurlu küme 
-$C \equiv { x: h_i(x) \le 0 , i=1,..,m}$ </p>
-<p>$$
-\min_x f(x) + I_C(x)
 $$
 $$
 Ax = b
 $$</p>
-<p>ile kritere dahil edilir, ki $I_C$ göstergeç fonksiyonudur. Ana fikir sınır
-noktalarında işler zorlaşıyorsa niye oralardan uzak durmuyoruz? Fakat
-göstergeç fonksiyonu ile çalışmak zor, onu da yaklaşıksal olarak temsil
-ederiz, işte bariyer fonksiyonu budur. Öyle bir fonksiyon seçeriz ki
-sınırlarda aşırı büyük değerler vererek bizi minimizasyon bağlamında
-oralardan "geri iter". Sanki sınırlara bir manyetik alan koyuyoruz,
-oralara yaklaşınca geri itiliyoruz. </p>
-<p>Tabii bir yandan Newton metotu da kullanabilmek istiyoruz, ideal olarak
-pürüzsüz bir metot olursa elimizde iyi olur. Log bariyer fonksiyonu böyle
-bir fonksiyon</p>
-<p>$$
-\phi(x) = -\sum_{i=1}^{m} \log(-h_i(x))
-\qquad (1)
-$$</p>
-<p>Böylece ana problemi şu hale getirebiliriz,</p>
-<p>$$
-\min_x f(x) + \frac{1}{t} \phi(x) \quad \textrm{öyle ki}
-$$
-$$
-Ax = b
-$$</p>
-<p>ki $t&gt;0$. Görülen $1/t$ dışarıdan bizim tanımladığımız bir parametre,
-optimizasyonu ayarlamak için kullanıyoruz onu. Eğer $t$ küçükse, sıfıra
-yakınsa o zaman bariyer baskın haldedir (daha büyüktür), tabii o zaman
-sınırlardan kaçmak optimizasyon için daha önemli hale gelir. Eğer $t$'yi
-büyütürsek bu "orijinal kriter $f$'ye daha fazla önem ver" demektir.</p>
-<p>Dersin geri kalanında üstteki format yerine alttaki ile çalışacağız,
-üstteki ile aynı, </p>
-<p>$$
-\min_x t f(x) + \phi(x) \quad \textrm{öyle ki}
-$$
-$$
-Ax = b
-\qquad (2)
-$$</p>
-<p>Log-Bariyer Calculus</p>
-<p>(1) için türev</p>
-<p>$$
-\nabla \phi(x) = - \sum_{i=1}^{m} \frac{1}{h_i(x)} \nabla h_i(x)
-$$</p>
-<p>Hessian</p>
-<p>$$
-\nabla^2 \phi(x) = 
-\sum _{i=1}^{m} \nabla h_i(x) \nabla h_i(x)^T - 
-\sum _{i=1}^{m} \frac{1}{h_i(x)} \nabla^2 h_i(x)
-$$</p>
-<p>Örnek</p>
-<p>Pek çok yerde kullanılan bir eşitsizlik görelim, mesela bütün $x_i &lt; 0$
-olduğu bir durum, yani $h_i(x) = -x$. O zaman bariyer neye benzer? </p>
-<p>$$
-\phi(x) = - \sum _{i=1}^{n} \log x_i
-$$</p>
-<p>$$
-\nabla \phi(x) = 
-- \left[\begin{array}{c}
-1/x_1  \\ 
-\vdots \\
-1/x_n
-\end{array}\right] 
-= - X^{-1} \textbf{1} 
-$$</p>
-<p>Burada $X$ matrisi </p>
-<p>$$
-X = \mathrm{diag}(x) = 
-\left[\begin{array}{ccc}
-x_1 &amp; &amp; \\
-    &amp; \ddots &amp; \\
-    &amp; &amp; x_n
-\end{array}\right]
-$$</p>
-<p>ve $\textbf{1}$ sembolu tamamen 1'lerden oluşan matris. </p>
-<p>Hessian</p>
-<p>$$
-\nabla^2 \phi (x) = \left[\begin{array}{ccc}
-1/x_1^2 &amp; &amp; \\
-    &amp; \ddots &amp; \\
-    &amp; &amp; 1/x_n^2
-\end{array}\right] = X^2 
-$$</p>
-<p>Problemi yaklaşık olarak temsil ettik. Uygun şartlarda problem (2)'nin
-çözümü vardır. Neden olduğunu görmek zor değil, $\phi$ beni sınırlardan
-uzak tutar, ve hedefim $f$'ye ulaşırım, lineer diğer sınırları dikkate
-alarak tabii. Gidis yolu neye benzerdi?</p>
-<p>Merkezi gidiş yolu, (1) için KKT koşulları üzerinden gösterilebilir?  Bu
-yol (1) probleminin $t$ üzerinden fonksiyon haline getirilmiş
-çözümüdür. Her $t$ için (1)'i çözebilirim, çözüme $x^*(t)$ derim, ve
-$x^*$'ye $t$'nin bir fonksiyonu olarak bakınca, bariyer metot çerçevesinde,
-ortaya çıkan çözüm serisine merkezi gidiş yolu denir. Her $t$ için (1)'in
-çözümünü KKT koşulları üzerinden temsil edebilirim, böylece her adımda
-$x^*(t)$'nin optimal olması için ne gerekir sorusunu formülize etmiş
-oluyorum.  Önce KKT ana olurluk şartları</p>
-<p>$$
-A x^* = b, \quad h_i(x^*(t)) \le 0
-$$</p>
-<p>Geri kalanlar, önce Lagrangian</p>
-<p>$$
-t f(x) + \phi(x) + w^T (Ax - b)
-$$</p>
-<p>Bu Lagrangian'in $x$ üzerinden gradyanını alıp sıfıra eşitlersem durağanlık
-şartını elde ediyorum. </p>
-<p>$$
-t \nabla f(x^*(t)) - \sum_{i=1}^{m} \frac{1}{h_i(x^* (t))} 
-\nabla h_i(x^*(t)) + A^T w = 0
-$$</p>
-<p>Durağanlık için gradyan kullanmak yeterli çünkü tüm fonksiyonlar dışbükey
-ve pürüzsüz.</p>
-<p>Üstteki problemi bazı herhangi bir $w$ için çözebilirsem o zaman merkezi
-gidiş yolundaki bir çözümü her $t$ için karakterize etmiş olurum. Umudumuz
-o ki $t$'yi sonsuzluğa doğru iterken gördüğümüz KKT koşullarının ima ettiği
-çözümler orijinal problemdeki sonuçlara yaklaşsın. Çünkü bariyer
-fonksiyonunu $1/t$ ile çarptım ve $t$'yi büyüttükçe çarpım gösterge
-fonksiyonuna yaklaştığını biliyorum, o zaman optimizasyonu yaparken $t$'yi
-büyüttükçe orijinal problemin gerçek sonucuna yaklaşmış olurum.</p>
-<p>Şimdi bir lineer program üzerinden merkezi gidiş yoluna bakalım. Basit bir
-LP, eşitlik şartlarını attım, </p>
-<p>$$
-\min_x c^T x, \quad \textrm{öyle ki}
-$$
-$$
-Dx \le e
-$$</p>
-<p>Bariyer olarak</p>
-<p>$$
-\min_x t c^T x - \sum _{i=1}^{m} \log(e_i - d_i^T x)
-$$</p>
-<p>Bu problemi belli bir $t$ için çözersem, sonra $t$'yi büyütürsem ve o yeni
-$t$ için çözersem, bunu ardı ardına yaparsam, umudum o ki orijinal LP'imin
-sonucuna yaklaşacağım.</p>
-<p><img alt="" src="func_59_barr_01.png" /></p>
-<p>Resimde görüldüğü gibi, ortadan başlıyoruz, $t=0$'da diyelim, ve $t$'yi
-büyüttükçe yolda ilerliyoruz, ve sonuca erişiyoruz. Gidiş pürüzsüz, ve
-LP'lerin karakterinden biliyoruz ki nihai sonuç çokyüzlümün (polyhedra)
-ekstrem noktalarının birinde olmalı. Yarı yolda $t=10$'daki bir nokta
-egösteriliyor, nihai sonuç belki $t=100$'da [2, 26:59]</p>
-<p>KKT koşulu üzerinden durağanlığı temiz bir şekilde gösterebiliyoruz, ya da
-iç nokta ve ortada, merkezde bir yol takip edilmesini zorlama bağlamında,
-merkezlik şartı da deniyor buna, gradyan alınınca</p>
-<p>$$
-= tc - \sum _{i=1}^{m} \frac{1}{e_i - d_t ^T x^(t)} d_i
-$$</p>
-<p>Bu demektir ki gradyan $\nabla (x^*(t))$, $-c$'ye paralel olmalıdır, ya da
-${ x: c^T x = c^T x^*(t) }$ hiper düzlemi $\phi$'nin $x^*(t)$'deki
-konturuna teğet durmalıdır.</p>
-<p>Birazdan merkezi yoldan ikiz noktalar alabileceğimizi göreceğiz. Bu çok
-faydalı olacak çünkü bu ikiz noktaları bir ikiz boşluğu hesaplamak için
-kullanacağız. </p>
-<p>Merkezi yoldayken bu yoldaki noktalar $x*(t)$'leri kullanarak olurlu ikiz
-noktalar hesaplayabiliriz. Orijinal problem (3)'e tekrar bakarsak, bu
-problem için ikiz değişkenleri elde etmek için her eşitsizlik için bir
-$u_i$'ye, her eşitlik şartı için bir $v_i$'ya ihtiyacım var. Onları nasıl
-tanımlarım? Merkezi yol üzerindeki çözümler üzerinden,</p>
-<p>$$
-u_i^*(t) = \frac{1}{t h_i(x^*(t))}, \quad i=1,..,m, \quad v^*(t) = w/t
-$$</p>
-<p>$w$ bariyer problemi için KKT koşullarını çözerken elde ettiğim değişken
-idi. </p>
-<p>Niye üsttekiler orijinal problem için olurlu? Bunu görmek kolay, ilk önce,
-$u_i^*(t)$'nin her ögesi harfiyen pozitif, çünkü $h_i(x^*(t))$'nin her
-ögesi harfiyen negatif. Bu bariyer probleminin ana olurluk şartından
-geliyor. Ayrıca $(u^*(t),v^*(t))$ Lagrange ikiz fonksiyonu $g(u,v)$'nin
-tanım kümesinde (domain). Hatırlarsak Lagrange ikizi formülize ettiğimizde
-tanım kümesinde bazı dolaylı sınırlamalar elde ediyorduk. Tarif itibariyle</p>
-<p>$$
-\nabla f(x^*(t)) + \sum _{i=1}^{m} u_i (x^*(t)) \nabla h_i(x^*(t)) + 
-A^T v^*(t) = 0
-$$</p>
-<p>Yani $x^*(t)$, Lagrangian $L(x,u^*(t),v^*(t))$'i tüm $x$'ler üzerinden
-minimize edeceği için $g(u^*(t),v^*(t)) &gt; -\infty$. Bu direk durağanlık
-şartından geliyor işte. O kadar bariz birşey ki aslında bazen kafa
-karıştırıyor. Merkezi yol probleminden çözdüğümüz durağanlık koşulu
-şöyleydi,</p>
-<p>$$
-t \nabla f(x^*(t)) - \sum \frac{1}{h_i(x^*(t))} \nabla h_i(x^*(t)) + A^T w= 0
-$$</p>
-<p>Bir $x^*$ çözümü ve $w$ olduğunu farz ediyoruz. Tüm formülü $t$ ile
-bölersem,</p>
-<p>$$
-\nabla f(x^*(t)) - \sum \frac{1}{t h_i(x^*(t))} \nabla h_i(x^*(t)) + A^T \frac{w}{t}= 0
-$$</p>
-<p>Tek yaptığımız "üstteki orijinal problemdeki durağanlık şartına çok
-benziyor" demek, değil mi, çünkü </p>
-<p>$$
-\nabla f(x^*(t)) +
-\sum \underbrace{\frac{-1}{t h_i(x^*(t))}}_{u_i} \nabla h_i(x^*(t)) + 
-A^T \underbrace{\frac{w}{t}}_{v}= 0 
-\qquad (4)
-$$</p>
-<p>desem, orijinal problemin durağanlık şartına benzeyen bir ifade elde etmiş
-olurum [2, 33:48]. Demiştik ki üstteki $u_i,v$ tanımları üzerinden orijinal
-problem için olurlu ikiz noktaları alabiliyoruz. </p>
-<p>Soru: niye orijinal problem için optimal noktaları elde etmedim? Biraz önce
-gördük, durağanlık koşulunu tatmin ettim, ana, ikiz olurluk
-var.. ama.. tamamlayıcı gevşeklik tatmin edilmedi. Çok önemli. Onun yerine
-ne var? $u_i h_i (x) = 0$ olması lazım, onun yerine ne var? Tanım
-itibariyle $u_i = -1/t ..$ var. O zaman sıfıra yakınsak çok yakınsak bölüm
-büyür, dolaylı olarak $t$'yi büyüttükçe orijial problemin KKT koşullarını
-yaklaşıksallamış oluruz. O zaman log bariyer problemini çözmüş olmamıza
-rağmen belli bir $t$ değer için orijinal problem için çözüm olmamasının
-sebebi tamamlayıcı gevşekliğin tatmin edilmiyor olması.</p>
-<p>Ama elimizdekiler hala çok faydalı, çünkü herhangi bir anda merkez yol
-üzerinde $t$'nin fonksiyonu olarak ne kadar alt optimal olduğumuzu
-sınırlamak mümkün oluyor. Bunun için sadece ikiz boşluğunu hesaplıyoruz, o
-kadar. O zaman $u^*,v^*$'da Lagrange ikiz fonksiyonu hesaplıyorum, ve $f^*$
-ile bu Lagrange farkını buluyorum, ve ikiz boşluğu hesaplanmış oluyor. 
-(4)'te gördük ki $x^*$ Lagrangian'i $u^*,v^*$'da minimize eder, o zaman
-ikizi alttaki gibi hesaplayarak </p>
-<p>$$
-g(u^*(t),v^*(t)) = 
-f(x^*(t)) + \sum_{i=1}^{m} u_i^*(t) h_i(x^*(t)) + v^*(t)^T (Ax^*(t) - b)
-$$</p>
-<p>Büyük toplamdaki ikinci terim sıfır, çünkü merkezi yolda $Ax^*$ her zaman
-$b$'ye eşittir. Birince terimde, $u_i$'i $-1/t$'ye eşitledik, ve bu $m$
-kere toplanacak, sonuç</p>
-<p>$$
-= f(x^*(t)) - m/t
-$$</p>
-<p>Yani göstermiş olduk ki merkezi yolun optimallikten olan uzaklığı en fazla
-$m/t$ olacaktır,</p>
-<p>$$
-f(x^*(t)) - f^* \le m/t
-$$</p>
-<p>Üstteki bariyer metorun işlediğine dair ispata en yakın sonuç, bize diyor
-ki eğer herhangi bir $t$ için bariyer problemini çözersem optimalliğe
-yakınlık her zaman $m/t$'den küçük olur. $t$'yi isteğe bağlı olarak
-büyüttükçe o ölçüde optimalliğe yaklaşmış olurum. </p>
-<p>Merkezi yolu yorumlamanın bir diğer yolu "sarsıma uğratılmış KKT
-koşulları" denen bir teknik üzerinden. Şimdiye kadar gördük ki merkez yol
-ve ona tekabül eden ikiz değerler (4)'teki durağanlık şartını çözüyor. 
-$u_i \ge 0$, $h_i(x) \le 0$, ve $Ax = b$. Tamamlayıcı gevşeklik haricinde tüm
-koşullar tatmin. Esas KKT koşullarında </p>
-<p>$$
-u_i^*(t) \cdot h_i^*(t) = 0, \quad i=1,..,m
-$$</p>
-<p>olurdu, biz onun yerine </p>
-<p>$$
-u_i^*(t) \cdot h_i^*(t) = -1/t, \quad i=1,..,m
-$$</p>
-<p>dedik. Yani bir anlamda log bariyer fonksiyonunu unutuyoruz, onun yerine şu
-probleme bakıyoruz,</p>
-<p>$$
-\nabla f(x^*(t)) + \sum_{i=1}^{m} u_i(x^*(t))\nabla h_i(x^*(t)) + A^T v^*(t) = 0
-$$</p>
-<p>$$
-u_i^*(t) \cdot h_i^*(t) = -1/t, \quad i=1,..,m
-$$</p>
-<p>$$
-h_i(x^*(t)) \le 0, \quad i=1,..,m, \quad Ax^*(t) = b
-$$</p>
-<p>$$
-u_i(x^*(t)) \ge 0
-$$</p>
-<p>Ve $t$'yi büyüterek üstteki problemi çözüyorum. Yani olurluğu, durağanlığı
-tam olarak, tamamlayıcı gevşekliği ise yaklaşık olarak çözmüş oluyorum, ve
-yaklaşıksallığı gittikçe büyüyen $t$'ler üzerinden daha sıkı hale getiriyorum. 
-Yani log bariyer tekniği ile sarsıma uğratılmış KKT koşulları sınırlı
-problemleri çözmenin iki yolu. </p>
-<p>Ekler</p>
-<p>Esitsizlik Sınırlamaları </p>
-<p>Optimizasyon problemimizde </p>
-<p>$$
-\min_x f(x), 
-\quad 
-\textrm{oyle ki}, 
-\quad 
-c_i(x) \ge 0, 
-\quad i=1,2,..,m
-$$</p>
-<p>$c_i$ ile gösterilen eşitsizlik içeren (üstte büyüklük türünden)
-kısıtlamalar olduğunu düşünelim. Bu problemi nasıl çözeriz?</p>
-<p>Bir fikir, problemin eşitizliklerini bir gösterge (indicator)
-fonksiyonu üzerinden, Lagrange yönteminde olduğu gibi, ana hedef
-fonksiyonuna dahil etmek, ve elde edilen yeni hedefi kısıtlanmamış bir
-problem gibi çözmek. Yani üstteki yerine, alttaki problemi çözmek,</p>
-<p>$$
-\min_x f(x) + \sum_{i=1}^{m} I(c_i(x))
-$$</p>
-<p>ki $I$ pozitif reel fonksiyonlar için göstergeç fonksiyonu,</p>
-<p>$$
-I(u) = 
-\left\{ \begin{array}{ll}
-0 &amp; u \le 0 \\
-\infty &amp; u &gt; 0
-\end{array} \right.
-$$</p>
-<p>Bu yaklaşımın nasıl işleyeceğini kabaca tahmin edebiliriz. $I$ fonksiyonu
-0'dan büyük değerler için müthiş büyük değerler veriyor, bu sebeple
-optimizasyon sırasında o değerlerden tabii ki kaçınılacak, ve arayış
-istediğimiz noktalara doğru kayacak. Tabii $x_1 &gt; 3$ gibi bir şart varsa
-onu $x_1 - 3 &gt; 0$ şartına değiştiriyoruz ki üstteki göstergeci
-kullanabilelim. Bu yaklaşıma "bariyer metotu" ismi veriliyor çünkü $I$ ile
-bir bariyer yaratılmış oluyor.</p>
-<p>Fakat bir problem var, göstergeç fonksiyonunun türevini almak, ve pürüzsüz
-rahat kullanılabilen bir yeni fonksiyon elde etmek kolay değil. Acaba $I$
-yerine onu yaklaşık temsil edebilen bir başka sürekli fonksiyon kullanamaz
-mıyız?</p>
-<p>Log fonksiyonunu kullanabiliriz. Altta farklı $\mu$ değerleri için
-$-\mu \log(-u)$ fonksiyonun değerlerini görüyoruz. Fonksiyon görüldüğü gibi
-$I$'ya oldukca yakın.</p>
-<pre><code class="python">def I(u): 
-   if u&lt;0: return 0.
-   else: return 10.0
+<p>Tüm bu fonksiyonların dışbükey ve iki kere türevi alınabilir olduğunu farz
+ediyoruz. Şimdi log bariyer metotu uygulayacağız, bu ilk göreceğimiz
+iç-nokta yöntemi olacak [1, 14:00]. </p>
+<p>[devam edecek]</p>
+<pre><code class="python"># https://github.com/junjiedong/LP-Solver
+import numpy as np
 
-u = np.linspace(-3,1,100)
-Is = np.array([I(x) for x in u])
+class LPCenteringSolver():
+    &quot;&quot;&quot;
+    A helper module for LPSolver
 
-import pandas as pd
-df = pd.DataFrame(index=u)
+    Solves LP centering problem using infeasible start Newton method:
+    minimize    c'x - sum( log(x_i) )
+    subject to  Ax = b
 
-df['I'] = Is
-df['$\mu$=0.5'] = -0.5*np.log(-u)
-df['$\mu$=1.0'] = -1.0*np.log(-u)
-df['$\mu$=2.0'] = -2.0*np.log(-u)
+    Hyperparameters
+        alpha: the factor by which we weaken the slope of first-order approximation
+               in backtracking line search (0 &lt; alpha &lt; 0.5)
+        beta: multiplicative step size in backtracking line search (0 &lt; beta &lt; 1)
+        max_iter: maximum number of Newton steps before quitting
 
-df.plot()
-plt.savefig('func_40_autograd_04.png')
+    Attributes
+        status: 'optimal' or None
+        value: optimal value of objective function
+        x_opt, v_opt: primal optimal point and a dual optimal point
+        num_steps: Number of Newton steps executed
+        residual_norm: array of ||r(x,v)||_2 (length num_steps+1)
+    &quot;&quot;&quot;
+
+    def __init__(self, alpha=0.25, beta=0.5, max_iter=100):
+        self.alpha = alpha
+        self.beta = beta
+        self.max_iter = max_iter
+        self.convergence_threshold = 1e-6  # stop when ||r||_2 &lt;= convergence_threshold
+        self.status = None
+
+
+    def solve(self, A, b, c, x0=None):
+        m, n = A.shape
+        self.status = None
+        self.residual_norm = []
+
+        # Initialize primal and dual variables (x, v)
+        x = x0 if x0 is not None else np.random.rand(n) + 0.01
+        v = np.zeros(m)
+
+        for self.num_steps in range(self.max_iter):
+            # Compute primal and dual residuals
+            r_dual = c - 1 / x + np.dot(A.T, v)
+            r_primal = A.dot(x) - b
+            r_norm = np.sqrt(np.sum(r_dual ** 2) + np.sum(r_primal ** 2))
+            self.residual_norm.append(r_norm)
+
+            # Convergence check
+            if r_norm &lt;= self.convergence_threshold:
+                self.status = 'optimal'
+                self.x_opt, self.v_opt = x, v
+                self.value = np.sum(c * x) - np.sum(np.log(x))
+                break
+
+            # Compute primal and dual Newton steps (dx, dv) via block elimination
+            h_inv =  x ** 2  # diagonal entries of inv(Hessian)
+            dv = np.linalg.solve( np.dot(A * h_inv, A.T), r_primal - np.dot(A * h_inv, r_dual) )
+            dx = -h_inv * (r_dual + np.dot(A.T, dv))
+
+            # Backtracking line search on ||r||_2
+            t = 1
+            while np.min(x + t * dx) &lt;= 0:  # prevent x from going below 0
+                t = self.beta * t
+            while True:
+                x_new = x + t * dx
+                v_new = v + t * dv
+                r_dual_new = c - 1 / x_new + np.dot(A.T, v_new)
+                r_primal_new = A.dot(x_new) - b
+                r_norm_new = np.sqrt(np.sum(r_dual_new ** 2) + np.sum(r_primal_new ** 2))
+
+                if r_norm_new &lt;= (1 - self.alpha * t) * r_norm:
+                    x = x_new
+                    v = v_new
+                    break
+                else:
+                    t = self.beta * t
+
+        self.residual_norm = np.array(self.residual_norm)
+        if self.status != 'optimal':
+            self.num_steps = self.max_iter
+            self.value, self.x_opt, self.v_opt = None, None, None
+
+
+class LPSolver():
+    &quot;&quot;&quot;
+    LPSolver solves the standard form LP problem:
+    minimize    c'x
+    subject to  Ax = b, x &gt;= 0
+
+    The solver uses the barrier method.
+    It traverses the central path by solving a centering problem at each step:
+    minimize    t * c'x - sum( log(x_i) )
+    subject to  Ax = b
+
+    The solving procedure gradually increases t after each step, and stops when
+    the duality gap n / t &lt; tol, where n is the length of x
+
+    Hyperparameters
+        mu: multiplicative step size for barrier method (t := mu * t)
+        tol: suboptimality tolerance (used for convergence check)
+
+    Attributes:
+        status: 'optimal', 'infeasible', or 'failure'
+        value: optimal value of objective function
+        x_opt, v_opt: primal optimal point and a dual optimal point
+        num_steps: number of centering steps executed
+        duality_gaps: array - duality gap after every centering step
+        newton_steps: array - number of Newton steps for solving centering problems
+    &quot;&quot;&quot;
+
+    def __init__(self, mu=10, tol=1e-3) :
+        self.mu = mu  # multiplicative step size for barrier method
+        self.tol = tol  # maximum acceptable duality gap
+        self.max_iter = 100
+        self.centering_solver = LPCenteringSolver(alpha=0.25, beta=0.5, max_iter=100)
+
+
+    def solve_feasible_start(self, A, b, c, x):
+        &quot;&quot;&quot;
+        Solves an LP problem given a strictly feasible starting point x.
+        This is used as a helper method for solving an LP problem from scratch,
+        no matter whether the problem is strictly feasible or not
+        &quot;&quot;&quot;
+        m, n = A.shape
+        status, x_opt, v_opt, value = None, None, None, None
+        duality_gaps = []  # duality gap n/t after every iteration
+        newton_steps = []  # number of Newton steps for solving centering problems
+
+        t = 1
+        for num_steps in range(1, self.max_iter+1):
+            # Solve LP Centering problem
+            self.centering_solver.solve(A, b, t*c, x)
+            if self.centering_solver.status != 'optimal':
+                status = 'failure'  # Centering solver failed
+                break
+
+            x, v = self.centering_solver.x_opt, self.centering_solver.v_opt
+            duality_gap = n / t
+            newton_steps.append(self.centering_solver.num_steps)
+            duality_gaps.append(duality_gap)
+
+            # Convergence check
+            if duality_gap &lt; self.tol:
+                status = 'optimal'
+                x_opt, v_opt = x, v
+                value = np.sum(c * x)
+                break
+            else:
+                t = self.mu * t  # Increase t
+
+        return status, x_opt, v_opt, value, num_steps, \
+               np.array(duality_gaps), np.array(newton_steps)
+
+
+    def solve(self, A, b, c):
+        &quot;&quot;&quot;
+        Checks feasibility of an LP problem, and solves the problem if it's feasible
+        The solving procedure consists of two phases:
+        -- Phase I: Check strict feasibility and obtain a strictly feasible starting
+                    point by using solve_feasible_start() to solve the following LP,
+                    for which we can always find a feasible starting point (x, t):
+                    minimize    t
+                    subject to  Ax = b, x &gt;= (1 - t) * 1_n
+
+        -- Phase II: If strictly feasible, directly invoke solve_feasible_start()
+                     with the starting point x found in Phase I
+        &quot;&quot;&quot;
+        m, n = A.shape
+
+        # Phase I: Check strict feasibility and obtain a strictly feasible starting point
+        x = np.linalg.pinv(A).dot(b)
+        if np.min(x) &lt;= 0:  # otherwise, x is already a strictly feasible point
+            # Construct an LP for checking feasibility
+            A1 = np.hstack(( A, -A.dot(np.ones((n, 1))) ))
+            b1 = b - A.dot(np.ones(n))
+            c1 = np.zeros(n+1)
+            c1[-1] = 1
+
+            t = 2 - np.min(x)  # makes sure the starting (x, t) pair is feasible
+            z0 = np.concatenate(( x + (t-1)*np.ones(n), [t] ))
+            status, z_opt, _, value, _, _, _ = self.solve_feasible_start(A1, b1, c1, z0)
+            if status == 'optimal' and value &lt; 1:  # strictly feasible
+                x = z_opt[:n] - (z_opt[-1] - 1) * np.ones(n)
+            else:
+                self.status = &quot;infeasible&quot;
+                self.x_opt, self.v_opt, self.value = None, None, None
+                self.duality_gaps, self.newton_steps = None, None
+                return
+
+        # Phase II: Given a strictly feasible starting point x, solve the problem
+        self.status, self.x_opt, self.v_opt, self.value, self.num_steps, \
+        self.duality_gaps, self.newton_steps = self.solve_feasible_start(A, b, c, x)
 </code></pre>
 
-<p><img alt="" src="func_40_autograd_04.png" /></p>
-<p>O zaman eldeki tüm $c_i(x) \ge 0$ kısıtlamalarını</p>
-<p>$$
-- \sum_{i=1}^{m} \log c_i(x)
-$$</p>
-<p>ile hedef fonksiyonuna dahil edebiliriz, yeni birleşik fonksiyon,</p>
-<p>$$
-P(x;\mu) = f(x) - \mu \sum_{i=1}^{m} \log c_i(x) 
-$$</p>
-<p>olur. Böylece elde edilen yaklaşım log-bariyer yaklaşımı
-olacaktır. Mınımizasyon sırasında hem başta bariyerden kaçınilmiş olunacak,
-hem de $\mu$ küçükdükçe hedefin geri kalanında istenilen minimal değerlere
-doğru kayılmış olunacak. </p>
-<p>Algoritma olarak optimizasyon şu şekilde gider;</p>
-<p>1) Bir $x$ ve $\mu$ değerinden başla.</p>
-<p>2) Newton metotu ile birkaç adım at (durma kriteri yaklaşıma göre değisebilir)</p>
-<p>3) $\mu$'yu küçült</p>
-<p>4) Ana durma kriterine bak, tamamsa dur. Yoksa başa dön</p>
-<p>Bu yaklaşımın dışbükey (convex) problemler için global minimuma
-gittiği ispatlanmıştır [4, sf. 504].</p>
-<p>Örnek</p>
-<p>$\min (x_1 + 0.5)^2 + (x_2 - 0.5)^2$ problemini çöz, $x_1 \in [0,1]$ ve $x_2 \in
-[0,1]$ kriterine göre.</p>
-<p>Üstteki fonksiyon için log-bariyer,</p>
-<p>$$
-P(x;\mu) = (x_1 + 0.5)^2 + (x_2-0.5)^2 -
-\mu 
-\big[
-\log x_1 + \log (1-x_1) + \log x_2 + \log (1-x_2)
-\big]
-$$</p>
-<p>Bu formülasyonu nasıl elde ettiğimiz bariz herhalde, $x_1 \ge 0$ ve
-$x_1 \le 1$ kısıtlamaları var mesela, ikinci ifadeyi büyüktür
-işaretine çevirmek için eksi ile çarptık, $-x_1 \ge 1$, ya da $1-x_1
-\ge 0$ böylece $\log(1-x_1)$ oldu.</p>
-<p>Artık Newton yöntemini kullanarak sanki elimizde bir kısıtlanması
-olmayan fonksiyon varmış gibi kodlama yapabiliriz, $P$'yi minimize
-edebiliriz. Newton yönü $d$ için gereken Hessian ve Jacobian
-matrislerini otomatik türevle hesaplayacağız, belli bir noktadan
-başlayacağız, ve her adımda $d = -H(x)^{-1} \nabla f(x)$ yönünde adım
-atacağız.</p>
-<pre><code class="python">from autograd import numpy as anp, grad, hessian, jacobian
-import numpy.linalg as lin
+<pre><code class="python">import numpy as np
+from scipy.optimize import linprog
+import barr
 
-x = np.array([0.8,0.2])
-mu = 2.0
-for i in range(10):
-    def P(x):
-        x1,x2=x[0],x[1]
-        return (x1+0.5)**2 + (x2-0.5)**2 - mu * \
-       (anp.log(x1) + anp.log(1-x1) + anp.log(x2)+anp.log(1-x2))
+A = np.array([[1,  1, 1, 0],
+              [1,  3, 0, 1]])
 
-    h = hessian(P)
-    j = jacobian(P)
-    J = j(np.array(x))
-    H = h(np.array(x))
-    d = np.dot(-lin.inv(H), J)
-    x = x + d
-    print (i, x, np.round(mu,5))
-    mu = mu*0.1
+b = np.array([5,7])
+
+c = np.array([-1, -5, 0, 0 ])
+
+solver = barr.LPSolver(mu=10, tol=1e-4)
+
+solver.solve(A, b, c)
+
+print ('log bariyer ==========')
+print (solver.x_opt)
+
+res = linprog(c, A_eq=A, b_eq=b, options={&quot;disp&quot;: True})
+print ('linprog ===============')
+print (res)
 </code></pre>
 
-<pre><code>0 [0.61678005 0.34693878] 2.0
-1 [-0.00858974  0.486471  ] 0.2
-2 [-0.02078755  0.49999853] 0.02
-3 [-0.18014768  0.5       ] 0.002
-4 [-0.49963245  0.5       ] 0.0002
-5 [-0.50002667  0.5       ] 2e-05
-6 [-0.50000267  0.5       ] 0.0
-7 [-0.50000027  0.5       ] 0.0
-8 [-0.50000003  0.5       ] 0.0
-9 [-0.5  0.5] 0.0
+<pre><code>log bariyer ==========
+[1.49999116e-05 2.33332633e+00 2.66665867e+00 5.99999936e-06]
+Primal Feasibility  Dual Feasibility    Duality Gap         Step             Path Parameter      Objective          
+1.0                 1.0                 1.0                 -                1.0                 -6.0                
+0.1105388427842     0.1105388427842     0.1105388427842     0.8919387648961  0.1105388427842     -10.34625028215     
+0.001400532337055   0.00140053233704    0.00140053233704    0.9918943193656  0.00140053233704    -11.65623916548     
+7.115191880125e-08  7.11519194345e-08   7.115191920093e-08  0.9999491966235  7.115192025851e-08  -11.66666613752     
+3.556266503391e-12  3.557079864332e-12  3.557332206583e-12  0.9999500067836  3.557595982315e-12  -11.66666666664     
+Optimization terminated successfully.
+         Current function value: -11.666667  
+         Iterations: 4
+linprog ===============
+     con: array([1.18571819e-11, 1.18527410e-11])
+     fun: -11.66666666664022
+ message: 'Optimization terminated successfully.'
+     nit: 4
+   slack: array([], dtype=float64)
+  status: 0
+ success: True
+       x: array([1.15454732e-13, 2.33333333e+00, 2.66666667e+00, 3.96953400e-12])
 </code></pre>
 
-<p>Görüldüğü gibi 5. adımda optimal noktaya gelindi, o noktada $\mu$
-oldukca küçük, ve bariyerle tanımladığımız yerlerden uzak duruldu,
-optimal nokta $x_1=-0.5,x_2=0.5$ bulundu.</p>
 <p>Kaynaklar</p>
-<p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 14</em>, 
+<p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 15</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
-<p>[2] Tibshirani, <em>Convex Optimization, Lecture Video 15, Part 1</em>, 
-<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
-<p>[3] Tibshirani, <em>Convex Optimization, Lecture Video 15, Part 2</em>, 
-<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
-<p>[4] Nocedal, <em>Numerical Optimization</em></p>
