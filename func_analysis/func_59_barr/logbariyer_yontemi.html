@@ -36,7 +36,157 @@ $$</p>
 <p>Tüm bu fonksiyonların dışbükey ve iki kere türevi alınabilir olduğunu farz
 ediyoruz. Şimdi log bariyer metotu uygulayacağız, bu ilk göreceğimiz
 iç-nokta yöntemi olacak [1, 14:00]. </p>
+<p>Bu yöntem ile önce eşitsizlik kısıtlamalarına tekabül eden bir log bariyer
+fonksiyonu tanımlamak gerekiyor. Bu fonksiyon, </p>
+<p>$$
+\phi(x) = -\sum_{i=1}^{m} \log(-h_i(x))
+$$</p>
+<p>Tabii $\log$'un negatif değerler üzerinde işletilemeyeceğini biliyoruz, o
+sebeple üstteki eksi ile çarpım var (kısıtlamalara göre $h_i$'ler eksi
+olmalı, onu da biliyoruz). Bu fonksiyon ile yapmaya uğraştığımız gösterge
+(indicator) fonksiyonunu yaklaşıklamak. $\phi$'nin tanım kümesi $h$'ye göre
+harfiyen olurlu olan $x$'ler. </p>
+<p>Şimdi log bariyerin yaklaşıklamayı nasıl yaptığına gelelim. Eşitlik
+kısıtlamalarını atlarsak, üstteki minimizasyon problemi şu şekilde de
+gösterilebilir [1, 15:53],</p>
+<p>$$
+\min_x f(x) + \sum_{i=1}^{m} I_{h_i(x) \le 0}(x)
+$$</p>
+<p>$I$ her $h_i$'nin sıfırdan küçük olup olmadığına göre 0 ya da çok büyük
+değerler verir, bu yüzden üstteki gibi bir temsil, eşitsizlik
+kısıtlamalarını kullanmakla eşdeğerdir. Çünkü minimizasyon problemi doğal
+olarak çok büyük değerlerden kaçacak, ve böylece kısıtlamalar dolaylı
+yoldan problem çözümüne dahil olmuş olacak. Altta kesikli çizgiyle
+göstergeç fonksiyonu görülüyor, </p>
+<p><img alt="" src="func_59_barr_01.png" /></p>
+<p>Diğer kavisli çizgiler ise $-\log(-u) \frac{1}{t}$, her $t$ için farklı bir
+eğri. $t$ büyütüldükçe log bariyer fonksiyonunu göstergeci daha da iyi
+yaklaşık temsil etmeye başlıyor / ona yaklaşıyor [1, 17:08]. </p>
+<p>Altta farklı $\mu$ değerleri için
+$-\mu \log(-u)$ fonksiyonun değerlerini görüyoruz. Fonksiyon görüldüğü gibi
+$I$'ya oldukca yakın.</p>
+<pre><code class="python">def I(u): 
+   if u&lt;0: return 0.
+   else: return 10.0
+
+u = np.linspace(-3,1,100)
+Is = np.array([I(x) for x in u])
+
+import pandas as pd
+df = pd.DataFrame(index=u)
+
+df['I'] = Is
+df['$\mu$=0.5'] = -0.5*np.log(-u)
+df['$\mu$=1.0'] = -1.0*np.log(-u)
+df['$\mu$=2.0'] = -2.0*np.log(-u)
+
+df.plot()
+plt.savefig('func_59_barr_02.png')
+</code></pre>
+
+<p><img alt="" src="func_59_barr_02.png" /></p>
+<p>Herhalde simdi en yapacagimiz tahmin edilebilir, gostergec fonksiyonlariyla
+ile calismak zor, o zaman göstergeç toplamları log toplamları olarak
+yaklaşıksallanabilir,</p>
+<p>$$
+\min_x f(x) + \frac{1}{t} \sum_{i=1}^{m} \log(-h_i(x))
+$$</p>
+<p>ki $t$ büyük olacak şekilde çünkü o zaman log, göstergeci iyi yaklaşık
+olarak temsil ediyor, ardından bu yeni pürüzsüz problemi çözüyoruz,
+eşitsizlik şartlarına ihtiyaç duymadan. </p>
+<p>Log-Bariyer Calculus</p>
+<p>$\phi$ fonksiyonunun bazı özelliklerini dökmek faydalı olur, ileride Newton
+metotundan bahsettiğimizde bu özellikler faydalı olacak. $\phi$ için gradyan ve
+Hessian,</p>
+<p>$$
+\nabla \phi(x) = - \sum_{i=1}^{m} \frac{1}{h_i(x)} \nabla h_i(x)
+$$</p>
+<p>Hessian</p>
+<p>$$
+\nabla^2 \phi(x) = 
+\sum _{i=1}^{m} \nabla h_i(x) \nabla h_i(x)^T - 
+\sum _{i=1}^{m} \frac{1}{h_i(x)} \nabla^2 h_i(x)
+$$</p>
+<p>Merkezi gidiş yolu (central path)</p>
+<p>Optimizasyon problemimizi $1/t$ yerine $t$ carpimi ile de gosterebiliriz,
+yani</p>
+<p>$$
+\min_x t f(x) + \phi(x) \quad \textrm{öyle ki}
+$$
+$$
+Ax = b
+$$</p>
+<p>Herneyse, merkezi yol $x^*(t)$, $t&gt;0$'nin bir fonksiyonudur, yani her $t$
+için eldeki çözümlerin ortaya çıkarttığı yoldur bir bakıma. Her $t$ için
+problemin çözümünü KKT koşulları ile karakterize edebiliriz. </p>
+<p>$$
+Ax^*(t) = b, \quad h_i(x^*(t)) &lt; 0, \quad i=1,..,m
+$$</p>
+<p>$$
+t \nabla f(x^*(t)) - \sum \frac{1}{h_i(x^*(t))} \nabla h_i(x^*(t)) + A^T w= 0
+$$</p>
+<p>Bu koşullar $x^*(t)$'nin optimal olmasının ne demek olduğunu
+tanımlıyor. İki denklemdeki ilk denklem ana olurluktan geliyor, eşitlik
+sınırlamalarına tekabül eden tek ikiz değişken var, $w$, onun işareti
+üzerinde kısıtlama yok çünkü eşitlik kısıtlaması. Durağanlık koşulu ikinci
+denklemde, ona nasıl eriştik? Problemin Lagrangian'i</p>
+<p>$$
+t f(x) + \phi(x) + w^T (Ax - b)
+$$</p>
+<p>Eğer $x$'e göre gradyan alıp sıfıra eşitlersek durağanlığı elde
+ederim. Gradyan yeterli çünkü buradaki tüm fonksiyonlar dışbükey ve
+pürüzsüz [1, 24:04]. </p>
+<p>Eğer üstteki problemi bir $w$ için çözersem o zaman merkezi yoldaki bir
+çözümü belli bir $t$ için karakterize etmiş / tarif etmiş
+oluyorum. Umudumuz o ki $t$'yi sonsuzluğa doğru büyüttükçe üstteki KKT
+koşullarıyla temsil edilen çözümler orijinal problemimdeki çözüme
+yaklaşmaya başlayacak. Bu olabilir değil mi? $t$'yi büyüttükçe log
+bariyerin nasıl göstergeç fonksiyonuna benzemeye başladığını biraz önce
+gördük. Bu tür log bariyerlerden oluşan optimizasyon problemi için de
+benzer bir durum olacağını tahmin edebiliriz. </p>
+<p>Bu kavramları lineer programlar için yakından görebiliriz. Tüm bu
+yaklaşımlar bu arada ilk başta LP'ler için ortaya atılmıştır. </p>
+<p>Önemli bir örnek,</p>
+<p>$$
+\min_x t c^T x - \sum _{i=1}^{m} \log(e_i - d_i^T x)
+$$</p>
+<p>Bu bir standart LP'nin bariyerleştirilmiş hali. </p>
 <p>[devam edecek]</p>
+<p>Ekler</p>
+<p>Pek çok yerde kullanılan bir eşitsizlik görelim, mesela bütün $x_i &lt; 0$
+olduğu bir durum, yani $h_i(x) = -x$. O zaman bariyer neye benzer? </p>
+<p>$$
+\phi(x) = - \sum _{i=1}^{n} \log x_i
+$$</p>
+<p>$$
+\nabla \phi(x) = 
+- \left[\begin{array}{c}
+1/x_1  \\ 
+\vdots \\
+1/x_n
+\end{array}\right] 
+= - X^{-1} \textbf{1} 
+$$</p>
+<p>Burada $X$ matrisi </p>
+<p>$$
+X = \mathrm{diag}(x) = 
+\left[\begin{array}{ccc}
+x_1 &amp; &amp; \\
+    &amp; \ddots &amp; \\
+    &amp; &amp; x_n
+\end{array}\right]
+$$</p>
+<p>ve $\textbf{1}$ sembolu tamamen 1'lerden oluşan matris. </p>
+<p>Hessian</p>
+<p>$$
+\nabla^2 \phi (x) = \left[\begin{array}{ccc}
+1/x_1^2 &amp; &amp; \\
+    &amp; \ddots &amp; \\
+    &amp; &amp; 1/x_n^2
+\end{array}\right] = X^2 
+$$</p>
+<p>Kod</p>
+<p>Standard LP cozen bariyer metot temelli kod alttadir [2]  </p>
 <pre><code class="python"># https://github.com/junjiedong/LP-Solver
 import numpy as np
 
@@ -279,5 +429,8 @@ linprog ===============
 </code></pre>
 
 <p>Kaynaklar</p>
-<p>[1] Tibshirani, <em>Convex Optimization, Lecture Video 15</em>, 
-<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
+<p>[1] Tibshirani, 
+    <em>Convex Optimization, Lecture Video 15</em>, 
+    <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
+<p>[2] Dong, <em>LP-Solver, Github</em>, 
+    <a href="https://github.com/junjiedong/LP-Solver">https://github.com/junjiedong/LP-Solver</a></p>
