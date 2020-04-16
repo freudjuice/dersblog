@@ -397,12 +397,29 @@ $$
 Ax = b
 $$
 
- 
+Amaç harfiyen negatif bir $s$ elde etmek, böylece $h_i(x) \le s$ üzerinden
+ana problemin eþitsizlik þartlarý tatmin olacak, ayrýca $Ax = b$'e uygun
+bir baþlangýç noktasý elde edilmiþ olacak ki bu da ana problem için
+gerekli. 
 
+Bu problemi bariyer metotu ile çözmek oldukca kolay, ana problemin kendisi
+kadar zor deðil. Niye? Ýki sebep: ilki, üstteki problemi çözmek için de
+harfiyen olurlu bir baþlangý noktasý lazým, ama bu noktayý bulmak aslýnda
+çok kolay. Bana tek gereken eþitlik kýsýtlamasý $Ax = b$'yi tatmin eden bir
+$x$ bulmak, ama bu lineer bir sistem çözümü, her lineer cebir paketi bunu
+çözer. Ardýndan elde edilen $x$ ile $h_i(x)$'i hesaplamak, ve bunlarýn en
+büyüðünü artý mesela 0.01 diyerek kullanmak [2, 24:00]. Elde ettiðimiz
+sonuç üstteki problem için harfiyen olurludur, eþitsizlik kýsýtlamalarýna
+harfiyen uygun. Þimdi elimde bir baþlangýç $x$'i ve $s$'i var, ve buradan
+baþlayarak bariyer metotunun adýmlarýný uygulayabilirim. Ýþin güzel tarafý
+durma þartýmýz çok basit, $s$'in her ögesinin negatif olduðunu gördüðüm
+anda sak diye durabilirim, yani üstteki programýn ``optimal'' olmasýyla
+ilgilenmiyorum sonuçta bana tek gereken ana problemim için olurlu bir
+baþlangýç noktasý. 
 
-
-
-
+Çoðunlukla yapýlan tarif edilen þekilde $x,s$ bulmak ve bunu ardý ardýna
+yapmak ta ki tamamen negatif elde edilene kadar ve o noktada durulur, ana
+probleme dönülür. 
 
 
 

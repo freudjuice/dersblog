@@ -330,6 +330,27 @@ $$
 $$
 Ax = b
 $$</p>
+<p>Amaç harfiyen negatif bir $s$ elde etmek, böylece $h_i(x) \le s$ üzerinden
+ana problemin eşitsizlik şartları tatmin olacak, ayrıca $Ax = b$'e uygun
+bir başlangıç noktası elde edilmiş olacak ki bu da ana problem için
+gerekli. </p>
+<p>Bu problemi bariyer metotu ile çözmek oldukca kolay, ana problemin kendisi
+kadar zor değil. Niye? İki sebep: ilki, üstteki problemi çözmek için de
+harfiyen olurlu bir başlangı noktası lazım, ama bu noktayı bulmak aslında
+çok kolay. Bana tek gereken eşitlik kısıtlaması $Ax = b$'yi tatmin eden bir
+$x$ bulmak, ama bu lineer bir sistem çözümü, her lineer cebir paketi bunu
+çözer. Ardından elde edilen $x$ ile $h_i(x)$'i hesaplamak, ve bunların en
+büyüğünü artı mesela 0.01 diyerek kullanmak [2, 24:00]. Elde ettiğimiz
+sonuç üstteki problem için harfiyen olurludur, eşitsizlik kısıtlamalarına
+harfiyen uygun. Şimdi elimde bir başlangıç $x$'i ve $s$'i var, ve buradan
+başlayarak bariyer metotunun adımlarını uygulayabilirim. İşin güzel tarafı
+durma şartımız çok basit, $s$'in her ögesinin negatif olduğunu gördüğüm
+anda sak diye durabilirim, yani üstteki programın "optimal" olmasıyla
+ilgilenmiyorum sonuçta bana tek gereken ana problemim için olurlu bir
+başlangıç noktası. </p>
+<p>Çoğunlukla yapılan tarif edilen şekilde $x,s$ bulmak ve bunu ardı ardına
+yapmak ta ki tamamen negatif elde edilene kadar ve o noktada durulur, ana
+probleme dönülür. </p>
 <p>[devam edecek]</p>
 <p>Ekler</p>
 <p>Pek çok yerde kullanılan bir eşitsizlik görelim, mesela bütün $x_i &lt; 0$
