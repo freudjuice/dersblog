@@ -340,18 +340,29 @@ harfiyen olurlu bir başlangı noktası lazım, ama bu noktayı bulmak aslında
 çok kolay. Bana tek gereken eşitlik kısıtlaması $Ax = b$'yi tatmin eden bir
 $x$ bulmak, ama bu lineer bir sistem çözümü, her lineer cebir paketi bunu
 çözer. Ardından elde edilen $x$ ile $h_i(x)$'i hesaplamak, ve bunların en
-büyüğünü artı mesela 0.01 diyerek kullanmak [2, 24:00]. Elde ettiğimiz
+büyüğünü artı mesela 0.01 diyerek kullanmak [2, 24:00]. Elde edeceğimiz
 sonuç üstteki problem için harfiyen olurludur, eşitsizlik kısıtlamalarına
 harfiyen uygun. Şimdi elimde bir başlangıç $x$'i ve $s$'i var, ve buradan
 başlayarak bariyer metotunun adımlarını uygulayabilirim. İşin güzel tarafı
 durma şartımız çok basit, $s$'in her ögesinin negatif olduğunu gördüğüm
-anda sak diye durabilirim, yani üstteki programın "optimal" olmasıyla
+anda şak diye durabilirim, yani üstteki programın "optimal" olmasıyla
 ilgilenmiyorum sonuçta bana tek gereken ana problemim için olurlu bir
-başlangıç noktası. </p>
-<p>Çoğunlukla yapılan tarif edilen şekilde $x,s$ bulmak ve bunu ardı ardına
-yapmak ta ki tamamen negatif elde edilene kadar ve o noktada durulur, ana
-probleme dönülür. </p>
-<p>[devam edecek]</p>
+başlangıç noktası. Çoğunlukla yapılan tarif edilen şekilde $x,s$ bulmak ve
+bunu ardı ardına yapmak ta ki tamamen negatif elde edilene kadar ve o
+noktada durulur, ana probleme dönülür.</p>
+<p>Alternatif olarak şu problem de çözülebilir,</p>
+<p>$$
+\min_{x,s} 1^T s, \quad \textrm{öyle ki}
+$$
+$$
+h_i(x) \le s_i, i=1,..,m
+$$
+$$
+Ax = b, s \ge 0
+$$</p>
+<p>Bu metotun avantajı eğer sistem olurlu değilse hangi kısıtlamanın harfiyen
+yerine getirilemediğini bize söyler. Dezavantaj, üstteki çözmesinin biraz
+daha zor olabilmesi.</p>
 <p>Ekler</p>
 <p>Pek çok yerde kullanılan bir eşitsizlik görelim, mesela bütün $x_i &lt; 0$
 olduğu bir durum, yani $h_i(x) = -x$. O zaman bariyer neye benzer? </p>
@@ -386,7 +397,29 @@ $$</p>
 \end{array}\right] = X^2 
 $$</p>
 <p>Kod</p>
-<p>Standard LP cozen bariyer metot temelli kod alttadir [3],</p>
+<p>Standard LP çözen bariyer metot temelli kod alttadır [3]. </p>
+<p>Not: Bu metot başlangıç noktası bulmak için</p>
+<p>$$
+\min t, \quad \textrm{öyle ki}
+$$
+$$
+Ax = b, \quad x \ge (1-t) 1, \quad t \ge 0
+$$</p>
+<p>problemini çözüyor. </p>
+<p>Örnek olarak</p>
+<p>$$
+\min_x -x_1 - 5x_2 \quad \textrm{öyle ki}
+$$
+$$
+x_1 + x_2 + x_3  = 5 
+$$
+$$
+x_1 + 3 x_2 + x_4 = 7
+$$
+$$
+x_1,x_2,x_3,x_4 \ge 0
+$$</p>
+<p>LP'si üzerinde bu programı işlettik.</p>
 <pre><code class="python"># https://github.com/junjiedong/LP-Solver
 import numpy as np
 
@@ -445,7 +478,8 @@ class LPCenteringSolver():
 
             # Compute primal and dual Newton steps (dx, dv) via block elimination
             h_inv =  x ** 2  # diagonal entries of inv(Hessian)
-            dv = np.linalg.solve( np.dot(A * h_inv, A.T), r_primal - np.dot(A * h_inv, r_dual) )
+            dv = np.linalg.solve( np.dot(A * h_inv, A.T), r_primal - \
+                                  np.dot(A * h_inv, r_dual) )
             dx = -h_inv * (r_dual + np.dot(A.T, dv))
 
             # Backtracking line search on ||r||_2
@@ -457,7 +491,8 @@ class LPCenteringSolver():
                 v_new = v + t * dv
                 r_dual_new = c - 1 / x_new + np.dot(A.T, v_new)
                 r_primal_new = A.dot(x_new) - b
-                r_norm_new = np.sqrt(np.sum(r_dual_new ** 2) + np.sum(r_primal_new ** 2))
+                r_norm_new = np.sqrt(np.sum(r_dual_new ** 2) + \
+                                     np.sum(r_primal_new ** 2))
 
                 if r_norm_new &lt;= (1 - self.alpha * t) * r_norm:
                     x = x_new
@@ -558,7 +593,8 @@ class LPSolver():
         &quot;&quot;&quot;
         m, n = A.shape
 
-        # Phase I: Check strict feasibility and obtain a strictly feasible starting point
+        # Phase I: Check strict feasibility and obtain a strictly
+        # feasible starting point
         x = np.linalg.pinv(A).dot(b)
         if np.min(x) &lt;= 0:  # otherwise, x is already a strictly feasible point
             # Construct an LP for checking feasibility
