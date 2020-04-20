@@ -48,14 +48,14 @@ branşının bir sloganı şu olmalı: "Öğrenmen gerekmeyen şeyi
 öğrenme". Üstteki örnekte $p(y|x)$'i öğrenebiliriz, ama $p(x)$'i illa
 öğrenmemiz gerekir mi?</p>
 <p>Sınıflayıcı (classifier) ve denetimli (supervised) öğrenim durumunu
-düşünürsek, bize eğitim amaçlı olarak $<x,y>$ ikili veri noktaları
+düşünürsek, bize eğitim amaçlı olarak $&lt; x,y &gt;$ ikili veri noktaları
 sağlanacak. $x$ kaynak veri, $y$ tahmin edilecek (ya da başta eğitim hedefi
 olan) etiket olacak. $y$ için bir model ortaya çıkartıyoruz, çünkü test
 zamanında $y$ olmayacak, fakat $x$ hep olacak. Yani $y$'nin modellenmesi
 mecburi, çünkü "genelleyerek" onun ne olduğunu bulacağız, ama $x$ hep
 verili.</p>
 <p>Koşulsal Olurluk Maksimum Olurluk Prensibi</p>
-<p>Eğitim verisi $<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#49;&#44;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#49;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#49;&#44;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#49;</a>,...,<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#110;&#44;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#110;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#110;&#44;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#110;</a>$ için, $\theta$'yi şöyle seç</p>
+<p>Eğitim verisi $&lt; x_1,y_1 &gt;,...,&lt; x_n,y_n &gt;$ için, $\theta$'yi şöyle seç</p>
 <p>$$ \hat{\theta} =  \arg\max_{\theta} \prod _{i=1}^{n} p(y_i | x_i;\theta) $$</p>
 <p>Normal maksimum olurlukta bilindiği gibi olasılıkların çarpımı maksimize
 edilir, burada maksimize ettiğimiz "koşulsal" olasılıkların çarpımı. </p>
@@ -208,7 +208,7 @@ temiz çıktı. </p>
 <p>[24:10] kalibrasyonla alakalı bir yorum</p>
 <p>Rasgele Gradyan Çıkışı (Stochastic Gradient Ascent)</p>
 <p>Fikir: türevi eğitim noktası basına hesapla, ve modeli hemen güncelle. </p>
-<p>Eğitim noktaları $<x,y>$ olarak gelsinler. Her nokta için, ve her $\beta_j$
+<p>Eğitim noktaları $&lt; x,y &gt;$ olarak gelsinler. Her nokta için, ve her $\beta_j$
 için</p>
 <p>$$ \frac{d}{d\beta_j}p(y|x;\beta) = g_j$$ hesapla. </p>
 <p>$$ \beta_j := \beta_j + \alpha g_j $$</p>

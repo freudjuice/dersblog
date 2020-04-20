@@ -38,7 +38,7 @@ branþýnýn bir sloganý þu olmalý: ``Öðrenmen gerekmeyen þeyi
 öðrenmemiz gerekir mi?
 
 Sýnýflayýcý (classifier) ve denetimli (supervised) öðrenim durumunu
-düþünürsek, bize eðitim amaçlý olarak $<x,y>$ ikili veri noktalarý
+düþünürsek, bize eðitim amaçlý olarak $< x,y >$ ikili veri noktalarý
 saðlanacak. $x$ kaynak veri, $y$ tahmin edilecek (ya da baþta eðitim hedefi
 olan) etiket olacak. $y$ için bir model ortaya çýkartýyoruz, çünkü test
 zamanýnda $y$ olmayacak, fakat $x$ hep olacak. Yani $y$'nin modellenmesi
@@ -47,7 +47,7 @@ verili.
 
 Koþulsal Olurluk Maksimum Olurluk Prensibi
 
-Eðitim verisi $<x_1,y_1>,...,<x_n,y_n>$ için, $\theta$'yi þöyle seç
+Eðitim verisi $< x_1,y_1 >,...,< x_n,y_n >$ için, $\theta$'yi þöyle seç
 
 $$ \hat{\theta} =  \arg\max_{\theta} \prod _{i=1}^{n} p(y_i | x_i;\theta) $$
 
@@ -261,7 +261,7 @@ Rasgele Gradyan Çýkýþý (Stochastic Gradient Ascent)
 
 Fikir: türevi eðitim noktasý basýna hesapla, ve modeli hemen güncelle. 
 
-Eðitim noktalarý $<x,y>$ olarak gelsinler. Her nokta için, ve her $\beta_j$
+Eðitim noktalarý $< x,y >$ olarak gelsinler. Her nokta için, ve her $\beta_j$
 için
 
 $$ \frac{d}{d\beta_j}p(y|x;\beta) = g_j$$ hesapla. 
