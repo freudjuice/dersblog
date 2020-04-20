@@ -71,7 +71,7 @@ adım $t$'de bir aksiyonun üst sınırı, $\hat{Q}, \hat{U}$ kestirme değerler
 $N(a)$ bir aksiyonun kaç kez seçildiği. Hem $\hat{U}$ kestirme değerini
 sürekli hesaplayacağız, hem de güven aralığını maksimize eden aksiyonu
 seçeceğiz, yani.</p>
-<p>$$ a_t = \argmax_{a \in A} \hat{Q}_t(a) + \hat{U}_t(a) $$</p>
+<p>$$ a_t = \arg \max_{a \in A} \hat{Q}_t(a) + \hat{U}_t(a) $$</p>
 <p>Bu seçimi yaparken yüksek olasılıkla (with high probability)
 $Q(a) \le \hat{Q}_t(a) + \hat{U}_t(a)$ olmasını sağlayacağız. Bu şart için
 Hoeffding eşitsizliğinden başlayabiliriz (bkz [5]).</p>
@@ -101,7 +101,7 @@ spesifik değer formülü de basitleştirmek için seçildi bir yandan,</p>
 <p>$$ U_t(a) = \sqrt{\frac{\log t}{N_t(a)}} $$</p>
 <p>Böylece UCB1 algoritmasına erişmiş olduk, </p>
 <p>$$ 
-a_t = \argmax_{a \in A} Q(a) + \sqrt{\frac{\log t}{N_t(a)}}
+a_t = \arg \max_{a \in A} Q(a) + \sqrt{\frac{\log t}{N_t(a)}}
 $$</p>
 <p>UCT ve Tic-Tac-Toe</p>
 <p>Oyunlar ve Monte Carlo işin için nasıl dahil oluyor? Mesela her adımda bir

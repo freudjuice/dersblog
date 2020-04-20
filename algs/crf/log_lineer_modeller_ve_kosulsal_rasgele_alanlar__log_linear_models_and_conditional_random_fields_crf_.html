@@ -619,18 +619,25 @@ $(a(x)$ ile temsil ediliyor), her mümkün $v$ değeri için bir OF'ye
 bunları atlamayı bilir. Demek ki aynı şekilde koşulsal lineer modeller de
 bu özellikleri atlayabilir. Eğer bir özellik $a(x)=0$ ise, o özellik
 ağırlık güncellemesi (weight update) sırasında atlanır. </p>
-<p>\begin{algorithm}[h]
-\begin{pseudocode}
-\codename $\code{train\_crf}$\\
-\codeline $\code{for }$ her eğitim noktası $x,y$ için\\
-\codeline > $j$ için\\
-\codeline > > $E[F_j(x,y')]$ hesapla (buna sadece $E$ diyelim)       \\
-\codeline > > Güncelle: $w_j := w_j + \lambda[F_j(x,y) - E]$
-\end{pseudocode}
-\end{algorithm}</p>
+<p>Algoritma <code>train_crf</code></p>
+<ul>
+<li>
+<p>Her eğitim noktası $x,y$ için</p>
+<ul>
+<li>
+<p>$j$ için</p>
+</li>
+<li>
+<p>$E[F_j(x,y')]$ hesapla (buna sadece $E$ diyelim) </p>
+</li>
+<li>Güncelle: $w_j := w_j + \lambda[F_j(x,y) - E]$</li>
+</ul>
+</li>
+</ul>
 <p>Bu hesabın en pahalı kısmı neresi? Beklenti hesabı. Bu beklentileri
 hesaplanması için daha önce verdiğimiz matris çarpımı yöntemine benzer bir
 yöntem kullanmak gerekiyor (burada vermeyeceğiz, arama motorunda Rahul
 Gupta üzerinden arayabilirsiniz, bu kişi bu konuyu anlatıyor).</p>
 <p>Kaynak</p>
-<p>[1] Elkan, <em>Log-linear Models and Conditional Random Fields</em>, <a href="http://videolectures.net/cikm08_elkan_llmacrf">http://videolectures.net/cikm08_elkan_llmacrf</a></p>
+<p>[1] Elkan, <em>Log-linear Models and Conditional Random Fields</em>, 
+    <a href="http://videolectures.net/cikm08_elkan_llmacrf">http://videolectures.net/cikm08_elkan_llmacrf</a></p>
