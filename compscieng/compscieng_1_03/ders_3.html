@@ -120,18 +120,18 @@ yapalım ve bu arada tersini de bulmuş olalım. </p>
 0 &amp; -1 &amp; 2 
 \end{array}\right]
 $$</p>
-<p>Eliminasyon işlemlerini yapalım. </p>
+<p>Eliminasyon işlemlerini yapalım (pivotlar öğeleri parantez içinde)</p>
 <p>$$
 \left[\begin{array}{rrr}
-__1__ &amp; -1 &amp; 0 \\
+(1) &amp; -1 &amp; 0 \\
 -1 &amp; 2 &amp; -1 \\
 0 &amp; -1 &amp; 2
 \end{array}\right]
 \to
 \left[\begin{array}{rrr}
-__1__ &amp; -1 &amp; 0 \\
-0 &amp; __1__ &amp; -1 \\
-0 &amp; 0 &amp; __1__
+(1) &amp; -1 &amp; 0 \\
+0 &amp; (1) &amp; -1 \\
+0 &amp; 0 &amp; (1)
 \end{array}\right] = U
 $$</p>
 <p>$$ l_{21} = -1 \quad l_{31} = 0 \quad l_{32} = -1 $$</p>
@@ -166,11 +166,11 @@ $$</p>
 nasıl etkilerdi? </p>
 <p>$$
 \left[\begin{array}{rrr}
-__1__ &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -1 &amp; 1
+(1) &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -1 &amp; 1
 \end{array}\right]
 \to
 \left[\begin{array}{rrr}
-__1__ &amp; -1 &amp; 0 \\ 0 &amp; __1__ &amp; -1 \\ 0 &amp; 0 &amp; __0__
+(1) &amp; -1 &amp; 0 \\ 0 &amp; (1) &amp; -1 \\ 0 &amp; 0 &amp; (0)
 \end{array}\right] 
 $$</p>
 <p>Yani bu durumda 3 tane pivot elde edemezdik, sağ alt köşedeki değer
@@ -181,9 +181,9 @@ matrisi artık simetrik değil. Simetriyi geri getirebilir miyiz? $U$ içinden
 sadece çaprazları çekip çıkartalım</p>
 <p>$$
 \left[\begin{array}{rrr}
-__2__ &amp; -1 &amp; 0 \\
-0 &amp; __3/2__ &amp; -1 \\
-0 &amp; 0 &amp; __4/3__
+(2) &amp; -1 &amp; 0 \\
+0 &amp; (3/2) &amp; -1 \\
+0 &amp; 0 &amp; (4/3)
 \end{array}\right] = U =
 \left[\begin{array}{rrr}
 2 &amp; &amp; \\ &amp; 3/2 &amp; \\ &amp; &amp; 4/3
