@@ -56,7 +56,7 @@ uygulayabilmek için yaptık. Eliminasyona başlayalım; Pivot en üst sol
 kısımda, 1. satırdan 2 taneyi 2., 3 taneyi 3. satırdan çıkartırım,</p>
 <p>$$ 
 \left[\begin{array}{llll|l}
-\textcolor{green}{1} &amp; 2 &amp; 2 &amp; 2 &amp; b_1 \\
+(1) &amp; 2 &amp; 2 &amp; 2 &amp; b_1 \\
 0 &amp; 0 &amp; 2 &amp; 4 &amp; b_2-2b_1 \\
 0 &amp; 0 &amp; 2 &amp; 4 &amp; b_3-3b_1
 \end{array}\right]
@@ -64,8 +64,8 @@ kısımda, 1. satırdan 2 taneyi 2., 3 taneyi 3. satırdan çıkartırım,</p>
 <p>Bir sonraki pivot'a geçiyorum, ve 2. satırı 3.'den çıkartıyorum,</p>
 <p>$$ 
 \left[\begin{array}{llll|l}
-\textcolor{green}{1} &amp; 2 &amp; 2 &amp; 2 &amp; b_1 \\
-0 &amp; 0 &amp; \textcolor{green}{2} &amp; 4 &amp; b_2-2b_1 \\
+(1) &amp; 2 &amp; 2 &amp; 2 &amp; b_1 \\
+0 &amp; 0 &amp; (2) &amp; 4 &amp; b_2-2b_1 \\
 0 &amp; 0 &amp; 0 &amp; 0 &amp; b_3-b_2-b_1
 \end{array}\right]
  $$</p>
@@ -112,7 +112,8 @@ değil mi? Çünkü özel çözüm eşitliğin sağ tarafını tatmin eden
 çözümdür. Diğer yandan $Ax_{sıfır} = 0$. Bunları toplarsam,</p>
 <p>$$ Ax_{ozel} = b $$
 $$ Ax_{sıfır} = 0 $$
-$$ \underline{+\hspace{10em}} $$
+$$ \underline{+
+} $$
 $$ A(x_{ozel} + x_{sıfır}) = b $$</p>
 <p>Sözel olarak belirtmek gerekirse, elimde bir çözüm var ise, öne sıfır
 uzayından herhangi bir vektörü eklersem yeni bir çözüm elde ederim, çünkü
