@@ -279,67 +279,6 @@ Demek ki kýsmi kesirlerimiz þöyle olacak
 
 $$ \frac{5}{(x-1)} + \frac{3}{(x+5)} = \frac{8x + 22}{(x-1)(x+5)}$$
 
-
-\newpage
-
-Cauchy Ortalama Deðer Teorisi (Cauchy Mean-value Theorem)
-
-Teori þöyle
-
-Eðer $f,g$ fonksiyonlarý $[a,b]$ aralýðýnda sürekli ise ve $g'(x) \ne 0$
-farz edildiði durumda $[a,b]$ arasýnda öyle bir $c$ vardýr ki,
-
-$$ \frac{f'(c)}{g'(c)} = \frac{f(b)-f(a)}{g(b)-g(a)} $$
-
-ifadesi doðrudur. 
-
-Ýspat
-
-Þimdi daha önceden gördüðümüz Ortalama Deðer Teorisi'ni (Cauchy olmayan)
-iki kere kullanacaðýz. Teoriyi önce $g(a) \ne g(b)$ olduðunu göstermek için
-kullanacaðýz. Çünkü eðer bu doðru olsaydý, Ortalama Deðer Teorisi 
-
-$$ g'(c) = \frac{g(b) - g(a)}{b-a} = 0$$
-
-olurdu, ki bu $[a,b]$ arasýndaki bir $c$ için baþta yaptýðýmýz faraziyemiz
-$g'(x) \ne 0$ ile ters düþerdi. 
-
-Ýkinci kullaným: $F(x)$ adýnda, $f,g$ fonksiyonlarýný kullanan baþka bir
-fonksiyon kurgulayalým.
-
-$$ F(x) = f(x) - f(a) - \frac{f(b)-f(a) }{g(b)-g(a)}[g(x)-g(a)] $$
-
-Bu fonksiyonun türevi, $f,g$'nin türevi alýnabildiði her yerde alýnabilir
-olur. Ayrýca $F(b) = F(a) = 0$. $a,b$ deðerlerini yerine koyarsak bunu
-görebiliriz, mesela $x=a$ için
-
-$$ F(a) = \cancelto{0}{f(a) - f(a)} -
-\frac{f(b)-f(a) }{g(b)-g(a)}
-[\cancelto{0}{g(a)-g(a)}] 
-$$
-
-$$  = 0 - 0 = 0 $$
-
-O zaman, $F(b) = F(a) = 0$'dan bir sonuca daha eriþiriz. Bir fonksiyon
-$a,b$ uçlarýnda sýfýr ise, bu fonksiyon bir þekilde azalýp, çoðalýyor, ya
-da çoðalýp azalýyor demektir, yani kesinlikle bir yerde tepe yapýyor
-demektir. Tepe yapmanýn Calculus'taki tercümesi $[a,b]$ arasýndaki bir $c$
-için $F'(c)=0$ olmasýdýr. O zaman üstteki $F(x)$'in türevini alýrsak, ve
-$x=c$ dersek, 
-
-$$ F'(c) = f'(c) - \frac{f(b)-f(a)}{g(b)-g(a)}[g'(c)] = 0$$
-
-doðru olmalýdýr. Türev alýrken $f(a)$ yokoldu çünkü sabitti, büyük bölüm
-yerinde kaldý çünkü tamamý $g(x)$ için katsayý. Eðer tekrar düzenlersek,
-negatif terimi sola alýrsak, ve iki tarafý $g'(c)$'ye bölersek,
-
-$$ \frac{f'(c)}{g'(c)} = \frac{f(b)-f(a)}{g(b)-g(a)} $$
-
-ifadesini elde ederiz. Yani baþtaki teoriyi elde etmiþ oluruz. 
-
-Ortalama Deðer Teorisini ilk kez kullanmamýzýn sebebi, üstteki bölenin sýfýr
-olmamasýný istediðimiz içindi, çünkü sýfýrla bölüm tanýmsýzdýr. 
-
 \newpage
 
 Ters Trigonometrik Formüller (Inverse Trigonometric Functions)
@@ -623,54 +562,6 @@ etmeleri sonucunu getirdi.. ve bu sebeple pek çok alanda geri kaldýlar
 Sonuca gelirsek, $dy/dx$'i bir kesir gibi yazýyor, ve pek çok hesapta onu
 sanki bir kesirmiþ gibi kullanýyor, kullanabiliyor olsak bile, $dy/dx$ bir
 kesir deðildir, sadece filmerde o rolü oynar (!).
-
-%%\newpage
-
-% Polinom Bölmek 
-
-% Doðal sayýlarý bölmek için kullandýðýmýz bölme yönteminin (long division)
-% benzerini polinomlar için de kullanabiliriz. Doðal sayýlar için bir örnek
-% mesela 146 / 4 diyelim, önce bölümde 3 olacaðýný tahmin ederiz, 3 x 4 = 12,
-% bölünende 14 var, 14-12=2. Sonra bu 2'yi alýp bölümde kalan 6 ile
-% birleþtiririz, 26 yaparýz, daha doðrusu 2*10 + 6 deriz. Devam ederiz. 
-
-% Polinom bölerken benzer bir durum var, mesela $6x^3-16x^2+17x-6$ polinomunu
-% $3x-2$ ile bölelim. Bu bölme iþlemi þu þekilde gösterilir, bölünen yukarýda
-% deðil aþaðýda. Notasyon biraz deðiþik ama önemli deðil. 
-
-% \polylongdiv[stage=1]{6x^3-16x^2+17x-6}{3x-2}
-
-% Önce $6x^3$'u $3x$ ile bölüyoruz. Sonuç $2x^2$. Onu alýp çizgi iþaretinin
-% üstüne yazýyoruz. 
-
-% \polylongdiv[stage=2]{6x^3-16x^2+17x-6}{3x-2}
-
-% Sonra ilginç bir hareket, $2x^2$'i alýp hem $3x$ ile, hem de $-2$ ile
-% çarpýyoruz, sonucu bölünen polinomun altýna yazýyoruz, 
-
-% \polylongdiv[stage=3]{6x^3-16x^2+17x-6}{3x-2}
-
-% ve çýkartma iþlemi yapýyoruz.
-
-% \polylongdiv[stage=4]{6x^3-16x^2+17x-6}{3x-2}
-
-% Ve iþlem bu þekilde devam ediyor. 
-
-% \polylongdiv{6x^3-16x^2+17x-6}{3x-2}
-
-% Bölme iþlemi tamamen sýfýra gitmeyebilir. Mesela $3x^3 - 2x^2 + 4x  - 3$
-% ile $x^2+3x+3$ bölünürse
-
-% \polylongdiv{3x^3 - 2x^2 + 4x  - 3}{x^2+3x+3}
-
-% Geriye $28x+30$ kalacaktýr. Geri kalan olduðu zaman da bu aslýnda iþe
-% yarayan bir sonuçtur, artýk eski polinomu þu þekilde ifade edebiliriz
-
-% $$=  (3x-11) + \frac{28x+30}{x^2+3x+3} $$
-
-% Bu polinomda bölüm 1. derece, bölen 2. derecedir, fakat orijinal polinom
-% 3. dereceden idi. Yani derece sayýsýnda bir düþüþ yaþandý, yani bir
-% basitleþtirme elde edildi. 
 
 \newpage
 

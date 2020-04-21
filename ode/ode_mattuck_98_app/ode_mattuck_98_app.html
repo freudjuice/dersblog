@@ -192,46 +192,6 @@ kolay! </p>
 <p>$$ \frac{5}{(x-1)} + \frac{3}{(x+5)} = \frac{8x + 22}{(x-1)(x+5)}$$</p>
 <hr>
 
-<p>Cauchy Ortalama Değer Teorisi (Cauchy Mean-value Theorem)</p>
-<p>Teori şöyle</p>
-<p>Eğer $f,g$ fonksiyonları $[a,b]$ aralığında sürekli ise ve $g'(x) \ne 0$
-farz edildiği durumda $[a,b]$ arasında öyle bir $c$ vardır ki,</p>
-<p>$$ \frac{f'(c)}{g'(c)} = \frac{f(b)-f(a)}{g(b)-g(a)} $$</p>
-<p>ifadesi doğrudur. </p>
-<p>İspat</p>
-<p>Şimdi daha önceden gördüğümüz Ortalama Değer Teorisi'ni (Cauchy olmayan)
-iki kere kullanacağız. Teoriyi önce $g(a) \ne g(b)$ olduğunu göstermek için
-kullanacağız. Çünkü eğer bu doğru olsaydı, Ortalama Değer Teorisi </p>
-<p>$$ g'(c) = \frac{g(b) - g(a)}{b-a} = 0$$</p>
-<p>olurdu, ki bu $[a,b]$ arasındaki bir $c$ için başta yaptığımız faraziyemiz
-$g'(x) \ne 0$ ile ters düşerdi. </p>
-<p>İkinci kullanım: $F(x)$ adında, $f,g$ fonksiyonlarını kullanan başka bir
-fonksiyon kurgulayalım.</p>
-<p>$$ F(x) = f(x) - f(a) - \frac{f(b)-f(a) }{g(b)-g(a)}[g(x)-g(a)] $$</p>
-<p>Bu fonksiyonun türevi, $f,g$'nin türevi alınabildiği her yerde alınabilir
-olur. Ayrıca $F(b) = F(a) = 0$. $a,b$ değerlerini yerine koyarsak bunu
-görebiliriz, mesela $x=a$ için</p>
-<p>$$ F(a) = \cancelto{0}{f(a) - f(a)} -
-\frac{f(b)-f(a) }{g(b)-g(a)}
-[\cancelto{0}{g(a)-g(a)}] 
-$$</p>
-<p>$$  = 0 - 0 = 0 $$</p>
-<p>O zaman, $F(b) = F(a) = 0$'dan bir sonuca daha erişiriz. Bir fonksiyon
-$a,b$ uçlarında sıfır ise, bu fonksiyon bir şekilde azalıp, çoğalıyor, ya
-da çoğalıp azalıyor demektir, yani kesinlikle bir yerde tepe yapıyor
-demektir. Tepe yapmanın Calculus'taki tercümesi $[a,b]$ arasındaki bir $c$
-için $F'(c)=0$ olmasıdır. O zaman üstteki $F(x)$'in türevini alırsak, ve
-$x=c$ dersek, </p>
-<p>$$ F'(c) = f'(c) - \frac{f(b)-f(a)}{g(b)-g(a)}[g'(c)] = 0$$</p>
-<p>doğru olmalıdır. Türev alırken $f(a)$ yokoldu çünkü sabitti, büyük bölüm
-yerinde kaldı çünkü tamamı $g(x)$ için katsayı. Eğer tekrar düzenlersek,
-negatif terimi sola alırsak, ve iki tarafı $g'(c)$'ye bölersek,</p>
-<p>$$ \frac{f'(c)}{g'(c)} = \frac{f(b)-f(a)}{g(b)-g(a)} $$</p>
-<p>ifadesini elde ederiz. Yani baştaki teoriyi elde etmiş oluruz. </p>
-<p>Ortalama Değer Teorisini ilk kez kullanmamızın sebebi, üstteki bölenin sıfır
-olmamasını istediğimiz içindi, çünkü sıfırla bölüm tanımsızdır. </p>
-<hr>
-
 <p>Ters Trigonometrik Formüller (Inverse Trigonometric Functions)</p>
 <p>$\cos x$ için $\cos^{-1} x$ ya da $\arccos x$ ile gösterilen ters
 trigonometrik formüldür. $\sin x$ ve $\tan x$ için aynı şekilde. </p>
@@ -422,37 +382,6 @@ etmeleri sonucunu getirdi.. ve bu sebeple pek çok alanda geri kaldılar
 <p>Sonuca gelirsek, $dy/dx$'i bir kesir gibi yazıyor, ve pek çok hesapta onu
 sanki bir kesirmiş gibi kullanıyor, kullanabiliyor olsak bile, $dy/dx$ bir
 kesir değildir, sadece filmerde o rolü oynar (!).</p>
-<hr>
-
-<p>% Polinom Bölmek </p>
-<p>% Doğal sayıları bölmek için kullandığımız bölme yönteminin (long division)
-% benzerini polinomlar için de kullanabiliriz. Doğal sayılar için bir örnek
-% mesela 146 / 4 diyelim, önce bölümde 3 olacağını tahmin ederiz, 3 x 4 = 12,
-% bölünende 14 var, 14-12=2. Sonra bu 2'yi alıp bölümde kalan 6 ile
-% birleştiririz, 26 yaparız, daha doğrusu 2*10 + 6 deriz. Devam ederiz. </p>
-<p>% Polinom bölerken benzer bir durum var, mesela $6x^3-16x^2+17x-6$ polinomunu
-% $3x-2$ ile bölelim. Bu bölme işlemi şu şekilde gösterilir, bölünen yukarıda
-% değil aşağıda. Notasyon biraz değişik ama önemli değil. </p>
-<p>% \polylongdiv[stage=1]{6x^3-16x^2+17x-6}{3x-2}</p>
-<p>% Önce $6x^3$'u $3x$ ile bölüyoruz. Sonuç $2x^2$. Onu alıp çizgi işaretinin
-% üstüne yazıyoruz. </p>
-<p>% \polylongdiv[stage=2]{6x^3-16x^2+17x-6}{3x-2}</p>
-<p>% Sonra ilginç bir hareket, $2x^2$'i alıp hem $3x$ ile, hem de $-2$ ile
-% çarpıyoruz, sonucu bölünen polinomun altına yazıyoruz, </p>
-<p>% \polylongdiv[stage=3]{6x^3-16x^2+17x-6}{3x-2}</p>
-<p>% ve çıkartma işlemi yapıyoruz.</p>
-<p>% \polylongdiv[stage=4]{6x^3-16x^2+17x-6}{3x-2}</p>
-<p>% Ve işlem bu şekilde devam ediyor. </p>
-<p>% \polylongdiv{6x^3-16x^2+17x-6}{3x-2}</p>
-<p>% Bölme işlemi tamamen sıfıra gitmeyebilir. Mesela $3x^3 - 2x^2 + 4x  - 3$
-% ile $x^2+3x+3$ bölünürse</p>
-<p>% \polylongdiv{3x^3 - 2x^2 + 4x  - 3}{x^2+3x+3}</p>
-<p>% Geriye $28x+30$ kalacaktır. Geri kalan olduğu zaman da bu aslında işe
-% yarayan bir sonuçtur, artık eski polinomu şu şekilde ifade edebiliriz</p>
-<p>% $$=  (3x-11) + \frac{28x+30}{x^2+3x+3} $$</p>
-<p>% Bu polinomda bölüm 1. derece, bölen 2. derecedir, fakat orijinal polinom
-% 3. dereceden idi. Yani derece sayısında bir düşüş yaşandı, yani bir
-% basitleştirme elde edildi. </p>
 <hr>
 
 <p>Bazı yaygın z-transform'ları </p>

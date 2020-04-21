@@ -114,5 +114,44 @@ $f(c)$, $f(x)$'e yaklaşmalıdır. </p>
 <p>$$  = \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t) \mathrm{d} t   $$</p>
 <p>$$ = \lim_{h \to 0} f(c) $$</p>
 <p>$$ = f(x) $$</p>
+<p>Ek olarak ilgili bir teori daha gösterelim.</p>
+<p>Cauchy Ortalama Değer Teorisi (Cauchy Mean-value Theorem)</p>
+<p>Teori şöyle</p>
+<p>Eğer $f,g$ fonksiyonları $[a,b]$ aralığında sürekli ise ve $g'(x) \ne 0$
+farz edildiği durumda $[a,b]$ arasında öyle bir $c$ vardır ki,</p>
+<p>$$ \frac{f'(c)}{g'(c)} = \frac{f(b)-f(a)}{g(b)-g(a)} $$</p>
+<p>ifadesi doğrudur. </p>
+<p>İspat</p>
+<p>Şimdi daha önceden gördüğümüz Ortalama Değer Teorisi'ni (Cauchy olmayan)
+iki kere kullanacağız. Teoriyi önce $g(a) \ne g(b)$ olduğunu göstermek için
+kullanacağız. Çünkü eğer bu doğru olsaydı, Ortalama Değer Teorisi </p>
+<p>$$ g'(c) = \frac{g(b) - g(a)}{b-a} = 0$$</p>
+<p>olurdu, ki bu $[a,b]$ arasındaki bir $c$ için başta yaptığımız faraziyemiz
+$g'(x) \ne 0$ ile ters düşerdi. </p>
+<p>İkinci kullanım: $F(x)$ adında, $f,g$ fonksiyonlarını kullanan başka bir
+fonksiyon kurgulayalım.</p>
+<p>$$ F(x) = f(x) - f(a) - \frac{f(b)-f(a) }{g(b)-g(a)}[g(x)-g(a)] $$</p>
+<p>Bu fonksiyonun türevi, $f,g$'nin türevi alınabildiği her yerde alınabilir
+olur. Ayrıca $F(b) = F(a) = 0$. $a,b$ değerlerini yerine koyarsak bunu
+görebiliriz, mesela $x=a$ için</p>
+<p>$$ F(a) = \cancelto{0}{f(a) - f(a)} -
+\frac{f(b)-f(a) }{g(b)-g(a)}
+[\cancelto{0}{g(a)-g(a)}] 
+$$</p>
+<p>$$  = 0 - 0 = 0 $$</p>
+<p>O zaman, $F(b) = F(a) = 0$'dan bir sonuca daha erişiriz. Bir fonksiyon
+$a,b$ uçlarında sıfır ise, bu fonksiyon bir şekilde azalıp, çoğalıyor, ya
+da çoğalıp azalıyor demektir, yani kesinlikle bir yerde tepe yapıyor
+demektir. Tepe yapmanın Calculus'taki tercümesi $[a,b]$ arasındaki bir $c$
+için $F'(c)=0$ olmasıdır. O zaman üstteki $F(x)$'in türevini alırsak, ve
+$x=c$ dersek, </p>
+<p>$$ F'(c) = f'(c) - \frac{f(b)-f(a)}{g(b)-g(a)}[g'(c)] = 0$$</p>
+<p>doğru olmalıdır. Türev alırken $f(a)$ yokoldu çünkü sabitti, büyük bölüm
+yerinde kaldı çünkü tamamı $g(x)$ için katsayı. Eğer tekrar düzenlersek,
+negatif terimi sola alırsak, ve iki tarafı $g'(c)$'ye bölersek,</p>
+<p>$$ \frac{f'(c)}{g'(c)} = \frac{f(b)-f(a)}{g(b)-g(a)} $$</p>
+<p>ifadesini elde ederiz. Yani baştaki teoriyi elde etmiş oluruz. </p>
+<p>Ortalama Değer Teorisini ilk kez kullanmamızın sebebi, üstteki bölenin sıfır
+olmamasını istediğimiz içindi, çünkü sıfırla bölüm tanımsızdır. </p>
 <p>Kaynaklar</p>
 <p>[1] Hass, <em>Thomas Calculus 11th Edition</em></p>
