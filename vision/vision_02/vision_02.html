@@ -449,16 +449,16 @@ Genelleştirilmiş tersi alma, ya da sözde ters (pseudoinverse) işlemi burada
 ise yarar. Sözde ters için, her $A$ için bir SVD olduğuna göre, $A = U
 \Sigma V^T$, ve $\Sigma$'nın sıfır olmayan eşsiz değerlerinin tersi alınır (yani 
 öğe $\sigma_i$, $1/\sigma_i$ olur), sıfır değerlerine dokunulmaz, bu sonuçlar yeni 
-bir $\Sigma^{\dag}$'in köşegenine dizilir, "sözde ters" bu matris olur,</p>
-<p>$$ \Sigma^{\dag} = \left[\begin{array}{cc}
+bir $\Sigma^{\dagger}$'in köşegenine dizilir, "sözde ters" bu matris olur,</p>
+<p>$$ \Sigma^{\dagger} = \left[\begin{array}{cc}
 \Sigma_1^{-1} &amp; 0 \\ 0 &amp; 0 
 \end{array}\right]$$</p>
 <p>Ve bu ters işlemi tüm $A$'nin tersini almak için kullanılır, ki bu sözde
-tersi de boyutu $n \times m$ olan bir $A^{\dag}$ ile gösteriyoruz
+tersi de boyutu $n \times m$ olan bir $A^{\dagger}$ ile gösteriyoruz
 (İngilizce "$A$-dagger" olarak telafuz ediliyor, biz "$A$-kama"
 diyelim), </p>
 <p>$$ 
-A^{\dag} = V \Sigma^{\dag} U^T<br />
+A^{\dagger} = V \Sigma^{\dagger} U^T<br />
 \qquad (1)
 $$</p>
 <p>Bu noktaya nasıl geldiğimize dikkat, eğer SVD sonucunun pür tersini
@@ -466,11 +466,11 @@ alabilseydik, </p>
 <p>$$ A^{-1} = V^{-T}\Sigma^{-1}U^{-1} $$</p>
 <p>Dikgen matrisler için $Q^{-1}=Q^T$ olduğu için </p>
 <p>$$ = V\Sigma^{-1}U^{T} $$</p>
-<p>$\Sigma^{-1}$ olmadığı için yerine $\Sigma^{\dag}$ kullanıyoruz ve (1)'e erişiyoruz.  </p>
+<p>$\Sigma^{-1}$ olmadığı için yerine $\Sigma^{\dagger}$ kullanıyoruz ve (1)'e erişiyoruz.  </p>
 <p>Bazı özellikler,</p>
-<p>$$ A A^{\dag} A = A $$</p>
+<p>$$ A A^{\dagger} A = A $$</p>
 <p>ya da</p>
-<p>$$ A^{\dag} A  A^{\dag} =  A^{\dag} $$</p>
+<p>$$ A^{\dagger} A  A^{\dagger} =  A^{\dagger} $$</p>
 <p>Peki sözde tersi alma işlemini denklem sistemi çözmekte nasıl kullanırız? </p>
 <p>Lineer sistem çözümü bağlamında durumunda 3 türlü sonuç olabileceğini
 görmüştük. Eğer sonsuz tane çözüm varsa, bu büyük bir ihtimalle problemin
@@ -479,7 +479,7 @@ olmayabilir, ve size para veren kişi sizden hala çözüm beklemektedir (!),
 bu durumda $Ax=b$'yi çözmek yerine ona en yakın olabilecek şeyi
 çözebiliriz, yani $|Ax - b|^2$'yi minimize etmeyi seçebiliriz, $Ax$'i
 $b$'yi mümkün olduğu kadar yaklaştırırız. Burada sözde ters ise yarar,
-çünkü $x^* = A^{\dag}b$ ile hesaplanan çözüm aynı zamanda $|Ax - b|^2$'yi
+çünkü $x^* = A^{\dagger}b$ ile hesaplanan çözüm aynı zamanda $|Ax - b|^2$'yi
 minimize eder! Bu çözüm En Az Kareler (Least Squares) çözümü olarak ta
 bilinir, tabii burada sistem aşırı belirtilmiş (overdetermined) değil,
 eksik belirtilmiş (underdetermined) durumda. Not: Ayrıca sözde ters ile
