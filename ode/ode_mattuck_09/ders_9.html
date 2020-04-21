@@ -35,14 +35,15 @@ yüzden önce homojen denklemler incelenmeye başlanır, sonra homojenliğe olma
 duruma geçilir.</p>
 <p>Genel çözümün şöyle olduğunu farz edelim</p>
 <p>$$ y = c_1 y_1 + c_2 y_2 $$</p>
-<p>Çözümde iki tane rasgele (arbitrary) sabit olmasının sezgisel bir tarifi şudur:
-Denklem 2. derece, ve $y"$'den $y$'yi elde etmek için iki kere entegre etmek
-gereklidir, ve o sırada entegrasyon sonucu sonuca ardı ardına iki tane rasgele
-sabit ekler, kabaca bir tarif böyledir. Niye ayrı $y_1$ ve $y_2$?  Mesela $c_1 =
-0, c_2 = 1$ diyelim, o zaman $y_2$ bir çözüm olmalıdır, tersinden düşünürsek
-$y_1$ aynı şekilde [bu konu hakkındaki ek bir ispat bu ders notlarının altındaki
-  ekler kısmında, ayrıca iki çözümün altta işlenecek karakteristik denklem ile
-  alakası var, oradan iki kök geliyor].</p>
+<p>Çözümde iki tane rasgele (arbitrary) sabit olmasının sezgisel bir tarifi
+şudur: Denklem 2. derece, ve $y"$'den $y$'yi elde etmek için iki kere
+entegre etmek gereklidir, ve o sırada entegrasyon sonucu sonuca ardı ardına
+iki tane rasgele sabit ekler, kabaca bir tarif böyledir. Niye ayrı $y_1$ ve
+$y_2$?  Mesela $c_1 = 0, c_2 = 1$ diyelim, o zaman $y_2$ bir çözüm
+olmalıdır, tersinden düşünürsek $y_1$ aynı şekilde [bu konu hakkındaki ek
+bir ispat bu ders notlarının altındaki ekler kısmında, ayrıca iki çözümün
+altta işlenecek karakteristik denklem ile alakası var, oradan iki kök
+geliyor].</p>
 <p>Bunu söylemekle problemin nihai çözümünü bulmayı (bir şekilde) iki tane çözüm
 bulmaya indirgemiş oluyoruz aslında. Çünkü iki çözüm bulunca genel çözüm $y$, o
 iki çözümün rasgele sabitlerle çarpılıp toplanmasından müteşekkil
@@ -50,11 +51,9 @@ oluyor. Başlangıç değerleri ise $c_1$ ve $c_2$ değerleri üzerinden
 karşılanabilir, bu sabitler teoride rasgele olduklarına göre onları uygun
 şekilde seçerek başlangıç şartlarını da tatmin edebiliriz.</p>
 <p>Örnek</p>
-<ol>
-<li>derece ODE için klasik örnek bir yay (spring), kütle (mass) ve engelleyici
-(dashpot) sistemidir. Engelleyici denen bazı kapıların üst, arka kısmında olan
-kapı sert kapanmasın diye onu yavaşlatan mekanizmadır.</li>
-</ol>
+<p>İkinci derece ODE için klasik örnek bir yay (spring), kütle (mass) ve
+engelleyici (dashpot) sistemidir. Engelleyici denen bazı kapıların üst,
+arka kısmında olan kapı sert kapanmasın diye onu yavaşlatan mekanizmadır.</p>
 <p><img alt="" src="9_1.png" /></p>
 <p>Eksen yatay olduğu için ona $x$ değişkenini atayalım, tabii bu yüzden ODE'deki
 bağımlı değişken o olacak, yani üstteki $y$ yerine $x$ kullanıyoruz. Kafa
@@ -103,9 +102,7 @@ $e^{rt}$'yi iptal edelim.</p>
 <p>$$ r^2 + Ar + B = 0 $$</p>
 <p>Bu bir karesel denklemdir! Çözümü lisede öğretilir. Bu denkleme ODE'nin (ya da
 yay / kütle sisteminin) karakteristik denklemi ismi de verilir.</p>
-<ol>
-<li>Durum: kökler reel ve $r_1 \ne r_2$</li>
-</ol>
+<p>1'inci Durum: kökler reel ve $r_1 \ne r_2$</p>
 <p>Bu en basit, direk sonuç. O zaman nihai çözüm</p>
 <p>$$ y = c_1 e^{r_1t} + c_2  e^{r_2t}$$</p>
 <p>Örnek</p>
@@ -180,12 +177,12 @@ yürütemezdik. O zaman neresi reel neresi hayali olacaktı?</p>
 <p>$$ y = e^{at}\sin(bt) $$ </p>
 <p>O zaman çözüm</p>
 <p>$$ y = e^{at} \bigg( c_1 \cos(bt) + c_2 \sin(bt) \bigg) $$</p>
-<p>Bu fonksiyon neye benzer? Dikkat edelim, $e^{at}$ yüksekliği (amplitude) kontrol
-ediyor, geri kalanı iki sinüsoidal salınımın kombinasyonu, farklı yükseliği ama
-aynı frekansı olan iki salınım. Bu yüzden onların toplamı da bir sinüsoidal
-salınım. Bu fonksiyon aslında daha önceki bir derste bahsedilen bir
-trigonometrik eşitliği kullanmak için de uygun [hoca herhalde 8. dersteki
-  eşitlikten bahsediyor].</p>
+<p>Bu fonksiyon neye benzer? Dikkat edelim, $e^{at}$ yüksekliği (amplitude)
+kontrol ediyor, geri kalanı iki sinüsoidal salınımın kombinasyonu, farklı
+yükseliği ama aynı frekansı olan iki salınım. Bu yüzden onların toplamı da
+bir sinüsoidal salınım. Bu fonksiyon aslında daha önceki bir derste
+bahsedilen bir trigonometrik eşitliği kullanmak için de uygun [hoca
+herhalde 8. dersteki eşitlikten bahsediyor].</p>
 <p>Şimdi engelleyici / sönüm (damping) faktörünü değiştirelim. Önceki örnekte sönüm
 zayıftı, yayın etkisi daha fazlaydı, zaten o sebeple bir salınım görmüştük, bu
 kütleyi bırakınca bir süre sağa, sola sallanması demekti. Yeni denklem:</p>
