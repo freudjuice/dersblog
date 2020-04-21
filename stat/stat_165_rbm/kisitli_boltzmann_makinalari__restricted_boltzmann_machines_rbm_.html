@@ -200,12 +200,13 @@ $$</p>
 \sum_{h,x} \frac{1}{Z}  \exp \big( \frac{1}{2} y^{T} W y  \big) y_iy_j =
 \sum_{h,x} P(y;W)  y_iy_j
 $$</p>
-<p>ki bu son ifadeyi de $<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(y;W)}$ olarak yazabiliriz. Tamamını,
+<p>ki bu son ifadeyi de $&lt; y_iy_j &gt;_{P(y;W)}$ olarak yazabiliriz. Tamamını,
 yani (3) ifadesini, artık şöyle yazabiliriz,</p>
 <p>$$
+\sum_{n=1}^{N}  \big( \frac{\partial \ln Z_{x^{(n)}} }{\partial w_{ij}} - 
+\frac{\partial \ln Z }{\partial w_{ij}} \big)
+= \sum_{n=1}^{N}  &lt; y_iy_j &gt;_{P(h|x^n;W)} - &lt; y_iy_j &gt;_{P(y;W)}
 \qquad (4)
-\sum_{n=1}^{N}  \big( \frac{\partial \ln Z_{x^{(n)}} }{\partial w_{ij}} - \frac{\partial \ln Z }{\partial w_{ij}} \big)
-= \sum_{n=1}^{N}  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(h|x^n;W)} - <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(y;W)}
 $$</p>
 <p>Bu formülü de BM için yaptığımız gibi bir gradyan güncelleme formülüne
 dönüştürebiliriz. Güncelleme formülünün hangi hesapları gerektirdiğine
@@ -460,4 +461,4 @@ Divergence}</p>
 restricted Boltzmann machines}, Master Tezi, 2010</p>
 <p>[3] <a href="https://github.com/echen/restricted-boltzmann-machines">https://github.com/echen/restricted-boltzmann-machines</a></p>
 <p>[4] Tieleman, Hinton, <em>Using Fast Weights to Improve Persistent Contrastive Divergence</em></p>
-<p>[5] Larochelle, H., <em>Neural networks [5.1] : Restricted Boltzmann machine - definition</em>, \url{https://www.youtube.com/watch?v=p4Vh_zMw-HQ}</p>
+<p>[5] Larochelle, H., <em>Neural networks [5.1] : Restricted Boltzmann machine - definition</em>, <a href="https://www.youtube.com/watch?v=p4Vh_zMw-HQ">https://www.youtube.com/watch?v=p4Vh_zMw-HQ</a></p>
