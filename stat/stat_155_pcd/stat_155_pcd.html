@@ -26,7 +26,9 @@
 <p>Kısıtlı Boltzman Makinaları (RBM) yazısında gösterilen eğitim CD
 (contrastive divergence) üzerinden idi. Amaç alttaki formülde, özellikle
 eksiden sonraki terimi yaklaşıksal olarak hesaplamaktır. </p>
-<p>$$ \sum_{n=1}^{N}  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(h|x^n;W)} - <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#121;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(x,h;W)} $$</p>
+<p>$$ 
+\sum_{n=1}^{N}  &lt; y_iy_j &gt;_{P(h|x^n;W)} - &lt; y_iy_j &gt;_{P(x,h;W)} 
+$$</p>
 <p>Bu terime basında eksi olduğu için negatif parçacıklar (negatıve partıcles)
 ismi de veriliyor. </p>
 <p>Şimdi RBM'de gördüğümüz CD'yi hatırlayalım, CD bir tür "tek adımlık Gibbs
@@ -219,7 +221,7 @@ print 'RBM', np.sum(res3==y_test) / float(len(y_test))
 </code></pre>
 
 <p>Kaynaklar</p>
-<p>[1] Tieleman, <em>Using Fast Weights to Improve Persistent Contrastive Divergence</em>,\url{http://videolectures.net/icml09_tieleman_ufw/}</p>
+<p>[1] Tieleman, <em>Using Fast Weights to Improve Persistent Contrastive Divergence</em>,<a href="http://videolectures.net/icml09_tieleman_ufw/">http://videolectures.net/icml09_tieleman_ufw/</a></p>
 <p>[2] Montreal Institute for Learning Algorithms, <em>MNIST Data</em>, <a href="http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz">http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz</a></p>
 <p>[3] Bengio, Y., <em>Learning Deep Architectures for AI</em></p>
 <p>[4] Larochelle, H., <em>Neural networks [5.6] : Restricted Boltzmann machine - persistent CD</em>,  <a href="https://www.youtube.com/watch?v=S0kFFiHzR8M">https://www.youtube.com/watch?v=S0kFFiHzR8M</a></p>

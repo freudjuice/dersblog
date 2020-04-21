@@ -100,7 +100,7 @@ $$</p>
 $$</p>
 <p>Üstteki son ifadede bir kısaltma kullanalım,</p>
 <p>$$ 
-\sum_x P(x;W) x_i x_j =  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#44;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#44;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(x;W)}
+\sum_x P(x;W) x_i x_j =  &lt; x_i,x_j &gt;_{P(x;W)}
 \qquad (4)
 $$</p>
 <p>Artık $\ln Z(W)$'nin türevini biliyoruz. O zaman tüm log olurluğun türevine
@@ -361,7 +361,7 @@ gerekecek. Niye? Mesela iki farklı BM dağılımını farklı etiketli verilerd
 öğreniyoruz, sonra test veri noktasını her iki ayrı dağılıma "soruyoruz"?
 Olasılığı nedir? Bu noktada kesin bir olasılık hesabı istediğimiz için
 artık $Z$ bilinmek zorunda. Bu sabitin hesaplanması için ise
-$<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;">&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#105;&#120;&#64;&#64;&#85;&#85;&#69;&#69;&#69;&#64;&#64;&#106;</a>_{P(x;W)}$ için olduğu gibi, tüm mümkün $x$'ler üzerinden bir
+$&lt; x_ix_j &gt;_{P(x;W)}$ için olduğu gibi, tüm mümkün $x$'ler üzerinden bir
 toplam gerekir, bu toplam $\sum_x \exp 1/2 x^T W x$ toplamı. Bu toplamın
 hesaplanması çok zor olduğu için, yine MCMC'ye başvuracağız. Tek fark
 alınan örneklemi (3) formülüne geceğiz, ve bir olasılık hesabı yapacağız,
