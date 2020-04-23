@@ -333,6 +333,7 @@ hangisi için?  Optimal sonuç için bir dengeleme yapmak lazım.</p>
 görevsiz kalacak. Bir kısıtlama var, o da bir yüzücü birden fazla stilde
 yarışamaz.</p>
 <p>Üstteki resimde kırmızı renk yapılan tercihi belirtiyor [1, 54:08]. </p>
+<p>Bu konu kodlaması hakkında daha fazla detay ekler bölümünde. </p>
 <p>Aktarmalı gemi nakliyatı</p>
 <p>Bu tür nakliyat problemlerinde bir mali kaynaktan alıcıya direk göndermeye
 ek olarak arada bir depoda da tutmamız mümkün, bu durum tabii ki lojistik
@@ -461,9 +462,132 @@ yolu en kısa yoldur. Orijinal problem çözümünde [2] sonucun ['s', 'y', 't',
 algoritmasının bir ayrıksal algoritma olduğunu unutmayalım, ama üstteki LP
 bazlı yaklaşım sürekli (continuous) alanda optimizasyon araçları ile aynı
 sonuca varıyor!</p>
+<p>Yüzücüler</p>
+<p>Daha önceki problemi yazılımla çözelim. Atama problemleri aslında oldukca
+standart, çünkü iş-işçi ağ yapısı hepsinde aynı, arada aktarma olmayan bir
+ağ yapısı. Bu yapıyı $n$ tane iş $n$ tane işçi için mekanik bir şekilde
+yaratabiliyoruz. Bu sebeple çözüm yapan <code>linear_sum_assignment</code>
+çağrısı sadece bir bedel matrisi alıyor, gerisini kendi hallediyor. </p>
+<p>Püf nokta, ya elde işten fazla işçi varsa, mesela yüzme örneğinde olduğu
+gibi, 5 tane yüzücü, 4 tane stil? O zaman ufak bir numara şudur, bedel
+matrisine bir 'boş stil' satırı ekleriz, oradaki tüm bedeller sıfır olur,
+yani diğer işler için optimal olmayan bir kişiyi buraya atamak için
+algoritmayi yönlendirmiş oluruz bir bakıma ve problemi standart bir şekilde
+çözeriz. </p>
+<pre><code class="python">from scipy.optimize import linear_sum_assignment
+
+raw = [ [37.7, 32.9, 33.8, 37.0, 35.4],
+        [43.4, 33.1, 42.2, 34.7, 41.8],
+        [33.3, 28.5, 38.9, 30.4, 33.6],
+        [29.2, 26.4, 29.6, 28.5, 31.1] ]
+raw = np.array(raw)
+raw = np.vstack( (raw,  np.zeros((1,5))) )
+print (raw)
+row_ind, col_ind = linear_sum_assignment(raw)
+print (col_ind)
+print (row_ind)
+print (raw[row_ind, col_ind].sum())
+</code></pre>
+
+<pre><code>[[37.7 32.9 33.8 37.  35.4]
+ [43.4 33.1 42.2 34.7 41.8]
+ [33.3 28.5 38.9 30.4 33.6]
+ [29.2 26.4 29.6 28.5 31.1]
+ [ 0.   0.   0.   0.   0. ]]
+[2 3 1 0 4]
+[0 1 2 3 4]
+126.2
+</code></pre>
+
+<p>Sonuca göre David sırtüstü stiline atanmış, Tony kurbağalamaya atanmış.. ve
+Ken hiçbir şey atanmamış. Bu atamaların daha önceki tabloyla aynı olduğunu
+görebiliriz.</p>
+<p>Problemin matematik yapisina gelirsek, [4] orneginden hareket edelim,
+elimizde uc tane isci A, B, C var, ve uc tane is 1,2,3 var. Her iscinin her
+isi ne kadar surede yaptigi alttaki tabloda, satirlar isci, kolonlar is,</p>
+<pre><code class="python">C = [[17,10,12],[9,8,10], [14,4,7]]
+C = np.array(C)
+print (C)
+</code></pre>
+
+<pre><code>[[17 10 12]
+ [ 9  8 10]
+ [14  4  7]]
+</code></pre>
+
+<p>Problemin yapısı alttaki ağ yapısıyla gösterilebilir,</p>
+<p><img alt="" src="func_90_nflow_11.png" /></p>
+<p>Karar değişkenleri $x_{A1}$, $x_{A2}$, .. şeklinde olacak. o zaman bedel</p>
+<p>$$
+17 x_{A1} + 10 x_{A2} + 12 x_{A3} + 
+9 x_{B1} + 8 x_{B2} + 10 x_{B3} + 
+14 x_{C1} + 4 x_{C2} + 7 x_{C3}
+$$</p>
+<p>Onemli bir nokta her isin sadece bir kisiye verilmesi. Bunu mesela A icin</p>
+<p>$$
+x_{A1} + x_{A2} +  x_{A3}  = 1
+$$</p>
+<p>kisitlamasi ile hallederiz, B,C icin benzer durum. </p>
+<p>Her isin tek kisiye verilmesi icin, mesela 1 icin</p>
+<p>$$
+x_{A1} + x_{B1} + x_{C1} = 1
+$$</p>
+<p>kısıtlaması, 2,3 için benzer. Tüm bu kısıtlamaları matris formunda vermek için,</p>
+<pre><code class="python">n = 3
+X = np.zeros((2*n,n**2))
+X[0,0:n] = np.ones((1,n))
+X[1,n:n+n] = np.ones((1,n))
+X[2,2*n:2*n+n] = np.ones((1,n))
+X[3:6,0:3] = np.eye(n,n)
+X[3:6,3:6] = np.eye(n,n)
+X[3:6,6:9] = np.eye(n,n)
+print (X)
+</code></pre>
+
+<pre><code>[[1. 1. 1. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 1. 1. 1. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 1. 1. 1.]
+ [1. 0. 0. 1. 0. 0. 1. 0. 0.]
+ [0. 1. 0. 0. 1. 0. 0. 1. 0.]
+ [0. 0. 1. 0. 0. 1. 0. 0. 1.]]
+</code></pre>
+
+<pre><code class="python">print (C.flatten())
+</code></pre>
+
+<pre><code>[17 10 12  9  8 10 14  4  7]
+</code></pre>
+
+<pre><code class="python">b = [1, 1, 1, 1, 1, 1]
+
+from scipy.optimize import linprog
+res = linprog(C.flatten(), A_eq=X, b_eq=b)
+res = np.round(res.x)
+print (res)
+</code></pre>
+
+<pre><code>[0. 0. 1. 1. 0. 0. 0. 1. 0.]
+</code></pre>
+
+<p>Yani $x_{A3}$, $x_{B1}$, $x_{C2}$ ataması yapıldı. Doğrulamasını yapalım,</p>
+<pre><code class="python">row_ind, col_ind = linear_sum_assignment(C)
+print (col_ind)
+print (row_ind)
+print (C[row_ind, col_ind].sum())
+</code></pre>
+
+<pre><code>[2 0 1]
+[0 1 2]
+25
+</code></pre>
+
+<p>Aynı sonucu aldık. </p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, 
     University of Wisconsin-Madison,
     <a href="https://laurentlessard.com/teaching/524-intro-to-optimization">https://laurentlessard.com/teaching/524-intro-to-optimization</a></p>
 <p>[2] Bayramli, <em>Bilgisayar Bilim, Dijkstra Algoritması ile En Kısa Yol</em></p>
 <p>[3] Bayramli, <em>Fonksiyonel Analiz ve Optimizasyon, Çifteşlik, İkizlik (Duality)</em></p>
+<p>[4] Hebborn, <em>Decision Mathematics</em>, 
+    <a href="https://www.pearsonschoolsandfecolleges.co.uk/Secondary/Mathematics/16plus/HeinemannModularMathematicsForEdexcelASAndALevel/Samples/Samplematerial/Chapter2.pdf">https://www.pearsonschoolsandfecolleges.co.uk/Secondary/Mathematics/16plus/HeinemannModularMathematicsForEdexcelASAndALevel/Samples/Samplematerial/Chapter2.pdf</a></p>
+<p>[5] Burkard, <em>Assignment Problems</em></p>
