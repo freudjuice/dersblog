@@ -464,16 +464,16 @@ bazlı yaklaşım sürekli (continuous) alanda optimizasyon araçları ile aynı
 sonuca varıyor!</p>
 <p>Yüzücüler</p>
 <p>Daha önceki problemi yazılımla çözelim. Atama problemleri aslında oldukca
-standart, çünkü iş-işçi ağ yapısı hepsinde aynı, arada aktarma olmayan bir
+standart, çünkü iş-işçi ağ yapısı hep aynı, arada aktarma olmayan bir
 ağ yapısı. Bu yapıyı $n$ tane iş $n$ tane işçi için mekanik bir şekilde
 yaratabiliyoruz. Bu sebeple çözüm yapan <code>linear_sum_assignment</code>
 çağrısı sadece bir bedel matrisi alıyor, gerisini kendi hallediyor. </p>
-<p>Püf nokta, ya elde işten fazla işçi varsa, mesela yüzme örneğinde olduğu
-gibi, 5 tane yüzücü, 4 tane stil? O zaman ufak bir numara şudur, bedel
-matrisine bir 'boş stil' satırı ekleriz, oradaki tüm bedeller sıfır olur,
-yani diğer işler için optimal olmayan bir kişiyi buraya atamak için
-algoritmayi yönlendirmiş oluruz bir bakıma ve problemi standart bir şekilde
-çözeriz. </p>
+<p>Bir pürüz nokta, elde işten fazla işçi varsa, mesela yüzme örneğinde olduğu
+gibi, 5 tane yüzücü, 4 tane stil varsa ortaya çıkar. O zaman numara şudur,
+bedel matrisine bir 'boş stil' satırı ekleriz [4, sf. 40], oradaki tüm
+bedeller sıfır olur, yani diğer işler için optimal olmayan bir kişiyi
+buraya atamak için algoritmayi yönlendirmiş oluruz bir bakıma ve yine
+problemi standart bir şekilde çözeriz.</p>
 <pre><code class="python">from scipy.optimize import linear_sum_assignment
 
 raw = [ [37.7, 32.9, 33.8, 37.0, 35.4],
@@ -499,12 +499,13 @@ print (raw[row_ind, col_ind].sum())
 126.2
 </code></pre>
 
-<p>Sonuca göre David sırtüstü stiline atanmış, Tony kurbağalamaya atanmış.. ve
-Ken hiçbir şey atanmamış. Bu atamaların daha önceki tabloyla aynı olduğunu
-görebiliriz.</p>
-<p>Problemin matematik yapisina gelirsek, [4] orneginden hareket edelim,
-elimizde uc tane isci A, B, C var, ve uc tane is 1,2,3 var. Her iscinin her
-isi ne kadar surede yaptigi alttaki tabloda, satirlar isci, kolonlar is,</p>
+<p>Sonuca bakarsak David sırtüstü stiline atanmış, Tony kurbağalamaya
+atanmış.. ve Ken hiçbir şeye atanmamış. Bu sonuçların daha önceki tablodaki
+kırmızı seçimler aynı olduğunu görebiliriz.</p>
+<p>Problemin matematik yapısına gelirsek simdi daha ufak [4, sf. 29]
+örneğinden hareket edelim, elimizde üç tane işçi A, B, C var, ve üç tane iş
+1,2,3 var. Her işçinin her işi ne kadar sürede yaptığı alttaki
+tabloda. Satırlar işçi, kolonlar iş,</p>
 <pre><code class="python">C = [[17,10,12],[9,8,10], [14,4,7]]
 C = np.array(C)
 print (C)
@@ -515,7 +516,7 @@ print (C)
  [14  4  7]]
 </code></pre>
 
-<p>Problemin yapısı alttaki ağ yapısıyla gösterilebilir,</p>
+<p>Problemin yapısı alttaki ağ ile gösterilebilir,</p>
 <p><img alt="" src="func_90_nflow_11.png" /></p>
 <p>Karar değişkenleri $x_{A1}$, $x_{A2}$, .. şeklinde olacak. o zaman bedel</p>
 <p>$$
@@ -523,16 +524,25 @@ print (C)
 9 x_{B1} + 8 x_{B2} + 10 x_{B3} + 
 14 x_{C1} + 4 x_{C2} + 7 x_{C3}
 $$</p>
-<p>Onemli bir nokta her isin sadece bir kisiye verilmesi. Bunu mesela A icin</p>
+<p>Önemli bir nokta her işin sadece bir kişiye verilmesi. Bunu mesela A için</p>
 <p>$$
 x_{A1} + x_{A2} +  x_{A3}  = 1
 $$</p>
-<p>kisitlamasi ile hallederiz, B,C icin benzer durum. </p>
+<p>kısıtlaması ile hallederiz, B,C için benzer durum. </p>
 <p>Her isin tek kisiye verilmesi icin, mesela 1 icin</p>
 <p>$$
 x_{A1} + x_{B1} + x_{C1} = 1
 $$</p>
-<p>kısıtlaması, 2,3 için benzer. Tüm bu kısıtlamaları matris formunda vermek için,</p>
+<p>kısıtlaması, 2,3 için benzer şekilde halledilir. Tüm bu kısıtlamaları
+matris formunda vermek için, alttaki gibi bir matris yaratılabilir,</p>
+<p><img alt="" src="func_90_nflow_12.png" /></p>
+<p>Notasyon $x_{11}$ diyor bizim örnek için $x_{A1}$ diye düşünülebilir. Bu
+matrisi LP çözümüne $Ax = b$ kısıtlaması olarak verebiliriz, $Ax$ çarpımını
+takip edersek bu çarpımın belli $x$'ler üzerinde toplama yaptığını
+görüyoruz, mesela ilk satır sol üst blok $x_{A1} + x_{B1} + x_{C1} $
+toplamını yapıyor ve ona tekabül eden kısma $b$ içinde 1 verirsek, LP
+mekanizması bu kısıtlamaya göre gerisini halleder.</p>
+<p>Kodda yapalım,</p>
 <pre><code class="python">n = 3
 X = np.zeros((2*n,n**2))
 X[0,0:n] = np.ones((1,n))
@@ -558,6 +568,7 @@ print (X)
 <pre><code>[17 10 12  9  8 10 14  4  7]
 </code></pre>
 
+<p>Şimdi LP çağrısı,</p>
 <pre><code class="python">b = [1, 1, 1, 1, 1, 1]
 
 from scipy.optimize import linprog
