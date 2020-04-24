@@ -502,74 +502,42 @@ print (raw[row_ind, col_ind].sum())
 <p>Sonuca bakarsak David sırtüstü stiline atanmış, Tony kurbağalamaya
 atanmış.. ve Ken hiçbir şeye atanmamış. Bu sonuçların daha önceki tablodaki
 kırmızı seçimler aynı olduğunu görebiliriz.</p>
-<p>Problemin matematik yapısına gelirsek simdi daha ufak [4, sf. 29]
-örneğinden hareket edelim, elimizde üç tane işçi A, B, C var, ve üç tane iş
-1,2,3 var. Her işçinin her işi ne kadar sürede yaptığı alttaki
-tabloda. Satırlar işçi, kolonlar iş,</p>
+<p>Problemin matematik yapısına gelirsek, ufak bir örnek üzerinde düşünürsek,
+elde $c_1,c_2,p_1,p_2$ şeklinde $c$ ile müşteriler $p$ ile ürünleri
+eşlediğimizi düşünürsek, ağ yapısında düğümler tüm müşteriler, tüm ürünler,
+yani $c_1,c_2,p_1,p_2$ ve tüm kenarlar ise $(c_1,p_1)$, $(c_1,p_2)$,
+$(c_2,p_1)$, $(c_2,p_2)$ gibi olurdu. Burada yine tek birim kaynaktan,
+müşterilerden gönderilen tek birimlik yükün bir alıcı ürün tarafından
+alındığını düşünüyoruz, o zaman geliş matrisi satırlar düğümler, kolonlar
+kenarlar olacak şekilde,</p>
+<p>$$
+\left[\begin{array}{rrrr}
+1  &amp; 1 &amp;  0 &amp; 0 \\
+0  &amp; 0 &amp;  1 &amp; 1 \\
+-1 &amp; 0 &amp; -1 &amp; 0 \\
+0  &amp;-1 &amp;  0 &amp;-1<br />
+\end{array}\right]
+$$</p>
+<p>olurdu, tabii ki $b = [1,1,-1,-1]$. Ustteki matriste kalıp belli oluyor
+herhalde, satırların müşteri kısmında her ürün başına tamamen birler var,
+ürünler kısmında blok blok yanyana birim matrisleri.. Ustteki matrisi
+otomatik olarak yaratmak mumkun. Hatta simdi {\em Lineer Programlar,
+ Örnekler} yazisindaki problemi ag mantigi cozelim, </p>
 <pre><code class="python">C = [[17,10,12],[9,8,10], [14,4,7]]
 C = np.array(C)
 print (C)
-</code></pre>
 
-<pre><code>[[17 10 12]
- [ 9  8 10]
- [14  4  7]]
-</code></pre>
-
-<p>Problemin yapısı alttaki ağ ile gösterilebilir,</p>
-<p><img alt="" src="func_90_nflow_11.png" /></p>
-<p>Karar değişkenleri $x_{A1}$, $x_{A2}$, .. şeklinde olacak. o zaman bedel</p>
-<p>$$
-17 x_{A1} + 10 x_{A2} + 12 x_{A3} + 
-9 x_{B1} + 8 x_{B2} + 10 x_{B3} + 
-14 x_{C1} + 4 x_{C2} + 7 x_{C3}
-$$</p>
-<p>Önemli bir nokta her işin sadece bir kişiye verilmesi. Bunu mesela A için</p>
-<p>$$
-x_{A1} + x_{A2} +  x_{A3}  = 1
-$$</p>
-<p>kısıtlaması ile hallederiz, B,C için benzer durum. </p>
-<p>Her isin tek kisiye verilmesi icin, mesela 1 icin</p>
-<p>$$
-x_{A1} + x_{B1} + x_{C1} = 1
-$$</p>
-<p>kısıtlaması, 2,3 için benzer şekilde halledilir. Tüm bu kısıtlamaları
-matris formunda vermek için, alttaki gibi bir matris yaratılabilir,</p>
-<p><img alt="" src="func_90_nflow_12.png" /></p>
-<p>Notasyon $x_{11}$ diyor bizim örnek için $x_{A1}$ diye düşünülebilir. Bu
-matrisi LP çözümüne $Ax = b$ kısıtlaması olarak verebiliriz, $Ax$ çarpımını
-takip edersek bu çarpımın belli $x$'ler üzerinde toplama yaptığını
-görüyoruz, mesela ilk satır sol üst blok $x_{A1} + x_{B1} + x_{C1} $
-toplamını yapıyor ve ona tekabül eden kısma $b$ içinde 1 verirsek, LP
-mekanizması bu kısıtlamaya göre gerisini halleder.</p>
-<p>Kodda yapalım,</p>
-<pre><code class="python">n = 3
+n = 3
 X = np.zeros((2*n,n**2))
 X[0,0:n] = np.ones((1,n))
 X[1,n:n+n] = np.ones((1,n))
 X[2,2*n:2*n+n] = np.ones((1,n))
-X[3:6,0:3] = np.eye(n,n)
-X[3:6,3:6] = np.eye(n,n)
-X[3:6,6:9] = np.eye(n,n)
+X[3:6,0:3] = -np.eye(n,n)
+X[3:6,3:6] = -np.eye(n,n)
+X[3:6,6:9] = -np.eye(n,n)
 print (X)
-</code></pre>
 
-<pre><code>[[1. 1. 1. 0. 0. 0. 0. 0. 0.]
- [0. 0. 0. 1. 1. 1. 0. 0. 0.]
- [0. 0. 0. 0. 0. 0. 1. 1. 1.]
- [1. 0. 0. 1. 0. 0. 1. 0. 0.]
- [0. 1. 0. 0. 1. 0. 0. 1. 0.]
- [0. 0. 1. 0. 0. 1. 0. 0. 1.]]
-</code></pre>
-
-<pre><code class="python">print (C.flatten())
-</code></pre>
-
-<pre><code>[17 10 12  9  8 10 14  4  7]
-</code></pre>
-
-<p>Şimdi LP çağrısı,</p>
-<pre><code class="python">b = [1, 1, 1, 1, 1, 1]
+b = [1, 1, 1, -1, -1, -1]
 
 from scipy.optimize import linprog
 res = linprog(C.flatten(), A_eq=X, b_eq=b)
@@ -577,28 +545,23 @@ res = np.round(res.x)
 print (res)
 </code></pre>
 
-<pre><code>[0. 0. 1. 1. 0. 0. 0. 1. 0.]
+<pre><code>[[17 10 12]
+ [ 9  8 10]
+ [14  4  7]]
+[[ 1.  1.  1.  0.  0.  0.  0.  0.  0.]
+ [ 0.  0.  0.  1.  1.  1.  0.  0.  0.]
+ [ 0.  0.  0.  0.  0.  0.  1.  1.  1.]
+ [-1. -0. -0. -1. -0. -0. -1. -0. -0.]
+ [-0. -1. -0. -0. -1. -0. -0. -1. -0.]
+ [-0. -0. -1. -0. -0. -1. -0. -0. -1.]]
+[0. 0. 1. 1. 0. 0. 0. 1. 0.]
 </code></pre>
 
-<p>Yani $x_{A3}$, $x_{B1}$, $x_{C2}$ ataması yapıldı. Doğrulamasını yapalım,</p>
-<pre><code class="python">row_ind, col_ind = linear_sum_assignment(C)
-print (col_ind)
-print (row_ind)
-print (C[row_ind, col_ind].sum())
-</code></pre>
-
-<pre><code>[2 0 1]
-[0 1 2]
-25
-</code></pre>
-
-<p>Aynı sonucu aldık. </p>
+<p>Aynı sonuca eriştiğimizi görüyoruz. 5 yüzücü için ve yine sıfırlı satırı
+ekleyip, yüzücü problemini de aynı şekilde çözülebilir.</p>
 <p>Kaynaklar</p>
 <p>[1] Lessard, <em>Introduction to Optimization, CS/ECE/ISyE 524, Lecture 5</em>, 
     University of Wisconsin-Madison,
     <a href="https://laurentlessard.com/teaching/524-intro-to-optimization">https://laurentlessard.com/teaching/524-intro-to-optimization</a></p>
 <p>[2] Bayramli, <em>Bilgisayar Bilim, Dijkstra Algoritması ile En Kısa Yol</em></p>
 <p>[3] Bayramli, <em>Fonksiyonel Analiz ve Optimizasyon, Çifteşlik, İkizlik (Duality)</em></p>
-<p>[4] Hebborn, <em>Decision Mathematics</em>, 
-    <a href="https://www.pearsonschoolsandfecolleges.co.uk/Secondary/Mathematics/16plus/HeinemannModularMathematicsForEdexcelASAndALevel/Samples/Samplematerial/Chapter2.pdf">https://www.pearsonschoolsandfecolleges.co.uk/Secondary/Mathematics/16plus/HeinemannModularMathematicsForEdexcelASAndALevel/Samples/Samplematerial/Chapter2.pdf</a></p>
-<p>[5] Burkard, <em>Assignment Problems</em></p>
