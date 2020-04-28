@@ -376,11 +376,30 @@ $$</p>
 zaman elimizdeki $x$ orijinal problem için de harfiyen olurlu
 olacaktır. Argümanın tersi de geçerli, esas LP harfiyen olurludur sadece ve
 sadece $t^* &lt; 1$ ise ki $t^*$ Faz I probleminin optimal değeri.</p>
-<p>Ama simdi ustteki problem icin nasil baslangic degeri buluruz sorusu var,
-ama bu daha basit. $Ax^0 = b$'ye cozum olan herhangi bir $x^0$'yu aliriz,
-ve $t^0 = 2 - \min_i x_i^0$ seceriz. Tabii eger $\min_i x_i^0 &lt; 0$ degil
-ise, yani tum $x_i$'lar pozitif ise, o zaman is bitti demektir, $x^0$ zaten
-harfiyen olurlu ve isimiz bitti. </p>
+<p>Ama şimdi üstteki problem için nasıl başlangıç değeri buluruz sorusu var,
+ama bu daha basit. $Ax^0 = b$'ye çözüm olan herhangi bir $x^0$'yu alırız,
+ve $t^0 = 2 - \min_i x_i^0$ seçeriz. Tabii eğer $\min_i x_i^0 &lt; 0$ değil
+ise, yani tüm $x_i$'lar pozitif ise, o zaman iş bitti demektir, $x^0$ zaten
+harfiyen olurlu ve işimiz bitti. Değil ise log bariyer ile devam edeceğiz,
+problemi standart forma çevirmek için $z = x + (t-1)\vec{1}$ diyebiliriz, </p>
+<p>$$
+z = x + t \vec{1} - \vec{1}
+$$</p>
+<p>Ya da</p>
+<p>$$
+x = z - t\vec{1} + \vec{1}
+$$</p>
+<p>Bunu $Ax = b$ üzerinde uygularsak, </p>
+<p>$$
+A (z - t\vec{1} + \vec{1}) = b
+$$</p>
+<p>$$
+Az - A t\vec{1} = b - A\vec{1}
+$$</p>
+<p>Eşitliğin solundakiler yerine $x$'i genişletip $t$ için yeni bir hücre
+yaratabiliriz, ve $A$'ya yeni kolon ekleriz, bu kolondaki her öge mevcut
+$A$'nin satırlarının toplamının negatifi olur. Bedel vektörü de
+$c = [0, 0, ..., 1]$ haline gelir, son öğe $t$ için.</p>
 <p>Standard LP çözen bariyer metot temelli [3] kod alttadır. </p>
 <pre><code class="python">import numpy as np
 
