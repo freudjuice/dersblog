@@ -91,6 +91,25 @@ doğal olarak Hessian'lı ifadeye eriseceğiz, </p>
 <p>$$
 0 = \nabla f(x+v) \approx \nabla f(x) + \nabla^2 f(x) v
 $$</p>
+<p>Ve ustteki formulu $v$ icin cozersek, bu bizi tekrar daha once
+gosterdigimiz Newton adimina goturuyor, 
+$v = - \left( \nabla^2 f(x) \right)^{-1} \nabla f(x)$</p>
+<p>Bu metotun tarihi bir arka planı da var, İsaac Newton bizim bugün Newton
+metotu dediğimiz yöntemi minimizasyon için değil, kök bulmak için
+keşfetti. Düşündü ki gayrı-lineer bir denklemin çözümlerini bulmak
+istiyorsan böyle bir metot gerekli. Tek boyutta düşünelim, mesela bir $g$
+var, onun köklerini bulmak istiyoruz, o zaman Newton metotu kullan. Hatta
+genel fonksiyonlar için bile değil, polinomlar için bu yöntemi
+bulmuştu. Rhapson, bir diğer bilimci, aynı şekilde, aynı metotu düşündü. O
+sebeple bu metota bazen Newton-Rhapson adı verildiğini de görebilirsiniz.
+Çok sonraları bilimciler bu metotu minimizasyon için kullanmayı akıl etti,
+gradyanı sıfıra eşitliyerek. Bu kullanım çoğunlukla Simpson'a atfedilir.</p>
+<p>Devam edelim, Newton adımının önemli bir özelliği onun ılgın değişmezliği
+(affine ınvariance). Bu ne demek? Bir lineer transformasyona
+bakalım. Diyelim ki $f,x$ üzerinden Newton adımı hesaplıyorken ben gelip
+diyorum ki "$x$ üzerinde değil yeni bir değişken $y$ üzerinden bunu
+yapmanı istiyorum" ve formül $x = Ay$, ve $g(y) = f(Ay)$. O zaman $g$
+üzerinde Newton adımları neye benzer? </p>
 <p>[devam edecek]</p>
 <p>Eski Anlatım</p>
 <p>Newton birazdan bahsedeceğimiz yöntemi tek boyutlu problemler için kullandı
