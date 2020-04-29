@@ -23,6 +23,60 @@
 </script>
 </head>
 
+<p>Kısıtlanmamış bir pürüzsüz optimizasyon problemini düşünelim [6, 6:00], </p>
+<p>$$
+\min f(x)
+$$</p>
+<p>Baktığımız $f$'in iki kez türevi alınabilir olduğunu düşünelim. Hatırlarsak
+gradyan inişi nasıl işliyordu? Alttaki gibi,</p>
+<p>$$
+x^{k} = x^{k-1} - t_k \cdot \nabla f(x^{k-1}), k=1,2,...
+$$</p>
+<p>Bir başlangıç $x^{(0)} \in \mathbb{R}^n$ seçiliyor ve üstteki ardı ardına
+işletiliyor, her adımda negatif gradyan yönünde $t_k$ boyunda adım
+atılıyor.</p>
+<p>Kıyasla Newton metotu alttakini işletir,</p>
+<p>$$
+x^{k} = x^{k-1} - 
+\left( \nabla^2 f(x^{(k-1)}) \right)^{-1} \nabla f(x^{k-1}), k=1,2,...
+$$</p>
+<p>ki $\nabla^2 f(x^{(k-1)})$ $f$'in $x^{(k-1)}$ noktasındaki Hessian'ı. Yani
+$t_k$ boyunda eksi gradyan yönünde gitmek yerine gradyanin "negatif
+Hessian'ı yönünde" gideceğiz. Dikkat edersek bu yöntemde adım büyüklüğü
+kavramı yok, seçilen yönde tam bir adım atılıyor.</p>
+<p>Newton metotunu nasıl yorumlamak gerekir? Gradyan inişini hatırlarsak, bir
+fonksiyon $f$'i alalım, ve onu $x$ noktasında karesel olarak
+yaklaşıklamasını alıyorduk,</p>
+<p><img alt="" src="func_35_newton_01.png" /></p>
+<p>Hessian nerede? Aslında var, ama birim matris $\frac{1}{2t} I$ olarak
+alındı. Alttaki resimde Newton metotu için yaratılan yaklaşıklamayı
+görüyoruz, bu büyük ihtimalle daha iyi bir yaklaşıklama olacak çünkü
+karesel açılımda daha fazla bilgi kullanıyor, bu sefer formülde $\nabla^2
+f(x)$ ile Hessian da var. </p>
+<p><img alt="" src="func_35_newton_02.png" /></p>
+<p>Bu yeni yaklaşıklama üzerinden $x - (\nabla^2 f(x))^{-1}\nabla f(x)$ ile
+adım atınca belki yeşil okla gösterilen yere geleceğiz, bu daha iyi bir
+nokta olabilecek. Atılan adım formülünün resimdeki karesel formun minimize
+edicisi olduğunu görmek zor değil.</p>
+<p>Gradyan inişi ve Newton metotu adımları arasındaki farkı görmek için örnek
+bir fonksiyona bakalım, $f(x) = (10 x_1^2 + x_2^2)/2 + 5 \log (1+e^{-x_1 - x_2}$. 
+Fonksiyonu kontur grafiğini basınca alttaki gibi çıkıyor, </p>
+<p><img alt="" src="func_35_newton_03.png" /></p>
+<p>Siyah çizgi gradyan inişi, mavi Newton. Aynı yerden başlattım, ve
+gördüğümüz gibi minimal noktaya doğru çok farklı yollar takip
+ediyorlar. Karşılaştırması kolay olsun diye her iki tarafta atılan adım
+büyüklüklerini aynı tutmaya uğraştım. Graydan inişinin attığı adımların
+yönünün niye böyle olduğu gayet bariz, tüm adımlar görüldüğü gibi o
+noktadaki kontura dikgen, ki bu gradyanin tanımıdır zaten, bir noktadaki
+gradyan oradaki konturun teğetine diktir / normaldir. </p>
+<p>Newton tamamen farklı bir şekilde gidiyor. Resimde tüm adımlar tek bir
+çizgide gibi duruyor ama aslında değil, başka bir yerden başlatsaydım bazen
+zigzaglı bile gidilebileceğini görürdük [6, 13:40]. Newton'un adımlarını
+yorumlamanın görsel olarak zihinde hayal etmenin iyi bir yolu onun her
+adımda bir küre, bir balon yarattığını düşünmek, ve o balonun gradyanina
+göre adım atmak. </p>
+<p>[devam edecek]</p>
+<p>Eski Anlatım</p>
 <p>Newton birazdan bahsedeceğimiz yöntemi tek boyutlu problemler için kullandı
 [2]. Rhapson adlı bilimci yöntemi çok boyutlu problemler için
 genişletti. Biz bu yönteme optimizasyon çerçevesinde bakacağız.  Konunun
@@ -36,7 +90,7 @@ bir sistem artık idare edilebilen bir boyut haline geldi. Yani hesapsal
 kapasite NM'in optimizasyon alanında oynadığı rolü tamamen değiştirdi.</p>
 <p>Diğer bir faktör ileride öğreneceğimiz iç nokta (interior-point)
 metotlarının Newton'un metodunu kullanıyor olmaları. İç nokta metotları
-icbukey optimizayonda çok popüler, onlar için NM gerekiyor, bu da NM'in
+içbükey optimizasyonda çok popüler, onlar için NM gerekiyor, bu da NM'in
 popülaritesini arttırıyor.</p>
 <p>NM nedir? Elimde bir kısıtlanmamış (unconstrained) problemim var diyelim,</p>
 <p>$$
@@ -315,7 +369,6 @@ metotların esprisi pozitif kesin bir şekilde başlamak ve inişe giderken
 azar azar $H$'yi yaklaşıksal şekilde öyle güncellemek ki $H$ hep pozitif
 kesin kalsın.</p>
 <p>[teori 1.1 ispatı atlandı]</p>
-<p>Ekler</p>
 <p>Newton metodunun eğer başlangıç noktası nihai minimuma yakınsa iyi
 yakınsaklık özellikleri var. Fakat eğer sonuca uzaktan bir yerden
 başlamışsak yakınsaklık garantisi yok. Geldiğimiz yeni noktada Hessian
@@ -386,3 +439,5 @@ $$</p>
 <p>[3] Miller, <em>Numerical Analysis for Scientists and Engineers</em></p>
 <p>[4] Flannery, <em>Numerical Recipes, 3rd Edition</em></p>
 <p>[5] Zak, <em>An Introduction to Optimization, 4th Edition</em></p>
+<p>[6] Tibshirani, <em>Convex Optimization, Lecture Video 14</em>, 
+<a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
