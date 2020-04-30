@@ -189,9 +189,86 @@ karşılaştıralım.</p>
 <li>
 <p>Uyumlama, transformasyon: Newton yöntemi problemin mevcut haline
      çok bağımlı değil, eğer transforme edersek eşit bir başka problem elde
-     ediyoruz, ve Newton onu da çözüyor. </p>
+     ediyoruz, ve Newton onu da çözüyor. Gradyan inişi problem çeşidine
+     göre hızlı bir şekilde dejenere olabilir, sonuca varamayabilir.</p>
+</li>
+<li>
+<p>Kırılganlık: Newton yönteminin hatalar, sayısal hesap
+     problemlerine biraz daha hassas olduğu söylenebilir, gradyan inişi
+     daha sağlamdır. </p>
 </li>
 </ul>
+<p>O zaman Newton yöntemini hangi durumlarda kullanmak iyidir? Eğer Hessian
+seyrek ve bir iç yapıya sahip ise o zaman o lineer sistemi çözmek hızlı
+olur, bu durumda Newton yöntemi kullanmak uygundur. Yapıya sahip ile ne
+demek istiyorum? Mesela bantlı bir matris var ise. Bantlı matris köşegende
+bir veya daha fazla çapraz satır olduğu durumlardır, bir şerit, bir
+"bant" vardır, alttaki gibi,</p>
+<p><img alt="" src="banded.png" /></p>
+<p>Bu durumda bellek ve hesapsal yük her adım için $O(n)$ olacaktır. </p>
+<p>Yapıya sahip Hessian'lar alttaki gibi durumlarda ortaya çıkabilir, </p>
+<ul>
+<li>
+<p>Eğer $g(\beta) = f(X\beta)$ ise o zaman
+  $\nabla^2 g(\beta) = X^T \nabla ^2 f(X\beta) X$ olur. Yani eğer $X$ bir
+  yapıya sahip tahmin edici matris ise ve $\nabla^2 f$ köşegen ise o zaman
+  $\nabla^2 g$ yapıya sahiptir.</p>
+</li>
+<li>
+<p>Amacımız $f(\beta) + g(D\beta)$'yi minimize etmek, $\nabla^2$
+  köşegen, $g$ pürüzsüz değil, ve $D$ yapıya sahip bir ceza matrisi, o
+  zaman Lagrange ikiz fonksiyonu $-f^*(-D^Tu)-g^*(-u)$. Çoğunlukla bu
+  durumlarda $\nabla^2f^*$ köşegen olur (mesela
+  $f(\beta) = \sum _{i=1}^{p}f_i (\beta_i)$ ise bu durumda ikizdeki Hessian
+  yapıya sahiptir.</p>
+</li>
+</ul>
+<p>Eşitlik kısıtlamalı Newton yöntemi</p>
+<p>Şu formdaki bir problem düşünelim, </p>
+<p>$$
+\min_x f(x) \quad \textrm{öyle ki} \quad Ax = b
+$$</p>
+<p>Bu tür problemleri çözmek için elimizde aşağı yukarı üç yöntem var. </p>
+<p>1) Eşitlik sınırlamalarını yoket. Problemi $A$'nin sıfır uzayı bağlamında
+tekrar parametrize et, yani $x = My + x_o$ yap, $M$, $A$'nin sıfır uzayını
+kapsar, ve $A x_0 = b$'dir. Çözümü $y$ bağlamında yap.</p>
+<p>Bu fena bir çözüm değil, ama $A$'nin sıfır uzayını kapsayan bir $M$
+bulmamızı gerektiriyor. Ayrıca problemde yapı varsa bunu bozmuş olabiliriz,
+seyrek Hessian elimizde olabilir ama değişim sonrası Hessian yoğun
+olabilir. </p>
+<p>2) İkizi türet. Daha önce gördük ki bu tür problemlerde ikizi hesaplarken
+eşitlik sınırı kritere dahil ediliyordu. Ama bu da her zaman kolay
+değildir. </p>
+<p>3) Eşitlik kısıtlamalı Newton yöntemi. Çoğu durumda en direk yaklaşım
+budur. Bu yöntemde $x^{(0)}$ ile başlarız, ki $Ax^{(0)}=b$ olacak şekilde,
+ve</p>
+<p>$$
+x^+ = x + tv
+$$</p>
+<p>adımı atarız, ama normal Hessian'lı karesel açılımı minimize etmek yerine
+yeni bir sınırlama ekleyeceğiz, her Newton adımının saygı göstermesi
+gereken $Az=0$ şartı koyacağız,  </p>
+<p>$$
+v = \arg\min_{Az=0} \nabla f(x)^T (z-x) + \frac{1}{2} (z-x)^T \nabla^2 f(x)(z-x)
+$$</p>
+<p>Böylece her adımda kısıtlanmış bölge içinde kalmış olacağız. Üstteki
+eşitlik şartını KKT dersimizde görmüştük, bu hesap tek bir lineer sistemi
+çözmeye indirgenebiliyordu. Lineer sistemi tekrar altta veriyorum, </p>
+<p>$$
+\left[\begin{array}{cc}
+\nabla^2 f(x) &amp; A^T \\ A &amp; 0
+\end{array}\right]
+\left[\begin{array}{cc}
+v \\ w
+\end{array}\right] = 
+\left[\begin{array}{cc}
+-\nabla f(x) \\ 0
+\end{array}\right] 
+$$</p>
+<p>Bu lineer sistemi $v$ için çözersek bu bize eşitlikle sınırlanmış
+Newton adımını verecektir. Eşitliğin solundaki matris çoğunlukla seyrek ve
+yapıya sahiptir, çünkü $\nabla^2 f(x)$ Hessian'ı içindeki seyreklik ve
+yapı aynen orada da mevcuttur, ve $A$'lar blok halinde belli yerdeler, vs. </p>
 <p>Alternatif Anlatım</p>
 <p>Newton birazdan bahsedeceğimiz yöntemi tek boyutlu problemler için kullandı
 [2]. Rhapson adlı bilimci yöntemi çok boyutlu problemler için
