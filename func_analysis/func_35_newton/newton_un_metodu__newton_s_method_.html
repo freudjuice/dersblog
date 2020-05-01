@@ -268,23 +268,25 @@ $$</p>
 <p>Bu lineer sistemi $v$ için çözersek bu bize eşitlikle sınırlanmış
 Newton adımını verecektir. Eşitliğin solundaki matris çoğunlukla seyrek ve
 yapıya sahiptir, çünkü $\nabla^2 f(x)$ Hessian'ı içindeki seyreklik ve
-yapı aynen orada da mevcuttur, ve $A$'lar blok halinde belli yerdeler, vs. </p>
+yapı aynen orada da mevcuttur, ve $A$'lar blok halinde belli yerdeler, vs. 
+Ayrıca Boyd [7, 1:04:00]'da benzer bir anlatım var.</p>
 <p>Alternatif Anlatım</p>
 <p>Newton birazdan bahsedeceğimiz yöntemi tek boyutlu problemler için kullandı
 [2]. Rhapson adlı bilimci yöntemi çok boyutlu problemler için
 genişletti. Biz bu yönteme optimizasyon çerçevesinde bakacağız.  Konunun
 tarihinden biraz bahsetmek istiyorum, bu dersi öğretmeye başladığımda 1986
 senesiydi, Newton'un metodunu nasıl gördüğümüz o zamandan beri değişime
-uğradı. NM o zamanlar son başvurulan metot diye öğretiliyordu, çünkü metodu
-kullanmak için "büyük" bir denklem sistemi çözmek gerekiyordu, 500 x 500
-bir sistem mesela. Bugüne gelelim artık NM ilk başvurulan metot haline
+uğradı, o zamanlar son başvurulan metot diye öğretiliyordu, çünkü kullanmak
+için "büyük" bir denklem sistemi çözmek gerekiyordu, 500 x 500 bir sistem
+mesela. Bugüne gelelim Newton metotu artık ilk başvurulan metot haline
 geldi, 50,000 x 50,000 boyutlarında bir sistem çözmek "yetiyor" ve böyle
 bir sistem artık idare edilebilen bir boyut haline geldi. Yani hesapsal
-kapasite NM'in optimizasyon alanında oynadığı rolü tamamen değiştirdi.</p>
+kapasite Newton metodunun optimizasyon alanında oynadığı rolü tamamen
+değiştirdi.</p>
 <p>Diğer bir faktör ileride öğreneceğimiz iç nokta (interior-point)
 metotlarının Newton'un metodunu kullanıyor olmaları. İç nokta metotları
-içbükey optimizasyonda çok popüler, onlar için NM gerekiyor, bu da NM'in
-popülaritesini arttırıyor.</p>
+içbükey optimizasyonda çok popüler, onlar için Newton metotu gerekiyor, bu
+da onun popülaritesini arttırıyor.</p>
 <p>NM nedir? Elimde bir kısıtlanmamış (unconstrained) problemim var diyelim,</p>
 <p>$$
 \min f(x), \quad \textrm{ öyle ki } \quad x \in X = \mathbb{R}^n
@@ -551,23 +553,13 @@ işlemek yerine bir önceki adımdaki işlenen Hessian sonuçlarını, bir
 şekilde, az ek işlem yaparak sonraki adımda kullanmaya uğraşıyorlar.
 Aslında pek çok farklı Newton-umsu metot var, hepsi farklı şekilde Newton
 metotundan farklı (!)</p>
-<p>[atlandı]</p>
-<p>Not: Hocanın söylediklerine ek [4, pg. 522]'de belirtildiği gibi Hessian'ın
-silbaştan yaratılması yerine güncellenmesi aslında paradoksal bir şekilde
-daha iyi optimizasyon yapılmasını sağlayabiliyor. Newton yönünün iniş yönü
-olması için $H$ pozitif kesin olmalıdır, fakat minimum noktasından uzaktaki
-yerlerde bunun garantisi yoktur. Yani gerçek Hessian ile gerçek Newton
-adımını atmak bizi fonksiyonun arttığı yerlere götürebilir. Newton-umsu
-metotların esprisi pozitif kesin bir şekilde başlamak ve inişe giderken
-azar azar $H$'yi yaklaşıksal şekilde öyle güncellemek ki $H$ hep pozitif
-kesin kalsın.</p>
 <p>[teori 1.1 ispatı atlandı]</p>
 <p>Newton metodunun eğer başlangıç noktası nihai minimuma yakınsa iyi
 yakınsaklık özellikleri var. Fakat eğer sonuca uzaktan bir yerden
 başlamışsak yakınsaklık garantisi yok. Geldiğimiz yeni noktada Hessian
 eşsiz olabilir. Bu sebeple metot sürekli iniş özelliğine (descent property)
 sahip olmayacaktır, yani $f(x_{x+1}) \ge f(x_k)$ olabilir, ve yakınsaklık
-garantisi bu durumda kaybolur [5, sf. 167]. Fakat bu algoritmayı biraz
+garantisi bu durumda kaybolur [4, sf. 167]. Fakat bu algoritmayı biraz
 değiştirerek sürekli iniş özelliğine sahip olmasını sağlayabiliriz. </p>
 <p>Teori</p>
 <p>$x_1,x_2,...$ ya da kısaca ${x_k}$ Newton'un metodu tarafından üretilmiş
@@ -630,7 +622,7 @@ $$</p>
 <p>[2] Freund, <em>MIT OCW Nonlinear Programming Lecture</em>,
     <a href="https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/">https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/</a></p>
 <p>[3] Miller, <em>Numerical Analysis for Scientists and Engineers</em></p>
-<p>[4] Flannery, <em>Numerical Recipes, 3rd Edition</em></p>
-<p>[5] Zak, <em>An Introduction to Optimization, 4th Edition</em></p>
+<p>[4] Zak, <em>An Introduction to Optimization, 4th Edition</em></p>
 <p>[6] Tibshirani, <em>Convex Optimization, Lecture Video 14</em>, 
 <a href="https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg">https://www.youtube.com/channel/UCIvaLZcfz3ikJ1cD-zMpIXg</a>   </p>
+<p>[7], Boyd, <em>Convex Optimization I, Lecture 16</em></p>
