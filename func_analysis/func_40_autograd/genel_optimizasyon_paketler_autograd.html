@@ -30,7 +30,59 @@ almak pek çok alanda işimize yarar. Optimizasyon alanı bunların başında
 geliyor. Düşünürsek, eğer sembolik olarak türev alması çok çetrefil bir
 durum varsa, tasaya gerek yok; bir fonksiyonu kodlayabildiğimiz anda onun
 türevini de alabiliriz demektir.</p>
-<p>Önce bazı genel optimizasyon konularını işleyelim. </p>
+<p>Autograd</p>
+<p>Çok boyutlu bir fonksiyonun gradyani ve Hessian'ı,</p>
+<pre><code class="python">from autograd import grad, hessian
+
+def objective(X): 
+    x, y, z = X
+    return x**2 + y**2 + z**2
+
+x,y,z = 1.0,1.0,1.0
+
+h = hessian(objective, 0)
+res = h(np.array([x, y, z]))
+print (res)
+
+g = grad(objective, 0)
+res = g(np.array([x, y, z]))
+print (res)
+</code></pre>
+
+<pre><code>[[2. 0. 0.]
+ [0. 2. 0.]
+ [0. 0. 2.]]
+[2. 2. 2.]
+</code></pre>
+
+<p>Ya da</p>
+<p>Hessian</p>
+<p>Mesela $f(x_1,x_2) = x_2^3 + x_2^3 + x_1^2x_2^2$ gibi bir fonksiyon var
+diyelim. Belli bir noktadaki Hessian</p>
+<p>$$
+H = \left[\begin{array}{rr}
+\frac{\partial f}{\partial x_1x_1} &amp; \frac{\partial f}{\partial x_1x_2} \\
+\frac{\partial f}{\partial x_2x_1} &amp; \frac{\partial f}{\partial x_2x_2} 
+\end{array}\right]
+$$</p>
+<p>hesaplatmak için <code>autograd.hessian</code> kullanırız,</p>
+<pre><code class="python">import autograd 
+
+def f(x):
+    x1,x2=x[0],x[1]
+    return x1**3 + x2**3 + (x1**2)*(x2**2)
+
+print
+xx = np.array([1.0,1.0])
+h = autograd.hessian(f)
+print (h(xx))
+</code></pre>
+
+<pre><code>[[8. 4.]
+ [4. 8.]]
+</code></pre>
+
+<p>Şimdi bazı genel optimizasyon konularını işleyelim. </p>
 <p>Sınırlanmamış optimizasyonda (unconstrained optimization) $f(x)$
 fonksiyonunu minimum değerde tutacak $x$ değerini bulmaya uğraşıyoruz, ki
 $x$ tek boyutlu skalar, ya da çok boyutlu $x \in \mathbb{R}^n$
@@ -237,10 +289,10 @@ print (x,y,z)
 
 <p>Aynı sonuç bulundu. Şimdi merak ediyoruz, bu sonuç gerçekten minimum mu?
 Üstteki noktada Hessian'ın pozitif kesin olup olmadığını kontrol
-edebiliriz. Hessian'ı da <code>autograd</code> hesaplar!</p>
+edebiliriz. Hessian'ı da <code>autograd</code> hesaplar! Once gradyan,</p>
 <pre><code class="python">from autograd import hessian
 h = hessian(objective, 0)
-res = h(np.array([x, y, z]))
+res = h(np.array([x,y,z]))
 print (res)
 </code></pre>
 
@@ -304,32 +356,6 @@ print (gradg)
 </code></pre>
 
 <pre><code>[0.14130164970632894, 0.07065082485316447]
-</code></pre>
-
-<p>Hessian</p>
-<p>Mesela $f(x_1,x_2) = x_2^3 + x_2^3 + x_1^2x_2^2$ gibi bir fonksiyon var
-diyelim. Belli bir noktadaki Hessian</p>
-<p>$$
-H = \left[\begin{array}{rr}
-\frac{\partial f}{\partial x_1x_1} &amp; \frac{\partial f}{\partial x_1x_2} \\
-\frac{\partial f}{\partial x_2x_1} &amp; \frac{\partial f}{\partial x_2x_2} 
-\end{array}\right]
-$$</p>
-<p>hesaplatmak için <code>autograd.hessian</code> kullanırız,</p>
-<pre><code class="python">import autograd 
-
-def f(x):
-    x1,x2=x[0],x[1]
-    return x1**3 + x2**3 + (x1**2)*(x2**2)
-
-print
-xx = np.array([1.0,1.0])
-h = autograd.hessian(f)
-print (h(xx))
-</code></pre>
-
-<pre><code>[[8. 4.]
- [4. 8.]]
 </code></pre>
 
 <p>Kaynaklar </p>
