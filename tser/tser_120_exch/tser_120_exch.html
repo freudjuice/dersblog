@@ -82,7 +82,8 @@ dengesizlikleri bu giriş ile finans ediliyor</p>
 <p>İlk denklem kur ile uluslararası ödeme girişleri arasında bir ilişki
 kurar. </p>
 <p>$$
-\dot{q} \approx -\xi c(t), \qquad (5)
+\dot{q} \approx -\xi c(t)
+\qquad (5)
 $$</p>
 <p>Bu denklem uluslararası nakit girişi bir ülkenin kurundaki değişimi
 etkileyen faktördür diyor. Modeli geliştirmek için her ödeme dengesi
@@ -94,20 +95,145 @@ etkileyecek. Kuvvetli bir yerli para o ülkenin rekabet avantajını kötü
 yönde etkiler, bu durum ticari dengeyi aşağı çeker. Diğer yandan zayıf para
 ticari dengeyi düzeltir. </p>
 <p>$$
-\dot{z}(t) = -\phi_1 z(t)  - \phi_2 q(t) \qquad (6a)
+\dot{z}(t) = -\phi_1 z(t)  - \phi_2 q(t) 
+\qquad (6a)
 $$</p>
 <p>Parametre $\phi_1$ cari hesabın bir denge noktasına dönüş hızını tanımlar. </p>
 <p>Ödemeler Dengesi </p>
 <p>$$
-z(t) + d(t) + k(t) + c(t) + r(t) = 0 \qquad (8)
+z(t) + d(t) + k(t) + c(t) + r(t) = 0 
+\qquad (8)
 $$</p>
 <p>ile belirtilebilir. O zaman, eğer ülkenin kendisi döviz piyasasında
 müdahelede bulunmuyorsa, uluslararası ödeme akışları $c(t)$ o ülkenin cari
 işlem ve finans dengesiyle tanımlıdır, </p>
 <p>$$
-c(t) = -z(t) - k(t) - d(t) \qquad (9)
+c(t) = -z(t) - k(t) - d(t)
+\qquad (9)
 $$</p>
-<p>Bu denkleme $r(t)=0$ ve (8)'ın tekrar düzenlemei ile ulaşılıyor. </p>
+<p>Bu denkleme $r(t)=0$ ve (8)'in tekrar düzenlemesi ile ulaşılıyor. </p>
+<p>Ama ülke kurundaki dalgalanmaları azaltmak isterse, o zaman sınırötesi
+ödeme akışlarını telafi etmelidir, çünkü o akışlar, (5) denklemine göre
+kurunu direk etkileyecektir. Bu durumda eldeki rezervden yapılacak net
+satış </p>
+<p>$$
+r(t) = -z(t) -k(t) -d(t)
+$$</p>
+<p>olur. </p>
+<p>Modeller</p>
+<p>Aksi belirtilmedikçe tüm modeller alttaki sabitleri kullanır,</p>
+<p>$$
+\xi = 0.1, \phi_1 = 0.03, \phi_2 = 0.06, \phi_3 = 0.1, \gamma = 0.05
+$$</p>
+<p>Model 1</p>
+<p>(5) ve (6a) denklemlerini baz alalım. Başlangıç şartları </p>
+<p>$$
+q(0) = 0, z(0) = 1
+$$</p>
+<p>olsun. Bu modelde uluslararası nakit akışı ödemeler dengesi (8) üzerinden
+tanımlanır, ve borç, otonom sermaye, müdahele olmadığı için
+$d(t)=k(t)=r(t)=0$'dir. Geri kalan $c(t) = -z(t)$. </p>
+<pre><code class="python">from scipy.integrate import odeint
+import pandas as pd
+
+phi1 = 0.03
+phi2 = 0.06
+gamma = 0.05
+xi = 0.1
+
+def dsys1(y, t):
+    z, q = y
+    return [-(phi1*z) - (phi2*q), xi*z]
+
+t = np.linspace(0, 140, 200)
+y0 = [1.0,0.0]
+sol = odeint(dsys1, y0, t)
+df = pd.DataFrame( sol )
+df.columns = ['cari hesap','kur']
+df['t'] = t
+df = df.set_index('t')
+df.plot(grid=True)
+plt.savefig('mod1.png')
+</code></pre>
+
+<p><img alt="" src="mod1.png" /></p>
+<p>Almanya'nın cari hesabı ve parasına bakalım,</p>
+<pre><code class="python">import pandas as pd
+df = pd.read_csv('de.csv',parse_dates=True,index_col=0)
+ax1 = df.BPBLTT01DEQ188S.plot(color='blue', grid=True, label='cari islem hesabi')
+ax2 = df.DE.plot(color='red', grid=True, label='neer',secondary_y=True)
+h1, l1 = ax1.get_legend_handles_labels()
+h2, l2 = ax2.get_legend_handles_labels()
+plt.legend(h1+h2, l1+l2, loc=2)
+plt.savefig('neer-de.png')
+</code></pre>
+
+<p>NEER terimi nominal efektiv kur fiyatı (nominal effective exchange rate)
+anlamına gelir. NEER bir ülkenin parasının diğer bazı ülkelerin
+dövizlerinden oluşan bir sepete olan karşılığını ölçer. Kabaca yabancı
+döviz almak için bir ülkenin parasından ne kadar gerekeceği sorusunun
+cevabını verir. </p>
+<p>Model 2</p>
+<p>Şimdi cari işlem hesabının bir kısmı borç ile finans edilince ne olur ona
+bakalım. Bunun etkisi ödeme akışları üzerinde bir gecikmedir, çünkü cari
+hesabın kur üzerindeki etkisi zamana yayılır. Cari hesap ile kur yine
+dolamlı bir şekilde hareket eder, ama bu iki değişken arasındaki etkisel
+zaman farkı büyür. (9) şu hale gelir ($k(t)$ hala sıfır),</p>
+<p>$$
+c(t) = -z(t) - d(t) 
+$$</p>
+<p>(5) ise soyle olur,</p>
+<p>$$
+\dot{q} \approx -\xi c(t) = -\xi (z(t) + d(t))
+$$</p>
+<p>[1]'deki borç dinamiğini biraz değiştirmek mümkün, orada </p>
+<p>$$
+d(t) = -(z(t) + k(t)) - \gamma D(t)
+$$</p>
+<p>kullanılmış, ki $D(t)$ $t$ anına kadar olan tüm $d(t)$ üzerinden bir
+entegral, ki bu entegralin $\gamma$ kadarı $t$'de geri ödeniyor. Analitik
+cozumle rahat isledigi icin boyle secilmis, biz $t$ anına kadar olan tüm
+borcu $d(t)$ ile göstereceğiz, ve bir azalma dinamiğini oraya
+ekleyeceğiz. $z(t)$ ve $k(t) = 0$</p>
+<p>$$
+\dot{d} = -\dot{z}-\gamma d(t) \qquad (7)
+$$</p>
+<pre><code class="python">from scipy.integrate import odeint
+import pandas as pd
+
+phi1 = 0.03
+phi2 = 0.06
+gamma = 0.1
+xi = 0.04
+
+def dmod2(y, t):
+    z, q, d = y
+    zdot = -(phi1*z)-(phi2*q)
+    return [zdot, xi*(z+d), -zdot - gamma*d   ]
+
+t = np.linspace(0, 140, 200)
+y0 = [1.0, 0.0, -1]
+sol = odeint(dmod2, y0, t)
+df = pd.DataFrame( sol )
+df.columns = ['cari hesap','kur','borc']
+df['t'] = t
+df = df.set_index('t')
+df.plot(grid=True)
+plt.savefig('mod2.png')
+</code></pre>
+
+<p><img alt="" src="mod2.png" /></p>
+<p>Üstteki grafik tezimizi doğruladı, cari hesap ile kurun dalgalanma frekansı
+azaldı, ve iki değişken arasındaki makas açıldı. </p>
+<p>Veri Ornegi; Japonya</p>
+<p>Borç akışının Japonya'nın ekonomik performansı üzerinde bir rol oynadığı
+iddia edilebilir. 1970 sonları 80 başlarına kadar borç varlıklarına olan
+Japonya'dan çıkış ya da giriş bağlamında akış çok azdı. Fakat 80'lı yıllar
+ortasında bu akışlar büyüdü, bu büyüme çoğunlukla Japonya'nın ABD'ye olan
+finansal yatırımlarıyla açıklanabilir. Bunlar olurken cari işlem ve Japon
+para birimi Yen arasında 70'lı yıllarda fazla olmayan fark 80/90'li
+yıllarda çok daha büyüdü. </p>
+<p><img alt="" src="japan-acc-model2.png" /></p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Nikolas Muller-P, <em>Balance of payments accounting and exchange rate dynamics</em>,
