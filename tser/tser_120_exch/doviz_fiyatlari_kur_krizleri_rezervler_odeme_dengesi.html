@@ -71,6 +71,9 @@ varsayımlardan yola çıkarak oluşturulabiliyor, ayrıca bu dünyada görülen
 pek çok döviz krizlerinden bilinen anektodsal tecrübe ile de
 uyuşuyor. Gerçek veri bağlamında bu model için 1997-98 Güney Kore örneğine
 bakacağız.</p>
+<p>Tüm modellerde enflasyon farkı yok kabul edilecek, çünkü bozuk bazı
+örnekler hariç pek çok ülkede enflasyon ile savaş düşük enflasyon
+seviyelerini ortaya çıkarttı. </p>
 <p>Bazı terimler,</p>
 <p>$z(t)$: Cari işlem hesabı (current account)</p>
 <p>$q(t)$: Reel kur (real exchange rate)</p>
@@ -245,10 +248,10 @@ $$</p>
 <p>$$
 \dot{q} \approx -\xi c(t) = -\xi (z(t) + d(t) + k(t))
 $$</p>
-<p>Bu sermaye girişler dışarıda olan şeyler, sistemin etkilediği şeyler değil,
-onları bir dış fonksiyon olarak tanımlamak lazım. Simülasyon amaçlı belli
-zaman aralıklarında belli değerler veren bir kademeli fonksiyon olarak onu
-tanımlayabiliriz, mesela,</p>
+<p>Bu sermaye girişleri dışsal etkiler, sistem dinamiklerinin etkilediği
+oluşlar değil, onları bir dış fonksiyon olarak tanımlıyoruz. Simülasyon
+amaçlı belli zaman aralıklarında belli değerler veren bir kademeli
+fonksiyon olarak bu oluşu tanımlayabiliriz, mesela,</p>
 <p>$$
 k(t) = \left\{ \begin{array}{l}
 0.05 t \quad 0 \le t &lt; 20,  \\
@@ -256,7 +259,7 @@ k(t) = \left\{ \begin{array}{l}
 0 \quad 40 \le t  <br />
 \end{array} \right.
 $$</p>
-<p>Türevi de lazım olacak, onu da alalım,</p>
+<p>Türevi de lazım olacak, </p>
 <p>$$
 \dot{k}(t) = \left\{ \begin{array}{l}
 0.05  \quad 0 \le t &lt; 20,  \\
@@ -307,18 +310,18 @@ plt.savefig('mod3.png')
 <p><img alt="" src="mod3.png" /></p>
 <p>Sermaye girişi arttıkça yerel paraya olan talep artıyor. Bu durumda cari
 hesap bozuluyor, bu tecrübeyi yaşayan pek çok ülkede olduğu gibi. Ortaya
-çıkan cari işlem açıgi bir süre sonra gelen otonom sermayeden daha fazla
-oluyor, çünkü bağımsız sermaye geçici bir süre için artış göstermiş. Tabii
-ülke borç alarak açıgi kapatabilir. Fakat açık orada durduğu sürece ve
-borcun geri ödenmesi gerektiği için ülke bir süre sonra kendisini içeri
-aldığından daha fazla dışarı para gönderir halde buluyor. Bu durumda
-değerlenmekte olan yerel para düşmeye başlıyor. Ama cari hesapta düzelmeye
-dönmek için bu düşüşün bir süre daha devam etmesi gerekiyor. </p>
+çıkan cari işlem açıgı bir süre sonra gelen otonom sermayeden daha fazla
+oluyor, çünkü bağımsız sermaye geçici süreli. Tabii ülke borç alarak açıgı
+kapatabilir. Fakat açık orada durduğu sürece ve borcun geri ödenmesi
+gerektiği için ülke bir süre sonra kendisini içeri aldığından daha fazla
+dışarı para gönderir halde buluyor. Bu durumda değerlenmekte olan yerel
+para düşmeye başlıyor. Ama cari hesapta düzelmeye dönmek için bu düşüşün
+bir süre daha devam etmesi gerekiyor.</p>
 <p>Model 4</p>
-<p>Şimdi sabit kurlara ve ödemeleri bu tür kura sahip ülkelere nasıl girip
+<p>Şimdi sabit kurlara ve bu tür kura sahip ülkelere ödemelerin nasıl girip
 çıktığına bakalım, ve rezervlerin her şeyi nasıl etkilediğini
 inceleyelim. Amacımız sayısal ve anektodsal delillere uyan bir döviz piyasa
-krizini modellemek. </p>
+krizini modellemek.</p>
 <p>(6a)'yı değiştiriyoruz, </p>
 <p>$$
 \dot{z}(t) = \phi_1 z(t) - \phi_2 q(t) - \phi_3 k(t)
@@ -328,12 +331,13 @@ yerliler arasındaki ödemeleri nötralize eder. Fakat rezervler sonsuz
 değildir, bu modelde belli bir seviyede olduklarını farz edeceğiz. ODE
 çözerken bunu yapmak zor olabilir, bu sebeple alttaki $r$'nin türevini
 temsil eden fonksiyon <code>drfun</code> içinde bunu yaptık, belli bir zaman
-aralığına gelince rezerv "bitmeye" başlayacak ve $r(t)=0$ olana kadar bu
-düşüş simüle edilecek. </p>
-<p>Bu "devalüasyon" gerçekleştikten sonra daha fazla döviz piyasa müdahelesi
-olmayacak. Bir önceki modelde olduğu gibi ülke sıfır borçla başlıyor,
-geçici bağımsız sermaye girişi yaşanıyor, bkz (13). Ayrıca uluslararası
-nakit akışı ve net rezerv satırları (9) ve (10) ile kontrol edilecek.</p>
+aralığına gelince bu türevde inişi zorlayacağız, rezerv "bitmeye"
+başlayacak ve $r(t)=0$ olana kadar bu düşüş simüle edilecek. Bu
+"devalüasyon" gerçekleştikten sonra daha fazla döviz piyasa müdahelesi
+olmayacak. </p>
+<p>Bir önceki modelde olduğu gibi ülke sıfır borçla başlıyor, geçici bağımsız
+sermaye girişi yaşanıyor, bkz (13). Ayrıca uluslararası nakit akışı ve net
+rezerv satırları (9) ve (10) ile kontrol edilecek.</p>
 <pre><code class="python">from scipy.integrate import odeint
 import pandas as pd
 
@@ -370,7 +374,27 @@ plt.savefig('mod4.png')
 </code></pre>
 
 <p><img alt="" src="mod4.png" /></p>
-<p>[devam edecek]</p>
+<p>Sonuçlar görülüyor. Daha önceki modelde olduğu gibi otonom sermaye girişi
+yurtiçi tüketimi ve yatırımı teşvik ediyor, cari hesapta bozulmaya sebep
+oluyor. Bu ilk bölümde ülke rezervlerini doldurabiliyor, çünkü toplam
+sermaye akışı ortaya çıkan cari işlem hesabı açıgından daha fazla. Fakat
+bağımsız sermaye girişi geçici, ve yabancılar tüm açığı finanse etmek
+istemiyorlar. Bir noktada ülkenin rezerv satarak kurun düşüşünü
+durdurmaları gerekiyor. Fakat rezervlerin bitmesiyle ortaya çıkan sabit kur
+rejiminin bitişiyle ülkenin parası düşüşe geçiyor.</p>
+<p><img alt="" src="crisis.png" /></p>
+<p>Üstteki Kore örneğinde bu tür bir krizi görebiliyoruz. Pek çok gelişmekte
+olan ülkede olduğu gibi Kore de ilk ve orta 90'lı yıllarda güçlü sermaye
+girişi aldı. Bu girişlerin önemli bir sebebi cari hesap kontrollerinin
+gevşetilmiş olmasıydı. 1996 yılına gelindiğinde Kore'nin dünya ticaretinin
+yüzdesi olarak cari hesabı rekor seviyelere ulaşmıştı, ve sürdürülebilirlik
+sorunu ortaya çıkmaya başladı. Her ne kadar cari açık 97'de biraz azalmış
+olsa da bu Kore parası won ve komşu bazı diğer ülke paralarının düşüşünü
+engelleyemedi. Halbuki Kore ülke içi yatırımlara ek olarak rezervlerini de
+sağlamlaştırmıştı, böylece won'u kuvvetli tutuyorlardı. Ama sonuç olarak
+cari hesap açığı ve onun etkisiyle Kore döviz kuru sürdürülemez hale
+geldi. Yabancı yatırımcıların güvenlerini kaybedip paralarını çekmeleri
+sadece çöküşü daha hızlandırdı.</p>
 <p>Kaynaklar</p>
 <p>[1] Nikolas Müller-P, <em>Balance of payments accounting and exchange rate dynamics</em>,
     <a href="https://www.researchgate.net/publication/46490787_Balance_of_payments_accounting_and_exchange_rate_dynamics">https://www.researchgate.net/publication/46490787_Balance_of_payments_accounting_and_exchange_rate_dynamics</a></p>
