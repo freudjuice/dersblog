@@ -118,6 +118,7 @@ kurunu direk etkileyecektir. Bu durumda eldeki rezervden yapılacak net
 satış </p>
 <p>$$
 r(t) = -z(t) -k(t) -d(t)
+\qquad (10)
 $$</p>
 <p>olur. </p>
 <p>Modeller</p>
@@ -182,7 +183,7 @@ zaman farkı büyür. (9) şu hale gelir ($k(t)$ hala sıfır),</p>
 <p>$$
 c(t) = -z(t) - d(t) 
 $$</p>
-<p>(5) ise soyle olur,</p>
+<p>(5) ise şöyle olur,</p>
 <p>$$
 \dot{q} \approx -\xi c(t) = -\xi (z(t) + d(t))
 $$</p>
@@ -206,14 +207,14 @@ phi2 = 0.06
 gamma = 0.1
 xi = 0.04
 
-def dmod2(y, t):
+def dsys2(y, t):
     z, q, d = y
     zdot = -(phi1*z)-(phi2*q)
     return [zdot, xi*(z+d), -zdot - gamma*d   ]
 
 t = np.linspace(0, 140, 200)
 y0 = [1.0, 0.0, -1]
-sol = odeint(dmod2, y0, t)
+sol = odeint(dsys2, y0, t)
 df = pd.DataFrame( sol )
 df.columns = ['cari hesap','kur','borc']
 df['t'] = t
@@ -225,7 +226,7 @@ plt.savefig('mod2.png')
 <p><img alt="" src="mod2.png" /></p>
 <p>Üstteki grafik tezimizi doğruladı, cari hesap ile kurun dalgalanma frekansı
 azaldı, ve iki değişken arasındaki makas açıldı. </p>
-<p>Veri Ornegi; Japonya</p>
+<p>Veri Örneği; Japonya</p>
 <p>Borç akışının Japonya'nın ekonomik performansı üzerinde bir rol oynadığı
 iddia edilebilir. 1970 sonları 80 başlarına kadar borç varlıklarına olan
 Japonya'dan çıkış ya da giriş akışı çok azdı. Fakat 80'lı yıllar ortasında
@@ -234,7 +235,142 @@ yatırımlarıyla açıklanabilir. Bunlar olurken cari işlem ve Japon para
 birimi Yen arasında 70'lı yıllarda fazla olmayan fark 80/90'li yıllarda çok
 daha arttı, ki bu durumu modelimiz gayet iyi tahmin ediyor.</p>
 <p><img alt="" src="japan-acc-model2.png" /></p>
+<p>Model 3</p>
+<p>Bu modelle ülkeye otonom sermaye girişini formüllere dahil ediyoruz, yani
+artık $k(t) \ne 0$ olacak. O zaman,</p>
+<p>$$
+c(t) = -z(t) - d(t) - k(t)
+$$</p>
+<p>Ve $k(t)$ sıfır olmadığı için,</p>
+<p>$$
+\dot{q} \approx -\xi c(t) = -\xi (z(t) + d(t) + k(t))
+$$</p>
+<p>Bu sermaye girişler dışarıda olan şeyler, sistemin etkilediği şeyler değil,
+onları bir dış fonksiyon olarak tanımlamak lazım. Simülasyon amaçlı belli
+zaman aralıklarında belli değerler veren bir kademeli fonksiyon olarak onu
+tanımlayabiliriz, mesela,</p>
+<p>$$
+k(t) = \left\{ \begin{array}{l}
+0.05 t \quad 0 \le t &lt; 20,  \\
+2 -0.05t \quad  20 \le t &lt; 40 \\
+0 \quad 40 \le t  <br />
+\end{array} \right.
+$$</p>
+<p>Türevi de lazım olacak, onu da alalım,</p>
+<p>$$
+\dot{k}(t) = \left\{ \begin{array}{l}
+0.05  \quad 0 \le t &lt; 20,  \\
+-0.05 \quad  20 \le t &lt; 40 \\
+0 \quad 40 \le t  <br />
+\end{array} \right.
+$$</p>
+<pre><code class="python">from scipy.integrate import odeint
+import pandas as pd
+
+def k(t):
+    if t &gt;= 0 and t&lt;20.0: return 0.05*t
+    if t &gt;= 20.0 and t&lt;40.0: return 2.0-0.05*t
+    else: return 0
+
+def dk(t):
+    if t &gt;= 0 and t&lt;20.0: return 0.05 
+    if t &gt;= 20.0 and t&lt;40.0: return -0.05
+    else: return 0
+
+from scipy.integrate import odeint
+import pandas as pd
+
+phi1 = 0.03
+phi2 = 0.06
+gamma = 0.2
+xi = 0.05
+
+def dsys3(y, t):
+    z, q, d, k = y
+    zdot = -(phi1*z)-(phi2*q)
+    qdot = xi*(z+d+k)
+    kdot = dk(t)    
+    ddot = -zdot -kdot - gamma*d
+    return [zdot, qdot, ddot, kdot ]
+
+t = np.linspace(0, 140, 200)
+y0 = [0.0, 0.0, 0, 0.0]
+sol = odeint(dsys3, y0, t)
+df = pd.DataFrame( sol )
+df.columns = ['cari','kur','borc','otonom sermaye']
+df['t'] = t
+df = df.set_index('t')
+df[['cari','kur','otonom']].plot(grid=True)
+plt.savefig('mod3.png')
+</code></pre>
+
+<p><img alt="" src="mod3.png" /></p>
+<p>Sermaye girişi arttıkça yerel paraya olan talep artıyor. Bu durumda cari
+hesap bozuluyor, bu tecrübeyi yaşayan pek çok ülkede olduğu gibi. Ortaya
+çıkan cari işlem açıgi bir süre sonra gelen otonom sermayeden daha fazla
+oluyor, çünkü bağımsız sermaye geçici bir süre için artış göstermiş. Tabii
+ülke borç alarak açıgi kapatabilir. Fakat açık orada durduğu sürece ve
+borcun geri ödenmesi gerektiği için ülke bir süre sonra kendisini içeri
+aldığından daha fazla dışarı para gönderir halde buluyor. Bu durumda
+değerlenmekte olan yerel para düşmeye başlıyor. Ama cari hesapta düzelmeye
+dönmek için bu düşüşün bir süre daha devam etmesi gerekiyor. </p>
+<p>Model 4</p>
+<p>Şimdi sabit kurlara ve ödemeleri bu tür kura sahip ülkelere nasıl girip
+çıktığına bakalım, ve rezervlerin her şeyi nasıl etkilediğini
+inceleyelim. Amacımız sayısal ve anektodsal delillere uyan bir döviz piyasa
+krizini modellemek. </p>
+<p>(6a)'yı değiştiriyoruz, </p>
+<p>$$
+\dot{z}(t) = \phi_1 z(t) - \phi_2 q(t) - \phi_3 k(t)
+$$</p>
+<p>(5) ve (7) hala aynı. Sabit kur rejiminde rezerv akışı $r(t)$ yabancı ve
+yerliler arasındaki ödemeleri nötralize eder. Fakat rezervler sonsuz
+değildir, bu modelde belli bir seviyede olduklarını farz edeceğiz. ODE
+çözerken bunu yapmak zor olabilir, bu sebeple alttaki $r$'nin türevini
+temsil eden fonksiyon <code>drfun</code> içinde bunu yaptık, belli bir zaman
+aralığına gelince rezerv "bitmeye" başlayacak ve $r(t)=0$ olana kadar bu
+düşüş simüle edilecek. </p>
+<p>Bu "devalüasyon" gerçekleştikten sonra daha fazla döviz piyasa müdahelesi
+olmayacak. Bir önceki modelde olduğu gibi ülke sıfır borçla başlıyor,
+geçici bağımsız sermaye girişi yaşanıyor, bkz (13). Ayrıca uluslararası
+nakit akışı ve net rezerv satırları (9) ve (10) ile kontrol edilecek.</p>
+<pre><code class="python">from scipy.integrate import odeint
+import pandas as pd
+
+def drfun(rr,t):
+    if t &lt;= 40: return rr
+    elif t &gt; 40 and t&lt;50: return -0.07
+    else: return 0
+
+phi1 = 0.03
+phi2 = 0.06
+phi3 = 0.1
+gamma = 0.1
+xi = 0.05
+
+def dsys4(y, t):
+    z, q, d, k, r = y
+    c = -z - d - k - r
+    qdot = -0.01*c
+    zdot = -phi1*z - phi2*q - phi3*k
+    kdot = dk(t) 
+    ddot = -zdot-kdot-gamma*d
+    rdot = drfun(-zdot -ddot - kdot, t)
+    return [zdot, qdot, ddot, kdot, rdot ]
+
+ts = np.linspace(0, 140, 200)
+y0 = [0.0, 0.0, 0, 0.0, 0.0]
+sol = odeint(dsys4, y0, ts)
+df = pd.DataFrame( sol )
+df.columns = ['z','q','d','k','r']
+df['t'] = ts
+df = df.set_index('t')
+df[['z','q','k','r']].plot(grid=True)
+plt.savefig('mod4.png')
+</code></pre>
+
+<p><img alt="" src="mod4.png" /></p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
-<p>[1] Nikolas Muller-P, <em>Balance of payments accounting and exchange rate dynamics</em>,
+<p>[1] Nikolas Müller-P, <em>Balance of payments accounting and exchange rate dynamics</em>,
     <a href="https://www.researchgate.net/publication/46490787_Balance_of_payments_accounting_and_exchange_rate_dynamics">https://www.researchgate.net/publication/46490787_Balance_of_payments_accounting_and_exchange_rate_dynamics</a></p>
