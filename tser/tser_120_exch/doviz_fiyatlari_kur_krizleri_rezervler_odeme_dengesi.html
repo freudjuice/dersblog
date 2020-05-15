@@ -102,7 +102,7 @@ ticari dengeyi düzeltir. </p>
 \qquad (6a)
 $$</p>
 <p>Parametre $\phi_1$ cari hesabın bir denge noktasına dönüş hızını tanımlar. </p>
-<p>Ödemeler Dengesi </p>
+<p>Ödemeler dengesi,</p>
 <p>$$
 z(t) + d(t) + k(t) + c(t) + r(t) = 0 
 \qquad (8)
@@ -161,7 +161,7 @@ plt.savefig('mod1.png')
 </code></pre>
 
 <p><img alt="" src="mod1.png" /></p>
-<p>Almanya'nın cari hesabı ve parasına bakalım,</p>
+<p>Almanya'nın cari hesabı ve parasına bakalım, NEER rakamlarını veriyor,</p>
 <pre><code class="python">import pandas as pd
 df = pd.read_csv('de.csv',parse_dates=True,index_col=0)
 ax1 = df.BPBLTT01DEQ188S.plot(color='blue', grid=True, label='cari islem hesabi')
@@ -172,6 +172,7 @@ plt.legend(h1+h2, l1+l2, loc=2)
 plt.savefig('neer-de.png')
 </code></pre>
 
+<p><img alt="" src="neer-de.png" /></p>
 <p>NEER terimi nominal efektiv kur fiyatı (nominal effective exchange rate)
 anlamına gelir. NEER bir ülkenin parasının diğer bazı ülkelerin
 dövizlerinden oluşan bir sepete olan karşılığını ölçer. Kabaca yabancı
