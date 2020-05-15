@@ -161,7 +161,7 @@ plt.savefig('mod1.png')
 </code></pre>
 
 <p><img alt="" src="mod1.png" /></p>
-<p>Almanya'nın cari hesabı ve parasına bakalım, NEER rakamlarını veriyor,</p>
+<p>Almanya'nın cari hesabı ve parasına bakalım, NEER rakamları üzerinden,</p>
 <pre><code class="python">import pandas as pd
 df = pd.read_csv('de.csv',parse_dates=True,index_col=0)
 ax1 = df.BPBLTT01DEQ188S.plot(color='blue', grid=True, label='cari islem hesabi')
@@ -197,8 +197,8 @@ d(t) = -(z(t) + k(t)) - \gamma D(t)
 $$</p>
 <p>kullanılmış, ki $D(t)$ $t$ anına kadar olan tüm $d(t)$ üzerinden bir
 entegral, ki bu entegralin $\gamma$ kadarı $t$'de geri ödeniyor. Analitik
-cozumle rahat isledigi icin boyle secilmis, biz $t$ anına kadar olan tüm
-borcu $d(t)$ ile göstereceğiz, ve bir azalma dinamiğini oraya
+çözümle rahat işlediği için böyle seçilmiş, biz $t$ anına kadar olan tüm
+borcu $d(t)$ ile göstereceğiz, ve azalma dinamiğini $d$ üzerinden
 ekleyeceğiz. $z(t)$ ve $k(t) = 0$</p>
 <p>$$
 \dot{d} = -\dot{z}-\gamma d(t) \qquad (7)
