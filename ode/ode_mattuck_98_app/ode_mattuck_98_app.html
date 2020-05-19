@@ -384,6 +384,62 @@ sanki bir kesirmiş gibi kullanıyor, kullanabiliyor olsak bile, $dy/dx$ bir
 kesir değildir, sadece filmerde o rolü oynar (!).</p>
 <hr>
 
+<p>Sonsuz Kuvvet </p>
+<p>Calculus'un bu kadar başarılı olmasının sebebi nedir? Calculus'un
+başarısının altında yatan sır çetrefil problemleri ufak parçalara
+bölebilmesi [10]. Tabii ki bir problemi parçalara bölmeyi pek çok diğer
+alanda da görüyoruz. Ama Calculus bunu en radikal şekilde yapıyor,
+problemleri <em>sonsuz ufak parçalara</em> bölebiliyor. Bir problemi bir, iki,
+vs. parçaya bölmek yerine onu bölüyor, bölüyor, ta ki problem unufak sonsuz
+tane parçalar haline gelinceye dek, sonra problemi o ufacık parçalar için
+çözüyor, ki bu noktada çoğunlukla çözüm büyük problemden çok daha rahattır.
+Sonra herşeyi biraraya koyuyor, bu adım bölmekten daha zor olabilir ama
+yine de esas büyük problemi çözmekten daha kolaydır, ve çözüme ulaşılıyor.</p>
+<p>Yani Calculus iki adımda işini yapıyor, bölmek ve biraraya koymak. Bölme
+kısmına diferansyel çalcülüs deniyor, biraya koyma kısmına entegral
+calculus. </p>
+<p>Calculus aslında çok eskidir, çünkü biraz önce bahsettiğimiz prensibin
+takip edilmesi için illa harfiyen, formülsel formlar takip etmek şart
+değil. Mesela MO 250 zamaında yaşayan Arşimet bir çemberin alanını aşağı
+yukarı şu şekilde bir yaklaşımla buldu. </p>
+<p>Elimizde bir daire var, bir pizza diyelim, bu pizzanın alanını bulmak
+istiyoruz,</p>
+<p><img alt="" src="circ_1.png" /></p>
+<p>Bildiklerimiz pizzanın yarıçapı (radıus) $r$ ve çevresi $C$. Eğer pizzadan
+ufak bir parça keşsek parçanın iki yani $r$ olur.</p>
+<p><img alt="" src="circ_2.png" /></p>
+<p>Alan hesabı yapmak istiyoruz, bir fikir şu, pizzayı dört parçaya bölelim,
+sonra parçaları yanyana koyalım.</p>
+<p><img alt="" src="circ_3.png" /></p>
+<p>Bu pek düzgün bir şekil olmadı, alanı rahatça hesaplamak kolay değil. Emin
+olduğumüz tek şey var, engebeli olsa da üst kısım $C/2$ uzunluğunda, alt
+kısım aynı şekilde. Bir dikdörtgen olsa iyi olurdu, o şekle erişmemiz
+olmamızın sebebi yeterince ufak parçaya bölmemiş olmamız. 8 parçaya
+bölelim, ve yine parçaları yanyana koyalım,</p>
+<p><img alt="" src="circ_4.png" /></p>
+<p>Bu şekil bir paralelogramı andırmaya başladı. Fena değil, üst, alttaki
+sınırların engebesi azaldı, düzleşmeye başladılar. Aslında bir
+dikdörtgenimsi sekle ufak bir hamle ile daha yaklaşabiliriz, soldaki
+parçanın yarısını alıp sağ tarafa yapıştıralım,</p>
+<p><img alt="" src="circ_5.png" /></p>
+<p>Güzel. Hala tam düzleşme elde edemedik, eh ama şimdiye kadar ufalta ufalta
+bayağı yol aldık, daha da ufaltalım, 16 parça,</p>
+<p><img alt="" src="circ_6.png" /></p>
+<p>Ne kadar parçaya bölersek o kadar dikdörtgene yaklaşıyoruz. Üstteki şekil
+dikdörtgene yaklaştığı için sonsuz parçanın birleşmesinin limite giderken
+tam bir dikdörtgen olacağını biliyoruz. </p>
+<p><img alt="" src="circ_7.png" /></p>
+<p>Bu dikdörtgenin alanını bulmak çok kolay, $r \cdot C/2$. Eh bölünen
+parçaları kaybetmedik, hepsini kullandık, o zaman bu alan en baştaki
+dairenin de alanı olmalı! Arşimet daire alanını matematiksel ispatı ile
+işte böyle hesapladı.</p>
+<p>Bu ispatın en dahiyane kısmi sonsuzluğun kullanılma şekli. 4, 8, 16 ile
+başladık, parçaların toplamı gitgide daha çok dikdörtgene benzemeye
+başladı. Ama sonsuz tane parçanın limitinin ortaya çıkarttığı şekil tam
+dikdörtgen idi. İşte Calculus'un temeli burada yatıyor. Sonsuzluğa gidince
+herşey daha basit hale geliyor. </p>
+<hr>
+
 <p>Bazı yaygın z-transform'ları </p>
 <p><img alt="" src="z_01.png" /></p>
 <p><img alt="" src="lap_1.png" /></p>
@@ -397,3 +453,4 @@ kesir değildir, sadece filmerde o rolü oynar (!).</p>
 <p>[7] Mattuck, <em>Introduction to Analysis</em></p>
 <p>[8] Wikipedia, <em>Power Series</em>, <a href="http://en.wikipedia.org/wiki/Power_series">http://en.wikipedia.org/wiki/Power_series</a></p>
 <p>[9] Moore, <em>Introduction to Partial Differential Equations</em></p>
+<p>[10] Strogatz, <em>Infinite Powers</em></p>
