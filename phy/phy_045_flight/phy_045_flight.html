@@ -27,21 +27,44 @@
 <p><img alt="" src="phy_045_flight_02.png" /></p>
 <p>Üstteki gibi bir tüpten hava akışını düşünelim [1]. Tüpün duvarlarında
 kaçak olmadığına göre tupe birim zamanda giren hava kütlesi aynı zaman
-biriminde çıkan kütleye eşit olmalıdır. Girişteki açıkliğin alanı $A_1$
+biriminde çıkan kütleye eşit olmalıdır. Girişteki açıklığın alanı $A_1$
 olsun, birim zaman $\mathrm{d} t$'de akış hızı $v_1$ ise $A_1 v_1 \mathrm{d} t$
 hacmindeki hava girecektir, ki bu hacmin kütlesi</p>
 <p>$$
 \mathrm{d} m = \rho_1 (A_1 v_1 \mathrm{d} t)
 $$</p>
-<p>$\rho$ birim hacmin ağırlığı.</p>
+<p>$\rho$ birim hacmin ağırlığı. Bir diger sekilde</p>
+<p>$$
+\dot{m} = \rho_1 A_1 v_1 
+$$</p>
+<p>O zaman $\dot{m}$, bir $A_1$ kesitinden birim zamanda giren kütle
+akışıdır. </p>
 <p>Momentum Denklemi</p>
 <p>Katı bir kütle için Newton'un ikinci hareket kanunu şu şekilde yazılabilir,</p>
 <p>$$
 F = m \frac{\mathrm{d} V}{\mathrm{d} t} = \frac{\mathrm{d} (mV)}{\mathrm{d} t}
 $$</p>
-<p>ki $m V$ kütlenin momentumudur. Şimdi benzer bir formülü bir tüpteki</p>
+<p>ki $m V$ kütlenin momentumudur. Şimdi benzer bir formülü bir tüpteki
+istikrarlı akış (steady flow) için türeteceğiz.</p>
 <p><img alt="" src="phy_045_flight_01.png" /></p>
-<p>Hız $V$'nin ve basıncın sabit olduğunu düşünelim. </p>
+<p>Hız $V$'nin ve basıncın sabit olduğunu düşünelim. Şimdi $\mathrm{d} s$
+uzunluğundaki bir hacme bakarsak, giriş kesit alanı $A$, o zaman kütle
+$\mathrm{d} m = \rho A \mathrm{d} s$. Hız $v = \mathrm{d} s / \mathrm{d} t$ olarak gösterilebilir, 
+yani</p>
+<p>$$
+\mathrm{d} F 
+= \mathrm{d} m \frac{\mathrm{d} v}{\mathrm{d} t} 
+= \rho A \mathrm{d} s \frac{\mathrm{d} v}{\mathrm{d} t} 
+= \rho A v \mathrm{d} v 
+= \dot{m} \mathrm{d} v
+$$</p>
+<p>Sureklilik denklemine gore kutle akisi $\dot{m}$ her yerde sabit olduguna
+gore resimdeki 1 noktasindan 2 noktasina kadar entegral alinca</p>
+<p>$$
+F = \int \mathrm{d} F = \dot{m} (v_2 - v_1)
+$$</p>
+<p>Kumanda Eden Disk Teorisi (Actuator Disc Theory)</p>
+<p><img alt="" src="phy_045_flight_03.png" /></p>
 <p>[devam edecek]</p>
 <p>Kaynaklar </p>
 <p>[1] Wittenberg, <em>Flight Physics</em></p>
