@@ -23,70 +23,77 @@
 </script>
 </head>
 
-<p>Süreklilik Denklemi</p>
-<p><img alt="" src="phy_045_flight_02.png" /></p>
-<p>Üstteki gibi bir tüpten hava akışını düşünelim [1]. Tüpün duvarlarında
-kaçak olmadığına göre tupe birim zamanda giren hava kütlesi aynı zaman
-biriminde çıkan kütleye eşit olmalıdır. Girişteki açıklığın alanı $A_1$
-olsun, birim zaman $\mathrm{d} t$'de akış hızı $v_1$ ise $A_1 v_1 \mathrm{d} t$
-hacmindeki hava girecektir, ki bu hacmin kütlesi</p>
+<p>Bernoulli Deklemi</p>
+<p>İstikrarlı akış halindeki bir sıvıyı düşünelim, alttaki resimdeki gibi
+yandan görülen bir tüpte / boruda akıyor. Diyelim ki 1. resim ile 2. resim
+arasında geçen zaman $\Delta t$ ve o zaman içinde koyu mavi olan bölüm
+kadar sıvı hacmi yer değiştiriyor [1, sf 402].</p>
+<p><img alt="" src="bern21.png" /></p>
+<p>Bu değişimin tüp sonunda yeşil bölge kadar hacim değişikliğine yol
+açar diyelim, ve önemli bir nokta iki hacim birbirine eşittir.  Eğer
+1. resimdeki sıvının girişteki yükseklik, hız, ve basıncı
+$y_1,v_1,p_1$ ile temsil ediliyorsa, 2. resimde diğer uçtaki
+$y_2,v_2,p_2$ diyelim, bu değişkenler</p>
 <p>$$
-\mathrm{d} m = \rho_1 (A_1 v_1 \mathrm{d} t)
+p_1 + \frac{1}{2} \rho v_1^2 + \rho g y_1 =
+p_2 + \frac{1}{2} \rho v_2^2 + \rho g y_2 
 $$</p>
-<p>$\rho$ birim hacmin ağırlığı. Bir diger sekilde</p>
+<p>formülü ile birbiriyle bağlıdır, ki $\rho$ sıvı yoğunluk
+sabiti. Üstteki denklemi</p>
 <p>$$
-\dot{m} = \rho_1 A_1 v_1 
+p + \frac{1}{2} \rho v^2 + \rho g y = \textrm{bir sabit}
+\qquad (1)
 $$</p>
-<p>O zaman $\dot{m}$, bir $A_1$ kesitinden birim zamanda giren kütle
-akışıdır. </p>
-<p>Momentum Denklemi</p>
-<p>Bilindigi gibi katı bir kütle için Newton'un ikinci hareket kanunu şu
-şekilde yazılabilir,</p>
+<p>olarak ta yazabiliriz. Bu son formül Bernoulli'nin formülüdür, onun
+daha yaygın bilinen formudur.</p>
+<p>Formüle erişmek için iş-kinetik enerji teorisinden başlayabiliriz, </p>
 <p>$$
-F = m \frac{\mathrm{d} V}{\mathrm{d} t} = \frac{\mathrm{d} (mV)}{\mathrm{d} t}
+W = \Delta K
 $$</p>
-<p>ki $m V$ kütlenin momentumudur. Şimdi benzer bir formülü bir tüpteki
-istikrarlı akış (steady flow) için türeteceğiz.</p>
-<p><img alt="" src="phy_045_flight_01.png" /></p>
-<p>Hız $V$'nin ve basıncın sabit olduğunu düşünelim. Şimdi $\mathrm{d} s$
-uzunluğundaki bir hacme bakarsak, giriş kesit alanı $A$, o zaman kütle
-$\mathrm{d} m = \rho A \mathrm{d} s$. Hız $v = \mathrm{d} s / \mathrm{d} t$ olarak gösterilebilir, 
-yani</p>
+<p>Yapılan iş kinetik enerjideki değişime eşittir. Sıvı için kinetik enerji
+değişimi sivinin tüp başında ve sonundaki hızı ile alakalı olmalıdır [1,
+sf. 403],</p>
 <p>$$
-\mathrm{d} F 
-= \mathrm{d} m \frac{\mathrm{d} v}{\mathrm{d} t} 
-= \rho A \mathrm{d} s \frac{\mathrm{d} v}{\mathrm{d} t} 
-= \rho A v \mathrm{d} v 
-= \dot{m} \mathrm{d} v
+\Delta K = \frac{1}{2} \Delta m v_2^2 - \frac{1}{2} \Delta m v_1^2 
 $$</p>
-<p>Süreklilik denklemine göre kütle akışı $\dot{m}$ her yerde sabit olduğuna
-göre resimdeki 1 noktasından 2 noktasına kadar entegral alınca</p>
+<p>ki $\Delta m$ tüpün başında $\Delta t$ anında içeri giren sıvı kütlesi. Onu
+$\Delta m = \rho \Delta V$ olarak ta yazabiliriz ki $\Delta V$ aynı zaman
+aralığında giren sıvı hacmi.</p>
 <p>$$
-F = \int \mathrm{d} F = \dot{m} (v_2 - v_1)
+= \frac{1}{2} \rho \Delta V(v_2^2 - v_1^2)
 $$</p>
-<p>Bernoulli Denklemi</p>
-<p><img alt="" src="phy_045_flight_05.png" /></p>
-<p>Kumanda Eden Disk Teorisi (Actuator Disc Theory)</p>
-<p>Şimdi bir helikopterde kullanılan üstteki pervanenin yarattığı itişi
-hesaplamaya uğraşalım. Eğer pervane dönerken helikoptere üstten baksak bir
-disk görürdük. Şimdi o diske yandan bakalım, bir tek çizgi olarak
-görülebilir, bu diskin alanı $A_p$ olsun. </p>
-<p><img alt="" src="phy_045_flight_03.png" /></p>
-<p>Bu diske pervane dönmesi sebebiyle hava üstten girer ve alta doğru
-basılır. Bu havanın geçtiği bölgeyi kabaca bir tüp olarak görebiliriz,
-üstte daha büyük altta daha daralan şekilde, bu tüp daha önce işlediğimiz
-içinden hava akan tüp gibi görülebilir. </p>
-<p>Daha basit bir resim üzerinden, ufak notasyon değişimine dikkat,</p>
-<p><img alt="" src="phy_045_flight_04.png" /></p>
-<p>$W$ ağırlığında, pervane disk alanı $A$ olan bir helikopter için itiş
-hesabı yapalım [2, sf. 70], bu helikopterin hiçbir yere gitmede asılı
-(hover) durması için ne kadar güç gerekir? </p>
+<p>Şimdi basıncı dahil edelim, bu da bir kuvvet, tüpün başında pozitif iş
+yapıyor, sonunda içerideki tüm sivinin kütlesi üzerinden ters yönde iş
+yapıyor, genel olarak </p>
 <p>$$
-W = \rho A V_o (V_s-V) = \rho A V_0 V_s
+F \Delta x  = (pA)(\Delta x) = p(A\Delta x) = p \Delta V
 $$</p>
-<p>çünkü $V=0$ dedik, akış tüpüne giren havanın daha önce hareketsiz olduğunu
-kabul ediyoruz, $\rho$ hava yoğunluğu.</p>
+<p>denebilir, o zaman baştaki iş $p_1 \Delta V$, sondaki iş $p_2 \Delta V$,
+toplam</p>
+<p>$$
+W_p = -p_2 \Delta V + p_1 \Delta V
+$$</p>
+<p>$$
+= - (p_2-p_1) \Delta V
+$$</p>
+<p>Yerçekimin yaptığı iş negatiftir, $W_g$ diyelim, kuvvet çarpı yer
+değişikliği. Kuvvet $\Delta m g$, yer değişikliği $y_2-y_1$. </p>
+<p>$$
+W_g = -\Delta m g (y_2 - y_1)
+$$</p>
+<p>$$
+= -\rho g \Delta V (y_2-y_1)
+$$</p>
+<p>Hepsini bir araya koyarsak, yapılan iş eşittir kinetik enerji değişimi
+üzerinden,</p>
+<p>$$
+W = W_g + W_p = \Delta K
+$$</p>
+<p>$$
+-\rho g \Delta V(y_2-y_1) - \Delta V(p_2-p_1) = 
+\frac{1}{2} \rho \Delta V(v_2^2 - v_1^2)
+$$</p>
+<p>Tekrar düzenlersek (1)'e erisebiliriz.</p>
 <p>[devam edecek]</p>
-<p>Kaynaklar </p>
-<p>[1] Wittenberg, <em>Flight Physics</em></p>
-<p>[2] Carpenter, <em>Aerodynamics for Engineering Students</em></p>
+<p>Kaynaklar</p>
+<p>[1] Resnick, Fundamentals of Physics, 10th Ed</p>
