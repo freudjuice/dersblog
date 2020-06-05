@@ -135,7 +135,10 @@ ikinci türevi var, ki bu ivmedir. $m$'ler iptal olur, ve bir kez entegral
 alınca </p>
 <p>$$ v(t) = v_0 + gt$$</p>
 <p>Bir kez daha</p>
-<p>$$ x(t) = x_0 + v_0t + \frac{1}{2}gt^2$$</p>
+<p>$$ 
+x(t) = x_0 + v_0t + \frac{1}{2}gt^2
+\qquad (1)
+$$</p>
 <p>$x_0,v_0$ sabitler, ama deneyimizde başlangıç hızı $v_0=0$ alacağız, ayrıca
 başlangıç mesafesi de $x_0=0$, geriye kalanlar,</p>
 <p>$$ x = \frac{1}{2}gt^2$$</p>
@@ -184,6 +187,66 @@ ise işaret pozitiftir. Eğer tersi ise işaret negatiftir. Bir objeyi
 kaldırırıp bir seviyeye getirirsem kaldırma kuvveti kaldırma yönünde,
 işin işareti pozitif. Ama o obje üzerindeki yerçekimsel kuvvetin
 yaptığı iş negatif, çünkü harekete ters yönde. </p>
+<p>Türetmek için (1) ile başlayalım, $g$ yerine genel bir ivme $a$ alalım, ve
+biraz düzenleyince,</p>
+<p>$$
+x - x_0 = v_0 t + \frac{1}{2} a t^2
+$$</p>
+<p>Bir diğer formül</p>
+<p>$$
+v = v_0 + a t
+$$</p>
+<p>Bu iki formülü birleştirerek $t$'yi yokedebiliriz [3, sf. 24], </p>
+<p>$$
+t = \frac{v-v_0}{a}
+$$</p>
+<p>$$
+x - x_0 = 
+v_0 \left(\frac{v-v_0}{a}\right) + 
+\frac{1}{2} \left(\frac{v-v_0}{a}\right)^2
+$$</p>
+<p>$$
+= v_0 \left(\frac{v-v_0}{a}\right) + \frac{1}{2} \frac{(v-v_0)^2}{a}
+$$</p>
+<p>$$
+2a (x-x_0) = 2 v_0 (v-v_0) + (v-v_0)^2
+$$</p>
+<p>$$
+= 2 v_0 v - 2 v_0^2 + v^2 - 2 v v_0 + v_0^2
+$$</p>
+<p>$$
+2a (x-x_0) = v^2 - v_0^2 
+$$</p>
+<p>$$
+v^2 = v_0^2 + 2a (x-x_0)<br />
+\qquad (2)
+$$</p>
+<p>Şimdi kinetik enerjiden başlayarak iş formülünü türetelim. Mesela bir
+ipteki boncuğa kuvvet uyguladık, boncuk $x$ yönünde $d$ kadar kaydı. </p>
+<p>$$
+F_x = m a_x
+\qquad (3)
+$$</p>
+<p>Kuvvet sabit ise o zaman ivme de sabittir, o zaman (2) formülünü
+kullanabiliriz. </p>
+<p>$$
+v^2 = v_0^2 + 2 a_x d
+$$</p>
+<p>Eğer $a_x$ için çözersek [3, sf. 152], </p>
+<p>$$
+a_x = \frac{v^2 - v_0^2 }{2 d}
+$$</p>
+<p>Bu formülü (3)'e sokalım,</p>
+<p>$$
+F_x = m \left( \frac{v^2 - v_0^2 }{2d} \right)
+$$</p>
+<p>$$
+F_x d = \frac{1}{2} m v^2 - \frac{1}{2} m v_0^2
+$$</p>
+<p>Yani yapılan iş ile objeye (boncuğa) enerji transfer
+edilmiştir. Başlangıçtaki kinetik enerji $\frac{1}{2} m v_0^2$ yapılan iş
+ile $\frac{1}{2} m v^2$ ölmüş. Aradaki fark $F_x d$ ile hesaplanıyor, ki bu
+çoğunlukla $W$ ile tanımlanan iş. </p>
 <p>Basınç (Pressure)</p>
 <p>Bir sıvı içinde duran bir objeye tek uygulanan etki, stres onu
 sıkıştıran türden bir etkidir. Diğer bir deyişle bir sıvı içindeki
@@ -203,50 +266,6 @@ $$</p>
 <p>O zaman belli bir alandaki basınç için o alan üzerinden entegral almak gerekir. </p>
 <p>Basıncın birimi $N / m^2$, şaşırtıcı olmasa gerek, kuvvet birimi
 Newton, ve alan birimi $m^2$.</p>
-<p>Ataletsel Yöngüdüm Sistemleri (Inertial Navigation Systems -INS-)</p>
-<p>Cep telefonlarında hareket ya da dönüş ölçümleri veren algılayıcılar
-var. Peki niye bu ölçümler hep "ivmesel"? Niye hız ölçülmüyor da ivme
-ölçülüyor?  Arabalarda hız ölçen ibre var, aynısı cep telefonlarında olamaz
-mı?</p>
-<p>Fakat yöngüdüm sistemlerinin tarihini düşünürsek aslında burada istisna
-olan arabalardaki hız ölçümü, çünkü araba durumunda yere direk bağlı bir
-obje var (tekerlek), ve bu objenin alınan mesafe ile direk bir bağlantısı
-var, bu durumda hız hesabı daha kolay. Fakat yere direk bağlı olmayan
-taşıtlarda, mesela gemiler, füzeler, uçaklarda, elde hareketi tek temsil
-eden ve ölçülebilen şey o taşıta etki eden ivmedir. Taşıta etki yapan
-kuvvet ölçülebilir, ve bu kuvvet direk ivme ile oranlıdır, hız ile
-değil. Bir arabada bile gaza basılınca koltukta geriye doğru itiliriz, ve
-ivmelenmeyi hissederiz. Ama aynı hızda giderken pek bir şey
-hissetmiyoruz. Gözlerimizi kapatsak 50 km/saat ya da 80 km/saat arasındaki
-farkı anlayamayabiliriz. </p>
-<p>Bu sebeple INS'ler ivmesel ölçüm bazlıdır. İvmesel ölçüm nasıl toplanır?
-Kuvvet ölçüm aletine etki ettiğinde alet içindeki bir yay gerilebilir
-mesela ve bu gerilme ölçülür, ya da bir sıvı hareket eder, ya da ufak
-rotorlar dönmeye başlar, dönme ölçülür. </p>
-<p>INS'in uzun bir tarihi var. Aslında bizim kafamızın içinde de ataletsel
-algılayıcı var, dönüş yönümüzü ve kendi ivmelenmemizi bu algılayıcılar ile
-anlayabiliyoruz. Bu organik ölçüm aletleri evrimsel tarihimizde balığa
-benzeyen bir organizmadan bu yana gelişen bir şey. Bu sistem sayesinde
-dengemizi sağlıyoruz, görsel olarak anlayamadığımız zaman duruşumuzu
-hissediyoruz [3, sf. 13].</p>
-<p>Fakat INS'in esas gelişme zamanı 1930-1945 arasında Almanya'da ve
-Amerika'da oldu; 1. Dünya Savaşı sonrası Versailles Anlaşması sebebiyle o
-savaşı kaybetmiş Almanya'nın bazı silahları geliştirmesi men edilmişti, bu
-sebeple Almanya anlaşmaya dahil edilmemiş araçların, mesela füzeler gibi,
-geliştirilmesine öncelik verdi. V-1 ve V-2 roketleri bu sırada gelişti ve
-bu roketlerin INS'e ihtiyacı vardı. Aynı zaman diliminde C. Draper adlı bir
-mühendis ABD ordusu için INS uygulamarı geliştirdi. Draper 1946'da bir
-AR-GE projesi çerçevesinde gemiler, denizaltılar, uçaklarda
-kullanılabilecek modern INS üzerinde denemeler yaptılar. Draper INS'in
-babası sayılıyor.</p>
-<p>MİT Üniversitesi de NASA için INS araştırmaları yaptı, Apollo Komuta
-Modülü'ndeki sistem onlar tarafından geliştirildi.</p>
-<p>İvmeden hız, oradan mesafe için daha önce gördüğümüz gibi iki entegrasyon
-gerekiyor,</p>
-<p>$$ v(t) = v(t_0) + \int _{t_0}^{t_1} a(s) \mathrm{d} s $$</p>
-<p>$$ x(t) = x(t_0) + \int _{t_0}^{t_1} v(s) \mathrm{d} s $$</p>
-<p>Bu hesapların sayısal olarak yapılmasının detayları [5]'te bulunabilir.</p>
-<p>İvme, hızın vektörel kullanımı hakkında detaylar için [6].</p>
 <p>İzafi Enerji Formülü</p>
 <p>İzafi mekanikte kuvvet ve momentumdan başlayan formül biraz daha değişiyor [4].</p>
 <p>$$
@@ -268,8 +287,6 @@ yapmak gerekir çünkü enerji eklendikçe kütle daha ağırlaşır. </p>
 <p>Kaynaklar </p>
 <p>[1] Strang, <em>Calculus, 4th Edition</em></p>
 <p>[2] Feynman, <em>The Feynman Lectures on Physics, Volume I</em></p>
-<p>[3] Grewal, <em>Global navigation Satellite Systems, Inertial Navigation, and Integration, 3rd Edition</em></p>
+<p>[3] Resnick, Fundamentals of Physics, 10th Ed</p>
 <p>[4] <a href="https://physics.stackexchange.com/questions/241507/would-this-be-correct-for-kinetic-energy-in-special-relativity">https://physics.stackexchange.com/questions/241507/would-this-be-correct-for-kinetic-energy-in-special-relativity</a></p>
-<p>[5] Bayramli, Hesapsal Bilim, <em>Sayısal Fonksiyonları Sayısal Entegre Etmek</em></p>
-<p>[6] Bayramli, <em>Çok Boyutlu Calculus - Ders 6</em></p>
 <p>[7] Bayramli, Çok Değişkenli Calculus, <em>Entegralleri Nasıl Düşünelim</em></p>

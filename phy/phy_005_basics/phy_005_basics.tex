@@ -155,7 +155,10 @@ $$ v(t) = v_0 + gt$$
 
 Bir kez daha
 
-$$ x(t) = x_0 + v_0t + \frac{1}{2}gt^2$$
+$$ 
+x(t) = x_0 + v_0t + \frac{1}{2}gt^2
+\mlabel{1}
+$$
 
 $x_0,v_0$ sabitler, ama deneyimizde baþlangýç hýzý $v_0=0$ alacaðýz, ayrýca
 baþlangýç mesafesi de $x_0=0$, geriye kalanlar,
@@ -219,6 +222,88 @@ kaldýrýrýp bir seviyeye getirirsem kaldýrma kuvveti kaldýrma yönünde,
 iþin iþareti pozitif. Ama o obje üzerindeki yerçekimsel kuvvetin
 yaptýðý iþ negatif, çünkü harekete ters yönde. 
 
+Türetmek için (1) ile baþlayalým, $g$ yerine genel bir ivme $a$ alalým, ve
+biraz düzenleyince,
+
+$$
+x - x_0 = v_0 t + \frac{1}{2} a t^2
+$$
+
+Bir diðer formül
+
+$$
+v = v_0 + a t
+$$
+
+Bu iki formülü birleþtirerek $t$'yi yokedebiliriz [3, sf. 24], 
+
+$$
+t = \frac{v-v_0}{a}
+$$
+
+$$
+x - x_0 = 
+v_0 \left(\frac{v-v_0}{a}\right) + 
+\frac{1}{2} \left(\frac{v-v_0}{a}\right)^2
+$$
+
+$$
+= v_0 \left(\frac{v-v_0}{a}\right) + \frac{1}{2} \frac{(v-v_0)^2}{a}
+$$
+
+$$
+2a (x-x_0) = 2 v_0 (v-v_0) + (v-v_0)^2
+$$
+
+$$
+= 2 v_0 v - 2 v_0^2 + v^2 - 2 v v_0 + v_0^2
+$$
+
+$$
+2a (x-x_0) = v^2 - v_0^2 
+$$
+
+$$
+v^2 = v_0^2 + 2a (x-x_0)  
+\mlabel{2}
+$$
+
+Þimdi kinetik enerjiden baþlayarak iþ formülünü türetelim. Mesela bir
+ipteki boncuða kuvvet uyguladýk, boncuk $x$ yönünde $d$ kadar kaydý. 
+
+$$
+F_x = m a_x
+\mlabel{3}
+$$
+
+Kuvvet sabit ise o zaman ivme de sabittir, o zaman (2) formülünü
+kullanabiliriz. 
+
+$$
+v^2 = v_0^2 + 2 a_x d
+$$
+
+Eðer $a_x$ için çözersek [3, sf. 152], 
+
+$$
+a_x = \frac{v^2 - v_0^2 }{2 d}
+$$
+
+Bu formülü (3)'e sokalým,
+
+$$
+F_x = m \left( \frac{v^2 - v_0^2 }{2d} \right)
+$$
+
+$$
+F_x d = \frac{1}{2} m v^2 - \frac{1}{2} m v_0^2
+$$
+
+Yani yapýlan iþ ile objeye (boncuða) enerji transfer
+edilmiþtir. Baþlangýçtaki kinetik enerji $\frac{1}{2} m v_0^2$ yapýlan iþ
+ile $\frac{1}{2} m v^2$ ölmüþ. Aradaki fark $F_x d$ ile hesaplanýyor, ki bu
+çoðunlukla $W$ ile tanýmlanan iþ. 
+
 Basýnç (Pressure)
 
 Bir sývý içinde duran bir objeye tek uygulanan etki, stres onu
@@ -247,61 +332,7 @@ O zaman belli bir alandaki basýnç için o alan üzerinden entegral almak gerekir.
 Basýncýn birimi $N / m^2$, þaþýrtýcý olmasa gerek, kuvvet birimi
 Newton, ve alan birimi $m^2$.
 
-Ataletsel Yöngüdüm Sistemleri (Inertial Navigation Systems -INS-)
 
-Cep telefonlarýnda hareket ya da dönüþ ölçümleri veren algýlayýcýlar
-var. Peki niye bu ölçümler hep ``ivmesel''? Niye hýz ölçülmüyor da ivme
-ölçülüyor?  Arabalarda hýz ölçen ibre var, aynýsý cep telefonlarýnda olamaz
-mý?
-
-Fakat yöngüdüm sistemlerinin tarihini düþünürsek aslýnda burada istisna
-olan arabalardaki hýz ölçümü, çünkü araba durumunda yere direk baðlý bir
-obje var (tekerlek), ve bu objenin alýnan mesafe ile direk bir baðlantýsý
-var, bu durumda hýz hesabý daha kolay. Fakat yere direk baðlý olmayan
-taþýtlarda, mesela gemiler, füzeler, uçaklarda, elde hareketi tek temsil
-eden ve ölçülebilen þey o taþýta etki eden ivmedir. Taþýta etki yapan
-kuvvet ölçülebilir, ve bu kuvvet direk ivme ile oranlýdýr, hýz ile
-deðil. Bir arabada bile gaza basýlýnca koltukta geriye doðru itiliriz, ve
-ivmelenmeyi hissederiz. Ama ayný hýzda giderken pek bir þey
-hissetmiyoruz. Gözlerimizi kapatsak 50 km/saat ya da 80 km/saat arasýndaki
-farký anlayamayabiliriz. 
-
-Bu sebeple INS'ler ivmesel ölçüm bazlýdýr. Ývmesel ölçüm nasýl toplanýr?
-Kuvvet ölçüm aletine etki ettiðinde alet içindeki bir yay gerilebilir
-mesela ve bu gerilme ölçülür, ya da bir sývý hareket eder, ya da ufak
-rotorlar dönmeye baþlar, dönme ölçülür. 
-
-INS'in uzun bir tarihi var. Aslýnda bizim kafamýzýn içinde de ataletsel
-algýlayýcý var, dönüþ yönümüzü ve kendi ivmelenmemizi bu algýlayýcýlar ile
-anlayabiliyoruz. Bu organik ölçüm aletleri evrimsel tarihimizde balýða
-benzeyen bir organizmadan bu yana geliþen bir þey. Bu sistem sayesinde
-dengemizi saðlýyoruz, görsel olarak anlayamadýðýmýz zaman duruþumuzu
-hissediyoruz [3, sf. 13].
-
-Fakat INS'in esas geliþme zamaný 1930-1945 arasýnda Almanya'da ve
-Amerika'da oldu; 1. Dünya Savaþý sonrasý Versailles Anlaþmasý sebebiyle o
-savaþý kaybetmiþ Almanya'nýn bazý silahlarý geliþtirmesi men edilmiþti, bu
-sebeple Almanya anlaþmaya dahil edilmemiþ araçlarýn, mesela füzeler gibi,
-geliþtirilmesine öncelik verdi. V-1 ve V-2 roketleri bu sýrada geliþti ve
-bu roketlerin INS'e ihtiyacý vardý. Ayný zaman diliminde C. Draper adlý bir
-mühendis ABD ordusu için INS uygulamarý geliþtirdi. Draper 1946'da bir
-AR-GE projesi çerçevesinde gemiler, denizaltýlar, uçaklarda
-kullanýlabilecek modern INS üzerinde denemeler yaptýlar. Draper INS'in
-babasý sayýlýyor.
-
-MÝT Üniversitesi de NASA için INS araþtýrmalarý yaptý, Apollo Komuta
-Modülü'ndeki sistem onlar tarafýndan geliþtirildi.
-
-Ývmeden hýz, oradan mesafe için daha önce gördüðümüz gibi iki entegrasyon
-gerekiyor,
-
-$$ v(t) = v(t_0) + \int _{t_0}^{t_1} a(s) \ud s $$
-
-$$ x(t) = x(t_0) + \int _{t_0}^{t_1} v(s) \ud s $$
-
-Bu hesaplarýn sayýsal olarak yapýlmasýnýn detaylarý [5]'te bulunabilir.
-
-Ývme, hýzýn vektörel kullanýmý hakkýnda detaylar için [6].
 
 Ýzafi Enerji Formülü
 
@@ -335,13 +366,9 @@ Kaynaklar
 
 [2] Feynman, {\em The Feynman Lectures on Physics, Volume I}
 
-[3] Grewal, {\em Global navigation Satellite Systems, Inertial Navigation, and Integration, 3rd Edition}
+[3] Resnick, Fundamentals of Physics, 10th Ed
 
 [4] \url{https://physics.stackexchange.com/questions/241507/would-this-be-correct-for-kinetic-energy-in-special-relativity}
-
-[5] Bayramli, Hesapsal Bilim, {\em Sayýsal Fonksiyonlarý Sayýsal Entegre Etmek}
-
-[6] Bayramli, {\em Çok Boyutlu Calculus - Ders 6}
 
 [7] Bayramli, Çok Deðiþkenli Calculus, {\em Entegralleri Nasýl Düþünelim}
 
