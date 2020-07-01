@@ -1,0 +1,47 @@
+<h1>PID (Proportional, Integral, Derivative) Kontrol</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PID (Proportional, Integral, Derivative) Kontrol
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"]]}
+      });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+      MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    </script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+</head>
+
+<p>En basit kontrol yöntemi PID kontrol yöntemidir. Bu yaklaşım kontrol edilen
+mekanizma, süreç, fabrika, vs için elde denklemler yok ise çoğunlukla işler
+(mekanizmanın fazla gayrı lineer olmaması kaydıyla). Kabaca elde edilmek
+istenilen bir parametre hedefi vardır, mesela bu arabanın hızı olabilir,
+kontrol edilen ise bir gaz pedalı olabilir (pedalın basılma açısı gibi), ve
+arabanın belli $\Delta t$ aralıklarında hız ölçümüne bakılır, ve en basit
+formda istenilen hız ile o anda olunan hız arasındaki fark, hataya oranlı
+bir kontrol uygulaması yapılır. Eğer 60 km/saat ile gidilmek isteniyorsa
+ama ölçüm 40 km/saat diyorsa aradaki farka oranla gaz pedalına biraz daha
+basılır.</p>
+<p>En basit formda dedik, bazı ekler, o ana kadar olan hataların toplamına
+oranlı, ya da hatanın önceki hataya göre artışına oranlı da olabilir. Tüm
+bunlar biraraya koyulunca PİD kontrolünü elde ederiz [1, sf. 42], </p>
+<p>$$
+u(t) = 
+K_p \cdot e(t) + 
+K_i \cdot \int_0^t e(\tau) \mathrm{d} \tau + 
+K_d \frac{\mathrm{d} e(t)}{\mathrm{d} t}
+$$</p>
+<p>[devam edecek]</p>
+<p>Kaynaklar</p>
+<p>[1] Zimmerman, <em>Flight Control and Hardware Design of Multi-Rotor Systems</em></p>
