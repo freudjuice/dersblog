@@ -102,14 +102,14 @@ alınmıştır, $M$ kütlesindeki bir objeyi masa üzerinden ittirerek bir hedef
 hızına ulaştırmak istiyoruz. </p>
 <p><img alt="" src="phy_030_pid_02.png" /></p>
 <p>$F = m \ddot{x}$ formülü standart fizik, herhangi bir zaman noktasındaki
-$T$ zaman aralığındaki hız artışı $F = \frac{m v_t - m v_{t-1}}{T}$ ile
-hesaplanabilir. Sürtünmeyi hesaba katmayalım. Zaman aralığı 10 milisaniye
-olsun, kütle $M = 2$ kg, ulaşılmak istenen hedef hız 4 metre /
-saniye. Durağan hızdan başlıyoruz, ve PID kontrol ile her $t$ anında
-uygulanması gereken kuvveti görmek istiyoruz. </p>
-<p>Endüstriyel uygulamalarda bu tür problemler için PD yaklaşımı kullanılıyor,
-yani I yok, onun sabitini sıfır yapıyoruz, geri kalanlar için $K_p=2$,
-$K_D=1$ üzerinden,</p>
+$T$ zaman aralığındaki hız artışı için gereken kuvvet
+$F = \frac{m v_t - m v_{t-1}}{T}$ ile hesaplanabilir. Sürtünmeyi hesaba
+katmayalım. Zaman aralığı 10 milisaniye olsun, kütle $M = 2$ kg, ulaşılmak
+istenen hedef hız 4 metre / saniye. Durağan hızdan başlıyoruz, ve PID
+kontrol ile her $t$ anında uygulanması gereken kuvveti görmek
+istiyoruz. Endüstriyel uygulamalarda bu tür problemler için PD yaklaşımı
+kullanılıyor, yani I yok, o yüzden onun sabitini sıfır yapıyoruz (iptal
+etmiş oluyoruz), geri kalanlar için $K_p=2$, $K_D=1$ üzerinden,</p>
 <pre><code class="python">import pandas as pd
 
 T = 0.1
