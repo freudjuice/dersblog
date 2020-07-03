@@ -53,13 +53,13 @@ formulu o sebeple objesel yaklasimla kodlamak iyi olabilir. Her degisken
 icin ayri bir PID objesi yaratilabilir, bu objeler eski hatalari, takip
 ettikleri degiskenleri hatirlarlar,</p>
 <pre><code class="python">class PID:
-   def __init__(self, dt, Kp, Ki, Kd):
+   def __init__(self, dt, Kp, Ki, Kd, lastErr=0.0):
       self.Kp = Kp
       self.Ki = Ki
       self.Kd = Kd
       self.dt = dt
       self.errSum = 0
-      self.lastErr = 0
+      self.lastErr = lastErr
 
    def compute(self, setpoint, input):
       error = setpoint - input
@@ -73,7 +73,7 @@ ettikleri degiskenleri hatirlarlar,</p>
 
 <p>Örnek olarak basit bir hedef, 10, ve rasgele bazı çarpanlar üzerinden
 uygulanacak kontrolü hesaplayalım. </p>
-<pre><code class="python">p = PID(0.01, 1, 1, 0)
+<pre><code class="python">p = PID(0.01, 1, 1, 0, 10)
 
 print (p.compute(10,3))
 print (p.compute(10,4))
@@ -89,20 +89,21 @@ print (p.compute(10,8))
 
 <p>Klasik fizik üzerinden ilerleyelim.. Alttaki örnek [2, sf. 12]'den
 alınmıştır, $M$ kütlesindeki bir objeyi masa üzerinden ittirerek bir hedef
-hızına ulaştırmak istiyoruz.</p>
+hızına ulaştırmak istiyoruz. </p>
 <p><img alt="" src="phy_030_pid_02.png" /></p>
 <p>$F = m \ddot{x}$ formülü standart fizik, herhangi bir zaman noktasındaki
 $T$ zaman aralığındaki hız artışı $F = \frac{m v_t - m v_{t-1}}{T}$ ile
-hesaplanabilir. Zaman aralığı 10 milisaniye olsun, kütle $M = 2$ kg,
-ulaşılmak istenen hedef hız 4 metre / saniye. Durağan hızdan başlıyoruz, ve
-PID kontrol ile uygulanması gereken kuvveti görmek istiyoruz,</p>
+hesaplanabilir. Sürtünmeyi hesaba katmayalım. Zaman aralığı 10 milisaniye
+olsun, kütle $M = 2$ kg, ulaşılmak istenen hedef hız 4 metre /
+saniye. Durağan hızdan başlıyoruz, ve PID kontrol ile her $t$ anında
+uygulanması gereken kuvveti görmek istiyoruz,</p>
 <pre><code class="python">import pandas as pd
 
 T = 0.1
 M = 2.0
 desired_vel = 4.0
 vel = 0
-p = PID(T, 2.0, 0, 1.0)
+p = PID(T, 2.0, 0, 1.0, 4.0)
 forces = []; vels = []; velerrs = []; ts = []
 for i in range(100):
     vels.append(vel)
@@ -112,6 +113,7 @@ for i in range(100):
     forces.append(force)
     velerrs.append(p.lastErr)
     ts.append(i*T)
+
 df = pd.DataFrame([ts, forces, vels, velerrs]).T
 df.columns = ['ts','forces','vels','velerrs']
 df = df.set_index('ts')
