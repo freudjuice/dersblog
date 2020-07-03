@@ -36,13 +36,17 @@ def main():
     space.gravity = 0, -100
     x = random.randint(120, 380)
     ground = Ground(space)
-    ball = Dualcopter((x, 550), space)
+    copter = Dualcopter((x, 550), space)
     thrust_angle = 0
     thrust = 0
 
     i = 0
     while True:
         i += 1
+        print ('================')
+        print ('velocity', copter.shape.body.velocity)
+        print ('angle', copter.shape.body.angle)
+        print ('rv', copter.shape.body.rotation_vector)
         #if i%20==0: pygame.image.save(screen, "/tmp/out-%d.jpeg" % i)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -63,16 +67,16 @@ def main():
                     print ('left')
 
         T = thrust / 6.0
-        ball.shape.body.apply_force_at_local_point((0, T), (-10, -25))
-        ball.shape.body.apply_force_at_local_point((0, T), (-5, -25))
-        ball.shape.body.apply_force_at_local_point((0, T), (5, -25))
-        ball.shape.body.apply_force_at_local_point((0, T), (10, -25))
+        copter.shape.body.apply_force_at_local_point((0, T), (-10, -25))
+        copter.shape.body.apply_force_at_local_point((0, T), (-5, -25))
+        copter.shape.body.apply_force_at_local_point((0, T), (5, -25))
+        copter.shape.body.apply_force_at_local_point((0, T), (10, -25))
 
         F = (T*np.sin(np.deg2rad(thrust_angle)), T*np.cos(np.deg2rad(thrust_angle)))
-        ball.shape.body.apply_force_at_local_point(F, (-10, 25))
-        ball.shape.body.apply_force_at_local_point(F, (-5, 25))
-        ball.shape.body.apply_force_at_local_point(F, (5, 25))
-        ball.shape.body.apply_force_at_local_point(F, (10, 25))
+        copter.shape.body.apply_force_at_local_point(F, (-10, 25))
+        copter.shape.body.apply_force_at_local_point(F, (-5, 25))
+        copter.shape.body.apply_force_at_local_point(F, (5, 25))
+        copter.shape.body.apply_force_at_local_point(F, (10, 25))
 
         screen.fill((0, 0, 0))
         space.debug_draw(draw_options)
