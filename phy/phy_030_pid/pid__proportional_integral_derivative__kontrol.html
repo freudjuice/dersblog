@@ -46,13 +46,14 @@ $$</p>
 <p>$K_p$ ile hataya oranlı (proportional) bir kontrol uygulanır, $K_I$
 üzerinden önceki hataların entegrali (toplamı) üzerinden bir kontrol, $K_D$
 ile hata değişimine oranlı kontrol uygulamış oluruz. Bu sabitlerin
-bulunması deneme / yanılma ile olabilir (ayar -tune- safhası bu demektir).</p>
-<p>Genel olarak kontrol edilen parametre ve hedef değişken arasında
-genelgeçer, yapay denebilecek bir ilişki kurulduğu söylenebilir. Sabitleri
-ayarlayarak herhangi bir sistem için bu ilişkinin işlemesini sağlıyoruz,
-fakat formülsel olarak elimizde bir ilişki yok. "Hata" büyüklüğüne, onun
-birkaç formuna bakarak, bunlara oranla bir kontrol uygulamak PİD
-yaklaşımının özü. Pratikte iyi işliyor.</p>
+bulunması deneme / yanılma ile olabilir (ayar -tune-) safhasında bunlar
+yapılabilir.</p>
+<p>Bu yaklasimda genel olarak kontrol edilen parametre ve hedef değişken
+arasında kabaca, yapay ya da lineer bir ilişki kurulduğu
+söylenebilir. Sabitleri ayarlayarak herhangi bir sistem için bu ilişkinin
+işlemesini sağlıyoruz, fakat formülsel olarak elimizde daha derin bir
+bağlantı yok. "Hata" büyüklüğüne, onun birkaç formuna bakarak, bunlara
+oranla bir kontrol uygulamak PID yaklaşımının özüdür. Pratikte iyi işliyor.</p>
 <p>Bir sistemi kontrol etmek için birden fazla değişken olabilir, tipik olarak
 her değişken için ayrı bir PID hesabı işletilir. Kod idaresi açısından bu
 sebeple üstteki formülü bir obje içine koymak böylece her değişken için
