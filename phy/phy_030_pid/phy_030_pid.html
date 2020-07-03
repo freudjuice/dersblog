@@ -153,16 +153,19 @@ kontrol edilmelidir.</p>
 sapma. Kontrol $T = [T_0,T_1,T_2,T_3]$ üzerinden dört motora uygulanacak
 güçtür [1, sf. 44], quadkopterin hedeflenen duruş açıları
 $\theta_c, \phi_c, \psi_c$ olsun, ölçüm aletlerinden o andaki duruş
-$\theta_{IMU}, \phi_{IMU}, \psi_{IMU}$ geliyor olsun.</p>
+$\theta_{IMU}, \phi_{IMU}, \psi_{IMU}$ ile geliyor olsun.</p>
 <p><img alt="" src="phy_030_pid_05.png" /></p>
 <p>Kontrol için üç açı, artı, yukarı aşağı iniş çıkış amaçlı yerçekimi
 telafisiyle (gravity compensation) beraber dört tane PİD kontrolü
-tasarlanıyor. Mesela [1, sf. 46]'daki koda bakarak istenen adım açısına
+tasarlanıyor. Mesela [1, sf. 46]'daki koda bakarsak, istenen adım açısına
 ulaşmak için adım PID'den gelen kontrolü alıyoruz, ve bu kontrolü yine
 belli bir sabitle çarpıp $T_0,T_1$'e ekliyoruz, $T_2,T_3$'ten
 çıkartıyoruz. İki üstteki resimden pozitif bu şekilde uygulanan bir değerin
 İHA'yı ön kısma göre yukarı kaldıracağını, yani $y$ eksen bazlı bir dönme
-yaratacağını kestirebiliriz.</p>
+yaratacağını kestirebiliriz. Tabii her quadkopterin fiziki yapısı sebebiyle
+her açının hatasına oranla uygulanacak düzeltme $K_p,K_I,K_D$ sabitleri
+farklı olabilir, ne olduklari başta bilinmez, bu sabitler tasarlama
+evresinde deneme / yanılma ile ayarlanarak İHA işler hale getirilir.</p>
 <p>[devam edecek]</p>
 <p>Kaynaklar</p>
 <p>[1] Zimmerman, <em>Flight Control and Hardware Design of Multi-Rotor Systems</em></p>
