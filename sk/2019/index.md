@@ -4,7 +4,7 @@
 
 [Yükseklik (Elevation) Verileri](04/elevation.md)
 
-[roku](05/heroku.md)
+[Heroku](05/heroku.md)
 
 [Paypal, Internet'te Ödeme Almak](05/paypal.md)
 
