@@ -1,4 +1,3 @@
-# Sayılar ve Kuramlar
 
 ![](sk.jpg)
 
