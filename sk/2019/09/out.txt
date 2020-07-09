@@ -1,0 +1,20 @@
+Gnucap 2009.12.07 RCS 26.136
+The Gnu Circuit Analysis Package
+Never trust any version less than 1.0
+Copyright 1982-2009, Albert Davis
+Gnucap comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome
+to redistribute it under the terms of 
+the GNU General Public License, version 3 or later.
+See the file "COPYING" for details.
+ 
+#Freq       VDB(2)    
+ 5.        -6.0217    
+ 10.       -6.0249    
+ 20.       -6.0377    
+ 40.       -6.0886    
+ 80.       -6.2866    
+ 160.      -6.9989    
+ 320.      -9.054     
+ 640.      -13.047    
+ 1.28K     -18.368    
