@@ -137,7 +137,7 @@ Sayfalar `templates` alt dizininde,
 
 admin.html
 
-```
+```html
 {% extends "flask_user_layout.html" %}
 {% block content %}
 <h2>{%trans%}Admin Page{%endtrans%}</h2>
@@ -152,7 +152,7 @@ admin.html
 
 home.html
 
-```
+```html
 {% extends "flask_user_layout.html" %}
 {% block content %}
 <h2>{%trans%}Home page{%endtrans%}</h2>
@@ -166,7 +166,7 @@ home.html
 ```
 member_page.html
 
-```
+```html
 {% extends "flask_user_layout.html" %}
 {% block content %}
 <h2>{%trans%}Members page{%endtrans%}</h2>
@@ -188,7 +188,7 @@ ibaresini çıkartıp daha pür HTML kodları kullanmak istersek, sistem
 mesajlarını görmeyebiliriz, bu mesajlar 'kullanıcıya konfirme için
 email gönderildi', vs. gibi mesajlardır, o mesajları görmek için
 
-```
+```html
 {% block flash_messages %}
     {%- with messages = get_flashed_messages(with_categories=true) -%}
         {% if messages %}
