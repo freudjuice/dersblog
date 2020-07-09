@@ -35,7 +35,7 @@ $f$'yi hesaplayabilir miydik?  Ya da mesafe bilinseydi o zaman hızı
 bulabilir miydik?</p>
 <p>Calculus bu geçişi sağlayabilir. $f$'den $v$'ye gidiş türev ile, $v$'den
 $f$'ye gidiş entegral ile [1, sf. 1]. </p>
-<p><img alt="" src="ode_mattuck_85_physics_03.png" /></p>
+<p><img alt="" src="phy_005_basics_01.png" /></p>
 <p>İlkokulda öğretilen fizik aslında Calculus ile yapılan hesabın
 genelleştirilmiş hali. Orada öğrencilere öğretilen problemlerde hız
 çoğunlukla sabit oluyor, mesela $v = 60 m/h$ (mil / saat). 2 saat
@@ -44,13 +44,13 @@ biliyoruz, bu çarpım aslında altta soldaki figürdeki alana (area) tekabül
 ediyor. Aynı şekilde eğer sürekli mesafeyi ölçüyor olsaydık, alt sağdaki
 ölçümlerdeki gibi mesela, bu grafikten geriye hıza geçmek demek bir bölüm
 gerektirir, ve bölüm aslında bir eğim (slope) hesabıdır.</p>
-<p><img alt="" src="ode_mattuck_85_physics_02.png" /></p>
+<p><img alt="" src="phy_005_basics_02.png" /></p>
 <p>Calculus'un değeri $v,f$ sabit olmadığı zaman ortaya çıkıyor. O zaman basit
 çarpım ve bölüm yeterli değil. Mesela ya mesafe $f$ artık bir fonksiyon
 $f=t^2$ ile temsil ediliyor olsaydı? O zaman hızı elde etmek için bir türev
 almak gerekir, bölüm yetmez, ki türevin sonucu da hala $t$ ve diğer başka
 değişkenlere bağlı bir başka fonksiyon olabilir.</p>
-<p><img alt="" src="ode_mattuck_85_physics_04.png" /></p>
+<p><img alt="" src="phy_005_basics_03.png" /></p>
 <p>Üstteki örnekte türev $2t$. Bu tek bir sayı değil, her $t$ noktasında
 farklı değer veren bir fonksiyon. Entegral aynı şekilde, gerçi üstteki
 örnekte hala üçgen alan hesabı kolay olabilir, ama çok daha çetrefil bir
@@ -61,7 +61,7 @@ hakkında bir yazı için [7]. Eğer elimizde analitik fonksiyon değil pür say
 değerleri olsaydı, bu sefer sayısal türev ya da entegral almamız gerekirdi,
 ki bunun tekniklerini ileride göreceğiz.</p>
 <p>Özetlemek gerekirse hız $v(t) = \frac{df}{dt}$, ve mesafe $f(t) = \int v(t)\mathrm{d} t$.</p>
-<p><img alt="" src="ode_mattuck_85_physics_05.png" /></p>
+<p><img alt="" src="phy_005_basics_04.png" /></p>
 <p>Üstteki örnekte $v(x) = 4 - x$ hızını görüyoruz. Entegral </p>
 <p>$$ \int v(x) \mathrm{d} x = 4x - \frac{1}{2}x^2 + C $$</p>
 <p>$C$ sabiti grafikte atlanmış. Bu sabit orada çünkü $C$ için hangi sayı
@@ -157,10 +157,10 @@ s = &quot;&quot;&quot;t;x
 df = pd.read_csv(StringIO(s),sep=';')
 df.plot(x='t',y='x',kind='scatter')
 plt.xlim(0,0.80)
-plt.savefig('ode_mattuck_85_physics_01.png')
+plt.savefig('phy_005_basics_05.png')
 </code></pre>
 
-<p><img alt="" src="ode_mattuck_85_physics_01.png" /></p>
+<p><img alt="" src="phy_005_basics_05.png" /></p>
 <p>$g$ hesabına gelelim: Üstteki formüle göre $x$ ile $1/2 t^2$ arasında
 lineer bir ilişki var. Bu ilişki $g$'nin ta kendisi! O zaman bahsedilen
 değerler arasında lineer regresyon kullanırsak $g$'yi bulabiliriz!</p>
@@ -181,7 +181,7 @@ ama aslında fiziki iş tanımı açısından hiç iş yapmadım. Fizikteki iş
 bir objeyi bir yönde hareket ettiren güç çarpı o objenin aynı yöndeki
 katettiği mesafe $d$. Eğer kuvvet vektörü tam o yönde değilse o yöne
 tekabül eden bileşenine bakılır, $W = F d \cos\theta$.</p>
-<p><img alt="" src="bern4.png" /></p>
+<p><img alt="" src="phy_005_basics_06.png" /></p>
 <p>İş bir enerji transferidir. Eğer uygulanan kuvvet işin yönü ile aynı
 ise işaret pozitiftir. Eğer tersi ise işaret negatiftir. Bir objeyi
 kaldırırıp bir seviyeye getirirsem kaldırma kuvveti kaldırma yönünde,
@@ -251,7 +251,7 @@ ile $\frac{1}{2} m v^2$ olmuş. Aradaki fark $F_x d$ ile hesaplanıyor, ki bu
 <p>Bir sıvı içinde duran bir objeye tek uygulanan etki, stres onu
 sıkıştıran türden bir etkidir. Diğer bir deyişle bir sıvı içindeki
 objenin hissettiği kuvvet onun yuzeyine her zaman diktir.</p>
-<p><img alt="" src="bern3.png" /></p>
+<p><img alt="" src="phy_005_basics_07.png" /></p>
 <p>Bir sıvının içindeki objeye uyguladığı basıncı, o objeye uygulanan
 birim alanda uygulanan kuvvet olarak temsil edilebiliriz, kuvvet $F$
 ve alan $A$ ise,</p>
@@ -297,14 +297,14 @@ $$</p>
 <p>Çemberin tamamı $2\pi$ rad (tam bir dönüş), meselâ 60 derece $\pi / 3$
 rad. Çemberin çevresinin formülü $2\pi r$, eğer $\theta = \pi / 3$ rad ise,
 $s = \pi / 3 \cdot r $.</p>
-<p><img alt="" src="torque_01.png" /></p>
+<p><img alt="" src="phy_005_basics_08.png" /></p>
 <p>Açısal hızı bir $P$ noktasının teğetsel hızından yola çıkarak
 hesaplayabiliriz, bu noktanın teğetsel hızı sonsuz ufak $s$'nin zamana göre
 değişimi olacaktır, yani $v = ds / dt$, </p>
 <p>$$
 v = \frac{ds}{dt} = r \frac{d\theta}{dt}
 $$</p>
-<p><img alt="" src="torque_02.png" /></p>
+<p><img alt="" src="phy_005_basics_09.png" /></p>
 <p>Elde edilen $d\theta / dt$ açısal değişimi gösteriyor, bu işte açısal
 hızdır, ona $\omega$ diyelim, o zaman teğetsel hızı açısal hız ile şöyle
 gösterebiliriz,</p>
@@ -328,7 +328,7 @@ a_t = r \alpha
 $$</p>
 <p>Dönüşsel Kinetik Enerji</p>
 <p>Dönmekte olan katı bir objenin kinetik enerjisini nasıl hesaplarız? </p>
-<p><img alt="" src="torque_03.png" /></p>
+<p><img alt="" src="phy_005_basics_10.png" /></p>
 <p>Objenin en ufak parçalarından başlayarak bunu yapmaya uğraşalım. Obje
 $z$ ekseni etrafında dönüyor olsun, ve açısal hızı $\omega$
 diyelim. Obje içindeki her parçacık $i$'nin kütlesi $m_i$ diyelim,
@@ -375,14 +375,14 @@ orta noktasından döndürüyorsak ene ve boya olan uzaklıklar farklı
 olacaktır. Bu sebeple tahmin edebileceğimiz üzere her obje için farklı $I$
 hesabı olmalıdır. Bu hesabın detayları için [5, sf. 301]'e bakılabilir. İki
 örnek obje için $I$ altta görülüyor.</p>
-<p><img alt="" src="torque_04.png" /></p>
+<p><img alt="" src="phy_005_basics_11.png" /></p>
 <p>Tork (Torque)</p>
 <p>Bir kuvvetin bir objeyi bir eksen etrafında döndürme kabiliyeti bir vektör
 büyüklüğü olan tork ile ölçülür. Dönme eksenine olan uzaklık burada önemli
 rol oynar, bir kapının kolu menteşeye olabildiği kadar uzaktır, çünkü
 mesafe arttıkça aynı kuvvet ile daha fazla dönme, daha çok tork elde
 edilir.</p>
-<p><img alt="" src="torque_05.png" /></p>
+<p><img alt="" src="phy_005_basics_12.png" /></p>
 <p>Tork her zaman dönme eksenine teğet olan kuvvet için hesaplanır, ve
 uzaklık, kol uzaklığı, kuvvetin uygulandığı noktada eksene olan
 uzaklıktır. Üstteki resimdeki tork $\tau$</p>
