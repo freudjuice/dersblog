@@ -17,7 +17,7 @@ Jama'da var.
 
 Üstteki ilk bağlantıdan jar indirilir, altta kısa bir test,
 
-```
+```java
 import Jama.*;
 
 public class Test {
