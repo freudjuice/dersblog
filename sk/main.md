@@ -7,19 +7,19 @@
 
 1/4 [Lessard, Optimizasyon](2020/04/lessard.md)
 
-## Konular
+## Konular, Referans
 
 [Python](2016/01/python-dil-ogrenimi.md)
+
+[Youtube Kanalım](https://www.youtube.com/channel/UCMAUsgUq5ODy8kMnJlUBUdQ)
+
+[Animasyonlu Matematik](https://www.youtube.com/channel/UCx64ou5qw0Q9LLkwE8xSNEg)
+
+[Matematik İçerik Kodu](https://github.com/burakbayramli/classnotes)
+
+[Teknik Terimler Sozlugu](https://burakbayramli.github.io/dersblog/algs/dict/teknik_terimler_sozlugu.html)
 
 ## Arşiv
 
 [Sene](year.md)
-
-
-
-
-
-
-
-
 
