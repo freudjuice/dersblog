@@ -37,7 +37,7 @@ Giriş derslerinde çoğunlukla işlenmeyen Pyhon dil konuları hakkında bazı 
 
 [Üreticiler (Generators), Yield](../../2011/02/fonksiyon-gezmek-ve-yield.md)
 
-Birim Testler
+[Birim Testler](../../2016/05/birim-testleri-taklitlemek-mocking-ve.md)
 
 With
 
