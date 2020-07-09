@@ -10,5 +10,3 @@
 
 [Gazebo, Player, Stage](07/gazebo-player-stage.md)
 
-
-Compilation finished at Thu Jul  9 20:13:17
