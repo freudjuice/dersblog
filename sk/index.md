@@ -15,7 +15,7 @@
 
 [Animasyonlu Matematik](https://www.youtube.com/channel/UCx64ou5qw0Q9LLkwE8xSNEg)
 
-[Tum Matematik Iceriği](https://burakbayramli.github.io/dersblog/)
+[Tüm Matematik Içeriği](https://burakbayramli.github.io/dersblog/)
 
 [Matematik İçerik Kodu](https://github.com/burakbayramli/classnotes)
 
