@@ -35,7 +35,7 @@ def f(val):
     else: return val+200
 
 print f(50)
-```python
+```
 
 Sonuc
 
