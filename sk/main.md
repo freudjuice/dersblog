@@ -23,5 +23,5 @@
 
 [Sene](year.md)
 
-[Ara](search.html)
+[Ara](ara.html)
 
