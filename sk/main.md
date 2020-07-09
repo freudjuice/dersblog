@@ -1,12 +1,13 @@
-# Sayilar ve Kuramlar
+# Sayılar ve Kuramlar
 
 En Son
 
-1/6 Grafiklemek
+1/6 [Grafiklemek](/sk/2020/02/grafiklemek.md)
 
 Konular
 
-[Python]()
+[Python](/sk/2016/01/python-dil-ogrenimi.md)
+
 
 
 
