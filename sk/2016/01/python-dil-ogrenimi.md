@@ -33,9 +33,9 @@ Giriş derslerinde çoğunlukla işlenmeyen Pyhon dil konuları hakkında bazı 
 
 [Komut Satırı Seçeneklerini İşlemek (Command Line Option Processing), Python](../../2018/08/komut-satr-seceneklerini-islemek.md)
 
-Yerel, Network Dosyasini Canlı, Anlık, Azar Azar Islemek (Stream, Incremental File Processing)
+[Yerel, Network Dosyasini Canlı, Anlık, Azar Azar Islemek (Stream, Incremental File Processing)](../../2018/08/canl-aks-anlk-azar-azar-islem-stream.md)
 
-Üreticiler (Generators), Yield
+[Üreticiler (Generators), Yield](../../2011/02/fonksiyon-gezmek-ve-yield.md)
 
 Birim Testler
 
