@@ -137,47 +137,15 @@ Sayfalar `templates` alt dizininde,
 
 admin.html
 
-```html
-{% extends "flask_user_layout.html" %}
-{% block content %}
-<h2>{%trans%}Admin Page{%endtrans%}</h2>
-<p><a href={{ url_for('user.register') }}>{%trans%}Register{%endtrans%}</a></p>
-<p><a href={{ url_for('user.login') }}>{%trans%}Sign in{%endtrans%}</a></p>
-<p><a href={{ url_for('home_page') }}>{%trans%}Home Page{%endtrans%}</a> </p>
-<p><a href={{ url_for('member_page') }}>{%trans%}Member Page{%endtrans%}</a> </p>
-<p><a href={{ url_for('admin_page') }}>{%trans%}Admin Page{%endtrans%}</a> </p>
-<p><a href={{ url_for('user.logout') }}>{%trans%}Sign out{%endtrans%}</a></p>
-{% endblock %}
-```
+[Link](t1.txt)
 
 home.html
 
-```html
-{% extends "flask_user_layout.html" %}
-{% block content %}
-<h2>{%trans%}Home page{%endtrans%}</h2>
-<p><a href={{ url_for('user.register') }}>{%trans%}Register{%endtrans%}</a></p>
-<p><a href={{ url_for('user.login') }}>{%trans%}Sign in{%endtrans%}</a></p>
-<p><a href={{ url_for('home_page') }}>{%trans%}Home Page{%endtrans%}</a> </p>
-<p><a href={{ url_for('member_page') }}>{%trans%}Member Page{%endtrans%}</a> </p>
-<p><a href={{ url_for('admin_page') }}>{%trans%}Admin Page{%endtrans%}</a> </p>
-<p><a href={{ url_for('user.logout') }}>{%trans%}Sign out{%endtrans%}</a></p>
-{% endblock %}
-```
+[Link](t2.txt)
+
 member_page.html
 
-```html
-{% extends "flask_user_layout.html" %}
-{% block content %}
-<h2>{%trans%}Members page{%endtrans%}</h2>
-<p><a href={{ url_for('user.register') }}>{%trans%}Register{%endtrans%}</a></p>
-<p><a href={{ url_for('user.login') }}>{%trans%}Sign in{%endtrans%}</a></p>
-<p><a href={{ url_for('home_page') }}>{%trans%}Home Page{%endtrans%}</a> </p>
-<p><a href={{ url_for('member_page') }}>{%trans%}Member Page{%endtrans%}</a> </p>
-<p><a href={{ url_for('admin_page') }}>{%trans%}Admin Page{%endtrans%}</a> </p>
-<p><a href={{ url_for('user.logout') }}>{%trans%}Sign out{%endtrans%}</a></p>
-{% endblock %}
-```
+[Link](t3.txt)
 
 Bu kod basit bir şekilde `python basic_app.py` diye başlatılır. Email,
 sifre girilir, ve konfirmasyon için email gelir, ona tıklanır,
