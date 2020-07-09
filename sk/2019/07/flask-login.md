@@ -15,7 +15,7 @@ pip install -r requirements.txt
 
 ile kurarız. Örnek bir kod ([1] baz alınmıştır), `basic_app.py` diyelim,
 
-```
+```python
 import datetime, os, util
 from flask import Flask, request, render_template
 from flask_babelex import Babel
@@ -160,7 +160,7 @@ email gönderildi', vs. gibi mesajlardır, o mesajları görmek için
 
 kodunu sayfalarımıza ekleyebiliriz. Bu durumda
 
-```
+```python
 from flask import flash
 ...
 flash('Invitation has been sent.', 'success')
@@ -195,7 +195,7 @@ Flask-User içinde SQLAlchemy kullanılıyor, bu bir tür ORM
 (ilişkisel-obje eşlemesi), Java dünyasındaki Hibernate gibi. Fakat siz
 direk SQL ile iş yapmak isterseniz,
 
-```
+```python
 res = db.engine.execute('select * from users')
 for x in res: print (x)
 ```
@@ -204,7 +204,7 @@ kullanımı olur. `db` referansı `db = SQLAlchemy(app)` ifadesinden geliyor.
 
 Eğer `INSERT`, `UPDATE`, `DELETE` gibi sorgular işletmek istersek,
 
-```
+```python
 connection = db.engine.connect()
 trans = connection.begin()
 db.engine.execute(" ...
@@ -241,7 +241,7 @@ Eğer kullanıcı sisteme şifre ile girmiş ise farklı, girmemiş ise
 farklı içerik göstermek istersek sayfa içinde
 `current_user.is_authenticated` kullanabiliriz. Mesela
 
-```
+```python
 {% if not current_user.is_authenticated %}
   <p>Kullanıcı sisteme giriş yapmadı</p>                
 {% endif %}
@@ -257,7 +257,7 @@ günün tarihini, kullanıcının tabandaki son erisebileceği tarih ile
 karşılaştırıp doğru ve yanlış cevabı verebilen `is_member` (üye mi)
 adlı bir öğe istiyoruz,
 
-```
+```python
 @property
 def is_member(self):
     nd = ... # gunun tarihi

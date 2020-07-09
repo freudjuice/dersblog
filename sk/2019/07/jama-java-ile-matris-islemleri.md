@@ -3,7 +3,7 @@
 Python ile prototip hatta servis tarafı sayısal işlem kodları rahatça
 yazılıyor; fakat bazen lineer cebir yapan kodları Java'ya çevirmek
 gerekebilir, mesela Android üzerinde işlemesi gereken kodlar. Pür Java
-ile yazılmış kullanışlı liner cebir kütüphanelerinden biri JAMA:
+ile yazılmış kullanışlı liner cebir kütüphanelerinden biri JAMA:
 
 http://math.nist.gov/javanumerics/jama/#Package
 
@@ -22,40 +22,40 @@ import Jama.*;
 
 public class Test {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception{
 
-        Matrix A = new Matrix(3, 3);
+        Matrix A = new Matrix(3, 3);
 
-        A.set(1,0,10.0);
-        A.set(1,1,10.0);
-        A.set(1,2,10.0);
+        A.set(1,0,10.0);
+        A.set(1,1,10.0);
+        A.set(1,2,10.0);
 
-        System.out.println("A\n"+toString(A));
+        System.out.println("A\n"+toString(A));
 
-        System.out.println("A get\n"+A.get(1,1));
+        System.out.println("A get\n"+A.get(1,1));
 
-        double[][] bvals = {{1.,2.,3},{4.,5.,6.},{7.,8.,10.}};
-        Matrix B = new Matrix(bvals);
-        System.out.println("B\n"+toString(B));
+        double[][] bvals = {{1.,2.,3},{4.,5.,6.},{7.,8.,10.}};
+        Matrix B = new Matrix(bvals);
+        System.out.println("B\n"+toString(B));
 
-        Matrix C = A.times(B);
+        Matrix C = A.times(B);
 
-        System.out.println("Carpim\n"+toString(C));
+        System.out.println("Carpim\n"+toString(C));
 
-        Matrix D = A.plus(B);
+        Matrix D = A.plus(B);
 
-        System.out.println("Toplam\n"+toString(D));
+        System.out.println("Toplam\n"+toString(D));
 
-    }
+    }
 
-    public static String toString(Matrix m) {
-        String s = "";
-        for (int i=0;i<m.getRowDimension(); i++){
-            for (int j=0;j<m.getColumnDimension(); j++) s += "" + m.get(i,j) + " ";
-            s += "\n";
-        }
-        return s;
-    }
+    public static String toString(Matrix m) {
+        String s = "";
+        for (int i=0;i<m.getRowDimension(); i++){
+            for (int j=0;j<m.getColumnDimension(); j++) s += "" + m.get(i,j) + " ";
+            s += "\n";
+        }
+        return s;
+    }
 }
 ```
 
@@ -63,26 +63,26 @@ Sonuclar
 
 ```
 A
-0.0 0.0 0.0 
-10.0 10.0 10.0 
-0.0 0.0 0.0 
+0.0 0.0 0.0 
+10.0 10.0 10.0 
+0.0 0.0 0.0 
 
 A get
 10.0
 B
-1.0 2.0 3.0 
-4.0 5.0 6.0 
-7.0 8.0 10.0 
+1.0 2.0 3.0 
+4.0 5.0 6.0 
+7.0 8.0 10.0 
 
 Carpim
-0.0 0.0 0.0 
-120.0 150.0 190.0 
-0.0 0.0 0.0 
+0.0 0.0 0.0 
+120.0 150.0 190.0 
+0.0 0.0 0.0 
 
 Toplam
-1.0 2.0 3.0 
-14.0 15.0 16.0 
-7.0 8.0 10.0 
+1.0 2.0 3.0 
+14.0 15.0 16.0 
+7.0 8.0 10.0 
 ```
 
 Bazı püf noktaları:
@@ -109,80 +109,80 @@ import java.text.*;
 
 public class Util {
 
-    // Helper class hidden here to provide additional matrix methods
-    // taken from https://github.com/thorstenwagner/ij-ellipsesplit
-    public static class Matrix2  {
-        private double[][] A;
-        private int m, n;
-        public Matrix2(int m, int n) {
-            this.m = m;
-            this.n = n;
-            A = new double[m][n];
-        }
-        public Matrix2(double[][] A) {
-            m = A.length;
-            n = A[0].length;
-            for (int i = 0; i < m; i++) {
-                if (A[i].length != n) {
-                    throw new IllegalArgumentException("All rows must have the same length.");
-                }
-            }
-            this.A = A;
-        }
+    // Helper class hidden here to provide additional matrix methods
+    // taken from https://github.com/thorstenwagner/ij-ellipsesplit
+    public static class Matrix2  {
+        private double[][] A;
+        private int m, n;
+        public Matrix2(int m, int n) {
+            this.m = m;
+            this.n = n;
+            A = new double[m][n];
+        }
+        public Matrix2(double[][] A) {
+            m = A.length;
+            n = A[0].length;
+            for (int i = 0; i < m; i++) {
+                if (A[i].length != n) {
+                    throw new IllegalArgumentException("All rows must have the same length.");
+                }
+            }
+            this.A = A;
+        }
 
-        public Matrix2 crossProduct(Matrix2 B) {
-            if (m != B.m || n != B.n) {
-                throw new IllegalArgumentException("Matrix dimensions must agree");
-            }
-            Matrix2 X = new Matrix2(m, n);
-            if (m == 1 && n == 3) {
-                X.A[0][0] = A[0][1] * B.A[0][2] - A[0][2] * B.A[0][1];
-                X.A[0][1] = A[0][2] * B.A[0][0] - A[0][0] * B.A[0][2];
-                X.A[0][2] = A[0][0] * B.A[0][1] - A[0][1] * B.A[0][0];
-            } else if (m == 3 && n == 1) {
-                X.A[0][0] = A[1][0] * B.A[2][0] - A[2][0] * B.A[1][0];
-                X.A[1][0] = A[2][0] * B.A[0][0] - A[0][0] * B.A[2][0];
-                X.A[2][0] = A[0][0] * B.A[1][0] - A[1][0] * B.A[0][0];
-            } else {
-                throw new IllegalArgumentException(
-                                                   "Matrix must be a 3-element row or column vector");
-            }
-            return X;
-        }
+        public Matrix2 crossProduct(Matrix2 B) {
+            if (m != B.m || n != B.n) {
+                throw new IllegalArgumentException("Matrix dimensions must agree");
+            }
+            Matrix2 X = new Matrix2(m, n);
+            if (m == 1 && n == 3) {
+                X.A[0][0] = A[0][1] * B.A[0][2] - A[0][2] * B.A[0][1];
+                X.A[0][1] = A[0][2] * B.A[0][0] - A[0][0] * B.A[0][2];
+                X.A[0][2] = A[0][0] * B.A[0][1] - A[0][1] * B.A[0][0];
+            } else if (m == 3 && n == 1) {
+                X.A[0][0] = A[1][0] * B.A[2][0] - A[2][0] * B.A[1][0];
+                X.A[1][0] = A[2][0] * B.A[0][0] - A[0][0] * B.A[2][0];
+                X.A[2][0] = A[0][0] * B.A[1][0] - A[1][0] * B.A[0][0];
+            } else {
+                throw new IllegalArgumentException(
+                                                   "Matrix must be a 3-element row or column vector");
+            }
+            return X;
+        }
 
-        public double[][] getArray() {
-            return A;
-        }
-    }
+        public double[][] getArray() {
+            return A;
+        }
+    }
 
-    public static String toString(Matrix m) {
-        String s = "";
-        for (int i=0;i<m.getRowDimension(); i++){
-            for (int j=0;j<m.getColumnDimension(); j++){
-                s += "" + m.get(i,j) + " ";
-            }
-            s += "\n";
-        }
-        return s;
-    }
+    public static String toString(Matrix m) {
+        String s = "";
+        for (int i=0;i<m.getRowDimension(); i++){
+            for (int j=0;j<m.getColumnDimension(); j++){
+                s += "" + m.get(i,j) + " ";
+            }
+            s += "\n";
+        }
+        return s;
+    }
 
-    // project u onto plane with normal n
-    public static Matrix proj (double[] u, double[] n) {
-        Matrix um = new Matrix(u, 3);
-        Matrix un = new Matrix(n, 3);
-        Matrix tmp1 = um.transpose().times(un);
-        Matrix tmp2 = un.transpose().times(un);
-        Matrix tmp3 = un.times(tmp1.get(0,0) / tmp2.get(0,0));
-        Matrix res = um.minus(tmp3);
-        return res;
-    }
+    // project u onto plane with normal n
+    public static Matrix proj (double[] u, double[] n) {
+        Matrix um = new Matrix(u, 3);
+        Matrix un = new Matrix(n, 3);
+        Matrix tmp1 = um.transpose().times(un);
+        Matrix tmp2 = un.transpose().times(un);
+        Matrix tmp3 = un.times(tmp1.get(0,0) / tmp2.get(0,0));
+        Matrix res = um.minus(tmp3);
+        return res;
+    }
 
-    public static Matrix cross(Matrix a, Matrix b) {
-        Matrix2 aa = new Matrix2(a.getArray());
-        Matrix2 bb = new Matrix2(b.getArray());
-        Matrix2 res = aa.crossProduct(bb);
-        return new Matrix(res.getArray());
-    }
+    public static Matrix cross(Matrix a, Matrix b) {
+        Matrix2 aa = new Matrix2(a.getArray());
+        Matrix2 bb = new Matrix2(b.getArray());
+        Matrix2 res = aa.crossProduct(bb);
+        return new Matrix(res.getArray());
+     }
 }
 ```
 
