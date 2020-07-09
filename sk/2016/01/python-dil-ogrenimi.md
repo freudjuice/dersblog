@@ -39,15 +39,15 @@ Giriş derslerinde çoğunlukla işlenmeyen Pyhon dil konuları hakkında bazı 
 
 [Birim Testler](../../2016/05/birim-testleri-taklitlemek-mocking-ve.md)
 
-With
+[With](../../2013/01/python-with-komutu-contextmanager.md)
 
-imap
+[imap](../../2011/02/imap.md)
 
-izip
+[izip](../../2010/06/izip.md)
 
-Tarih Zaman Icin datetime
+[Tarih Zaman Icin datetime](../../2016/06/datetime.md)
 
-Objeleri Yazip Okumak - Pickle, zlib
+[Objeleri Yazip Okumak - Pickle, zlib](../../2010/10/objeleri-yazip-okumak-pickle.md)
 
 
 
