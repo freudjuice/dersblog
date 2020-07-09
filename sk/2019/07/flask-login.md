@@ -156,20 +156,7 @@ ibaresini çıkartıp daha pür HTML kodları kullanmak istersek, sistem
 mesajlarını görmeyebiliriz, bu mesajlar 'kullanıcıya konfirme için
 email gönderildi', vs. gibi mesajlardır, o mesajları görmek için
 
-```html
-{% block flash_messages %}
-    {%- with messages = get_flashed_messages(with_categories=true) -%}
-        {% if messages %}
-            {% for category, message in messages %}
-                {% if category=='error' %}
-                    {% set category='danger' %}
-                {% endif %}
-                <div class="alert alert-{{category}}">{{ message|safe }}</div>
-            {% endfor %}
-        {% endif %}
-    {%- endwith %}
-  {% endblock %}
-```
+[Link](t4.txt)
 
 kodunu sayfalarımıza ekleyebiliriz. Bu durumda
 
