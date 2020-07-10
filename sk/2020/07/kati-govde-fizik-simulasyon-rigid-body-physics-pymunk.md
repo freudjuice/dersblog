@@ -136,4 +136,5 @@ if __name__ == '__main__':
 
 Kaynaklar
 
-[1] Mcclay, Dualkopter, https://youtu.be/b14_XQ5nd2A
+[1] Mcclay, [Dualkopter](https://youtu.be/b14_XQ5nd2A)
+
