@@ -2,13 +2,9 @@
 
 [Derin Ogrenim, Farkli Yaklasimlar](01/derin-ogrenim-farkli-yaklasimlar.md)
 
-[Elektrik ve Manyetik Etkileşimler](01/elektrik-ve-manyetik-etkilesimler.md)
-
 [iPython, rpy2, rmagic](02/ipython-rpy2-rmagic.md)
 
 [Julia](02/julia.md)
-
-[Kalici CD (Persistent Contrastive Divergence -PCD-)](02/kalici-cd-persistent-contrastive.md)
 
 [Python Bazli Tasinabilir Mobil UI Kodlari - Kivy](02/python-bazli-tasinabilir-mobil-ui.md)
 
