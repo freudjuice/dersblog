@@ -34,7 +34,8 @@ kopterine bakarsak, pervaneler objenin gövdesinden daha geniş, ve
 aerodinamik kurallarına göre pervanenin kuvvet kapsadığı tüm alan için
 geçerlidir. O zaman yeni bir simülasyon ile iki ufak çubuğu alttan
 üstten daha büyük olan gövdeye yapıştırarak, ve kuvveti tüm ufak çubuk
-alanına uyguluyarak yapılabilir.
+alanına uygularız. Böylece gövdeden daha geniş olan pervane alanı
+simule edilmiş olur.
 
 Bu ikinci simülasyonun daha dengeli olduğu görülecektir. 
 
