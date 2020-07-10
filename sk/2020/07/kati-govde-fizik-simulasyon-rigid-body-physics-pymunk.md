@@ -140,3 +140,5 @@ Kaynaklar
 
 [1] Mcclay, [Dualkopter](https://youtu.be/b14_XQ5nd2A)
 
+[2] Nielsen, Drone Drop, https://gist.github.com/DuaneNielsen/25972133ec77c6cd5494217bbe3e3066
+
