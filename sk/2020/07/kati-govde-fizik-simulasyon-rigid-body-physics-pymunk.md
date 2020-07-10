@@ -27,6 +27,8 @@ azaltılabiliyor, ve sağ sol ok tuşları ile kuvvetin acısı
 değiştiriliyor, [1] örneğindeki durumun simülasyonu gibi
 düşünülebilir.
 
+![](mcclay2.jpg)
+
 Fakat dikkat edersek kopter hassas. Güç uygulandığı anda sağa sola
 yalpalanması çok kolay. Burada problem [1]'deki durumun iyi simüle
 edilmemiş olması. Simülasyon kuvveti tek noktaya uyguluyor, fakat [1]
