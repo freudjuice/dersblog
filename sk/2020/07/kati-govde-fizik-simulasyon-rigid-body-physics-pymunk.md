@@ -2,28 +2,30 @@
 
 Belli şekildeki objelerin gerçek dünyada nasıl davranacağını merak
 ediyorsak simülasyon çözümüne başvurabiliriz. 2 boyutta bu tür
-simülasyonları `pymunk` ıle rahatça yapabiliyoruz. Bu motor arka
-planda chipmunk adlı C++ ile yazılmış bir diğer motora arayüz
+simülasyonlar `pymunk` ile rahatça yapılabilir. Bu fizik motoru arka
+planda chipmunk adlı C++ ile yazılmış başka bir yazılıma arayüz
 sağlıyor. Kurmak için
 
 ```
 pip install pymunk
 ```
 
-`pymunk` ile çubuksal, küresel, vs türünden objeler yaratabiliriz, bir
-hatta pek çok farklı parçaları birbirine yapıştırmak ta mümkün. Sert
-zemin yaratabiliriz. Objeleri çapıştırmak, ya da istediğimiz objelere
-istediğimiz taraflarından dış kuvvet uygulamak mümkün. Yere düşen
-objeler gerçek dünyada tahmin edilebilecek şekilde davranırlar..
+`pymunk` ile küresel, diktörtgen kenarlı, vs türünden objeler
+yaratabiliriz, hatta pek çok farklı parçaları birbirine yapıştırmak ta
+mümkündür. Sert zemin yaratılabilir. Objeleri çarpıştırmak, ya da
+istediğimiz objelere istediğimiz taraflarından dış kuvvet uygulamak
+mümkün. "Yere düşen" objeler gerçek dünyada tahmin edilebilecek
+şekilde davranırlar, yerçekim ayarlanabilir.
 
-Test etmek için üst ve alt kısımlarından kuvvet uygulanan bir çubuk örneği şurada.
+Test etmek için üst ve alt kısımlarından kuvvet uygulanan bir çubuk örneği,
 
 [Bar 1](bar1.py)
 
-Bu çubuğu bir dualkopter gibi düşünebiliriz, Alt üst ok tuşları ile
-uygulanan kuvvet arttırılıp azaltılabiliyor, ve sağ sol ok tuşları ile
-kuvvetin acısı değiştiriliyor, [1] örneğindeki durumun simülasyonu
-gibi düşünülebilir.
+Bu çubuğu bir dualkopter gibi düşünebiliriz, alt ve üst pervaneler
+var, alt üst ok tuşları ile uygulanan kuvvet arttırılıp
+azaltılabiliyor, ve sağ sol ok tuşları ile kuvvetin acısı
+değiştiriliyor, [1] örneğindeki durumun simülasyonu gibi
+düşünülebilir.
 
 Fakat dikkat edersek kopter hassas. Güç uygulandığı anda sağa sola
 yalpalanması çok kolay. Burada problem [1]'deki durumun iyi simüle
