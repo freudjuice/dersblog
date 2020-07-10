@@ -31,8 +31,8 @@ edilmemiş olması. Simülasyon kuvveti tek noktaya uyguluyor, fakat [1]
 kopterine bakarsak, pervaneler objenin gövdesinden daha geniş, ve
 aerodinamik kurallarına göre pervanenin kuvvet kapsadığı tüm alan için
 geçerlidir. O zaman yeni bir simülasyon ile iki ufak çubuğu alttan
-üstten yapıştırarak, ve kuvveti tüm ufak çubuklara uyguluyarak
-yapılabilir.
+üstten daha büyük olan gövdeye yapıştırarak, ve kuvveti tüm ufak çubuk
+alanına uyguluyarak yapılabilir.
 
 Bu ikinci simülasyonun daha dengeli olduğu görülecektir. 
 
