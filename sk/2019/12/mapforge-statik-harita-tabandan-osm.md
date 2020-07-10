@@ -114,7 +114,7 @@ işletilebilir.
 Eğer Python üzerinden Java çağırmak istiyorsak, şu şekilde bir
 değişiklik yapabiliriz,
 
-```
+```java
 ...
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.core.model.Point;
