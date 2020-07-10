@@ -1,4 +1,4 @@
-# 2 Boyutlu Fiziksel Simulasyon (Rigid Body 2d Physics Simulation)
+# 2 Boyutlu Fiziksel Simulasyon (Rigid Body 2d Physics Simulation), pymunk
 
 Belli şekildeki objelerin gerçek dünyada nasıl davranacağını merak
 ediyorsak simülasyon çözümüne başvurabiliriz. 2 boyutta bu tür
