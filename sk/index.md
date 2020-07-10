@@ -9,6 +9,8 @@
 
 ## Konular, Referans
 
+[2 Boyutlu Fiziksel Simulasyon (Rigid Body 2d Physics Simulation)](2020/07/kati-govde-fizik-simulasyon-rigid-body-physics-pymunk.md)
+
 [Python](2016/01/python-dil-ogrenimi.md)
 
 [Youtube Kanalım](https://www.youtube.com/channel/UCMAUsgUq5ODy8kMnJlUBUdQ)
